@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NS.Mail</name>
+    </assembly>
+    <members>
+        <member name="F:NS.Mail.MailConfig.DefaultCssCompiler">
+            <summary>
+            Fallback funtion use to compile external CSS style to inline.
+            This function will be used if the <see cref="!:System.Net.Mai.MailMessage.CompileCss"/> is called without a valid compiler.
+            </summary>
+        </member>
+        <member name="F:NS.Mail.MailConfig.DefaultRazorTemplateLocation">
+            <summary>
+            The absolute physical directory which contains Razor templates for rendering emails.
+            This location will be used if the <see cref="!:System.Net.Mai.MailMessage.RederRazorTemplate"/> is called without a valid location.
+            </summary>
+        </member>
+        <member name="T:NS.Mail.Mailer">
+            <summary>
+            Handy class to build message, configure SMTP client, and delivery e-mail fluently.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.UseCssCompiler(System.Func{System.String,System.String})">
+            <summary>
+            Set the compiler use to compile CSS in message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.EnableCssCompile(System.Boolean)">
+            <summary>
+            Enable to compile CSS before sending message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.NewMessage">
+            <summary>
+            Create new e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.UseMessage(System.Net.Mail.MailMessage)">
+            <summary>
+            Use an existing message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.From(System.String)">
+            <summary>
+            Set the from address for this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.To(System.String[])">
+            <summary>
+            Add the recipients' addresses of this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.CC(System.String[])">
+            <summary>
+            Add the carbon copy (CC) recipients' addresses for this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.BCC(System.String[])">
+            <summary>
+            Add the blind carbon copy (BCC) recipients' addresses for this e-mail address.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.ReplyTo(System.String[])">
+            <summary>
+            Add the addresses to the list of addresses to reply to for this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.Subject(System.String,System.Text.Encoding)">
+            <summary>
+            Sets the subject line for this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.Body(System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Sets the message body.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.AltenativeView(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Add an alternative form of the message body.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.Header(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Add an e-mail header that is transmitted with this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.Attach(System.String,System.Byte[],System.String)">
+            <summary>
+            Add an attachment to this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.WithPriority(System.Net.Mail.MailPriority)">
+            <summary>
+            Sets the priority of this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.WithDeliveryNotificationOptions(System.Net.Mail.DeliveryNotificationOptions)">
+            <summary>
+            Sets the delivery notifications for this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.UseSmtpClient(System.Net.Mail.SmtpClient)">
+            <summary>
+            Use an existing SMTP configuration for delivery.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.UseHost(System.String,System.Int32)">
+            <summary>
+            Sets the host and port used for SMTP transactions.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.UseCredentials(System.String,System.String)">
+            <summary>
+            Sets the credentials used to authenticate the sender.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.UsePickupDirectory(System.String)">
+            <summary>
+            Sets the folder where applications save mail messages to be processed by the local SMTP server.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.UseSSL(System.Boolean)">
+            <summary>
+            Specify whether the SMTP transaction uses Secure Sockets Layer (SSL) to encrypt the connection.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.UseCertificates(System.Security.Cryptography.X509Certificates.X509Certificate[])">
+            <summary>
+            Specify which certificates should be used to establish the Secure Sockets Layer (SSL) connection.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.Mailer.Send(System.Action{NS.Mail.Mailer},System.Action{NS.Mail.Mailer})">
+            <summary>
+                Deliver e-mail message synchronously.
+            </summary>
+            <param name="succeedCallback">
+                Method to be called if deliver success.
+            </param>
+            <param name="failureCallback">
+                Method to be called if deliver failed.
+            </param>
+            <returns>
+                TRUE if deliver successfully.
+            </returns>
+        </member>
+        <member name="M:NS.Mail.Mailer.SendAsync(System.Action{NS.Mail.Mailer},System.Action{NS.Mail.Mailer})">
+            <summary>
+                Deliver e-mail message asynchronously.
+            </summary>
+            <param name="succeedCallback">
+                Method to be called if deliver success.
+            </param>
+            <param name="failureCallback">
+                Method to be called if deliver failed.
+            </param>
+            <returns>
+                TRUE if deliver successfully.
+            </returns>
+        </member>
+        <member name="M:NS.Mail.Mailer.CancelAsync">
+            <summary>
+                Cancel that asynchronous delivery action.
+            </summary>
+            <returns>
+                TRUE if cancelling successfully.
+            </returns>
+        </member>
+        <member name="M:NS.Mail.Mailer.Dispose">
+            <summary>
+            Dispose e-mail message and SMTP client.
+            </summary>
+        </member>
+        <member name="P:NS.Mail.Mailer.Message">
+            <summary>
+            Email-message that will be delivery.
+            </summary>
+        </member>
+        <member name="P:NS.Mail.Mailer.SmtpClient">
+            <summary>
+            SMTP client to delivery e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.MailMessageExtensions.CompileCss(System.Net.Mail.MailMessage,System.Func{System.String,System.String})">
+            <summary>
+            Convert all in-page and external CSS styles to inline in that e-mail message using <paramref name="compiler"/>
+            </summary>
+        </member>
+        <member name="M:NS.Mail.MailMessageExtensions.RenderRazorTemplate(System.Net.Mail.MailMessage,System.String,System.Object,System.Object)">
+            <summary>
+            Render a Razor view to used in this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.MailMessageExtensions.RenderRazorTemplate(System.Net.Mail.MailMessage,System.String,System.String,System.Object,System.Object)">
+            <summary>
+            Render a Razor view to used in this e-mail message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.MailMessageExtensions.CopyBodyFrom(System.Net.Mail.MailMessage,System.Net.Mail.MailMessage)">
+            <summary>
+            Copy body, views, encoding from another e-mail message to this message.
+            </summary>
+        </member>
+        <member name="T:NS.Mail.RazorMailMessage">
+            <summary>
+                Represents an e-mail message that can render body from <see cref="N:System.Web.Razor"/> template.
+            </summary>
+            <example>
+                Usage:
+                <code>
+                    // building view bag.
+                    var viewBag = new { EventName = "X-mas Eve" };
+                    
+                    // initialize message.
+                    var message = new RazorMailMessage("RSVP", contactInfo, viewBag);
+                    
+                    // call render method explicitly to flatten model and view bag to HTML.
+                    message.Render();
+                </code>
+            </example>
+        </member>
+        <member name="M:NS.Mail.RazorMailMessage.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            Create new message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.RazorMailMessage.#ctor(System.String,System.String,System.Object,System.Object)">
+            <summary>
+            Create new message.
+            </summary>
+        </member>
+        <member name="M:NS.Mail.RazorMailMessage.Render">
+            <summary>
+            Render template, view model and view bag to html views.
+            </summary>
+        </member>
+        <member name="P:NS.Mail.RazorMailMessage.Model">
+            <summary>
+            ViewModel that will be rendered in the template.
+            </summary>
+        </member>
+        <member name="P:NS.Mail.RazorMailMessage.ViewBag">
+            <summary>
+            Object that will be rendered in the template using <see cref="T:RazorEngine.Templating.DynamicViewBag">ViewBag</see> object.
+            </summary>
+        </member>
+    </members>
+</doc>

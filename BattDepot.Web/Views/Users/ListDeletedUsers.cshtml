@@ -1,0 +1,112 @@
+﻿@using NS.Mvc.Helpers
+@using Davisoft_BDSProject.Domain.Entities
+@using Resources
+@model IEnumerable<User>
+
+@*<h3 class="heading">Users</h3>*@
+@{
+    var roles = ViewBag.roles;
+}
+@if (TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-block alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @TempData["Message"]
+
+    </div>
+
+    TempData.Remove("Message");
+}
+
+<section class="panel panel-default">
+    <header class="tilte_l">
+        @Resource.UsersDeleted
+    </header>
+    <div class="panel-body">
+        <div class="form-group row">
+            <div class="col-sm-6">
+                @Html.Bootstrap().DropDownList(Resource.Role, new SelectList(roles, "ID", "Name")).Class("form-control").OptionLabel("SELECT ROLE").Id("role")
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table id="users-table" class="table">
+                <thead>
+                    <tr>
+                        <th>@Resource.UserName</th>
+                        <th>@Resource.Email</th>
+                        <th>@Resource.PhoneNumber</th>
+                        <th class="text-center">@Resource.Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (User user in Model)
+                    {
+                        <tr data-roles="@(string.Join(" ", user.Roles.Select(m => m.ID)))">
+                            <td>
+                                @if (user.Picture != null)
+                                {
+                                    <img src="~/data/user_img/@(user.Picture + "?" + Guid.NewGuid().ToString())" class="img-rounded user-picture-small" />
+                                }
+                                @user.DisplayName
+                            </td>
+                            <td>@user.Email</td>
+                            <td>@user.Phone</td>
+                            @* @Html.ActionLink("Log viewer", "Index", "Audit", new { user.DisplayName }, null) |
+                                @Html.ActionLink("Edit", "Edit", new { Id = user.ID }, null) |*@
+                            <td class="text-center">
+                                <a href="@Url.Action("ReActive", new { id = user.ID })" data-action="reactive" data-id="@user.ID"><i class="fa fa-undo text-violet"></i> @Resource.ReActive</a>
+                                @*@using (var dd = Html.Bootstrap().Begin(new DropDown("").Class("prepend-icon nowrap").AlignTo("right")))
+                                    {
+                                        @dd.ActionLink(Resource.ReActive, "ReActive", "Users").RouteValues(new { Id = user.ID }).HtmlAttributes(new { data_action = "reactive", data_id = user.ID }).PrependIcon(Icons.check)
+                                    }*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@Html.Script(
+    @<script>
+
+        var $modelTable = $('#users-table').dataTable();
+
+        $('[data-action="reactive"]').on('click', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            bootbox.confirm("@Resource.ConfirmReActive", function (isOK) {
+                if (isOK) {
+                    var id = $self.data('id');
+                    var index = $self.closest('tbody').find('tr').index($self.closest('tr'));
+
+                    $.ajax({
+                        url: '@Url.Action("ReActive", "Users")/' + id,
+                        type: 'POST',
+                        success: function () {
+                            $modelTable.fnDeleteRow(index);
+                        }
+                    });
+                }
+            });
+
+        });
+
+        $("#role").change(function () {
+            var roleID = $(this).val();
+            if (roleID == '') {
+                $('tbody tr').removeClass('hide');
+            } else {
+                $('tbody tr').addClass('hide');
+                $('tbody tr').each(function (index, value) {
+                    if ($(this).attr('data-roles').indexOf(roleID) != -1) {
+
+                        $(this).removeClass('hide');
+                    }
+                });
+            }
+        });
+
+    </script>
+              )

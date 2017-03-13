@@ -1,0 +1,16 @@
+﻿@using Resources
+@{
+    Layout = "~/Views/Shared/_BigBang.cshtml";
+    ViewBag.PageClass = "error_page";
+}
+
+@section css {
+    @Styles.Render("~/display/css/min")
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Jockey+One" />
+}
+
+<div class="error_box">
+    <h1>500</h1>
+    <p style="text-transform: uppercase;font-size:32px;color:#067ead;">Internal server error</p>
+    <p>@Html.Bootstrap().ActionLinkButton(Resource.GoHome, "Index", "Home").PrependIcon(Icons.home)</p>
+</div>

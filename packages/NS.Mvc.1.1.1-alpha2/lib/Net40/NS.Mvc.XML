@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NS.Mvc</name>
+    </assembly>
+    <members>
+        <member name="T:NS.Mvc.Helpers.DisableBundleOrderer">
+            <summary>
+            Sort scripts in bundle by order of register
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.EnumerationHelper.ToSelectList``1">
+            <summary>
+                Retrieve all values of an Enumeration type and convert into a SelectList
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.EnumerationHelper.ToSelectList``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Object,System.Object)">
+            <summary>
+                Convert a generic list to a SelectList
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlJavascriptHelper.Serialize(System.Web.Mvc.HtmlHelper,System.Object)">
+            <summary>
+            Serialize an object to JSON string.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlJavascriptHelper.Escape(System.Web.Mvc.HtmlHelper,System.String)">
+            <summary>
+            Escape a script to embed into view.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlJavascriptHelper.Script(System.Web.Mvc.HtmlHelper,System.Func{System.Object,System.Web.WebPages.HelperResult})">
+            <summary>
+            Register scripts to render later. Helpful to use in partial view.
+            </summary>
+            <remarks>
+            From: http://stackoverflow.com/a/5433722
+            </remarks>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlJavascriptHelper.RenderScripts(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            Render all registered scripts. Should call it in the top-level view.
+            </summary>
+            <remarks>
+            From: http://stackoverflow.com/a/5433722
+            </remarks>
+        </member>
+        <member name="M:NS.Mvc.Helpers.ModelStateExtensions.TraceValidation(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Web.Mvc.ModelState}})">
+            <summary>
+            Write all validation errors to help debugging.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.PostedFileHelper.IsImage(System.Web.HttpPostedFileBase,System.Int32)">
+            <summary>
+            Check if posted file is a valid image.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.NSController.View``1(System.Object)">
+            <summary>
+            Auto map a specific model to another type and render the view
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NS.Mvc.NSController.JsonCommand(System.String,System.String,System.Object)">
+            <summary>
+            Return a JSON object that contains validation errors and view
+            </summary>
+            <param name="success">View that will be rendered if the validate success</param>
+            <param name="failure">View that will be rendered if the validate failed</param>
+            <param name="model">The model will be rasterize into the view</param>
+            <returns></returns>
+        </member>
+        <member name="M:NS.Mvc.NSController.JsonNet(System.Object,System.Web.Mvc.JsonRequestBehavior)">
+            <summary>
+            Alternative for Json() using Newtonsoft.Json instead of the built-in serializer
+            </summary>
+            <param name="model"></param>
+            <param name="behavior"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NS.Mvc.NSController.PrintValidationTrace">
+            <summary>
+            Write all validation errors to help debugging
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NS.Mvc.Helpers.HtmlCollectionHelper">
+            <example>
+                Usage:
+                <code>
+            @using (Html.BeginCollectionFor(m => m.Payments) {
+                using (Html.BeginCollectionItem()) {
+                    @Html.EditorFor(m => m.Payments)
+                }
+            }
+            </code>
+                The first @using will generate respectively prefix for fields name, i.e. "Payments"
+                The second @using will generate a new list key that associated with that item, i.e.
+                "bf3a5c52-f2c5-4949-b4f5-9028dec69800", and inject a hidden input into the rendered
+                HTML code, like below:
+                <code>
+            <input type="hidden" name="Payments.index" value="bf3a5c52-f2c5-4949-b4f5-9028dec69800" autocomplete="off" />
+            </code>
+                This hidden input will help MVC regconize our list of fields.
+                Beside that, the second @using also retrieve the prefix from the first @using
+                and inject it into every fields name inside its scope. Like below:
+                <code>
+            <input type="text" name="Payments[bf3a5c52-f2c5-4949-b4f5-9028dec69800].Amount" value="2000" />
+            </code>
+            </example>
+            <remarks>
+                Inspired by Ivan Zlatev.
+                http://ivanz.com/2011/06/16/editing-variable-length-reorderable-collections-in-asp-net-mvc-part-1/
+            </remarks>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlCollectionHelper.BeginCollectionFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+                Push collection name into context data, so the BeginCollectionItem will get
+                collection name and generate prefix for fields
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlCollectionHelper.BeginCollectionItem(System.Web.Mvc.HtmlHelper)">
+            <summary>
+                Render hidden input for item, so MVC will regconize in-scope fields as an item of collection
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlCollectionHelper.GetCollectionItemIndex(System.String)">
+            <summary>
+                Get current item index:string from the posted form, or generate a new index (if
+                this item is new, not from posted form)
+                Important: because we retrive index by its order, so we definitely never try to reordering the posted items
+            </summary>
+        </member>
+        <member name="T:NS.Mvc.Helpers.HtmlCollectionHelper.HtmlCollectionItemScope">
+            <summary>
+                Prefix fields' name when go in
+                Remove prefix when go out
+            </summary>
+        </member>
+        <member name="T:NS.Mvc.Helpers.HtmlCollectionHelper.HtmlCollectionScope">
+            <summary>
+                Store collection name in HttpContext
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.MvcHelper.GetControllerName(System.Type)">
+            <summary>
+            Get controller name from type.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.MvcHelper.GetControllerName(System.Web.Mvc.ControllerBase)">
+            <summary>
+            Get controller name (without "Controller" affix.)
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.MvcHelper.GetActionName(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Get action name from lambda expression.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlExtensions.FieldIdFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Get field id for specific input.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlExtensions.FieldNameFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Get field name for specific input.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlExtensions.JquerySelectorFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Get jQuery selector for specific input.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlExtensions.ControllerName(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            Retrieve controller name from the current route.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlExtensions.ActionName(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            Retrieve action name from the current route.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.Helpers.HtmlExtensions.EmailLink(System.Web.Mvc.HtmlHelper,System.String,System.String)">
+            <summary>
+            Shorten way to write a mailto URI hyperlink.
+            </summary>
+        </member>
+        <member name="T:NS.Mvc.ModelBinders.EnumerationBinder`1">
+            <summary>
+            Defines the methods that used to bind <see cref="T:NS.Enumeration"/>.
+            </summary>
+        </member>
+        <member name="T:NS.Mvc.ModelBinders.EnumerationBinder">
+            <summary>
+            Defines the methods that used to bind HTTP request parameters to an <see cref="T:NS.Enumeration"/>.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.ModelBinders.EnumerationBinderHelper.RegisterBinders(System.Web.Mvc.ModelBinderDictionary)">
+            <summary>
+            Register binders for all <see cref="T:NS.Enumeration"/> inheritance.
+            </summary>
+        </member>
+        <member name="M:NS.Mvc.ModelBinders.EnumerationBinderHelper.RegisterBinders(System.Web.Mvc.ModelBinderDictionary,System.Reflection.Assembly)">
+            <summary>
+            Register binders for all inheritors of <see cref="T:NS.Enumeration"/> that was declared in a specific assembly.
+            </summary>
+        </member>
+    </members>
+</doc>

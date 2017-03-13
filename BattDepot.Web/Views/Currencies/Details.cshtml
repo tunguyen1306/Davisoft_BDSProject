@@ -1,0 +1,30 @@
+@model Davisoft_BDSProject.Domain.Entities.Currency
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Currency</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">Symbol</div>
+    <div class="display-field">@Model.Symbol</div>
+
+    <div class="display-label">BaseCurrency</div>
+    <div class="display-field">@Model.IsDefault</div>
+    
+    <div class="display-label">Precision</div>
+    <div class="display-field">@Model.Precision</div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

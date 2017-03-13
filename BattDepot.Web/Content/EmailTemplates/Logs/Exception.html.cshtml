@@ -1,0 +1,50 @@
+﻿@using System.Security.Policy
+@using System.Web.Mvc.Html
+@using ColorCode
+@using ColorCode.Compilation.Languages
+@using Davisoft_BDSProject.Domain.Abstract
+@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Domain.Helpers
+@using Davisoft_BDSProject.Web.Infrastructure.Helpers
+@using Davisoft_BDSProject.Web.Infrastructure.Utility
+@using Davisoft_BDSProject.Web.Models
+@using Newtonsoft.Json
+@model Audit
+
+@{
+    if (Model == null)
+    {
+        var temp = new Audit();
+        Model = temp;
+    }
+}
+
+<table class="table table-orchard audit-detail">
+    <tr>
+        <td>IP</td>
+        <td>@Model.IPAddress</td>
+    </tr>
+    <tr>
+        <td>DisplayName</td>
+        <td>@Model.Username</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>@Model.UrlAccessed</td>
+    </tr>
+    <tr>
+        <td>Time</td>
+        <td>@Model.TimeAccessed</td>
+    </tr>
+    <tr>
+        <td>Message</td>
+        <td>@Model.Message</td>
+    </tr>
+    <tr>
+        <td>Data</td>
+        <td>@Model.Data</td>
+    </tr>
+</table>
+<br />
+<br />
+<a href="@(Davisoft_BDSProject.Web.Infrastructure.Helpers.UrlHelper.Root + "Audit/Detail/" + Model.ID)" target="_blank">Hyperlink here to show all above reports in detail</a>

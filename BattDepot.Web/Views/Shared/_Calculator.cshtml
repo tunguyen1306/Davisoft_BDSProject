@@ -1,0 +1,34 @@
+﻿ <form name="Calc" id="calc">
+     <div class="screen">
+         <div class="control-group input-append">
+             <input type="text" style="width: 147px" name="Input"  />
+             <button type="button" class="btn" name="clear" value="c" onclick=" Calc.Input.value = '' "><i class="icon-remove"></i></button>
+         </div>
+     </div>
+     <div class="numpad">
+         <div class="control-group">
+             <input type="button" class="btn btn-large" name="seven" value="7" onclick=" Calc.Input.value += '7' " />
+             <input type="button" class="btn btn-large" name="eight" value="8" onclick=" Calc.Input.value += '8' " />
+             <input type="button" class="btn btn-large" name="nine" value="9" onclick=" Calc.Input.value += '9' " />
+             <input type="button" class="btn btn-large" name="div" value="÷" onclick=" Calc.Input.value += ' / ' ">
+         </div>
+         <div class="control-group">
+             <input type="button" class="btn btn-large" name="four" value="4" onclick=" Calc.Input.value += '4' " />
+             <input type="button" class="btn btn-large" name="five" value="5" onclick=" Calc.Input.value += '5' " />
+             <input type="button" class="btn btn-large" name="six" value="6" onclick=" Calc.Input.value += '6' " />
+             <input type="button" class="btn btn-large" name="times" value="×" onclick=" Calc.Input.value += ' * ' " />
+         </div>
+         <div class="control-group">
+             <input type="button" class="btn btn-large" name="one" value="1" onclick=" Calc.Input.value += '1' " />
+             <input type="button" class="btn btn-large" name="two" value="2" onclick=" Calc.Input.value += '2' " />
+             <input type="button" class="btn btn-large" name="three" value="3" onclick=" Calc.Input.value += '3' " />
+             <input type="button" class="btn btn-large" name="minus" value="–" onclick=" Calc.Input.value += ' - ' " />
+         </div>
+         <div class="control-group">
+             <input type="button" class="btn btn-large" name="dot" value="." onclick=" Calc.Input.value += '.' " />
+             <input type="button" class="btn btn-large" name="zero" value="0" onclick=" Calc.Input.value += '0' " />
+             <input type="button" class="btn btn-large" name="DoIt" value="=" onclick=" Calc.Input.value = Math.round(eval(Calc.Input.value) * 1000) / 1000 " />
+             <input type="button" class="btn btn-large" name="plus" value="+" onclick=" Calc.Input.value += ' + ' " />
+         </div>
+     </div>
+ </form>

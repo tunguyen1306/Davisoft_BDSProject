@@ -1,0 +1,141 @@
+﻿@using Davisoft_BDSProject.Web.Infrastructure.Utility
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model AccountModel
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    using (Html.Bootstrap().Begin(new Alert().Style(AlertColor.Success).Closeable()))
+    {
+        <text>@ViewBag.Message</text>
+    }
+}
+
+@{
+    ViewBag.Title = Resource.MyProfile;
+}
+
+<section class="panel panel-default">
+    <h3 class="tilte_l">
+        @ViewBag.Title
+    </h3>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            @using (Html.BeginForm("Profile", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+            {
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.OldPassword <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().PasswordFor(m => m.OldPassword).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.NewPassword </label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().PasswordFor(m => m.Password).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.ConfirmNewPassword</label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().PasswordFor(m => m.ConfirmPassword).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.Name <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Username).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.Email <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Email).Class("form-control").ShowValidationMessage(true).Readonly()
+                    </div>
+                </div>
+                if (Model.Branch != null)
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@Resource.Branch <span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            @Html.Bootstrap().TextBoxFor(m => m.Branch.Name).Class("form-control").ShowValidationMessage(true).Disabled()
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.PhoneNumber <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Phone).Class("form-control code").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.MobileNumber</label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.MobilePhone).Class("form-control code").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.Picture</label>
+                    <div class="col-sm-9">
+                        <div id="profilePicture">
+                            @if (CurrentUser.Identity.Picture != null)
+                            {
+                                <img style="width: 120px; height:120px;" src="~/data/user_img/@(CurrentUser.Identity.Picture + "?" + Guid.NewGuid().ToString())" class="img-polaroid user-picture-preview" />
+                            }
+                            else
+                            {
+                                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().FileFor(m => m.Picture).ShowValidationMessage(false)
+                    </div>
+                </div>
+                using (Html.Bootstrap().Begin(new FormActions()))
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3"></label>
+                        <label class="col-sm-9">
+                            @Html.Bootstrap().SubmitButton().Text(Resource.Save).Style(ButtonStyle.Success)
+                        </label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+@section js
+{
+    <script>
+        $(document).on('change', 'input[type="File"]', function () {
+            var upload = $(this);
+
+            var indicator = upload.next('.selected');
+            if (indicator.length == 0) {
+                indicator = $('<span class="selected"></span>').insertAfter(upload);
+            }
+
+            if (upload.val() == '') {
+                indicator.html('');
+            } else if (window.FileReader) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    if (upload[0].files[0].size > 2000000) {
+                        $.sticky("@Resource.ErrorYourFileIsTooLarge", { type: 'st-danger' });
+                        upload.replaceWith(upload = upload.clone(true));
+                    } else {
+                        $('#profilePicture').html("<img style='width: 120px; height:120px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
+                    }
+                };
+                reader.readAsDataURL(upload[0].files[0]);
+            } else {
+                indicator.html("Selected");
+            }
+        });
+
+    </script>
+}

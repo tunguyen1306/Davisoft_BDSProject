@@ -1,0 +1,655 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NS.Core</name>
+    </assembly>
+    <members>
+        <member name="M:NS.DebuggingService.RunningInDebugMode">
+            <summary>
+                Check if the current envirionment is in debugging mode.
+                <para>If ConfigurationManager.AppSettings["DEBUG_MODE"] is set to TRUE, then we are in debugging mode.</para>
+                <para>If ConfigurationManager.AppSettings["DEBUG_MODE"] is set to FALSE, then we are in release mode.</para>
+                <para>If compilation debug=“true” in web.config, then we are in debugging mode.</para>
+                <para>If the request is from local machine, then assuming as debugging mode.</para>
+                <para>Otherwise, as is the assembly built mode.</para>
+            </summary>
+            <remarks>
+                Because we cannot access HttpContext.Current.Request inside Application_Start,
+                so the check if request is from location machine will be skipped in that case.
+            </remarks>
+        </member>
+        <member name="M:NS.Defensive.NullCheck(System.Object,System.String)">
+            <summary>
+                Throw a <see cref="T:System.ArgumentNullException"/> if <paramref name="parameter"/> is null.
+            </summary>
+            <param name="parameter">Value to check.</param>
+            <param name="message">Message to show.</param>
+        </member>
+        <member name="M:NS.Enumeration.New``1(System.Object,System.String)">
+            <summary>
+                Create new value for enum of type <typeparamref name="T" />.
+            </summary>
+        </member>
+        <member name="M:NS.Enumeration.Define``1(System.Object,System.String)">
+            <summary>
+                Defines new value for enum of type <typeparamref name="T" />.
+            </summary>
+        </member>
+        <member name="M:NS.Enumeration.Define``1(System.String)">
+            <summary>
+                Defines new value for enum of type <typeparamref name="T" />.
+            </summary>
+        </member>
+        <member name="M:NS.Enumeration.op_Equality(NS.Enumeration,NS.Enumeration)">
+            <returns>True if 2 enumerations have the same types and values.</returns>
+        </member>
+        <member name="M:NS.Enumeration.op_Inequality(NS.Enumeration,NS.Enumeration)">
+            <returns>True if 2 enumerations do not have the same types or values.</returns>
+        </member>
+        <member name="M:NS.Enumeration.op_Implicit(NS.Enumeration)~System.String">
+            <returns>Value of this enum.</returns>
+        </member>
+        <member name="M:NS.Enumeration.ToString">
+            <returns>Value of this enum.</returns>
+        </member>
+        <member name="M:NS.Enumeration.Parse``1(System.String,System.String,System.Func{``0,System.Boolean})">
+            <summary>
+                Parse an string to an enumeration object of type <typeparamref name="TEnum" /> by value or display name.
+            </summary>
+        </member>
+        <member name="M:NS.Enumeration.GetAll``1">
+            <summary>
+                Get all values of an <see cref="T:NS.Enumeration"/> type
+            </summary>
+        </member>
+        <member name="M:NS.Enumeration.FromName``1(System.String)">
+            <summary>
+                Gets value of an enumeration name
+            </summary>
+        </member>
+        <member name="M:NS.Enumeration.FromValue``1(System.String)">
+            <summary>
+                Gets value of an enumeration by underlying value.
+            </summary>
+        </member>
+        <member name="M:NS.Enumeration.FromValue(System.Type,System.String)">
+            <summary>
+                Gets value of an enumeration by underlying value.
+            </summary>
+        </member>
+        <member name="M:NS.Enumeration.GetConstantObject">
+            <summary>
+                Get constant field (pre-defined) of current value
+            </summary>
+        </member>
+        <member name="P:NS.Enumeration.Value">
+            <summary>
+                Underlying value of current value.
+            </summary>
+        </member>
+        <member name="P:NS.Enumeration.DisplayName">
+            <summary>
+                Name of the value, use to display to user.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.EnumerationTypeConfiguration.Apply(System.Data.Entity.DbContext,System.Data.Entity.DbModelBuilder)">
+            <summary>
+            Configure maximum length for <see cref="T:NS.Enumeration"/> value fields in the <paramref name="context"/>.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.EnumerationTypeConfiguration.ConfigureEnumColumnName(System.Data.Entity.DbModelBuilder,System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Configures column name for Enumeration columns in database.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.EnumerationTypeConfiguration.ConfigureEnumColumnType(System.Data.Entity.DbModelBuilder,System.Type)">
+            <summary>
+            Configures data type, max length for Value property, and prevents DisplayName to be stored in database.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.EnumerationTypeConfiguration.GetEnumMaxLength(System.Type)">
+            <summary>
+            Retrieve longest value of <paramref name="enumType"/>.
+            </summary>
+            <param name="enumType">
+            An inheritor of <see cref="T:NS.Enumeration"/>.
+            </param>
+        </member>
+        <member name="M:NS.Entity.EnumerationTypeConfiguration.GetPropertyName(System.Reflection.PropertyInfo)">
+            <summary>
+            Get the name of an <see cref="T:NS.Enumeration"/> property.
+            </summary>
+        </member>
+        <member name="T:NS.Entity.Repository">
+            <summary>
+            Adjust RepositoryBase interaction with business object (Entity derived)
+            </summary>
+        </member>
+        <member name="T:NS.Entity.RepositoryBase">
+            <summary>
+                Base repository class to work with EntityFramework
+            </summary>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.#ctor(System.Data.Entity.DbContext)">
+            <summary>
+                Initialize this repository.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Retrieve``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+                Build the query for retrieving data.
+            </summary>
+            <param name="predicate">
+                A function to test each element for a condition.
+            </param>
+            <typeparam name="TEntity">
+                The type of the entities.
+            </typeparam>
+            <returns>
+                An <see cref="T:System.Linq.IQueryable`1" /> that contains elements from the input sequence that satisfy the
+                condition specified by <paramref name="predicate" />.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Retrieve``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+                Build the query for retrieving data.
+            </summary>
+            <param name="predicate">
+                A function to test each element for a condition.
+            </param>
+            <param name="includeProperties">
+                An <see cref="T:System.Linq.Expressions.Expression`1"/> that defines properties will by included using be eager-load.
+            </param>
+            <typeparam name="TEntity">
+                The type of the entities.
+            </typeparam>
+            <returns>
+                An <see cref="T:System.Linq.IQueryable`1"/> that contains elements from the input sequence that satisfy the
+                condition specified by <paramref name="predicate"/>.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Single``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+                Retrieve an entity from database.
+            </summary>
+            <param name="predicate">
+                A function to test each element for a condition.
+            </param>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <returns>
+                The entity if operate successfully, or NULL if failed.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Single``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+                Retrieve an entity from database.
+            </summary>
+            <param name="predicate">
+                A function to test each element for a condition.
+            </param>
+            <param name="includeProperties">
+                The properties need to be eager-loaded.
+            </param>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <returns>
+                The entity if operate successfully, or NULL if failed.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Find``1(System.Object[])">
+            <summary>
+                Retrieve an entity from database by it's primary keys values.
+            </summary>
+            <param name="keys">
+                The primary keys values.
+            </param>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <returns>
+                The entity if operate successfully, or NULL if failed.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Create``1(``0,System.Boolean)">
+            <summary>
+                <para>Create new record and save to database.</para>
+                <para>If force, then always insert new record, regardless to the state of that entity.</para>
+            </summary>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Update``1(``0)">
+            <summary>
+                Update an entity and persist to the database.
+            </summary>
+            <param name="entity">
+                The entity need to be updated.
+            </param>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <returns>
+                True if update successfully.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.UpdateCollection``2(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Func{``1,System.Object})">
+            <summary>
+                Update a collection of items.
+            </summary>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <typeparam name="TItem">
+                Type of the collection item.
+            </typeparam>
+            <param name="entity">
+                The container entity.
+            </param>
+            <param name="predicate">
+                Function that returns key property of the entity that contains collection.
+            </param>
+            <param name="collectionExpression">
+                The collection (property of the container entity.)
+            </param>
+            <param name="getCollectionItemKey"></param>
+            <returns>
+                Number of successful updated records.
+            </returns>
+            <remarks>
+                Read more: http://www.entityframeworktutorial.net/EntityFramework4.3/update-one-to-many-entity-using-dbcontext.aspx
+            </remarks>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.UpdateNavigation``2(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.ICollection{``1}}},System.Func{``1,System.Object})">
+            <summary>
+                Update navigation collection of an entity.
+            </summary>
+            <param name="entity">
+                The entity need to update.
+            </param>
+            <param name="predicate">
+            </param>
+            <param name="collectionExpression">
+                The collection (property of the container entity.)
+            </param>
+            <param name="getCollectionItemKey">
+                Function to retrieve the key values of a collection item.
+            </param>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <typeparam name="TItem">
+                Type of the collection item.
+            </typeparam>
+            <returns>
+                True if update successfully.
+            </returns>
+            <exception cref="T:System.Management.Instrumentation.InstanceNotFoundException"></exception>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Delete``1(System.Int32)">
+            <summary>
+                Delete an entity by it primary keys.
+            </summary>
+            <param name="key">
+                Value of the primary key.
+            </param>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <returns>
+                True if successfully.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Delete``1(System.Guid)">
+            <summary>
+                Delete an entity by it primary keys.
+            </summary>
+            <param name="key">
+                Value of the primary key.
+            </param>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <returns>
+                True if successfully.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Delete``1(``0)">
+            <summary>
+                Delete an entity.
+            </summary>
+            <param name="entity">
+                Entity to delete.
+            </param>
+            <typeparam name="TEntity">
+                Type of the entity.
+            </typeparam>
+            <returns>
+                True if successfully.
+            </returns>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.ApplyFilter``1(System.Linq.IQueryable{``0})">
+            <summary>
+                Filter the query result.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.ApplyFilter``1(``0)">
+            <summary>
+                Filter the query result.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.RepositoryBase.Query``1(System.String,System.Object[])">
+            <summary>
+                Execute raw query.
+            </summary>
+            <example>
+                Usage:
+                <code>
+                    var booking = Query{Booking}("select * from booking where ID={0}", 1).First();
+                </code>
+            </example>
+        </member>
+        <member name="M:NS.Entity.Repository.Delete``1(``0)">
+            <summary>
+            Change entity status to Archived instead of delete.
+            To permanantly delete from db, use <see cref="M:NS.Entity.Repository.PermanentlyDelete``1(``0)"/>
+            or base's method (<see cref="M:NS.Entity.RepositoryBase.Delete``1(``0)"/>) instead:
+            <code>
+            ((RepositoryBase) this).Delete(info);
+            </code>
+            </summary>
+            <remarks>
+            DANGH: this method should be in BLL instead of DAL.
+            </remarks>
+        </member>
+        <member name="M:NS.Entity.Repository.PermanentlyDelete``1(``0)">
+            <summary>
+            Permanently delete record from database.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.Repository.Archive(NS.Entity.Entity)">
+            <summary>
+            Archive a specific record so it will no longer retrievable.
+            </summary>
+        </member>
+        <member name="M:NS.Entity.Repository.Unarchive(NS.Entity.Entity)">
+            <summary>
+            Unarchive a specific record to normal state.
+            </summary>
+        </member>
+        <member name="T:NS.Entity.TransactionWrapper">
+            <summary>
+            Start a transaction, retries for 3 times beofore actual throw an exception if errors orcur, otherwise, commit.
+            </summary>
+            <example>Usage:
+            <code>
+            TransactionWrapper.Do(() =>
+            {
+                your code here...
+            });
+            </code>
+            </example>
+        </member>
+        <member name="M:NS.Helpers.AssemblyHelper.GetWebEntryAssembly">
+            <summary>
+            Retrieve web entry assembly.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.AssemblyHelper.GetEntryAssembly">
+            <summary>
+            Retrieve entry assembly. If this library is called inside web application, then return web assembly.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.AssemblyHelper.IsCompiledInDebugMode(System.Reflection.Assembly)">
+            <summary>
+            Check if <paramref name="assembly"/> is compiled in debug mode.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.AssemblyHelper.GetAssembliesInFolder(System.String)">
+            <summary>
+            Retrieve list of all assembly inside a specific folder.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.GetEntityTypes(System.Data.Entity.DbContext)">
+            <summary>
+                Retrieves all entity types of a context.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.IsDbSet(System.Reflection.PropertyInfo)">
+            <summary>
+                Check if a property is a generic <see cref="T:System.Data.Entity.DbSet"/>.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.DbSetType(System.Reflection.PropertyInfo)">
+            <summary>
+                Retrieve generic parameter of a DbSet property.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.GetDbSetTypes(System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
+            <summary>
+                Retrieve all model types in the context schema.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.GetEntitySet(System.Data.Entity.DbContext,System.Type)">
+            <summary>
+                Retrieve entity set of a specific type.
+            </summary>
+            <returns>
+                Null if cannot found appropriate set.
+            </returns>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.ObjectContext(System.Data.Entity.DbContext)">
+            <summary>
+                Retrieve the underlying <see cref="T:System.Data.Objects.ObjectContext"/>.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.FindPrimaryKeys``1(System.Data.Entity.DbContext,``0)">
+            <summary>
+                Retrieve primary keys of an entity. Useful for <see cref="M:System.Data.Entity.DbSet.Find(System.Object[])"/>
+                Return null if the <paramref name="entity"/> is not part of the <paramref name="context"/>.
+            </summary>
+            <returns>
+                List of primary keys values.
+            </returns>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.IsMappable(System.Type)">
+            <summary>
+            Determines if a specific type can be mapped as entity in <see cref="T:System.Data.Entity.DbContext"/>
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.DbContextHelper.IsMappable(System.Reflection.PropertyInfo)">
+            <summary>
+            Determines if a specific property can be mapped as column in database.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.ConfigurationHelper.GetAppSetting(System.String)">
+            <summary>
+            If it called inside web context, then it will get value from web.config
+            If it called inside application context, then it will get value from app.config
+            Otherwise, it will try get value from current assembly configuration file
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.JsonHelper.Deserialize``1(System.String)">
+            <summary>
+                Deserialize JSON string to object of type <paramref name="T" />.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.JsonHelper.TryDeserialize``1(System.String)">
+            <summary>
+                Deserialize JSON string to object of type <paramref name="T" />. Hide all exceptions.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.QueryHelper.Include``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}}[])">
+            <summary>
+            Source: http://www.thomaslevesque.com/2010/10/03/entity-framework-using-include-with-lambda-expressions/
+            </summary>
+            <remarks>
+            Modified by DangH to support anonymous types in tree.
+            </remarks>
+        </member>
+        <member name="M:NS.Helpers.StreamHelper.ToByteArray(System.IO.Stream)">
+            <summary>
+            Read more: http://stackoverflow.com/a/221941/1578964
+            </summary>
+        </member>
+        <member name="T:NS.Helpers.StringHelper">
+            <summary>
+                Contains helpful methods to work with string
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.StringHelper.CaseInsensitiveEquals(System.String,System.String)">
+            <summary>
+                Shorthand for comparing 2 strings without case-sensitive.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.StringHelper.CaseInsensitiveContains(System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+                Shorthand for checking if an array contains a string without case-sensitive.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.StringHelper.Split(System.String,System.Char,System.Boolean)">
+            <summary>
+                Shorthand method for split string.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.StringHelper.SubString(System.String,System.Int32,System.Int32)">
+            <summary>
+                <para>Shorthand for get a subset of a string.</para>
+                <para>Prevent exception if the required <paramref name="length" /> is out of the original string long.</para>
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.StringHelper.CharacterAt(System.String,System.Int32)">
+            <summary>
+                Shorthand to get character at the specific position.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.StringHelper.FormatCarriageReturns(System.String,System.Boolean)">
+            <summary>
+                Escape special characters in string to preserve same format and content in HTML.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.StringHelper.ToJavaScriptString(System.String,System.Boolean)">
+            <summary>
+                Escape quotes in string to use in embedded javascript.
+            </summary>
+            <example>
+                Usage:
+                <code>
+                    string s = "<h1>hello's</h1>";
+                    Response.Write("<script language='javascript'>alert(decodeURIComponent('" + s.ToJavaScriptString() "'));</script>");
+                </code>
+            </example>
+        </member>
+        <member name="M:NS.Helpers.StringHelper.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+                Format string by named parameters.
+            </summary>
+        </member>
+        <member name="M:NS.Helpers.TypeHelper.IsSubclassOfGeneric(System.Type,System.Type,System.Type[])">
+            <summary>
+                Check if a type is derived from a generic type with specific type parameters.
+                If <paramref name="parameters" /> is not defined, only check if <paramref name="toCheck" /> is derived from
+                <paramref name="generic" />
+            </summary>
+            <remarks>
+                Read more: http://stackoverflow.com/a/457708/1578964
+            </remarks>
+        </member>
+        <member name="M:NS.Helpers.TypeHelper.BuildPropertyExpression(System.Type,System.Type,System.String)">
+            <summary>
+                Builds a lambda expression to get a specific property of a specific type.
+            </summary>
+            <example>
+                Assumes that we need to get the name (string) of an employee.
+                So we need to build an expression like:
+                <code>e => e.Work.Company.Name</code>
+                The following code help achive this:
+                <code>typeof(Employee).BuildPropertyExpression(typeof(string), "Work.Company.Name");</code>
+            </example>
+            <param name="objectType">Root type of the expression.</param>
+            <param name="propertyType">Type of the property to get.</param>
+            <param name="propertyPath">Path from root object to the property.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NS.Pagination.Invalidate">
+            <summary>
+                Force pagination to re-calculate.
+            </summary>
+        </member>
+        <member name="P:NS.Pagination.RecordsCount">
+            <summary>
+                Total number of records
+            </summary>
+        </member>
+        <member name="P:NS.Pagination.PageSize">
+            <summary>
+                Number of records per page.
+            </summary>
+        </member>
+        <member name="P:NS.Pagination.CurrentPage">
+            <summary>
+                Index of the current page (1 base).
+            </summary>
+        </member>
+        <member name="P:NS.Pagination.PagesCount">
+            <summary>
+                Total number of pages.
+            </summary>
+        </member>
+        <member name="P:NS.Pagination.VisiblePagesCount">
+            <summary>
+                Number of page buttons to show.
+            </summary>
+        </member>
+        <member name="P:NS.Pagination.StartPage">
+            <summary>
+                Index of the page that the pager starts at.
+            </summary>
+        </member>
+        <member name="P:NS.Pagination.EndPage">
+            <summary>
+                Index of the page that the pager ends at.
+            </summary>
+        </member>
+        <member name="M:NS.Utils.TryParse``1(System.Object)">
+            <summary>
+                Convert <paramref cref="!:value"/> to type <typeparamref name="T"/>.
+                Return default value of type <typeparamref name="T"/> if failed.
+            </summary>
+        </member>
+        <member name="M:NS.Utils.TryParse``1(System.Object,``0)">
+            <summary>
+                Convert <paramref cref="!:value"/> to type <typeparamref name="T"/>.
+                Return <paramref name="fallbackValue"/> if failed.
+            </summary>
+        </member>
+        <member name="M:NS.Utils.SortByValue``2(System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+                Sort dictionary by values.
+            </summary>
+        </member>
+        <member name="T:NS.ValueObject`1">
+            <summary>
+                <see cref="T:NS.ValueObject`1"/> is a quick way to copy data property-to-property from another object.
+            </summary>
+            <remarks>
+                Only properties of type <see cref="T:NS.ValueObject`1"/> and properties with same type and name (case-sensitive) will be copied.
+            </remarks>
+        </member>
+        <member name="M:NS.ValueObject`1.RetrieveValue(`0)">
+            <summary>
+                Copy values from <paramref name="source"/> to this object.
+            </summary>
+        </member>
+        <member name="M:NS.ValueObject`1.PopulateValue(`0)">
+            <summary>
+                Copy values from this object to <paramref name="dest"/>
+            </summary>
+        </member>
+        <member name="M:NS.ValueObject`1.Map(System.Object,System.Object)">
+            <summary>
+                Copy values from <paramref name="source"/> to <paramref name="dest"/>
+            </summary>
+        </member>
+    </members>
+</doc>

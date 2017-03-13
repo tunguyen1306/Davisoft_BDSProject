@@ -1,0 +1,34 @@
+@using Davisoft_BDSProject.Domain.Entities
+@using Resources
+@model Currency
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">@Resource.Name</label>
+    <div class="col-sm-9">
+        @Html.Bootstrap().TextBoxFor(m => m.Name).Class("form-control code").ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">@Resource.Symbol</label>
+    <div class="col-sm-9">
+        @Html.Bootstrap().TextBoxFor(m => m.Symbol).Class("form-control code").ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3"></label>
+    <div class="col-sm-9">
+        <div class="checkbox i-checks">
+            <label>
+                @Html.Bootstrap().CheckBoxFor(m => m.IsDefault)
+                <i></i>
+                @Resource.IsDefault
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">@Resource.Precision</label>
+    <div class="col-sm-9">
+        @Html.Bootstrap().TextBoxFor(m => m.Precision).Class("form-control code").ShowValidationMessage(true)
+    </div>
+</div>

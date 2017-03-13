@@ -1,0 +1,16 @@
+﻿@{
+	Layout = "~/Views/Shared/_BigBang.cshtml";
+}
+
+@RenderBody()
+
+@section css
+{
+	@Styles.Render("~/display/css/min")
+	@RenderSection("css", required: false)
+}
+
+@section js
+{
+	@Scripts.Render("~/Content/js/min")
+}

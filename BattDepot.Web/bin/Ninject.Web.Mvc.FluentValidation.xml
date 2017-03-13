@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ninject.Web.Mvc.FluentValidation</name>
+    </assembly>
+    <members>
+        <member name="T:Ninject.Web.Mvc.FluentValidation.NinjectValidatorFactory">
+            <summary>
+            Validation factory that uses ninject to create validators  
+            </summary>
+        </member>
+        <member name="M:Ninject.Web.Mvc.FluentValidation.NinjectValidatorFactory.#ctor(Ninject.IKernel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ninject.Web.Mvc.FluentValidation.NinjectValidatorFactory"/> class.
+            </summary>
+            <param name="kernel">The kernel.</param>
+        </member>
+        <member name="M:Ninject.Web.Mvc.FluentValidation.NinjectValidatorFactory.CreateInstance(System.Type)">
+            <summary>
+            Creates an instance of a validator with the given type using ninject.
+            </summary>
+            <param name="validatorType">Type of the validator.</param>
+            <returns>The newly created validator</returns>
+        </member>
+        <member name="P:Ninject.Web.Mvc.FluentValidation.NinjectValidatorFactory.Kernel">
+            <summary>
+            Gets or sets the kernel.
+            </summary>
+            <value>The kernel.</value>
+        </member>
+    </members>
+</doc>

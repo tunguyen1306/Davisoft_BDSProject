@@ -1,0 +1,93 @@
+﻿@using Resources
+@using ServiceStack.Text
+@model IEnumerable<Davisoft_BDSProject.Domain.Entities.Audit>
+
+<section class="panel panel-default">
+    <div class="panel-heading">Auditing</div>
+    <div class="panel-body">
+        <div id="griddata" class="logpage">
+            <div id="boxFilter" class="row">
+                <div class="col-md-5">
+                    <input id="datemin" class="date-picker form-control" placeholder="mm/dd/yyyy" type="text" />
+                </div>
+                <div class="col-md-1" style="text-align: center">To</div>
+                <div class="col-md-5">
+                    <input id="datemax" class="date-picker form-control" placeholder="mm/dd/yyyy" type="text" />
+                </div>
+                <div class="col-md-1">
+
+                    @Html.Bootstrap().Button().Text("Search").Id("btnSearch").PrependIcon(Icons.remove).Size(ButtonSize.Mini).HtmlAttributes(new { @class = "btn btn-primary-me" })
+                </div>
+            </div>
+            <table id="griddata2" class="table table-bordered table-striped grid-table dTableR">
+                <thead>
+                    <tr id="trHeadFilter">
+                            <th colspan="5">
+                                <select id="userfilter" class="form-control" name="username">
+                                    <option value=""></option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value="@item.Username" @(ViewBag.Username == item.Username ? "selected='true'" : "")>@item.Username</option>
+                                    }
+                                </select>
+                            </th>
+                        </tr>
+                    <tr>
+                        <th class="grid-header">User name</th>
+                        <th class="grid-header">Time</th>
+                        <th class="grid-header">Message</th>
+                        <th class="grid-header">Url</th>
+                        <th class="grid-header"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</section>
+
+@Html.Script(
+    @<script>
+
+        //var oTable = $("#griddata table");
+        var oTable = $("#griddata2");
+        oTable.dataTable({
+            "processing": true, // for show progress bar
+            "serverSide": true, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "stateSave": false,
+            "ajax": {
+                "url": "@Url.Action("AjaxGetAudits","Audit")",
+                "type": "POST",
+                "datatype": "json",
+                "data": function (d) {
+                    d.selectUser = $('#userfilter').val();
+                    d.datefrom = $('#datemin').val();
+                    d.dateto = $('#datemax').val();
+                }
+            },
+            "columns": [
+                    { "data": "Username", "name": "DisplayName", "orderable": true },
+                    { "data": "TimeAccessed", "name": "TimeAccessed", "orderable": true },
+                    { "data": "Message", "name": "Message", "orderable": true },
+                    { "data": "UrlAccessed", "name": "UrlAccessed", "orderable": true },
+                    { "data": "ID", "orderable": true }
+            ],
+            "iDisplayLength": 25,
+            "aaSorting": [[1, "desc"]],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                $(nRow).find('td:eq(1)').attr("style", "text-align:center");
+                $(nRow).find('td:eq(4)').html('<a href="@Url.Action("Detail","Audit")/' + aData["ID"] + '" target="_blank">Details</a>');
+            },
+        });
+
+        //Select username event
+        $('#userfilter').change(function () {
+            oTable.fnDraw();
+        });
+        $('#btnSearch').click(function () {
+            oTable.fnDraw();
+        });
+
+    </script>
+                         )

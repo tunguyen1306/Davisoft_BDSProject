@@ -1,0 +1,223 @@
+﻿@using System.Collections
+@using System.Globalization
+@using NS.Mvc
+@using CPO.Domain.Abstract
+@using CPO.Domain.Entities
+@using CPO.Domain.Enum
+
+@helper GroupCss(string group)
+{
+    if (ViewBag.GroupName == null)
+    {
+        ViewBag.GroupName = "";
+    }
+    if (group.Trim().ToLower().Equals(ViewBag.GroupName.Trim().ToLower()))
+    {
+        <text>in</text>
+    }
+}
+
+@helper LinkCss(string link)
+{
+    if (ViewBag.FeatureName == null)
+    {
+        ViewBag.FeatureName = "";
+    }
+    if (link.Trim().ToLower().Equals(ViewBag.FeatureName.Trim().ToLower()))
+    {
+        <text>active</text>
+    }
+}
+@{
+    //var repo = DependencyHelper.GetService<IIndentRepository>();
+    //var LCRequest = repo.GetAllConfirmDocuments().Where(m => m.StatusRecord.Status == LCStatus.Requested || m.StatusRecord.Status == LCStatus.Applied);
+}
+
+<a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r" title="Hide Sidebar">Sidebar switch</a>
+<div class="sidebar" id="subaru_sidebar">
+
+    <div class="antiScroll">
+        <div class="antiscroll-inner">
+            <div class="antiscroll-content">
+
+                <div class="sidebar_inner">
+                    @using (Html.BeginForm("Search", "Home"))
+                    {
+                        @*<form action="index.php?uid=1&amp;page=search_page" class="input-append" method="post">*@
+                        <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="@Resources.Resource.Search..." />
+                        <button type="submit" class="btn"><i class="icon-search"></i></button>
+                        @*</form>*@
+                    }
+                    <div class="accordion" id="side_accordion">
+
+                        @{
+                            IEnumerable<Menu> menus = MenuHelper.GetAll();
+
+                            foreach (Menu item in menus)
+                            {
+                                bool isActiveBar = false;
+                                List<Menu> children = MenuHelper.GetAll(item.ID).ToList();
+                                foreach (Menu childMenuItem in children)
+                                {
+                                    if (childMenuItem.Url != null &&
+                                           (childMenuItem.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString() ||
+                                           childMenuItem.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString()
+                                           + "/" + ViewContext.RouteData.Values["action"].ToString()))
+                                    {
+                                        isActiveBar = true;
+                                    }
+                                }
+                                if (children.Any())
+                                {
+                                    var title = item.Title;
+                                    if (!string.IsNullOrEmpty(title))
+                                    {
+                                        var resource = Resources.MenuResource.ResourceManager.GetString("Menu" + CPO.Domain.Helpers.StringHelper.RemoveSpecialCharacters(title));
+                                        if (resource != null)
+                                        {
+                                            title = resource;
+                                        }
+                                    }
+                                    if (item.Title.ToUpper() == "MASTER FILE")
+                                    {
+                                        children = children.OrderBy(m => m.Title).ToList();
+                                    }
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading @(isActiveBar ? "sdb_h_active" : "")">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#side_accordion" href="#collapse-sidebar-@item.ID">
+                                                @if (string.IsNullOrEmpty(item.Icon))
+                                                {
+                                                    <i class="icon-folder-open"></i>    @title
+                                                }
+                                                else
+                                                {
+                                                    <i class="@item.Icon"></i>    @title
+                                                }
+                                            </a>
+                                        </div>
+                                        <div id="collapse-sidebar-@item.ID" class="accordion-body @(isActiveBar ? "in" : "") collapse" style="height: @(isActiveBar ? "auto;" : "0px;")">
+                                            <div class="accordion-inner">
+                                                <ul class="nav nav-list">
+                                                    @{
+                                                //IEnumerable<Menu> children = MenuHelper.GetAll(item.Id);
+                                                foreach (Menu childItem in children)
+                                                {
+
+                                                    var childTitle = childItem.Title;
+                                                    if (!string.IsNullOrEmpty(childTitle))
+                                                    {
+                                                        var childItemResource = Resources.MenuResource.ResourceManager.GetString("Menu" + CPO.Domain.Helpers.StringHelper.RemoveSpecialCharacters(childTitle));
+                                                        if (childItemResource != null)
+                                                        {
+                                                            childTitle = childItemResource;
+                                                        }
+                                                        else
+                                                        {
+                                                            var tmp = 0;
+                                                        }
+                                                    }
+                                                    if (childItem.Url != null &&
+                                                          (childItem.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString() ||
+                                                          childItem.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString()
+                                                          + "/" + ViewContext.RouteData.Values["action"].ToString()))
+                                                    {
+                                                        @*if (childItem.Title.ToUpper().Contains("OPEN LC"))
+                                                            {
+                                                                if (LCRequest.Any())
+                                                                {
+                                                                <li class="active"><a href="@childItem.Url" ><i class="fa fa-dot-circle-o"></i> @childTitle
+                                                                    <img src="@Url.Content("~/Content/img/newnew.gif")"/></a></li>
+                                                                }
+                                                                else
+                                                                {
+                                                                <li class="active"><a href="@childItem.Url" ><i class="fa fa-dot-circle-o"></i> @childTitle (0)</a></li>
+                                                                }
+
+                                                            }
+                                                            else
+                                                            {*@
+                                                        <li class="active"><a href="@childItem.Url"><i class="fa fa-dot-circle-o"></i> @childTitle</a></li>
+                                                        //}
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @*if (childItem.Title.ToUpper().Contains("OPEN LC"))
+                                                            {
+                                                                if (LCRequest.Any())
+                                                                {
+                                                                <li class=""><a href="@childItem.Url"><i class="fa fa-square"></i> @childTitle
+                                                                    <img src="@Url.Content("~/Content/img/newnew.gif")" /></a></li>
+                                                                }
+                                                                else
+                                                                {
+                                                                <li class=""><a href="@childItem.Url"><i class="fa fa-square"></i> @childTitle (0)</a></li>
+                                                                }
+
+                                                            }
+                                                            else
+                                                            {*@
+                                                        <li class=""><a href="@childItem.Url"><i class="fa fa-square"></i> @childTitle</a></li>
+                                                        //}
+
+                                                    }
+                                                }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                        @*<div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#side_accordion" href="#collapse7">
+                                        <i class="icon-th"></i>Calculator
+                                    </a>
+                                </div>
+                                <div id="collapse7" class="accordion-body collapse @GroupCss("")">
+                                    <div class="accordion-inner">
+
+                                        @Html.Partial("_Calculator")
+
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+
+                    @* <div class="push"></div>*@
+
+
+                    @* <div class="sidebar_info">
+                            <ul class="unstyled">
+                                <li>
+                                    <span class="act act-warning">65</span>
+                                    <strong>New comments</strong>
+                                </li>
+                                <li>
+                                    <span class="act act-success">10</span>
+                                    <strong>New articles</strong>
+                                </li>
+                                <li>
+                                    <span class="act act-danger">85</span>
+                                    <strong>New registrations</strong>
+                                </li>
+                            </ul>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="position: relative">
+        <div class="footer">
+            <div class="main">
+                <div class="foot-page1">
+                    <a href="http://netrunnersystems.com" target="_blank"><span class="netrunner">netrunner</span><span class="systems">systems</span></a> © <span class="years_copy">@DateTime.Today.Year</span>
+                    <div class="clear"></div>
+                    <!-- {%FOOTER_LINK} -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

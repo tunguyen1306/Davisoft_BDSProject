@@ -1,0 +1,103 @@
+﻿.timeview
+{
+    border-collapse: collapse;
+}
+
+.timeview tr
+{
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+thead tr:first-child {
+    border: none;   
+}
+
+.timeview th.menu_bar
+{
+    background-color: #3C3F42;
+    color: #FFFFFF;
+    font-size: 180%;
+    font-weight: bold;
+	border: 0px none;
+    height: 80px;
+    padding: 0 10px;
+    text-align: left;
+}
+
+.timeview th
+{
+    padding: 3px;
+}
+
+.timeview th, .timeview td
+{
+  background-color: #ffffff;
+}
+
+.timeview th, .timeview td.cursor
+{
+    border: 1px solid #000000;    
+}
+      
+.timeview td
+{
+    height: 30px;
+}
+
+
+.timeview td.interval
+{
+    overflow: auto;
+    padding: 5px 0px;
+    border: 0px;
+}
+
+div.lslot
+{
+	padding: 0 5px;
+	word-wrap: break-word;
+}
+
+.timeview td.interval div.slot
+{
+    height: 20px;
+    z-index: 1;
+    text-align: center;
+}
+ 
+.timeview td.interval div.slot
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.timeview td.interval div.slot a
+{
+    padding: 0 5px;
+    color: #000000;
+}
+
+
+
+.timeview td.interval div.slot
+{
+    position: absolute;
+    xmargin-top: -10px;
+    opacity: 0.6;   
+}
+
+ 
+.timeview td.cursor, td.interval div
+{
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+

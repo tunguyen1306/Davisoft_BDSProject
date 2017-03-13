@@ -1,0 +1,70 @@
+﻿@using ColorCode
+@using Newtonsoft.Json
+@model Davisoft_BDSProject.Domain.Entities.Audit
+
+@{
+    string code = "";
+    try
+    {
+
+	code = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(Model.Data), Formatting.Indented);
+	code = new CodeColorizer().Colorize(code, Languages.JavaScript);
+    }
+    catch (Exception)
+    {
+        code = Model.Data;
+    }
+    Layout = "~/Views/Shared/_PageForPopup.cshtml";
+}
+<section class="panel panel-default">
+    <div class="panel-heading">Auditing</div>
+    <div class="panel-body">
+        <table class="table table-orchard audit-detail">
+            <tr>
+                <td></td>
+                <td style="text-align: right">
+                    @Html.Bootstrap().Button().Text("Close").PrependIcon(Icons.eye_close, true).HtmlAttributes(new { name = "btnClose", @class=" btn-primary-me"  })
+                </td>
+            </tr>
+            <tr>
+                <td>IP</td>
+                <td>@Model.IPAddress</td>
+            </tr>
+            <tr>
+                <td>DisplayName</td>
+                <td>@Model.Username</td>
+            </tr>
+            <tr>
+                <td>URL</td>
+                <td>@Model.UrlAccessed</td>
+            </tr>
+            <tr>
+                <td>Time</td>
+                <td>@Model.TimeAccessed</td>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td>@Model.Message</td>
+            </tr>
+            <tr>
+                <td>Data</td>
+                <td>
+                    @Html.Raw(code)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right">
+                    @*@Html.ActionLink("Back to List", "Index")*@
+                    @Html.Bootstrap().Button().Text("Close").PrependIcon(Icons.eye_close, true).HtmlAttributes(new { name = "btnClose", @class=" btn-primary-me" })
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+@Html.Script(
+    @<script>
+        $("[name=btnClose]").click(function () { window.close() })
+    </script>
+)

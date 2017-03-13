@@ -1,0 +1,22 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@model IEnumerable<Davisoft_BDSProject.Domain.Entities.Audit>
+@{
+    Layout = null;
+}
+@{string strAudit = "";}
+@foreach(Audit audit in Model.Where(l=>!string.IsNullOrEmpty(l.Message)))
+{
+    strAudit += "-" + "("+ audit.TimeAccessed + ") " + audit.Message + "\r\n";
+}
+<table class="table table-borderless">
+    <tr>
+        <td>
+            Logs messages
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Bootstrap().TextArea("txtAuditRecord").Value(strAudit).HtmlAttributes(new {@class="input-block-level"}).Rows(6)
+        </td>
+    </tr>
+</table>

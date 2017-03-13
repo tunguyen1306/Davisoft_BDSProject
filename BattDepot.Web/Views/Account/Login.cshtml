@@ -1,0 +1,341 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_BigBang.cshtml";
+}
+<style>
+    body {
+        background: url(/Display/img/background_5.jpg) no-repeat center center;
+        background-size: cover;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    input {
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border-color: #ccc;
+    }
+
+    .login-container {
+        width: 320px;
+        position: absolute;
+        top: 10%;
+        border-color: #DDD;
+        color: #333;
+        padding: 15px;
+        left: 5%;
+    }
+
+    .login-form {
+        border-radius: 0px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+        background: #fff;
+    }
+
+    .login-container h1 {
+        /*text-transform: uppercase;*/
+        font-size: 18px;
+        text-align: center;
+        background: #F6F6F6;
+        padding: 19px 0;
+        color: #6164C1;
+        margin-bottom: 0;
+    }
+
+    .login-container .logo {
+        text-align: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        margin-top: 15px;
+    }
+
+        .login-container .logo p {
+            margin-top: 8px;
+        }
+
+        .login-container .logo img {
+            background-size: 100%;
+            width: 180px;
+            margin-top: 5%;
+        }
+
+    .button {
+        background: #6164C1;
+        border: none;
+        padding: 10px 16px;
+        color: #fff;
+        font-size: 12px;
+        width: 100%;
+    }
+
+        .button:hover {
+            background: #5356A0;
+            color: #ffffff;
+        }
+
+    .text_system {
+        margin: 15px 0 0 0;
+        font-weight: bold;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .error {
+        font-size: 12px;
+        color: red;
+        text-align: center;
+        margin-top: 13px;
+    }
+
+    @@media only screen and (max-width: 699px) {
+        .login-container {
+            /*top: 50%;
+            left: 50%;
+            margin-left: -160px;*/
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    @@media only screen and (max-width: 320px) {
+        .login-container {
+            margin-top: 0;
+        }
+    }
+
+    .fullscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .countriesContain {
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0, 0.5);
+    }
+
+    .countriesContain {
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0, 0.5);
+        text-align: right;
+    }
+
+        .countriesContain ul li {
+            display: inline-block;
+            margin: 30px;
+        }
+
+            .countriesContain ul li img {
+                background-size: 100%;
+                width: 40px;
+                border-radius: 2px;
+            }
+
+        .countriesContain ul {
+            padding: 45px 65px;
+        }
+
+    .cd-dropdown ul {
+        padding: 0;
+    }
+
+        .cd-dropdown ul li {
+            list-style: none;
+        }
+
+        .cd-dropdown ul li {
+            list-style: none;
+            padding: 10px;
+            background-color: #F5F5F5;
+            border-bottom: 1px solid #fff;
+        }
+
+            .cd-dropdown ul li:hover {
+                background-color: #DDDDDD;
+            }
+
+
+            .cd-dropdown ul li img {
+                width: 42px;
+                margin-right: 10px;
+            }
+
+    .select2-results .select2-results__option {
+        border-bottom: 1px solid #EEEEEE;
+        padding: 12px 10px;
+    }
+</style>
+@*<div class="fullscreen">
+        <div class="countriesContain">
+            <ul class="circle-container">
+                @foreach (Country country in Model.Countries)
+                {
+                    <li>
+                        <a href="@Url.Action("Login", "Account", new {returnUrl= ViewBag.ReturnUrl, id = country.ID })" class="hvr-pop">
+                            <span>
+                                <img src="~/data/country_img/@country.Image" />
+                            </span>
+                            <em>@country.Name</em>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>*@
+
+
+<div class="login-container">
+    <h1 style="text-transform: uppercase;"><strong>Certified Pre-Owned System</strong></h1>
+    <div class="panel-body login-form">
+
+        @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { id = "login_form" }))
+        {
+            <div class="form-group">
+                @Html.HiddenFor(m => m.CountryID)
+                @(Html.Bootstrap().TextBoxFor(m => m.Email).Placeholder("Email").Class("form-control").ShowValidationMessage(true))
+            </div>
+
+            <div class="form-group">
+                @Html.Bootstrap().PasswordFor(m => m.Password).Placeholder("Password").Class("form-control").ShowValidationMessage(true)
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox i-checks">
+                    <label>
+                        @Html.Bootstrap().CheckBoxFor(m => m.RememberMe)
+                        <i></i>
+                        @Resource.Rememberme
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-inverse pull-right button text-uppercase" type="submit">@Resource.LOGIN</button>
+            </div>
+        }
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <p class="error">
+                @Html.ValidationMessage("")
+            </p>
+        }
+    </div>
+
+</div>
+
+@section css
+{
+    @Styles.Render("~/display/css/min")
+    <style>
+        body {
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .login_page {
+            height: 100%;
+        }
+    </style>
+}
+
+@section js
+{
+    @Scripts.Render("~/content/js/min")
+    <script>
+        $(document).ready(function () {
+            $('body').css("max-width", "100%");
+            //* Auto focus to inputs
+            var $username = $('#@(Html.FieldIdFor(t => t.Email))'),
+                $password = $('#@Html.FieldIdFor(t => t.Password)');
+            $.trim($username.val()).length == 0
+                ? $username.focus()
+                : $password.focus();
+
+            //* boxes animation
+            // var formWrapper = $('.login_box_wrapper');
+
+            // function boxHeight() {
+            //     formWrapper.animate({ marginTop: (-(formWrapper.height() / 2) - 24) }, 400);
+            // }
+
+            // formWrapper.css({ marginTop: (-(formWrapper.height() / 2) - 24) });
+
+            //* validation
+            $('#login_form').validate({
+                onkeyup: false,
+                errorClass: 'error',
+                validClass: 'valid',
+                rules: {
+                    Username: { required: true },
+                    Email: { required: true },
+                    Password: { required: true },
+                },
+                highlight: function (element) {
+                    $(element).closest('div').addClass("f_error");
+                    setTimeout(function () {
+                        boxHeight();
+                    }, 200);
+                },
+                unhighlight: function (element) {
+                    $(element).closest('div').removeClass("f_error");
+                    setTimeout(function () {
+                        boxHeight();
+                    }, 200);
+                },
+                errorPlacement: function (error, element) {
+                    $(element).closest('div').append(error);
+                },
+            });
+
+            $("body").css("max-width", "100%");
+
+            function formatState(state) {
+                if (!state.id) { return state.text; }
+                var $state = $(
+                  '<span><img style="height: 20px;width:25px;margin-top: -2px;" class="img-flag ' + state.element.getAttribute('dataimage') + '" /> ' + state.text + '</span>'
+                );
+                return $state;
+            };
+
+            function formatStateSelection(state) {
+                if (!state.id) { return state.text; }
+                var $state = $(
+                  '<span style="margin-left: -10px;"><img style="height: 20px;width:25px;margin-top: -2px;" class="img-flag ' + state.element.getAttribute('dataimage') + '" /> ' + state.text + '</span>'
+                );
+                return $state;
+            };
+
+            //            $(".selectcountry").select2({
+            //                placeholder: "@Resource.PleaseSelect",
+            //                templateResult: formatState,
+            //                templateSelection: formatStateSelection,
+            //            });
+            $(".selectdealer").select2({
+                placeholder: "@Resource.PleaseSelect",
+                templateResult: formatState,
+                templateSelection: formatStateSelection,
+            });
+        });
+
+        $(".toggle-search").on('click', function (e) {
+            if ($('.search-icon').hasClass('fa-angle-down'))
+                $('.search-icon').removeClass('fa-angle-down').addClass('fa-angle-up');
+            else
+                $('.search-icon').removeClass('fa-angle-up').addClass('fa-angle-down');
+            e.preventDefault();
+            $("#table-Search").slideToggle();
+        });
+
+        //        $(".selectcountry").on('change', function () {
+        //            location.href = '@Url.Action("Login", "Account", new {returnUrl= ViewBag.ReturnUrl})&countryId=' + $(this).val();
+        //        });
+        $(".selectdealer").on('change', function () {
+            location.href = '@Url.Action("Login", "Account")?returnUrl=@ViewBag.ReturnUrl&dealerId=' + $(this).val();
+        });
+
+    </script>
+}

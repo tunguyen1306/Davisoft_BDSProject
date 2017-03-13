@@ -1,0 +1,15 @@
+﻿@using Davisoft_BDSProject.Domain.Abstract
+@using Davisoft_BDSProject.Domain.Entities
+@using NS.Mvc
+@model Davisoft_BDSProject.Web.Models.ResourceItemModel
+@using (Html.BeginCollectionItem(false))
+{
+    <td class="hide">@Model.Description</td>
+    <td>
+        @Html.HiddenForCollectionItemIndex()
+        @Html.HiddenFor(m => m.Code)
+        @Html.HiddenFor(m => m.LanguageCode)
+        @Html.HiddenFor(m => m.IsChange)
+        @Html.Bootstrap().TextBoxFor(m => m.Description).Size(InputSize.Medium).Class("form-control text nouc")
+    </td>
+}

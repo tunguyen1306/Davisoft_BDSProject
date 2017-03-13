@@ -1,0 +1,109 @@
+﻿@using Resources
+        <link href="@Url.Content("~/Content/uploadify.css")" rel="stylesheet" type="text/css"/>
+        <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css"/>
+
+<div class="uploader_background" id="modal_uploadfile">
+	<div class="uploader_header lb-header" id="step4_title_0">@Resource.SelectFilestoUpload</div>
+	<div class="uploader_main_section no-files">
+		<div class="uploader_proceed_button lb-footer cf">
+			<div class="upload-btn-outer">
+                
+				<input type="file" multiple="" size="1" id="file_upload" name="file_upload" class="file">
+				<a style="text-decoration: none !important;" onclick="return false;" href="#" class="left secondary btn upload-btn" id="step4_uploader_add_files_0"><span class="plus ico16 no-margin"></span></a>
+			</div>
+			<div style="padding: 10px 14px; margin-left:50px;" class="left" id="step4_total_0"></div>
+			<span class="button_or right"><a  class="secondary btn" id="canceldialog">Cancel</a>&nbsp;<a class="alt btn" id="step4_begin_upload_0" onclick="$('#file_upload').uploadify('upload','*');">@Resource.BeginUpload</a></span>
+            <div id="some_file_queue" class="queue_item"></div>
+		</div>
+        
+	</div>			
+</div>
+
+@Html.Script(
+    @<text>
+        <script src="@Url.Content("~/Scripts/jquery.uploadify.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.js")"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+            $("#uploadLink").hide();
+                var auth = "@Request.Cookies[FormsAuthentication.FormsCookieName]==null ? string.Empty : @Request.Cookies[FormsAuthentication.FormsCookieName].Value";
+                var ASPSESSID = "@Session.SessionID";
+                var entryId = $('#HiddenEntryId').val();
+                var docType = "";
+            $("#file_upload").uploadify({
+                'uploader': '@Url.Action("UploadFiles","Upload")',
+                'formData': { ASPSESSID: ASPSESSID, AUTHID: auth, 'entryId': entryId, 'DocType' : docType },
+                'swf': '@Url.Content("~/Scripts/uploadify/uploadify.swf")',
+                'queueID': 'some_file_queue',
+                'buttonClass':'fileuploadbtn',
+                'buttonText': '',
+                'multi': true,
+                'width': 100,
+                'fileSizeLimit': '6MB',
+                'auto': false,
+                'removeCompleted': false,
+                'onUploadError': function (a, b, c, d) {
+                    if (d.status == 404){}
+                        //bootbox.alert("Could not find upload script. Use a path relative to: " + "<?= getcwd() ?>");
+                    else if (d.type === "HTTP"){}
+                        //bootbox.alert("error here " + d.type + ": " + d.status);
+                    else if (d.type === "File Size") { }
+                        //alert(c.name + " " + d.type + " Limit: " + Math.round(d.info / (1024 * 1024)) + "MB");
+                    else { }
+                        //bootbox.alert("error here1" + d.type + ": " + d.text);
+                },
+                'onUploadComplete': function (file) {
+                    //alert(file.name + ' files uploaded successfully!');
+                    $(".cancel").hide();
+                    $("#uploadLink").hide();
+                   
+                },
+                'onSelect': function (event, data) {
+                    $("#uploadLink").show();
+                }
+
+            });
+                
+                $("#modal_uploadfile").dialog({
+                    autoOpen: false,
+                    modal: true,
+                    width: 750,
+                    height: 400,
+                    show: { effect: 'fold', duration: 1500 },
+                    hide: { effect: 'fold', duration: 1000 }
+                });
+            
+                $(".callupload").click(function () {
+                    docType = $(this).attr("data");
+                    $('#file_upload').uploadify('settings', 'formData', { ASPSESSID: ASPSESSID, AUTHID: auth, 'entryId': entryId, 'DocType': docType });
+                    $("#modal_uploadfile").dialog("open").dialog( "option", "position", { my: "top", at: "top", of: window });
+            });
+            $(".ui-dialog-titlebar").hide();
+
+            $("#canceldialog").click(function () {
+                $("#modal_uploadfile").dialog('close');
+                $('#file_upload').uploadify('cancel', '*');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("DisplayData", "Upload")',
+                    data : {EntryID: entryId},
+                    success: function (data) {
+                        $("#Displayfile").html(data);
+                        $(".DeleteItem").click(function () {
+                            $(this).parent("div").parent("div").fadeOut('slow', function () { });
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("Delete", "Upload")',
+                                data: { 'FileID': $(this).attr('file_id') }
+                               
+                            });
+                        });
+                    }
+                });
+            });
+        });
+        </script>
+</text>
+)

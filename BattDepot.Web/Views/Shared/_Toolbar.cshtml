@@ -1,0 +1,33 @@
+﻿@using CPO.Domain.Entities
+<ul class="dshb_icoNav clearfix">
+    @{
+        IEnumerable<Menu> menus = MenuHelper.GetAll();
+        int parrentID = -1;
+        //var controller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+        foreach (Menu item in menus)
+        {
+            IEnumerable<Menu> children = MenuHelper.GetAll(item.ID);
+            foreach (Menu childMenuItem in children)
+            {
+                if (childMenuItem.Url != null &&
+                    childMenuItem.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString())
+                {
+                    parrentID = item.ID;
+                }
+            }
+            if (item.ID == parrentID)
+            {
+                IEnumerable<Menu> sub_childs = MenuHelper.GetAll(item.ID);
+                foreach (Menu sub_child in sub_childs)
+                {
+                    //var mnActiveClass = sub_child.Title.ToLower().Contains(controller) ? "mn-active" : "";
+                    <li>
+                        <a href="@sub_child.Url" class="@sub_child.Icon">
+                            @sub_child.Title
+                        </a>
+                    </li>
+                }
+            }
+        }
+    }
+</ul>

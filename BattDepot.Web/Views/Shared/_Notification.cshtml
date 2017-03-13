@@ -1,0 +1,59 @@
+﻿@using System.Threading
+@using NS.Mvc
+@using CPO.Domain.Abstract
+@using Resources
+@{
+    var unitService = DependencyHelper.GetService<IUnitRepository>();
+    var language = CurrentUser.Identity.LanguageID == null ? unitService.GetLanguage(Thread.CurrentThread.CurrentUICulture.ToString()) : unitService.GetLanguage(Convert.ToInt32(CurrentUser.Identity.LanguageID));
+
+    var languages = unitService.GetAllLanguages();
+}
+<ul class="nav user_menu pull-right">
+
+    @* <li class="hidden-phone hidden-tablet">
+        <div class="nb_boxes clearfix">
+            @Html.Action("FlyerTrigger", "ConfirmDocuments")
+        </div>
+    </li>
+    
+    <li class="hidden-phone hidden-tablet">
+        <div class="nb_boxes clearfix">
+            @Html.Action("FlyerTrigger", "Indents")
+        </div>
+    </li>*@
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="~/Display/img/@language.Image" alt="" class="user_avatar" />
+            @language.DisplayName <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            @foreach (var item in languages)
+            {
+                <li><a href="@Url.Action("SetLanguage", "Home", new { cult = item.Value })">
+                    <img src="~/Display/img/@item.Image" alt="" class="user_avatar" />@item.DisplayName</a></li>
+            }
+        </ul>
+    </li>
+    @if (CurrentUser.IsAuthenticated)
+    {
+        <li class="divider-vertical hidden-phone hidden-tablet"></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                @if (CurrentUser.Identity.Picture != null)
+                {
+                    <img src="~/data/user_img/@(CurrentUser.Identity.Picture + "?" + Guid.NewGuid().ToString())" class="user_avatar"/>
+                }
+                else
+                {
+                    <img src="~/Display/img/user_avatar.png" alt="" class="user_avatar" />
+                }
+                @CurrentUser.Identity.DisplayName <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink(Resource.MyProfile, "Profile", "Account")</li>
+                <li>@Html.ActionLink(Resource.Logout, "Logout", "Account")</li>
+            </ul>
+        </li>
+    }
+
+</ul>

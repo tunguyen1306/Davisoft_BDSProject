@@ -1,0 +1,535 @@
+﻿@using System.Security.Policy
+@using System.Threading
+@using Davisoft_BDSProject.Domain.Abstract
+@using Davisoft_BDSProject.Domain.Entities
+@using Resources
+@{
+    Layout = "~/Views/Shared/_BigBang.cshtml";
+    //var countryDefault = MoneyHelper.DefaultCountry;
+    var unitService = NS.Mvc.DependencyHelper.GetService<IUnitRepository>();
+    Language language = null;
+    if (CurrentUser.Identity == null || CurrentUser.Identity.LanguageID == null)
+    {
+        language = unitService.GetLanguage("en");// get default
+    }
+    else
+    {
+        language = unitService.GetLanguage(Convert.ToInt32(CurrentUser.Identity.LanguageID));
+        if (language == null)
+        {
+            language = unitService.GetLanguage("en");// get default
+        }
+    }
+    var languages = unitService.GetAllLanguages();
+}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+    .pagination {
+        margin: 2px 0;
+    }
+
+    .table {
+        margin-bottom: 0;
+        border-bottom: 1px solid #DDD;
+    }
+
+        /*.table tr:first-child th {
+            background: url("/img/sort_asc.png") no-repeat center right 5px #F5F5F5;
+            vertical-align: middle;
+        }*/
+        .table tr:first-child th {
+            background-color: #F5F5F5;
+        }
+
+            .table tr:first-child th.sorting {
+                background: url("../img/sort_both.png") no-repeat center right 5px #F5F5F5;
+                vertical-align: middle;
+            }
+
+            .table tr:first-child th.sorting_asc {
+                background: url("../img/sort_asc.png") no-repeat center right 5px #F5F5F5;
+                vertical-align: middle;
+            }
+
+            .table tr:first-child th a,
+            .table tr:first-child th {
+                /*color: #59595A;*/
+                /*font-weight: bold;*/
+            }
+
+        .table tr:nth-child(2n) td.sorted,
+        .table tr th.sorted {
+            background-color: #F1F1F1 !important;
+        }
+
+        .table tr:hover td.sorted {
+            background-color: #EAEAEA !important;
+        }
+
+        .table tr:nth-child(2n+1) td.sorted {
+            background-color: #FAFAFA;
+        }
+
+        .table tr:nth-child(2n) td {
+            background-color: #FFF;
+        }
+
+        /*.table tr:nth-child(2n):hover td:not(.sorted) {
+            background-color: #F6F6F6 !important;
+        }*/
+        /*.table tr:nth-child(2n+1) td {
+            background-color: #FAFAFA;
+        }*/
+        .table tr th, .table tr td {
+            padding: 9px 10px;
+        }
+
+    .pagination .active span {
+        background-color: #6164C1;
+        border-color: #6164C1;
+    }
+
+        .pagination .active span:hover {
+            background: #5356A0;
+            border: 1px solid #5356A0;
+        }
+
+
+
+    .pagination li:first-child span, .pagination li:last-child a {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .align-right {
+        text-align: right;
+    }
+
+    .cd-nav-shortcuts em {
+        padding: 0 12px;
+    }
+
+    .tilte_l {
+        margin: 0;
+    }
+
+    .textred {
+        color: red;
+    }
+
+    .colorpicker-2x .colorpicker-saturation {
+        width: 400px;
+        height: 400px;
+    }
+
+    .colorpicker-2x .colorpicker-hue,
+    .colorpicker-2x .colorpicker-alpha {
+        width: 60px;
+        height: 400px;
+    }
+
+    .colorpicker-2x .colorpicker-color,
+    .colorpicker-2x .colorpicker-color div {
+        height: 60px;
+    }
+
+    .multiselect-container .input-group-addon,
+    .multiselect-container .multiselect-search,
+    .multiselect-container .btn {
+        height: 36px;
+    }
+
+    .multiselect-container {
+        max-height: 250px;
+        min-width: 200px;
+        overflow: auto;
+    }
+
+    .timepicker {
+        padding: 6px 5px;
+    }
+
+    .fullimage img {
+        width: 100%;
+        height: auto;
+    }
+
+    .fulltable table {
+        width: 100%;
+    }
+
+    .rowmargin .row {
+        margin: 10px -15px;
+    }
+
+    label {
+        font-weight: inherit;
+    }
+
+    .calendarcontain table {
+        width: 100%;
+        border-color: #E8E8E8;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+        .calendarcontain table tr td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .calendarcontain table tr:first-child td,
+        .calendarcontain table tr th {
+            padding-left: 5px;
+            padding-right: 5px;
+            text-align: center;
+            background: #fff !important;
+        }
+
+    .ui-state-active {
+        border: none !important;
+        background: #93A0AD !important;
+    }
+
+    .ui-state-highlight {
+        background: none !important;
+        border: none !important;
+    }
+
+        .ui-state-highlight a.ui-state-default {
+            color: #ffffff;
+            background: #6164C1 !important;
+        }
+
+    .ui-datepicker-today a.ui-state-default {
+        color: #ffffff;
+        background: #E24E4E !important;
+    }
+
+    .m_right {
+        margin-right: 10px;
+    }
+
+    .p_all {
+        padding: 20px;
+    }
+
+    .selected_lk {
+        color: #6164C1 !important;
+        font-weight: bold;
+    }
+
+    #loadding {
+        background: rgba(0,0,0,0.5) url(/images/ajax-loading.svg) no-repeat center center;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999999999999;
+    }
+
+    ul {
+        list-style: none;
+    }
+</style>
+<header class="cd-main-header" runat="server" id="topheader">
+    <a href="~/" style="color: #fff;text-transform: uppercase;" class="cd-logo"><strong>Certified Pre-Owned System</strong></a>
+    <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
+
+    <nav class="cd-nav">
+        <ul class="cd-top-nav">
+            <li class="has-children language" style="margin-right: 0;">
+                <a href="#0">
+                    <img class="@language.Image" alt="" />
+                    <i class="fa fa-angle-down"></i>
+                    @language.DisplayName
+                </a>
+                <ul style="width: 100%;">
+                    @foreach (var item in languages)
+                    {
+                        <li>
+                            <a href="@Url.Action("SetLanguage", "Home", new { cult = item.Value, returnUrl = Request.RawUrl })">
+                                <img class="@item.Image" alt="" /><span>@item.DisplayName</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+            <li class="has-children account">
+                <a href="#0">
+                    @if (CurrentUser.Identity == null || string.IsNullOrEmpty(CurrentUser.Identity.Picture))
+                    {
+                        <img src="~/Display/img/cd-avatar.png" alt="avatar">
+                    }
+                    else
+                    {
+                        <img src="~/data/user_img/@(CurrentUser.Identity.Picture + "?" + Guid.NewGuid().ToString())" alt="avatar">
+                    }
+                    <i class="fa fa-angle-down"></i>
+                    @CurrentUser.Identity.DisplayName
+                </a>
+
+                <ul style="width: 100%;">
+
+                    <li class="nothide">@Html.ActionLink(Resource.MyProfile, "Profile", "Account")</li>
+                    <li>@Html.Bootstrap().ActionLink(Resource.Logout, "Logout", "Account").RouteValues(new { returnUrl = HttpContext.Current.Request.RawUrl })</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="cd-main-content">
+    <nav class="cd-side-nav" runat="server" id="menuleft">
+        @*<input type="text" class="form-control nouc" id="search_menu"/>*@
+        <ul>
+            @{
+                HttpRequest request = HttpContext.Current.Request;
+                var controllerActive = ViewContext.RouteData.Values["controller"].ToString();
+                var urlActive = controllerActive + "/" + ViewContext.RouteData.Values["action"].ToString();
+                IEnumerable<Menu> menus = MenuHelper.GetAll();
+                foreach (Menu item in menus)
+                {
+                    bool isActiveBar = !string.IsNullOrEmpty(item.Url) && (item.Url == request.RawUrl ||
+                                                                           item.Url.Remove(0, 1) == controllerActive ||
+                                                                           item.Url.Remove(0, 1) == urlActive);
+                    List<Menu> children = MenuHelper.GetAll(item.ID).ToList();
+                    foreach (Menu childMenuItem in children)
+                    {
+                        if (childMenuItem.Url != null &&
+                            (childMenuItem.Url == request.RawUrl ||
+                             childMenuItem.Url.Remove(0, 1) == controllerActive ||
+                             childMenuItem.Url.Remove(0, 1) == urlActive))
+                        {
+                            isActiveBar = true;
+                        }
+                    }
+
+                    var title = item.Title;
+                    if (!string.IsNullOrEmpty(title))
+                    {
+                        var resource = Resources.MenuResource.ResourceManager.GetString(("Menu" + Davisoft_BDSProject.Domain.Helpers.StringHelper.RemoveSpecialCharacters(title)).ToLower());
+                        if (resource != null)
+                        {
+                            title = resource;
+                        }
+                    }
+                    if (item.Title.ToUpper() == "MASTER FILE")
+                    {
+                        children = children.OrderBy(m => m.Title).ToList();
+                    }
+                    string wideMenuCss = "";
+                    if (children.Count > 20)
+                    {
+                        wideMenuCss = "menu-3";
+                    }
+                    else if (children.Count > 10)
+                    {
+                        wideMenuCss = "menu-2";
+                    }
+
+                    <li class="has-children @(isActiveBar ? "active" : "")">
+                        <a href="@(string.IsNullOrEmpty(item.Url) ? "#" : item.Url)">@title <i class="@(string.IsNullOrEmpty(item.Icon) ? "fa fa-cube" : item.Icon)"></i></a>
+                        <ul class="@wideMenuCss">
+                            @{
+                    //IEnumerable<Menu> children = MenuHelper.GetAll(item.Id);
+                    foreach (Menu childItem in children)
+                    {
+
+                        var childTitle = childItem.Title;
+                        if (!string.IsNullOrEmpty(childTitle))
+                        {
+                            var childItemResource = Resources.MenuResource.ResourceManager.GetString(("Menu" + Davisoft_BDSProject.Domain.Helpers.StringHelper.RemoveSpecialCharacters(childTitle)).ToLower());
+                            if (childItemResource != null)
+                            {
+                                childTitle = childItemResource;
+                            }
+                            else
+                            {
+                                var tmp = 0;
+                            }
+                        }
+                        if (childItem.Url != null &&
+                              (childItem.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString() ||
+                              childItem.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString()
+                              + "/" + ViewContext.RouteData.Values["action"].ToString()))
+                        {
+                            <li class="selected_lk">
+                                <a href="@childItem.Url">@childTitle</a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@childItem.Url">@childTitle</a>
+                            </li>
+
+                        }
+                    }
+                            }
+                        </ul>
+                    </li>
+
+                }
+            }
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+        <section id="content">
+            <section class="vbox">
+                <div id="temp_data_message_top">
+                    @if (TempData["message"] != null && !string.IsNullOrEmpty(TempData["message"].ToString()))
+                    {
+                        <div class="alert alert-success">
+                            @Html.Raw(TempData["message"])
+                        </div>
+                    }
+                    @if (TempData["error"] != null && !string.IsNullOrEmpty(TempData["error"].ToString()))
+                    {
+                        <div class="alert alert-danger">
+                            @Html.Raw(TempData["error"])
+                        </div>
+                    }
+                </div>
+                @RenderBody()
+            </section>
+        </section>
+    </div>
+    <div style="clear: both"></div>
+    <footer class="site-footer" style=" display: inline;">
+        <div class="content-footer">
+            <p class="copyright" style="padding-left: 10px;">Copyright © @DateTime.Today.Year T8 Gallery Pte Ltd   <a href="mailto:nhat@netrunnersystems.com" target="_blank">Give us your feedback</a></p>
+            <p class="powered" style="padding-right: 10px;">Powered by <a href="http://netrunnersystems.com/" target="_blank"><span class="netrunner">netrunner</span><span class="systems">systems</span></a></p>
+        </div>
+    </footer>
+</main>
+
+@section css
+{
+    @Styles.Render("~/display/css/min")
+    @RenderSection("css", required: false)
+}
+
+@section js
+{
+    @Scripts.Render("~/content/js/min")
+
+    <script>
+
+        $('.prepend-icon').prepend("<i class='icon-list'></i>");
+
+
+        $("select[data-display=select2]").select2({
+            placeholder: "@Resource.PleaseSelect",
+            width: '100%',
+            allowClear: true,
+        });
+
+        function initDatepicker() {
+            $('.date-picker, .datepicker').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                format: 'dd/mm/yyyy'
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+        }
+
+        initDatepicker();
+
+
+        function initSelect2() {
+            $('select:not(.select-ajax)').select2({
+                placeholder: "@Resource.PleaseSelect",
+                allowClear: true,
+                width: '100%',
+            });
+        }
+
+        initSelect2();
+
+        function ReValidateForm() {
+            $("form").removeData("validator");
+            $("form").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse("form");
+        }
+
+        function repoFormatResult(repo) {
+            if (repo.loading) return repo.text;
+            var markup = String.format("<div class='select2-result-repository clearfix'>{0}</div>", repo.text);
+
+            return markup;
+        }
+
+        function repoFormatSelection(repo) {
+            return repo.text;
+        }
+
+        function initAjaxDropdown(element, url, placeholder, multiple) {
+            element.select2({
+                placeholder: placeholder,
+                minimumInputLength: 3,
+                multiple: multiple,
+                allowClear: true,
+                ajax: {
+                    // instead of writing the function to execute the request we use Select2's convenient helper
+                    url: url,
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term // search term
+                        };
+                    },
+                    processResults: function (data, page) { // parse the results into the format expected by Select2.
+                        // since we are using custom formatting functions we do not need to alter the remote JSON data
+                        return { results: data };
+                    },
+                    cache: true,
+                    params: {
+                        global: false
+                    }
+                },
+                templateResult: repoFormatResult, // omitted for brevity, see the source of this page
+                templateSelection: repoFormatSelection, // omitted for brevity, see the source of this page
+                dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+                escapeMarkup: function (m) { return m; }, // we do not want to escape markup since we are displaying html in results
+                width: '100%'
+            });
+        }
+
+        /////////////////////////
+        $(".toggle-search").on('click', function (e) {
+            if ($('.search-icon').hasClass('fa-angle-down'))
+                $('.search-icon').removeClass('fa-angle-down').addClass('fa-angle-up');
+            else
+                $('.search-icon').removeClass('fa-angle-up').addClass('fa-angle-down');
+            e.preventDefault();
+            $("#table-Search").slideToggle();
+        });
+        /////////////////////////////////
+        $(".cd-side-nav li.has-children").on('click', function (e) {
+            //if ($(e.target).attr('href') !== '#')
+            //    return;
+            if ($($(this).find("a")).attr('href') !== '#') {
+                location.href = $($(this).find("a")).attr('href');
+            } else if ($(this).hasClass('active')) {
+
+            } else {
+                $('.has-children').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+        //$("#search_menu").on("keypress", function(e) {
+
+        //});money-amount
+
+    </script>
+
+    @RenderSection("js", required: false)
+}
