@@ -8,11 +8,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{758D4E
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davisoft_BDSProject.Domain", "BattDepot.Domain\Davisoft_BDSProject.Domain.csproj", "{0A88B25A-3F62-4323-99DB-45BF6224D477}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davisoft_BDSProject.Domain", "Davisoft_BDSProject.Domain\Davisoft_BDSProject.Domain.csproj", "{0A88B25A-3F62-4323-99DB-45BF6224D477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattDepot.Seed", "BattDepot.Seed\BattDepot.Seed.csproj", "{87ADA271-3A53-4BD3-9067-96A6AFF0BE4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davisoft_BDSProject.Seed", "Davisoft_BDSProject.Seed\Davisoft_BDSProject.Seed.csproj", "{87ADA271-3A53-4BD3-9067-96A6AFF0BE4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davisoft_BDSProject.Web", "BattDepot.Web\Davisoft_BDSProject.Web.csproj", "{04A38B74-1AA3-45CD-819B-BDE1BB41BD99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davisoft_BDSProject.Web", "Davisoft_BDSProject.Web\Davisoft_BDSProject.Web.csproj", "{04A38B74-1AA3-45CD-819B-BDE1BB41BD99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
