@@ -231,6 +231,25 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Template\css\font-awesome.css" />
+    <Content Include="Template\css\grid.css" />
+    <Content Include="Template\css\normalize.css" />
+    <Content Include="Template\css\reponsive.css" />
+    <Content Include="Template\css\style.css" />
+    <Content Include="Template\DangKyTuyenDung.html" />
+    <Content Include="Template\fonts\fontawesome-webfont.svg" />
+    <Content Include="Template\home.htm" />
+    <Content Include="Template\images\1.jpg" />
+    <Content Include="Template\images\2.jpg" />
+    <Content Include="Template\images\Banner.jpg" />
+    <Content Include="Template\images\banner2.jpg" />
+    <Content Include="Template\images\dangkybo.png" />
+    <Content Include="Template\images\icon_1.png" />
+    <Content Include="Template\images\icon_2.png" />
+    <Content Include="Template\images\logo.png" />
+    <Content Include="Template\js\flaunt.js" />
+    <Content Include="Template\js\jquery.easydropdown.min.js" />
+    <Content Include="Template\js\tabs.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -265,6 +284,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Template\fonts\fontawesome-webfont.eot" />
+    <Content Include="Template\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Template\fonts\fontawesome-webfont.woff" />
+    <Content Include="Template\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Template\fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
