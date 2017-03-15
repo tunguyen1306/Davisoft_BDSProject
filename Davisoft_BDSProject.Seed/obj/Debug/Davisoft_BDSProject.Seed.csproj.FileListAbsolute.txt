@@ -103,3 +103,4 @@ C:\Company\Web\AdminDavisoft\Davisoft_BDSProject\Davisoft_BDSProject.Seed\bin\De
 C:\Company\Web\AdminDavisoft\Davisoft_BDSProject\Davisoft_BDSProject.Seed\obj\Debug\Davisoft_BDSProject.Seed.csprojResolveAssemblyReference.cache
 C:\Company\Web\AdminDavisoft\Davisoft_BDSProject\Davisoft_BDSProject.Seed\obj\Debug\Davisoft_BDSProject.Seed.dll
 C:\Company\Web\AdminDavisoft\Davisoft_BDSProject\Davisoft_BDSProject.Seed\obj\Debug\Davisoft_BDSProject.Seed.pdb
+D:\Company\WebSite\Davisoft_BDSProject\Davisoft_BDSProject.Seed\bin\Debug\Davisoft_BDSProject.Domain.pdb
