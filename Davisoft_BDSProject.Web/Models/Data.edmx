@@ -1,0 +1,1288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Davisoft_BDSProjectModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Davisoft_BDSProjectModelStoreContainer">
+          <EntitySet Name="__migrationhistory" EntityType="Davisoft_BDSProjectModel.Store.__migrationhistory" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="audits" EntityType="Davisoft_BDSProjectModel.Store.audits" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="branches" EntityType="Davisoft_BDSProjectModel.Store.branches" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="counters" EntityType="Davisoft_BDSProjectModel.Store.counters" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="country" EntityType="Davisoft_BDSProjectModel.Store.country" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="countrytext" EntityType="Davisoft_BDSProjectModel.Store.countrytext" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="currencies" EntityType="Davisoft_BDSProjectModel.Store.currencies" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="district" EntityType="Davisoft_BDSProjectModel.Store.district" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="districttext" EntityType="Davisoft_BDSProjectModel.Store.districttext" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="holidays" EntityType="Davisoft_BDSProjectModel.Store.holidays" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="languages" EntityType="Davisoft_BDSProjectModel.Store.languages" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="location" EntityType="Davisoft_BDSProjectModel.Store.location" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="locationtext" EntityType="Davisoft_BDSProjectModel.Store.locationtext" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="menus" EntityType="Davisoft_BDSProjectModel.Store.menus" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="menus_roles" EntityType="Davisoft_BDSProjectModel.Store.menus_roles" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="permissions" EntityType="Davisoft_BDSProjectModel.Store.permissions" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="phuong" EntityType="Davisoft_BDSProjectModel.Store.phuong" store:Type="Tables" store:Schema="davisoft_bdsproject" store:Name="phuong">
+            <DefiningQuery>SELECT
+      `phuong`.`ID`, 
+      `phuong`.`WardName`, 
+      `phuong`.`SuburbID`, 
+      `phuong`.`Longitude`, 
+      `phuong`.`Latitude`, 
+      `phuong`.`polygon`, 
+      `phuong`.`rowguid`
+      FROM `phuong` AS `phuong`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="quarter" EntityType="Davisoft_BDSProjectModel.Store.quarter" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="quartertext" EntityType="Davisoft_BDSProjectModel.Store.quartertext" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="roles" EntityType="Davisoft_BDSProjectModel.Store.roles" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="roles_permissions" EntityType="Davisoft_BDSProjectModel.Store.roles_permissions" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="settings" EntityType="Davisoft_BDSProjectModel.Store.settings" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="state" EntityType="Davisoft_BDSProjectModel.Store.state" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="statetext" EntityType="Davisoft_BDSProjectModel.Store.statetext" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="users" EntityType="Davisoft_BDSProjectModel.Store.users" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="users_branches" EntityType="Davisoft_BDSProjectModel.Store.users_branches" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="users_roles" EntityType="Davisoft_BDSProjectModel.Store.users_roles" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <AssociationSet Name="Counter_Branch" Association="Davisoft_BDSProjectModel.Store.Counter_Branch">
+            <End Role="branches" EntitySet="branches" />
+            <End Role="counters" EntitySet="counters" />
+          </AssociationSet>
+          <AssociationSet Name="Menu_Roles_Source" Association="Davisoft_BDSProjectModel.Store.Menu_Roles_Source">
+            <End Role="menus" EntitySet="menus" />
+            <End Role="menus_roles" EntitySet="menus_roles" />
+          </AssociationSet>
+          <AssociationSet Name="Menu_Roles_Target" Association="Davisoft_BDSProjectModel.Store.Menu_Roles_Target">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="menus_roles" EntitySet="menus_roles" />
+          </AssociationSet>
+          <AssociationSet Name="Role_Permissions_Source" Association="Davisoft_BDSProjectModel.Store.Role_Permissions_Source">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="roles_permissions" EntitySet="roles_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="Role_Permissions_Target" Association="Davisoft_BDSProjectModel.Store.Role_Permissions_Target">
+            <End Role="permissions" EntitySet="permissions" />
+            <End Role="roles_permissions" EntitySet="roles_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="User_Branch" Association="Davisoft_BDSProjectModel.Store.User_Branch">
+            <End Role="branches" EntitySet="branches" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="User_Branches_Source" Association="Davisoft_BDSProjectModel.Store.User_Branches_Source">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_branches" EntitySet="users_branches" />
+          </AssociationSet>
+          <AssociationSet Name="User_Branches_Target" Association="Davisoft_BDSProjectModel.Store.User_Branches_Target">
+            <End Role="branches" EntitySet="branches" />
+            <End Role="users_branches" EntitySet="users_branches" />
+          </AssociationSet>
+          <AssociationSet Name="User_Language" Association="Davisoft_BDSProjectModel.Store.User_Language">
+            <End Role="languages" EntitySet="languages" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="User_Roles_Source" Association="Davisoft_BDSProjectModel.Store.User_Roles_Source">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_roles" EntitySet="users_roles" />
+          </AssociationSet>
+          <AssociationSet Name="User_Roles_Target" Association="Davisoft_BDSProjectModel.Store.User_Roles_Target">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users_roles" EntitySet="users_roles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="__migrationhistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Model" Type="longblob" Nullable="false" />
+          <Property Name="ProductVersion" Type="varchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="audits">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="longtext" />
+          <Property Name="Email" Type="longtext" />
+          <Property Name="IPAddress" Type="longtext" />
+          <Property Name="UrlAccessed" Type="longtext" />
+          <Property Name="TimeAccessed" Type="datetime" Nullable="false" />
+          <Property Name="SessionId" Type="longtext" />
+          <Property Name="Data" Type="longtext" />
+          <Property Name="Message" Type="longtext" />
+          <Property Name="Controller" Type="longtext" />
+          <Property Name="ActionId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="branches">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="longtext" />
+          <Property Name="Name" Type="longtext" />
+          <Property Name="Name2" Type="longtext" />
+          <Property Name="Address" Type="longtext" />
+          <Property Name="AddressEnglish" Type="longtext" />
+          <Property Name="PhoneNumber" Type="longtext" />
+          <Property Name="FaxNumber" Type="longtext" />
+          <Property Name="TaxNumber" Type="longtext" />
+          <Property Name="_Created" Type="datetime" Nullable="false" />
+          <Property Name="_Updated" Type="datetime" />
+          <Property Name="_Deleted" Type="datetime" />
+          <Property Name="EntityStatus_Value" Type="longtext" />
+        </EntityType>
+        <EntityType Name="counters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="longtext" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="BranchID" Type="int" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="countryCode" />
+          </Key>
+          <Property Name="countryCode" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="name_id" Type="int" Nullable="false" />
+          <Property Name="languages" Type="varchar" MaxLength="50" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="countrytext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="language_id" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="text" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="currencies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="longtext" />
+          <Property Name="Symbol" Type="longtext" />
+          <Property Name="IsDefault" Type="bool" Nullable="false" />
+          <Property Name="Precision" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="district">
+          <Key>
+            <PropertyRef Name="district_id" />
+          </Key>
+          <Property Name="district_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="name_id" Type="int" Nullable="false" />
+          <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+          <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+          <Property Name="polygon" Type="text" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="districttext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="language_id" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="text" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="holidays">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="longtext" />
+          <Property Name="IsFullDay" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="languages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="longtext" />
+          <Property Name="DisplayName" Type="longtext" />
+          <Property Name="Image" Type="longtext" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="countryCode" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="district_id" Type="int" />
+          <Property Name="name_id" Type="int" Nullable="false" />
+          <Property Name="zipCode" Type="varchar" MaxLength="12" />
+          <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+          <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+          <Property Name="preferred" Type="bit" Nullable="false" />
+          <Property Name="polygon" Type="text" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="locationtext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="language_id" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="text" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="menus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="longtext" />
+          <Property Name="Url" Type="longtext" />
+          <Property Name="Icon" Type="longtext" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="menus_roles">
+          <Key>
+            <PropertyRef Name="Menu_Id" />
+            <PropertyRef Name="Role_Id" />
+          </Key>
+          <Property Name="Menu_Id" Type="int" Nullable="false" />
+          <Property Name="Role_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permissions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Target" Type="longtext" />
+          <Property Name="Right" Type="longtext" />
+          <Property Name="Description" Type="longtext" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.davisoft_bdsproject.phuong' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="phuong">
+          <Key>
+            <PropertyRef Name="rowguid" />
+          </Key>
+          <Property Name="ID" Type="float" />
+          <Property Name="WardName" Type="varchar" MaxLength="255" />
+          <Property Name="SuburbID" Type="float" />
+          <Property Name="Longitude" Type="varchar" MaxLength="255" />
+          <Property Name="Latitude" Type="varchar" MaxLength="255" />
+          <Property Name="polygon" Type="varchar" MaxLength="255" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="quarter">
+          <Key>
+            <PropertyRef Name="quarter_id" />
+          </Key>
+          <Property Name="quarter_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="location_id" Type="int" Nullable="false" />
+          <Property Name="name_id" Type="int" Nullable="false" />
+          <Property Name="zipCode" Type="varchar" MaxLength="12" />
+          <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+          <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="quartertext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="language_id" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="text" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="longtext" />
+          <Property Name="Description" Type="longtext" />
+          <Property Name="RoleLevel_Value" Type="longtext" />
+        </EntityType>
+        <EntityType Name="roles_permissions">
+          <Key>
+            <PropertyRef Name="Role_Id" />
+            <PropertyRef Name="Permission_Id" />
+          </Key>
+          <Property Name="Role_Id" Type="int" Nullable="false" />
+          <Property Name="Permission_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="settings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Module" Type="longtext" />
+          <Property Name="Name" Type="longtext" />
+          <Property Name="Value" Type="longtext" />
+          <Property Name="Type" Type="longtext" />
+          <Property Name="Note" Type="longtext" />
+          <Property Name="Summary" Type="longtext" />
+          <Property Name="TableToGetField" Type="longtext" />
+          <Property Name="MaxLenght" Type="int" Nullable="false" />
+          <Property Name="Description" Type="longtext" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="state_id" />
+          </Key>
+          <Property Name="state_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="countryCode" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="name_id" Type="int" Nullable="false" />
+          <Property Name="stateCode" Type="varchar" MaxLength="4" />
+          <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+          <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+          <Property Name="polygon" Type="text" />
+          <Property Name="ModifyDate" Type="date" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="Status" Type="int" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="statetext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="language_id" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="text" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="rowguid" Type="char" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="longtext" />
+          <Property Name="Password" Type="longtext" />
+          <Property Name="Email" Type="longtext" />
+          <Property Name="Phone" Type="longtext" />
+          <Property Name="MobilePhone" Type="longtext" />
+          <Property Name="Picture" Type="longtext" />
+          <Property Name="LastAccess" Type="datetime" />
+          <Property Name="Address" Type="longtext" />
+          <Property Name="AddressEnglish" Type="longtext" />
+          <Property Name="FaxNo" Type="longtext" />
+          <Property Name="Website" Type="longtext" />
+          <Property Name="Status_Value" Type="longtext" />
+          <Property Name="BranchID" Type="int" />
+          <Property Name="LanguageID" Type="int" />
+        </EntityType>
+        <EntityType Name="users_branches">
+          <Key>
+            <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Branch_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="Branch_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_roles">
+          <Key>
+            <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Role_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="Role_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Counter_Branch">
+          <End Role="branches" Type="Davisoft_BDSProjectModel.Store.branches" Multiplicity="0..1" />
+          <End Role="counters" Type="Davisoft_BDSProjectModel.Store.counters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="branches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="counters">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Menu_Roles_Source">
+          <End Role="menus" Type="Davisoft_BDSProjectModel.Store.menus" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="menus_roles" Type="Davisoft_BDSProjectModel.Store.menus_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="menus_roles">
+              <PropertyRef Name="Menu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Menu_Roles_Target">
+          <End Role="roles" Type="Davisoft_BDSProjectModel.Store.roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="menus_roles" Type="Davisoft_BDSProjectModel.Store.menus_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="menus_roles">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Role_Permissions_Source">
+          <End Role="roles" Type="Davisoft_BDSProjectModel.Store.roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="roles_permissions" Type="Davisoft_BDSProjectModel.Store.roles_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="roles_permissions">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Role_Permissions_Target">
+          <End Role="permissions" Type="Davisoft_BDSProjectModel.Store.permissions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="roles_permissions" Type="Davisoft_BDSProjectModel.Store.roles_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permissions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="roles_permissions">
+              <PropertyRef Name="Permission_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Branch">
+          <End Role="branches" Type="Davisoft_BDSProjectModel.Store.branches" Multiplicity="0..1" />
+          <End Role="users" Type="Davisoft_BDSProjectModel.Store.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="branches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Branches_Source">
+          <End Role="users" Type="Davisoft_BDSProjectModel.Store.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="users_branches" Type="Davisoft_BDSProjectModel.Store.users_branches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="users_branches">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Branches_Target">
+          <End Role="branches" Type="Davisoft_BDSProjectModel.Store.branches" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="users_branches" Type="Davisoft_BDSProjectModel.Store.users_branches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="branches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="users_branches">
+              <PropertyRef Name="Branch_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Language">
+          <End Role="languages" Type="Davisoft_BDSProjectModel.Store.languages" Multiplicity="0..1" />
+          <End Role="users" Type="Davisoft_BDSProjectModel.Store.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="languages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Roles_Source">
+          <End Role="users" Type="Davisoft_BDSProjectModel.Store.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="users_roles" Type="Davisoft_BDSProjectModel.Store.users_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="users_roles">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Roles_Target">
+          <End Role="roles" Type="Davisoft_BDSProjectModel.Store.roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="users_roles" Type="Davisoft_BDSProjectModel.Store.users_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="users_roles">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Davisoft_BDSProjectModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Davisoft_BDSProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__migrationhistory" EntityType="Davisoft_BDSProjectModel.C__migrationhistory" />
+          <EntitySet Name="audits" EntityType="Davisoft_BDSProjectModel.audit" />
+          <EntitySet Name="branches" EntityType="Davisoft_BDSProjectModel.branch" />
+          <EntitySet Name="counters" EntityType="Davisoft_BDSProjectModel.counter" />
+          <EntitySet Name="countries" EntityType="Davisoft_BDSProjectModel.country" />
+          <EntitySet Name="countrytexts" EntityType="Davisoft_BDSProjectModel.countrytext" />
+          <EntitySet Name="currencies" EntityType="Davisoft_BDSProjectModel.currency" />
+          <EntitySet Name="districts" EntityType="Davisoft_BDSProjectModel.district" />
+          <EntitySet Name="districttexts" EntityType="Davisoft_BDSProjectModel.districttext" />
+          <EntitySet Name="holidays" EntityType="Davisoft_BDSProjectModel.holiday" />
+          <EntitySet Name="languages" EntityType="Davisoft_BDSProjectModel.language" />
+          <EntitySet Name="locations" EntityType="Davisoft_BDSProjectModel.location" />
+          <EntitySet Name="locationtexts" EntityType="Davisoft_BDSProjectModel.locationtext" />
+          <EntitySet Name="menus" EntityType="Davisoft_BDSProjectModel.menu" />
+          <EntitySet Name="permissions" EntityType="Davisoft_BDSProjectModel.permission" />
+          <EntitySet Name="phuongs" EntityType="Davisoft_BDSProjectModel.phuong" />
+          <EntitySet Name="quarters" EntityType="Davisoft_BDSProjectModel.quarter" />
+          <EntitySet Name="quartertexts" EntityType="Davisoft_BDSProjectModel.quartertext" />
+          <EntitySet Name="roles" EntityType="Davisoft_BDSProjectModel.role" />
+          <EntitySet Name="settings" EntityType="Davisoft_BDSProjectModel.setting" />
+          <EntitySet Name="states" EntityType="Davisoft_BDSProjectModel.state" />
+          <EntitySet Name="statetexts" EntityType="Davisoft_BDSProjectModel.statetext" />
+          <EntitySet Name="users" EntityType="Davisoft_BDSProjectModel.user" />
+          <AssociationSet Name="Counter_Branch" Association="Davisoft_BDSProjectModel.Counter_Branch">
+            <End Role="branches" EntitySet="branches" />
+            <End Role="counters" EntitySet="counters" />
+          </AssociationSet>
+          <AssociationSet Name="User_Branch" Association="Davisoft_BDSProjectModel.User_Branch">
+            <End Role="branches" EntitySet="branches" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="User_Language" Association="Davisoft_BDSProjectModel.User_Language">
+            <End Role="languages" EntitySet="languages" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="menus_roles" Association="Davisoft_BDSProjectModel.menus_roles">
+            <End Role="menus" EntitySet="menus" />
+            <End Role="roles" EntitySet="roles" />
+          </AssociationSet>
+          <AssociationSet Name="roles_permissions" Association="Davisoft_BDSProjectModel.roles_permissions">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="permissions" EntitySet="permissions" />
+          </AssociationSet>
+          <AssociationSet Name="users_branches" Association="Davisoft_BDSProjectModel.users_branches">
+            <End Role="users" EntitySet="users" />
+            <End Role="branches" EntitySet="branches" />
+          </AssociationSet>
+          <AssociationSet Name="users_roles" Association="Davisoft_BDSProjectModel.users_roles">
+            <End Role="users" EntitySet="users" />
+            <End Role="roles" EntitySet="roles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__migrationhistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="audit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="UrlAccessed" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="TimeAccessed" Type="DateTime" Nullable="false" />
+          <Property Name="SessionId" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Data" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Message" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Controller" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="ActionId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Name2" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="AddressEnglish" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="FaxNumber" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="C_Created" Type="DateTime" Nullable="false" />
+          <Property Name="C_Updated" Type="DateTime" />
+          <Property Name="C_Deleted" Type="DateTime" />
+          <Property Name="EntityStatus_Value" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="counters" Relationship="Davisoft_BDSProjectModel.Counter_Branch" FromRole="branches" ToRole="counters" />
+          <NavigationProperty Name="users" Relationship="Davisoft_BDSProjectModel.User_Branch" FromRole="branches" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Davisoft_BDSProjectModel.users_branches" FromRole="branches" ToRole="users" />
+        </EntityType>
+        <EntityType Name="counter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="BranchID" Type="Int32" />
+          <NavigationProperty Name="branch" Relationship="Davisoft_BDSProjectModel.Counter_Branch" FromRole="counters" ToRole="branches" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="countryCode" />
+          </Key>
+          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="languages" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="countrytext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="currency">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Symbol" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="Precision" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="district">
+          <Key>
+            <PropertyRef Name="district_id" />
+          </Key>
+          <Property Name="district_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="latitude" Type="Decimal" />
+          <Property Name="longitude" Type="Decimal" />
+          <Property Name="polygon" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="districttext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="holiday">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="IsFullDay" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="language">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="users" Relationship="Davisoft_BDSProjectModel.User_Language" FromRole="languages" ToRole="users" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <Property Name="district_id" Type="Int32" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="zipCode" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="latitude" Type="Decimal" />
+          <Property Name="longitude" Type="Decimal" />
+          <Property Name="preferred" Type="Boolean" Nullable="false" />
+          <Property Name="polygon" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="locationtext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Url" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Icon" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="roles" Relationship="Davisoft_BDSProjectModel.menus_roles" FromRole="menus" ToRole="roles" />
+        </EntityType>
+        <EntityType Name="permission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Target" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Right" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="roles" Relationship="Davisoft_BDSProjectModel.roles_permissions" FromRole="permissions" ToRole="roles" />
+        </EntityType>
+        <EntityType Name="phuong">
+          <Key>
+            <PropertyRef Name="rowguid" />
+          </Key>
+          <Property Name="ID" Type="Single" />
+          <Property Name="WardName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="SuburbID" Type="Single" />
+          <Property Name="Longitude" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Latitude" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="polygon" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="quarter">
+          <Key>
+            <PropertyRef Name="quarter_id" />
+          </Key>
+          <Property Name="quarter_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location_id" Type="Int32" Nullable="false" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="zipCode" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="latitude" Type="Decimal" />
+          <Property Name="longitude" Type="Decimal" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="quartertext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="RoleLevel_Value" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="menus" Relationship="Davisoft_BDSProjectModel.menus_roles" FromRole="roles" ToRole="menus" />
+          <NavigationProperty Name="permissions" Relationship="Davisoft_BDSProjectModel.roles_permissions" FromRole="roles" ToRole="permissions" />
+          <NavigationProperty Name="users" Relationship="Davisoft_BDSProjectModel.users_roles" FromRole="roles" ToRole="users" />
+        </EntityType>
+        <EntityType Name="setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Module" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Value" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Note" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Summary" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="TableToGetField" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="MaxLenght" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="state_id" />
+          </Key>
+          <Property Name="state_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="stateCode" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="latitude" Type="Decimal" />
+          <Property Name="longitude" Type="Decimal" />
+          <Property Name="polygon" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Type="DateTime" Name="ModifyDate" />
+          <Property Type="DateTime" Name="CreateDate" />
+          <Property Type="Int32" Name="Status" />
+        </EntityType>
+        <EntityType Name="statetext">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Picture" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="LastAccess" Type="DateTime" />
+          <Property Name="Address" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="AddressEnglish" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="FaxNo" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Website" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="Status_Value" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="LanguageID" Type="Int32" />
+          <NavigationProperty Name="branch" Relationship="Davisoft_BDSProjectModel.User_Branch" FromRole="users" ToRole="branches" />
+          <NavigationProperty Name="language" Relationship="Davisoft_BDSProjectModel.User_Language" FromRole="users" ToRole="languages" />
+          <NavigationProperty Name="branches" Relationship="Davisoft_BDSProjectModel.users_branches" FromRole="users" ToRole="branches" />
+          <NavigationProperty Name="roles" Relationship="Davisoft_BDSProjectModel.users_roles" FromRole="users" ToRole="roles" />
+        </EntityType>
+        <Association Name="Counter_Branch">
+          <End Role="branches" Type="Davisoft_BDSProjectModel.branch" Multiplicity="0..1" />
+          <End Role="counters" Type="Davisoft_BDSProjectModel.counter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="branches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="counters">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Branch">
+          <End Role="branches" Type="Davisoft_BDSProjectModel.branch" Multiplicity="0..1" />
+          <End Role="users" Type="Davisoft_BDSProjectModel.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="branches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Language">
+          <End Role="languages" Type="Davisoft_BDSProjectModel.language" Multiplicity="0..1" />
+          <End Role="users" Type="Davisoft_BDSProjectModel.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="languages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="menus_roles">
+          <End Role="menus" Type="Davisoft_BDSProjectModel.menu" Multiplicity="*" />
+          <End Role="roles" Type="Davisoft_BDSProjectModel.role" Multiplicity="*" />
+        </Association>
+        <Association Name="roles_permissions">
+          <End Role="roles" Type="Davisoft_BDSProjectModel.role" Multiplicity="*" />
+          <End Role="permissions" Type="Davisoft_BDSProjectModel.permission" Multiplicity="*" />
+        </Association>
+        <Association Name="users_branches">
+          <End Role="users" Type="Davisoft_BDSProjectModel.user" Multiplicity="*" />
+          <End Role="branches" Type="Davisoft_BDSProjectModel.branch" Multiplicity="*" />
+        </Association>
+        <Association Name="users_roles">
+          <End Role="users" Type="Davisoft_BDSProjectModel.user" Multiplicity="*" />
+          <End Role="roles" Type="Davisoft_BDSProjectModel.role" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Davisoft_BDSProjectModelStoreContainer" CdmEntityContainer="Davisoft_BDSProjectEntities">
+          <EntitySetMapping Name="C__migrationhistory">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.C__migrationhistory">
+              <MappingFragment StoreEntitySet="__migrationhistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="audits">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.audit">
+              <MappingFragment StoreEntitySet="audits">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="UrlAccessed" ColumnName="UrlAccessed" />
+                <ScalarProperty Name="TimeAccessed" ColumnName="TimeAccessed" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="branches">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.branch">
+              <MappingFragment StoreEntitySet="branches">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AddressEnglish" ColumnName="AddressEnglish" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="C_Created" ColumnName="_Created" />
+                <ScalarProperty Name="C_Updated" ColumnName="_Updated" />
+                <ScalarProperty Name="C_Deleted" ColumnName="_Deleted" />
+                <ScalarProperty Name="EntityStatus_Value" ColumnName="EntityStatus_Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="counters">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.counter">
+              <MappingFragment StoreEntitySet="counters">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="languages" ColumnName="languages" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrytexts">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.countrytext">
+              <MappingFragment StoreEntitySet="countrytext">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="currencies">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.currency">
+              <MappingFragment StoreEntitySet="currencies">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Precision" ColumnName="Precision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="districts">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.district">
+              <MappingFragment StoreEntitySet="district">
+                <ScalarProperty Name="district_id" ColumnName="district_id" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="polygon" ColumnName="polygon" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="districttexts">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.districttext">
+              <MappingFragment StoreEntitySet="districttext">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="holidays">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.holiday">
+              <MappingFragment StoreEntitySet="holidays">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="languages">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.language">
+              <MappingFragment StoreEntitySet="languages">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.location">
+              <MappingFragment StoreEntitySet="location">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="district_id" ColumnName="district_id" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="preferred" ColumnName="preferred" />
+                <ScalarProperty Name="polygon" ColumnName="polygon" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locationtexts">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.locationtext">
+              <MappingFragment StoreEntitySet="locationtext">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menus">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.menu">
+              <MappingFragment StoreEntitySet="menus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permissions">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.permission">
+              <MappingFragment StoreEntitySet="permissions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Right" ColumnName="Right" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phuongs">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.phuong">
+              <MappingFragment StoreEntitySet="phuong">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WardName" ColumnName="WardName" />
+                <ScalarProperty Name="SuburbID" ColumnName="SuburbID" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="polygon" ColumnName="polygon" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quarters">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.quarter">
+              <MappingFragment StoreEntitySet="quarter">
+                <ScalarProperty Name="quarter_id" ColumnName="quarter_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quartertexts">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.quartertext">
+              <MappingFragment StoreEntitySet="quartertext">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleLevel_Value" ColumnName="RoleLevel_Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="settings">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.setting">
+              <MappingFragment StoreEntitySet="settings">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="TableToGetField" ColumnName="TableToGetField" />
+                <ScalarProperty Name="MaxLenght" ColumnName="MaxLenght" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.state">
+              <MappingFragment StoreEntitySet="state">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="polygon" ColumnName="polygon" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="statetexts">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.statetext">
+              <MappingFragment StoreEntitySet="statetext">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AddressEnglish" ColumnName="AddressEnglish" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Status_Value" ColumnName="Status_Value" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="menus_roles" TypeName="Davisoft_BDSProjectModel.menus_roles" StoreEntitySet="menus_roles">
+            <EndProperty Name="menus">
+              <ScalarProperty Name="ID" ColumnName="Menu_Id" />
+            </EndProperty>
+            <EndProperty Name="roles">
+              <ScalarProperty Name="ID" ColumnName="Role_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="roles_permissions" TypeName="Davisoft_BDSProjectModel.roles_permissions" StoreEntitySet="roles_permissions">
+            <EndProperty Name="roles">
+              <ScalarProperty Name="ID" ColumnName="Role_Id" />
+            </EndProperty>
+            <EndProperty Name="permissions">
+              <ScalarProperty Name="ID" ColumnName="Permission_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="users_branches" TypeName="Davisoft_BDSProjectModel.users_branches" StoreEntitySet="users_branches">
+            <EndProperty Name="users">
+              <ScalarProperty Name="ID" ColumnName="User_Id" />
+            </EndProperty>
+            <EndProperty Name="branches">
+              <ScalarProperty Name="ID" ColumnName="Branch_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="users_roles" TypeName="Davisoft_BDSProjectModel.users_roles" StoreEntitySet="users_roles">
+            <EndProperty Name="users">
+              <ScalarProperty Name="ID" ColumnName="User_Id" />
+            </EndProperty>
+            <EndProperty Name="roles">
+              <ScalarProperty Name="ID" ColumnName="Role_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="52cf49532dc5494db02a3537d7c39822" Name="Diagram1">
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.C__migrationhistory" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.audit" Width="1.5" PointX="2.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.branch" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.counter" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.country" Width="1.5" PointX="8.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.countrytext" Width="1.5" PointX="9.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.currency" Width="1.5" PointX="8.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.district" Width="1.5" PointX="10.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.districttext" Width="1.5" PointX="10.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.holiday" Width="1.5" PointX="11.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.language" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.location" Width="1.5" PointX="4.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.locationtext" Width="1.5" PointX="12.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.menu" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.permission" Width="1.5" PointX="10.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.phuong" Width="1.5" PointX="12.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.quarter" Width="1.5" PointX="6.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.quartertext" Width="1.5" PointX="12.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.role" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.setting" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.state" Width="1.5" PointX="8.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.statetext" Width="1.5" PointX="13.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.user" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="Davisoft_BDSProjectModel.Counter_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="Davisoft_BDSProjectModel.User_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="Davisoft_BDSProjectModel.User_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="Davisoft_BDSProjectModel.menus_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="Davisoft_BDSProjectModel.roles_permissions" ManuallyRouted="false" />
+        <AssociationConnector Association="Davisoft_BDSProjectModel.users_branches" ManuallyRouted="false" />
+        <AssociationConnector Association="Davisoft_BDSProjectModel.users_roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
