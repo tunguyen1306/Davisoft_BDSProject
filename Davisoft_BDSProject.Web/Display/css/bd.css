@@ -10,7 +10,7 @@
         display: inline-block;
         content: '\00bb';
         margin: 0 .6em;
-        color: #6164C1;
+        color: #C6151C;
     }
 
     .cd-breadcrumb li:last-of-type::after, .cd-multi-steps li:first-of-type::before {
@@ -26,12 +26,12 @@
 
     .cd-breadcrumb li.current > *, .cd-multi-steps li.current > * {
         /* selected step */
-        color: #6164C1;
+        color: #C6151C;
     }
 
 .no-touch .cd-breadcrumb a:hover, .no-touch .cd-multi-steps a:hover {
     /* steps already visited */
-    color: #6164C1;
+    color: #C6151C;
 }
 
 
@@ -196,7 +196,7 @@ Multi steps indicator
                 position: absolute;
                 content: '';
                 height: 4px;
-                background: #6164C1;
+                background: #C6151C;
                 /* reset style */
                 margin: 0;
             }
@@ -212,7 +212,7 @@ Multi steps indicator
             }
 
             .cd-multi-steps li.visited::after {
-                background-color: #6164C1;
+                background-color: #C6151C;
             }
 
             .cd-multi-steps li > *, .cd-multi-steps li.current > * {
@@ -245,7 +245,7 @@ Multi steps indicator
         }
 
     .no-touch .cd-multi-steps.text-center a:hover {
-        background-color: #6164C1;
+        background-color: #C6151C;
     }
 
     .cd-multi-steps.text-center li.current > *, .cd-multi-steps.text-center li.visited > * {
@@ -292,11 +292,11 @@ Multi steps indicator
         .cd-multi-steps.text-top li.visited > *::after,
         .cd-multi-steps.text-top li.current > *::after, .cd-multi-steps.text-bottom li.visited > *::after,
         .cd-multi-steps.text-bottom li.current > *::after {
-            background-color: #6164C1;
+            background-color: #C6151C;
         }
 
     .no-touch .cd-multi-steps.text-top a:hover, .no-touch .cd-multi-steps.text-bottom a:hover {
-        color: #6164C1;
+        color: #C6151C;
     }
 
         .no-touch .cd-multi-steps.text-top a:hover::before, .no-touch .cd-multi-steps.text-bottom a:hover::after {

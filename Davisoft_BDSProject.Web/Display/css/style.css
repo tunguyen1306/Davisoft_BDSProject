@@ -106,7 +106,7 @@ Header
     left: 0;
     height: 45px;
     width: 100%;
-    background: #6164C1;
+    background: #C6151C;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -842,7 +842,7 @@ Sidebar
 }
 
 .active > a {
-    background: #6164C1;
+    background: #C6151C;
     color: #fff !important;
 }
 
@@ -1044,7 +1044,7 @@ Sidebar
 }
 
 .table-header {
-    background: #6164C1;
+    background: #C6151C;
     color: #ffffff;
     padding: 10px;
 }
@@ -1078,11 +1078,11 @@ table table tr td {
 /*STYLE ASP.NET CALENDAR*/
 .titleStyle {
     color: #ffffff;
-    background: #6164C1;
+    background: #C6151C;
 }
 
 .todayDayStyle {
-    background: #6164C1 !important;
+    background: #C6151C !important;
 }
 
     .todayDayStyle select {
@@ -1100,7 +1100,7 @@ table table tr td {
 }
 
 #Calendar1 td[colspan="7"] {
-    background: #6164C1 !important;
+    background: #C6151C !important;
 }
 
 .jobtracker .textarea.form-control {
@@ -1301,7 +1301,7 @@ Main Page Content
 }
 
 .copyright a {
-    color: #6164C1;
+    color: #C6151C;
     font-weight: bold;
     margin-left: 10px;
 }
@@ -1410,7 +1410,7 @@ ul.cd-nav-shortcuts {
     position: absolute;
     font-size: 20px;
     color: #fff;
-    background: #6164C1;
+    background: #C6151C;
     border-radius: 50%;
     padding: 8px 0;
     height: 2vw;
@@ -1622,7 +1622,7 @@ table.dataTable.no-footer {
     font-size: 22px;
     text-align: center;
     width: 100%;
-    background: #6164C1;
+    background: #C6151C;
     color: #fff;
     font-weight: 900;
     border-left: 1px solid #F0F0F0;
@@ -2392,7 +2392,7 @@ table.dataTable.no-footer {
 
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-    background-color: #6164C1;
+    background-color: #C6151C;
 }
 
 .DTFC_LeftWrapper td,

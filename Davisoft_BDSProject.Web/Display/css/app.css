@@ -225,19 +225,19 @@ a:focus {
 /* style 1 */
 .inputfile-1 + label {
     color: #fff;
-    background-color: #6164C1;
+    background-color: #C6151C;
 }
 
     .inputfile-1:focus + label,
     .inputfile-1.has-focus + label,
     .inputfile-1 + label:hover {
-        background-color: #5356A0;
+        background-color: #C61500;
     }
 
 .btn-primary-me {
     color: #fff;
-    background: #5356A0;
-    border: 1px solid #5356A0;
+    background: #C61500;
+    border: 1px solid #C61500;
     /*background: #606060;
     border: 1px solid #606060;*/
     text-shadow: none;
@@ -245,8 +245,8 @@ a:focus {
 }
 
     .btn-primary-me:hover, .btn-primary-me:focus, .btn-primary-me:active {
-        /*background: #5356A0;
-        border: 1px solid #5356A0;*/
+        /*background: #C61500;
+        border: 1px solid #C61500;*/
         background: #606060;
         border: 1px solid #606060;
         color: #fff !important;
@@ -358,7 +358,7 @@ label {
     }
 
 .text-violet {
-    color: #6164C1;
+    color: #C6151C;
 }
 
 .text-danger {
@@ -366,9 +366,9 @@ label {
 }
 
 .btn-export {
-    background: #6164C1;
+    background: #C6151C;
     color: #fff;
-    border-color: #6164C1;
+    border-color: #C6151C;
 }
 
     .btn-export i {
