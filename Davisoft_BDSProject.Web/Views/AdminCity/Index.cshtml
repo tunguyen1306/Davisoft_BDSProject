@@ -5,7 +5,7 @@
 <section class="panel panel-default">
     <div class="panel-heading">Newsletter Schedule Management</div>
     <div class="panel-body">
-        @*<a href="@Url.Action("Create","ScheduleNewletter")" style="margin-bottom: 10px;" class="btn  btn-success">Create</a>*@
+        <a href="@Url.Action("Create","AdminCity")" style="margin-bottom: 10px;" class="btn  btn-success">Create</a>
         <div id="griddata" class="logpage">
         
             <table id="griddata2" class="table table-bordered table-striped grid-table dTableR">
@@ -15,6 +15,7 @@
                         <th class="grid-header">ID</th>
                         <th class="grid-header">City Name</th>
                         <th class="grid-header">City Code</th>
+                         <th class="grid-header">Name ID</th>
                         <th class="grid-header">Status</th>
                          
                          <th class="grid-header"></th>
@@ -27,10 +28,11 @@
                             <td>@item.City.state_id</td>
                             <td>@item.CityText.text</td>
                             <td>@item.City.stateCode</td>
+                              <td>@item.City.name_id</td>
                               <td>@item.City.Status</td>
                             <td>
-                               @* <a href="@Url.Action("Edit","ScheduleNewletter",new {id=item.ID})" class="btn-primary  btn">Edit</a> 
-                                <a href="@Url.Action("Delete","ScheduleNewletter",new {id=item.ID})" class="btn btn-danger">Delete</a>*@
+                               <a href="@Url.Action("Edit","AdminCity",new {id=item.City.state_id})" class="btn-primary  btn">Edit</a> 
+                              @*  <a href="@Url.Action("Delete","AdminCity",new {id=item.ID})" class="btn btn-danger">Delete</a>*@
                             </td>
                         </tr>
                     }

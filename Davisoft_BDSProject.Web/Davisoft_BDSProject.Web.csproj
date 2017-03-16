@@ -1972,6 +1972,7 @@
     <Content Include="Views\AdminCity\Index.cshtml" />
     <Content Include="Views\AdminDistrict\Index.cshtml" />
     <Content Include="Views\AdminCity\Create.cshtml" />
+    <Content Include="Views\AdminCity\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
