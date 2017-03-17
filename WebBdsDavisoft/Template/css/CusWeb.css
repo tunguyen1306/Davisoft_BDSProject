@@ -1,49 +1,51 @@
-﻿.layoutRegister{
-    background: #f3f3f3;
-    border: 1px solid #dfdfdf;
+﻿.header_radius {
     border-radius: 8px 8px 0 0;
-    border-bottom: none;
-    padding: 8px 15px;
-    color: #282828;
-    font-size: 13px;
-    display: block;
-    overflow: hidden;
-   
-  
-
+    border: 0px solid #dfdfdf;
 }
-.idLayoutRegister{
-        padding: 0px;
-    margin: 20px 0 0;
+.lblcheckEmail {
+        color: #5db7e4!important;
+            text-decoration: underline!important;
 }
-.ChilLayoutRegister{
-        font-weight: bold;
-    padding: 9px 0 0;
-    margin: 0;
-    float: left;
-    width: 100%;
-   
+.required {
+    color: red;
 }
-.ClasHr{
-     border-bottom: 2px solid #A71E25;
-     width:25%;
+.margin_row_ringht {
+    margin-left: 20px;
+    line-height: 16px;
 }
-.idLayoutRegister .ChilLayoutRegister .layoutRegister img {
-    background-size: 100%;
-    width: 18px;
-    margin-right: 5px;
-    position: relative;
-    top: 3px;
-    float: left;
+.form-in-register {
+    border-bottom: 0!important;
+    box-shadow: 0 -1px 1px rgba(0,0,0,0.05)!important;
+    border-top: 0!important;
+    background-color: #f2f2f2;
 }
-.content_register{
-    padding: 12px 15px;
-	border: 1px solid #dfdfdf;
+.header-info {
+    border:0px solid #dfdfdf;
+    background: none!important;
+    border-top:0!important;
+     
+}
+.form-have-border-bottom {
+     border-bottom: 0px solid #dfdfdf!important;
+}
+.header-info-background {
+     background-color: #f2f2f2!important;
+}
+.form-horizontal-register  {
+	border: 0px solid #dfdfdf;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
 	box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-	margin-top: 0;
-	background: #f3f3f3;
-	clear: both;
-    border-radius:0 0 8px 8px;
-        
+	clear:both;
+	display:inline-block;
+	width:100%;
+	box-sizing:border-box;
+	padding: 15px 20px;
+}
+.btnSubmit {
+    text-align: center;
+    background: #f79d25;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px 0;
+    border-radius: 3px;
 }

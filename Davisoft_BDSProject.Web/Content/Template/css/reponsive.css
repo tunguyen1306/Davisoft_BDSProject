@@ -3,6 +3,20 @@
 	.nav li a {
 		padding: 10px 6px 8px;
 	}
+	.row label {
+		width:100%;
+	}
+	.row label.child {
+    margin-left: 0;
+    width: 100%;
+	
+}
+.row-right .input1, .row-right .input3, .row-right, .row-right .dropdown {
+	width:100% !important
+}
+.row-right .pncon .dropdown {
+	width:120px !important
+}
 }
 @media only screen and (max-width: 980px) {
 
@@ -70,7 +84,7 @@
 
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 750px) {
 	.soc_icons p {
 		display: none;
 	}
@@ -122,6 +136,44 @@
 	.logo img {
 		margin: auto;
 	}
+	.list_work .grid_3{ 
+		width: 30%;
+	}
+	.list_work .grid_9{ 
+		width: 66%;
+	}
+	.list_work_2 li .grid_9 .image_2 {
+	width:20%;
+	margin-right:10px
+}
+.list_work_2 .name {
+	width: 76%;
+}
+.list_work_2 .grid_3 p {
+    margin-left: 24%;
+}
+.list_work_2 li:nth-child(2n) {
+	padding-bottom:5px;
+}
+.list_work li div p.time i {
+	margin-left:8px;
+}
+.row-right .pncon .dropdown {
+	width: 100% !important
+}
+.pncon {
+    width: 100%;
+}
+.row-right .pncon b {
+	margin-left: 0 !important;
+}
+.form-horizontal .radio li {
+    width: calc(100%/1);
+
+}
+.list_work li p {
+	width:100%;
+}
 }
 
 @media only screen and (max-width: 500px) {

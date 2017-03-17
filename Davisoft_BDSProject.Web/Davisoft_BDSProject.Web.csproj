@@ -519,6 +519,25 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\EmailTemplates\Web.config" />
+    <Content Include="Content\Template\css\font-awesome.css" />
+    <Content Include="Content\Template\css\grid.css" />
+    <Content Include="Content\Template\css\normalize.css" />
+    <Content Include="Content\Template\css\reponsive.css" />
+    <Content Include="Content\Template\css\style.css" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Template\from.htm" />
+    <Content Include="Content\Template\home.htm" />
+    <Content Include="Content\Template\images\1.jpg" />
+    <Content Include="Content\Template\images\2.jpg" />
+    <Content Include="Content\Template\images\Banner.jpg" />
+    <Content Include="Content\Template\images\banner2.jpg" />
+    <Content Include="Content\Template\images\dangkybo.png" />
+    <Content Include="Content\Template\images\icon_1.png" />
+    <Content Include="Content\Template\images\icon_2.png" />
+    <Content Include="Content\Template\images\logo.png" />
+    <Content Include="Content\Template\js\flaunt.js" />
+    <Content Include="Content\Template\js\jquery.easydropdown.min.js" />
+    <Content Include="Content\Template\js\tabs.js" />
     <Content Include="Display\css\app.css" />
     <Content Include="Display\css\bd.css" />
     <Content Include="Display\css\bootstrap-datetimepicker-standalone.css" />
@@ -1835,6 +1854,11 @@
     <Content Include="Display\lib\DataTables-1.10.0\media\images\Sorting icons.psd" />
     <Content Include="Display\lib\DataTables-1.10.0\package.json" />
     <Content Include="Display\lib\DataTables-1.10.0\Readme.md" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Template\fonts\FontAwesome.otf" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>

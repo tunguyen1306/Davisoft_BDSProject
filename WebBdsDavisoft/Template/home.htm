@@ -1,4 +1,4 @@
-
+﻿
 
 <!DOCTYPE HTML>
 <!--[if lt IE 7]>
@@ -15,9 +15,6 @@
             <!--<![endif]-->
             <head>
                <meta charset="UTF-8">
-               <meta name="description" content="FLY Academy is a professional acting and grooming school of the highest standard.">
-               <meta name="keywords" content="fly academy, singapore, acting school, grooming school, modeling school, workshop, classes">
-               <meta name="author" content="Hege Refsnes">
                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
                <title>BDS</title>
@@ -32,6 +29,21 @@
                <script src="js/flaunt.js"></script>
                <script src="js/tabs.js"></script>
                <script src="js/jquery.easydropdown.min.js"></script>
+               <script src="js/dropdown.js"></script>
+               <script>
+                  $(document).ready(function() {
+                  	//default
+                  	$('.small-button').dropdown();     
+                  
+                  	// full dropdown width and custom class
+                  	$('.full-width').dropdown({
+                  		dropdownWidth: true, //true or false
+                  		customClass: 'custom-class',
+                  		dropdownTopAuto: true, //true or false
+                  	});
+                  
+                  });
+               </script>
             </head>
             <body>
                <div id="warrper">
@@ -41,9 +53,25 @@
                            <div class="container clearfix">
                               <p>Website tuyển dụng nhân viên bất động sản hàng đầu Việt Nam</p>
                               <div class="login">
-                                 <a href="#" target="_blank"><i class="fa fa-pencil-square-o" ></i>
-                                 </i>Đăng ký</a>
-                                 <a href="#" target="_blank"><i class="fa fa-user"></i>Đăng nhập</a>
+                                 <a href="#" class="dropdown1" ><i class="fa fa-pencil-square-o" ></i>Đăng ký</a>
+                                 <div id="dropdown1" class="dropdown-menu">
+                                   
+                                    <a href="DangKyTuyenDung.html">Nhà tuyển dụng</a>
+                                    <a href="" class="omega">Người tìm việc</a>
+                                 </div>
+                                 <div class="dp-wrap small-button">
+                                    <a href="#" class="dropdown1" ><i class="fa fa-user"></i>Đăng nhập</a>
+                                    <div id="dropdown2" class="dropdown-menu">
+                                       <p><input placeholder="Email" type="text"></p>
+                                       <p><input placeholder="Mật khẩu" type="password"> <button type="button">Đăng nhập</button> </p>
+                                       <p class="box_remember">
+                                          <a href="#">Quên mật khẩu</a><br>
+                                          Đăng nhập bằng
+                                          <a href="#"><i class="fa fa-facebook-official"></i></a>
+                                          <a href="#"><i class="fa fa-google-plus-square"></i></a>
+                                       </p>
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -290,6 +318,7 @@
                                     <h3><span><i class="fa fa-list-ul"></i>Nhà tuyển dụng tiêu biểu</span></h3>
                                     <div class="search_location">
                                        Tìm theo khu vực 
+
                                        <select class="dropdown" tabindex="7">
                                           <option value="1">Toàn quốc</option>
                                           <option value="2">Option 2</option>
@@ -302,7 +331,7 @@
                                  <ul class="list_work_2">
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -321,7 +350,7 @@
                                     </li>
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -340,7 +369,7 @@
                                     </li>
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -359,7 +388,7 @@
                                     </li>
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -378,7 +407,7 @@
                                     </li>
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -428,7 +457,7 @@
                                  <ul class="list_work_2 green">
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -447,7 +476,7 @@
                                     </li>
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -466,7 +495,7 @@
                                     </li>
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -485,7 +514,7 @@
                                     </li>
                                     <li>
                                        <div class="grid_9">
-                                          <a href="#">
+                                          <a href="#" class="image_2">
                                              <img src="images/2.jpg" alt="2">
                                              <p class="vip">
                                                 <i class="fa fa-star"></i>
@@ -560,14 +589,13 @@
                                        </div>
                                     </li>
                                  </ul>
-                                 
                               </div>
                               <div class="banner_bottom"><img src="images/banner.jpg" alt="logo"></div>
                            </div>
                            <div class="grid_3 omega main_right">
                               <div class="banner_right">
                                  <img src="images/banner2.jpg" alt="banner">
-                                 <img src="images/banner2.jpg" alt="banner">
+                                 <img src="images/banner2.jpg" alt="banner" style="margin:0">
                               </div>
                               <div class="right_col">
                                  <h3>Việc làm bất động sản</h3>
