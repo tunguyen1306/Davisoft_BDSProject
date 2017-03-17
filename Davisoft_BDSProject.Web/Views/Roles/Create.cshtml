@@ -15,13 +15,15 @@
                 @Html.Partial("_RoleEditor", Model)
                 using (Html.Bootstrap().Begin(new FormActions()))
                 {
-                    <div class="form-group">
-                        <label class="col-sm-3"></label>
-                        <label class="col-sm-9">
-                            @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
-                            @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Create).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
-                        </label>
-                    </div>
+                     <div class="form-actions">
+                         <div class="form-group">
+                             <label class="col-sm-3"></label>
+                             <label class="col-sm-9">
+                                 @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
+                                 @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Create).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
+                             </label>
+                         </div>
+                         </div>
                 }
             }
         </div>

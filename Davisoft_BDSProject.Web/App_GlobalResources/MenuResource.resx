@@ -182,4 +182,9 @@
     <comment>
     </comment>
   </data>
+  <data name="menuresources" xml:space="preserve">
+    <value>Resources</value>
+    <comment>
+    </comment>
+  </data>
 </root>

@@ -20,7 +20,7 @@
         var HRGLOBAL = {};
     </script>
 </head>
-<body class="sidebar_hidden">
+<body class="sidebar_hidden" style="overflow: hidden">
 
     @RenderBody()
 
@@ -102,6 +102,9 @@
         });
 
         $(document).ready(function () {
+            setTimeout(function() {
+                $('body').css('overflow', 'auto');
+            },200);
             $(document).ajaxError(function (e, xhr, settings) {
                 if (xhr.status == 403) {
                     window.location.href = e.currentTarget.URL;

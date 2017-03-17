@@ -9,15 +9,16 @@
     <div class="panel-heading">
         @ViewBag.Title
     </div>
-    <div class="panel-body">
-        @if (CurrentUser.HasPermission("Roles", "Create"))
-        {
-            <div class="form-horizontal row">
-                <div class="col-sm-12">
-                    @Html.Bootstrap().ActionLinkButton(Resource.Add, "Create").Style(ButtonStyle.None).Class("btn btn-primary-me")
-                </div>
+    @if (CurrentUser.HasPermission("Roles", "Create"))
+    {
+        <div class="row wrapper dataTables_length table_basic">
+            <div class="col-sm-12">
+                @Html.Bootstrap().ActionLinkButton(Resource.AddNew, "Create").Style(ButtonStyle.None).Class("btn btn-primary-me")
             </div>
-        }
+        </div>
+    }
+    <div class="panel-body">
+      
         <div class="table-responsive">
             <table class="table" id="roles-table">
                 <thead>
