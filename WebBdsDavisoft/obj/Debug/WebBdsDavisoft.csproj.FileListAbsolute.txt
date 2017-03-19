@@ -11,7 +11,6 @@ D:\Company\WebSite\Davisoft_BDSProject\WebBdsDavisoft\bin\roslyn\System.Reflecti
 D:\Company\WebSite\Davisoft_BDSProject\WebBdsDavisoft\bin\roslyn\vbc.exe
 D:\Company\WebSite\Davisoft_BDSProject\WebBdsDavisoft\bin\roslyn\VBCSCompiler.exe
 D:\Company\WebSite\Davisoft_BDSProject\WebBdsDavisoft\bin\roslyn\VBCSCompiler.exe.config
-D:\Company\WebSite\Davisoft_BDSProject\WebBdsDavisoft\bin\WebBdsDavisoft.dll.config
 D:\Company\WebSite\Davisoft_BDSProject\WebBdsDavisoft\bin\WebBdsDavisoft.dll
 D:\Company\WebSite\Davisoft_BDSProject\WebBdsDavisoft\bin\WebBdsDavisoft.pdb
 D:\Company\WebSite\Davisoft_BDSProject\WebBdsDavisoft\bin\Antlr3.Runtime.dll
