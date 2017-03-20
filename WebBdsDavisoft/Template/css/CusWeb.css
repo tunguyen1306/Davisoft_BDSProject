@@ -70,3 +70,11 @@
     background-color: #ffeeee;
     padding: 10px;
 }
+.btnSubmitReview {
+    padding:10px;
+    background-color:#37a344;
+    color:#ffffff;
+}
+.TextColorRed {
+    color:red;
+}

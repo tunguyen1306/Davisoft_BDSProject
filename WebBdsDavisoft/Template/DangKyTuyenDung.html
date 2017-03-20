@@ -27,21 +27,52 @@
                <!-- <link rel="stylesheet" href="css/style.min.css" type="text/css" media="screen"> -->
                <!--[if IE]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-               <script src="js/flaunt.js"></script>
+           <script src="js/flaunt.js"></script>
                <script src="js/tabs.js"></script>
                <script src="js/jquery.easydropdown.min.js"></script>
+               <script src="js/dropdown.js"></script>
+               <script>
+                   $(document).ready(function () {
+                       //default
+                       $('.small-button').dropdown();
+
+                       // full dropdown width and custom class
+                       $('.full-width').dropdown({
+                           dropdownWidth: true, //true or false
+                           customClass: 'custom-class',
+                           dropdownTopAuto: true, //true or false
+                       });
+
+                   });
+               </script>
             </head>
             <body>
                <div id="warrper">
                   <div id="content">
                      <div class="menu">
                         <div class="soc_icons">
-                           <div class="container clearfix">
+                          <div class="container clearfix">
                               <p>Website tuyển dụng nhân viên bất động sản hàng đầu Việt Nam</p>
                               <div class="login">
-                                 <a href="#" target="_blank"><i class="fa fa-pencil-square-o" ></i>
-                                 </i>Đăng ký</a>
-                                 <a href="#" target="_blank"><i class="fa fa-user"></i>Đăng nhập</a>
+                                 <a href="#" class="dropdown1" ><i class="fa fa-pencil-square-o" ></i>Đăng ký</a>
+                                 <div id="dropdown1" class="dropdown-menu">
+                                   
+                                    <a href="DangKyTuyenDung.html">Nhà tuyển dụng</a>
+                                    <a href="DangKyTimViec.html" class="omega">Người tìm việc</a>
+                                 </div>
+                                 <div class="dp-wrap small-button">
+                                    <a href="#" class="dropdown1" ><i class="fa fa-user"></i>Đăng nhập</a>
+                                    <div id="dropdown2" class="dropdown-menu">
+                                       <p><input placeholder="Email" type="text"></p>
+                                       <p><input placeholder="Mật khẩu" type="password"> <button type="button">Đăng nhập</button> </p>
+                                       <p class="box_remember">
+                                          <a href="#">Quên mật khẩu</a><br>
+                                          Đăng nhập bằng
+                                          <a href="#"><i class="fa fa-facebook-official"></i></a>
+                                          <a href="#"><i class="fa fa-google-plus-square"></i></a>
+                                       </p>
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </div>

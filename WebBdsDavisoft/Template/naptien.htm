@@ -22,14 +22,29 @@
     <link rel="stylesheet" href="css/font-awesome.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/reponsive.css" type="text/css" media="screen">
     <link href="css/CusWeb.css" rel="stylesheet" />
-   
+  
 
     <!-- <link rel="stylesheet" href="css/style.min.css" type="text/css" media="screen"> -->
     <!--[if IE]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="js/flaunt.js"></script>
-    <script src="js/tabs.js"></script>
-    <script src="js/jquery.easydropdown.min.js"></script>
+      <script src="js/flaunt.js"></script>
+               <script src="js/tabs.js"></script>
+               <script src="js/jquery.easydropdown.min.js"></script>
+               <script src="js/dropdown.js"></script>
+               <script>
+                   $(document).ready(function () {
+                       //default
+                       $('.small-button').dropdown();
+
+                       // full dropdown width and custom class
+                       $('.full-width').dropdown({
+                           dropdownWidth: true, //true or false
+                           customClass: 'custom-class',
+                           dropdownTopAuto: true, //true or false
+                       });
+
+                   });
+               </script>
 </head>
 <body>
     <div id="warrper">
@@ -37,13 +52,29 @@
             <div class="menu">
                 <div class="soc_icons">
                     <div class="container clearfix">
-                        <p>Website tuyển dụng nhân viên bất động sản hàng đầu Việt Nam</p>
-                        <div class="login">
-                            <a href="#" target="_blank"><i class="fa fa-pencil-square-o"></i>
-                                Đăng ký</a>
-                            <a href="#" target="_blank"><i class="fa fa-user"></i>Đăng nhập</a>
-                        </div>
-                    </div>
+                              <p>Website tuyển dụng nhân viên bất động sản hàng đầu Việt Nam</p>
+                              <div class="login">
+                                 <a href="#" class="dropdown1" ><i class="fa fa-pencil-square-o" ></i>Đăng ký</a>
+                                 <div id="dropdown1" class="dropdown-menu">
+                                   
+                                    <a href="DangKyTuyenDung.html">Nhà tuyển dụng</a>
+                                    <a href="DangKyTimViec.html" class="omega">Người tìm việc</a>
+                                 </div>
+                                 <div class="dp-wrap small-button">
+                                    <a href="#" class="dropdown1" ><i class="fa fa-user"></i>Đăng nhập</a>
+                                    <div id="dropdown2" class="dropdown-menu">
+                                       <p><input placeholder="Email" type="text"></p>
+                                       <p><input placeholder="Mật khẩu" type="password"> <button type="button">Đăng nhập</button> </p>
+                                       <p class="box_remember">
+                                          <a href="#">Quên mật khẩu</a><br>
+                                          Đăng nhập bằng
+                                          <a href="#"><i class="fa fa-facebook-official"></i></a>
+                                          <a href="#"><i class="fa fa-google-plus-square"></i></a>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
                 </div>
                 <div class="container clearfix">
                     <div class="top">
@@ -130,7 +161,29 @@
                                 </div>
                                 <h4>Thông tin tài khoản</h4>
                                 <div class="row">
-                                    <table class="striped" >
+                                    <style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+
+
+                                    <table class="table-responsive" >
                                         <thead>
                                             <tr>
                                                 <th data-field="id">Tên ngân hàng</th>
@@ -167,17 +220,50 @@
                                 <div class="row">
                                     <b style="color: #038e20">Tài khoản của bạn đã được nạp tiền thời gian xữ lý mất khoảng 30 phút.</b>
                                 </div>
-                                <div class="row header_text header-promotion">
-                                    <h4>Kiểm tra khuyến mãi:</h4>
-                                   
-                                    <div class="row">
-                                         <div class="grid_11 border-promotion">
-                                        Kể từ ngày 01/01/2017 tuyennhanvienbds.com áp dụng chương trình khuyến mãi <b style="color: red;">20%</b> giá trị nạp tiền vào tài khoản cho nhà tuyển dụng.
+                                <div class="row">
+                                    <div class="header-promotion">
+                                        <h4>Kiểm tra khuyến mãi</h4>
+                                        <div class="border-promotion">
+                                            Kể từ ngày 01/01/2017 tuyennhanvienbds.com áp dụng chương trình khuyến mãi tặng <b class="TextColorRed">20%</b>  giá trị nạp tiền vào tài khoản cho nhà tuyển dụng.
+                                        </div>
+                                        <div class="row">
+                                            <label class="grid_2">Số tiền nạp</label>
+                                            <div class="row-right grid_9">
+                                                <input  placeholder="Nhập số tiền" type="text">
+                                            </div>
+
+                                        </div>
+                                         <div class="row">
+                                              <label class="grid_2"> </label>
+                                              <div class="row-right grid_9">
+                                                 <a class="btnSubmitReview" href="#">Xem trước</a>
+                                            </div>
+   
+                            </div>
+                                        <div class="row">
+                                            <label class="grid_2"></label>
+                                            <div class="row-right grid_9">
+                                                <input  placeholder="Tổng tiền" type="text">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <label class="grid_2">Điểm xem tin</label>
+                                            <div class="row-right grid_9">
+                                                <input  placeholder="Điểm xem tin" type="text">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <label class="grid_2">Cộng</label>
+                                            <div class="row-right grid_9">
+                                                <b class="TextColorRed">3.600.000</b> VNĐ và <b class="TextColorRed">150</b> điểm xem tin.
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    </div>
-                                    <div class="row">
-                                        Số tiền nạp:
-                                    </div>
+
+
                                 </div>
                             </form>
                            
