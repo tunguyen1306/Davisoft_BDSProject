@@ -212,6 +212,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\build.css" />
+    <Content Include="Content\build.less.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -221,6 +223,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\bootstrap.scss" />
+    <Content Include="Content\build.less" />
+    <Content Include="Content\build.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -233,14 +238,14 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Template\naptien.htm" />
-    <Content Include="Template\DangKyTimViec.html" />
     <Content Include="Template\css\CusWeb.css" />
     <Content Include="Template\css\font-awesome.css" />
+    <Content Include="Template\css\ghpages-materialize.css" />
     <Content Include="Template\css\grid.css" />
     <Content Include="Template\css\normalize.css" />
     <Content Include="Template\css\reponsive.css" />
     <Content Include="Template\css\style.css" />
+    <Content Include="Template\DangKyTimViec.html" />
     <Content Include="Template\DangKyTuyenDung.html" />
     <Content Include="Template\fonts\fontawesome-webfont.svg" />
     <Content Include="Template\from.htm" />
@@ -253,12 +258,14 @@
     <Content Include="Template\images\icon_1.png" />
     <Content Include="Template\images\icon_2.png" />
     <Content Include="Template\images\imgUpload.png" />
+    <Content Include="Template\images\logo-ngan-hang-ACB.jpg" />
     <Content Include="Template\images\logo.png" />
     <Content Include="Template\images\tl.png" />
     <Content Include="Template\js\dropdown.js" />
     <Content Include="Template\js\flaunt.js" />
     <Content Include="Template\js\jquery.easydropdown.min.js" />
     <Content Include="Template\js\tabs.js" />
+    <Content Include="Template\naptien.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

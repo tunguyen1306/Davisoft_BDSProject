@@ -52,10 +52,21 @@
 .border-bank {
     border:1px solid #dfdfdf;
     padding:10px;
-    text-align: center; margin-right:10px;
+    text-align: center;
+        margin: 0 25px 5px 20px;
+         
 }
 .clable-radioBank {
     width:100%!important;
     padding:5px;
    
+}
+.header-promotion {
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+.border-promotion {
+    border: 1px solid #de3039;
+    background-color: #ffeeee;
+    padding: 10px;
 }

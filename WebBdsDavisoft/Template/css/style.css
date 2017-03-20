@@ -1169,6 +1169,7 @@ line-height: 32px;
     border: 1px solid #d2d2d2;
     float: left;
 }
+
 .row-right .dropdown {
 	width: 235px;
 }
@@ -1200,7 +1201,11 @@ margin-right: 8px;
 position: relative;
 top: 1px;
 }
-
+.radio_2 input{
+	margin-right: 8px;
+	position: relative;
+	top: 2px;
+}
 .box_info {
 	padding:8px 12px;
 	border: 1px solid #dfdfdf;
@@ -1432,4 +1437,58 @@ a.dropdown1.dropdown-active span {
 }
 #dropdown2 p.box_remember i.fa-google-plus-square 
 {color:#DE3039;
+}
+.mgl15 {
+	margin-left:23px;
+}
+.width2 .dropdown{
+	width:116px !important;
+}
+.width3 .dropdown{
+	width: 235px !important;
+}
+.input2 {
+    width: 116px !important;
+    border: 1px solid #d2d2d2;
+    float: left;
+	margin-right: 10px;
+	margin-bottom:10px;
+}
+.radio_3 label {
+	width:140px;
+}
+.radio_3 input {
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+}
+.padding_box {
+	padding:15px 72px !important
+}
+
+.padding_box .row label.child{
+	width: 125px;
+}
+.row-right .input4 {
+	width: 260px
+}
+.note2 {
+	margin-left: 15px;
+}
+.mg0_0 {
+	margin-right:0 !important;
+}
+.input4 {
+	width:746px !important;
+}
+
+.logo_jobs {
+	width: 74px; 
+	float:left;
+	margin-right: 10px;
+}
+.text_jobs {
+	float:left;
+	width:60%;
+	
 }
