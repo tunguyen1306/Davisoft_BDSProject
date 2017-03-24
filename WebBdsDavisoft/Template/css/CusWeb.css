@@ -65,6 +65,11 @@
     padding: 10px;
     background-color: #f1f1f1;
 }
+.border-manager-work {
+border: 1px solid #9d9d9d;
+    background-color: #f6f6f6;
+   
+}
 .border-promotion {
     border: 1px solid #de3039;
     background-color: #ffeeee;
@@ -78,3 +83,11 @@
 .TextColorRed {
     color:red;
 }
+.border-upload-img {
+     margin: 8px;
+    border: 1px solid #9d9d9d;
+    padding: 10px;
+    color: #038e20;font-size: 30px;
+    width: 70px;
+    float: left;
+ }

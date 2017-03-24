@@ -26,6 +26,42 @@
 .input4 {
 	width:100% !important;
 }
+.radio_2 label, .radio_3 label {
+	width:220px;
+}
+.width2 {
+	width:48%;
+}
+.row-right .width2 .dropdown {
+	width:100% !important;
+}
+.mgl15 {
+	margin-left:4%
+}
+.width4 {
+	width: 48%;
+	float: left;
+}
+.width3 {
+	width:48% !important;
+	margin-left:4%
+}
+
+.row .width3 .pncon , .row .width3 .pncon .dropdown {
+	width:100% !important;
+}
+.row_name .pncon {
+	width: 32%;
+	margin-right: 2%;
+}
+.row_name .pncon:last-child {
+	margin:0
+}
+
+.row_name .pncon .input2 {
+	width:100% !important;
+	margin:0
+}
 }
 @media only screen and (max-width: 980px) {
 
@@ -190,6 +226,19 @@
 	width:100% !important;
 }
 .mgl15 {
+	margin:0
+}
+.width4 {
+	width:100%;
+}
+.width3 {
+	width:100% !important;
+	margin:0
+}
+.row-right {
+	margin-top:3px;
+}
+.row {
 	margin:0
 }
 }

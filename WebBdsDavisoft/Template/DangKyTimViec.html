@@ -25,58 +25,27 @@
     <!-- <link rel="stylesheet" href="css/style.min.css" type="text/css" media="screen"> -->
     <!--[if IE]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-       <script src="js/flaunt.js"></script>
-               <script src="js/tabs.js"></script>
-               <script src="js/jquery.easydropdown.min.js"></script>
-               <script src="js/dropdown.js"></script>
-               <script>
-                   $(document).ready(function () {
-                       //default
-                       $('.small-button').dropdown();
-
-                       // full dropdown width and custom class
-                       $('.full-width').dropdown({
-                           dropdownWidth: true, //true or false
-                           customClass: 'custom-class',
-                           dropdownTopAuto: true, //true or false
-                       });
-
-                   });
-               </script>
+    <script src="js/flaunt.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/jquery.easydropdown.min.js"></script>
 </head>
 <body>
     <div id="warrper">
         <div id="content">
             <div class="menu">
                 <div class="soc_icons">
-                   <div class="container clearfix">
-                              <p>Website tuyển dụng nhân viên bất động sản hàng đầu Việt Nam</p>
-                              <div class="login">
-                                 <a href="#" class="dropdown1" ><i class="fa fa-pencil-square-o" ></i>Đăng ký</a>
-                                 <div id="dropdown1" class="dropdown-menu">
-                                   
-                                    <a href="DangKyTuyenDung.html">Nhà tuyển dụng</a>
-                                    <a href="DangKyTimViec.html" class="omega">Người tìm việc</a>
-                                 </div>
-                                 <div class="dp-wrap small-button">
-                                    <a href="#" class="dropdown1" ><i class="fa fa-user"></i>Đăng nhập</a>
-                                    <div id="dropdown2" class="dropdown-menu">
-                                       <p><input placeholder="Email" type="text"></p>
-                                       <p><input placeholder="Mật khẩu" type="password"> <button type="button">Đăng nhập</button> </p>
-                                       <p class="box_remember">
-                                          <a href="#">Quên mật khẩu</a><br>
-                                          Đăng nhập bằng
-                                          <a href="#"><i class="fa fa-facebook-official"></i></a>
-                                          <a href="#"><i class="fa fa-google-plus-square"></i></a>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+                    <div class="container clearfix">
+                        <p>Website tuyển dụng nhân viên bất động sản hàng đầu Việt Nam</p>
+                        <div class="login">
+                            <a href="#" target="_blank"><i class="fa fa-pencil-square-o"></i>
+                                </i>Đăng ký</a>
+                            <a href="#" target="_blank"><i class="fa fa-user"></i>Đăng nhập</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="container clearfix">
                     <div class="top">
-                        <div class="logo"><a href="/">
+                        <div class="logo"><a href="#">
                             <img src="images/logo.png" alt="logo">Tìm việc làm bất động sản nhanh chóng</a> </div>
                         <div class="banner">
                             <img src="images/banner.jpg" alt="logo"></div>
@@ -175,7 +144,7 @@
                                 <h3><span><i class="fa fa-list-ul"></i>Thông tin cá nhân</span></h3>
                             </div>
                             <div class="form-horizontal-register form-in-register form-have-border-bottom padding_box " data-validate="parsley" action="#">
-                                <div class="row">
+                                <div class="row row_name">
                                     <label>Họ và tên<span class="required">*</span></label>
                                     <div class="row-right">
                                         <input class="input1" placeholder="Nhập họ và tên" type="text">
@@ -259,6 +228,7 @@
 
                                 </div>
                             <div class="row">
+                            	<div class="width4">
                                 <label>Tình trạng hôn nhân<span class="required"> *</span></label>
                                 <div class="row-right">
 
@@ -270,11 +240,11 @@
                                         </select>
                                    
                                 </div>
-                              
-                                    <div class="row-right">
+                              </div>
+                                    <div class="row-right width3">
 
                                         <label class="child">Mức lương mong muốn <span class="required">*</span></label>
-                                        <div class="pncon width3">
+                                        <div class="pncon">
                                             <select class="dropdown" tabindex="7">
                                                 <option value="1">Option 1</option>
                                                 <option value="2">Option 2</option>
@@ -289,10 +259,11 @@
 
                             </div>
                             <div class="row">
-                                <label>Số năm kinh nghiệm<span class="required"> *</span></label>
+                            	<div class="width4">
+                                 <label>Số năm kinh nghiệm<span class="required"> *</span></label>
                                 <div class="row-right">
 
-                                   
+                                    
                                         <select class="dropdown" tabindex="7">
                                             <option value="1">Option 1</option>
                                             <option value="2">Option 2</option>
@@ -300,11 +271,11 @@
                                         </select>
                                    
                                 </div>
-                               
-                                    <div class="pncon">
+                              </div>
+                                    <div class="row-right width3">
 
                                         <label class="child">Học vấn <span class="required">*</span></label>
-                                       <div class="row-right">
+                                        <div class="pncon">
                                             <select class="dropdown" tabindex="7">
                                                 <option value="1">Option 1</option>
                                                 <option value="2">Option 2</option>
@@ -315,9 +286,10 @@
                                         </div>
                                     </div>
 
-                              
+                               
 
                             </div>
+                            
                                  <div class="row">
                                     <label>Công việc mong muốn<span class="required">*</span></label>
                                     <div class="row-right">
