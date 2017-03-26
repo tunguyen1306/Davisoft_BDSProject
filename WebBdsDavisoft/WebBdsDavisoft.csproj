@@ -261,11 +261,27 @@
     <Content Include="Template\images\logo-ngan-hang-ACB.jpg" />
     <Content Include="Template\images\logo.png" />
     <Content Include="Template\images\tl.png" />
+    <Content Include="Template\img\002.jpg" />
+    <Content Include="Template\img\003.jpg" />
+    <Content Include="Template\img\004.jpg" />
+    <Content Include="Template\img\005.jpg" />
+    <Content Include="Template\img\006.jpg" />
+    <Content Include="Template\img\007.jpg" />
+    <Content Include="Template\img\008.jpg" />
+    <Content Include="Template\img\009.jpg" />
+    <Content Include="Template\img\010.jpg" />
+    <Content Include="Template\img\011.jpg" />
+    <Content Include="Template\img\a02.png" />
+    <Content Include="Template\img\icon_chrome.png" />
+    <Content Include="Template\img\loading.gif" />
     <Content Include="Template\js\dropdown.js" />
     <Content Include="Template\js\flaunt.js" />
+    <Content Include="Template\js\jquery-1.11.3.min.js" />
     <Content Include="Template\js\jquery.easydropdown.min.js" />
+    <Content Include="Template\js\jssor.slider-22.2.16.min.js" />
     <Content Include="Template\js\tabs.js" />
     <Content Include="Template\naptien.htm" />
+    <Content Include="Template\QuanLyNhaTuyenDung.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
