@@ -91,3 +91,24 @@ border: 1px solid #9d9d9d;
     width: 70px;
     float: left;
  }
+.padding-10px {
+    padding: 0 10px 0 10px;
+}
+.margin-0px {
+    margin:0!important;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
