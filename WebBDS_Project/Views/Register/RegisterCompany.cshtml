@@ -1,8 +1,11 @@
-﻿@{
+﻿@model WebBDS_Project.Models.RegisterInformationModel
+@{
     ViewBag.Title = "Trang đăng ký cho nhà tuyển dụng";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
- <div class="container">
+@using (Html.BeginForm("RegisterCompany", "Register"))
+{
+     <div class="container">
                            <div class="grid_12 ">
                                <div class="group_work">
                                    <div class="header_text header_radius header-info-background">
@@ -14,8 +17,9 @@
                                        <div class="row">
                                            <label>Email đăng nhập<span class="required">*</span></label>
                                           <div class="row-right">
-                                               <input  class="input1"  placeholder="Nhập email"  type="text">                    
-                                           </div>
+                                              
+                                              @Html.TextBoxFor(m=>m.TbBdsAdcount.Email,new{@class="input1",@placeholder="Nhập email"})                 
+                                          </div>
                                         
                                            <div class="row-right note2" style="line-height:16px;">
                                           
@@ -34,7 +38,7 @@
                                        <div class="row">
                                            <label>Mật khẩu<span class="required">*</span></label>
                                           <div class="row-right">
-                                               <input  class="input1"  placeholder="Nhập mật khẩu"  type="password">
+                                                @Html.PasswordFor(m=>m.TbBdsAdcount.PassWord,new{@class="input1",@placeholder="Nhập mật khẩu"})   
                                            </div>
                                       
                                        </div>
@@ -54,30 +58,27 @@
                                        <div class="row">
                                            <label>Tên công ty<span class="required"> *</span></label>
                                           <div class="row-right">
-                                               <input  class="input1"  placeholder="Nhập tên công ty"  type="text">                    
-                                           </div>
+                                             
+                                                @Html.TextBoxFor(m=>m.TblBdsemployerinformation.Name,new{@class="input1",@placeholder="Nhập tên công ty"})                           
+                                          </div>
                                         
                                           
                                        </div>
                                        <div class="row">
                                            <label>Quy mô công ty<span class="required"> *</span></label>
                                           <div class="row-right">
-                                               <select class="dropdown" tabindex="7">
-                                                   <option value="1">Chọn số nhân viên</option>
-                                                   <option value="2">Option 2</option>
-                                                   <option value="3">Option 3</option>
-                                                   <option value="4">Option 4</option>
-                                                   <option value="5">Option 5</option>
-                                               </select>              
-                                           </div>
+                                               
+                                              @Html.DropDownListFor(m=>m.TblBdsemployerinformation.Scope,new SelectList(Model.ListBdsScopes, "Id", "Name"),new {@class="dropdown"})           
+                                          </div>
                                         
                                           
                                        </div>
                                        <div class="row">
                                            <label>Sơ lược về công ty<span>*</span></label>
                                             <div class="row-right">
-                                               <textarea class="input4" rows="4"></textarea>                    
-                                           </div>
+                                                     
+                                                  @Html.TextAreaFor(m=>m.TblBdsemployerinformation.Description,new{@class="input4"})               
+                                            </div>
                                        </div>
                                 
                                        
@@ -86,7 +87,8 @@
                                     <label>Địa chỉ công ty<span class="required"> *</span></label>
                                     <div class="row-right">
 
-                                        <input class="input1" placeholder="Nhập địa chỉ liên hệ" type="text">
+                                       
+                                           @Html.TextBoxFor(m=>m.TblBdsemployerinformation.Address,new{@class="input1",@placeholder="Nhập địa chỉ liên hệ"})  
                                     </div>
                                     <div class="row-right">
 
@@ -94,12 +96,8 @@
 
                                             <label class="child">Tỉnh/TP</label>
                                              
-                                                <select class="dropdown" tabindex="7">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
+                                                <select class="dropdown" id="dropCity" tabindex="7">
+                                                     <option value="0">Chọn thành phố</option>
                                                 </select>
                                            
                                         </div>
@@ -110,12 +108,9 @@
 
                                             <label>Quận/Huyện</label>
                                           
-                                                <select class="dropdown" tabindex="7">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
+                                                <select class="dropdown dropDistrict" tabindex="7">
+                                                    <option value="1">Chọn quận huyện</option>
+                                                    
                                                 </select>
                                            
                                         </div>
@@ -128,15 +123,16 @@
                                        <div class="row">
                                            <label>Tên người liên hệ<span class="required">*</span></label>
                                           <div class="row-right">
-                                               <input  class="input1"  placeholder="Nhập tên người liên hệ"  type="text">                    
-                                           </div>
+                                  
+                                                @Html.TextBoxFor(m=>m.TblBdsemployerinformation.NameContact,new{@class="input1",@placeholder="Nhập tên người liên hệ"})                 
+                                          </div>
                                         
                                           
                                        </div>
                                        <div class="row">
                                            <label>Điện thoại<span class="required">*</span></label>
                                           <div class="row-right">
-                                               <input  class="input1"  placeholder="Nhập điện thoại"  type="text">                    
+                                                @Html.TextBoxFor(m=>m.TblBdsemployerinformation.PhoneContact,new{@class="input1",@placeholder="Nhập điện thoại"})                
                                            </div>
                                         
                                           
@@ -167,8 +163,8 @@
                                        </div>
                                         <div class="row">
                                        <label></label>
-                                    	<a class="grid_2 btnSubmit" href="#">Đăng ký</a>
-                                        
+                                    
+                                        <button type="submit" class="grid_2 btnSubmit">Đăng ký</button>
                                    
                                        </div>
                                    </div>
@@ -176,3 +172,6 @@
                            </div>
                          
                         </div>
+
+
+}
