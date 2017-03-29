@@ -1,15 +1,7 @@
 ﻿
 $(function() {
     GetCity();
-    ////default
-    //$('.small-button').dropdown();
-
-    //// full dropdown width and custom class
-    //$('.full-width').dropdown({
-    //    dropdownWidth: true, //true or false
-    //    customClass: 'custom-class',
-    //    dropdownTopAuto: true, //true or false
-    //});
+   
 
 });
 function GetCity() {
@@ -36,6 +28,7 @@ function GetCity() {
                GetDistrict(idCity);
 
            });
+          
        }
    });
 }

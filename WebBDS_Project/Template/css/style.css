@@ -1442,7 +1442,7 @@ a.dropdown1.dropdown-active span {
 	margin-left:23px;
 }
 .width2 .dropdown{
-	width:116px !important;
+	width:150px !important;
 }
 .width3 .dropdown{
 	width: 235px !important;
@@ -1467,7 +1467,7 @@ a.dropdown1.dropdown-active span {
 }
 
 .padding_box .row label.child{
-	width: 125px;
+	width: 55px;
 }
 .row-right .input4 {
 	width: 260px

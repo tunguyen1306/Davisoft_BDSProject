@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -228,6 +229,7 @@
     <Compile Include="Models\districttext.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GeoModel.cs" />
     <Compile Include="Models\holiday.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -246,6 +248,7 @@
     <Compile Include="Models\permission.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegisterInformationModel.cs" />
     <Compile Include="Models\role.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -338,6 +341,7 @@
       <DependentUpon>DataWebBDS.edmx</DependentUpon>
       <LastGenOutput>DataWebBDS.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\CusWeb.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

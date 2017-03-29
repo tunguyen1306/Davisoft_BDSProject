@@ -96,7 +96,7 @@
 
                                             <label class="child">Tỉnh/TP</label>
                                              
-                                                <select class="dropdown" id="dropCity" tabindex="7">
+                                                <select class="dropdown" id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
                                                      <option value="0">Chọn thành phố</option>
                                                 </select>
                                            
@@ -106,9 +106,9 @@
                                     
                                         <div class="pncon mgl15 width2">
 
-                                            <label>Quận/Huyện</label>
+                                            <label class="child">Quận/Huyện</label>
                                           
-                                                <select class="dropdown dropDistrict" tabindex="7">
+                                                <select class="dropdown dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
                                                     <option value="1">Chọn quận huyện</option>
                                                     
                                                 </select>
@@ -132,7 +132,7 @@
                                        <div class="row">
                                            <label>Điện thoại<span class="required">*</span></label>
                                           <div class="row-right">
-                                                @Html.TextBoxFor(m=>m.TblBdsemployerinformation.PhoneContact,new{@class="input1",@placeholder="Nhập điện thoại"})                
+                                                @Html.TextBoxFor(m=>m.TblBdsemployerinformation.Phone,new{@class="input1",@placeholder="Nhập điện thoại"})                
                                            </div>
                                         
                                           
@@ -153,6 +153,9 @@
                                           
                                     
                                           
+                                       </div>
+                                       <div class="row">
+                                           <img width="139" height="92" src="~/Template/images/1.jpg" />
                                        </div>
                                         <div class="row">
                                           
