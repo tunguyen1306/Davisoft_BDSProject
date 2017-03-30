@@ -1,0 +1,157 @@
+﻿.header_radius {
+    border-radius: 8px 8px 0 0;
+    border: 0px solid #dfdfdf;
+}
+.lblcheckEmail {
+        color: #5db7e4!important;
+            text-decoration: underline!important;
+}
+.required {
+    color: red;
+}
+.margin_row_ringht {
+    margin-left: 20px;
+    line-height: 16px;
+}
+.form-in-register {
+    border-bottom: 0!important;
+    box-shadow: 0 -1px 1px rgba(0,0,0,0.05)!important;
+    border-top: 0!important;
+    background-color: #f2f2f2;
+}
+.header-info {
+    border:0px solid #dfdfdf;
+    background: none!important;
+    border-top:0!important;
+     
+}
+.form-have-border-bottom {
+     border-bottom: 0px solid #dfdfdf!important;
+}
+.header-info-background {
+     background-color: #f2f2f2!important;
+}
+.form-horizontal-register  {
+	border: 0px solid #dfdfdf;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	clear:both;
+	display:inline-block;
+	width:100%;
+	box-sizing:border-box;
+	padding: 15px 20px;
+}
+.btnSubmit {
+    text-align: center;
+    background: #f79d25;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px 0;
+    border-radius: 3px;
+}
+.btnUpdate {
+    text-align: center;
+    background: red;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px 0;
+    border-radius: 3px;
+}
+.btnApply {
+    text-align: center;
+    background: red;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px 0;
+    
+}
+.border-bank {
+    border:1px solid #dfdfdf;
+    padding:10px;
+    text-align: center;
+        margin: 0 25px 5px 20px;
+         
+}
+.clable-radioBank {
+    width:100%!important;
+    padding:5px;
+   
+}
+.header-promotion {
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+.border-manager-work {
+border: 1px solid #9d9d9d;
+    background-color: #f6f6f6;
+   
+}
+.border-promotion {
+    border: 1px solid #de3039;
+    background-color: #ffeeee;
+    padding: 10px;
+}
+.btnSubmitReview {
+    padding:10px;
+    background-color:#37a344;
+    color:#ffffff;
+}
+.TextColorRed {
+    color:red;
+}
+.border-upload-img {
+     margin: 8px;
+    border: 1px solid #9d9d9d;
+    padding: 10px;
+    color: #038e20;font-size: 30px;
+    width: 70px;
+    float: left;
+ }
+.border-upload-img-detail {
+      margin: 0 8px 0 0;
+    border: 1px solid #9d9d9d;
+    padding: 10px;
+    color: #038e20;font-size: 30px;
+    width: 70px;
+    float: left;
+ }
+.padding-10px {
+    padding: 0 10px 0 10px;
+}
+.margin-0px {
+    margin:0!important;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.border-manager-recruitment {
+    border: 1px solid #de3039;
+    background-color: #ffffff;
+    padding: 10px;
+}
+.cusinput4 {
+	width:100% ;
+}
+.fa {
+    margin-right: 5px;
+}
+.table-responsive {
+ display: block;
+ width: 100%;
+ overflow-x: auto;
+}
+.cusLabel {
+        width: 75px;
+}
