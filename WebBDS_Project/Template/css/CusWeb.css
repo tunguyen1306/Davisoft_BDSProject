@@ -155,3 +155,29 @@ tr:nth-child(even) {
 .cusLabel {
         width: 75px;
 }
+.cusLabel-2 {
+        width: 90px!important;
+}
+.styled-select {
+  
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+}
+
+.mgl15-1 {
+    margin-left:0px!important;
+}
+
+.styled-select.slate {
+  
+   height: 34px;
+   width: 240px;
+}
+
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 25px;
+   width: 268px;
+}

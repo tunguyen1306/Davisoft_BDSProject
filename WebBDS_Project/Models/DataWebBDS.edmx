@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="davisoft_bdsprojectModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="davisoft_bdsprojectModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="davisoft_bdsprojectModelStoreContainer">
           <EntitySet Name="__migrationhistory" EntityType="davisoft_bdsprojectModel.Store.__migrationhistory" store:Type="Tables" Schema="davisoft_bdsproject" />
           <EntitySet Name="audits" EntityType="davisoft_bdsprojectModel.Store.audits" store:Type="Tables" Schema="davisoft_bdsproject" />
@@ -200,25 +200,25 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="IdAccount" Type="int" Nullable="false" />
-          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="IdAccount" Type="int" />
+          <Property Name="Name" Type="text" />
           <Property Name="Scope" Type="int" />
           <Property Name="Description" Type="text" />
           <Property Name="UrlImage" Type="text" />
-          <Property Name="Address" Type="text" Nullable="false" />
-          <Property Name="FullAddress" Type="text" Nullable="false" />
+          <Property Name="Address" Type="text" />
+          <Property Name="FullAddress" Type="text" />
           <Property Name="WebSite" Type="text" />
-          <Property Name="City" Type="int" Nullable="false" />
-          <Property Name="District" Type="int" Nullable="false" />
-          <Property Name="Fax" Type="text" Nullable="false" />
-          <Property Name="Phone" Type="text" Nullable="false" />
-          <Property Name="NameContact" Type="text" Nullable="false" />
-          <Property Name="EmailContact" Type="text" Nullable="false" />
-          <Property Name="PhoneContact" Type="text" Nullable="false" />
-          <Property Name="AddressContact" Type="text" Nullable="false" />
-          <Property Name="CityContact" Type="int" Nullable="false" />
-          <Property Name="DistrictContact" Type="int" Nullable="false" />
-          <Property Name="TypeContact" Type="int" Nullable="false" />
+          <Property Name="City" Type="int" />
+          <Property Name="District" Type="int" />
+          <Property Name="Fax" Type="text" />
+          <Property Name="Phone" Type="text" />
+          <Property Name="NameContact" Type="text" />
+          <Property Name="EmailContact" Type="text" />
+          <Property Name="PhoneContact" Type="text" />
+          <Property Name="AddressContact" Type="text" />
+          <Property Name="CityContact" Type="int" />
+          <Property Name="DistrictContact" Type="int" />
+          <Property Name="TypeContact" Type="int" />
         </EntityType>
         <EntityType Name="bdsevents">
           <Key>
@@ -371,6 +371,7 @@
           <Property Name="Perfix" Type="int" Nullable="false" />
           <Property Name="Default" Type="bool" Nullable="false" />
           <Property Name="KeySearch" Type="longtext" />
+          <Property Name="Active" Type="int" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="CreateUser" Type="int" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" />
@@ -814,8 +815,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="davisoft_bdsprojectModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -827,7 +827,6 @@
           <EntitySet Name="bdsbanks" EntityType="davisoft_bdsprojectModel.bdsbank" />
           <EntitySet Name="bdscareers" EntityType="davisoft_bdsprojectModel.bdscareer" />
           <EntitySet Name="bdseducations" EntityType="davisoft_bdsprojectModel.bdseducation" />
-          <EntitySet Name="bdsemployerinformations" EntityType="davisoft_bdsprojectModel.bdsemployerinformation" />
           <EntitySet Name="bdsevents" EntityType="davisoft_bdsprojectModel.bdsevent" />
           <EntitySet Name="bdslanguages" EntityType="davisoft_bdsprojectModel.bdslanguage" />
           <EntitySet Name="bdsmarriages" EntityType="davisoft_bdsprojectModel.bdsmarriage" />
@@ -885,6 +884,7 @@
             <End Role="users" EntitySet="users" />
             <End Role="roles" EntitySet="roles" />
           </AssociationSet>
+          <EntitySet Name="bdsemployerinformations" EntityType="davisoft_bdsprojectModel.bdsemployerinformation" />
         </EntityContainer>
         <EntityType Name="C__migrationhistory">
           <Key>
@@ -988,31 +988,6 @@
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" />
           <Property Name="ModifiedUser" Type="Int32" />
-        </EntityType>
-        <EntityType Name="bdsemployerinformation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="IdAccount" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="Scope" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="UrlImage" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="FullAddress" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="WebSite" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="City" Type="Int32" Nullable="false" />
-          <Property Name="District" Type="Int32" Nullable="false" />
-          <Property Name="Fax" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="NameContact" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="EmailContact" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="PhoneContact" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="AddressContact" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="CityContact" Type="Int32" Nullable="false" />
-          <Property Name="DistrictContact" Type="Int32" Nullable="false" />
-          <Property Name="TypeContact" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="bdsevent">
           <Key>
@@ -1169,6 +1144,7 @@
           <Property Name="CreateUser" Type="Int32" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" />
           <Property Name="ModifiedUser" Type="Int32" />
+          <Property Type="Int32" Name="Active" />
         </EntityType>
         <EntityType Name="bdsscope">
           <Key>
@@ -1494,6 +1470,31 @@
           <End Role="users" Type="davisoft_bdsprojectModel.user" Multiplicity="*" />
           <End Role="roles" Type="davisoft_bdsprojectModel.role" Multiplicity="*" />
         </Association>
+        <EntityType Name="bdsemployerinformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdAccount" />
+          <Property Type="String" Name="Name" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Scope" />
+          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UrlImage" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FullAddress" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WebSite" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="City" />
+          <Property Type="Int32" Name="District" />
+          <Property Type="String" Name="Fax" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NameContact" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EmailContact" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PhoneContact" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AddressContact" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CityContact" />
+          <Property Type="Int32" Name="DistrictContact" />
+          <Property Type="Int32" Name="TypeContact" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1607,32 +1608,6 @@
                 <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="bdsemployerinformations">
-            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsemployerinformation">
-              <MappingFragment StoreEntitySet="bdsemployerinformation">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Scope" ColumnName="Scope" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="NameContact" ColumnName="NameContact" />
-                <ScalarProperty Name="EmailContact" ColumnName="EmailContact" />
-                <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
-                <ScalarProperty Name="AddressContact" ColumnName="AddressContact" />
-                <ScalarProperty Name="CityContact" ColumnName="CityContact" />
-                <ScalarProperty Name="DistrictContact" ColumnName="DistrictContact" />
-                <ScalarProperty Name="TypeContact" ColumnName="TypeContact" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1784,6 +1759,7 @@
           <EntitySetMapping Name="bdssalaries">
             <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdssalary">
               <MappingFragment StoreEntitySet="bdssalaries">
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -2107,6 +2083,32 @@
               <ScalarProperty Name="ID" ColumnName="Role_Id" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="bdsemployerinformations">
+            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsemployerinformation">
+              <MappingFragment StoreEntitySet="bdsemployerinformation">
+                <ScalarProperty Name="TypeContact" ColumnName="TypeContact" />
+                <ScalarProperty Name="DistrictContact" ColumnName="DistrictContact" />
+                <ScalarProperty Name="CityContact" ColumnName="CityContact" />
+                <ScalarProperty Name="AddressContact" ColumnName="AddressContact" />
+                <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
+                <ScalarProperty Name="EmailContact" ColumnName="EmailContact" />
+                <ScalarProperty Name="NameContact" ColumnName="NameContact" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

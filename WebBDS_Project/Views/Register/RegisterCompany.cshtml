@@ -66,9 +66,9 @@
                                        </div>
                                        <div class="row">
                                            <label>Quy mô công ty<span class="required"> *</span></label>
-                                          <div class="row-right">
+                                          <div class="row-right styled-select slate">
                                                
-                                              @Html.DropDownListFor(m=>m.TblBdsemployerinformation.Scope,new SelectList(Model.ListBdsScopes, "Id", "Name"),new {@class="dropdown"})           
+                                              @Html.DropDownListFor(m=>m.TblBdsemployerinformation.Scope,new SelectList(Model.ListBdsScopes, "Id", "Name"),new {@class=""})           
                                           </div>
                                         
                                           
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="row-right">
 
-                                        <div class="pncon width2">
+                                        <div class="pncon width2 styled-select slate">
 
                                             <label class="child">Tỉnh/TP</label>
                                              
@@ -104,9 +104,9 @@
 
                                  
                                     
-                                        <div class="pncon mgl15 width2">
+                                        <div class="pncon  width2 styled-select slate">
 
-                                            <label class="child">Quận/Huyện</label>
+                                            <label class="cusLabel-2">Quận/Huyện</label>
                                           
                                                 <select class="dropdown dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
                                                     <option value="1">Chọn quận huyện</option>
@@ -142,7 +142,12 @@
                                           
                                            <label>Logo Công Ty</label>
                                            <div class="logo_jobs">
-                                               <img src="~/Template/images/imgUpload.png" />             
+                                               <div class="uploadBox">
+                                                   <a href="javascript:void(0)" id="uploadIcon" href="">
+                                                       <img src="~/Template/images/imgUpload.png" />
+                                                   </a>
+                                                   <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
+                                               </div>      
                                            </div>
                                                 
                                                <div class="text_jobs">
@@ -150,12 +155,13 @@
                                                    <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
                                                </div>
                                             
-                                          
+                                          <input type="hidden" id="hdUrlImg" name="TblBdsemployerinformation.UrlImage"/>
                                     
                                           
                                        </div>
                                        <div class="row">
-                                           <img width="139" height="92" src="~/Template/images/1.jpg" />
+                                           <label>Logo Công Ty</label>
+                                           <img width="139" height="92" id="imgLogoCompany" src="~/Template/images/1.jpg" />
                                        </div>
                                         <div class="row">
                                           
@@ -167,7 +173,7 @@
                                         <div class="row">
                                        <label></label>
                                     
-                                        <button type="submit" class="grid_2 btnSubmit">Đăng ký</button>
+                                        <button type="submit" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
                                    
                                        </div>
                                    </div>
@@ -178,3 +184,46 @@
 
 
 }
+
+<script>
+    $("#submitbutton").on('click', function (e) {
+        e.preventDefault();
+        var t = 0;
+        if ($('#TbBdsAdcount_Email').val() == "") {
+
+            toastr.error('Nhập Email');
+            t++;
+        }
+        if (t==0) {
+            $('#submitbutton').parents("form").submit();
+        }
+       
+    });
+    $("#uploadIcon").click(function () {
+        $(this).next().trigger('click');
+    });
+    $("#uploadFile").change(function () {
+        var data = new FormData();
+        var files = $("#uploadFile").get(0).files;
+        if (files.length > 0) {
+            data.append("HelpSectionImages", files[0]);
+        }
+        $.ajax({
+            url: '@Url.Action("UploadImg", "Register")',
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: data,
+            success: function (response) {
+                $('#imgLogoCompany').attr('src', response.fullurl);
+                $('#hdUrlImg').val(response.fullurl);
+
+            },
+            error: function (er) {
+
+            }
+
+        });
+    });
+ 
+</script>
