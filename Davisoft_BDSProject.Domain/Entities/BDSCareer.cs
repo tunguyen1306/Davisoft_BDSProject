@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Davisoft_BDSProject.Domain.Entities
 {
-    class BDSCareer : BDSBaseEntiry
+    public class BDSCareer : BDSBaseEntiry
     {
         public string Name { get; set; }
         public string KeySearch { get; set; }

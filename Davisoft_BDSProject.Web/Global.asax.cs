@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -99,9 +100,9 @@ namespace Davisoft_BDSProject.Web
             catch
             {
             }
-
-            //if (Request.IsLocal)
-            //    MiniProfiler.Start();
+/*
+            if (Request.IsLocal)
+               MiniProfiler.Start();*/
         }
 
         protected void Application_EndRequest()
@@ -109,11 +110,33 @@ namespace Davisoft_BDSProject.Web
             MiniProfiler.Stop();
         }
 
+      
+      
         private void UpdateCookie(string cookieName, string cookieValue)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(cookieName) ?? new HttpCookie(cookieName);
             cookie.Value = cookieValue;
             HttpContext.Current.Request.Cookies.Set(cookie);
+        }
+     
+        public static CultureInfo CultureInfo
+        {
+            get
+            {
+
+              
+                return new System.Globalization.CultureInfo((string)System.Web.HttpContext.Current.Session["CurrentCulture"]);
+            }
+        }
+
+        public static DateTimeFormatInfo DateTimeFormat
+        {
+            get
+            {
+
+
+                return CultureInfo.DateTimeFormat;
+            }
         }
     }
 }

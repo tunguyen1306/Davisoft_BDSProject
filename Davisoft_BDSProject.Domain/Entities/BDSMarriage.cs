@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Davisoft_BDSProject.Domain.Entities
 {
-    class BDSMarriage : BDSBaseEntiry
+    public class BDSMarriage : BDSBaseEntiry
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public string KeySearch { get; set; }
     }
 }

@@ -2064,7 +2064,7 @@ var jqLiteMinErr = minErr('jqLite');
 /**
  * Converts snake_case to camelCase.
  * Also there is special case for Moz prefix starting with upper case letter.
- * @param name Name to normalize
+ * @param name Name to Normalize
  */
 function camelCase(name) {
   return name.
@@ -2443,7 +2443,7 @@ forEach({
       // the extra argument "2" is to get the right thing for a.href in IE, see jQuery code
       // some elements (e.g. Document) don't have get attribute, so return undefined
       var ret = element.getAttribute(name, 2);
-      // normalize non-existing attributes to undefined (as jQuery)
+      // Normalize non-existing attributes to undefined (as jQuery)
       return ret === null ? undefined : ret;
     }
   },
@@ -4957,7 +4957,7 @@ function $TemplateCacheProvider() {
  *
  * accessing *Normalized attribute names:*
  * Directives like 'ngBind' can be expressed in many ways: 'ng:bind', `data-ng-bind`, or 'x-ng-bind'.
- * the attributes object allows for normalized access to
+ * the attributes object allows for Normalized access to
  *   the attributes.
  *
  * * *Directive inter-communication:* All directives share the same instance of the attributes
@@ -5182,7 +5182,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    *
    * The sanitization is a security measure aimed at prevent XSS attacks via html links.
    *
-   * Any url about to be assigned to a[href] via data-binding is first normalized and turned into
+   * Any url about to be assigned to a[href] via data-binding is first Normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `aHrefSanitizationWhitelist`
    * regular expression. If a match is found, the original url is written into the dom. Otherwise,
    * the absolute url is prefixed with `'unsafe:'` string and only then is it written into the DOM.
@@ -5213,7 +5213,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    *
    * The sanitization is a security measure aimed at prevent XSS attacks via html links.
    *
-   * Any url about to be assigned to img[src] via data-binding is first normalized and turned into
+   * Any url about to be assigned to img[src] via data-binding is first Normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `imgSrcSanitizationWhitelist`
    * regular expression. If a match is found, the original url is written into the dom. Otherwise,
    * the absolute url is prefixed with `'unsafe:'` string and only then is it written into the DOM.
@@ -5243,7 +5243,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
     };
 
     Attributes.prototype = {
-      $normalize: directiveNormalize,
+      $Normalize: directiveNormalize,
 
 
       /**
@@ -5301,13 +5301,13 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       },
 
       /**
-       * Set a normalized attribute on the element in a way such that all directives
+       * Set a Normalized attribute on the element in a way such that all directives
        * can share the attribute. This function properly handles boolean attributes.
        * @param {string} key Normalized key. (ie ngAttribute)
        * @param {string|boolean} value The value to set. If `null` attribute will be deleted.
        * @param {boolean=} writeAttr If false, does not write the value to DOM element attribute.
        *     Defaults to true.
-       * @param {string=} attrName Optional none normalized name. Defaults to key.
+       * @param {string=} attrName Optional none Normalized name. Defaults to key.
        */
       $set: function(key, value, writeAttr, attrName) {
         // TODO: decide whether or not to throw an error if "class"
@@ -5315,7 +5315,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         //become unstable.
 
         var booleanKey = getBooleanAttrName(this.$$element[0], key),
-            normalizedVal,
+            NormalizedVal,
             nodeName;
 
         if (booleanKey) {
@@ -5325,7 +5325,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
         this[key] = value;
 
-        // translate normalized key to actual key
+        // translate Normalized key to actual key
         if (attrName) {
           this.$attr[key] = attrName;
         } else {
@@ -5400,9 +5400,9 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
     var startSymbol = $interpolate.startSymbol(),
         endSymbol = $interpolate.endSymbol(),
-        denormalizeTemplate = (startSymbol == '{{' || endSymbol  == '}}')
+        deNormalizeTemplate = (startSymbol == '{{' || endSymbol  == '}}')
             ? identity
-            : function denormalizeTemplate(template) {
+            : function deNormalizeTemplate(template) {
               return template.replace(/\{\{/g, startSymbol).replace(/}}/g, endSymbol);
         },
         NG_ATTR_BINDING = /^ngAttr[A-Z]/;
@@ -5576,7 +5576,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
      * @param node Node to search.
      * @param directives An array to which the directives are added to. This array is sorted before
      *        the function returns.
-     * @param attrs The shared attrs object which is used to populate the normalized attributes.
+     * @param attrs The shared attrs object which is used to populate the Normalized attributes.
      * @param {number=} maxPriority Max directive priority.
      */
     function collectDirectives(node, directives, attrs, maxPriority, ignoreDirective) {
@@ -5843,7 +5843,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
               ? directive.template($compileNode, templateAttrs)
               : directive.template;
 
-          directiveValue = denormalizeTemplate(directiveValue);
+          directiveValue = deNormalizeTemplate(directiveValue);
 
           if (directive.replace) {
             replaceDirective = directive;
@@ -6264,7 +6264,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         success(function(content) {
           var compileNode, tempTemplateAttrs, $template, childBoundTranscludeFn;
 
-          content = denormalizeTemplate(content);
+          content = deNormalizeTemplate(content);
 
           if (origAsyncDirective.replace) {
             $template = jqLite('<div>' + trim(content) + '</div>').contents();
@@ -6523,7 +6523,7 @@ var PREFIX_REGEXP = /^(x[\:\-_]|data[\:\-_])/i;
  *   data-my:directive
  *
  * Also there is special case for Moz prefix starting with upper case letter.
- * @param name Name to normalize
+ * @param name Name to Normalize
  */
 function directiveNormalize(name) {
   return camelCase(name.replace(PREFIX_REGEXP, ''));
@@ -6534,7 +6534,7 @@ function directiveNormalize(name) {
  * @name ng.$compile.directive.Attributes
  *
  * @description
- * A shared object between directive compile / linking functions which contains normalized DOM
+ * A shared object between directive compile / linking functions which contains Normalized DOM
  * element attributes. The values reflect current binding state `{{ }}`. The normalization is
  * needed since all of these are treated as equivalent in Angular:
  *
@@ -6545,8 +6545,8 @@ function directiveNormalize(name) {
  * @ngdoc property
  * @name ng.$compile.directive.Attributes#$attr
  * @propertyOf ng.$compile.directive.Attributes
- * @returns {object} A map of DOM element attribute names to the normalized name. This is
- *                   needed to do reverse lookup from normalized name back to actual name.
+ * @returns {object} A map of DOM element attribute names to the Normalized name. This is
+ *                   needed to do reverse lookup from Normalized name back to actual name.
  */
 
 
@@ -7744,7 +7744,7 @@ function $HttpProvider() {
        * Resolves the raw $http promise.
        */
       function resolvePromise(response, status, headers) {
-        // normalize internal statuses to 0
+        // Normalize internal statuses to 0
         status = Math.max(status, 0);
 
         (isSuccess(status) ? deferred.resolve : deferred.reject)({
@@ -7906,7 +7906,7 @@ function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument)
       // fix status code for file protocol (it's always 0)
       status = (protocol == 'file' && status === 0) ? (response ? 200 : 404) : status;
 
-      // normalize IE bug (http://bugs.jquery.com/ticket/1450)
+      // Normalize IE bug (http://bugs.jquery.com/ticket/1450)
       status = status == 1223 ? 204 : status;
 
       callback(status, response, headersString);
@@ -12006,7 +12006,7 @@ function $$SanitizeUriProvider() {
    *
    * The sanitization is a security measure aimed at prevent XSS attacks via html links.
    *
-   * Any url about to be assigned to a[href] via data-binding is first normalized and turned into
+   * Any url about to be assigned to a[href] via data-binding is first Normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `aHrefSanitizationWhitelist`
    * regular expression. If a match is found, the original url is written into the dom. Otherwise,
    * the absolute url is prefixed with `'unsafe:'` string and only then is it written into the DOM.
@@ -12031,7 +12031,7 @@ function $$SanitizeUriProvider() {
    *
    * The sanitization is a security measure aimed at prevent XSS attacks via html links.
    *
-   * Any url about to be assigned to img[src] via data-binding is first normalized and turned into
+   * Any url about to be assigned to img[src] via data-binding is first Normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `imgSrcSanitizationWhitelist`
    * regular expression. If a match is found, the original url is written into the dom. Otherwise,
    * the absolute url is prefixed with `'unsafe:'` string and only then is it written into the DOM.
@@ -12051,12 +12051,12 @@ function $$SanitizeUriProvider() {
   this.$get = function() {
     return function sanitizeUri(uri, isImage) {
       var regex = isImage ? imgSrcSanitizationWhitelist : aHrefSanitizationWhitelist;
-      var normalizedVal;
+      var NormalizedVal;
       // NOTE: urlResolve() doesn't support IE < 8 so we don't sanitize for that case.
       if (!msie || msie >= 8 ) {
-        normalizedVal = urlResolve(uri).href;
-        if (normalizedVal !== '' && !normalizedVal.match(regex)) {
-          return 'unsafe:'+normalizedVal;
+        NormalizedVal = urlResolve(uri).href;
+        if (NormalizedVal !== '' && !NormalizedVal.match(regex)) {
+          return 'unsafe:'+NormalizedVal;
         }
       }
       return uri;
@@ -12602,7 +12602,7 @@ function $SceDelegateProvider() {
  *    - The special **string**, `'self'`, can be used to match against all URLs of the **same
  *      domain** as the application document using the **same protocol**.
  *  - **String** (except the special value `'self'`)
- *    - The string is matched against the full *normalized / absolute URL* of the resource
+ *    - The string is matched against the full *Normalized / absolute URL* of the resource
  *      being tested (substring matches are not good enough.)
  *    - There are exactly **two wildcard sequences** - `*` and `**`.  All other characters
  *      match themselves.
@@ -12624,7 +12624,7 @@ function $SceDelegateProvider() {
  *      is highly recommended to use the string patterns and only fall back to regular expressions
  *      if they as a last resort.
  *    - The regular expression must be an instance of RegExp (i.e. not a string.)  It is
- *      matched against the **entire** *normalized / absolute URL* of the resource being tested
+ *      matched against the **entire** *Normalized / absolute URL* of the resource being tested
  *      (even when the RegExp did not have the `^` and `$` codes.)  In addition, any flags
  *      present on the RegExp (such as multiline, global, ignoreCase) are ignored.
  *    - If you are generating your Javascript from some other templating engine (not
@@ -13424,22 +13424,22 @@ var originUrl = urlResolve(window.location.href, true);
  * results both in the normalizing and parsing of the URL.  Normalizing means that a relative
  * URL will be resolved into an absolute URL in the context of the application document.
  * Parsing means that the anchor node's host, hostname, protocol, port, pathname and related
- * properties are all populated to reflect the normalized URL.  This approach has wide
+ * properties are all populated to reflect the Normalized URL.  This approach has wide
  * compatibility - Safari 1+, Mozilla 1+, Opera 7+,e etc.  See
  * http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
  *
  * Implementation Notes for IE
  * ---------------------------
- * IE >= 8 and <= 10 normalizes the URL when assigned to the anchor node similar to the other
+ * IE >= 8 and <= 10 Normalizes the URL when assigned to the anchor node similar to the other
  * browsers.  However, the parsed components will not be set if the URL assigned did not specify
  * them.  (e.g. if you assign a.href = "foo", then a.protocol, a.host, etc. will be empty.)  We
- * work around that by performing the parsing in a 2nd step by taking a previously normalized
+ * work around that by performing the parsing in a 2nd step by taking a previously Normalized
  * URL (e.g. by assigning to a.href) and assigning it a.href again.  This correctly populates the
  * properties such as protocol, hostname, port, etc.
  *
- * IE7 does not normalize the URL when assigned to an anchor node.  (Apparently, it does, if one
+ * IE7 does not Normalize the URL when assigned to an anchor node.  (Apparently, it does, if one
  * uses the inner HTML approach to assign the URL as part of an HTML snippet -
- * http://stackoverflow.com/a/472729)  However, setting img[src] does normalize the URL.
+ * http://stackoverflow.com/a/472729)  However, setting img[src] does Normalize the URL.
  * Unfortunately, setting img[src] to something like "javascript:foo" on IE throws an exception.
  * Since the primary usage for normalizing URLs is to sanitize such URLs, we can't use that
  * method and IE < 8 is unsupported.
@@ -13454,13 +13454,13 @@ var originUrl = urlResolve(window.location.href, true);
  * @function
  * @param {string} url The URL to be parsed.
  * @description Normalizes and parses a URL.
- * @returns {object} Returns the normalized URL as a dictionary.
+ * @returns {object} Returns the Normalized URL as a dictionary.
  *
  *   | member name   | Description    |
  *   |---------------|----------------|
- *   | href          | A normalized version of the provided URL if it was not an absolute URL |
+ *   | href          | A Normalized version of the provided URL if it was not an absolute URL |
  *   | protocol      | The protocol including the trailing colon                              |
- *   | host          | The host and port (if the port is non-default) of the normalizedUrl    |
+ *   | host          | The host and port (if the port is non-default) of the NormalizedUrl    |
  *   | search        | The search params, minus the question mark                             |
  *   | hash          | The hash string, minus the hash symbol
  *   | hostname      | The hostname
@@ -14980,13 +14980,13 @@ forEach(BOOLEAN_ATTR, function(propName, attrName) {
   // binding to multiple is not supported
   if (propName == "multiple") return;
 
-  var normalized = directiveNormalize('ng-' + attrName);
-  ngAttributeAliasDirectives[normalized] = function() {
+  var Normalized = directiveNormalize('ng-' + attrName);
+  ngAttributeAliasDirectives[Normalized] = function() {
     return {
       priority: 100,
       compile: function() {
         return function(scope, element, attr) {
-          scope.$watch(attr[normalized], function ngBooleanAttrWatchAction(value) {
+          scope.$watch(attr[Normalized], function ngBooleanAttrWatchAction(value) {
             attr.$set(attrName, !!value);
           });
         };
@@ -14998,12 +14998,12 @@ forEach(BOOLEAN_ATTR, function(propName, attrName) {
 
 // ng-src, ng-srcset, ng-href are interpolated
 forEach(['src', 'srcset', 'href'], function(attrName) {
-  var normalized = directiveNormalize('ng-' + attrName);
-  ngAttributeAliasDirectives[normalized] = function() {
+  var Normalized = directiveNormalize('ng-' + attrName);
+  ngAttributeAliasDirectives[Normalized] = function() {
     return {
       priority: 99, // it needs to run after the attributes are interpolated
       link: function(scope, element, attr) {
-        attr.$observe(normalized, function(value) {
+        attr.$observe(Normalized, function(value) {
           if (!value)
              return;
 

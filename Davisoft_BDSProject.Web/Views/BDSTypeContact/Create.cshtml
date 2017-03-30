@@ -1,0 +1,44 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSTypeContact
+@{
+    ViewBag.Title = Utilities.Resource("BDSTypeContact_Add", "Add New Type Contact");
+}
+<section class="panel panel-default">
+    <h3 class="tilte_l">
+        @ViewBag.Title
+    </h3>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            @using (Html.BeginForm())
+            {
+                @Html.Partial("_Input", Model)
+                using (Html.Bootstrap().Begin(new FormActions()))
+                {
+                    <div class="form-actions">
+                        <div class="form-group">
+                            <label class="col-sm-3"></label>
+                            <label class="col-sm-9">
+                                @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
+                                @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Create).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
+                            </label>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+@Html.Script(
+    @<script>
+        $("#submitbutton").on('click', function (e) {
+            e.preventDefault();
+            bootbox.confirm("@Resource.ConfirmCreate", function (isOK) {
+                if (isOK) {
+                    $('#submitbutton').parents("form").submit();
+                }
+            });
+        });
+    </script>)

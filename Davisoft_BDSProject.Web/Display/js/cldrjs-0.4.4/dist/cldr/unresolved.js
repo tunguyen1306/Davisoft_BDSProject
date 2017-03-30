@@ -38,15 +38,15 @@
 
 
 	var bundleParentLookup = function( Cldr, locale ) {
-		var normalizedPath, parent;
+		var NormalizedPath, parent;
 
 		if ( locale === "root" ) {
 			return;
 		}
 
 		// First, try to find parent on supplemental data.
-		normalizedPath = pathNormalize( [ "supplemental/parentLocales/parentLocale", locale ] );
-		parent = resourceGet( Cldr._resolved, normalizedPath ) || resourceGet( Cldr._raw, normalizedPath );
+		NormalizedPath = pathNormalize( [ "supplemental/parentLocales/parentLocale", locale ] );
+		parent = resourceGet( Cldr._resolved, NormalizedPath ) || resourceGet( Cldr._raw, NormalizedPath );
 		if ( parent ) {
 			return parent;
 		}
@@ -63,7 +63,7 @@
 
 
 
-	// @path: normalized path
+	// @path: Normalized path
 	var resourceSet = function( data, path, value ) {
 		var i,
 			node = data,
@@ -84,7 +84,7 @@
 	var lookup;
 
 	lookup = function( Cldr, locale, path, attributes, childLocale ) {
-		var normalizedPath, parent, value;
+		var NormalizedPath, parent, value;
 
 		// 1: Finish recursion
 		// 2: Avoid infinite loop
@@ -93,18 +93,18 @@
 		}
 
 		// Resolve path
-		normalizedPath = pathNormalize( path, attributes );
+		NormalizedPath = pathNormalize( path, attributes );
 
 		// Check resolved (cached) data first
 		// 1: Due to #16, never use the cached resolved non-leaf nodes. It may not
 		//    represent its leafs in its entirety.
-		value = resourceGet( Cldr._resolved, normalizedPath );
+		value = resourceGet( Cldr._resolved, NormalizedPath );
 		if ( value && typeof value !== "object" /* 1 */ ) {
 			return value;
 		}
 
 		// Check raw data
-		value = resourceGet( Cldr._raw, normalizedPath );
+		value = resourceGet( Cldr._raw, NormalizedPath );
 
 		if ( !value ) {
 			// Or, lookup at parent locale
@@ -114,7 +114,7 @@
 
 		if ( value ) {
 			// Set resolved (cached)
-			resourceSet( Cldr._resolved, normalizedPath, value );
+			resourceSet( Cldr._resolved, NormalizedPath, value );
 		}
 
 		return value;

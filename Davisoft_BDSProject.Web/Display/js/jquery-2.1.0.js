@@ -4469,7 +4469,7 @@
                 }
 
                 // Add which for click: 1 === left; 2 === middle; 3 === right
-                // Note: button is not normalized, so don't use it
+                // Note: button is not Normalized, so don't use it
                 if ( !event.which && button !== undefined ) {
                     event.which = ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
                 }
@@ -4483,7 +4483,7 @@
                 return event;
             }
 
-            // Create a writable copy of the event object and normalize some properties
+            // Create a writable copy of the event object and Normalize some properties
             var i, prop, copy,
                 type = event.type,
                 originalEvent = event,
@@ -5853,7 +5853,7 @@
         // Add in properties whose names you wish to fix before
         // setting or getting the value
         cssProps: {
-            // normalize float css property
+            // Normalize float css property
             "float": "cssFloat"
         },
 
@@ -6590,7 +6590,7 @@
         opt.duration = jQuery.fx.off ? 0 : typeof opt.duration === "number" ? opt.duration :
             opt.duration in jQuery.fx.speeds ? jQuery.fx.speeds[ opt.duration ] : jQuery.fx.speeds._default;
 
-        // normalize opt.queue - true/undefined/null -> "fx"
+        // Normalize opt.queue - true/undefined/null -> "fx"
         if ( opt.queue == null || opt.queue === true ) {
             opt.queue = "fx";
         }
@@ -6907,7 +6907,7 @@
             } else {
                 ret = jQuery.find.attr( elem, name );
 
-                // Non-existent attributes return null, we normalize to undefined
+                // Non-existent attributes return null, we Normalize to undefined
                 return ret == null ?
                     undefined :
                     ret;
@@ -8164,7 +8164,7 @@
                     }
                 } else {
                     // We extract error from statusText
-                    // then normalize statusText and status for non-aborts
+                    // then Normalize statusText and status for non-aborts
                     error = statusText;
                     if ( status || !statusText ) {
                         statusText = "error";
@@ -8642,7 +8642,7 @@
         }
     });
 
-// Detect, normalize options and install callbacks for jsonp requests
+// Detect, Normalize options and install callbacks for jsonp requests
     jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
         var callbackName, overwritten, responseContainer,

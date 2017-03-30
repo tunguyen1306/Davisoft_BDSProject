@@ -5301,7 +5301,7 @@ jQuery.event = {
 			return event;
 		}
 
-		// Create a writable copy of the event object and normalize some properties
+		// Create a writable copy of the event object and Normalize some properties
 		var i, prop, copy,
 			type = event.type,
 			originalEvent = event,
@@ -5391,7 +5391,7 @@ jQuery.event = {
 			}
 
 			// Add which for click: 1 === left; 2 === middle; 3 === right
-			// Note: button is not normalized, so don't use it
+			// Note: button is not Normalized, so don't use it
 			if ( !event.which && button !== undefined ) {
 				event.which = ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
 			}
@@ -7084,7 +7084,7 @@ jQuery.extend( {
 	// setting or getting the value
 	cssProps: {
 
-		// normalize float css property
+		// Normalize float css property
 		"float": support.cssFloat ? "cssFloat" : "styleFloat"
 	},
 
@@ -7899,7 +7899,7 @@ jQuery.speed = function( speed, easing, fn ) {
 		opt.duration in jQuery.fx.speeds ?
 			jQuery.fx.speeds[ opt.duration ] : jQuery.fx.speeds._default;
 
-	// normalize opt.queue - true/undefined/null -> "fx"
+	// Normalize opt.queue - true/undefined/null -> "fx"
 	if ( opt.queue == null || opt.queue === true ) {
 		opt.queue = "fx";
 	}
@@ -8167,7 +8167,7 @@ jQuery.fn.delay = function( time, type ) {
 	support.style = /top/.test( a.getAttribute( "style" ) );
 
 	// Make sure that URLs aren't manipulated
-	// (IE normalizes it by default)
+	// (IE Normalizes it by default)
 	support.hrefNormalized = a.getAttribute( "href" ) === "/a";
 
 	// Check the default checkbox/radio value ("" on WebKit; "on" elsewhere)
@@ -8444,7 +8444,7 @@ jQuery.extend( {
 
 		ret = jQuery.find.attr( elem, name );
 
-		// Non-existent attributes return null, we normalize to undefined
+		// Non-existent attributes return null, we Normalize to undefined
 		return ret == null ? undefined : ret;
 	},
 
@@ -8740,7 +8740,7 @@ jQuery.extend( {
 // http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
 if ( !support.hrefNormalized ) {
 
-	// href/src property should get the full normalized URL (#10299/#12915)
+	// href/src property should get the full Normalized URL (#10299/#12915)
 	jQuery.each( [ "href", "src" ], function( i, name ) {
 		jQuery.propHooks[ name ] = {
 			get: function( elem ) {
@@ -9817,7 +9817,7 @@ jQuery.extend( {
 			} else {
 
 				// We extract error from statusText
-				// then normalize statusText and status for non-aborts
+				// then Normalize statusText and status for non-aborts
 				error = statusText;
 				if ( status || !statusText ) {
 					statusText = "error";
@@ -10278,7 +10278,7 @@ if ( xhrSupported ) {
 									statusText = xhr.statusText;
 								} catch ( e ) {
 
-									// We normalize with Webkit giving an empty statusText
+									// We Normalize with Webkit giving an empty statusText
 									statusText = "";
 								}
 
@@ -10460,7 +10460,7 @@ jQuery.ajaxSetup( {
 	}
 } );
 
-// Detect, normalize options and install callbacks for jsonp requests
+// Detect, Normalize options and install callbacks for jsonp requests
 jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 	var callbackName, overwritten, responseContainer,

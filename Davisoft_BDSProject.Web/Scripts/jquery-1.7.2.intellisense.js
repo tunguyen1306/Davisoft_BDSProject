@@ -52,7 +52,7 @@ intellisense.annotate(jQuery, {
     /// </signature>
   },
   'cssHooks': function() {
-    /// <summary>Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.</summary>
+    /// <summary>Hook directly into jQuery to override how particular CSS properties are retrieved or set, Normalize CSS property naming, or create custom properties.</summary>
     /// <returns type="Object" />
   },
   'data': function() {

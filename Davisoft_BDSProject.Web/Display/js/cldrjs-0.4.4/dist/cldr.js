@@ -116,7 +116,7 @@
 	 * 3.4 Return the language tag composed of languager _ scriptr _ regionr +
 	 * variants + extensions.
 	 *
-	 * @subtags [Array] normalized language id subtags tuple (see init.js).
+	 * @subtags [Array] Normalized language id subtags tuple (see init.js).
 	 */
 	var coreLikelySubtags = function( Cldr, cldr, subtags, options ) {
 		var match, matchFound,
@@ -235,7 +235,7 @@
 			subtags[ 4 /* unicodeLocaleExtensions */ ] = aux[ 1 ][ 0 ];
 		}
 
-		// TODO normalize transformed extensions. Currently, skipped.
+		// TODO Normalize transformed extensions. Currently, skipped.
 		// subtags[ x ] = locale.split( "-t-" )[ 1 ];
 		unicodeLanguageId = locale.split( "-t-" )[ 0 ];
 
@@ -412,7 +412,7 @@
 
 
 
-	// @path: normalized path
+	// @path: Normalized path
 	var resourceGet = function( data, path ) {
 		var i,
 			node = data,
@@ -532,9 +532,9 @@
 
 	var itemGetResolved = function( Cldr, path, attributes ) {
 		// Resolve path
-		var normalizedPath = pathNormalize( path, attributes );
+		var NormalizedPath = pathNormalize( path, attributes );
 
-		return resourceGet( Cldr._resolved, normalizedPath );
+		return resourceGet( Cldr._resolved, NormalizedPath );
 	};
 
 

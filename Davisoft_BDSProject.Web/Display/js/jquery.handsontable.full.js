@@ -7914,7 +7914,7 @@ else {
  if ((elem && !elem.length) || elem === window) {
  elem.attachEvent('on' + type, function () {
 
- //normalize
+ //Normalize
  //http://stackoverflow.com/questions/4643249/cross-browser-event-object-normalization
  var e = window['event'];
  e.target = e.srcElement;
@@ -10841,7 +10841,7 @@ if (!jQuery.browser) {
         if ( orgEvent.wheelDeltaY !== undefined ) { deltaY = orgEvent.wheelDeltaY; }
         if ( orgEvent.wheelDeltaX !== undefined ) { deltaX = orgEvent.wheelDeltaX * -1; }
 
-        // Look for lowest delta to normalize the delta values
+        // Look for lowest delta to Normalize the delta values
         absDelta = Math.abs(delta);
         if ( !lowestDelta || absDelta < lowestDelta ) { lowestDelta = absDelta; }
         absDeltaXY = Math.max(Math.abs(deltaY), Math.abs(deltaX));

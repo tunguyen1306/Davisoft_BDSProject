@@ -228,7 +228,7 @@
     var locales = {};
     var globalLocale;
 
-    function normalizeLocale(key) {
+    function NormalizeLocale(key) {
         return key ? key.toLowerCase().replace('_', '-') : key;
     }
 
@@ -239,9 +239,9 @@
         var i = 0, j, next, locale, split;
 
         while (i < names.length) {
-            split = normalizeLocale(names[i]).split('-');
+            split = NormalizeLocale(names[i]).split('-');
             j = split.length;
-            next = normalizeLocale(names[i + 1]);
+            next = NormalizeLocale(names[i + 1]);
             next = next ? next.split('-') : null;
             while (j > 0) {
                 locale = loadLocale(split.slice(0, j).join('-'));
@@ -345,25 +345,25 @@
         aliases[lowerCase] = aliases[lowerCase + 's'] = aliases[shorthand] = unit;
     }
 
-    function normalizeUnits(units) {
+    function NormalizeUnits(units) {
         return typeof units === 'string' ? aliases[units] || aliases[units.toLowerCase()] : undefined;
     }
 
-    function normalizeObjectUnits(inputObject) {
-        var normalizedInput = {},
-            normalizedProp,
+    function NormalizeObjectUnits(inputObject) {
+        var NormalizedInput = {},
+            NormalizedProp,
             prop;
 
         for (prop in inputObject) {
             if (hasOwnProp(inputObject, prop)) {
-                normalizedProp = normalizeUnits(prop);
-                if (normalizedProp) {
-                    normalizedInput[normalizedProp] = inputObject[prop];
+                NormalizedProp = NormalizeUnits(prop);
+                if (NormalizedProp) {
+                    NormalizedInput[NormalizedProp] = inputObject[prop];
                 }
             }
         }
 
-        return normalizedInput;
+        return NormalizedInput;
     }
 
     function makeGetSet (unit, keepTime) {
@@ -395,7 +395,7 @@
                 this.set(unit, units[unit]);
             }
         } else {
-            units = normalizeUnits(units);
+            units = NormalizeUnits(units);
             if (typeof this[units] === 'function') {
                 return this[units](value);
             }
@@ -1297,7 +1297,7 @@
             return;
         }
 
-        var i = normalizeObjectUnits(config._i);
+        var i = NormalizeObjectUnits(config._i);
         config._a = [i.year, i.month, i.day || i.date, i.hour, i.minute, i.second, i.millisecond];
 
         configFromArray(config);
@@ -1441,16 +1441,16 @@
     }
 
     function Duration (duration) {
-        var normalizedInput = normalizeObjectUnits(duration),
-            years = normalizedInput.year || 0,
-            quarters = normalizedInput.quarter || 0,
-            months = normalizedInput.month || 0,
-            weeks = normalizedInput.week || 0,
-            days = normalizedInput.day || 0,
-            hours = normalizedInput.hour || 0,
-            minutes = normalizedInput.minute || 0,
-            seconds = normalizedInput.second || 0,
-            milliseconds = normalizedInput.millisecond || 0;
+        var NormalizedInput = NormalizeObjectUnits(duration),
+            years = NormalizedInput.year || 0,
+            quarters = NormalizedInput.quarter || 0,
+            months = NormalizedInput.month || 0,
+            weeks = NormalizedInput.week || 0,
+            days = NormalizedInput.day || 0,
+            hours = NormalizedInput.hour || 0,
+            minutes = NormalizedInput.minute || 0,
+            seconds = NormalizedInput.second || 0,
+            milliseconds = NormalizedInput.millisecond || 0;
 
         // representation for dateAddRemove
         this._milliseconds = +milliseconds +
@@ -1842,7 +1842,7 @@
 
     function isAfter (input, units) {
         var inputMs;
-        units = normalizeUnits(typeof units !== 'undefined' ? units : 'millisecond');
+        units = NormalizeUnits(typeof units !== 'undefined' ? units : 'millisecond');
         if (units === 'millisecond') {
             input = isMoment(input) ? input : local__createLocal(input);
             return +this > +input;
@@ -1854,7 +1854,7 @@
 
     function isBefore (input, units) {
         var inputMs;
-        units = normalizeUnits(typeof units !== 'undefined' ? units : 'millisecond');
+        units = NormalizeUnits(typeof units !== 'undefined' ? units : 'millisecond');
         if (units === 'millisecond') {
             input = isMoment(input) ? input : local__createLocal(input);
             return +this < +input;
@@ -1870,7 +1870,7 @@
 
     function isSame (input, units) {
         var inputMs;
-        units = normalizeUnits(units || 'millisecond');
+        units = NormalizeUnits(units || 'millisecond');
         if (units === 'millisecond') {
             input = isMoment(input) ? input : local__createLocal(input);
             return +this === +input;
@@ -1885,7 +1885,7 @@
             zoneDelta = (that.utcOffset() - this.utcOffset()) * 6e4,
             delta, output;
 
-        units = normalizeUnits(units);
+        units = NormalizeUnits(units);
 
         if (units === 'year' || units === 'month' || units === 'quarter') {
             output = monthDiff(this, that);
@@ -2003,7 +2003,7 @@
     }
 
     function startOf (units) {
-        units = normalizeUnits(units);
+        units = NormalizeUnits(units);
         // the following switch intentionally omits break keywords
         // to utilize falling through the cases.
         switch (units) {
@@ -2046,7 +2046,7 @@
     }
 
     function endOf (units) {
-        units = normalizeUnits(units);
+        units = NormalizeUnits(units);
         if (units === undefined || units === 'millisecond') {
             return this;
         }
@@ -2922,7 +2922,7 @@
         var months;
         var milliseconds = this._milliseconds;
 
-        units = normalizeUnits(units);
+        units = NormalizeUnits(units);
 
         if (units === 'month' || units === 'year') {
             days   = this._days   + milliseconds / 864e5;
@@ -2970,7 +2970,7 @@
     var asYears        = makeAs('y');
 
     function duration_get__get (units) {
-        units = normalizeUnits(units);
+        units = NormalizeUnits(units);
         return this[units + 's']();
     }
 
@@ -3185,7 +3185,7 @@
     utils_hooks__hooks.weekdaysMin           = lists__listWeekdaysMin;
     utils_hooks__hooks.defineLocale          = defineLocale;
     utils_hooks__hooks.weekdaysShort         = lists__listWeekdaysShort;
-    utils_hooks__hooks.normalizeUnits        = normalizeUnits;
+    utils_hooks__hooks.NormalizeUnits        = NormalizeUnits;
     utils_hooks__hooks.relativeTimeThreshold = duration_humanize__getSetRelativeTimeThreshold;
 
     var _moment = utils_hooks__hooks;

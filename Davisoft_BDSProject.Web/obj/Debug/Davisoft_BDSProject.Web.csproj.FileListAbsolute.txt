@@ -474,8 +474,6 @@ C:\LocLM\FreeLancer\Davisoft_BDSProject\Davisoft_BDSProject.Web\obj\Debug\Daviso
 C:\LocLM\FreeLancer\Davisoft_BDSProject\Davisoft_BDSProject.Web\obj\Debug\Davisoft_BDSProject.Web.csprojResolveAssemblyReference.cache
 C:\LocLM\FreeLancer\Davisoft_BDSProject\Davisoft_BDSProject.Web\obj\Debug\Davisoft_BDSProject.Web.Properties.Resources.resources
 C:\LocLM\FreeLancer\Davisoft_BDSProject\Davisoft_BDSProject.Web\obj\Debug\Davisoft_BDSProject.Web.csproj.GenerateResource.Cache
-C:\LocLM\FreeLancer\Davisoft_BDSProject\Davisoft_BDSProject.Web\obj\Debug\RdlCompile.cache
-C:\LocLM\FreeLancer\Davisoft_BDSProject\Davisoft_BDSProject.Web\obj\Debug\RdlCompile.compiled
 C:\LocLM\FreeLancer\Davisoft_BDSProject\Davisoft_BDSProject.Web\obj\Debug\Davisoft_BDSProject.Web.dll
 C:\LocLM\FreeLancer\Davisoft_BDSProject\Davisoft_BDSProject.Web\obj\Debug\Davisoft_BDSProject.Web.pdb
 D:\Company\WebSite\Davisoft_BDSProject\Davisoft_BDSProject.Web\bin\Davisoft_BDSProject.Web.dll.config

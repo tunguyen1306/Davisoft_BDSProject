@@ -5,15 +5,12 @@ using System.Text;
 
 namespace Davisoft_BDSProject.Domain.Entities
 {
-    class BDSEducation : BDSBaseEntiry
+    public class BDSEducation : BDSBaseEntiry
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime? FromDate { get; set; }
-        public DateTime? ToDate { get; set; }
-        public double DisPercent { get; set; }
-        public int MultiApply { get; set; }
-        public int TypeApply { get; set; }
+        public string KeySearch { get; set; }
+    
        
 
     }

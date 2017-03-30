@@ -4,31 +4,31 @@
 
 <div class="form-group">
     <label class="control-label col-md-3">@Resource.Title</label>
-    <div class="col-md-9">
+    <div class="col-md-8">
         @Html.Bootstrap().TextBoxFor(m => m.Menu.Title).HtmlAttributes(new { @class = "form-control nouc" })
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3">@Resource.Url</label>
-    <div class="col-md-9">
+    <div class="col-md-8">
         @Html.Bootstrap().TextBoxFor(m => m.Menu.Url).HtmlAttributes(new { @class = "form-control nouc" })
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3">@Resource.Order</label>
-    <div class="col-md-9">
+    <div class="col-md-8">
         @Html.Bootstrap().TextBoxFor(m => m.Menu.Order).HtmlAttributes(new { @class = "form-control" })
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3">@Resource.Icon</label>
-    <div class="col-md-9">
+    <div class="col-md-8">
         @Html.Bootstrap().TextBoxFor(m => m.Menu.Icon).HtmlAttributes(new { @class = "form-control nouc" })
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3">@Resource.Roles</label>
-    <div class="col-md-9">
+    <div class="col-md-8">
         @Html.Bootstrap().CheckBoxList("SelectedRoles", m => m.Roles, r => r.ID, r => r.Name).SelectedValues(role => Model.MenuRoles.Select(r => r.ID).Contains(role.ID))
     </div>
 </div>

@@ -60,7 +60,7 @@ var validateParameterTypeDate = function( value, name ) {
  *
  * @firstDay the result of `dateFirstDayOfWeek( cldr )`
  *
- * Return the day of the week normalized by the territory's firstDay [0-6].
+ * Return the day of the week Normalized by the territory's firstDay [0-6].
  * Eg for "mon":
  * - return 0 if territory is GB, or BR, or DE, or FR (week starts on "mon");
  * - return 1 if territory is US (week starts on "sun");

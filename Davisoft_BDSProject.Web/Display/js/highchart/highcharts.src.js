@@ -576,18 +576,18 @@ function getMagnitude(num) {
 }
 
 /**
- * Take an interval and normalize it to multiples of 1, 2, 2.5 and 5
+ * Take an interval and Normalize it to multiples of 1, 2, 2.5 and 5
  * @param {Number} interval
  * @param {Array} multiples
  * @param {Number} magnitude
  * @param {Object} options
  */
-function normalizeTickInterval(interval, multiples, magnitude, options) {
-	var normalized, i;
+function NormalizeTickInterval(interval, multiples, magnitude, options) {
+	var Normalized, i;
 
 	// round to a tenfold of 1, 2, 2.5 or 5
 	magnitude = pick(magnitude, 1);
-	normalized = interval / magnitude;
+	Normalized = interval / magnitude;
 
 	// multiples for a linear scale
 	if (!multiples) {
@@ -603,10 +603,10 @@ function normalizeTickInterval(interval, multiples, magnitude, options) {
 		}
 	}
 
-	// normalize the interval to the nearest multiple
+	// Normalize the interval to the nearest multiple
 	for (i = 0; i < multiples.length; i++) {
 		interval = multiples[i];
-		if (normalized <= (multiples[i] + (multiples[i + 1] || multiples[i])) / 2) {
+		if (Normalized <= (multiples[i] + (multiples[i + 1] || multiples[i])) / 2) {
 			break;
 		}
 	}
@@ -2107,16 +2107,16 @@ SVGElement.prototype = {
 		var wrapper = this,
 			key,
 			attribs = {},
-			normalizer,
+			Normalizer,
 			strokeWidth = rect.strokeWidth || wrapper.strokeWidth || (wrapper.attr && wrapper.attr('stroke-width')) || 0;
 
-		normalizer = mathRound(strokeWidth) % 2 / 2; // mathRound because strokeWidth can sometimes have roundoff errors
+		Normalizer = mathRound(strokeWidth) % 2 / 2; // mathRound because strokeWidth can sometimes have roundoff errors
 
-		// normalize for crisp edges
-		rect.x = mathFloor(rect.x || wrapper.x || 0) + normalizer;
-		rect.y = mathFloor(rect.y || wrapper.y || 0) + normalizer;
-		rect.width = mathFloor((rect.width || wrapper.width || 0) - 2 * normalizer);
-		rect.height = mathFloor((rect.height || wrapper.height || 0) - 2 * normalizer);
+		// Normalize for crisp edges
+		rect.x = mathFloor(rect.x || wrapper.x || 0) + Normalizer;
+		rect.y = mathFloor(rect.y || wrapper.y || 0) + Normalizer;
+		rect.width = mathFloor((rect.width || wrapper.width || 0) - 2 * Normalizer);
+		rect.height = mathFloor((rect.height || wrapper.height || 0) - 2 * Normalizer);
 		rect.strokeWidth = strokeWidth;
 
 		for (key in rect) {
@@ -3309,7 +3309,7 @@ SVGRenderer.prototype = {
 	 */
 	crispLine: function (points, width) {
 		// points format: [M, 0, 0, L, 100, 0]
-		// normalize to a crisp line
+		// Normalize to a crisp line
 		if (points[1] === points[4]) {
 			// Substract due to #1129. Now bottom and left axis gridlines behave the same.
 			points[1] = points[4] = mathRound(points[1]) - (width % 2 / 2);
@@ -3708,10 +3708,10 @@ SVGRenderer.prototype = {
 				anchorX = options && options.anchorX,
 				anchorY = options && options.anchorY,
 				path,
-				normalizer = mathRound(options.strokeWidth || 0) % 2 / 2; // mathRound because strokeWidth can sometimes have roundoff errors;
+				Normalizer = mathRound(options.strokeWidth || 0) % 2 / 2; // mathRound because strokeWidth can sometimes have roundoff errors;
 
-			x += normalizer;
-			y += normalizer;
+			x += Normalizer;
+			y += Normalizer;
 			path = [
 				'M', x + r, y, 
 				'L', x + w - r, y, // top side
@@ -6940,7 +6940,7 @@ Axis.prototype = {
 		} else if (axis.isDatetimeAxis && options.minorTickInterval === 'auto') { // #1314
 			minorTickPositions = minorTickPositions.concat(
 				axis.getTimeTicks(
-					axis.normalizeTimeTickInterval(minorTickInterval),
+					axis.NormalizeTimeTickInterval(minorTickInterval),
 					axis.min,
 					axis.max,
 					options.startOfWeek
@@ -7250,10 +7250,10 @@ Axis.prototype = {
 			axis.tickInterval = minTickIntervalOption;
 		}
 
-		// for linear axes, get magnitude and normalize the interval
+		// for linear axes, get magnitude and Normalize the interval
 		if (!isDatetimeAxis && !isLog) { // linear
 			if (!tickIntervalOption) {
-				axis.tickInterval = normalizeTickInterval(axis.tickInterval, null, getMagnitude(axis.tickInterval), options);
+				axis.tickInterval = NormalizeTickInterval(axis.tickInterval, null, getMagnitude(axis.tickInterval), options);
 			}
 		}
 
@@ -7274,7 +7274,7 @@ Axis.prototype = {
 
 			if (isDatetimeAxis) {
 				tickPositions = axis.getTimeTicks(
-					axis.normalizeTimeTickInterval(axis.tickInterval, options.units),
+					axis.NormalizeTimeTickInterval(axis.tickInterval, options.units),
 					axis.min,
 					axis.max,
 					options.startOfWeek,
@@ -8224,20 +8224,20 @@ extend(Axis.prototype, AxisPlotLineOrBandExtension);
  * with the time positions. Used in datetime axes as well as for grouping
  * data on a datetime axis.
  *
- * @param {Object} normalizedInterval The interval in axis values (ms) and the count
+ * @param {Object} NormalizedInterval The interval in axis values (ms) and the count
  * @param {Number} min The minimum in axis values
  * @param {Number} max The maximum in axis values
  * @param {Number} startOfWeek
  */
-Axis.prototype.getTimeTicks = function (normalizedInterval, min, max, startOfWeek) {
+Axis.prototype.getTimeTicks = function (NormalizedInterval, min, max, startOfWeek) {
 	var tickPositions = [],
 		i,
 		higherRanks = {},
 		useUTC = defaultOptions.global.useUTC,
 		minYear, // used in months and years as a basis for Date.UTC()
 		minDate = new Date(min - timezoneOffset),
-		interval = normalizedInterval.unitRange,
-		count = normalizedInterval.count;
+		interval = NormalizedInterval.unitRange,
+		count = NormalizedInterval.count;
 
 	if (defined(min)) { // #1300
 		if (interval >= timeUnits[SECOND]) { // second
@@ -8333,7 +8333,7 @@ Axis.prototype.getTimeTicks = function (normalizedInterval, min, max, startOfWee
 
 
 	// record information on the chosen unit - for dynamic label formatter
-	tickPositions.info = extend(normalizedInterval, {
+	tickPositions.info = extend(NormalizedInterval, {
 		higherRanks: higherRanks,
 		totalRange: interval * count
 	});
@@ -8342,14 +8342,14 @@ Axis.prototype.getTimeTicks = function (normalizedInterval, min, max, startOfWee
 };
 
 /**
- * Get a normalized tick interval for dates. Returns a configuration object with
+ * Get a Normalized tick interval for dates. Returns a configuration object with
  * unit range (interval), count and name. Used to prepare data for getTimeTicks. 
  * Previously this logic was part of getTimeTicks, but as getTimeTicks now runs
  * of segments in stock charts, the normalizing logic was extracted in order to 
  * prevent it for running over again for each segment having the same interval. 
  * #662, #697.
  */
-Axis.prototype.normalizeTimeTickInterval = function (tickInterval, unitsOption) {
+Axis.prototype.NormalizeTimeTickInterval = function (tickInterval, unitsOption) {
 	var units = unitsOption || [[
 				MILLISECOND, // unit name
 				[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
@@ -8406,7 +8406,7 @@ Axis.prototype.normalizeTimeTickInterval = function (tickInterval, unitsOption) 
 	}
 
 	// get the count
-	count = normalizeTickInterval(
+	count = NormalizeTickInterval(
 		tickInterval / interval, 
 		multiples,
 		unit[0] === YEAR ? mathMax(getMagnitude(tickInterval / interval), 1) : 1 // #1913, #2360
@@ -8495,7 +8495,7 @@ Axis.prototype.getLogTickPositions = function (interval, min, max, minor) {
 			(realMax - realMin) * tickPixelIntervalOption / (totalPixelLength || 1)
 		);
 		
-		interval = normalizeTickInterval(
+		interval = NormalizeTickInterval(
 			interval, 
 			null, 
 			getMagnitude(interval)
@@ -8677,7 +8677,7 @@ Tooltip.prototype = {
 		// When tooltip follows mouse, relate the position to the mouse
 		if (this.followPointer && mouseEvent) {
 			if (mouseEvent.chartX === UNDEFINED) {
-				mouseEvent = chart.pointer.normalize(mouseEvent);
+				mouseEvent = chart.pointer.Normalize(mouseEvent);
 			}
 			ret = [
 				mouseEvent.chartX - chart.plotLeft,
@@ -9049,7 +9049,7 @@ Pointer.prototype = {
 	 * Add crossbrowser support for chartX and chartY
 	 * @param {Object} e The event object in standard browsers
 	 */
-	normalize: function (e, chartPosition) {
+	Normalize: function (e, chartPosition) {
 		var chartX,
 			chartY,
 			ePos;
@@ -9459,7 +9459,7 @@ Pointer.prototype = {
 
 	onContainerMouseDown: function (e) {
 
-		e = this.normalize(e);
+		e = this.Normalize(e);
 
 		// issue #295, dragging not always working in Firefox
 		if (e.preventDefault) {
@@ -9486,7 +9486,7 @@ Pointer.prototype = {
 			chartPosition = this.chartPosition,
 			hoverSeries = chart.hoverSeries;
 
-		e = this.normalize(e, chartPosition);
+		e = this.Normalize(e, chartPosition);
 
 		// If we're outside, hide the tooltip
 		if (chartPosition && hoverSeries && !this.inClass(e.target, 'highcharts-tracker') &&
@@ -9513,8 +9513,8 @@ Pointer.prototype = {
 
 		hoverChartIndex = chart.index;
 
-		// normalize
-		e = this.normalize(e);		
+		// Normalize
+		e = this.Normalize(e);		
 		
 		if (chart.mouseIsDown === 'mousedown') {
 			this.drag(e);
@@ -9564,7 +9564,7 @@ Pointer.prototype = {
 			plotLeft = chart.plotLeft,
 			plotTop = chart.plotTop;
 		
-		e = this.normalize(e);
+		e = this.Normalize(e);
 		e.cancelBubble = true; // IE specific
 
 		if (!chart.cancelClick) {
@@ -9774,7 +9774,7 @@ extend(Highcharts.Pointer.prototype, {
 		
 		// Normalize each touch
 		map(touches, function (e) {
-			return self.normalize(e);
+			return self.Normalize(e);
 		});
 		
 		// Register the touch start position
@@ -9821,7 +9821,7 @@ extend(Highcharts.Pointer.prototype, {
 			
 			// Optionally move the tooltip on touchmove
 			if (!hasZoom && followTouchMove && touchesLength === 1) {
-				this.runPointActions(self.normalize(e));
+				this.runPointActions(self.Normalize(e));
 			}
 		}
 	},
@@ -9833,7 +9833,7 @@ extend(Highcharts.Pointer.prototype, {
 
 		if (e.touches.length === 1) {
 
-			e = this.normalize(e);
+			e = this.Normalize(e);
 
 			if (chart.isInsidePlot(e.chartX - chart.plotLeft, e.chartY - chart.plotTop)) {
 
