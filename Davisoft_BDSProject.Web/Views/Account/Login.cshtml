@@ -1,17 +1,17 @@
-﻿@using Davisoft_BDSProject.Domain.Entities
-@using Davisoft_BDSProject.Web.Models
+﻿
 @using Resources
-@model LoginViewModel
+@model Davisoft_BDSProject.Web.Models.LoginViewModel
 
 @{
     Layout = "~/Views/Shared/_BigBang.cshtml";
 }
 <style>
     body {
-        background: url(/Display/img/background_5.jpg) no-repeat center center;
+        /*background: url(/Display/img/background_5.jpg) no-repeat center center;*/
         background-size: cover;
         height: 100vh;
         overflow-y: auto;
+        background: #eee url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABWNxwqAAAACHRSTlMAAQIDBAUGB1pv5VcAABgeSURBVHgB7JnRcuMwCEUNEu7///FOPVVMeoa5JuvuPjS8tEXkYh2DhdOtZbF/mtHD34tIr6Vo/CBN56KTAdc8/wXWG9Ybls+I8DesKzb3w8IULAT/AlhktQAIWAi+D9bYD3MVYPD8U1i+P2wIWAhuwxIodudj4fkqDZ4fhsXCCrfjh4CF4DYswSq+dToDwCqsAWsp+6uw4is25GPbEHwLLLICh6E9GhaVJSzUeRuW9WGJK8lbyJ0eywSrQ2RIWHYqz+uw5vcbOW0b7ALGH9LxFczIFqyknGRSp8MqVmP9IWCNUzlMwWI1Pu5kxOKdVxmfgxnZgwVWqPSLrHJAAQvKrmAVx1+cybCK+BTMyC4sJwrCUqySyLwLFo6/WCVhsc6Ic9WPHzwuc3D2t2Gh4/zJadsgK56DuDzCovLxebZh7/jzejV7Rux7TIO/DatQSJ0u6woiBSwox9aAZeXxx1V4DP47YaX+czutYNWAlZWtA2sdf9hSPu9ynT/Fb/D3YfEgftjZ6TCyyhe8iznLFq1rQymOP2yJq/TU/rET1mIMq5VXp8O8eIKdIoQVUHYIEhar0QiLq/TQn1kRFmkJ5c0Mw3PSB6slQljIbkb4FSwcf4CFVXhKP/cy95oW+0J9d+TF0z6LZFjjo84OQVFbVbMMdAE88IOVpFUrg0SYYhWHCLaG7D1WKCWUK2oVHvjJStASyugw+YZoZqyDHFHcDHSMhoUN9Y2sIG5NQbwk1qzYNIxpsgIsbGja7az6tDiF6UmepxuzN3sQsCj5stWpe+I1rAar3XV21FXry/8brLhNs6Ow8VWuxQrO2b9gAWuLjx9j1aXFkVU/r+hk9j4rwtKSHVY30uJLIkvIa1YXsodj9BWwIHk/qyatcjzu1RWXyIqjr4bVp9Vh1RAX43HveSWyh2P0FbCymZm5vWrPI/+nzWdxbZwhzdSUgsbErsrs/C+GhnWbcTu3TWv9umpkDPdZfzZqknYPq7+m1eQZFStrjL7+p7tz0Y0cxwFgU5aS///jO8wdlvFUpkCBrXGwBHYBK7KtrhFtPkTZQiPTYfVZ7dNS10vm3kKj/CKBJSO6OrCc1RFaYko1YCGLgS6g5VeVP/tr+nOFXkloRTWo4m80F2YxZER18b70uTZvMStjIxOkDlWEhKelj8oKv4V7hXWLDnl5J2NaNpzoWVaHaJGVPaTrtPzEeZpVn5azOg/rPC0kLOoyeaKx0gxmDxZlnmbVn1vOyvOPLViUOCKFW0AmaMnFJf84DsD6eUJaLp5//JfDatHy/GMN1qrXVnjjg7TKIwwn5bCcFl0qNj5P6/wIPdLBm3J4j9Gi6fGJpoIn2LyvunHpUCNpfl6meqzfOX2xO8KpTHHf18e3guWjTJqfl+WWH52+a3eErl+4759hcVFoNj5JiyMcPsImrasCKwgrG/+STKXVgyW07qUZVwFWLi7litMn5xZHGEjrt/N0F0MkAgsuFZPmz9Pqj1BTr6D1B0dr8UpMmh8UuITwCnMwxRHKLcQYmF/vW11cysZT0lh0isZGbAV1T1WXio3P0+qPUGjthwwjtJFjN5n77meuOuyP0Gk5rCN5eZe56X72ww0tWswYnmcltKaET5+nJRnD86xwX3ia8En/Ei01Bj7GcVZCC56mvIaO0nJZj7ECLXFN4JPOZ8JCvfc+31+skR9VC1M8Tfik80xYqKCeDVRWfZ/NNq3haa6clOrxHZCjes3gpLASWpN+nPukP4pW1YyU6vtkJdbmlOXZ4vE9Q2v8QXWLF5Pq+zFRwQJ81ER37hL1SVpedUZ5lczIWvU9kx0+t9y5e4wWWDks0KpW339nbU6pMKs7d4fiP2GsHJbTYm3+zBbJa0w+5X9kkttZAZbT8up7aqvQWj+HVlRYeaQ0OAm0+n4FtdWWCx2lZVZ0vdgwKIIetLz63vIa8yFalxbtiFgw2GnJEpzAyyt102nNv8eqTkv712mxsoc+FHRz5HuHtE4l+uvrumeTlbsohOWpBCA/ZTMtLdKXDn1WoBUCS+IbjvwoLbGZnZazcloKS947EUG9Oz+36rDE1m1EDBWW+oNC6/TcYjb/dVzqsKaM+aHnFm3mvshrpQRLsg9mXZ1O9Pu67vL62GEhmrkPi/7g3/YKScuz+fXVp8N9w1mANfVR+oDlLnMLrGivKit3pJfCSlUbAgtXe4CWq0Ig6iusJOow5WaMuSNW8zwth+WV9WRFWKTFm5GW+4PuFR6jFQ6rXlo3PESzxBnMBkxg+IO4Wv8p70GYOfLi69dhH9ZgrCa2ncF1c7gsVjNPxv4QhMEjQkI02B9YWMWmM7hCI/HwB6EaB2jhpcYHKl95UlnvrDCT8/dVYa3wRAPY9OMzUglypzWZ6PQFT0njWmtiY6g5aJ6ZFRpIW4AOaR30c1gJsr7Yxr+FaELXyXCuJqvUZbh1CssdrvNeoVeC4LHNqANpgZXq8m0mF2Bh1Td12TVxPQJr1GAFWI2vthJnsj+z+OJzV2uejf3lvtyRtfY8XGAFWCiVGmh54R/HPeekNXSBjT/lOyKrboYe8n1HWL5E4ResKMJCo4RoptCKlsjizzwMbiZDVg5rfAsr5+o2LH784rxXKEEYP3Q7isYqw633mbwPC/gPxmckOaKHwkqMVbq9r3F/u70Rlvs5/hrd6RAj7of2V34oyoKr0OV8u+GltgVrpklSp8U7Woe+0CdyvUZLTl06AQpLQjTqFbrbIR36cjkr+0BA0gusGt2BxQWi057y9hp178+VtHAIX8YXdaOFq0Z/uViFWiSzVKdFs3DHWfX+JETDseGvebt+8QRMsulbYcjsNa9w6pvBHRrPO/ghfmBDEKuiVlJVJUTjc8tgac2FrDb3Q9icnRVxGX4Zv6YNtZILvFU09oc7iqwckqw2j3saAkMtBUhd0y3fzUnLRhOJK+OOIhIRWuWoQzW+5Jp+8+NooBIW9QLvHZlbXmfh3l8H1sDtihn8+D1E8zH5UmNQlAu85RUpT3m5o3t/uk5mBbTs9ldcjfrle3dn3nByjSgnLRv9FemaWKjsYwdx5fRwwsIsZvARdch0W/pW1EpplBCN06I3594fZN1NTI3Y5NWkEqQEC0wKW2G4bZm0jsQgMBgJ0ayh+mXjQYhGaHktkptL63z20GMyrsIcM8aDEE0EMvLmFqERr0jOrVb2cNbrc/1QYQktqjaNz7poiKafDzuwmwv0ayNo0/eYxidtS6W1dmi9F5Law0s03ezMq64OtC1Xi9b52m+M2d86Eb8r0eAnt/wfuBKiWa6JT9Gifhmt4sd5hZa8N4XWenBuuX45LbEzwQq05K2UtFwTR0F4Fp3QTvmhV4LUlGj0H7Wk1brI6ucv3Bl0Wv5x3kdpydKgSzSzxKpOy/0vfr/1H5HloBJOXGKd7tIauxsC+7aHTVr+aSShJTN8vo/WgBPaWfkWXVrCyh06ye75O3EfVmvL4koAfqqm6qeR8tWTVkk9u2dzy53Bx2D5CF9aJszlpvXsHvU3D1WWqmFjy2IEToWWbYIhrHL8q7pcUedWkRZgwaFrrnxzWg6LrJh3W2VYfVqABYeuu/LNaTkssGLeUGlNzPAWLcBqfxqmfu6swmKyO3K+kJbPcH8nOi3CYiy0Ln6u0/K9aCSf6jM8O+rcKtTwTsLqb11YPzcofqYXU7h36bTqziBh/VTxZLcnDvq04ofDktBNc4ZjxkjIZSks9n9e2q8enVvuVC6Bhf7Pi+QN+7SWO5UOy8Isz4volmuTzy1EGT+vAizYyY2BPShzfxtcLo1zWOyv8tPU1rVJ55aYcgIL/U0OqO2B8tsSrT6sgmqp2o7l4iGanmwuNEXKsq6GtihUNrsAx215G6z0Imu0Bu1eh8X+LpyJYPUcLGiT0mLIJRwW+3dgCavzsHIVzarG1OFUAlYvRKNq66z6sNZHej/Z6CEah8VDg1V0Qr1+EKzkFxVDNGP8/39j/Dr8338j4p+myPYx8CE2F2fhHdwJdfeWrNbIX5S/O3+chmgaAm06Bqvv3o7kd0yiE6IhCx56h557K6wegAXtgGt2HpYPjKziO7RrjnOwXKZGYNIfmYdgyb5Y/EUPO5IWgcGqGHaI90dKl3+QwWiZyhQ287z2fEbCCu/ABzyGNKA4bCGsNb50XgM1TbOuMtKCWeuCzCN9vexAWFQNP3RVsrirOZKuMmxxVltu0GWrygmrXtjL/gILndWRtGjG8PiGspKi3bxoHZZV8kKL2UFg8fQ6LGoEW/ZZoTgxX9woNP4W1pRKXigOOwgsnl6P/zBZz5ZdVvAZ8TLyEA2nnh6yP0RCiXAkRaofbMK60zBBRGXdWHmIhmOwwl72H5uwZAspKVZabAlZS1l2zXKs6rtBDbP648vhR+CvL3SgWNxVFyHw5/sHm5yVu2YEwQ7s45utUXHYYrDYecnL33e0YeBFWblrRhDswD7QUz9EC21Uxl3ZILS4o43piLNyISzvU9t7zccsRiw7M2vu8+oWZomJwAtYHYaFFWgeaDWzk4c83WndvybGOveRLcrK/c0OLFdkhSU27UTn+tJu+fktVr7Vm8OibMOS3WnQubS0u87Kw4zubz4Dy+0ynu60Xq15NbZDND8H1kDnwtLuDqudtP4jsCZ3p5l5yNOd1us0q5z2T8ASIxad60u7X/us6iEawsLr8gws2Z1mGCxf2t1npZUXooYW6uzDohH7Kb5qQ/w9ODohGvtCtxf2Gixuxy0FGmdg+fNqDRWGaPKARiNb9mDl+YSFAudjsMiqF6IJD89KqFNgYWCCA7CeZcW0Pn9qPdQJLQMLsHoAFli9M0STSBQWWREW0s0NWE+xciXiNjhoSXEtA6snYLkOtmGNenjWtYzrnvybjPoli0YxgrPiWXVYtBLZIqwIS/ZYmMKqCsvT98pKzqrD0s3qhZXAkp1lOyEUCaeQFR4LclYRVrLB9/S5ex1v7bCEllzQRcIpJR30zWGmw/IUhvy0OiwJfvKCHnRaL1vxIqxoVX4vswzLhawEFmmZjPKS75eEU5QVrUqh1YfFW9dh6aYBS1gJLNiHZl/RqhRafVhkpbAgs8eKsJCsd1bl3e9nHxZZ1WEprRXCSmAhnOI6SKvSaImJ6LCclcNyWspKIqVY8VJgJbvf44rLTESF5a/4IiwJfsrnfaU3UuEFHeRZ9c+MToEl86oBq5fjk1p7YWVnCS20DIdlv4J/7cPS2Wu19nVWYkM6LcJqsAKsDqtH4wykJYurnZX/lbAeYIXDDi1Z5VL4FfLXHqz1BCvWOJCWLa72meOsCKtef7GElcvosYJmRdLSTS2a84qwPClJWOefVx7q4Sf165taeFFSJTdh9Rd9WM7KIxgW6lkNWDVWuPJdx2VsdVjGSg5dtHYJaig7K8pvsKipfOAGWi+62Z1XRVZejuOLq83rrkdNMW0xNtHWs/MKEg7LN7UgLFbm5sD6sLjQtCTjLfMqE38Kq+xahi/Yd1gT4145Nn7a6bwO+soZh8WEBWEpK4GVOu5jw3QrmJErxzCu+WWq3/86RLBypgwrHBZVRqOmDB/dxsZe4bDsU9R+6GK1S31Y9rlewqolJSefGxusLjvc2ZW3A4s9q3bZ0JaBsdXLDDm39dCmqdRlCKxXcWYRlswsT0rSM6RuxjXhQmJFWdy/s5af0F1k5XIElquMzyyI6OZYliAZv7wD1tJiCdWzsK4vL7i5O7NIibpJF9ILfuXwyZnFdOnszqwvVx7ZB7thSMFv2nJ5uLB393FY7ElaqzmzKtsqhu/OfbEq4b/HifmhmZXeTtKKI7D8NVIurX0IFvMjcw8WIqUNWOXS2gOwJDxS5tiJlEJYwi818rmcbPjqsj4sf+/0Ye3vVKNmKusO5PAALKmnaMLixf01J2ZqnN/322F5wqIPixdHi4h8Iv85WO7rjY8erGL5htAav2nuervMBiywehes4qbfvFR8Nes+3i+zDmuynsITrHVYdCRR9luBdX1mUKgPy2nVExbTWW3Dkp1qMEiBlZMRsE7RqicsnFUdlpdvOK3zsEjLYWk9hSfuHZZGSknLYWX9PmCdoCWw0uJd4az2YfHidC1nAVZqLnft7gq/CyywcrGnp1D3YdlCO36+zWBRl98ppKWwPH3ZgKWStBwWdfm9EqTlsITVMVjy8WJe6uqF1H0BG2k5LNFBXLwHK/I6M2nhr7hUe+N8WcBGWg7LWfXXpPEsaCJ/wgHNY4QftMqwhJVslEFYOkjSGvjrQVgMhpCWw/LnlUVaPq8qrLEWBylbBx+DJd8Fng7L5xXjKvqdpsKV8yzbw+0sLPkucDgsn1f1SEvlygg5yLZkR2ExEbvqsJRVPdLiV/4xsCZqFROQvWhcByXSwiR+4co4K/vjmmdgMfRBWPmikZ90gVUh0iLPLLLCWbK61WANxuRpcPLQnPmENfxFo/NK9gTmZZZf+X4d3cOtUBQ7w+yT+dthGK2EhXclx+E+Tn2jDL9y4CwJFhXKrZdXTEjnmPesesLCyyvHYaxw8bWGf8UeV2YR05XXQf/8q8DiRhZSMcHO19fc4nJYfNGoDjJx6S0Gaw2cJZu2CaxUk0LFRHauhWICuzxhHMKqJnWHUford5qUpU+IciX+dFjISnAcq8mq7jBKf4dFk7JQMYHOGopB3xBYzZRveBGT9hdYsphNKiaw1C1lOix/0fQdsbrDqP0dVn0jC+64C5gGKzfh91VUDdl3GDWVP2mZ0EgqVEzcOiMUQ1hY7P0DYQ037Mp/9KVuIaEYIDgLCysBBJavWBurYPXB3+FfsfItNBQjqfz5blh1h9H7F75yGDFCHEZZ27YcFmmxvbryUzoUHEZ3OemwzPpXR+kDUkT1JDfHdt/KW+1PeZjIpdifCC85d9NhdFiSbpV0BszFzxWl1AOdO+uZtNg/1kcS5LnFIvp9WHVaspV3YWzqMA72tP75aL97NNggUV3CfVh1WjgrS6vaY7vKPflov1C8r7BKyy/1DWi0BHHeujk2MaZEuWdwGA7Li8EEVp2WwAqHRQR9WPOusAbLXcI6rB1ahIWVn4UCf5NV+nIoHu34DA1gqUuY4kam03LlpbnYHdtAkoKCRzvOTVj1InqDtU/LlNd9VRbRC6sUJFzYk6zuwyjMy5Kuk9alC7bUfPVbewdhRTOVrALniu2kDqNPrfLcEvMV5iJFOkhqwUp6cX+cCxGb7QQtN1/91qUOAx9t1K/tZwPOfa/EPi03X/dFWEmAFM62nHucVtS3J23RElbhMUL/Ho1FPLwx9mkhR0dYTssHKTveY26ImWrfo/GIBxuFUdHdS5wCy2h5sGWIA8mrIKCasKqsCKb+cQoLmaYILNgg7uV2WNW+tp9HviJU4iQUJugasHKc9bCMswov6R0Caw0qPleE4q2hcmFuNWC564xBFlmJQRsv3/p74ELYi8bjJEJrHxZ+z6zvu7ipgxyJuBMo+PUVodlYL//qz6y9sIx/ZhGXVliYWTRfuRfNrfHK0VRo9WH53OJbzN9cLVjYkYb7LE3P6TutPiyfWwi2OKseLFhkTN+H5PQhK2k1YEHKYRmyou3ahBUJSyMebHRDtA/LJZazou3agoX8PsxrDdEIrTgHCzW8wuqec2zCYn6fQ2dOH1lsQD4Li+Mhq/QQWQNVhyUFvwJL8vigdRIWRVjRdu3AguILrKqT+AAsYQXbVc4dbBFwAks8x+OwxiqIsUpYynmwpQOLnuNRWO6/uPc3JKUoUUG0NGCxlvA4rDorzivarqq/bGnAopN4HlaP1ZKUYpVVExby+OdgdVmZLY0iTba0YLGW8ASsBit8cYa2a53VPiy6V9xGqQXL7oh4i0hIgUb+9WZOUwfJah/W9fGZVihqCU/AujhnXPZLmZzVPqyJ/AVrCecJWA1W8gxhubE867KxAiszBVxNEWMEFny8DRb25xdLdd71S2CN3/3EZfMqG8uw6F55Xq8PCwWPZHWnOaFf8mKVcmOdV76rQixJDSAz+G5YWnNE+xz6JS9WlhvrvMKH/u3LIr6adB2DhTuKRYEcYl6KpxBWZV4NADdarBgSBA1Y3NTCWfH7aPp5ngx1Wo7e55WVBXPF5nlYTKl7BoNTBvfCD6FNIKzQhyKrSc/BygOf8us+MpbzB0+5X5awhBX7FFID52H5HfEjEYeRe+Vl3dp0JxEim06chqUOHU5ciMPIve6XdVhLnUTHhfT3MVh+R5zIHKLfKy+rsKB0AsvlPCyKDhr65fdyWPzrvwsW9euvwPoPy6At/TY77ecAAAAASUVORK5CYII=');
     }
 
     input {
@@ -23,11 +23,14 @@
     .login-container {
         width: 320px;
         position: absolute;
-        top: 10%;
+        top: 50%;
         border-color: #DDD;
         color: #333;
         padding: 15px;
-        left: 5%;
+        left: 50%;
+        margin-left: -160px;
+        margin-top: -190px;
+
     }
 
     .login-form {
@@ -42,7 +45,7 @@
         text-align: center;
         background: #F6F6F6;
         padding: 19px 0;
-        color: #6164C1;
+        color: #C6151C;
         margin-bottom: 0;
     }
 
@@ -63,7 +66,7 @@
         }
 
     .button {
-        background: #6164C1;
+        background: #C6151C;
         border: none;
         padding: 10px 16px;
         color: #fff;
@@ -72,7 +75,7 @@
     }
 
         .button:hover {
-            background: #5356A0;
+            background: #C61500;
             color: #ffffff;
         }
 
@@ -92,11 +95,10 @@
 
     @@media only screen and (max-width: 699px) {
         .login-container {
-            /*top: 50%;
-            left: 50%;
-            margin-left: -160px;*/
+            width: 290px;
             padding: 0;
-            margin: 0;
+            margin: 50% auto !important;
+            position: inherit !important;
         }
     }
 
@@ -187,44 +189,45 @@
         </div>
     </div>*@
 
+<div class="container">
+        <div class="login-container">
+                               <h1 style="text-transform: uppercase;"><strong>DR. POWER PORTAL</strong></h1>
+                               <div class="panel-body login-form">
 
-<div class="login-container">
-    <h1 style="text-transform: uppercase;"><strong>Certified Pre-Owned System</strong></h1>
-    <div class="panel-body login-form">
+                                   @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { id = "login_form" }))
+                                   {
+                                       <div class="form-group">
+                                           @Html.HiddenFor(m => m.CountryID)
+                                           @(Html.Bootstrap().TextBoxFor(m => m.Email).Placeholder("Email").Class("form-control").ShowValidationMessage(true))
+                                       </div>
 
-        @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { id = "login_form" }))
-        {
-            <div class="form-group">
-                @Html.HiddenFor(m => m.CountryID)
-                @(Html.Bootstrap().TextBoxFor(m => m.Email).Placeholder("Email").Class("form-control").ShowValidationMessage(true))
-            </div>
+                                       <div class="form-group">
+                                           @Html.Bootstrap().PasswordFor(m => m.Password).Placeholder("Password").Class("form-control").ShowValidationMessage(true)
+                                       </div>
 
-            <div class="form-group">
-                @Html.Bootstrap().PasswordFor(m => m.Password).Placeholder("Password").Class("form-control").ShowValidationMessage(true)
-            </div>
+                                       <div class="form-group">
+                                           <div class="checkbox i-checks">
+                                               <label>
+                                                   @Html.Bootstrap().CheckBoxFor(m => m.RememberMe)
+                                                   <i></i>
+                                                   @Resource.Rememberme
+                                               </label>
+                                           </div>
+                                       </div>
 
-            <div class="form-group">
-                <div class="checkbox i-checks">
-                    <label>
-                        @Html.Bootstrap().CheckBoxFor(m => m.RememberMe)
-                        <i></i>
-                        @Resource.Rememberme
-                    </label>
-                </div>
-            </div>
+                                       <div>
+                                           <button class="btn btn-inverse pull-right button text-uppercase" type="submit">@Resource.LOGIN</button>
+                                       </div>
+                                   }
+                                   @if (!ViewData.ModelState.IsValid)
+                                   {
+                                       <p class="error">
+                                           @Html.ValidationMessage("")
+                                       </p>
+                                   }
+                               </div>
 
-            <div>
-                <button class="btn btn-inverse pull-right button text-uppercase" type="submit">@Resource.LOGIN</button>
-            </div>
-        }
-        @if (!ViewData.ModelState.IsValid)
-        {
-            <p class="error">
-                @Html.ValidationMessage("")
-            </p>
-        }
-    </div>
-
+                           </div>
 </div>
 
 @section css

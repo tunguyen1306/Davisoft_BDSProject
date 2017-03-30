@@ -1,0 +1,56 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSNewsTypePrice
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSNewsTypePrice_Name", "Name") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+       
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSNewsTypePrice_NewsType", "News Type") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.IdNewsType,  new SelectList( (List<BDSNewsType>)ViewBag.ListNewsType,"ID", "Name")).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
+      
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSNewsTypePrice_Price", "Price") <span class="required">*</span></label>
+    <div class="col-md-4">
+        @Html.Bootstrap().TextBoxFor(m => m.Price).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+    <label class="control-label col-md-1">@Utilities.Resource("BDSNewsTypePrice_Perfix", "Perfix") <span class="required">*</span></label>
+    <div class="col-md-3">
+        @Html.Bootstrap().DropDownListFor(m => m.Perfix, new List<SelectListItem>
+                                    {
+                                        new SelectListItem{Text="VND",Value="1",Selected = true},
+                                        new SelectListItem{Text="USD",Value="2"}
+
+                                    }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
+
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSNewsTypePrice_ApplyPrice", "Apply Price")</label>
+    <div class="col-md-8">
+        @Html.DatePickerFor(m => m.ApplyPrice, new { @class = "form-control date" })
+        @Html.ValidationMessageFor(m => m.ApplyPrice)
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSNewsTypePrice_Description", "Description")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)

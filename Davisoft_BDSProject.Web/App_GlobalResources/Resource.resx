@@ -5775,4 +5775,433 @@
     <value>Enter reason delete here</value>
     <comment>Enter reason delete here</comment>
   </data>
+  <data name="BDSBankManagement" xml:space="preserve">
+    <value>Bank Management</value>
+    <comment>Bank Management</comment>
+  </data>
+  <data name="BDSBankArea" xml:space="preserve">
+    <value>Bank Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBankArea_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBankArea_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_Add" xml:space="preserve">
+    <value>Add New Bank</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank" xml:space="preserve">
+    <value>List Bank</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_AccountName" xml:space="preserve">
+    <value>Account Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_AccountNumber" xml:space="preserve">
+    <value>Account Number</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_Address" xml:space="preserve">
+    <value>Address</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_BankArea" xml:space="preserve">
+    <value>Bank Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_Image" xml:space="preserve">
+    <value>Image</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_Area" xml:space="preserve">
+    <value>Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_Edit" xml:space="preserve">
+    <value>Edit Bank</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBankArea_Edit" xml:space="preserve">
+    <value>Edit Bank Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSArea" xml:space="preserve">
+    <value>List Bank Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSArea_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSArea_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBank_Branch" xml:space="preserve">
+    <value>Branch</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEducation" xml:space="preserve">
+    <value>List Education</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEducation_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEducation_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSCareer" xml:space="preserve">
+    <value>List Career</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSCareer_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSCareer_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSCareer_Add" xml:space="preserve">
+    <value>Add New Career</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEducation_Add" xml:space="preserve">
+    <value>Add New Education</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEducation_Edit" xml:space="preserve">
+    <value>Edit Education</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent" xml:space="preserve">
+    <value>List Event</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_Add" xml:space="preserve">
+    <value>Add New Event</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="TheFieldShouldBetween" xml:space="preserve">
+    <value>The Field Should Between {0} {1}</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_FromDate" xml:space="preserve">
+    <value>From Date - To Date</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_ToDate" xml:space="preserve">
+    <value>To</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_DisPercent" xml:space="preserve">
+    <value>Discount Percent</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_FormDate" xml:space="preserve">
+    <value>FormDate</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_Edit" xml:space="preserve">
+    <value>Edit Event</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEvent_FromDateToDate" xml:space="preserve">
+    <value>FromDate - ToDate</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSLanguage" xml:space="preserve">
+    <value>List Bank Language</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSLanguage_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSLanguage_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSLanguage_Add" xml:space="preserve">
+    <value>Add New Language</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsType" xml:space="preserve">
+    <value>List News Type</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsType_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsType_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsType_Add" xml:space="preserve">
+    <value>Add New News Type</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsType_UrlIcon" xml:space="preserve">
+    <value>Icon</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsType_Edit" xml:space="preserve">
+    <value>Edit News Type</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSScope" xml:space="preserve">
+    <value>List Scope</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSScope_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSScope_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSScope_Add" xml:space="preserve">
+    <value>Add New Scope</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSScope_Edit" xml:space="preserve">
+    <value>Edit Scope</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTypeContact" xml:space="preserve">
+    <value>List Type Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTypeContact_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTypeContact_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTypeContact_Add" xml:space="preserve">
+    <value>Add New Type Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMarriage" xml:space="preserve">
+    <value>List Bank Marriage</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMarriage_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMarriage_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMarriage_Add" xml:space="preserve">
+    <value>Add New Marriage</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSArea_Add" xml:space="preserve">
+    <value>Add New Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice" xml:space="preserve">
+    <value>List Prices</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice_Add" xml:space="preserve">
+    <value>Add New Price</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice_NewsType" xml:space="preserve">
+    <value>News Type</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice_Price" xml:space="preserve">
+    <value>Price</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice_ApplyPrice" xml:space="preserve">
+    <value>Apply Price</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice_Perfix" xml:space="preserve">
+    <value>Perfix</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsTypePrice_Edit" xml:space="preserve">
+    <value>Edit Price</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSLanguage_Edit" xml:space="preserve">
+    <value>Edit Language</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTypeContact_Edit" xml:space="preserve">
+    <value>Edit Type Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSArea_Edit" xml:space="preserve">
+    <value>Edit Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary" xml:space="preserve">
+    <value>List Salary</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_Type" xml:space="preserve">
+    <value>Type</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_FromSalary" xml:space="preserve">
+    <value>From Salary</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_ToSalary" xml:space="preserve">
+    <value>To Salary</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_Add" xml:space="preserve">
+    <value>Add New Salary</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_To" xml:space="preserve">
+    <value>To</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_Salary" xml:space="preserve">
+    <value>Salary</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSSalary_Edit" xml:space="preserve">
+    <value>Edit Salary</value>
+    <comment>
+    </comment>
+  </data>
 </root>

@@ -95,7 +95,35 @@ namespace Davisoft_BDSProject.Domain.Helpers
                 return Attribute.GetCustomAttribute(method, typeof (ExtensionAttribute)) != null;
             }
         }
+        public static IQueryable<T> OrderByField<T>(this IQueryable<T> q, string SortField, bool Ascending)
+        {
+            var param = Expression.Parameter(typeof(T), "p");
+            var prop = (MemberExpression)null;
+            var exp = (LambdaExpression)null;
+            if (SortField.IndexOf(".") > -1)
+            {
 
+                var parts = SortField.Split('.');
+
+                Expression parent = param;
+
+                foreach (var part in parts)
+                {
+                    parent = Expression.Property(parent, part);
+                }
+
+                exp = Expression.Lambda(parent, param);
+            }
+            else
+            {
+                prop = Expression.Property(param, SortField);
+                exp = Expression.Lambda(prop, param);
+            }
+            string method = Ascending ? "OrderBy" : "OrderByDescending";
+            Type[] types = new Type[] { q.ElementType, exp.Body.Type };
+            var mce = Expression.Call(typeof(Queryable), method, types, q.Expression, exp);
+            return q.Provider.CreateQuery<T>(mce);
+        }
         public static string RawQuery(this IQueryable query)
         {
             // Source: http://stackoverflow.com/a/1412902

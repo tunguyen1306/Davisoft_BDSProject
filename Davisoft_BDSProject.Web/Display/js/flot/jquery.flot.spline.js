@@ -78,7 +78,7 @@
 		var c = $.color.parse(seriesColor);
 
 		c.a = typeof fill == "number" ? fill : .3;
-		c.normalize();
+		c.Normalize();
 		c = c.toString();
 
 		ctx.beginPath();

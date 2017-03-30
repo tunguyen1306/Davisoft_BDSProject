@@ -43,6 +43,7 @@ namespace Davisoft_BDSProject.Web
                 //, "~/Display/js/bootstrap-material-design/dist/css/bootstrap-material-design.min.css"
                 , "~/Display/lib/DataTables-1.10.0/extensions/FixedColumns/css/dataTables.fixedColumns.css"
                 , "~/Display/lib/multi-select/css/multi-select.css"
+                 , "~/Display/lib/bootstrap-daterangepicker/daterangepicker.css"
                 ));
             bundles.Add(new CssBundle("~/display/css/print").Include(
                     "~/Display/css/print.css"
@@ -106,6 +107,8 @@ namespace Davisoft_BDSProject.Web
                 , "~/Display/js/globalize-1.1.1/dist/globalize/number.js"
                 , "~/Display/js/globalize-1.1.1/dist/globalize/date.js"
                 , "~/Display/js/jquery.price_format.2.0.js"
+                , "~/Display/lib/bootstrap-daterangepicker/moment.min.js"
+                , "~/Display/lib/bootstrap-daterangepicker/daterangepicker.js"
                 ));
 
 

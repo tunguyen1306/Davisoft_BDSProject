@@ -55,14 +55,14 @@ var requirejs, require, define;
     }
 
     /**
-     * Given a relative module name, like ./something, normalize it to
+     * Given a relative module name, like ./something, Normalize it to
      * a real name that can be mapped to a path.
      * @param {String} name the relative name
      * @param {String} baseName a real name that the name arg is relative
      * to.
-     * @returns {String} normalized name
+     * @returns {String} Normalized name
      */
-    function normalize(name, baseName) {
+    function Normalize(name, baseName) {
         var nameParts, nameSegment, mapValue, foundMap, lastIndex,
             foundI, foundStarMap, starI, i, j, part,
             baseParts = baseName && baseName.split("/"),
@@ -71,7 +71,7 @@ var requirejs, require, define;
 
         //Adjust any relative paths.
         if (name && name.charAt(0) === ".") {
-            //If have a base name, try to normalize against it,
+            //If have a base name, try to Normalize against it,
             //otherwise, assume it is a top-level require that will
             //be relative to baseUrl in the end.
             if (baseName) {
@@ -193,7 +193,7 @@ var requirejs, require, define;
 
     function makeNormalize(relName) {
         return function (name) {
-            return normalize(name, relName);
+            return Normalize(name, relName);
         };
     }
 
@@ -243,19 +243,19 @@ var requirejs, require, define;
         name = parts[1];
 
         if (prefix) {
-            prefix = normalize(prefix, relName);
+            prefix = Normalize(prefix, relName);
             plugin = callDep(prefix);
         }
 
         //Normalize according
         if (prefix) {
-            if (plugin && plugin.normalize) {
-                name = plugin.normalize(name, makeNormalize(relName));
+            if (plugin && plugin.Normalize) {
+                name = plugin.Normalize(name, makeNormalize(relName));
             } else {
-                name = normalize(name, relName);
+                name = Normalize(name, relName);
             }
         } else {
-            name = normalize(name, relName);
+            name = Normalize(name, relName);
             parts = splitPrefix(name);
             prefix = parts[0];
             name = parts[1];
@@ -1653,12 +1653,12 @@ S2.define('select2/selection/placeholder',[
   '../utils'
 ], function (Utils) {
   function Placeholder (decorated, $element, options) {
-    this.placeholder = this.normalizePlaceholder(options.get('placeholder'));
+    this.placeholder = this.NormalizePlaceholder(options.get('placeholder'));
 
     decorated.call(this, $element, options);
   }
 
-  Placeholder.prototype.normalizePlaceholder = function (_, placeholder) {
+  Placeholder.prototype.NormalizePlaceholder = function (_, placeholder) {
     if (typeof placeholder === 'string') {
       placeholder = {
         id: '',
@@ -3182,11 +3182,11 @@ S2.define('select2/data/select',[
 
     var $option = $(option);
 
-    var normalizedData = this._normalizeItem(data);
-    normalizedData.element = option;
+    var NormalizedData = this._NormalizeItem(data);
+    NormalizedData.element = option;
 
     // Override the option's data with the combined data
-    $.data(option, 'data', normalizedData);
+    $.data(option, 'data', NormalizedData);
 
     return $option;
   };
@@ -3229,7 +3229,7 @@ S2.define('select2/data/select',[
       data.children = children;
     }
 
-    data = this._normalizeItem(data);
+    data = this._NormalizeItem(data);
     data.element = $option[0];
 
     $.data($option[0], 'data', data);
@@ -3237,7 +3237,7 @@ S2.define('select2/data/select',[
     return data;
   };
 
-  SelectAdapter.prototype._normalizeItem = function (item) {
+  SelectAdapter.prototype._NormalizeItem = function (item) {
     if (!$.isPlainObject(item)) {
       item = {
         id: item,
@@ -3325,7 +3325,7 @@ S2.define('select2/data/array',[
     }
 
     for (var d = 0; d < data.length; d++) {
-      var item = this._normalizeItem(data[d]);
+      var item = this._NormalizeItem(data[d]);
 
       // Skip items which were pre-loaded, only merge the data
       if ($.inArray(item.id, existingIds) >= 0) {
@@ -3477,7 +3477,7 @@ S2.define('select2/data/tags',[
     if ($.isArray(tags)) {
       for (var t = 0; t < tags.length; t++) {
         var tag = tags[t];
-        var item = this._normalizeItem(tag);
+        var item = this._NormalizeItem(tag);
 
         var $option = this.option(item);
 
@@ -3912,7 +3912,7 @@ S2.define('select2/dropdown/hidePlaceholder',[
 
 ], function () {
   function HidePlaceholder (decorated, $element, options, dataAdapter) {
-    this.placeholder = this.normalizePlaceholder(options.get('placeholder'));
+    this.placeholder = this.NormalizePlaceholder(options.get('placeholder'));
 
     decorated.call(this, $element, options, dataAdapter);
   }
@@ -3923,7 +3923,7 @@ S2.define('select2/dropdown/hidePlaceholder',[
     decorated.call(this, data);
   };
 
-  HidePlaceholder.prototype.normalizePlaceholder = function (_, placeholder) {
+  HidePlaceholder.prototype.NormalizePlaceholder = function (_, placeholder) {
     if (typeof placeholder === 'string') {
       placeholder = {
         id: '',

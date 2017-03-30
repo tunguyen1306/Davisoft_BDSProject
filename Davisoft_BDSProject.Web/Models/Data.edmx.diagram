@@ -25,7 +25,7 @@
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.quartertext" Width="1.5" PointX="12.75" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.role" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.setting" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.state" Width="1.5" PointX="8.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.state" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.statetext" Width="1.5" PointX="13.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.user" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="Davisoft_BDSProjectModel.Counter_Branch" ManuallyRouted="false" />

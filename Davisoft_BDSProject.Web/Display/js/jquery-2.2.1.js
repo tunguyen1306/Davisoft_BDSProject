@@ -4841,7 +4841,7 @@ jQuery.event = {
 			}
 
 			// Add which for click: 1 === left; 2 === middle; 3 === right
-			// Note: button is not normalized, so don't use it
+			// Note: button is not Normalized, so don't use it
 			if ( !event.which && button !== undefined ) {
 				event.which = ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
 			}
@@ -4855,7 +4855,7 @@ jQuery.event = {
 			return event;
 		}
 
-		// Create a writable copy of the event object and normalize some properties
+		// Create a writable copy of the event object and Normalize some properties
 		var i, prop, copy,
 			type = event.type,
 			originalEvent = event,
@@ -5895,7 +5895,7 @@ function vendorPropName( name ) {
 function setPositiveNumber( elem, value, subtract ) {
 
 	// Any relative (+/-) values have already been
-	// normalized at this point
+	// Normalized at this point
 	var matches = rcssNum.exec( value );
 	return matches ?
 
@@ -7174,7 +7174,7 @@ jQuery.extend( {
 
 		ret = jQuery.find.attr( elem, name );
 
-		// Non-existent attributes return null, we normalize to undefined
+		// Non-existent attributes return null, we Normalize to undefined
 		return ret == null ? undefined : ret;
 	},
 
@@ -8738,7 +8738,7 @@ jQuery.extend( {
 				}
 			} else {
 
-				// Extract error from statusText and normalize for non-aborts
+				// Extract error from statusText and Normalize for non-aborts
 				error = statusText;
 				if ( status || !statusText ) {
 					statusText = "error";
@@ -9271,7 +9271,7 @@ jQuery.ajaxSetup( {
 	}
 } );
 
-// Detect, normalize options and install callbacks for jsonp requests
+// Detect, Normalize options and install callbacks for jsonp requests
 jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 	var callbackName, overwritten, responseContainer,

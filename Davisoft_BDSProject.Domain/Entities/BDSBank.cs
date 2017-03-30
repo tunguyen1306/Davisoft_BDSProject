@@ -6,17 +6,15 @@ using System.Text;
 
 namespace Davisoft_BDSProject.Domain.Entities
 {
-    class BDSBank : BDSBaseEntiry
+    public class BDSBank : BDSBaseEntiry
     {
-        public int IdArea { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string UrlImage { get; set; }
         public string AccountNumber { get; set; }
         public string AccountName { get; set; }
         public string Description { get; set; }
-
-        [ForeignKey("IdArea")]
-        public virtual BDSBankArea BDSBankArea { get; set; }
+        public string KeySearch { get; set; }
+        public string Branch { get; set; }
     }
 }

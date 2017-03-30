@@ -331,6 +331,22 @@
     <Compile Include="Controllers\AdminCityController.cs" />
     <Compile Include="Controllers\AdminDistrictController.cs" />
     <Compile Include="Controllers\AuditController.cs" />
+    <Compile Include="Controllers\BDSLanguageController.cs" />
+    <Compile Include="Controllers\BDSNewsTypePriceController.cs" />
+    <Compile Include="Controllers\BDSSalaryController.cs" />
+    <Compile Include="Controllers\BDSScopeController.cs" />
+    <Compile Include="Controllers\BDSTimeWorkController.cs" />
+    <Compile Include="Controllers\BDSTypeContactController.cs" />
+    <Compile Include="Controllers\BDSNewsTypeController.cs" />
+    <Compile Include="Controllers\BDSMarriageController.cs" />
+    <Compile Include="Controllers\BDSEducationController.cs" />
+    <Compile Include="Controllers\BDSEventController.cs" />
+    <Compile Include="Controllers\BDSCareerController.cs" />
+    <Compile Include="Controllers\BDSAreaController.cs" />
+    <Compile Include="Controllers\BDSBankController.cs" />
+    <Compile Include="Helpers\UrlFriendly.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Models\DataTableJS.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HolidayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -493,11 +509,6 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="MSReport\ReportDataset.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReportDataset.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -509,6 +520,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Validation\BDSSalaryValidator.cs" />
+    <Compile Include="Validation\BDSNewsTypePriceValidator.cs" />
+    <Compile Include="Validation\BDSTypeContactValidator.cs" />
+    <Compile Include="Validation\BDSScopeValidator.cs" />
+    <Compile Include="Validation\BDSNewsTypeValidator.cs" />
+    <Compile Include="Validation\BDSCareerValidator.cs" />
+    <Compile Include="Validation\BDSEducationValidator.cs" />
+    <Compile Include="Validation\BDSEventValidator.cs" />
+    <Compile Include="Validation\BDSLanguageValidator.cs" />
+    <Compile Include="Validation\BDSMarriageValidator.cs" />
+    <Compile Include="Validation\BDSAreaValidator.cs" />
+    <Compile Include="Validation\BDSBankValidator.cs" />
     <Compile Include="Validation\CurrencyValidator.cs" />
     <Compile Include="Validation\LanguageValidator.cs" />
     <Compile Include="Validation\MenuValidator.cs" />
@@ -1658,6 +1681,22 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\daterangepicker.css" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\demo.html" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\drp.png" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\example\amd\index.html" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\example\amd\main.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\example\amd\require.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\example\browserify\bundle.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\example\browserify\index.html" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\example\browserify\main.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\moment.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\moment.min.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\package.js" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\website\index.html" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\website\website.css" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\website\website.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\classie.js" />
     <Content Include="Scripts\flash_detect.js" />
@@ -1862,9 +1901,6 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="MSReport\ReportDataset.xsc">
-      <DependentUpon>ReportDataset.xsd</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\Data.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Data.Designer.cs</LastGenOutput>
@@ -1872,20 +1908,18 @@
     <Content Include="Models\Data.edmx.diagram">
       <DependentUpon>Data.edmx</DependentUpon>
     </Content>
-    <None Include="MSReport\ReportDataset.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ReportDataset.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="MSReport\ReportDataset.xss">
-      <DependentUpon>ReportDataset.xsd</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\subaru.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Display\lib\bootstrap-daterangepicker\.gitignore" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\bower.json" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\daterangepicker.scss" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\example\browserify\README.md" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\package.json" />
+    <Content Include="Display\lib\bootstrap-daterangepicker\README.md" />
     <None Include="Scripts\jquery-1.7.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
@@ -1997,11 +2031,63 @@
     <Content Include="Views\AdminDistrict\Index.cshtml" />
     <Content Include="Views\AdminCity\Create.cshtml" />
     <Content Include="Views\AdminCity\Edit.cshtml" />
+    <Content Include="Views\BDSBank\Index.cshtml" />
+    <Content Include="Views\BDSBank\Create.cshtml" />
+    <Content Include="Views\BDSBank\Edit.cshtml" />
+    <Content Include="Views\BDSBank\_Input.cshtml" />
+    <Content Include="Views\BDSArea\Index.cshtml" />
+    <Content Include="Views\BDSArea\Create.cshtml" />
+    <Content Include="Views\BDSArea\Edit.cshtml" />
+    <Content Include="Views\BDSArea\_Input.cshtml" />
+    <Content Include="Views\BDSCareer\Index.cshtml" />
+    <Content Include="Views\BDSCareer\Create.cshtml" />
+    <Content Include="Views\BDSCareer\Edit.cshtml" />
+    <Content Include="Views\BDSEducation\Index.cshtml" />
+    <Content Include="Views\BDSEducation\Create.cshtml" />
+    <Content Include="Views\BDSEducation\Edit.cshtml" />
+    <Content Include="Views\BDSEvent\Index.cshtml" />
+    <Content Include="Views\BDSEvent\Create.cshtml" />
+    <Content Include="Views\BDSEvent\Edit.cshtml" />
+    <Content Include="Views\BDSCareer\_Input.cshtml" />
+    <Content Include="Views\BDSEducation\_Input.cshtml" />
+    <Content Include="Views\BDSEvent\_Input.cshtml" />
+    <Content Include="Views\BDSLanguage\Index.cshtml" />
+    <Content Include="Views\BDSLanguage\Create.cshtml" />
+    <Content Include="Views\BDSLanguage\Edit.cshtml" />
+    <Content Include="Views\BDSMarriage\Index.cshtml" />
+    <Content Include="Views\BDSMarriage\Create.cshtml" />
+    <Content Include="Views\BDSMarriage\Edit.cshtml" />
+    <Content Include="Views\BDSLanguage\_Input.cshtml" />
+    <Content Include="Views\BDSMarriage\_Input.cshtml" />
+    <Content Include="Views\BDSTimeWork\Index.cshtml" />
+    <Content Include="Views\BDSTimeWork\Create.cshtml" />
+    <Content Include="Views\BDSTimeWork\Edit.cshtml" />
+    <Content Include="Views\BDSNewsType\_Input.cshtml" />
+    <Content Include="Views\BDSNewsType\Create.cshtml" />
+    <Content Include="Views\BDSNewsType\Edit.cshtml" />
+    <Content Include="Views\BDSNewsType\Index.cshtml" />
+    <Content Include="Views\BDSScope\_Input.cshtml" />
+    <Content Include="Views\BDSScope\Create.cshtml" />
+    <Content Include="Views\BDSScope\Edit.cshtml" />
+    <Content Include="Views\BDSScope\Index.cshtml" />
+    <Content Include="Views\BDSTypeContact\_Input.cshtml" />
+    <Content Include="Views\BDSTypeContact\Create.cshtml" />
+    <Content Include="Views\BDSTypeContact\Edit.cshtml" />
+    <Content Include="Views\BDSTypeContact\Index.cshtml" />
+    <Content Include="Views\BDSNewsTypePrice\_Input.cshtml" />
+    <Content Include="Views\BDSNewsTypePrice\Create.cshtml" />
+    <Content Include="Views\BDSNewsTypePrice\Edit.cshtml" />
+    <Content Include="Views\BDSNewsTypePrice\Index.cshtml" />
+    <Content Include="Views\BDSSalary\Create.cshtml" />
+    <Content Include="Views\BDSSalary\Edit.cshtml" />
+    <Content Include="Views\BDSSalary\Index.cshtml" />
+    <Content Include="Views\BDSSalary\_Input.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Hubs\" />
     <Folder Include="Infrastructure\Notification\" />
+    <Folder Include="MSReport\" />
     <Folder Include="Views\Report\" />
     <Folder Include="wkhtmltopdf\pdf\" />
   </ItemGroup>
@@ -2051,7 +2137,6 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resource.th.designer.cs</LastGenOutput>
     </Content>
-    <EmbeddedResource Include="MSReport\Report1.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

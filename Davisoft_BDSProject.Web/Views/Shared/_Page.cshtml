@@ -2,6 +2,7 @@
 @using System.Threading
 @using Davisoft_BDSProject.Domain.Abstract
 @using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Web
 @using Resources
 @{
     Layout = "~/Views/Shared/_BigBang.cshtml";
@@ -64,7 +65,7 @@
         }
 
         .table tr:hover td.sorted {
-            background-color: #EAEAEA !important;
+         /*   background-color: #EAEAEA !important;*/
         }
 
         .table tr:nth-child(2n+1) td.sorted {
@@ -72,7 +73,7 @@
         }
 
         .table tr:nth-child(2n) td {
-            background-color: #FFF;
+            /*background-color: #FFF;*/
         }
 
         /*.table tr:nth-child(2n):hover td:not(.sorted) {
@@ -431,13 +432,24 @@
         });
 
         function initDatepicker() {
-            $('.date-picker, .datepicker').datepicker({
-                autoclose: true,
-                todayHighlight: true,
-                format: 'dd/mm/yyyy'
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
+            $('.datepicker-range').daterangepicker({
+              
+                locale: {
+                    format: '@(MvcApplication.DateTimeFormat.ShortDatePattern.ToUpper())'
+                }
+              
             });
+
+            $('.date-picker, .datepicker').daterangepicker({
+                "singleDatePicker": true,
+             
+                locale: {
+                 format: '@(MvcApplication.DateTimeFormat.ShortDatePattern.ToUpper())'
+            }
+            }, function (start, end, label) {
+              //  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+            });
+          
         }
 
         initDatepicker();
@@ -481,12 +493,12 @@
                     url: url,
                     dataType: 'json',
                     delay: 250,
-                    data: function (params) {
+                    data: function(params) {
                         return {
                             q: params.term // search term
                         };
                     },
-                    processResults: function (data, page) { // parse the results into the format expected by Select2.
+                    processResults: function(data, page) { // parse the results into the format expected by Select2.
                         // since we are using custom formatting functions we do not need to alter the remote JSON data
                         return { results: data };
                     },
@@ -498,13 +510,13 @@
                 templateResult: repoFormatResult, // omitted for brevity, see the source of this page
                 templateSelection: repoFormatSelection, // omitted for brevity, see the source of this page
                 dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
-                escapeMarkup: function (m) { return m; }, // we do not want to escape markup since we are displaying html in results
+                escapeMarkup: function(m) { return m; }, // we do not want to escape markup since we are displaying html in results
                 width: '100%'
             });
         }
 
         /////////////////////////
-        $(".toggle-search").on('click', function (e) {
+        $(".toggle-search").on('click', function(e) {
             if ($('.search-icon').hasClass('fa-angle-down'))
                 $('.search-icon').removeClass('fa-angle-down').addClass('fa-angle-up');
             else
@@ -513,7 +525,7 @@
             $("#table-Search").slideToggle();
         });
         /////////////////////////////////
-        $(".cd-side-nav li.has-children").on('click', function (e) {
+        $(".cd-side-nav li.has-children").on('click', function(e) {
             //if ($(e.target).attr('href') !== '#')
             //    return;
             if ($($(this).find("a")).attr('href') !== '#') {

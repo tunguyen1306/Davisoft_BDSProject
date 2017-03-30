@@ -128,7 +128,7 @@ $.extend($.fn, {
 			var existingRules = $.validator.staticRules(element);
 			switch(command) {
 			case "add":
-				$.extend(existingRules, $.validator.normalizeRule(argument));
+				$.extend(existingRules, $.validator.NormalizeRule(argument));
 				// remove messages from rules, but allow them to be set separetely
 				delete existingRules.messages;
 				staticRules[element.name] = existingRules;
@@ -150,7 +150,7 @@ $.extend($.fn, {
 			}
 		}
 
-		var data = $.validator.normalizeRules(
+		var data = $.validator.NormalizeRules(
 		$.extend(
 			{},
 			$.validator.classRules(element),
@@ -323,7 +323,7 @@ $.extend($.validator, {
 			});
 			var rules = this.settings.rules;
 			$.each(rules, function( key, value ) {
-				rules[key] = $.validator.normalizeRule(value);
+				rules[key] = $.validator.NormalizeRule(value);
 			});
 
 			function delegate(event) {
@@ -898,12 +898,12 @@ $.extend($.validator, {
 		var rules = {};
 		var validator = $.data(element.form, "validator");
 		if ( validator.settings.rules ) {
-			rules = $.validator.normalizeRule(validator.settings.rules[element.name]) || {};
+			rules = $.validator.NormalizeRule(validator.settings.rules[element.name]) || {};
 		}
 		return rules;
 	},
 
-	normalizeRules: function( rules, element ) {
+	NormalizeRules: function( rules, element ) {
 		// handle dependency check
 		$.each(rules, function( prop, val ) {
 			// ignore rule when param is explicitly false, eg. required:false
@@ -970,7 +970,7 @@ $.extend($.validator, {
 	},
 
 	// Converts a simple string to a {string: true} rule, e.g., "required" to {required:true}
-	normalizeRule: function( data ) {
+	NormalizeRule: function( data ) {
 		if ( typeof data === "string" ) {
 			var transformed = {};
 			$.each(data.split(/\s/), function() {
@@ -986,7 +986,7 @@ $.extend($.validator, {
 		$.validator.methods[name] = method;
 		$.validator.messages[name] = message !== undefined ? message : $.validator.messages[name];
 		if ( method.length < 3 ) {
-			$.validator.addClassRules(name, $.validator.normalizeRule(name));
+			$.validator.addClassRules(name, $.validator.NormalizeRule(name));
 		}
 	},
 

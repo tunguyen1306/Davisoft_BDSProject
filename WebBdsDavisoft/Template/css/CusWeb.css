@@ -1,0 +1,51 @@
+﻿.header_radius {
+    border-radius: 8px 8px 0 0;
+    border: 0px solid #dfdfdf;
+}
+.lblcheckEmail {
+        color: #5db7e4!important;
+            text-decoration: underline!important;
+}
+.required {
+    color: red;
+}
+.margin_row_ringht {
+    margin-left: 20px;
+    line-height: 16px;
+}
+.form-in-register {
+    border-bottom: 0!important;
+    box-shadow: 0 -1px 1px rgba(0,0,0,0.05)!important;
+    border-top: 0!important;
+    background-color: #f2f2f2;
+}
+.header-info {
+    border:0px solid #dfdfdf;
+    background: none!important;
+    border-top:0!important;
+     
+}
+.form-have-border-bottom {
+     border-bottom: 0px solid #dfdfdf!important;
+}
+.header-info-background {
+     background-color: #f2f2f2!important;
+}
+.form-horizontal-register  {
+	border: 0px solid #dfdfdf;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	clear:both;
+	display:inline-block;
+	width:100%;
+	box-sizing:border-box;
+	padding: 15px 20px;
+}
+.btnSubmit {
+    text-align: center;
+    background: #f79d25;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px 0;
+    border-radius: 3px;
+}

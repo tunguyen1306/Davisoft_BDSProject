@@ -2496,7 +2496,7 @@ var Handsontable = { //class namespace
      if ((elem && !elem.length) || elem === window) {
      elem.attachEvent('on' + type, function () {
     
-     //normalize
+     //Normalize
      //http://stackoverflow.com/questions/4643249/cross-browser-event-object-normalization
      var e = window['event'];
      e.target = e.srcElement;
@@ -8583,9 +8583,9 @@ var Handsontable = { //class namespace
                     return;
                 }
                 var selRange = this.instance.getSelectedRange();
-                var normalizedSelection = ContextMenu.utils.normalizeSelection(selRange);
+                var NormalizedSelection = ContextMenu.utils.NormalizeSelection(selRange);
 
-                selectedItem.callback.call(this.instance, selectedItem.key, normalizedSelection, event);
+                selectedItem.callback.call(this.instance, selectedItem.key, NormalizedSelection, event);
                 contextMenu.closeAll();
                 this.instance.deselectCell();
             }
@@ -9085,7 +9085,7 @@ var Handsontable = { //class namespace
             return itemArray;
         };
 
-        ContextMenu.utils.normalizeSelection = function (selRange) {
+        ContextMenu.utils.NormalizeSelection = function (selRange) {
             return {
                 start: selRange.getTopLeftCorner(),
                 end: selRange.getBottomRightCorner()
@@ -11231,7 +11231,7 @@ var Handsontable = { //class namespace
             return;
         }
 
-        //normalize top left corner
+        //Normalize top left corner
         var topLeft = cellRange.getTopLeftCorner();
         var bottomRight = cellRange.getBottomRightCorner();
 
@@ -16392,7 +16392,7 @@ var Handsontable = { //class namespace
 
     /**
      * Given a variable number of arguments, returns the maximum
-     * multiplier that must be used to normalize an operation involving
+     * multiplier that must be used to Normalize an operation involving
      * all of them.
      */
     function correctionFactor() {

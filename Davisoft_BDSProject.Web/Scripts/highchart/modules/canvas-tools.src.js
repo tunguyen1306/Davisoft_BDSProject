@@ -2622,7 +2622,7 @@ if(!Array.prototype.indexOf){
 				return mask; 
 			}
 			
-			function normalize(mask) {
+			function Normalize(mask) {
 				var sum = 0;
 				for (var i = 1; i < mask.length; i++) {
 					sum += Math.abs(mask[i]);
@@ -2665,7 +2665,7 @@ if(!Array.prototype.indexOf){
 			{
 				var srcData = ctx.getImageData(0, 0, width, height);
 				var mask = make_fgauss(sigma);
-				mask = normalize(mask);
+				mask = Normalize(mask);
 				tmp = [];
 				convolve_even(srcData.data, tmp, mask, width, height);
 				convolve_even(tmp, srcData.data, mask, height, width);

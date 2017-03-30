@@ -88,11 +88,11 @@
         });
 
         $(document).ajaxStart(function () {
-            $("#dvLoading").show();
+            $("#dvLoading").fadeIn();
         });
 
         $(document).ajaxStop(function () {
-            $("#dvLoading").hide();
+            $("#dvLoading").fadeOut();
             ChangeUIListCheckBox();
             //$('.date-picker, .datepicker').datepicker({
             //    autoclose: true,

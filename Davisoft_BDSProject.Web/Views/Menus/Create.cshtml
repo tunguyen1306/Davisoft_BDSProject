@@ -9,7 +9,7 @@
         <div class="panel-body">
             <div class="form-horizontal">
                 @Html.Partial("_CreateOrEdit", Model)
-                <div class="col-md-9 col-md-offset-3">
+                <div class="col-md-8 col-md-offset-3">
                     @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
                     @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Submit).Style(ButtonStyle.Success).PrependIcon(Icons.ok, true)
                 </div>

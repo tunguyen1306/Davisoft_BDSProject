@@ -346,7 +346,7 @@ label {
     }
 
     .table tbody tr:hover > .sorting_1 {
-        background-color: #EAEAEA;
+      /*  background-color: #EAEAEA;*/
     }
 
     .table tbody tr:hover {

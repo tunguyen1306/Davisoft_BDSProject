@@ -256,5 +256,51 @@ namespace Davisoft_BDSProject.Web.Models
                 xmlDoc2.Save(pathResx2);
             }
         }
+
+        internal void EditAnyResourceByLanguage(IEnumerable<ResourceItemModel> items, string pathResx)
+        {
+
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(pathResx);
+
+            var changedPath = false;
+            foreach (var resourceItemModel in items)
+            {
+
+                {
+                    XmlNodeList nodes2 = xmlDoc.SelectNodes("//data[@name='" + resourceItemModel.Code + "']");
+                    if (nodes2.Count != 0)
+                    {
+                        var child = nodes2.Item(0).ChildNodes.Item(1);
+                        if (child.FirstChild.Value != resourceItemModel.Description)
+                        {
+                            var oldchild = nodes2.Item(0).ChildNodes.Item(1);
+                            child.FirstChild.Value = resourceItemModel.Description;
+                            child.ReplaceChild(child.FirstChild, oldchild.FirstChild);
+                            changedPath = true;
+                        }
+                    }
+                    else
+                    {
+                        XmlElement data = xmlDoc.CreateElement("data");
+                        XmlElement value = xmlDoc.CreateElement("value");
+                        value.InnerText = resourceItemModel.Description;
+                        XmlElement comment = xmlDoc.CreateElement("comment");
+                        comment.InnerText = "";
+                        data.SetAttribute("name", resourceItemModel.Code);
+                        data.SetAttribute("xml:space", "preserve");
+                        data.AppendChild(value);
+                        data.AppendChild(comment);
+                        xmlDoc.DocumentElement.AppendChild(data);
+                        changedPath = true;
+                    }
+                }
+            }
+            if (changedPath)
+            {
+                xmlDoc.Save(pathResx);
+            }
+
+        }
     }
 }

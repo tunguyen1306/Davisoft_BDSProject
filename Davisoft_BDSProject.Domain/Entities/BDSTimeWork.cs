@@ -5,10 +5,11 @@ using System.Text;
 
 namespace Davisoft_BDSProject.Domain.Entities
 {
-    class BDSTimeWork : BDSBaseEntiry
+    public class BDSTimeWork : BDSBaseEntiry
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public string KeySearch { get; set; }
         public int FromTime { get; set; }
         public int ToTime { get; set; }
         public int Type { get; set; }

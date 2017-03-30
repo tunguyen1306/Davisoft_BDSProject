@@ -4647,7 +4647,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 
 		this.reverting = false;
 		// We delay all events that have to be triggered to after the point where the placeholder has been removed and
-		// everything else normalized again
+		// everything else Normalized again
 		var i,
 			delayedTriggers = [];
 
@@ -5820,7 +5820,7 @@ $.extend( $.effects, {
 });
 
 // return an effect options object for the given parameters:
-function _normalizeArguments( effect, options, speed, callback ) {
+function _NormalizeArguments( effect, options, speed, callback ) {
 
 	// allow passing all options as the first parameter
 	if ( $.isPlainObject( effect ) ) {
@@ -5899,7 +5899,7 @@ function standardAnimationOption( option ) {
 
 $.fn.extend({
 	effect: function( /* effect, options, speed, callback */ ) {
-		var args = _normalizeArguments.apply( this, arguments ),
+		var args = _NormalizeArguments.apply( this, arguments ),
 			mode = args.mode,
 			queue = args.queue,
 			effectMethod = $.effects.effect[ args.effect ];
@@ -5949,7 +5949,7 @@ $.fn.extend({
 			if ( standardAnimationOption( option ) ) {
 				return orig.apply( this, arguments );
 			} else {
-				var args = _normalizeArguments.apply( this, arguments );
+				var args = _NormalizeArguments.apply( this, arguments );
 				args.mode = "show";
 				return this.effect.call( this, args );
 			}
@@ -5961,7 +5961,7 @@ $.fn.extend({
 			if ( standardAnimationOption( option ) ) {
 				return orig.apply( this, arguments );
 			} else {
-				var args = _normalizeArguments.apply( this, arguments );
+				var args = _NormalizeArguments.apply( this, arguments );
 				args.mode = "hide";
 				return this.effect.call( this, args );
 			}
@@ -5973,7 +5973,7 @@ $.fn.extend({
 			if ( standardAnimationOption( option ) || typeof option === "boolean" ) {
 				return orig.apply( this, arguments );
 			} else {
-				var args = _normalizeArguments.apply( this, arguments );
+				var args = _NormalizeArguments.apply( this, arguments );
 				args.mode = "toggle";
 				return this.effect.call( this, args );
 			}
@@ -7033,7 +7033,7 @@ $.widget( "ui.autocomplete", {
 
 	__response: function( content ) {
 		if ( content ) {
-			content = this._normalize( content );
+			content = this._Normalize( content );
 		}
 		this._trigger( "response", null, { content: content } );
 		if ( !this.options.disabled && content && content.length && !this.cancelSearch ) {
@@ -7065,7 +7065,7 @@ $.widget( "ui.autocomplete", {
 		}
 	},
 
-	_normalize: function( items ) {
+	_Normalize: function( items ) {
 		// assume all items have the right format when the first item is complete
 		if ( items.length && items[0].label && items[0].value ) {
 			return items;
@@ -12188,7 +12188,7 @@ $.fn.position = function( options ) {
 		];
 	});
 
-	// normalize collision option
+	// Normalize collision option
 	if ( collision.length === 1 ) {
 		collision[ 1 ] = collision[ 0 ];
 	}
