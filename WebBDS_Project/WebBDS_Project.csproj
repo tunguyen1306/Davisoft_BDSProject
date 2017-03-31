@@ -364,6 +364,7 @@
     <Content Include="Template\css\normalize.css" />
     <Content Include="Template\css\reponsive.css" />
     <Content Include="Template\css\style.css" />
+    <Content Include="Template\css\toastr.css" />
     <Content Include="Template\DangKyTimViec.html" />
     <Content Include="Template\DangKyTuyenDung.html" />
     <Content Include="Template\Detail.htm" />
@@ -394,12 +395,14 @@
     <Content Include="Template\img\a02.png" />
     <Content Include="Template\img\icon_chrome.png" />
     <Content Include="Template\img\loading.gif" />
+    <Content Include="Template\js\bootbox.min.js" />
     <Content Include="Template\js\dropdown.js" />
     <Content Include="Template\js\flaunt.js" />
     <Content Include="Template\js\jquery-1.11.3.min.js" />
     <Content Include="Template\js\jquery.easydropdown.min.js" />
     <Content Include="Template\js\jssor.slider-22.2.16.min.js" />
     <Content Include="Template\js\tabs.js" />
+    <Content Include="Template\js\toastr.js" />
     <Content Include="Template\naptien.htm" />
     <Content Include="Template\QuanLyNhaTuyenDung.htm" />
     <Content Include="Template\QuanLyTaiKhoanNhaTuyenDung.htm" />
