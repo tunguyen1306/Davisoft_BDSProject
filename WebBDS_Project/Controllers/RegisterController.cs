@@ -26,21 +26,45 @@ namespace WebBDS_Project.Controllers
             return View(registerModel);
         }
         [HttpPost]
-        public ActionResult RegisterCompany(RegisterInformationModel bdsPersonalInformationModel)
+        public ActionResult RegisterCompany(RegisterInformationModel bdsInformationModel)
         {
-            bdsPersonalInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
-            bdsPersonalInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
-            db.bdsaccounts.Add(bdsPersonalInformationModel.TbBdsAdcount);
+            bdsInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
+            bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
+            db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
             db.SaveChanges();
-            bdsPersonalInformationModel.TblBdsemployerinformation.Id = bdsPersonalInformationModel.TbBdsAdcount.Id;
-            db.bdsemployerinformations.Add(bdsPersonalInformationModel.TblBdsemployerinformation);
+            bdsInformationModel.TblBdsemployerinformation.Id = bdsInformationModel.TbBdsAdcount.Id;
+            db.bdsemployerinformations.Add(bdsInformationModel.TblBdsemployerinformation);
             db.SaveChanges();
             return RedirectToAction("Index","Default");
         }
-
-        public ActionResult RegisterEmployee()
+        public ActionResult RegisterPersonal()
         {
-            return View();
+
+            var registerModel = new RegisterInformationModel
+            {
+                ListBdsScopes = db.bdsscopes.ToList()
+
+            };
+            return View(registerModel);
+        }
+        [HttpPost]
+        public ActionResult CheckEmail(string Email)
+        {
+            var countEmail = db.bdsaccounts.Where(x => x.Email == Email).Count();
+
+            return Json(countEmail );
+        }
+        [HttpPost]
+        public ActionResult RegisterPersonal(RegisterInformationModel bdsInformationModel)
+        {
+            bdsInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
+            bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
+            db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
+            db.SaveChanges();
+            bdsInformationModel.TblBdspersonalinformation.Id = bdsInformationModel.TbBdsAdcount.Id;
+            db.bdspersonalinformations.Add(bdsInformationModel.TblBdspersonalinformation);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Default");
         }
         [HttpPost]
         public ActionResult GetCity()

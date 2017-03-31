@@ -25,13 +25,13 @@
                                           
                                                <i class="fa fa-caret-right"></i>Cũng là tên đăng nhập chính của quý công ty trên CareerBuilder.vn
                                                <br/>
-                                               <a class="lblcheckEmail" href="#">Kiểm tra sự tồn tại của email</a>
+                                               <a class="lblcheckEmail" href="javascript:void(0)">Kiểm tra sự tồn tại của email</a>
                                            </div>
                                        </div>
                                        <div class="row">
                                            <label>Xác nhận Email<span class="required">*</span></label>
                                           <div class="row-right">
-                                               <input  class="input1"  placeholder="Xác nhận Email"  type="text">
+                                               <input  class="input1" id="EmailSeccond"  placeholder="Xác nhận Email"  type="text">
                                            </div>
                                         <div class="grid_6"></div>
                                        </div>
@@ -45,7 +45,7 @@
                                        <div class="row">
                                            <label>Xác nhận mật khẩu<span class="required">*</span></label>
                                           <div class="row-right">
-                                               <input  class="input1"  placeholder="Nhập lại mật khẩu"  type="password">
+                                               <input  class="input1 " id="PasswordSecond"  placeholder="Nhập lại mật khẩu"  type="password">
                                            </div>
                                       
                                        </div>
@@ -74,7 +74,7 @@
                                           
                                        </div>
                                        <div class="row">
-                                           <label>Sơ lược về công ty<span>*</span></label>
+                                           <label>Sơ lược về công ty<span class="required">*</span></label>
                                             <div class="row-right">
                                                      
                                                   @Html.TextAreaFor(m=>m.TblBdsemployerinformation.Description,new{@class="input4"})               
@@ -94,9 +94,9 @@
 
                                         <div class="pncon width2 styled-select slate">
 
-                                            <label class="child">Tỉnh/TP</label>
+                                            <label class="cusLabel-2">Tỉnh/TP</label>
                                              
-                                                <select class="dropdown" id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
+                                                <select class="" id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
                                                      <option value="0">Chọn thành phố</option>
                                                 </select>
                                            
@@ -108,7 +108,7 @@
 
                                             <label class="cusLabel-2">Quận/Huyện</label>
                                           
-                                                <select class="dropdown dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
+                                                <select class=" dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
                                                     <option value="1">Chọn quận huyện</option>
                                                     
                                                 </select>
@@ -160,7 +160,7 @@
                                           
                                        </div>
                                        <div class="row">
-                                           <label>Logo Công Ty</label>
+                                           <label></label>
                                            <img width="139" height="92" id="imgLogoCompany" src="~/Template/images/1.jpg" />
                                        </div>
                                         <div class="row">
@@ -176,6 +176,7 @@
                                         <button type="submit" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
                                    
                                        </div>
+                                     
                                    </div>
                                </div>
                            </div>
@@ -191,7 +192,56 @@
         var t = 0;
         if ($('#TbBdsAdcount_Email').val() == "") {
 
-            toastr.error('Nhập Email');
+            toastr.error('Vui lòng nhập Email');
+            t++;
+        }
+        else {
+            CheckEmail();
+            var EmailCount = $('#warrper').attr('value');
+            if (EmailCount>0) {
+                toastr.error('Email "' + $('#TbBdsAdcount_Email').val() + '" đã tồn tại');
+                    t++;
+            }
+        }
+        if ($('#EmailSeccond').val() != $('#TbBdsAdcount_Email').val()) {
+
+            toastr.error('Email không trùng khớp');
+            t++;
+        }
+        if ($('#EmailSeccond').val() == "") {
+
+            toastr.error('Vui lòng nhập lại Email');
+            t++;
+        }
+        if ($('#TbBdsAdcount_PassWord').val() == "") {
+
+            toastr.error('Vui lòng nhập  Password');
+            t++;
+        }
+        if ($('#TbBdsAdcount_PassWord').val() != $('#PasswordSecond').val()) {
+
+            toastr.error('Password không trùng khớp');
+            t++;
+        }
+        if ($('#TblBdsemployerinformation_Name').val() == "") {
+
+            toastr.error('Vui lòng nhập tên công ty');
+            t++;
+        } if ($('#TblBdsemployerinformation_Description').val() == "") {
+
+            toastr.error('Vui lòng nhập sơ lược công ty');
+            t++;
+        } if ($('#TblBdsemployerinformation_Address').val() == "") {
+
+            toastr.error('Vui lòng nhập địa chỉ công ty');
+            t++;
+        } if ($('#TblBdsemployerinformation_NameContact').val() == "") {
+
+            toastr.error('Vui lòng nhập tên liên hệ');
+            t++;
+        } if ($('#TblBdsemployerinformation_Phone').val() == "") {
+
+            toastr.error('Vui lòng nhập điện thoại');
             t++;
         }
         if (t==0) {
@@ -225,5 +275,6 @@
 
         });
     });
- 
+
+    
 </script>
