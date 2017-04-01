@@ -6204,4 +6204,34 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSTimeWork" xml:space="preserve">
+    <value>List TimeWork</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTimeWork_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTimeWork_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTimeWork_Add" xml:space="preserve">
+    <value>Add New TimeWork</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTimeWork_TimeWork" xml:space="preserve">
+    <value>TimeWork</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTimeWork_Edit" xml:space="preserve">
+    <value>Edit TimeWork</value>
+    <comment>
+    </comment>
+  </data>
 </root>

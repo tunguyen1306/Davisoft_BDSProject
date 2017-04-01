@@ -522,6 +522,9 @@
     </Compile>
     <Compile Include="Validation\BDSSalaryValidator.cs" />
     <Compile Include="Validation\BDSNewsTypePriceValidator.cs" />
+    <Compile Include="Validation\BDSTimeWorkValidator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Validation\BDSTypeContactValidator.cs" />
     <Compile Include="Validation\BDSScopeValidator.cs" />
     <Compile Include="Validation\BDSNewsTypeValidator.cs" />
@@ -2059,9 +2062,6 @@
     <Content Include="Views\BDSMarriage\Edit.cshtml" />
     <Content Include="Views\BDSLanguage\_Input.cshtml" />
     <Content Include="Views\BDSMarriage\_Input.cshtml" />
-    <Content Include="Views\BDSTimeWork\Index.cshtml" />
-    <Content Include="Views\BDSTimeWork\Create.cshtml" />
-    <Content Include="Views\BDSTimeWork\Edit.cshtml" />
     <Content Include="Views\BDSNewsType\_Input.cshtml" />
     <Content Include="Views\BDSNewsType\Create.cshtml" />
     <Content Include="Views\BDSNewsType\Edit.cshtml" />
@@ -2082,6 +2082,10 @@
     <Content Include="Views\BDSSalary\Edit.cshtml" />
     <Content Include="Views\BDSSalary\Index.cshtml" />
     <Content Include="Views\BDSSalary\_Input.cshtml" />
+    <Content Include="Views\BDSTimeWork\_Input.cshtml" />
+    <Content Include="Views\BDSTimeWork\Create.cshtml" />
+    <Content Include="Views\BDSTimeWork\Edit.cshtml" />
+    <Content Include="Views\BDSTimeWork\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

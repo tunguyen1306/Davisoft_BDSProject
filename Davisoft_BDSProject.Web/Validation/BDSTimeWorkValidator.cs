@@ -8,14 +8,14 @@ using Resources;
 
 namespace Davisoft_BDSProject.Web.Validation
 {
-    public class BDSSalaryValidator : AbstractValidator<BDSSalary>
+    public class BDSTimeWorkValidator : AbstractValidator<BDSTimeWork>
     {
-        public BDSSalaryValidator()
+        public BDSTimeWorkValidator()
         {
             RuleFor(m => m.Name).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
             RuleFor(m => m.Type).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
-             RuleFor(m => m.FromSalary).Must((BDSSalary model,int FromSalary) => {
-                 if ((model.Type == 1 || model.Type == 2 || model.Type == 3) && model.FromSalary > 0)
+             RuleFor(m => m.FromTime).Must((BDSTimeWork model,int FromSalary) => {
+                 if ((model.Type == 1 || model.Type == 2 || model.Type == 3) && model.FromTime > 0)
                                                                                      {
                                                                                          return true;
                                                                                      }
@@ -25,9 +25,9 @@ namespace Davisoft_BDSProject.Web.Validation
                  }
                                                                                      return false;
              }).WithMessage(Resource.TheFieldNotEqualTo0);
-             RuleFor(m => m.ToSalary).Must((BDSSalary model, int ToSalary) =>
+             RuleFor(m => m.ToTime).Must((BDSTimeWork model, int ToSalary) =>
              {
-                 if (model.Type == 2 && model.ToSalary > 0)
+                 if (model.Type == 2 && model.ToTime > 0)
                  {
                      return true;
                  }

@@ -109,8 +109,8 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IBDSNewsTypeService>().To<EFBDSNewsType>();
             kernel.Bind<IBDSSalaryService>().To<EFBDSSalary>();
             kernel.Bind<IBDSScopeService>().To<EFBDSScope>();
+            kernel.Bind<IBDSScopeService>().To<EFBDSScope>();
             kernel.Bind<IBDSTimeWorkService>().To<EFBDSTimeWork>();
-
 
 
             kernel.Bind<IValidator<User>>().To<UserValidator>();
@@ -131,6 +131,7 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IValidator<BDSScope>>().To<BDSScopeValidator>();
             kernel.Bind<IValidator<BDSNewsTypePrice>>().To<BDSNewsTypePriceValidator>();
             kernel.Bind<IValidator<BDSSalary>>().To<BDSSalaryValidator>();
+            kernel.Bind<IValidator<BDSTimeWork>>().To<BDSTimeWorkValidator>();
             // cache configurations.
             kernel.Bind<ICacheStorageLocation>().To<RequestCacheSolution>().Named("InRequest");
             kernel.Bind<ICacheStorageLocation>().To<SessionCacheSolution>().Named("InSession");

@@ -64,7 +64,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
-            return View(new BDSTimeWork { CreateDate = DateTime.Now, CreateUser = 1, ID = 0 });
+            return View(new BDSTimeWork { Name = "Trên 0 năm", CreateDate = DateTime.Now, CreateUser = 1, ID = 0, Perfix = 1, Type = 3 });
         }
 
         [HttpPost]

@@ -59,6 +59,7 @@
         <script>
             $(document).ready(function() {
                 var type = $('#Type').val();
+                $('.from').show();
                 $('.perfix').show();
                 if (type == 1) {
                     $('.to').hide();
@@ -78,6 +79,7 @@
             });
             $(document).on('change', '#Type', function () {
                 $('.perfix').show();
+                $('.from').show();
                 if (this.value == 1) {
                     $('.to').hide();
                 }
