@@ -12,14 +12,16 @@ namespace Davisoft_BDSProject.Web.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class quarter
+    public partial class bdslanguage
     {
-        public int quarter_id { get; set; }
-        public int location_id { get; set; }
-        public int name_id { get; set; }
-        public string zipCode { get; set; }
-        public Nullable<decimal> latitude { get; set; }
-        public Nullable<decimal> longitude { get; set; }
-        public string rowguid { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string KeySearch { get; set; }
+        public int Active { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public int CreateUser { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<int> ModifiedUser { get; set; }
     }
 }
