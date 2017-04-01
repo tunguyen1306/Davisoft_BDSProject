@@ -5,181 +5,186 @@
 }
 @using (Html.BeginForm("RegisterCompany", "Register"))
 {
-     <div class="container">
-                           <div class="grid_12 ">
-                               <div class="group_work">
-                                   <div class="header_text header_radius header-info-background">
-                                       <h3><span><i class="fa fa-list-ul"></i>Đăng tin tuyển dụng nhân viên</span></h3>
-                                   </div>
-                                   <div class="form-horizontal-register form-in-register padding_box" data-validate="parsley" action="#">
-                                       <h4><span class="required">*</span><span class="clInforequired">Thông tin bất buộc</span> </h4>
-                                       <div class="row">Quý khách sử dụng thông tin tài khoản này để đăng nhập vào CareerBuilder.vn</div>
-                                       <div class="row">
-                                           <label>Email đăng nhập<span class="required">*</span></label>
-                                          <div class="row-right">
-                                              
-                                              @Html.TextBoxFor(m=>m.TbBdsAdcount.Email,new{@class="input1",@placeholder="Nhập email"})                 
-                                          </div>
-                                        
-                                           <div class="row-right note2" style="line-height:16px;">
-                                          
-                                               <i class="fa fa-caret-right"></i>Cũng là tên đăng nhập chính của quý công ty trên CareerBuilder.vn
-                                               <br/>
-                                               <a class="lblcheckEmail" href="javascript:void(0)">Kiểm tra sự tồn tại của email</a>
-                                           </div>
-                                       </div>
-                                       <div class="row">
-                                           <label>Xác nhận Email<span class="required">*</span></label>
-                                          <div class="row-right">
-                                               <input  class="input1" id="EmailSeccond"  placeholder="Xác nhận Email"  type="text">
-                                           </div>
-                                        <div class="grid_6"></div>
-                                       </div>
-                                       <div class="row">
-                                           <label>Mật khẩu<span class="required">*</span></label>
-                                          <div class="row-right">
-                                                @Html.PasswordFor(m=>m.TbBdsAdcount.PassWord,new{@class="input1",@placeholder="Nhập mật khẩu"})   
-                                           </div>
-                                      
-                                       </div>
-                                       <div class="row">
-                                           <label>Xác nhận mật khẩu<span class="required">*</span></label>
-                                          <div class="row-right">
-                                               <input  class="input1 " id="PasswordSecond"  placeholder="Nhập lại mật khẩu"  type="password">
-                                           </div>
-                                      
-                                       </div>
-                                    
-                                   </div>
-                                   <div class="header_text header-info header-info-background">
-                                       <h3><span><i class="fa fa-list-ul"></i>Đăng tin tuyển dụng nhân viên</span></h3>
-                                   </div>
-                                   <div class="form-horizontal-register form-in-register form-have-border-bottom padding_box" data-validate="parsley" action="#">
-                                       <div class="row">
-                                           <label>Tên công ty<span class="required"> *</span></label>
-                                          <div class="row-right">
-                                             
-                                                @Html.TextBoxFor(m=>m.TblBdsemployerinformation.Name,new{@class="input1",@placeholder="Nhập tên công ty"})                           
-                                          </div>
-                                        
-                                          
-                                       </div>
-                                       <div class="row">
-                                           <label>Quy mô công ty<span class="required"> *</span></label>
-                                          <div class="row-right styled-select slate">
-                                               
-                                              @Html.DropDownListFor(m=>m.TblBdsemployerinformation.Scope,new SelectList(Model.ListBdsScopes, "Id", "Name"),new {@class=""})           
-                                          </div>
-                                        
-                                          
-                                       </div>
-                                       <div class="row">
-                                           <label>Sơ lược về công ty<span class="required">*</span></label>
-                                            <div class="row-right">
-                                                     
-                                                  @Html.TextAreaFor(m=>m.TblBdsemployerinformation.Description,new{@class="input4"})               
-                                            </div>
-                                       </div>
-                                
-                                       
-                                       <div class="row">
+    <div class="container">
+        <div class="grid_12 ">
+            <div class="group_work">
+                <div class="header_text header_radius header-info-background">
+                    <h3><span><i class="fa fa-list-ul"></i>Đăng tin tuyển dụng nhân viên</span></h3>
+                </div>
+                <div class="form-horizontal-register form-in-register padding_box" data-validate="parsley" action="#">
+                    <h4><span class="required">*</span><span class="clInforequired">Thông tin bất buộc</span> </h4>
+                    <div class="row">Quý khách sử dụng thông tin tài khoản này để đăng nhập vào CareerBuilder.vn</div>
+                    <div class="row">
+                        <label>Email đăng nhập<span class="required">*</span></label>
+                        <div class="row-right">
 
-                                    <label>Địa chỉ công ty<span class="required"> *</span></label>
-                                    <div class="row-right">
-
-                                       
-                                           @Html.TextBoxFor(m=>m.TblBdsemployerinformation.Address,new{@class="input1",@placeholder="Nhập địa chỉ liên hệ"})  
-                                    </div>
-                                    <div class="row-right">
-
-                                        <div class="pncon width2 styled-select slate">
-
-                                            <label class="cusLabel-2">Tỉnh/TP</label>
-                                             
-                                                <select class="" id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
-                                                     <option value="0">Chọn thành phố</option>
-                                                </select>
-                                           
-                                        </div>
-
-                                 
-                                    
-                                        <div class="pncon  width2 styled-select slate">
-
-                                            <label class="cusLabel-2">Quận/Huyện</label>
-                                          
-                                                <select class=" dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
-                                                    <option value="1">Chọn quận huyện</option>
-                                                    
-                                                </select>
-                                           
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                                        
-                                       <div class="row">
-                                           <label>Tên người liên hệ<span class="required">*</span></label>
-                                          <div class="row-right">
-                                  
-                                                @Html.TextBoxFor(m=>m.TblBdsemployerinformation.NameContact,new{@class="input1",@placeholder="Nhập tên người liên hệ"})                 
-                                          </div>
-                                        
-                                          
-                                       </div>
-                                       <div class="row">
-                                           <label>Điện thoại<span class="required">*</span></label>
-                                          <div class="row-right">
-                                                @Html.TextBoxFor(m=>m.TblBdsemployerinformation.Phone,new{@class="input1",@placeholder="Nhập điện thoại"})                
-                                           </div>
-                                        
-                                          
-                                       </div>
-                                        
-                                       <div class="row">
-                                          
-                                           <label>Logo Công Ty</label>
-                                           <div class="logo_jobs">
-                                               <div class="uploadBox">
-                                                   <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
-                                                   <a href="javascript:void(0)" id="uploadIcon" class="btn btnSubmit">
-                                                    UpLoad Image
-                                                   </a>
-                                                   <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
-                                               </div>      
-                                           </div>
-                                                
-                                               <div class="text_jobs">
-                                               
-                                                   <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
-                                               </div>
-                                            
-                                          <input type="hidden" id="hdUrlImg" name="TblBdsemployerinformation.UrlImage"/>
-                                    
-                                          
-                                       </div>
-                                      
-                                        <div class="row">
-                                          
-                                           <div class="grid_12">
-                                                   <span>Bằng việc nhấp vào "Đăng ký nhanh",bạn đã đồng ý với các điều khoản ghi trong   <a class="lblcheckEmail" href="#">thỏa thuận dịch vụ của CareerBuilder.vn</a></span>
-                                               </div>
-                                          
-                                       </div>
-                                        <div class="row">
-                                       <label></label>
-                                    
-                                        <button type="submit" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
-                                   
-                                       </div>
-                                     
-                                   </div>
-                               </div>
-                           </div>
-                         
+                            @Html.TextBoxFor(m => m.TbBdsAdcount.Email, new { @class = "input1", @placeholder = "Nhập email" })
                         </div>
+
+                        <div class="row-right note2" style="line-height:16px;">
+
+                            <i class="fa fa-caret-right"></i>Cũng là tên đăng nhập chính của quý công ty trên CareerBuilder.vn
+                            <br />
+                            <a class="lblcheckEmail" href="javascript:void(0)">Kiểm tra sự tồn tại của email</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Xác nhận Email<span class="required">*</span></label>
+                        <div class="row-right">
+                            <input class="input1" id="EmailSeccond" placeholder="Xác nhận Email" type="text">
+                        </div>
+                        <div class="grid_6"></div>
+                    </div>
+                    <div class="row">
+                        <label>Mật khẩu<span class="required">*</span></label>
+                        <div class="row-right">
+                            @Html.PasswordFor(m => m.TbBdsAdcount.PassWord, new { @class = "input1", @placeholder = "Nhập mật khẩu" })
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <label>Xác nhận mật khẩu<span class="required">*</span></label>
+                        <div class="row-right">
+                            <input class="input1 " id="PasswordSecond" placeholder="Nhập lại mật khẩu" type="password">
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="header_text header-info header-info-background">
+                    <h3><span><i class="fa fa-list-ul"></i>Đăng tin tuyển dụng nhân viên</span></h3>
+                </div>
+                <div class="form-horizontal-register form-in-register form-have-border-bottom padding_box" data-validate="parsley" action="#">
+                    <div class="row">
+                        <label>Tên công ty<span class="required"> *</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.Name, new { @class = "input1", @placeholder = "Nhập tên công ty" })
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <label>Quy mô công ty<span class="required"> *</span></label>
+                        <div class="row-right styled-select slate">
+
+                            @Html.DropDownListFor(m => m.TblBdsemployerinformation.Scope, new SelectList(Model.ListBdsScopes, "Id", "Name"), new { @class = "" })
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <label>Sơ lược về công ty<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextAreaFor(m => m.TblBdsemployerinformation.Description, new { @class = "input4" })
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <label>Địa chỉ công ty<span class="required"> *</span></label>
+                        <div class="row-right">
+
+
+                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.Address, new { @class = "input1", @placeholder = "Nhập địa chỉ liên hệ" })
+                        </div>
+                        <div class="row-right">
+
+                            <div class="pncon width2 styled-select slate">
+
+                                <label class="cusLabel-2">Tỉnh/TP</label>
+
+                                <select class="" id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
+                                    <option value="0">Chọn thành phố</option>
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="pncon  width2 styled-select slate">
+
+                                <label class="cusLabel-2">Quận/Huyện</label>
+
+                                <select class=" dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
+                                    <option value="1">Chọn quận huyện</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <label>Tên người liên hệ<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.NameContact, new { @class = "input1", @placeholder = "Nhập tên người liên hệ" })
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <label>Điện thoại<span class="required">*</span></label>
+                        <div class="row-right">
+                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.Phone, new { @class = "input1", @placeholder = "Nhập điện thoại" })
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <label>Logo Công Ty</label>
+                    <div class="logo_jobs">
+                        <div class="grid_5 uploadBox">
+                            <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+
+                            
+                        </div>
+                        <div class="uploadBox-1">
+                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                + UpLoad Image
+                            </a>
+                            <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
+                        </div>
+                    </div>
+
+                    <div class="text_jobs">
+
+                        <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="grid_12">
+                        <span>Bằng việc nhấp vào "Đăng ký nhanh",bạn đã đồng ý với các điều khoản ghi trong   <a class="lblcheckEmail" href="#">thỏa thuận dịch vụ của CareerBuilder.vn</a></span>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label></label>
+
+                    <button type="submit" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+              
 
 
 }
@@ -190,66 +195,116 @@
         var t = 0;
         if ($('#TbBdsAdcount_Email').val() == "") {
 
-            toastr.error('Vui lòng nhập Email');
+            toastr.error('Vui lòng nhập Email!');
             t++;
         }
         else {
-            CheckEmail();
-            var EmailCount = $('#warrper').attr('value');
-            if (EmailCount>0) {
-                toastr.error('Email "' + $('#TbBdsAdcount_Email').val() + '" đã tồn tại');
-                    t++;
+            if (!isValidEmailAddress($('#TbBdsAdcount_Email').val())) {
+                toastr.error('Email không đúng định dạng!');
+                t++;
             }
+            else {
+                CheckEmail();
+                var EmailCount = $('#warrper').attr('value');
+                if (EmailCount > 0) {
+                    toastr.error('Email "' + $('#TbBdsAdcount_Email').val() + '" đã tồn tại!');
+                    t++;
+                }
+            }
+           
         }
-        if ($('#EmailSeccond').val() != $('#TbBdsAdcount_Email').val()) {
-
-            toastr.error('Email không trùng khớp');
-            t++;
-        }
+        
+      
         if ($('#EmailSeccond').val() == "") {
 
-            toastr.error('Vui lòng nhập lại Email');
+            toastr.error('Vui lòng nhập lại Email!');
             t++;
+        }
+        else {
+           
+                if ($('#EmailSeccond').val() != $('#TbBdsAdcount_Email').val()) {
+
+                    toastr.error('Email không trùng khớp!');
+                    t++;
+                }
+            
         }
         if ($('#TbBdsAdcount_PassWord').val() == "") {
 
-            toastr.error('Vui lòng nhập  Password');
+            toastr.error('Vui lòng nhập  Password!');
             t++;
         }
         if ($('#TbBdsAdcount_PassWord').val() != $('#PasswordSecond').val()) {
 
-            toastr.error('Password không trùng khớp');
+            toastr.error('Password không trùng khớp!');
             t++;
         }
+
+
+
         if ($('#TblBdsemployerinformation_Name').val() == "") {
 
-            toastr.error('Vui lòng nhập tên công ty');
+            toastr.error('Vui lòng nhập tên công ty!');
             t++;
         } if ($('#TblBdsemployerinformation_Description').val() == "") {
 
-            toastr.error('Vui lòng nhập sơ lược công ty');
+            toastr.error('Vui lòng nhập sơ lược công ty!');
             t++;
-        } if ($('#TblBdsemployerinformation_Address').val() == "") {
+        }
+        else {
+            if ($('#TblBdsemployerinformation_Description').val().length >= 4000) {
 
-            toastr.error('Vui lòng nhập địa chỉ công ty');
+                toastr.error('Sơ lược công ty chỉ tối đa 4000 kí tự! ');
+                t++;
+            }
+        }
+
+        if ($('#TblBdsemployerinformation_Address').val() == "") {
+
+            toastr.error('Vui lòng nhập địa chỉ công ty!');
             t++;
         } if ($('#TblBdsemployerinformation_NameContact').val() == "") {
 
-            toastr.error('Vui lòng nhập tên liên hệ');
+            toastr.error('Vui lòng nhập tên liên hệ!');
             t++;
-        } if ($('#TblBdsemployerinformation_Phone').val() == "") {
+        } 
+        if ($('#TblBdsemployerinformation_Phone').val() != "") {
+            if ($('#TblBdsemployerinformation_Phone').length > 11) {
 
-            toastr.error('Vui lòng nhập điện thoại');
+                toastr.error('Số điện thoại tối đa 11 số!');
+                t++;
+            }
+        }
+        else {
+            toastr.error('Vui lòng nhập Số điện thoại!');
             t++;
         }
-        if (t==0) {
+        if (t == 0) {
             $('#submitbutton').parents("form").submit();
         }
-       
+
+    });
+
+
+    $("#TblBdsemployerinformation_Phone").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            // Allow: Ctrl+A, Command+A
+            (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40) || (e.keyCode == 231)) {
+            // let it happen, don't do anything
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
     });
     $("#uploadIcon").click(function () {
         $(this).next().trigger('click');
     });
+
     $("#uploadFile").change(function () {
         var data = new FormData();
         var files = $("#uploadFile").get(0).files;
@@ -273,6 +328,4 @@
 
         });
     });
-
-    
 </script>

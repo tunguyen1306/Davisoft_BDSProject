@@ -88,4 +88,10 @@
     width: 70px;
     float: left;
  }
+    .uploadBox-1{
+        width:100%!important;
+    }
+     .text_jobs{
+        width:100%!important;
+    }
 }
