@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,21 +26,45 @@ namespace WebBDS_Project.Controllers
             return View(registerModel);
         }
         [HttpPost]
-        public ActionResult RegisterCompany(RegisterInformationModel bdsPersonalInformationModel)
+        public ActionResult RegisterCompany(RegisterInformationModel bdsInformationModel)
         {
-            bdsPersonalInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
-            bdsPersonalInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
-            db.bdsaccounts.Add(bdsPersonalInformationModel.TbBdsAdcount);
+            bdsInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
+            bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
+            db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
             db.SaveChanges();
-            bdsPersonalInformationModel.TblBdsemployerinformation.Id = bdsPersonalInformationModel.TbBdsAdcount.Id;
-            db.bdsemployerinformations.Add(bdsPersonalInformationModel.TblBdsemployerinformation);
+            bdsInformationModel.TblBdsemployerinformation.Id = bdsInformationModel.TbBdsAdcount.Id;
+            db.bdsemployerinformations.Add(bdsInformationModel.TblBdsemployerinformation);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index","Default");
         }
-
-        public ActionResult RegisterEmployee()
+        public ActionResult RegisterPersonal()
         {
-            return View();
+
+            var registerModel = new RegisterInformationModel
+            {
+                ListBdsScopes = db.bdsscopes.ToList()
+
+            };
+            return View(registerModel);
+        }
+        [HttpPost]
+        public ActionResult CheckEmail(string Email)
+        {
+            var countEmail = db.bdsaccounts.Where(x => x.Email == Email).Count();
+
+            return Json(countEmail );
+        }
+        [HttpPost]
+        public ActionResult RegisterPersonal(RegisterInformationModel bdsInformationModel)
+        {
+            bdsInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
+            bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
+            db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
+            db.SaveChanges();
+            bdsInformationModel.TblBdspersonalinformation.Id = bdsInformationModel.TbBdsAdcount.Id;
+            db.bdspersonalinformations.Add(bdsInformationModel.TblBdspersonalinformation);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Default");
         }
         [HttpPost]
         public ActionResult GetCity()
@@ -57,6 +83,47 @@ namespace WebBDS_Project.Controllers
                                where datatext.language_id == "vi" && data.state_id == id
                                select new GeoModel { DistId = data.district_id, DistName = datatext.text };
             return Json(dataDistrict.ToList());
+        }
+
+        public ActionResult UploadImg()
+        {
+            var path = string.Empty; var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = string.Empty;
+            if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                var file = System.Web.HttpContext.Current.Request.Files["HelpSectionImages"];
+                if (file != null && file.ContentLength > 0)
+                {
+
+                    var fileName = Path.GetFileName(file.FileName);
+                    string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                    fortmatName = Path.GetExtension(fileName);
+
+                    NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                    fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+                    path = Server.MapPath("~/fileUpload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    path1 = Path.Combine(path, fileNameFull);
+
+                    file.SaveAs(path1);
+                }
+            }
+
+            if (HttpContext.Request.Url != null && HttpContext.Request.Url.Host.Contains("localhost"))
+           
+                path = ConfigurationManager.AppSettings["domain"] + DateTime.Now.Day + DateTime.Now.Month + "/";
+            
+            var _fullUrl = path + fileNameFull;
+            return Json(new
+            {
+                fullurl = _fullUrl,
+                shorurl = "/fileUpload/" + DateTime.Now.Day + DateTime.Now.Month + "/" + fileNameFull,
+                imgName = fileNameFull
+            });
+            
         }
 
     }

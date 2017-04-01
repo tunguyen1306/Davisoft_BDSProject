@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsbank" Width="1.5" PointX="10.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdscareer" Width="1.5" PointX="4.75" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdseducation" Width="1.5" PointX="6.75" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsemployerinformation" Width="1.5" PointX="12.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsevent" Width="1.5" PointX="12.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdslanguage" Width="1.5" PointX="8.75" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsmarriage" Width="1.5" PointX="10.75" PointY="12.875" IsExpanded="true" />
@@ -49,6 +48,7 @@
         <AssociationConnector Association="davisoft_bdsprojectModel.roles_permissions" ManuallyRouted="false" />
         <AssociationConnector Association="davisoft_bdsprojectModel.users_branches" ManuallyRouted="false" />
         <AssociationConnector Association="davisoft_bdsprojectModel.users_roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsemployerinformation" Width="1.5" PointX="1.9056950108640338" PointY="13.340008786572147" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

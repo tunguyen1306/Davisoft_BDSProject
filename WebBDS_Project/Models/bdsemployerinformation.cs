@@ -15,7 +15,7 @@ namespace WebBDS_Project.Models
     public partial class bdsemployerinformation
     {
         public int Id { get; set; }
-        public int IdAccount { get; set; }
+        public Nullable<int> IdAccount { get; set; }
         public string Name { get; set; }
         public Nullable<int> Scope { get; set; }
         public string Description { get; set; }
@@ -23,16 +23,16 @@ namespace WebBDS_Project.Models
         public string Address { get; set; }
         public string FullAddress { get; set; }
         public string WebSite { get; set; }
-        public int City { get; set; }
-        public int District { get; set; }
+        public Nullable<int> City { get; set; }
+        public Nullable<int> District { get; set; }
         public string Fax { get; set; }
         public string Phone { get; set; }
         public string NameContact { get; set; }
         public string EmailContact { get; set; }
         public string PhoneContact { get; set; }
         public string AddressContact { get; set; }
-        public int CityContact { get; set; }
-        public int DistrictContact { get; set; }
-        public int TypeContact { get; set; }
+        public Nullable<int> CityContact { get; set; }
+        public Nullable<int> DistrictContact { get; set; }
+        public Nullable<int> TypeContact { get; set; }
     }
 }

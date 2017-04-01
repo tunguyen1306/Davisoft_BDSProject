@@ -361,9 +361,11 @@
     <Content Include="Template\css\font-awesome.css" />
     <Content Include="Template\css\ghpages-materialize.css" />
     <Content Include="Template\css\grid.css" />
+    <Content Include="Template\css\jquery-ui.css" />
     <Content Include="Template\css\normalize.css" />
     <Content Include="Template\css\reponsive.css" />
     <Content Include="Template\css\style.css" />
+    <Content Include="Template\css\toastr.css" />
     <Content Include="Template\DangKyTimViec.html" />
     <Content Include="Template\DangKyTuyenDung.html" />
     <Content Include="Template\Detail.htm" />
@@ -374,6 +376,7 @@
     <Content Include="Template\images\2.jpg" />
     <Content Include="Template\images\Banner.jpg" />
     <Content Include="Template\images\banner2.jpg" />
+    <Content Include="Template\images\calendar.gif" />
     <Content Include="Template\images\dangkybo.png" />
     <Content Include="Template\images\icon_1.png" />
     <Content Include="Template\images\icon_2.png" />
@@ -381,6 +384,8 @@
     <Content Include="Template\images\logo-ngan-hang-ACB.jpg" />
     <Content Include="Template\images\logo.png" />
     <Content Include="Template\images\tl.png" />
+    <Content Include="Template\images\ui-icons_444444_256x240.png" />
+    <Content Include="Template\images\ui-icons_555555_256x240.png" />
     <Content Include="Template\img\002.jpg" />
     <Content Include="Template\img\003.jpg" />
     <Content Include="Template\img\004.jpg" />
@@ -394,12 +399,16 @@
     <Content Include="Template\img\a02.png" />
     <Content Include="Template\img\icon_chrome.png" />
     <Content Include="Template\img\loading.gif" />
+    <Content Include="Template\js\bootbox.min.js" />
     <Content Include="Template\js\dropdown.js" />
     <Content Include="Template\js\flaunt.js" />
     <Content Include="Template\js\jquery-1.11.3.min.js" />
+    <Content Include="Template\js\jquery-1.12.4.js" />
+    <Content Include="Template\js\jquery-ui.js" />
     <Content Include="Template\js\jquery.easydropdown.min.js" />
     <Content Include="Template\js\jssor.slider-22.2.16.min.js" />
     <Content Include="Template\js\tabs.js" />
+    <Content Include="Template\js\toastr.js" />
     <Content Include="Template\naptien.htm" />
     <Content Include="Template\QuanLyNhaTuyenDung.htm" />
     <Content Include="Template\QuanLyTaiKhoanNhaTuyenDung.htm" />
@@ -423,10 +432,11 @@
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Default\_Menu.cshtml" />
     <Content Include="Views\Register\RegisterCompany.cshtml" />
-    <Content Include="Views\Register\RegisterEmployee.cshtml" />
+    <Content Include="Views\Register\RegisterPersonal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="fileupload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -450,9 +460,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>1374</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:6908/</IISUrl>
+          <IISUrl>http://localhost:30031/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
