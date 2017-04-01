@@ -40,13 +40,27 @@ namespace Davisoft_BDSProject.Web.Models
         public DbSet<locationtext> locationtexts { get; set; }
         public DbSet<menu> menus { get; set; }
         public DbSet<permission> permissions { get; set; }
-        public DbSet<phuong> phuongs { get; set; }
-        public DbSet<quarter> quarters { get; set; }
-        public DbSet<quartertext> quartertexts { get; set; }
         public DbSet<role> roles { get; set; }
         public DbSet<setting> settings { get; set; }
         public DbSet<state> states { get; set; }
         public DbSet<statetext> statetexts { get; set; }
         public DbSet<user> users { get; set; }
+        public DbSet<bdsaccount> bdsaccounts { get; set; }
+        public DbSet<bdsarea> bdsareas { get; set; }
+        public DbSet<bdsbank> bdsbanks { get; set; }
+        public DbSet<bdscareer> bdscareers { get; set; }
+        public DbSet<bdseducation> bdseducations { get; set; }
+        public DbSet<bdsemployerinformation> bdsemployerinformations { get; set; }
+        public DbSet<bdsevent> bdsevents { get; set; }
+        public DbSet<bdslanguage> bdslanguages { get; set; }
+        public DbSet<bdsmarriage> bdsmarriages { get; set; }
+        public DbSet<bdsnew> bdsnews { get; set; }
+        public DbSet<bdsnewstypeprice> bdsnewstypeprices { get; set; }
+        public DbSet<bdsnewstype> bdsnewstypes { get; set; }
+        public DbSet<bdspersonalinformation> bdspersonalinformations { get; set; }
+        public DbSet<bdssalary> bdssalaries { get; set; }
+        public DbSet<bdsscope> bdsscopes { get; set; }
+        public DbSet<bdstimework> bdstimeworks { get; set; }
+        public DbSet<bdstypecontact> bdstypecontacts { get; set; }
     }
 }
