@@ -65,15 +65,16 @@
                                    
                                         <label class="child">Ngày sinh<span class="required">*</span></label>
                                         <div class="pncon">
-                                            <input class="cus-input2" placeholder="DD" type="text">
+                                            <input class="cus-input2" id="day" placeholder="DD" type="text">
                                         </div>
                                         <div class="pncon">
 
-                                            <input class="cus-input2" placeholder="MM" type="text">
+                                            <input class="cus-input2" id="month" placeholder="MM" type="text">
                                         </div>
                                     
                                          <div class="pncon">
-                                            <input class="cus-input2 mg0_0 datepicker" placeholder="YYYY" type="text">
+                                            <input class="cus-input2 mg0_0 " id="year" placeholder="YYYY" type="text">
+                                             <input class="cus-input2 mg0_0 datepicker" name="TblBdspersonalinformation.Birthday" style="display:none;"  value="" id="hdValuesDate" placeholder="YYYY" type="text">
                                         </div>
                                     </div>
                               
@@ -102,20 +103,19 @@
                                     <label>Địa chỉ liên hệ<span class="required"> *</span></label>
                                     <div class="row-right">
 
-                                        <input class="input1" placeholder="Nhập địa chỉ liên hệ" type="text">
+                                       
+                                        @Html.TextBoxFor(m => m.TblBdspersonalinformation.Address, new { @class = "input1", @placeholder = "Nhập địa chỉ liên hệ" })
+                                        
                                     </div>
                                     <div class="row-right">
 
                                         <div class="pncon width2">
 
-                                            <label class="child">Tỉnh/TP</label>
+                                            <label class="child" >Tỉnh/TP</label>
                                              
-                                                <select class="dropdown" tabindex="7">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
+                                                <select class="dropdown" id="dropCity" tabindex="7">
+                                                    <option value="0">Chọn tỉnh/thành</option>
+                                                
                                                 </select>
                                            
                                         </div>
@@ -126,12 +126,9 @@
 
                                             <label class="child">Quận/Huyện</label>
                                           
-                                                <select class="dropdown" tabindex="7">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
+                                                <select class="dropdown" id="dropDistrict" tabindex="7">
+                                                    <option value="0">Chọn quận/huyên</option>
+                                                   
                                                 </select>
                                            
                                         </div>
@@ -146,11 +143,10 @@
                                 <div class="row-right">
 
                                     
-                                        <select class="dropdown" tabindex="7">
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
+                                    @Html.DropDownListFor(m => m.TblBdspersonalinformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), new { @class = "dropdown" })
 
-                                        </select>
+
+
                                    
                                 </div>
                               </div>
@@ -158,13 +154,7 @@
 
                                         <label class="child">Mức lương mong muốn <span class="required">*</span></label>
                                         <div class="pncon">
-                                            <select class="dropdown" tabindex="7">
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                                <option value="4">Option 4</option>
-                                                <option value="5">Option 5</option>
-                                            </select>
+                                            @Html.DropDownListFor(m => m.TblBdspersonalinformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"), new { @class = "dropdown" })
                                         </div>
                                     </div>
 
@@ -177,25 +167,20 @@
                                 <div class="row-right">
 
                                     
-                                        <select class="dropdown" tabindex="7">
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
+                                    <select class="dropdown" tabindex="7">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
 
-                                        </select>
-                                   
+                                    </select>
                                 </div>
                               </div>
                                     <div class="row-right width3">
 
                                         <label class="child">Học vấn <span class="required">*</span></label>
                                         <div class="pncon">
-                                            <select class="dropdown" tabindex="7">
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                                <option value="4">Option 4</option>
-                                                <option value="5">Option 5</option>
-                                            </select>
+                                         
+                                            @Html.DropDownListFor(m => m.TblBdspersonalinformation.Education, new SelectList(Model.ListDucation, "Id", "Name"), new { @class = "dropdown" })
+                                            
                                         </div>
                                     </div>
 
@@ -206,19 +191,17 @@
                                  <div class="row">
                                     <label>Công việc mong muốn<span class="required">*</span></label>
                                     <div class="row-right">
-                                        <select class="dropdown" tabindex="7">
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
+                                        @Html.DropDownListFor(m => m.TblBdspersonalinformation.IdLoaiNghe, new SelectList(Model.ListBdscareer, "Id", "Name"), new { @class = "dropdown" })
 
-                                        </select>
+                                       
                                     </div>
 
                                    
                                         <label class="child">Kinh nghiệm trong ngành bất động sản<span class="required">*</span></label>
                                         
                                             <div class="pncon radio_3">
-                                               <label><input type="radio">Không</label>
-                                               <label><input type="radio">Đã có kinh nghiệm</label>                                                   
+                                               <label><input name="TblBdspersonalinformation.Education" checked="checked" type="radio">Không</label>
+                                               <label><input name="TblBdspersonalinformation.Education" type="radio">Đã có kinh nghiệm</label>                                                   
                                             </div>
 
                                     
@@ -240,9 +223,18 @@
                             <div class="row">
                                           
                                            <label>Logo Công Ty</label>
-                                           <div class="logo_jobs">
-                                               <img src="~/Template/images/imgUpload.png" />             
-                                           </div>
+                                <div class="logo_jobs">
+                                    <div class="grid_5 uploadBox">
+                                        <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                                       
+                                        <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
+                                    </div>
+                                    <div class="uploadBox-1">
+                                        <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                            + UpLoad Image
+                                        </a>
+                                    </div>
+                                </div>
                                                 
                                                <div class="text_jobs">
                                                
@@ -253,10 +245,7 @@
                                     
                                           
                                        </div>
-                                <div class="row">
-                                           <label></label>
-                                           <img width="139" height="92" id="imgLogoCompany" src="~/Template/images/1.jpg" />
-                                       </div>
+                              
                             <div class="row">
 
                                 <div class="grid_12">
@@ -283,6 +272,13 @@
             buttonImage: "/Template/images/calendar.gif",
             buttonImageOnly: true,
             buttonText: "Select date"
+        });
+        $('#hdValuesDate').change(function () {
+            var birthday = $('#hdValuesDate').val().split('/');
+            $('#day').val(birthday[1]);
+            $('#month').val(birthday[0]);
+            $('#year').val(birthday[2]);
+
         });
     });
     $("#submitbutton").on('click', function (e) {
@@ -326,27 +322,19 @@
             }
         }
       
-        if ($('#TblBdsemployerinformation_Name').val() == "") {
+        if ($('#TblBdspersonalinformation_Name').val() == "") {
 
-            toastr.error('Vui lòng nhập tên công ty');
+            toastr.error('Vui lòng nhập họ và tên ');
             t++;
-        } if ($('#TblBdsemployerinformation_Description').val() == "") {
+        } if ($('#TblBdspersonalinformation_Phone').val() == "") {
 
-            toastr.error('Vui lòng nhập sơ lược công ty');
+            toastr.error('Vui lòng nhập số điện thoại');
             t++;
-        } if ($('#TblBdsemployerinformation_Address').val() == "") {
+        } if ($('#TblBdspersonalinformation_Address').val() == "") {
 
-            toastr.error('Vui lòng nhập địa chỉ công ty');
+            toastr.error('Vui lòng nhập địa chỉ ');
             t++;
-        } if ($('#TblBdsemployerinformation_NameContact').val() == "") {
-
-            toastr.error('Vui lòng nhập tên liên hệ');
-            t++;
-        } if ($('#TblBdsemployerinformation_Phone').val() == "") {
-
-            toastr.error('Vui lòng nhập điện thoại');
-            t++;
-        }
+        } 
         if (t==0) {
             $('#submitbutton').parents("form").submit();
         }

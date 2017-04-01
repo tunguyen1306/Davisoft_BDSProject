@@ -42,7 +42,11 @@ namespace WebBDS_Project.Controllers
 
             var registerModel = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList()
+                ListBdsScopes = db.bdsscopes.ToList(),
+                ListMarriea = db.bdsmarriages.ToList(),
+                ListSalary = db.bdssalaries.ToList(),
+                ListDucation = db.bdseducations.ToList(),
+                ListBdscareer = db.bdscareers.ToList()
 
             };
             return View(registerModel);
