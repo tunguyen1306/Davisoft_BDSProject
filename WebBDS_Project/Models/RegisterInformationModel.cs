@@ -27,6 +27,7 @@ namespace WebBDS_Project.Models
 
         public List<bdscareer> ListBdscareer { get; set; }
         public bdscareer tblBdscareer { get; set; }
-
+        public List<bdstimework> ListTimework { get; set; }
+        public bdstimework tbltimework { get; set; }
     }
 }

@@ -46,7 +46,8 @@ namespace WebBDS_Project.Controllers
                 ListMarriea = db.bdsmarriages.ToList(),
                 ListSalary = db.bdssalaries.ToList(),
                 ListDucation = db.bdseducations.ToList(),
-                ListBdscareer = db.bdscareers.ToList()
+                ListBdscareer = db.bdscareers.ToList(),
+                ListTimework = db.bdstimeworks.ToList()
 
             };
             return View(registerModel);

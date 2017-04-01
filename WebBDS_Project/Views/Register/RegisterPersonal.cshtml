@@ -166,12 +166,9 @@
                                  <label>Số năm kinh nghiệm<span class="required"> *</span></label>
                                 <div class="row-right">
 
-                                    
-                                    <select class="dropdown" tabindex="7">
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
+                                    @Html.DropDownListFor(m => m.TblBdspersonalinformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"), new { @class = "dropdown" })
 
-                                    </select>
+
                                 </div>
                               </div>
                                     <div class="row-right width3">
