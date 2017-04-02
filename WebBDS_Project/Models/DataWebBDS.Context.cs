@@ -32,6 +32,7 @@ namespace WebBDS_Project.Models
         public DbSet<bdsbank> bdsbanks { get; set; }
         public DbSet<bdscareer> bdscareers { get; set; }
         public DbSet<bdseducation> bdseducations { get; set; }
+        public DbSet<bdsemployerinformation> bdsemployerinformations { get; set; }
         public DbSet<bdsevent> bdsevents { get; set; }
         public DbSet<bdslanguage> bdslanguages { get; set; }
         public DbSet<bdsmarriage> bdsmarriages { get; set; }
@@ -61,6 +62,5 @@ namespace WebBDS_Project.Models
         public DbSet<state> states { get; set; }
         public DbSet<statetext> statetexts { get; set; }
         public DbSet<user> users { get; set; }
-        public DbSet<bdsemployerinformation> bdsemployerinformations { get; set; }
     }
 }

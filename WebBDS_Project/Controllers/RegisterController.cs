@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -28,13 +29,39 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public ActionResult RegisterCompany(RegisterInformationModel bdsInformationModel)
         {
-            bdsInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
-            bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
-            db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
-            db.SaveChanges();
-            bdsInformationModel.TblBdsemployerinformation.Id = bdsInformationModel.TbBdsAdcount.Id;
-            db.bdsemployerinformations.Add(bdsInformationModel.TblBdsemployerinformation);
-            db.SaveChanges();
+            try
+            {
+                bdsInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
+                bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
+                db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
+                db.SaveChanges();
+                bdsInformationModel.TblBdsemployerinformation.IdAccount = bdsInformationModel.TbBdsAdcount.Id;
+                bdsInformationModel.TblBdsemployerinformation.AddressContact = "tt";
+                bdsInformationModel.TblBdsemployerinformation.CityContact = 1;
+                bdsInformationModel.TblBdsemployerinformation.DistrictContact = 1;
+                bdsInformationModel.TblBdsemployerinformation.EmailContact = "tt";
+                bdsInformationModel.TblBdsemployerinformation.FullAddress = "tt";
+                bdsInformationModel.TblBdsemployerinformation.TypeContact = 1;
+                bdsInformationModel.TblBdsemployerinformation.Fax = "tt";
+                bdsInformationModel.TblBdsemployerinformation.PhoneContact = "tt";
+                db.bdsemployerinformations.Add(bdsInformationModel.TblBdsemployerinformation);
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+           
             return RedirectToAction("Index","Default");
         }
         public ActionResult RegisterPersonal()
@@ -66,7 +93,7 @@ namespace WebBDS_Project.Controllers
             bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
             db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
             db.SaveChanges();
-            bdsInformationModel.TblBdspersonalinformation.Id = bdsInformationModel.TbBdsAdcount.Id;
+            bdsInformationModel.TblBdspersonalinformation.IdAccount = bdsInformationModel.TbBdsAdcount.Id;
             db.bdspersonalinformations.Add(bdsInformationModel.TblBdspersonalinformation);
             db.SaveChanges();
             return RedirectToAction("Index", "Default");

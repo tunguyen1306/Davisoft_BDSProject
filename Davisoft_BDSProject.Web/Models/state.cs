@@ -21,9 +21,9 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<decimal> latitude { get; set; }
         public Nullable<decimal> longitude { get; set; }
         public string polygon { get; set; }
-        public string rowguid { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> Status { get; set; }
+        public string rowguid { get; set; }
     }
 }

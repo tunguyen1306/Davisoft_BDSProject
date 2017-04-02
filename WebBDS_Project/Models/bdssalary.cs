@@ -23,10 +23,10 @@ namespace WebBDS_Project.Models
         public int Perfix { get; set; }
         public bool Default { get; set; }
         public string KeySearch { get; set; }
+        public Nullable<int> Active { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
-        public Nullable<int> Active { get; set; }
     }
 }

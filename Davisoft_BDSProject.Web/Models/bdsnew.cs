@@ -44,5 +44,6 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<System.DateTime> FromCreateNews { get; set; }
         public Nullable<System.DateTime> ToCreateNews { get; set; }
         public Nullable<int> IdAcount { get; set; }
+        public Nullable<int> Probatonary { get; set; }
     }
 }

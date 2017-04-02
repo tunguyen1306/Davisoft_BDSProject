@@ -198,4 +198,14 @@ tr:nth-child(even) {
     display: block;
     width:55%;
    
+}.btn_search-1{
+        width: 15%;
+    text-align: center;
+    color: #fff;
+    border: none;
+    background: #de3039;
+    padding: 11px 0 7px;
+    font-weight: bold;
+    font-size: 13px;
+   
 }

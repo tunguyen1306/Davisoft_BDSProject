@@ -27,6 +27,23 @@ namespace Davisoft_BDSProject.Web.Models
     
         public DbSet<C__migrationhistory> C__migrationhistory { get; set; }
         public DbSet<audit> audits { get; set; }
+        public DbSet<bdsaccount> bdsaccounts { get; set; }
+        public DbSet<bdsarea> bdsareas { get; set; }
+        public DbSet<bdsbank> bdsbanks { get; set; }
+        public DbSet<bdscareer> bdscareers { get; set; }
+        public DbSet<bdseducation> bdseducations { get; set; }
+        public DbSet<bdsemployerinformation> bdsemployerinformations { get; set; }
+        public DbSet<bdsevent> bdsevents { get; set; }
+        public DbSet<bdslanguage> bdslanguages { get; set; }
+        public DbSet<bdsmarriage> bdsmarriages { get; set; }
+        public DbSet<bdsnew> bdsnews { get; set; }
+        public DbSet<bdsnewstypeprice> bdsnewstypeprices { get; set; }
+        public DbSet<bdsnewstype> bdsnewstypes { get; set; }
+        public DbSet<bdspersonalinformation> bdspersonalinformations { get; set; }
+        public DbSet<bdssalary> bdssalaries { get; set; }
+        public DbSet<bdsscope> bdsscopes { get; set; }
+        public DbSet<bdstimework> bdstimeworks { get; set; }
+        public DbSet<bdstypecontact> bdstypecontacts { get; set; }
         public DbSet<branch> branches { get; set; }
         public DbSet<counter> counters { get; set; }
         public DbSet<country> countries { get; set; }
@@ -45,22 +62,5 @@ namespace Davisoft_BDSProject.Web.Models
         public DbSet<state> states { get; set; }
         public DbSet<statetext> statetexts { get; set; }
         public DbSet<user> users { get; set; }
-        public DbSet<bdsaccount> bdsaccounts { get; set; }
-        public DbSet<bdsarea> bdsareas { get; set; }
-        public DbSet<bdsbank> bdsbanks { get; set; }
-        public DbSet<bdscareer> bdscareers { get; set; }
-        public DbSet<bdseducation> bdseducations { get; set; }
-        public DbSet<bdsemployerinformation> bdsemployerinformations { get; set; }
-        public DbSet<bdsevent> bdsevents { get; set; }
-        public DbSet<bdslanguage> bdslanguages { get; set; }
-        public DbSet<bdsmarriage> bdsmarriages { get; set; }
-        public DbSet<bdsnew> bdsnews { get; set; }
-        public DbSet<bdsnewstypeprice> bdsnewstypeprices { get; set; }
-        public DbSet<bdsnewstype> bdsnewstypes { get; set; }
-        public DbSet<bdspersonalinformation> bdspersonalinformations { get; set; }
-        public DbSet<bdssalary> bdssalaries { get; set; }
-        public DbSet<bdsscope> bdsscopes { get; set; }
-        public DbSet<bdstimework> bdstimeworks { get; set; }
-        public DbSet<bdstypecontact> bdstypecontacts { get; set; }
     }
 }
