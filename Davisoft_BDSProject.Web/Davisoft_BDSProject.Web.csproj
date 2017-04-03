@@ -331,6 +331,8 @@
     <Compile Include="Controllers\AdminCityController.cs" />
     <Compile Include="Controllers\AdminDistrictController.cs" />
     <Compile Include="Controllers\AuditController.cs" />
+    <Compile Include="Controllers\BDSAccountController.cs" />
+    <Compile Include="Controllers\BDSEmployerInformationController.cs" />
     <Compile Include="Controllers\BDSLanguageController.cs" />
     <Compile Include="Controllers\BDSNewsTypePriceController.cs" />
     <Compile Include="Controllers\BDSSalaryController.cs" />
@@ -562,6 +564,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Validation\BDSAccountValidator.cs" />
+    <Compile Include="Validation\BDSEmployerInformationValidator.cs" />
     <Compile Include="Validation\BDSSalaryValidator.cs" />
     <Compile Include="Validation\BDSNewsTypePriceValidator.cs" />
     <Compile Include="Validation\BDSTimeWorkValidator.cs">
@@ -2128,6 +2132,16 @@
     <Content Include="Views\BDSTimeWork\Create.cshtml" />
     <Content Include="Views\BDSTimeWork\Edit.cshtml" />
     <Content Include="Views\BDSTimeWork\Index.cshtml" />
+    <Content Include="Views\BDSAccount\Create.cshtml" />
+    <Content Include="Views\BDSAccount\Edit.cshtml" />
+    <Content Include="Views\BDSAccount\Index.cshtml" />
+    <Content Include="Views\BDSAccount\_Input.cshtml" />
+    <Content Include="Views\BDSEmployerInformation\Create.cshtml" />
+    <Content Include="Views\BDSEmployerInformation\Edit.cshtml" />
+    <Content Include="Views\BDSEmployerInformation\Index.cshtml" />
+    <Content Include="Views\BDSEmployerInformation\_Input.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

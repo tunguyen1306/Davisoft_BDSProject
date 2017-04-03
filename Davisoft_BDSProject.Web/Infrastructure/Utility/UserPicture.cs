@@ -57,4 +57,55 @@ namespace Davisoft_BDSProject.Web.Infrastructure.Utility
             return "~/data/user_img/" + fileName;
         }
     }
+    public class ImageUpload
+    {
+        public static string Upload(String guid, HttpPostedFileBase file,int with,int height)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string fileName = guid + Path.GetExtension(file.FileName);
+                    string thumbName = guid + "_" + with + "x" + height + Path.GetExtension(file.FileName);
+                    string filePath = HttpContext.Current.Server.MapPath(GetImagePath(fileName));
+                    string directory = Path.GetDirectoryName(filePath);
+                    if (directory != null) Directory.CreateDirectory(directory);
+                    file.SaveAs(filePath);
+                    ImageHelper.CreateImageHighQuality(GetfolderPath(), GetfolderPath(), fileName, thumbName, height, with);
+
+                    return thumbName;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return null;
+        }
+
+        public static bool Delete(int userId, string fileName)
+        {
+            try
+            {
+                string path = HttpContext.Current.Server.MapPath(GetImagePath(fileName));
+                File.Delete(path);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static string GetfolderPath()
+        {
+            return HttpContext.Current.Server.MapPath("~/data/img/");
+        }
+        public static string GetImagePath(string fileName)
+        {
+            return "/data/img/" + fileName;
+        }
+    }
 }

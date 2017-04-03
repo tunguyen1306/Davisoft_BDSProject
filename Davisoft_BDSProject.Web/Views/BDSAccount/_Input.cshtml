@@ -1,0 +1,34 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSAccount
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSAccount_Email", "Email") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Email).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSAccount_PassWord", "PassWord") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().PasswordFor(m => m.PassWord).Readonly(Model.ID>0?true:false).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSAccount_Money", "Money")</label>
+    <div class="col-md-4">
+        @Html.Bootstrap().TextBoxFor(m => m.Money).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+    <div class="col-md-4">
+        @Html.Bootstrap().TextBoxFor(m => m.Point).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+@Html.HiddenFor(m => m.MailActive)
+@Html.HiddenFor(m => m.Token)

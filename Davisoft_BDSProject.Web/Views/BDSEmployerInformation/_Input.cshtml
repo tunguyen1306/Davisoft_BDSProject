@@ -1,0 +1,294 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using iTextSharp.text.pdf.qrcode
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSEmployerInformation
+<div class="form-group">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">
+                Thông tin tài khoản
+            </h3>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSAccount_Email", "Email") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.BDSAccount.Email).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSAccount_PassWord", "PassWord") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().PasswordFor(m => m.BDSAccount.PassWord).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1"> </label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().PasswordFor(m => m.BDSAccount.RePassWord).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <script type="text/javascript">
+                        document.getElementById("BDSAccount_PassWord").value = "@Model.BDSAccount.PassWord";
+                        document.getElementById("BDSAccount_RePassWord").value = "@Model.BDSAccount.PassWord";
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSAccount_Money", "Money")</label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.BDSAccount.Money).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSAccount_Point", "Point") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.BDSAccount.Point).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">
+                Thông tin nhà tuyển dụng
+            </h3>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_Name", "Name") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_Scope", "Scope") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().DropDownListFor(m => m.Scope, (List<SelectListItem>)ViewBag.Scopes).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_Address", "Address") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.Address).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Bootstrap().DropDownListFor(m => m.City, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.District, (List<SelectListItem>)ViewBag.Districts).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_Phone", "Phone") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.Phone).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSEmployerInformation_Fax", "Fax") </label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.Fax).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@Utilities.Resource("BDSEmployerInformation_Image", "Logo")</label>
+                    <div class="col-md-8" style="position: relative;">
+                        <div id="picture">
+                            @if (Model.UrlImage != null)
+                            {
+                                <img style="width: 120px; height:120px;" src="@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
+                            }
+                            else
+                            {
+                                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().FileFor(m => m.UrlImageFile).HtmlAttributes(new { @class = "form-control hidden" }).ShowValidationMessage(false)
+                        @Html.Bootstrap().TextBoxFor(m => m.UrlImage).Readonly(true).HtmlAttributes(new { @class = "form-control" }).Placeholder("Please click to upload logo").ShowValidationMessage(true)
+                        <script type="text/javascript">
+                                    document.getElementById("UrlImage").value = "@(Model.UrlImage)";
+    
+                        </script>
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_Website", "Website") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.WebSite).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_Description", "Description") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">
+                Thông tin liên hệ
+            </h3>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_NameContact", "Name Contact") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.NameContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_EmailContact", "Email Contact") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.EmailContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSEmployerInformation_Phone", "Phone") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.PhoneContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_AddressContact", "Address Contact") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.AddressContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Bootstrap().DropDownListFor(m => m.CityContact, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.DistrictContact, (List<SelectListItem>)ViewBag.Districts).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSEmployerInformation_TypeContact", "Type Contact") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().DropDownListFor(m => m.TypeContact, (List<SelectListItem>)ViewBag.TypeContacts).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+@Html.HiddenFor(m => m.IdAccount)
+@Html.HiddenFor(m => m.BDSAccount.ID)
+@Html.HiddenFor(m => m.BDSAccount.Active)
+@Html.HiddenFor(m => m.BDSAccount.ModifiedDate)
+@Html.HiddenFor(m => m.BDSAccount.CreateDate)
+@Html.HiddenFor(m => m.BDSAccount.CreateUser)
+@Html.HiddenFor(m => m.BDSAccount.ModifiedUser)
+@Html.HiddenFor(m => m.BDSAccount.MailActive)
+@Html.HiddenFor(m => m.BDSAccount.Token)
+
+<style>
+    .hidden {
+      
+    }
+</style>
+@Html.Script(
+    @<text>
+         <script>
+             $(document).on('click', '#UrlImage', function() {
+                 $('input[type="File"]').click();
+             });
+             
+             $(document).on('change', 'input[type="File"]', function () {
+                 var upload = $(this);
+
+                 var indicator = upload.next('.selected');
+                 if (indicator.length == 0) {
+                     indicator = $('<span class="selected"></span>').insertAfter(upload);
+                 }
+               
+                 if (upload.val() == '') {
+                     indicator.html('');
+                 } else if (window.FileReader) {
+                     $('#UrlImage').val(upload.val());
+                     var reader = new FileReader();
+                     reader.onload = function (e) {
+                         if (upload[0].files[0].size > 2000000) {
+                             $.sticky("@Resource.FileToLarge", { type: 'st-danger' });
+                             upload.replaceWith(upload = upload.clone(true));
+                         } else {
+                             $('#picture').html("<img style='width: 120px; height:120px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
+                         }
+                     };
+                     reader.readAsDataURL(upload[0].files[0]);
+                 } else {
+                     indicator.html("Selected");
+                 }
+             });
+             var dataArray = new Array();
+             $(document).ready(function() {
+                 $.getJSON("/BDSEmployerInformation/LoadDistricts",function(data) {
+                     dataArray = data;
+
+                     if ($('#City').val() != "") {
+                         var val = $('#District').val();
+                         $('#District').empty();
+                         for (var i = 0; i < dataArray.length; i++) {
+                             if (dataArray[i].State_ID == $('#City').val()) {
+                                 $('#District').append('<option ' + (dataArray[i].ID == val ? 'selected="selected"' : '') + ' value="' + dataArray[i].ID + '">' + dataArray[i].Name + '</option>');
+                             }
+                         }
+                     }
+
+                     if ($('#CityContact').val() != "") {
+                         var val = $('#DistrictContact').val();
+                         $('#DistrictContact').empty();
+                         for (var i = 0; i < dataArray.length; i++) {
+                             if (dataArray[i].State_ID == $('#CityContact').val()) {
+                                 $('#DistrictContact').append('<option ' + (dataArray[i].ID == val ? 'selected="selected"' : '') + ' value="' + dataArray[i].ID + '">' + dataArray[i].Name + '</option>');
+                             }
+                         }
+                     }
+                 });
+                 
+             });
+             $(document).on("change", "#City", function () {
+                 $('#District').val('');
+                 $("#District").select2("val", "");
+                 if ($('#City').val() != "") {
+                     var val = $('#District').val();
+                     $('#District').empty();
+                     for (var i = 0; i < dataArray.length; i++) {
+                         if (dataArray[i].State_ID == $('#City').val()) {
+                             $('#District').append('<option ' + (dataArray[i].ID == val ? 'selected="selected"' : '') + ' value="' + dataArray[i].ID + '">' + dataArray[i].Name + '</option>');
+                         }
+                     }
+                 }
+
+             });
+             $(document).on("change", "#CityContact", function () {
+                 $('#DistrictContact').val('');
+                 $("#DistrictContact").select2("val", "");
+                 if ($('#CityContact').val() != "") {
+                     var val = $('#DistrictContact').val();
+                     $('#DistrictContact').empty();
+                     for (var i = 0; i < dataArray.length; i++) {
+                         if (dataArray[i].State_ID == $('#CityContact').val()) {
+                             $('#DistrictContact').append('<option ' + (dataArray[i].ID == val ? 'selected="selected"' : '') + ' value="' + dataArray[i].ID + '">' + dataArray[i].Name + '</option>');
+                         }
+                     }
+                 }
+             });
+         </script>
+    </text>)

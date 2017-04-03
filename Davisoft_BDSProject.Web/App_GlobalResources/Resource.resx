@@ -6234,4 +6234,134 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSCareer_Edit" xml:space="preserve">
+    <value>Edit Career</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount" xml:space="preserve">
+    <value>List Account</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount_Email" xml:space="preserve">
+    <value>Email</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount_PassWord" xml:space="preserve">
+    <value>PassWord</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount_Monney" xml:space="preserve">
+    <value>Monney</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount_Point" xml:space="preserve">
+    <value>Point</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount_Add" xml:space="preserve">
+    <value>Add New Account</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount_Money" xml:space="preserve">
+    <value>Money</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount_Edit" xml:space="preserve">
+    <value>Edit Account</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation" xml:space="preserve">
+    <value>List Account</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Add" xml:space="preserve">
+    <value>Add New Account</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Website" xml:space="preserve">
+    <value>Website</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_NameContact" xml:space="preserve">
+    <value>Name Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_EmailContact" xml:space="preserve">
+    <value>Email - Phone Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_AddressContact" xml:space="preserve">
+    <value>Address Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_TypeContact" xml:space="preserve">
+    <value>Type Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Scope" xml:space="preserve">
+    <value>Scope</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Address" xml:space="preserve">
+    <value>Address</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Phone" xml:space="preserve">
+    <value>Phone</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Edit" xml:space="preserve">
+    <value>Edit Account</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Fax" xml:space="preserve">
+    <value>Fax</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_PhoneContact" xml:space="preserve">
+    <value>Phone Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSAccount_RePassWord" xml:space="preserve">
+    <value>Confrim PW</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSEmployerInformation_Image" xml:space="preserve">
+    <value>Logo</value>
+    <comment>
+    </comment>
+  </data>
 </root>

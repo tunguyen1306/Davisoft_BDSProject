@@ -49,6 +49,11 @@ namespace Davisoft_BDSProject.Domain
         public DbSet<BDSScope> BDSScopes { get; set; }
         public DbSet<BDSTimeWork> BDSTimeWorks { get; set; }
         public DbSet<BDSTypeContact> BDSTypeContact { get; set; }
+
+        public DbSet<BDSAccount> BDSAccounts { get; set; }
+        public DbSet<BDSEmployerInformation> BDSEmployerInformations { get; set; }
+
+        public DbSet<BDSPersonalInformation> BDSPersonalInformations { get; set; }
         protected override void OnModelCreating(DbModelBuilder mb)
         {
             //EnumerationTypeConfiguration.Apply(this, mb);
