@@ -206,6 +206,12 @@ border-bottom: none;
 	border-radius: 8px 8px 0 0;
  	border-bottom: none;
 }
+.idTabs-1 li a.selected {
+	background: #ffffff!important;
+	border: 0px solid #dfdfdf!important;
+	border-radius: 8px 8px 0 0;
+ 	border-bottom: none;
+}
 .idTabs li a img {
 	background-size: 100%;
 	width: 18px;
@@ -226,6 +232,13 @@ border-bottom: none;
 	background: #f3f3f3;
 	clear: both
 }
+.content_tab-1 {
+	padding: 12px 15px;
+	
+	margin-top: 0;
+	
+	clear: both
+}
 .content_tab h4 {
 	color: #de3039;
 	font-weight:bold;
@@ -239,7 +252,7 @@ border-bottom: none;
 	
 }
 .group_work h4 {
-	color: #282828;
+	color: #a71e25;
 	font-weight:bold;
 	font-size:13px;
 	margin:0 0 10px;

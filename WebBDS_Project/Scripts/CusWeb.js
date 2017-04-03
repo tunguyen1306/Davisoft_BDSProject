@@ -7,7 +7,7 @@ $('.lblcheckEmail').click(function () {
  
 });
 $(".datepicker1").datepicker({
-    dateFormat: 'dd/mm/yyyy'
+    dateFormat: 'dd/mm/yy'
 });
     
 });

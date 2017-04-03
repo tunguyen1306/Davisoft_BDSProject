@@ -15,7 +15,10 @@ namespace WebBDS_Project.Controllers
 
         public ActionResult AdvertCompany()
         {
-
+            var dataCity = from data in db.states
+                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             var registerModel = new RegisterInformationModel
             {
                 ListBdsScopes = db.bdsscopes.ToList(),
@@ -25,7 +28,8 @@ namespace WebBDS_Project.Controllers
                 ListBdscareer = db.bdscareers.ToList(),
                 ListTimework = db.bdstimeworks.ToList(),
                 Listbdslanguage = db.bdslanguages.ToList(),
-                Listbdsnewstype = db.bdsnewstypes.ToList()
+                Listbdsnewstype = db.bdsnewstypes.ToList(),
+                ListGeoModel= dataCity.ToList()
 
             };
             return View(registerModel);
@@ -33,7 +37,11 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public ActionResult AdvertCompany(RegisterInformationModel create)
         {
-            return View();
+            create.tblbdsnew.FromDeadline = DateTime.Now;
+            create.tblbdsnew.FromCreateNews = DateTime.Now;
+            db.bdsnews.Add(create.tblbdsnew);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Default");
         }
 
     }
