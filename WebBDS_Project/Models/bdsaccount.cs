@@ -21,6 +21,7 @@ namespace WebBDS_Project.Models
         public decimal Money { get; set; }
         public int Point { get; set; }
         public Nullable<int> MailActive { get; set; }
+        public string KeySearch { get; set; }
         public int Active { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int CreateUser { get; set; }

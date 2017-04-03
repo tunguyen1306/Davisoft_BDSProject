@@ -15,7 +15,7 @@ namespace WebBDS_Project.Models
     public partial class bdspersonalinformation
     {
         public int Id { get; set; }
-        public int IdAccount { get; set; }
+        public Nullable<int> IdAccount { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }

@@ -144,9 +144,6 @@
     <Compile Include="Models\bdsaccount.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsaccount1.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\bdsarea.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -160,9 +157,6 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdsemployerinformation.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsemployerinformation1.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdsevent.cs">

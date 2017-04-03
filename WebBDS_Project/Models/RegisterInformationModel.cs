@@ -30,7 +30,13 @@ namespace WebBDS_Project.Models
         public List<bdstimework> ListTimework { get; set; }
         public bdstimework tbltimework { get; set; }
         public bdsnew tblbdsnew { get; set; }
+
         public bdsnewstype tblbdsnewstype { get; set; }
+        public List<bdsnewstype> Listbdsnewstype { get; set; }
+
+        public bdslanguage tblbdslanguage { get; set; }
+        public List<bdslanguage> Listbdslanguage { get; set; }
+
         public bdsnewstypeprice tblbdsnewstypeprice { get; set; }
     }
 }
