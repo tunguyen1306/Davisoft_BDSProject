@@ -21,10 +21,12 @@ namespace Davisoft_BDSProject.Domain.Entities
         public int MaritalStatus { get; set; }
         public int Salary { get; set; }
         public int Experience { get; set; }
+        public int ProfessionalExperience { get; set; }
         public int Education { get; set; }
         public int IdLoaiNghe { get; set; }
         public string Description { get; set; }
         public string UrlImage { get; set; }
+        [NotMapped]
         public string UrlImageFile { get; set; }
 
         public string KeySearch { get; set; }

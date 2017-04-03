@@ -59,8 +59,13 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_Name", "Name") <span class="required">*</span></label>
-                    <div class="col-md-9">
+                    <div class="col-md-4">
                         @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Birthda`", "Birthday") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.DatePickerFor(m => m.Birthday, new { @class = "form-control date" })
+                        @Html.ValidationMessageFor(m => m.Birthday)
                     </div>
                 </div>
                 <div class="form-group">
@@ -70,7 +75,8 @@
                     </div>
                     <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Sex", "Sex") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().RadioButtonListFor(m => m.Sex, new List<SelectListItem>().ToEnumerable()).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                      
+                        @Html.Bootstrap().RadioButtonListFor(m => m.Sex, new List<SelectListItem>{ new SelectListItem { Text = "Nam", Value = "1", Selected = true }, new SelectListItem { Text = "Nữ", Value = "2" } }, m => m.Value, m => m.Text).ShowValidationMessage(true)
                     </div>
 
                 </div>
@@ -87,6 +93,54 @@
                     </div>
                 </div>
                
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_Marital", "Marital") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.MaritalStatus).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Salary", "Salary") <span class="required">*</span></label>
+                    <div class="col-md-4">
+
+                        @Html.Bootstrap().TextBoxFor(m => m.Salary).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_IdLoaiNghe", "Career") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.IdLoaiNghe).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Education", "Education") <span class="required">*</span></label>
+                    <div class="col-md-4">
+
+                        @Html.Bootstrap().TextBoxFor(m => m.Education).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_Experience", "Experience") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.Experience).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_ProfessionalExperience", "Professional experience") <span class="required">*</span></label>
+                    <div class="col-md-4">
+
+                        @Html.Bootstrap().RadioButtonListFor(m => m.ProfessionalExperience, new List<SelectListItem> { new SelectListItem { Text = "Có", Value = "1", Selected = true }, new SelectListItem { Text = "Không", Value = "2" } }, m => m.Value, m => m.Text).ShowValidationMessage(true)
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_Description", "Description") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="col-md-3 control-label">@Utilities.Resource("BDSPersonalInformation_Image", "Logo")</label>
                     <div class="col-md-8" style="position: relative;">
@@ -114,70 +168,13 @@
                         </script>
                      </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_Website", "Website") </label>
-                    <div class="col-md-9">
-                        @Html.Bootstrap().TextBoxFor(m => m.WebSite).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_Description", "Description") </label>
-                    <div class="col-md-9">
-                        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
-                </div>
+               
+               
             </div>
         </section>
     </div>
 </div>
-<div class="form-group">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-8 col-sm-12">
-        <section class="panel panel-default">
-            <h3 class="tilte_l">
-                Thông tin liên hệ
-            </h3>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_NameContact", "Name Contact") <span class="required">*</span></label>
-                    <div class="col-md-9">
-                        @Html.Bootstrap().TextBoxFor(m => m.NameContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_EmailContact", "Email Contact") <span class="required">*</span></label>
-                    <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.EmailContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
-                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Phone", "Phone") <span class="required">*</span></label>
-                    <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.PhoneContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_AddressContact", "Address Contact") <span class="required">*</span></label>
-                    <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.AddressContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
-                    <div class="col-md-2">
-                        @Html.Bootstrap().DropDownListFor(m => m.CityContact, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
-                    <div class="col-md-3">
-                        @Html.Bootstrap().DropDownListFor(m => m.DistrictContact, (List<SelectListItem>)ViewBag.Districts).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
 
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_TypeContact", "Type Contact") <span class="required">*</span></label>
-                    <div class="col-md-9">
-                        @Html.Bootstrap().DropDownListFor(m => m.TypeContact, (List<SelectListItem>)ViewBag.TypeContacts).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
 
 @Html.HiddenFor(m => m.Active)
 @Html.HiddenFor(m => m.ModifiedDate)

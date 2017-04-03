@@ -6364,4 +6364,24 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSPersonalInformation" xml:space="preserve">
+    <value>List Account</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Address" xml:space="preserve">
+    <value>Address</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Add" xml:space="preserve">
+    <value>Add New Account</value>
+    <comment>
+    </comment>
+  </data>
 </root>

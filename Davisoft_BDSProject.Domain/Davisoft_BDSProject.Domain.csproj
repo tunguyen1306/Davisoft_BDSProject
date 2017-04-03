@@ -145,6 +145,7 @@
     <Compile Include="Abstract\IAuthenticationService.cs" />
     <Compile Include="Abstract\IAuthorizationService.cs" />
     <Compile Include="Abstract\IBDSAccountService.cs" />
+    <Compile Include="Abstract\IBDSPersonalInformationService.cs" />
     <Compile Include="Abstract\IBDSEmployerInformationService.cs" />
     <Compile Include="Abstract\IBDSNewsTypePriceService.cs" />
     <Compile Include="Abstract\IBDSSalaryService.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Concrete\ConcurrentLoginTracker.cs" />
     <Compile Include="Concrete\EFAuditTracker.cs" />
     <Compile Include="Concrete\EFBDSAccount.cs" />
+    <Compile Include="Concrete\EFBDSPersonalInformation.cs" />
     <Compile Include="Concrete\EFBDSEmployerInformation.cs" />
     <Compile Include="Concrete\EFBDSNewsType.cs" />
     <Compile Include="Concrete\EFBDSSalary.cs" />
@@ -203,7 +205,7 @@
     <Compile Include="Entities\BDSBank.cs" />
     <Compile Include="Entities\BDSCareer.cs" />
     <Compile Include="Entities\BDSEducation.cs" />
-    <Compile Include="Entities\BDSPersonalInformations.cs" />
+    <Compile Include="Entities\BDSPersonalInformation.cs" />
     <Compile Include="Entities\BDSEmployerInformation.cs" />
     <Compile Include="Entities\BDSEvent.cs" />
     <Compile Include="Entities\BDSLanguage.cs" />
