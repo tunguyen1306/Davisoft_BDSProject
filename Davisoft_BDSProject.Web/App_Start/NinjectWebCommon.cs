@@ -138,6 +138,7 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IValidator<BDSAccount>>().To<BDSAccountValidator>();
 
             kernel.Bind<IValidator<BDSEmployerInformation>>().To<BDSEmployerInformationValidator>();
+            kernel.Bind<IValidator<BDSPersonalInformation>>().To<BDSPersonalInformationValidator>();
             // cache configurations.
             kernel.Bind<ICacheStorageLocation>().To<RequestCacheSolution>().Named("InRequest");
             kernel.Bind<ICacheStorageLocation>().To<SessionCacheSolution>().Named("InSession");

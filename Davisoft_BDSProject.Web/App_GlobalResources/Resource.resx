@@ -6384,4 +6384,64 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSPersonalInformation_Birthda`" xml:space="preserve">
+    <value>Birthday</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Phone" xml:space="preserve">
+    <value>Phone</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Sex" xml:space="preserve">
+    <value>Sex</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Marital" xml:space="preserve">
+    <value>Marital</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Salary" xml:space="preserve">
+    <value>Salary</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_IdLoaiNghe" xml:space="preserve">
+    <value>Career</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Education" xml:space="preserve">
+    <value>Education</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Experience" xml:space="preserve">
+    <value>Experience</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_ProfessionalExperience" xml:space="preserve">
+    <value>Professional experience</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Image" xml:space="preserve">
+    <value>Logo</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Edit" xml:space="preserve">
+    <value>Edit Account</value>
+    <comment>
+    </comment>
+  </data>
 </root>

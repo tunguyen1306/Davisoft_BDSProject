@@ -8,7 +8,7 @@ namespace Davisoft_BDSProject.Domain.Entities
 {
     public class BDSPersonalInformation : BDSBaseEntiry
     {
-        public int Id { get; set; }
+   
         public int IdAccount { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
@@ -41,6 +41,8 @@ namespace Davisoft_BDSProject.Domain.Entities
         public virtual BDSCareer BDSCareer { get; set; }
         [ForeignKey("MaritalStatus")]
         public virtual BDSMarriage BDSMarriage { get; set; }
+        [ForeignKey("Education")]
+        public virtual BDSTimeWork BDSTimeWork { get; set; }
 
     }
 }

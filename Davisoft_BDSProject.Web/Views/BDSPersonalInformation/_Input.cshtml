@@ -62,8 +62,8 @@
                     <div class="col-md-4">
                         @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
-                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Birthda`", "Birthday") <span class="required">*</span></label>
-                    <div class="col-md-4">
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSPersonalInformation_Birthda`", "Birthday") <span class="required">*</span></label>
+                    <div class="col-md-3">
                         @Html.DatePickerFor(m => m.Birthday, new { @class = "form-control date" })
                         @Html.ValidationMessageFor(m => m.Birthday)
                     </div>
@@ -73,10 +73,10 @@
                     <div class="col-md-4">
                         @Html.Bootstrap().TextBoxFor(m => m.Phone).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
-                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Sex", "Sex") <span class="required">*</span></label>
-                    <div class="col-md-4">
-                      
-                        @Html.Bootstrap().RadioButtonListFor(m => m.Sex, new List<SelectListItem>{ new SelectListItem { Text = "Nam", Value = "1", Selected = true }, new SelectListItem { Text = "Nữ", Value = "2" } }, m => m.Value, m => m.Text).ShowValidationMessage(true)
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSPersonalInformation_Sex", "Sex") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                           @Html.Bootstrap().DropDownListFor(m => m.Sex, new List<SelectListItem> { new SelectListItem { Text = "Nam", Value = "1", Selected = true }, new SelectListItem { Text = "Nữ", Value = "2" } }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+ 
                     </div>
 
                 </div>
@@ -97,12 +97,12 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_Marital", "Marital") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.MaritalStatus).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().DropDownListFor(m => m.MaritalStatus, (List<SelectListItem>)ViewBag.Marriages).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
-                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Salary", "Salary") <span class="required">*</span></label>
-                    <div class="col-md-4">
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSPersonalInformation_Salary", "Salary") <span class="required">*</span></label>
+                    <div class="col-md-3">
 
-                        @Html.Bootstrap().TextBoxFor(m => m.Salary).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().DropDownListFor(m => m.Salary, (List<SelectListItem>)ViewBag.Salaries).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
 
                 </div>
@@ -110,12 +110,12 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_IdLoaiNghe", "Career") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.IdLoaiNghe).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().DropDownListFor(m => m.IdLoaiNghe, (List<SelectListItem>)ViewBag.Careers).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
-                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_Education", "Education") <span class="required">*</span></label>
-                    <div class="col-md-4">
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSPersonalInformation_Education", "Education") <span class="required">*</span></label>
+                    <div class="col-md-3">
 
-                        @Html.Bootstrap().TextBoxFor(m => m.Education).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().DropDownListFor(m => m.Education, (List<SelectListItem>)ViewBag.Educations).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
 
                 </div>
@@ -124,12 +124,12 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSPersonalInformation_Experience", "Experience") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.Experience).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().DropDownListFor(m => m.Experience, (List<SelectListItem>)ViewBag.TimeWorks).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
-                    <label class="control-label col-md-1">@Utilities.Resource("BDSPersonalInformation_ProfessionalExperience", "Professional experience") <span class="required">*</span></label>
-                    <div class="col-md-4">
-
-                        @Html.Bootstrap().RadioButtonListFor(m => m.ProfessionalExperience, new List<SelectListItem> { new SelectListItem { Text = "Có", Value = "1", Selected = true }, new SelectListItem { Text = "Không", Value = "2" } }, m => m.Value, m => m.Text).ShowValidationMessage(true)
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSPersonalInformation_ProfessionalExperience", "Professional exp") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.ProfessionalExperience, new List<SelectListItem> { new SelectListItem { Text = "Có", Value = "1", Selected = true }, new SelectListItem { Text = "Không", Value = "2" } }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                      
                     </div>
 
                 </div>
@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">@Utilities.Resource("BDSPersonalInformation_Image", "Logo")</label>
+                    <label class="col-md-3 control-label">@Utilities.Resource("BDSPersonalInformation_Image", "Image")</label>
                     <div class="col-md-8" style="position: relative;">
                         <div id="picture">
                             @if (Model.UrlImage != null)

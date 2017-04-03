@@ -128,7 +128,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             }
         
             model.BDSAccount.PassWord = EncryptHelper.EncryptPassword(model.BDSAccount.PassWord);
-            model.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
+            model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                               model.BDSAccount.Point.Value.ToString("n2");
             model.BDSAccount= _serviceAccount.CreateItem(model.BDSAccount);
 
@@ -208,7 +208,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                 String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
                 model.UrlImage = path;
             }
-            model.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
+            model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                             model.BDSAccount.Point.Value.ToString("n2");
             _serviceAccount.UpdateItem(model.BDSAccount);
 
