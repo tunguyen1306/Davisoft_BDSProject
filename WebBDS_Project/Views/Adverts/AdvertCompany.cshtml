@@ -31,22 +31,22 @@
                     <div class="row-right">
                         <div class="pncon">
                             <b>Từ</b>
-                            <select class="dropdown" tabindex="7">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
+                            <select class="dropdown" tabindex="7" name="tblbdsnew.FromSalary">
+                                @for (int i = 3; i < 20; i++)
+                                {
+                                    <option value="@i@(".000.000")">@i@(".000.000")</option>
+                                }
+                                
+                              
                             </select>
                         </div>
                         <div class="pncon">
                             <b style="margin-left: 11px;">Đến</b>
-                            <select class="dropdown" tabindex="7">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
+                            <select class="dropdown" tabindex="7" name="tblbdsnew.ToSalary">
+                                @for (int i = 3; i < 20; i++)
+                                {
+                                    <option value="@i@(".000.000")">@i@(".000.000")</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -54,12 +54,13 @@
                 <div class="row">
                     <label>Số lượng</label>
                     <div class="row-right">
-                        <select class="dropdown" tabindex="7">
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 4</option>
-                            <option value="5">Option 5</option>
+                        <select class="dropdown" tabindex="7" name="tblbdsnew.Quantity">
+                           
+                                @for (int i = 1; i < 10; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            
                         </select>
                     </div>
                     <label class="child">Thưởng/Phụ cấp</label>
@@ -89,45 +90,23 @@
                 <div class="row">
                     <label>Trình độ</label>
                     <div class="row-right">
-                        @Html.DropDownListFor(m => m.tblbdsnew.IdLanguage, new SelectList(Model.ListDucation, "Id", "Name"), new { @class = "dropdown" })
+                        @Html.DropDownListFor(m => m.tblbdsnew.IdAcount, new SelectList(Model.ListDucation, "Id", "Name"), new { @class = "dropdown" })
 
 
                     </div>
                 </div>
                 <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong></p>
                 <ul class="radio">
-                    <li>
-                        <label>
-                            <input type="radio">NVKD</label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio">Thẩm định viên</label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio">Chuyên viên tài chính</label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio">Cộng tác viên</label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio">Chuyên viên tài chính</label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio">Cộng tác viên</label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio">NVKD</label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio">Thẩm định viên</label>
-                    </li>
+                    @foreach (var item in Model.ListBdscareer)
+                    {
+                        <li>
+                            <label>
+                                <input type="radio" value="@item.Id" name="tblbdsnew.">@item.Name
+                            </label>
+                        </li>
+                    }
+                   
+                    
                 </ul>
                 <h4>Nội dung</h4>
                 <div class="row">
@@ -158,22 +137,20 @@
                     <div class="row-right">
                         <div class="pncon">
                             <b>Từ</b>
-                            <select class="dropdown" tabindex="7">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
+                            <select class="dropdown" tabindex="7" name="tblbdsnew.FromAge">
+                                @for (int i =18; i < 50; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
                             </select>
                         </div>
                         <div class="pncon">
                             <b style="margin-left: 11px;">Đến</b>
-                            <select class="dropdown" tabindex="7">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
+                            <select class="dropdown" tabindex="7"  name="tblbdsnew.ToAge">
+                                @for (int i = 18; i < 50; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -182,18 +159,11 @@
                     <label>Thời gian thử việc</label>
                     <div class="row-right">
                         <select class="dropdown" tabindex="7">
-                            <option value="1">1 Tháng</option>
-                            <option value="2">2 Tháng</option>
-                            <option value="3">3 Tháng</option>
-                            <option value="4">4 Tháng</option>
-                            <option value="5">5 Tháng</option>
-                            <option value="6">6 Tháng</option>
-                            <option value="7">7 Tháng</option>
-                            <option value="8">8 Tháng</option>
-                            <option value="9">9 Tháng</option>
-                            <option value="10">10 Tháng</option>
-                            <option value="11">11 Tháng</option>
-                            <option value="12">12 Tháng</option>
+                            
+                            @for (int i = 1; i <= 12; i++)
+                            {
+                                <option value="@i">@i@(" Tháng")</option>
+                            }
                         </select>
                     </div>
                 </div>
