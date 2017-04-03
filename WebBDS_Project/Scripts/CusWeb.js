@@ -24,7 +24,7 @@ function GetCity() {
        dataType: "json",
        contentType: "application/json;charset=utf-8",
        success: function (data) {
-
+        
            $.each(data, function (i, o) {
                stringCity += "<option value=" + o.CityId + ">" + o.CityName + "</option>";
            });
@@ -35,6 +35,7 @@ function GetCity() {
                GetDistrict(idCity);
 
            });
+           
           
        }
    });
