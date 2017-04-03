@@ -332,6 +332,7 @@
     <Compile Include="Controllers\AdminDistrictController.cs" />
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\BDSAccountController.cs" />
+    <Compile Include="Controllers\BDSPersonalInformationController.cs" />
     <Compile Include="Controllers\BDSEmployerInformationController.cs" />
     <Compile Include="Controllers\BDSLanguageController.cs" />
     <Compile Include="Controllers\BDSNewsTypePriceController.cs" />
@@ -2142,6 +2143,10 @@
     <Content Include="Views\BDSEmployerInformation\_Input.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\BDSPersonalInformation\_Input.cshtml" />
+    <Content Include="Views\BDSPersonalInformation\Create.cshtml" />
+    <Content Include="Views\BDSPersonalInformation\Edit.cshtml" />
+    <Content Include="Views\BDSPersonalInformation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

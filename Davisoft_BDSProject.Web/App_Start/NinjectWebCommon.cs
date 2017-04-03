@@ -113,7 +113,7 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IBDSTimeWorkService>().To<EFBDSTimeWork>();
             kernel.Bind<IBDSAccountService>().To<EFBDSAccount>();
             kernel.Bind<IBDSEmployerInformationService>().To<EFBDSEmployerInformation>();
-
+            kernel.Bind<IBDSPersonalInformationService>().To<EFBDSPersonalInformation>();
 
             kernel.Bind<IValidator<User>>().To<UserValidator>();
             kernel.Bind<IValidator<Menu>>().To<MenuValidator>();
