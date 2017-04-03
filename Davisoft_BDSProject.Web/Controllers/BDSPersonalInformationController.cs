@@ -178,7 +178,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             }
         
             model.BDSAccount.PassWord = EncryptHelper.EncryptPassword(model.BDSAccount.PassWord);
-            model.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
+            model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                               model.BDSAccount.Point.Value.ToString("n2");
             model.BDSAccount= _serviceAccount.CreateItem(model.BDSAccount);
 
@@ -187,9 +187,10 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.BDSEducation = _serviceEducation.GetItem(model.Education);
             model.BDSMarriage = _serviceMarriage.GetItem(model.MaritalStatus);
             model.BDSSalary = _serviceSalary.GetItem(model.Salary);
+            model.BDSTimeWork = _serviceTimeWork.GetItem(model.Experience);
             model.FullAddress = model.Address.NormalizeD() + ", " + Districts.Where(T => T.Value == model.District.ToString()).FirstOrDefault().Text.NormalizeD() +
             ", " + Cities.Where(T => T.Value == model.City.ToString()).FirstOrDefault().Text.NormalizeD();
-         //   model.KeySearch = model.Name.NormalizeD() + " " + model.BDSScope.Name.NormalizeD() + " " + model.FullAddress.NormalizeD()+" "+model.Phone+" "+model.Fax+" "+model.WebSite+" "+model.Description.NormalizeD()+" "+model.NameContact.NormalizeD()+" "+model.Phone+" "+model.Fax+" " ;
+            model.KeySearch = model.Name.NormalizeD() + " " + model.Birthday.ToString("dd/MM/yyyy").NormalizeD() + " " + model.Phone.NormalizeD() + " " + (model.Sex == 1 ? "Nam" : "Nữ") + " " + model.FullAddress + " " + model.BDSMarriage.Name.NormalizeD() + " " + model.BDSSalary.Name.NormalizeD() + " " + model.BDSCareer.Name.NormalizeD() + " " + model.BDSTimeWork.Name.NormalizeD() + " " + (model.ProfessionalExperience == 1 ? "Có kinh nghiệm bất động sản".NormalizeD() : "Không có kinh nghiệm bất động sản".NormalizeD()) + " " + model.Description.NormalizeD();
             String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
             model.UrlImage = path;
             _service.CreateItem(model);
@@ -299,7 +300,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                 String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
                 model.UrlImage = path;
             }
-            model.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
+            model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                             model.BDSAccount.Point.Value.ToString("n2");
             _serviceAccount.UpdateItem(model.BDSAccount);
 
@@ -307,9 +308,10 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.BDSEducation = _serviceEducation.GetItem(model.Education);
             model.BDSMarriage = _serviceMarriage.GetItem(model.MaritalStatus);
             model.BDSSalary = _serviceSalary.GetItem(model.Salary);
+            model.BDSTimeWork = _serviceTimeWork.GetItem(model.Experience);
             model.FullAddress = model.Address.NormalizeD() + ", " + Districts.Where(T => T.Value == model.District.ToString()).FirstOrDefault().Text.NormalizeD() +
             ", " + Cities.Where(T => T.Value == model.City.ToString()).FirstOrDefault().Text.NormalizeD();
-            //model.KeySearch = model.Name.NormalizeD() + " " + model.BDSScope.Name.NormalizeD() + " " + model.FullAddress.NormalizeD() + " " + model.Phone + " " + model.Fax + " " + model.WebSite + " " + model.Description.NormalizeD() + " " + model.NameContact.NormalizeD() + " " + model.Phone + " " + model.Fax + " ";
+            model.KeySearch = model.Name.NormalizeD() + " " + model.Birthday.ToString("dd/MM/yyyy").NormalizeD() + " " + model.Phone.NormalizeD() + " " + (model.Sex == 1 ? "Nam" : "Nữ") + " " + model.FullAddress + " " + model.BDSMarriage.Name.NormalizeD() + " " + model.BDSSalary.Name.NormalizeD() + " " + model.BDSCareer.Name.NormalizeD() + " " + model.BDSTimeWork.Name.NormalizeD() + " " + (model.ProfessionalExperience == 1 ? "Có kinh nghiệm bất động sản".NormalizeD() : "Không có kinh nghiệm bất động sản".NormalizeD()) + " " + model.Description.NormalizeD();
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
