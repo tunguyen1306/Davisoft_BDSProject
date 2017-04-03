@@ -68,7 +68,7 @@
                         <label>Quy mô công ty<span class="required"> *</span></label>
                         <div class="row-right styled-select slate">
 
-                            @Html.DropDownListFor(m => m.TblBdsemployerinformation.Scope, new SelectList(Model.ListBdsScopes, "Id", "Name"), new { @class = "" })
+                            @Html.DropDownListFor(m => m.TblBdsemployerinformation.Scope, new SelectList(Model.ListBdsScopes, "Id", "Name"), new { @class = "dropdown" })
                       
                           </div>
 
@@ -99,7 +99,7 @@
 
                                 <label class="cusLabel-2">Tỉnh/TP</label>
 
-                                <select class="" id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
+                                <select class="dropdown" id="dropCity"  tabindex="7" name="TblBdsemployerinformation.City">
                                     <option value="0">Chọn thành phố</option>
                                 </select>
 
@@ -111,7 +111,7 @@
 
                                 <label class="cusLabel-2">Quận/Huyện</label>
 
-                                <select class="dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
+                                <select class="dropDistrict dropdown" tabindex="7" name="TblBdsemployerinformation.District">
                                     <option value="1">Chọn quận huyện</option>
 
                                 </select>

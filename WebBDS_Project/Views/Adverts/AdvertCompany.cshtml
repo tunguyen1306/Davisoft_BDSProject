@@ -1,0 +1,346 @@
+﻿@{
+    ViewBag.Title = "AdvertCompany";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+@model WebBDS_Project.Models.RegisterInformationModel
+ <!-- Content -->
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Đăng tin tuyển dụng nhân viên</span></h3>
+            </div>
+            <form class="form-horizontal " data-validate="parsley" action="#">
+                <h4>Thông tin cơ bản</h4>
+                <div class="row">
+                    <label>Tiêu đề đăng tin<span>*</span></label>
+                    <div class="row-right">
+                        @Html.TextBoxFor(m => m.tblbdsnew.Title, new { @class = "input3", @placeholder = "Nhập tiêu đề" })
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Nơi làm việc</label>
+                    <div class="row-right">
+                     
+                        @Html.TextBoxFor(m => m.tblbdsnew.AddressWork, new { @class = "input1", @placeholder = "Nhập nơi làm việc" })
+
+
+                    </div>
+                    <label class="child">Mức lương</label>
+                    <div class="row-right">
+                        <div class="pncon">
+                            <b>Từ</b>
+                            <select class="dropdown" tabindex="7">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                                <option value="4">Option 4</option>
+                                <option value="5">Option 5</option>
+                            </select>
+                        </div>
+                        <div class="pncon">
+                            <b style="margin-left:11px;">Đến</b>
+                            <select class="dropdown" tabindex="7">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                                <option value="4">Option 4</option>
+                                <option value="5">Option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Số lượng</label>
+                    <div class="row-right">
+                        <select class="dropdown" tabindex="7">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                        </select>
+                    </div>
+                    <label class="child">Thưởng/Phụ cấp</label>
+                    <div class="row-right">
+               
+                        @Html.TextBoxFor(m => m.tblbdsnew.Bonus, new { @class = "input1", @placeholder = "Nhập nơi làm việc" })
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Giới tính</label>
+                    <div class="row-right">
+                        <select class="dropdown" name="tblbdsnew.Sex" tabindex="7">
+                            <option value="1">Nam</option>
+                            <option value="2">Nữ</option>
+                            
+                        </select>
+                    </div>
+                    <label class="child">Kinh nghiệm</label>
+                    <div class="row-right">
+                        @Html.DropDownListFor(m => m.tblbdsnew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"), new { @class = "dropdown" })
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Trình độ</label>
+                    <div class="row-right">
+                        @Html.DropDownListFor(m => m.tblbdsnew.IdLanguage, new SelectList(Model.ListDucation, "Id", "Name"), new { @class = "dropdown" })
+
+
+                    </div>
+                </div>
+                <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong></p>
+                <ul class="radio">
+                    <li>
+                        <label><input type="radio">NVKD</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">Thẩm định viên</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">Chuyên viên tài chính</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">Cộng tác viên</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">Chuyên viên tài chính</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">Cộng tác viên</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">NVKD</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">Thẩm định viên</label>
+                    </li>
+                </ul>
+                <h4>Nội dung</h4>
+                <div class="row">
+                    <label>Giới thiệu công ty<span>*</span></label>
+                    <div class="row-right">
+               
+                        @Html.TextAreaFor(m => m.tblbdsnew.DesInfoCompany, new { @class = "input3" })
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Mô tả công việc<span>*</span></label>
+                    <div class="row-right">
+                   
+                        @Html.TextAreaFor(m => m.tblbdsnew.DesWork, new { @class = "input3" })
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Quyền lợi được hưởng<span>*</span></label>
+                    <div class="row-right">
+                        @Html.TextAreaFor(m => m.tblbdsnew.Benefit, new { @class = "input3" })
+                    </div>
+                </div>
+                <div class="row">
+                    <p><strong>Thông tin khác</strong></p>
+                    <label>Độ tuổi</label>
+                    <div class="row-right">
+                        <div class="pncon">
+                            <b>Từ</b>
+                            <select class="dropdown" tabindex="7">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                                <option value="4">Option 4</option>
+                                <option value="5">Option 5</option>
+                            </select>
+                        </div>
+                        <div class="pncon">
+                            <b style="margin-left:11px;">Đến</b>
+                            <select class="dropdown" tabindex="7">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                                <option value="4">Option 4</option>
+                                <option value="5">Option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Thời gian thử việc</label>
+                    <div class="row-right">
+                        <select class="dropdown" tabindex="7">
+                            <option value="1">1 Tháng</option>
+                            <option value="2">2 Tháng</option>
+                            <option value="3">3 Tháng</option>
+                            <option value="4">4 Tháng</option>
+                            <option value="5">5 Tháng</option>
+                            <option value="6">6 Tháng</option>
+                            <option value="7">7 Tháng</option>
+                            <option value="8">8 Tháng</option>
+                            <option value="9">9 Tháng</option>
+                            <option value="10">10 Tháng</option>
+                            <option value="11">11 Tháng</option>
+                            <option value="12">12 Tháng</option>
+                        </select>
+                    </div>
+                </div>
+                <h4>Thông tin liên hệ nhà tuyển dụng</h4>
+                <div class="row">
+                    <label>Tên công ty</label>
+                    <div class="row-right">
+                   
+                        @Html.TextBoxFor(m => m.tblbdsnew.NameCompany, new { @class = "input3", @placeholder = "Nhập tên công ty" })
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Địa chỉ nộp hồ sơ</label>
+                    <div class="row-right">
+                        @Html.TextBoxFor(m => m.tblbdsnew.NameCompany, new { @class = "input3", @placeholder = "Nhập địa chỉ nộp hồ sơ" })
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Người liên hệ</label>
+                    <div class="row-right">
+                        @Html.TextBoxFor(m => m.tblbdsnew.NameCompany, new { @class = "input3", @placeholder = "Nhập người liên hệ" })
+                    </div>
+                </div>
+                <div class="row">
+
+                    <label>Hạn nộp hồ sơ</label>
+                    <div class="row-right">
+                        <div class="pncon">
+                            <b>Ngày</b>
+                            <select class="dropdown" tabindex="7">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                                <option value="4">Option 4</option>
+                                <option value="5">Option 5</option>
+                            </select>
+                        </div>
+                        <div class="pncon">
+                            <b style="margin-left:11px;">Tháng</b>
+                            <select class="dropdown" tabindex="7">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                                <option value="4">Option 4</option>
+                                <option value="5">Option 5</option>
+                            </select>
+                        </div>
+                        <div class="pncon">
+                            <b style="margin-left:11px;">Năm</b>
+                            <select class="dropdown" tabindex="7">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                                <option value="4">Option 4</option>
+                                <option value="5">Option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Ngôn ngữ hồ sơ</label>
+                    <div class="row-right">
+                        <select class="dropdown" tabindex="7">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <h4>Loại tin đăng và lịch đăng tin</h4>
+                <label>Loaị tin rao<span>*</span></label>
+                <ul class="radio">
+                    <li>
+                        <label><input type="radio">VIP đặc biệt</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">VIP</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">Thương</label>
+                    </li>
+                    <li>
+                        <label><input type="radio">Miễn phí</label>
+                    </li>
+                </ul>
+                <ul class="list_work">
+                    <li style="margin-bottom:0">
+                        <div class="grid_3">
+                            <a href="">
+                                <img src="images/1.jpg" alt="1">
+                                <p class="vip">
+                                    <i class="fa fa-star"></i>
+                                    <span>VIP</span>
+                                </p>
+                            </a>
+                        </div>
+                        <div class="grid_9 omega">
+                            <h2><a href="#">Nhân viên kinh doanh <span>Tập đoàn cá tiên sa</span></a></h2>
+                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
+                            <div>
+                                <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
+                                <p class="grid_6 omega time">Mã tin: <span class="color2">P889275</span> <i class="fa fa-clock-o"></i>12/12/1224</p>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <p>
+                    - Đứng đầu danh sách tin rao <br>
+                    - Kiểu hiển thị khác biệt và ấn tượng hơn các tin VIP và tin HOT. <br>
+                    - Tiêu đề tin có màu đỏ, có ngôi sao màu xanh ở đầu mỗi tiêu đề. <br>
+                    Để được đăng tin Vip. Vui lòng liên hệ
+                </p>
+
+            </form>
+        </div>
+    </div>
+    <div class="grid_3 omega main_right">
+
+        <div class="right_col">
+            <h3>Trung tâm quản lý</h3>
+            <div class="box_info">
+                <div><strong>Công Ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589</strong></div>
+                <div class="logo_image"><img src="images/tl.png" alt="image"></div>
+                <p>
+                    <em>Mã Khách Hàng</em>: <span class="color3"><strong>TD00291</strong></span> <br>
+                    -  Số tiền TK: <span class="color4">3.250.000</span> VNĐ <br>
+                    -  Điểm tích luỹ: <span class="color4">100</span> Điểm <br>
+                    -  Bạn có thể xem : <span class="color4">33</span> Hồ sơ
+
+                </p>
+                <p>
+
+                    <a class="grid_6" href="naptien.htm">Nộp tiền</a>
+                    <a class="grid_6 omega blue" href="">Mua điểm</a>
+                </p>
+                <ul>
+                    <li><a href=""><i class="fa fa-search" aria-hidden="true"></i>Tìm hồ sơ ứng viên</a></li>
+                    <li><a href=""><i class="fa fa-user" aria-hidden="true"></i>Taì khoản</a></li>
+                    <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i>Đăng tin tuyển dụng</a></li>
+                    <li><a href=""><i class="fa fa-edit" aria-hidden="true"></i>Quản lý tuyển dụng</a></li>
+                    <li><a href=""><i class="fa fa-download" aria-hidden="true"></i>Hồ sơ đã lưu</a></li>
+                    <li><a href=""><i class="fa fa-users" aria-hidden="true"></i>Ứng viên gửi hồ sơ</a></li>
+                    <li style="margin-top:20px;"><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>

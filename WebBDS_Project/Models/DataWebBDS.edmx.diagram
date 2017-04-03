@@ -49,6 +49,8 @@
         <AssociationConnector Association="davisoft_bdsprojectModel.roles_permissions" />
         <AssociationConnector Association="davisoft_bdsprojectModel.users_branches" />
         <AssociationConnector Association="davisoft_bdsprojectModel.users_roles" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsaccount1" Width="1.5" PointX="4.5549287761351689" PointY="29.0028147683492" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsemployerinformation1" Width="1.5" PointX="11.000045276712648" PointY="8.2220770158907754" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

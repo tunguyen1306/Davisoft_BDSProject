@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdvertCompanyController.cs" />
     <Compile Include="Controllers\AdvertsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -141,6 +142,9 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdsaccount.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bdsaccount1.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdsarea.cs">
@@ -156,6 +160,9 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdsemployerinformation.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bdsemployerinformation1.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdsevent.cs">
@@ -434,6 +441,7 @@
     <Content Include="Views\Default\_Menu.cshtml" />
     <Content Include="Views\Register\RegisterCompany.cshtml" />
     <Content Include="Views\Register\RegisterPersonal.cshtml" />
+    <Content Include="Views\AdvertCompany\CreateAdvertCompany.cshtml" />
     <Content Include="Views\Adverts\AdvertCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
