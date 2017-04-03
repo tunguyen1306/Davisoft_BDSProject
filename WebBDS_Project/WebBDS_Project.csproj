@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdvertCompanyController.cs" />
     <Compile Include="Controllers\AdvertsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -434,6 +435,7 @@
     <Content Include="Views\Default\_Menu.cshtml" />
     <Content Include="Views\Register\RegisterCompany.cshtml" />
     <Content Include="Views\Register\RegisterPersonal.cshtml" />
+    <Content Include="Views\AdvertCompany\CreateAdvertCompany.cshtml" />
     <Content Include="Views\Adverts\AdvertCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
