@@ -256,12 +256,8 @@ namespace Davisoft_BDSProject.Web.Controllers
             }
             if (newsPicture.idpicture > 0)
             {
-
-                bdspicture tblpict = db.bdspictures.Find(newsPicture.idpicture);
-                tblpict.title = newsPicture.nameImg;
-                tblpict.position = newsPicture.isactive;
-                db.Entry(tblpict).State = EntityState.Modified;
-                db.SaveChanges();
+                BDSPicture modelPIc = _servicePicture.GetItem(newsPicture.idpicture);
+                _servicePicture.UpdateItem(modelPIc);
                 RedirectToAction("Index", "BDSNew");
             }
 
