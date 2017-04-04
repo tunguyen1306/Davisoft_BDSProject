@@ -570,6 +570,7 @@
     <Compile Include="Validation\BDSNewValidator.cs" />
     <Compile Include="Validation\BDSPersonalInformationValidator.cs" />
     <Compile Include="Validation\BDSEmployerInformationValidator.cs" />
+    <Compile Include="Validation\BDSPersonalInformationValidator.cs" />
     <Compile Include="Validation\BDSSalaryValidator.cs" />
     <Compile Include="Validation\BDSNewsTypePriceValidator.cs" />
     <Compile Include="Validation\BDSTimeWorkValidator.cs">

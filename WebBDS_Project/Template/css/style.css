@@ -207,11 +207,12 @@ border-bottom: none;
  	border-bottom: none;
 }
 .idTabs-1 li a.selected {
-	background: #ffffff!important;
-	border: 0px solid #dfdfdf!important;
-	border-radius: 8px 8px 0 0;
- 	border-bottom: none;
+    background: #ffffff!important;
+    border: 0px solid #dfdfdf!important;
+    border-radius: 8px 8px 0 0;
+     border-bottom: none;
 }
+
 .idTabs li a img {
 	background-size: 100%;
 	width: 18px;
@@ -232,18 +233,18 @@ border-bottom: none;
 	background: #f3f3f3;
 	clear: both
 }
-.content_tab-1 {
-	padding: 12px 15px;
-	
-	margin-top: 0;
-	
-	clear: both
-}
 .content_tab h4 {
 	color: #de3039;
 	font-weight:bold;
 	font-size:13px;
 	margin:0 0 10px;
+}
+.content_tab-1 {
+    padding: 12px 15px;
+    
+    margin-top: 0;
+    
+    clear: both
 }
 
 .group_work {
@@ -252,7 +253,7 @@ border-bottom: none;
 	
 }
 .group_work h4 {
-	color: #a71e25;
+	    color: #a71e25;
 	font-weight:bold;
 	font-size:13px;
 	margin:0 0 10px;
@@ -1504,4 +1505,101 @@ a.dropdown1.dropdown-active span {
 	float:left;
 	width:60%;
 	
+}
+
+
+/* Detail */
+.title_detail {
+	margin-top:20px;
+}
+.logo_detail {
+	width: 145px;
+	height: 105px;
+	border:1px solid #ccc;
+	float:left;
+	margin-right: 20px;
+}
+.name_detail {
+	width: calc(100% - 168px);
+	float:left;
+}
+.name_detail h2 {
+	font-size:16px;
+	color: #DE3039;
+	margin: -4px 0 0;
+}
+.name_detail p {
+	margin: 0;
+	font-size: 12px;
+	line-height: 22px;
+}
+.name_detail p i{
+	margin-right:10px;
+	color: #999
+}
+.btn_hoso {
+	margin-top: 15px;
+	margin-bottom: 0;	
+}
+.btn_hoso button{
+	width:147px;
+}
+.table_info table{
+	width:100%;
+	display:inline-table;
+	border:1px solid #ccc;
+	border-collapse: unset;
+	border-spacing: 3px;
+}
+.table_info table tr td {
+	border: none;
+	padding: 2px 10px;
+	background: #f2f2f2;
+	font-weight: normal;
+	vertical-align: middle;
+	line-height: 32px;
+	position: relative;
+}
+
+.table_info table tr:nth-child(2n) td {
+	background: #fff;
+}
+.table_info table tr td label{
+	font-weight:bold;
+	width:120px !important;
+}
+.table_info  h3 {
+	color: #DE3039;
+	font-size:14px;
+}
+.table_info p {
+	margin:0
+}
+.table_info  ul.info{
+	margin:0;
+	padding: 0
+}
+.table_info  ul.info li {
+	list-style:inherit;
+	margin-left:14px;
+}
+.table_nhatuyendung {
+	border: none !important;
+	margin-top:8PX;
+}
+.table_info .table_nhatuyendung tbody tr td label {
+	width:120px !important;
+}
+.table_nhatuyendung i{
+	color: #090;
+	position:absolute;
+	right: 10px;
+	top: 12px;
+}
+.more_plus {
+	text-align: center;
+	color: #03F;
+	font-weight: bold;
+	display: block;
+
 }

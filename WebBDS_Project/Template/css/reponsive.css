@@ -129,7 +129,13 @@
 		position:static;
 		width:100%;
 	}
+.table_info table tr td label{
 
+	width: 100% !important;
+}
+.table_info table tr td {
+	line-height: 22px;
+}
 
 }
 
@@ -147,7 +153,12 @@
 	width: 47.5% ;
 	margin: 0 2% 1% 0 ;
 }
-
+.table_info .table_nhatuyendung tbody tr td label {
+	width: 100% !important;
+}
+.more_plus {
+	margin-top: 12px;
+}
 }
 @media only screen and (max-width: 660px) {
 	.group_work h3 {

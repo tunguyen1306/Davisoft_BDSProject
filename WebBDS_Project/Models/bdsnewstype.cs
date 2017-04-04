@@ -15,7 +15,9 @@ namespace WebBDS_Project.Models
     public partial class bdsnewstype
     {
         public int Id { get; set; }
+        public string CodeNewsType { get; set; }
         public string Name { get; set; }
+        public Nullable<int> Order { get; set; }
         public string Description { get; set; }
         public string UrlIcon { get; set; }
         public string KeySearch { get; set; }
