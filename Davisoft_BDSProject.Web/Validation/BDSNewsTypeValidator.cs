@@ -13,6 +13,8 @@ namespace Davisoft_BDSProject.Web.Validation
         public BDSNewsTypeValidator()
         {
             RuleFor(m => m.Name).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+            RuleFor(m => m.CodeNewsType).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+            RuleFor(m => m.Order).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
             RuleFor(m => m.UrlIcon).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
         }
     }

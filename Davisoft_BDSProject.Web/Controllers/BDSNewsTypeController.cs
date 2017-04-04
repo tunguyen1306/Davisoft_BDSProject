@@ -9,6 +9,7 @@ using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
 using Davisoft_BDSProject.Domain.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Filters;
+using Davisoft_BDSProject.Web.Infrastructure.Utility;
 using Davisoft_BDSProject.Web.Models;
 using Resources;
 
@@ -74,7 +75,12 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 return View(model);
             }
-            model.KeySearch = model.Name.NormalizeD() + " " +
+            if (Request.Files.Count > 0 && Request.Files["UrlImageFile"] != null && Request.Files["UrlImageFile"].ContentLength > 0)
+            {
+                String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
+                model.UrlIcon = path;
+            }
+            model.KeySearch = model.Name.NormalizeD() + " " + model.CodeNewsType.NormalizeD() + " " +
                             (String.IsNullOrEmpty(model.Description)
                                 ? ""
                                 : model.Description.NormalizeD());
@@ -98,10 +104,15 @@ namespace Davisoft_BDSProject.Web.Controllers
                 ViewBag.Message = Resource.SaveFailed;
                 return View(model);
             }
-            model.KeySearch = model.Name.NormalizeD() + " " +
+            model.KeySearch = model.Name.NormalizeD() + " " + model.CodeNewsType.NormalizeD() + " " +
                               (String.IsNullOrEmpty(model.Description)
                                   ? ""
                                   : model.Description.NormalizeD());
+            if (Request.Files.Count > 0 && Request.Files["UrlImageFile"] != null && Request.Files["UrlImageFile"].ContentLength > 0)
+            {
+                String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
+                model.UrlIcon = path;
+            }
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

@@ -42,18 +42,16 @@ namespace Davisoft_BDSProject.Domain
         public DbSet<BDSEvent> BDSEvents { get; set; }
         public DbSet<BDSLanguage> BDSLanguages { get; set; }
         public DbSet<BDSMarriage> BDSMarriages { get; set; }
-
         public DbSet<BDSNewsType> BDSNewsTypes { get; set; }
         public DbSet<BDSNewsTypePrice> BDSNewsTypePrices { get; set; }
         public DbSet<BDSSalary> BDSSalaries { get; set; }
         public DbSet<BDSScope> BDSScopes { get; set; }
         public DbSet<BDSTimeWork> BDSTimeWorks { get; set; }
         public DbSet<BDSTypeContact> BDSTypeContact { get; set; }
-
         public DbSet<BDSAccount> BDSAccounts { get; set; }
         public DbSet<BDSEmployerInformation> BDSEmployerInformations { get; set; }
-
         public DbSet<BDSPersonalInformation> BDSPersonalInformations { get; set; }
+        public DbSet<BDSNew> BDSNews { get; set; }
         protected override void OnModelCreating(DbModelBuilder mb)
         {
             //EnumerationTypeConfiguration.Apply(this, mb);

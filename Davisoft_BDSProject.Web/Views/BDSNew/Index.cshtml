@@ -1,12 +1,12 @@
 ﻿@using Davisoft_BDSProject.Domain.Entities
 @using Davisoft_BDSProject.Web.Helpers
 @using Resources
-@model IEnumerable<BDSNewsType>
+@model IEnumerable<BDSNew>
 <section class="panel panel-default">
     <div class="panel-heading">
-       @Utilities.Resource("BDSNewsType", "List News Type")
+       @Utilities.Resource("BDSNew", "List Bank Area")
     </div>
-    @if (CurrentUser.HasPermission("BDSNewsType", "Create"))
+    @if (CurrentUser.HasPermission("BDSNew", "Create"))
     {
         <div class="row wrapper dataTables_length table_basic">
             <div class="col-sm-12">
@@ -20,9 +20,7 @@
             <table class="table" id="table_data">
                 <thead>
                     <tr>
-                        <th>@Utilities.Resource("BDSNewsType_Name", "Name")</th>
-                        <th>@Utilities.Resource("BDSNewsType_Code", "Code")</th>
-                        <th>@Utilities.Resource("BDSNewsType_Description", "Description")</th>
+                        <th>@Utilities.Resource("BDSNew_Title", "Title")</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -60,16 +58,16 @@
                 });
             },
             ajax: {
-                url: "/BDSNewsType/IndexAjax",
+                url: "/BDSNew/IndexAjax",
                 type: "GET"
             },
             "columnDefs": [
           {
               "render": function (data, type, row) {
 
-                  return '<a href="/BDSNewsType/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+                  return '<a href="/BDSNew/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
               },
-              "targets": 3,
+              "targets":1,
               'className': 'text-center'
           },
           {
@@ -79,14 +77,13 @@
 
 
               },
-              "targets": 4,
+              "targets":2,
               'className':'text-center'
           }
             ],
             columns: [
-                { "data": "Name", "orderable": true },
-                  { "data": "CodeNewsType", "orderable": true },
-                { "data": "Description", "orderable": true },
+                { "data": "Title", "orderable": true },
+             
                 { "data": "ID", "orderable": false },
                 { "data": "ID", "orderable": false }
 

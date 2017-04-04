@@ -41,7 +41,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public virtual BDSCareer BDSCareer { get; set; }
         [ForeignKey("MaritalStatus")]
         public virtual BDSMarriage BDSMarriage { get; set; }
-        [ForeignKey("Education")]
+        [ForeignKey("Experience")]
         public virtual BDSTimeWork BDSTimeWork { get; set; }
 
     }

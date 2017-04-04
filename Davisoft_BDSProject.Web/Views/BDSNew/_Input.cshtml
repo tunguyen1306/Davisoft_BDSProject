@@ -1,0 +1,495 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSNew
+
+
+
+
+<div class="form-group">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">
+                Thông tin cơ bản
+            </h3>
+            <div class="panel-body">
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Account", "Employer") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdAcount, (List<SelectListItem>)ViewBag.EmployerInformations).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Name", "Title") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Title).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_WorkingPlace", "Working Place") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.AddressWork, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                     </div>  
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSNew_Quantity", "Quantity") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.Quantity,new List<SelectListItem>
+                        {
+                              new SelectListItem{Text = "Please Select",Value = "",Selected = true},
+                            new SelectListItem{Text = "1 persion",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2 persion",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3 persion",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 persion",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 persion",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 persion",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 persion",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 persion",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 persion",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 persion",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 persion",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 persion",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 persion",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 persion",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 persion",Value = "15",Selected = false}
+                        
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Salary", "Salary") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.FromSalary, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Please Select",Value = "",Selected = true},
+                            new SelectListItem{Text = "3 million",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 million",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 million",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 million",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 million",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 million",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 million",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 million",Value = "10",Selected = false}
+                        
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSNew_ToSalary", "To") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.ToSalary, new List<SelectListItem>
+                        {
+                       
+                           new SelectListItem{Text = "Please Select",Value = "",Selected = true},
+                            new SelectListItem{Text = "5 million",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 million",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 million",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 million",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 million",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 million",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 million",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 million",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 million",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 million",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 million",Value = "15",Selected = false},
+                            new SelectListItem{Text = "16 million",Value = "16",Selected = false},
+                            new SelectListItem{Text = "17 million",Value = "17",Selected = false},
+                            new SelectListItem{Text = "18 million",Value = "18",Selected = false},
+                            new SelectListItem{Text = "19 million",Value = "19",Selected = false},
+                            new SelectListItem{Text = "20 million",Value = "20",Selected = false},
+                        
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Bonus", "Bonus") </label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.Bonus).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSNew_Sex", "Sex") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.Sex, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Male",Value = "1",Selected = true},
+                            new SelectListItem{Text = "Female",Value = "2",Selected = false},
+                        
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TimeWork", "Experience") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdTimeWork, (List<SelectListItem>)ViewBag.TimeWorks).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSNew_Education", "Education") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdEducation, (List<SelectListItem>)ViewBag.Educations).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Career", "Career") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        
+                        @Html.Bootstrap().DropDownListFor(m => m.Career, (List<SelectListItem>)ViewBag.Careers).HtmlAttributes(new { @class = "form-control", @multiple = "multiple" }).ShowValidationMessage(true)
+                    </div>
+                  
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">
+                Nội dung
+            </h3>
+            <div class="panel-body">
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_DesCompany", "Description Company") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextAreaFor(m => m.DesCompany).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@Utilities.Resource("BDSNewsType_UrlIcon", "Icon")</label>
+                    <div class="col-md-8" style="position: relative;">
+                        <div id="picture">
+                            @if (Model.UrlImage != null)
+                            {
+                                <img style="width: 120px; height:120px;" src="@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
+                            }
+                            else
+                            {
+                                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().FileFor(m => m.UrlImageFile).HtmlAttributes(new { @class = "form-control hidden", @multiple = "multiple" }).ShowValidationMessage(false)
+                        @Html.Bootstrap().TextBoxFor(m => m.UrlImage).Readonly(true).HtmlAttributes(new { @class = "form-control" }).Placeholder("Please click to upload logo").ShowValidationMessage(true)
+                        <script type="text/javascript">
+                            document.getElementById("UrlImage").value = "@(Model.UrlImage)";
+
+                        </script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_DesWork", "Description Work") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextAreaFor(m => m.DesWork).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Benefit", "Benefit") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextAreaFor(m => m.Benefit).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TimeProbationary", "Time Probationary") <span class="required">*</span></label>
+                    <div class="col-md-2">
+                        @Html.Bootstrap().DropDownListFor(m => m.TimeProbationary, new List<SelectListItem>
+                        {
+                             new SelectListItem{Text = "Please Select",Value = "",Selected = true},
+                            new SelectListItem{Text = "1 week",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2 week",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3 week",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 week",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 week",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 week",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 week",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 week",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 week",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 week",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 week",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 week",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 week",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 week",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 week",Value = "15",Selected = false}
+                     
+
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_FromAge", "From Age") <span class="required">*</span></label>
+                    <div class="col-md-2">
+                        @Html.Bootstrap().DropDownListFor(m => m.FromAge, new List<SelectListItem>
+                        {
+                             new SelectListItem{Text = "Please Select",Value = "",Selected = true},
+                            new SelectListItem{Text = "18 age",Value = "18",Selected = false},
+                            new SelectListItem{Text = "19 age",Value = "19",Selected = false},
+                            new SelectListItem{Text = "20 age",Value = "20",Selected = false},
+                            new SelectListItem{Text = "21 age",Value = "21",Selected = false},
+                            new SelectListItem{Text = "22 age",Value = "22",Selected = false},
+                            new SelectListItem{Text = "23 age",Value = "23",Selected = false},
+                            new SelectListItem{Text = "24 age",Value = "24",Selected = false},
+                            new SelectListItem{Text = "25 age",Value = "25",Selected = false},
+                            new SelectListItem{Text = "26 age",Value = "26",Selected = false},
+                            new SelectListItem{Text = "27 age",Value = "27",Selected = false},
+                            new SelectListItem{Text = "28 age",Value = "28",Selected = false},
+                            new SelectListItem{Text = "29 age",Value = "29",Selected = false},
+                            new SelectListItem{Text = "30 age",Value = "30",Selected = false},
+                           
+
+
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSNew_ToAge", "To") <span class="required">*</span></label>
+                    <div class="col-md-2">
+                        @Html.Bootstrap().DropDownListFor(m => m.ToAge, new List<SelectListItem>
+                        {
+                             new SelectListItem{Text = "Please Select",Value = "",Selected = true},
+                            new SelectListItem{Text = "25 age",Value = "25",Selected = false},
+                            new SelectListItem{Text = "26 age",Value = "26",Selected = false},
+                            new SelectListItem{Text = "27 age",Value = "27",Selected = false},
+                            new SelectListItem{Text = "28 age",Value = "28",Selected = false},
+                            new SelectListItem{Text = "29 age",Value = "29",Selected = false},
+                            new SelectListItem{Text = "30 age",Value = "30",Selected = false},
+                            new SelectListItem{Text = "31 age",Value = "31",Selected = false},
+                            new SelectListItem{Text = "32 age",Value = "32",Selected = false},
+                            new SelectListItem{Text = "33 age",Value = "33",Selected = false},
+                            new SelectListItem{Text = "34 age",Value = "34",Selected = false},
+                            new SelectListItem{Text = "35 age",Value = "35",Selected = false},
+                       
+
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+<div class="form-group">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">
+                Thông tin liên hệ nhà tuyển dụng
+            </h3>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_NameCompany", "Name Company") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.NameCompany).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_AddressApply", "Address Apply") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.AddressApply).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_NameContact", "Name Contact") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.NamesContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_PhoneContact", "Phone Contact") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.PhoneContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Email", "Email") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Email).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Deadline", "Dead Line") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.DatePickerFor(m => m.ToDeadline, new { @class = "form-control date" })
+                        @Html.ValidationMessageFor(m => m.ToDeadline)
+                     
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Language", "Language") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdLanguage, (List<SelectListItem>)ViewBag.Languages).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Website", "Website") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.WebSiteCompany).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                
+               
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">
+                Loại tin đăng và lịch đăng
+            </h3>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TypeNews", "Type News") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdTypeNews, (List<SelectListItem>)ViewBag.NewsTypes).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_FromCreateNewsToCreateNews", "From Date - To Date") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.FromDateToDateString).HtmlAttributes( new { @class = "form-control datepicker-range" }).Readonly(true).ShowValidationMessage(true)
+                
+
+
+                    </div>
+                   
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_MoneyInDay", "Price") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.MoneyInDay).HtmlAttributes(new { @class = "form-control" }).Readonly(true).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_MoneyInDay", "Price") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.TotalMoney).HtmlAttributes(new { @class = "form-control" }).Readonly(true).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+@Html.Script(
+    @<text>
+        <script>
+            $(document).on('click', '#UrlImage', function () {
+                $('input[type="File"]').click();
+            });
+
+            $(document).on('change', 'input[type="File"]', function () {
+                var upload = $(this);
+             
+                var indicator = upload.next('.selected');
+                if (indicator.length == 0) {
+                    indicator = $('<span class="selected"></span>').insertAfter(upload);
+                }
+
+                if (upload.val() == '') {
+                    indicator.html('');
+                } else if (window.FileReader) {
+
+                    for (var i=0;i< upload[0].files.length;i++) {
+                        upload[0].files[i]
+                        $('#UrlImage').val(upload.val());
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            if (upload[0].files[0].size > 2000000) {
+                                $.sticky("@Resource.FileToLarge", { type: 'st-danger' });
+                                upload.replaceWith(upload = upload.clone(true));
+                            } else {
+                                $('#picture').html("<img style='width: 120px; height:120px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
+                            }
+                        };
+                    }
+                   
+                    reader.readAsDataURL(upload[0].files[0]);
+                } else {
+                    indicator.html("Selected");
+                }
+            });
+           
+            $(document).on("change", "#FromSalary", function () {
+                $('#ToSalary').val('');
+                $("#ToSalary").select2("val", "");
+                if ($('#FromSalary').val() != "") {
+                    var val = $('#ToSalary').val();
+                    $('#ToSalary').empty();
+                    for (var i = ($('#FromSalary').val() < 5 ? 5 : $('#FromSalary').val() ); i <= 20; i++) {
+                    
+                        $('#ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' million</option>');
+                        if (i == val) {
+                         
+                            $("#ToSalary").select2().val(val);
+                        }
+                       
+                    }
+                }
+
+            });
+            $(document).on("change", "#FromAge", function () {
+                $('#ToAge').val('');
+                $("#ToAge").select2("val", "");
+                if ($('#FromAge').val() != "") {
+                    var val = $('#ToAge').val();
+                    $('#ToAge').empty();
+                    for (var i = ($('#FromAge').val() < 25 ? 25 : $('#FromAge').val()) ; i <= 35; i++) {
+
+                        $('#ToAge').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' age</option>');
+                        if (i == val) {
+                       
+                            $("#ToAge").select2().val(val);
+                        }
+                    }
+                }
+
+            });
+        </script>
+    </text>)
