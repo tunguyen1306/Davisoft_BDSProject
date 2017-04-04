@@ -105,9 +105,6 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="CaptchaMvc">
-      <HintPath>..\packages\CaptchaMvc.Mvc4.1.5.0\lib\net40-full\CaptchaMvc.dll</HintPath>
-    </Reference>
     <Reference Include="ColorCode">
       <HintPath>..\packages\ColorCode.1.0.1\lib\ColorCode.dll</HintPath>
     </Reference>
@@ -129,6 +126,10 @@
     </Reference>
     <Reference Include="FluentValidation.Mvc">
       <HintPath>..\packages\FluentValidation.MVC4-Signed.4.0.0.1\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer, Version=3.4.3.103, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\packages\iTextSharp.5.4.4\lib\itextsharp.dll</HintPath>
@@ -392,6 +393,9 @@
     <Compile Include="Models\bdspersonalinformation.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bdspicture.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\bdssalary.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
@@ -399,6 +403,9 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdstimework.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bdstransaction.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdstypecontact.cs">
@@ -489,9 +496,6 @@
     <Compile Include="Models\currency.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C__migrationhistory.cs">
-      <DependentUpon>Data.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Data.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -573,7 +577,6 @@
     <Compile Include="Validation\BDSNewValidator.cs" />
     <Compile Include="Validation\BDSPersonalInformationValidator.cs" />
     <Compile Include="Validation\BDSEmployerInformationValidator.cs" />
-    <Compile Include="Validation\BDSPersonalInformationValidator.cs" />
     <Compile Include="Validation\BDSSalaryValidator.cs" />
     <Compile Include="Validation\BDSNewsTypePriceValidator.cs" />
     <Compile Include="Validation\BDSTimeWorkValidator.cs">

@@ -10,10 +10,10 @@ using Resources;
 
 namespace Davisoft_BDSProject.Web.Validation
 {
-    public class BDSPersonalInformationValidator : AbstractValidator<BDSPersonalInformation>
+    public class BDSPersonalInfomationValidator : AbstractValidator<BDSPersonalInformation>
     {
         private readonly IBDSAccountService _service;
-        public BDSPersonalInformationValidator(IBDSAccountService service)
+        public BDSPersonalInfomationValidator(IBDSAccountService service)
         {
             _service = service;
            

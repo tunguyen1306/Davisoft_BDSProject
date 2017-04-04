@@ -183,6 +183,9 @@
     <Compile Include="Models\bdspersonalinformation.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bdspicture.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\bdssalary.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -190,6 +193,9 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdstimework.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bdstransaction.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdstypecontact.cs">
@@ -209,9 +215,6 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\currency.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__migrationhistory.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataWebBDS.Context.cs">

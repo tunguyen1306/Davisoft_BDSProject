@@ -54,6 +54,9 @@ namespace Davisoft_BDSProject.Domain
         public DbSet<BDSNew> BDSNews { get; set; }
 
         public DbSet<BDSPicture> BDSPictures { get; set; }
+
+
+        public DbSet<BDSTransaction> BDSTransactions { get; set; }
         protected override void OnModelCreating(DbModelBuilder mb)
         {
             //EnumerationTypeConfiguration.Apply(this, mb);

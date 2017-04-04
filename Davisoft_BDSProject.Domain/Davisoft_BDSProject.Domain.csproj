@@ -148,10 +148,12 @@
     <Compile Include="Abstract\IAuthenticationService.cs" />
     <Compile Include="Abstract\IAuthorizationService.cs" />
     <Compile Include="Abstract\IBDSAccountService.cs" />
+    <Compile Include="Abstract\IBDSTransactionService.cs" />
     <Compile Include="Abstract\IBDSNewService.cs" />
     <Compile Include="Abstract\IBDSPersonalInformationService.cs" />
     <Compile Include="Abstract\IBDSEmployerInformationService.cs" />
     <Compile Include="Abstract\IBDSNewsTypePriceService.cs" />
+    <Compile Include="Abstract\IBDSPictureService.cs" />
     <Compile Include="Abstract\IBDSSalaryService.cs" />
     <Compile Include="Abstract\IBDSScopeService.cs" />
     <Compile Include="Abstract\IBDSTimeWorkService.cs" />
@@ -177,10 +179,12 @@
     <Compile Include="Concrete\ConcurrentLoginTracker.cs" />
     <Compile Include="Concrete\EFAuditTracker.cs" />
     <Compile Include="Concrete\EFBDSAccount.cs" />
+    <Compile Include="Concrete\EFBDSTransaction.cs" />
     <Compile Include="Concrete\EFBDSNew.cs" />
     <Compile Include="Concrete\EFBDSPersonalInformation.cs" />
     <Compile Include="Concrete\EFBDSEmployerInformation.cs" />
     <Compile Include="Concrete\EFBDSNewsType.cs" />
+    <Compile Include="Concrete\EFBDSPicture.cs" />
     <Compile Include="Concrete\EFBDSSalary.cs" />
     <Compile Include="Concrete\EFBDSScope.cs" />
     <Compile Include="Concrete\EFBDSTimeWork.cs" />
@@ -206,6 +210,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\BDSAccount.cs" />
+    <Compile Include="Entities\BDSPicture.cs" />
+    <Compile Include="Entities\BDSTransaction.cs" />
     <Compile Include="Entities\BDSNew.cs" />
     <Compile Include="Entities\BDSArea.cs" />
     <Compile Include="Entities\BDSBank.cs" />

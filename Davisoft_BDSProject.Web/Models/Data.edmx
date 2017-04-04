@@ -4,15 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Davisoft_BDSProjectModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityType Name="__migrationhistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-          </Key>
-          <Property Name="MigrationId" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Model" Type="longblob" Nullable="false" />
-          <Property Name="ProductVersion" Type="varchar" MaxLength="32" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="Davisoft_BDSProjectModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="audits">
           <Key>
             <PropertyRef Name="ID" />
@@ -375,6 +367,27 @@
           <Property Name="CreateUser" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" Precision="0" />
           <Property Name="ModifiedUser" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="bdstransactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="KeySearch" Type="longtext" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="CreateUser" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Precision="0" />
+          <Property Name="ModifiedUser" Type="int" />
+          <Property Name="IdAccount" Type="int" />
+          <Property Name="IdBank" Type="int" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MoneyEventAdd" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Point" Type="int" />
+          <Property Name="TranDate" Type="datetime" Precision="0" />
+          <Property Name="Type" Type="int" />
         </EntityType>
         <EntityType Name="bdstypecontacts">
           <Key>
@@ -783,7 +796,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Davisoft_BDSProjectModelStoreContainer">
-          <EntitySet Name="__migrationhistory" EntityType="Self.__migrationhistory" Schema="davisoft_bdsproject" store:Type="Tables" />
           <EntitySet Name="audits" EntityType="Self.audits" Schema="davisoft_bdsproject" store:Type="Tables" />
           <EntitySet Name="bdsaccounts" EntityType="Self.bdsaccounts" Schema="davisoft_bdsproject" store:Type="Tables" />
           <EntitySet Name="bdsareas" EntityType="Self.bdsareas" Schema="davisoft_bdsproject" store:Type="Tables" />
@@ -802,6 +814,7 @@
           <EntitySet Name="bdssalaries" EntityType="Self.bdssalaries" Schema="davisoft_bdsproject" store:Type="Tables" />
           <EntitySet Name="bdsscopes" EntityType="Self.bdsscopes" Schema="davisoft_bdsproject" store:Type="Tables" />
           <EntitySet Name="bdstimeworks" EntityType="Self.bdstimeworks" Schema="davisoft_bdsproject" store:Type="Tables" />
+          <EntitySet Name="bdstransactions" EntityType="Self.bdstransactions" Schema="davisoft_bdsproject" store:Type="Tables" />
           <EntitySet Name="bdstypecontacts" EntityType="Self.bdstypecontacts" Schema="davisoft_bdsproject" store:Type="Tables" />
           <EntitySet Name="branches" EntityType="Self.branches" Schema="davisoft_bdsproject" store:Type="Tables" />
           <EntitySet Name="counters" EntityType="Self.counters" Schema="davisoft_bdsproject" store:Type="Tables" />
@@ -875,7 +888,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Davisoft_BDSProjectModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="Davisoft_BDSProjectEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__migrationhistory" EntityType="Davisoft_BDSProjectModel.C__migrationhistory" />
           <EntitySet Name="audits" EntityType="Davisoft_BDSProjectModel.audit" />
           <EntitySet Name="bdsaccounts" EntityType="Davisoft_BDSProjectModel.bdsaccount" />
           <EntitySet Name="bdsareas" EntityType="Davisoft_BDSProjectModel.bdsarea" />
@@ -890,9 +902,11 @@
           <EntitySet Name="bdsnewstypeprices" EntityType="Davisoft_BDSProjectModel.bdsnewstypeprice" />
           <EntitySet Name="bdsnewstypes" EntityType="Davisoft_BDSProjectModel.bdsnewstype" />
           <EntitySet Name="bdspersonalinformations" EntityType="Davisoft_BDSProjectModel.bdspersonalinformation" />
+          <EntitySet Name="bdspictures" EntityType="Davisoft_BDSProjectModel.bdspicture" />
           <EntitySet Name="bdssalaries" EntityType="Davisoft_BDSProjectModel.bdssalary" />
           <EntitySet Name="bdsscopes" EntityType="Davisoft_BDSProjectModel.bdsscope" />
           <EntitySet Name="bdstimeworks" EntityType="Davisoft_BDSProjectModel.bdstimework" />
+          <EntitySet Name="bdstransactions" EntityType="Davisoft_BDSProjectModel.bdstransaction" />
           <EntitySet Name="bdstypecontacts" EntityType="Davisoft_BDSProjectModel.bdstypecontact" />
           <EntitySet Name="branches" EntityType="Davisoft_BDSProjectModel.branch" />
           <EntitySet Name="counters" EntityType="Davisoft_BDSProjectModel.counter" />
@@ -940,383 +954,422 @@
             <End Role="user" EntitySet="users" />
             <End Role="role" EntitySet="roles" />
           </AssociationSet>
-          <EntitySet Name="bdspictures" EntityType="Davisoft_BDSProjectModel.bdspicture" />
         </EntityContainer>
-        <EntityType Name="C__migrationhistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-          </Key>
-          <Property Type="String" Name="MigrationId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Binary" Name="Model" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Type="String" Name="ProductVersion" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="audit">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Username" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Email" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IPAddress" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UrlAccessed" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="TimeAccessed" Nullable="false" />
-          <Property Type="String" Name="SessionId" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Data" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Message" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Controller" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="ActionId" Nullable="false" />
-          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAccessed" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="TimeAccessed" Type="DateTime" Nullable="false" />
+          <Property Name="SessionId" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Data" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Controller" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ActionId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="bdsaccount">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PassWord" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Token" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Money" Nullable="false" />
-          <Property Type="Int32" Name="Point" Nullable="false" />
-          <Property Type="Int32" Name="MailActive" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Token" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Money" Type="Decimal" Nullable="false" />
+          <Property Name="Point" Type="Int32" Nullable="false" />
+          <Property Name="MailActive" Type="Int32" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdsarea">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdsbank">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Branch" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UrlImage" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AccountNumber" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AccountName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Branch" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UrlImage" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdscareer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdseducation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdsemployerinformation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="IdAccount" />
-          <Property Type="String" Name="Name" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Scope" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UrlImage" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Address" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FullAddress" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WebSite" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="City" />
-          <Property Type="Int32" Name="District" />
-          <Property Type="String" Name="Fax" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Phone" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NameContact" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="EmailContact" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PhoneContact" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AddressContact" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="CityContact" />
-          <Property Type="Int32" Name="DistrictContact" />
-          <Property Type="Int32" Name="TypeContact" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAccount" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Scope" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="UrlImage" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="FullAddress" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="WebSite" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="Int32" />
+          <Property Name="District" Type="Int32" />
+          <Property Name="Fax" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="NameContact" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="EmailContact" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneContact" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AddressContact" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="CityContact" Type="Int32" />
+          <Property Name="DistrictContact" Type="Int32" />
+          <Property Name="TypeContact" Type="Int32" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdsevent">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="FromDate" />
-          <Property Type="DateTime" Name="ToDate" />
-          <Property Type="Decimal" Name="DisPercent" />
-          <Property Type="String" Name="FromDateToDate" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="MultiApply" />
-          <Property Type="Int32" Name="TypeApply" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="FromDate" Type="DateTime" />
+          <Property Name="ToDate" Type="DateTime" />
+          <Property Name="DisPercent" Type="Decimal" />
+          <Property Name="FromDateToDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="MultiApply" Type="Int32" />
+          <Property Name="TypeApply" Type="Int32" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdslanguage">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdsmarriage">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdsnew">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Title" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="AddressWork" />
-          <Property Type="Int32" Name="FromSalary" />
-          <Property Type="Int32" Name="ToSalary" />
-          <Property Type="Int32" Name="Quantity" />
-          <Property Type="String" Name="Bonus" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Sex" />
-          <Property Type="Int32" Name="IdTimeWork" />
-          <Property Type="Int32" Name="IdEducation" />
-          <Property Type="String" Name="Career" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DesCompany" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DesWork" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Benefit" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="FromAge" />
-          <Property Type="Int32" Name="ToAge" />
-          <Property Type="Int32" Name="TimeProbationary" />
-          <Property Type="String" Name="NameCompany" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AddressApply" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NamesContact" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PhoneContact" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Email" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="FromDeadline" />
-          <Property Type="DateTime" Name="ToDeadline" />
-          <Property Type="Int32" Name="IdLanguage" />
-          <Property Type="String" Name="WebSiteCompany" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="IdTypeNews" />
-          <Property Type="DateTime" Name="FromCreateNews" />
-          <Property Type="DateTime" Name="ToCreateNews" />
-          <Property Type="Int32" Name="IdAcount" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" />
-          <Property Type="DateTime" Name="CreateDate" />
-          <Property Type="Int32" Name="CreateUser" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
-          <Property Type="Decimal" Name="MoneyInDay" />
-          <Property Type="Decimal" Name="TotalMoney" />
-          <Property Type="String" Name="UrlImage" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AddressWork" Type="Int32" />
+          <Property Name="FromSalary" Type="Int32" />
+          <Property Name="ToSalary" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Bonus" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="IdTimeWork" Type="Int32" />
+          <Property Name="IdEducation" Type="Int32" />
+          <Property Name="Career" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DesCompany" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="DesWork" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Benefit" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="FromAge" Type="Int32" />
+          <Property Name="ToAge" Type="Int32" />
+          <Property Name="TimeProbationary" Type="Int32" />
+          <Property Name="NameCompany" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AddressApply" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="NamesContact" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneContact" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="FromDeadline" Type="DateTime" />
+          <Property Name="ToDeadline" Type="DateTime" />
+          <Property Name="IdLanguage" Type="Int32" />
+          <Property Name="WebSiteCompany" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="IdTypeNews" Type="Int32" />
+          <Property Name="FromCreateNews" Type="DateTime" />
+          <Property Name="ToCreateNews" Type="DateTime" />
+          <Property Name="IdAcount" Type="Int32" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
+          <Property Name="MoneyInDay" Type="Decimal" />
+          <Property Name="TotalMoney" Type="Decimal" />
+          <Property Name="UrlImage" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="bdsnewstypeprice">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="IdNewsType" Nullable="false" />
-          <Property Type="Decimal" Name="Price" Nullable="false" />
-          <Property Type="DateTime" Name="ApplyPrice" />
-          <Property Type="Int32" Name="Perfix" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IdNewsType" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="ApplyPrice" Type="DateTime" />
+          <Property Name="Perfix" Type="Int32" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdsnewstype">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="CodeNewsType" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Order" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UrlIcon" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodeNewsType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="UrlIcon" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdspersonalinformation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="IdAccount" />
-          <Property Type="String" Name="Name" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Phone" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Birthday" />
-          <Property Type="Int32" Name="Sex" />
-          <Property Type="String" Name="Address" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="City" />
-          <Property Type="Int32" Name="District" />
-          <Property Type="String" Name="FullAddress" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="MaritalStatus" />
-          <Property Type="Int32" Name="Salary" />
-          <Property Type="Int32" Name="Experience" />
-          <Property Type="Int32" Name="ProfessionalExperience" />
-          <Property Type="Int32" Name="Education" />
-          <Property Type="Int32" Name="IdLoaiNghe" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UrlImage" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" />
-          <Property Type="DateTime" Name="CreateDate" />
-          <Property Type="Int32" Name="CreateUser" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAccount" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="Int32" />
+          <Property Name="District" Type="Int32" />
+          <Property Name="FullAddress" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="Int32" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="Experience" Type="Int32" />
+          <Property Name="ProfessionalExperience" Type="Int32" />
+          <Property Name="Education" Type="Int32" />
+          <Property Name="IdLoaiNghe" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="UrlImage" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="bdspicture">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="advert_id" Type="Int32" />
+          <Property Name="originalFilepath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="position" Type="Byte" />
+          <Property Name="converted" Type="DateTime" />
+          <Property Name="convertedFilename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tocheck" Type="Boolean" />
+          <Property Name="isvalidated" Type="Boolean" />
+          <Property Name="convertedFilename90" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="convertedFilename180" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="convertedFilename270" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="angleType" Type="Byte" />
+          <Property Name="type_id" Type="Byte" />
+          <Property Name="title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="cms_sql_id" Type="Int32" />
+          <Property Name="shortdescription" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdssalary">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="FromSalary" />
-          <Property Type="Int32" Name="ToSalary" />
-          <Property Type="Int32" Name="Type" Nullable="false" />
-          <Property Type="Int32" Name="Perfix" Nullable="false" />
-          <Property Type="Boolean" Name="Default" Nullable="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="FromSalary" Type="Int32" />
+          <Property Name="ToSalary" Type="Int32" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Perfix" Type="Int32" Nullable="false" />
+          <Property Name="Default" Type="Boolean" Nullable="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdsscope">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="bdstimework">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NameEX" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="FromTime" />
-          <Property Type="Int32" Name="ToTime" />
-          <Property Type="Int32" Name="Type" Nullable="false" />
-          <Property Type="Int32" Name="Perfix" Nullable="false" />
-          <Property Type="Boolean" Name="Default" />
-          <Property Type="Int32" Name="Active" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="String" Name="CreateUser" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="String" Name="ModifiedUser" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NameEX" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="FromTime" Type="Int32" />
+          <Property Name="ToTime" Type="Int32" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Perfix" Type="Int32" Nullable="false" />
+          <Property Name="Default" Type="Boolean" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="bdstransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
+          <Property Name="IdAccount" Type="Int32" />
+          <Property Name="IdBank" Type="Int32" />
+          <Property Name="Money" Type="Decimal" />
+          <Property Name="MoneyEventAdd" Type="Decimal" />
+          <Property Name="Point" Type="Int32" />
+          <Property Name="TranDate" Type="DateTime" />
+          <Property Name="Type" Type="Int32" />
         </EntityType>
         <EntityType Name="bdstypecontact">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KeySearch" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Active" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Int32" Name="CreateUser" Nullable="false" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="Int32" Name="ModifiedUser" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="KeySearch" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
         <EntityType Name="branch">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Code" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name2" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Address" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AddressEnglish" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PhoneNumber" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FaxNumber" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="TaxNumber" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="C_Created" Nullable="false" />
-          <Property Type="DateTime" Name="C_Updated" />
-          <Property Type="DateTime" Name="C_Deleted" />
-          <Property Type="String" Name="EntityStatus_Value" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Name2" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="AddressEnglish" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="FaxNumber" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="C_Created" Type="DateTime" Nullable="false" />
+          <Property Name="C_Updated" Type="DateTime" />
+          <Property Name="C_Deleted" Type="DateTime" />
+          <Property Name="EntityStatus_Value" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="counters" Relationship="Davisoft_BDSProjectModel.Counter_Branch" FromRole="branch" ToRole="counter" />
           <NavigationProperty Name="users" Relationship="Davisoft_BDSProjectModel.User_Branch" FromRole="branch" ToRole="user" />
           <NavigationProperty Name="users1" Relationship="Davisoft_BDSProjectModel.users_branches" FromRole="branch" ToRole="user" />
@@ -1325,138 +1378,138 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Value" Nullable="false" />
-          <Property Type="Int32" Name="BranchID" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="BranchID" Type="Int32" />
           <NavigationProperty Name="branch" Relationship="Davisoft_BDSProjectModel.Counter_Branch" FromRole="counter" ToRole="branch" />
         </EntityType>
         <EntityType Name="country">
           <Key>
             <PropertyRef Name="countryCode" />
           </Key>
-          <Property Type="String" Name="countryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="name_id" Nullable="false" />
-          <Property Type="String" Name="languages" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rowguid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="languages" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="countrytext">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="language_id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="language_id" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="text" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rowguid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="currency">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Symbol" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsDefault" Nullable="false" />
-          <Property Type="Int32" Name="Precision" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Symbol" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="Precision" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="district">
           <Key>
             <PropertyRef Name="district_id" />
           </Key>
-          <Property Type="Int32" Name="district_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="state_id" Nullable="false" />
-          <Property Type="Int32" Name="name_id" Nullable="false" />
-          <Property Type="Decimal" Name="latitude" />
-          <Property Type="Decimal" Name="longitude" />
-          <Property Type="String" Name="polygon" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rowguid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="district_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="latitude" Type="Decimal" />
+          <Property Name="longitude" Type="Decimal" />
+          <Property Name="polygon" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="districttext">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="language_id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="language_id" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="text" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rowguid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="holiday">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="Date" Nullable="false" />
-          <Property Type="String" Name="Description" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsFullDay" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="IsFullDay" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="language">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Value" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DisplayName" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Image" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="users" Relationship="Davisoft_BDSProjectModel.User_Language" FromRole="language" ToRole="user" />
         </EntityType>
         <EntityType Name="location">
           <Key>
             <PropertyRef Name="location_id" />
           </Key>
-          <Property Type="Int32" Name="location_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="countryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="state_id" Nullable="false" />
-          <Property Type="Int32" Name="district_id" />
-          <Property Type="Int32" Name="name_id" Nullable="false" />
-          <Property Type="String" Name="zipCode" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="latitude" />
-          <Property Type="Decimal" Name="longitude" />
-          <Property Type="Boolean" Name="preferred" Nullable="false" />
-          <Property Type="String" Name="polygon" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rowguid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <Property Name="district_id" Type="Int32" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="zipCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="Decimal" />
+          <Property Name="longitude" Type="Decimal" />
+          <Property Name="preferred" Type="Boolean" Nullable="false" />
+          <Property Name="polygon" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="locationtext">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="language_id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="language_id" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="text" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rowguid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Title" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Url" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Icon" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Order" Nullable="false" />
-          <Property Type="Int32" Name="ParentID" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="roles" Relationship="Davisoft_BDSProjectModel.menus_roles" FromRole="menu" ToRole="role" />
         </EntityType>
         <EntityType Name="permission">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Target" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Right" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Target" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Right" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="roles" Relationship="Davisoft_BDSProjectModel.roles_permissions" FromRole="permission" ToRole="role" />
         </EntityType>
         <EntityType Name="role">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RoleLevel_Value" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="RoleLevel_Value" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="menus" Relationship="Davisoft_BDSProjectModel.menus_roles" FromRole="role" ToRole="menu" />
           <NavigationProperty Name="permissions" Relationship="Davisoft_BDSProjectModel.roles_permissions" FromRole="role" ToRole="permission" />
           <NavigationProperty Name="users" Relationship="Davisoft_BDSProjectModel.users_roles" FromRole="role" ToRole="user" />
@@ -1465,62 +1518,62 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Module" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Value" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Type" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Note" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Summary" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="TableToGetField" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="MaxLenght" Nullable="false" />
-          <Property Type="String" Name="Description" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Module" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Summary" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="TableToGetField" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="MaxLenght" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="state">
           <Key>
             <PropertyRef Name="state_id" />
           </Key>
-          <Property Type="Int32" Name="state_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="countryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="name_id" Nullable="false" />
-          <Property Type="String" Name="stateCode" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="latitude" />
-          <Property Type="Decimal" Name="longitude" />
-          <Property Type="String" Name="polygon" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="ModifyDate" />
-          <Property Type="DateTime" Name="CreateDate" />
-          <Property Type="Int32" Name="Status" />
-          <Property Type="String" Name="rowguid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="name_id" Type="Int32" Nullable="false" />
+          <Property Name="stateCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="Decimal" />
+          <Property Name="longitude" Type="Decimal" />
+          <Property Name="polygon" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyDate" Type="DateTime" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="statetext">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="language_id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="language_id" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="text" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rowguid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rowguid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="DisplayName" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Password" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Email" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Phone" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="MobilePhone" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Picture" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="LastAccess" />
-          <Property Type="String" Name="Address" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AddressEnglish" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FaxNo" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Website" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Status_Value" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="BranchID" />
-          <Property Type="Int32" Name="LanguageID" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="LastAccess" Type="DateTime" />
+          <Property Name="Address" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="AddressEnglish" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="FaxNo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Status_Value" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="LanguageID" Type="Int32" />
           <NavigationProperty Name="branch" Relationship="Davisoft_BDSProjectModel.User_Branch" FromRole="user" ToRole="branch" />
           <NavigationProperty Name="language" Relationship="Davisoft_BDSProjectModel.User_Language" FromRole="user" ToRole="language" />
           <NavigationProperty Name="branches" Relationship="Davisoft_BDSProjectModel.users_branches" FromRole="user" ToRole="branch" />
@@ -1578,48 +1631,12 @@
           <End Type="Davisoft_BDSProjectModel.user" Role="user" Multiplicity="*" />
           <End Type="Davisoft_BDSProjectModel.role" Role="role" Multiplicity="*" />
         </Association>
-        <EntityType Name="bdspicture">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="advert_id" Type="Int32" />
-          <Property Name="originalFilepath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="position" Type="Byte" />
-          <Property Name="converted" Type="DateTime" />
-          <Property Name="convertedFilename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="tocheck" Type="Boolean" />
-          <Property Name="isvalidated" Type="Boolean" />
-          <Property Name="convertedFilename90" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="convertedFilename180" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="convertedFilename270" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="angleType" Type="Byte" />
-          <Property Name="type_id" Type="Byte" />
-          <Property Name="title" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="cms_sql_id" Type="Int32" />
-          <Property Name="shortdescription" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="Active" Type="Int32" />
-          <Property Name="CreateDate" Type="DateTime" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" />
-          <Property Name="ModifiedUser" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Davisoft_BDSProjectModelStoreContainer" CdmEntityContainer="Davisoft_BDSProjectEntities">
-          <EntitySetMapping Name="C__migrationhistory">
-            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.C__migrationhistory">
-              <MappingFragment StoreEntitySet="__migrationhistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="audits">
             <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.audit">
               <MappingFragment StoreEntitySet="audits">
@@ -1917,6 +1934,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="bdspictures">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.bdspicture">
+              <MappingFragment StoreEntitySet="bdspictures">
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+                <ScalarProperty Name="cms_sql_id" ColumnName="cms_sql_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="angleType" ColumnName="angleType" />
+                <ScalarProperty Name="convertedFilename270" ColumnName="convertedFilename270" />
+                <ScalarProperty Name="convertedFilename180" ColumnName="convertedFilename180" />
+                <ScalarProperty Name="convertedFilename90" ColumnName="convertedFilename90" />
+                <ScalarProperty Name="isvalidated" ColumnName="isvalidated" />
+                <ScalarProperty Name="tocheck" ColumnName="tocheck" />
+                <ScalarProperty Name="convertedFilename" ColumnName="convertedFilename" />
+                <ScalarProperty Name="converted" ColumnName="converted" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="originalFilepath" ColumnName="originalFilepath" />
+                <ScalarProperty Name="advert_id" ColumnName="advert_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="bdssalaries">
             <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.bdssalary">
               <MappingFragment StoreEntitySet="bdssalaries">
@@ -1968,6 +2013,28 @@
                 <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="NameEX" ColumnName="NameEX" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bdstransactions">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.bdstransaction">
+              <MappingFragment StoreEntitySet="bdstransactions">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="TranDate" ColumnName="TranDate" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="MoneyEventAdd" ColumnName="MoneyEventAdd" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="IdBank" ColumnName="IdBank" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -2246,34 +2313,6 @@
               <ScalarProperty Name="ID" ColumnName="User_Id" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="bdspictures">
-            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.bdspicture">
-              <MappingFragment StoreEntitySet="bdspictures">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
-                <ScalarProperty Name="cms_sql_id" ColumnName="cms_sql_id" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="type_id" ColumnName="type_id" />
-                <ScalarProperty Name="angleType" ColumnName="angleType" />
-                <ScalarProperty Name="convertedFilename270" ColumnName="convertedFilename270" />
-                <ScalarProperty Name="convertedFilename180" ColumnName="convertedFilename180" />
-                <ScalarProperty Name="convertedFilename90" ColumnName="convertedFilename90" />
-                <ScalarProperty Name="isvalidated" ColumnName="isvalidated" />
-                <ScalarProperty Name="tocheck" ColumnName="tocheck" />
-                <ScalarProperty Name="convertedFilename" ColumnName="convertedFilename" />
-                <ScalarProperty Name="converted" ColumnName="converted" />
-                <ScalarProperty Name="position" ColumnName="position" />
-                <ScalarProperty Name="originalFilepath" ColumnName="originalFilepath" />
-                <ScalarProperty Name="advert_id" ColumnName="advert_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -5,43 +5,44 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="52cf49532dc5494db02a3537d7c39822" Name="Diagram1" ZoomLevel="96">
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.C__migrationhistory" Width="1.5" PointX="6.3334148443925269" PointY="27.48516586212682" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.audit" Width="1.5" PointX="6.2327496010031318" PointY="8.5351353923488116" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsaccount" Width="1.5" PointX="3.4021348764198533" PointY="7.8266140408006564" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsarea" Width="1.5" PointX="3.0850979439379174" PointY="18.308289879145235" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsbank" Width="1.5" PointX="3.608520248722527" PointY="2.9431527270670759" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdscareer" Width="1.5" PointX="5.8672783662878345" PointY="24.0772187672915" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdseducation" Width="1.5" PointX="7.1023311070643054" PointY="9.9396107541116" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsemployerinformation" Width="1.5" PointX="7.92616254274089" PointY="29.144613294463891" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsevent" Width="1.5" PointX="0.7231752670943622" PointY="24.6197541619743" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdslanguage" Width="1.5" PointX="11.666326291703772" PointY="8.3104968258694267" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsmarriage" Width="1.5" PointX="9.2133032517569617" PointY="28.01879547350984" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsnew" Width="1.5" PointX="9.519751527123038" PointY="18.340623297887213" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsnewstypeprice" Width="1.5" PointX="11.212895191839381" PointY="23.752869423363762" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsnewstype" Width="1.5" PointX="6.3200329292193214" PointY="23.052499439126112" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdspersonalinformation" Width="1.5" PointX="9.4412252928322289" PointY="12.66601893895586" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdssalary" Width="1.5" PointX="4.6618160850656292" PointY="8.8220552992178387" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsscope" Width="1.5" PointX="1.5629022557115659" PointY="11.671480661105123" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdstimework" Width="1.5" PointX="6.3237926765921495" PointY="12.669748341976549" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdstypecontact" Width="1.5" PointX="11.828631821940014" PointY="16.67041110278592" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.branch" Width="1.5" PointX="11.763443369308227" PointY="31.162667318788667" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.counter" Width="1.5" PointX="4.9111049160878659" PointY="13.975161573838053" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.country" Width="1.5" PointX="2.0173955885774433" PointY="9.1860137475589347" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.countrytext" Width="1.5" PointX="10.865046746500324" PointY="31.143825351793236" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.currency" Width="1.5" PointX="3.2784937188394805" PointY="22.156023944800729" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.district" Width="1.5" PointX="3.3509329479890564" PointY="8.2946578302861464" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.districttext" Width="1.5" PointX="2.3840748902336113" PointY="18.363044657913523" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.holiday" Width="1.5" PointX="8.0225905552611643" PointY="20.870310778203564" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.language" Width="1.5" PointX="0.78718567117451954" PointY="30.280042304787806" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.location" Width="1.5" PointX="3.9877805802914228" PointY="17.319490247089178" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.locationtext" Width="1.5" PointX="8.6149473360809239" PointY="17.174428411375" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.menu" Width="1.5" PointX="9.4243834118472343" PointY="28.956701724304214" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.permission" Width="1.5" PointX="8.4775494357932111" PointY="11.945304309923809" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.role" Width="1.5" PointX="4.3671409526686844" PointY="10.117494319620306" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.setting" Width="1.5" PointX="2.1644517770802842" PointY="9.4649527862039182" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.state" Width="1.5" PointX="4.60543730883181" PointY="21.258719036941752" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.statetext" Width="1.5" PointX="9.4037759888003478" PointY="14.439792341757469" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.user" Width="1.5" PointX="3.3529929403928076" PointY="25.406141352563232" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.audit" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsaccount" Width="1.5" PointX="9.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsarea" Width="1.5" PointX="5.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsbank" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdscareer" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdseducation" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsemployerinformation" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsevent" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdslanguage" Width="1.5" PointX="11.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsmarriage" Width="1.5" PointX="11.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsnew" Width="1.5" PointX="11.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsnewstypeprice" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsnewstype" Width="1.5" PointX="13.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdspersonalinformation" Width="1.5" PointX="13.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdspicture" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdssalary" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsscope" Width="1.5" PointX="15.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdstimework" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdstransaction" Width="1.5" PointX="8.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdstypecontact" Width="1.5" PointX="15.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.branch" Width="1.5" PointX="5.25" PointY="5.875" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.counter" Width="1.5" PointX="7.5" PointY="6.875" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.country" Width="1.5" PointX="15.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.countrytext" Width="1.5" PointX="15.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.currency" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.district" Width="1.5" PointX="17.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.districttext" Width="1.5" PointX="17.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.holiday" Width="1.5" PointX="17.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.language" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.location" Width="1.5" PointX="17.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.locationtext" Width="1.5" PointX="17.75" PointY="17.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.menu" Width="1.5" PointX="3" PointY="8.625" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.permission" Width="1.5" PointX="7.5" PointY="2.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.role" Width="1.5" PointX="5.25" PointY="2.625" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.setting" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.state" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.statetext" Width="1.5" PointX="19.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.user" Width="1.5" PointX="3" PointY="2.5" />
         <AssociationConnector Association="Davisoft_BDSProjectModel.Counter_Branch" />
         <AssociationConnector Association="Davisoft_BDSProjectModel.User_Branch" />
         <AssociationConnector Association="Davisoft_BDSProjectModel.User_Language" />
@@ -49,7 +50,6 @@
         <AssociationConnector Association="Davisoft_BDSProjectModel.roles_permissions" />
         <AssociationConnector Association="Davisoft_BDSProjectModel.users_branches" />
         <AssociationConnector Association="Davisoft_BDSProjectModel.users_roles" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdspicture" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
