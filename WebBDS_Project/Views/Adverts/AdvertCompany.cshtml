@@ -3,7 +3,8 @@
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
 @model WebBDS_Project.Models.RegisterInformationModel
-<!-- Content -->
+<!-- Content -->  
+  
 
 @using (Html.BeginForm("AdvertCompany", "Adverts"))
 {
@@ -212,9 +213,9 @@
                         @foreach (var typeNews in Model.Listbdsnewstype)
                         {
                             <li>
-                                <a href="#@typeNews.Id">
+                                <a href="#@typeNews.CodeNewsType" class="radioType">
                                     <label>
-                                        <input type="radio" value="@typeNews.Id" name="tblbdsnew.IdTypeNews">@typeNews.Name
+                                        <input type="radio" value="@typeNews.Id" class="radioIdType" name="tblbdsnew.IdTypeNews">@typeNews.Name
                                     </label>
                                 </a>
                             </li>
@@ -225,9 +226,9 @@
                     <div class="content_tab-1">
                         @foreach (var typeNews in Model.Listbdsnewstype)
                         {
-                            if (typeNews.Id==1)
+                            if (typeNews.CodeNewsType == "TDB")
                             {
-                                 <div id="@typeNews.Id">
+                                 <div id="@typeNews.CodeNewsType">
                                 <ul class="list_work">
                                     <li style="margin-bottom: 0">
                                         <div class="grid_3">
@@ -261,12 +262,85 @@
                                 </p>
                             </div>
                             }
+                             if (typeNews.CodeNewsType == "TVP")
+                            {
+                                 <div id="@typeNews.CodeNewsType">
+                                 <ul class="list_work_2">
+                                <li>
+                                    <div class="grid_9">
+                                        <a href="#" class="image_2">
+                                            <img src="~/Template/images/2.jpg" alt="2">
+                                            <p class="vip">
+                                                <i class="fa fa-star"></i>
+                                                <span>VIP</span>
+                                            </p>
+                                        </a>
+                                        <div class="name">
+                                            <h2><a href="#">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
+                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
+                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
+                                        </div>
+                                    </div>
+                                    <div class="grid_3 omega">
+                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                                <p style="white-space: pre-line">
+                                   @typeNews.Description
+                                </p>
+                            </div>
+                            }    if (typeNews.CodeNewsType == "TBT")
+                            {
+                                <div id="@typeNews.CodeNewsType">
+                                     <ul class="list_work_2 green">
+                                               <li>
+                                                   <div class="grid_9">
+                                                       <a href="#" class="image_2">
+                                                           <img src="~/Template/images/2.jpg" alt="2">
+                                                           <p class="vip">
+                                                               <i class="fa fa-star"></i>
+                                                               <span>VIP</span>
+                                                           </p>
+                                                       </a>
+                                                       <div class="name">
+                                                           <h2><a href="#">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
+                                                           <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
+                                                           <p><i class="fa fa-clock-o"></i>12/12/1224</p>
+                                                       </div>
+                                                   </div>
+                                                   <div class="grid_3 omega">
+                                                       <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
+                                                   </div>
+                                               </li>
+                                
+                                           </ul>
+                                    <p style="white-space: pre-line">
+                                        @typeNews.Description
+                                    </p>
+                                  
+                                   
+                                </div>
+                            }
+                            if (typeNews.CodeNewsType == "TFE")
+                            {
+                                 <div id="@typeNews.CodeNewsType">
+                                <ul class="last_list">
+                                <li style="border-top: 1px solid #dfdfdf;">
+                                    <a href="#">Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
+                                </li>
+                               
+                                
+                            </ul>
+                            </div>
+                            }
                      
                         }
 
 
                     </div>
-                    <hr />
+                    <hr style="margin: 10px;" />
                   
                     <div class="row">
                        
@@ -306,16 +380,22 @@
                             </tbody>
                         </table>
                     </div>
-                     <div class="row">
-                       
-                        <label>Mã an toàn<span class="required">*</span></label>
-                        <div class="row-right">
-                           
-                               
-                            <input type="text" class="input1"/>
 
+                    <div class="row">
+                        <label>Mã an toàn (<span class="required">*</span>):</label>
+                        <div class="row-right">
+                            <div class="pncon marginright34">
+                                  @Html.TextBoxFor(model => model.tblCaptCha.Captcha)
+                                  @Html.ValidationMessageFor(model => model.tblCaptCha.Captcha)
+                            </div>
+                        </div>
+                        <div class="row-right">
+                            <div class="pncon">
+                               <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                            </div>
                         </div>
                     </div>
+                  
                     <div class="row">
                         <label></label>
 
@@ -373,14 +453,60 @@
 
 
 <script>
+    //jQuery(document).ready(function ($) {
+    //    $(".zendvn_res_refresh_captcha").click(function () {
+    //        $('.zendvn_res_refresh_captcha_img').attr('src', "http://nhaban.net.vn/wp-content/plugins/zendvn-real-estate/public/images/icons/loading.gif");
+    //        var dataObj = {
+    //            "action": "process",
+    //            "func": "refresh_captcha",
+    //        };
+    //        //$.ajax({
+    //        //    url: ajaxurl,//admin-ajax.php?action=user_delete_avatar
+    //        //    type: "POST",
+    //        //    data: dataObj,
+    //        //    dataType: "json",
+    //        //    success: function (data, status, jsXHR) {
+
+    //        //        $('.zendvn_res_refresh_captcha_img').attr('src', data.src);
+    //        //        $('.zendvn_res_refresh_captcha_prefix').val(data.prefix);
+    //        //    }
+    //        //});
+    //    });
+    //    $('#z-avatar-upload-item').click(function () {
+    //        $('#zendvn-res-user-avatar').trigger('click');
+    //        return false;
+    //    });
+
+    //});
+    //function showMyImage(fileInput) {
+    //    var files = fileInput.files;
+    //    for (var i = 0; i < files.length; i++) {
+    //        var file = files[i];
+    //        var imageType = /image.*/;
+    //        if (!file.type.match(imageType)) {
+    //            continue;
+    //        }
+    //        var img = document.getElementById("z-thumbnail");
+    //        img.file = file;
+    //        var reader = new FileReader();
+    //        reader.onload = (function (aImg) {
+    //            return function (e) {
+    //                aImg.src = e.target.result;
+    //            };
+    //        })(img);
+    //        reader.readAsDataURL(file);
+    //    }
+    //}
     jQuery(document).ready(function ($) {
 
-        $("#tab-radio-buttons input").click(function () {
-            window.location.hash = $(this).attr("data-href");
-        });
-
+        if ($('.radioType').hasClass('selected')) {
+            $('.selected .radioIdType').prop('checked', true);
+        }
+        
     });
-
+    $('.radioType').click(function() {
+        $(this).find('.radioIdType').prop('checked', true);
+    });
 
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
@@ -390,23 +516,25 @@
             toastr.error('Vui lòng nhập Tiêu đề!');
             t++;
         } if ($('#tblbdsnew_Bonus').val() == "") {
-            toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
-            t++;
-        } if ($('#tblbdsnew_DesCompany').val() == "") {
-            toastr.error('Vui lòng nhập Giới thiệu công ty!');
-            t++;
-        } if ($('#tblbdsnew_DesWork').val() == "") {
-            toastr.error('Vui lòng nhập Mô tả công việc!');
-            t++;
-        } if ($('#tblbdsnew_Benefit').val() == "") {
-            toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
-            t++;
-        }
+              toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
+              t++;
+          } if ($('#tblbdsnew_DesCompany').val() == "") {
+                toastr.error('Vui lòng nhập Giới thiệu công ty!');
+                t++;
+            } if ($('#tblbdsnew_DesWork').val() == "") {
+                  toastr.error('Vui lòng nhập Mô tả công việc!');
+                  t++;
+              } if ($('#tblbdsnew_Benefit').val() == "") {
+                    toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
+                    t++;
+              } if ($('#tblCaptCha_Captcha').val() == "") {
+                    toastr.error('Vui lòng nhập Mã an toàn!');
+                    t++;
+                }
         if (t == 0) {
             $('#submitbutton').parents("form").submit();
         }
 
     });
-
 
 </script>

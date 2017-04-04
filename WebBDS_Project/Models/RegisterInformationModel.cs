@@ -38,6 +38,7 @@ namespace WebBDS_Project.Models
         public List<bdslanguage> Listbdslanguage { get; set; }
 
         public bdsnewstypeprice tblbdsnewstypeprice { get; set; }
+        public CaptCha tblCaptCha { get; set; }
 
        
     }
