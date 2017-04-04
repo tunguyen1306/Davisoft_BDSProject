@@ -15,6 +15,7 @@ using Davisoft_BDSProject.Web.Infrastructure.Filters;
 using Davisoft_BDSProject.Web.Models;
 using ImageResizer;
 using Resources;
+using System.Net;
 
 namespace Davisoft_BDSProject.Web.Controllers
 {
@@ -57,12 +58,12 @@ namespace Davisoft_BDSProject.Web.Controllers
 
         void LoadDataList()
         {
-            //var Cities = (from a in db.states
-            //              join b in db.statetexts on a.name_id equals b.id
-            //              where b.language_id == "vi" && a.Status == 1
-            //              select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+            var Cities = (from a in db.states
+                          join b in db.statetexts on a.name_id equals b.id
+                          where b.language_id == "vi" && a.Status == 1
+                          select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
-          
+
             var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var NewsTypes = _serviceNewsType.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var NewsTypePrices = _serviceNewsTypePrice.GetIQueryableItems().Where(T => T.Active == 1).ToList();
@@ -70,13 +71,13 @@ namespace Davisoft_BDSProject.Web.Controllers
             var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Languages = _serviceLanguage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var EmployerInformations = _serviceEmployerInformation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.BDSAccount.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            //Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             Educations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             NewsTypes.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             EmployerInformations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             Languages.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-           // ViewBag.Cities = Cities;
+            ViewBag.Cities = Cities;
             ViewBag.Educations = Educations;
             ViewBag.NewsTypes = NewsTypes;
             ViewBag.NewsTypePrices = NewsTypePrices;
@@ -267,5 +268,23 @@ namespace Davisoft_BDSProject.Web.Controllers
 
         }
 
+
+        public ActionResult Cancel(int id)
+        {
+           
+            BDSNew model = _service.GetItem(id);
+            _service.DeleteItem(model.ID);
+           var modelPicture = _servicePicture.GetIQueryableItems().Where(x=>x.advert_id==id).ToList();
+            if (modelPicture.Count>0)
+            {
+                foreach (var item in modelPicture)
+                {
+                    _servicePicture.DeleteItem(item.id);
+                }
+            }
+          
+            _service.DeleteItem(model.ID);
+            return RedirectToAction("Index", "BDSNew");
+        }
     }
 }

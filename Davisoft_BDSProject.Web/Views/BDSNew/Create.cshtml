@@ -24,9 +24,10 @@
                                 @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Create).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
                                 
                             </label>*@
-                            <button type="submit" id="submitbutton" class="btn btn-success btnAdd hidden"></button>
+                            <button type="submit" id="submitbutton" class="btn-success btnAdd hidden"></button>
 
-                            <div onclick="UploadImg(this)" class="btn btn-primary btnAdd1">Create</div>
+                            <div onclick="UploadImg(this)" class="btn btn-success btnAdd1">Create</div>
+                            <a href="@Url.Action("Cancel", "BDSNew", new { id = Model.ID })" class="btn btn-primary">Hủy</a>
                         </div>
                     </div>
                 }
@@ -37,14 +38,14 @@
 
 @Html.Script(
     @<script>
-        $("#submitbutton").on('click', function (e) {
+        @*$("#submitbutton").on('click', function (e) {
             e.preventDefault();
             bootbox.confirm("@Resource.ConfirmCreate", function (isOK) {
                 if (isOK) {
                     $('#submitbutton').parents("form").submit();
                 }
             });
-        });
+        });*@
 
 
     </script>)

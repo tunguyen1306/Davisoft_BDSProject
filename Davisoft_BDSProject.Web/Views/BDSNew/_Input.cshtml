@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSNew_WorkingPlace", "Working Place") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @*@Html.Bootstrap().DropDownListFor(m => m.AddressWork, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)*@
+                        @Html.Bootstrap().DropDownListFor(m => m.AddressWork, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                      </div>  
                     <label class="control-label col-md-2">@Utilities.Resource("BDSNew_Quantity", "Quantity") <span class="required">*</span></label>
                     <div class="col-md-3">
@@ -168,7 +168,7 @@
                 </div>
 
                 <div class="form-group">
-                                <label>Hình</label>
+                               
                                 <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Home/Blank">
                                     <div class="row">
                                         <div class="col-lg-4 ">
