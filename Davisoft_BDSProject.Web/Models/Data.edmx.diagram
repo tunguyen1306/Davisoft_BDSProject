@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsnewstypeprice" Width="1.5" PointX="11.212895191839381" PointY="23.752869423363762" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsnewstype" Width="1.5" PointX="6.3200329292193214" PointY="23.052499439126112" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdspersonalinformation" Width="1.5" PointX="9.4412252928322289" PointY="12.66601893895586" />
-        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdspicture" Width="1.5" PointX="4.6261328368569412" PointY="3.7007713335104153" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdssalary" Width="1.5" PointX="4.6618160850656292" PointY="8.8220552992178387" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdsscope" Width="1.5" PointX="1.5629022557115659" PointY="11.671480661105123" />
         <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdstimework" Width="1.5" PointX="6.3237926765921495" PointY="12.669748341976549" />
@@ -50,6 +49,7 @@
         <AssociationConnector Association="Davisoft_BDSProjectModel.roles_permissions" />
         <AssociationConnector Association="Davisoft_BDSProjectModel.users_branches" />
         <AssociationConnector Association="Davisoft_BDSProjectModel.users_roles" />
+        <EntityTypeShape EntityType="Davisoft_BDSProjectModel.bdspicture" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

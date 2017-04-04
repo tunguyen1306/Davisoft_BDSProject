@@ -19,10 +19,14 @@
                     <div class="form-actions">
                         <div class="form-group">
                             <label class="col-sm-3"></label>
-                            <label class="col-sm-9">
+                            @*<label class="col-sm-9">
                                 @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
                                 @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Create).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
-                            </label>
+                                
+                            </label>*@
+                            <button type="submit" id="submitbutton" class="btn btn-success btnAdd hidden"></button>
+
+                            <div onclick="UploadImg(this)" class="btn btn-primary btnAdd1">Create</div>
                         </div>
                     </div>
                 }
@@ -41,4 +45,6 @@
                 }
             });
         });
+
+
     </script>)

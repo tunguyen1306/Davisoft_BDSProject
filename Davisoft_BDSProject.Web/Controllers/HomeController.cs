@@ -103,7 +103,10 @@ namespace Davisoft_BDSProject.Web.Controllers
             EmailHelper.SendEmail(new[] { "linh@netrunnersystems.com" }, subject, message);
             return Json("Successfully!", JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult Blank()
+        {
+            return View("Blank");
+        }
 
     }
 }

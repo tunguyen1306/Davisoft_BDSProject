@@ -115,7 +115,7 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IBDSEmployerInformationService>().To<EFBDSEmployerInformation>();
             kernel.Bind<IBDSPersonalInformationService>().To<EFBDSPersonalInformation>();
             kernel.Bind<IBDSNewService>().To<EFBDSNew>();
-
+            kernel.Bind<IBDSPictureService>().To<EFBDSPicture>();
             kernel.Bind<IValidator<User>>().To<UserValidator>();
             kernel.Bind<IValidator<Menu>>().To<MenuValidator>();
             kernel.Bind<IValidator<Currency>>().To<CurrencyValidator>();

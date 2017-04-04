@@ -30,6 +30,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         private readonly IBDSNewsTypeService _serviceNewsType;
         private readonly IBDSNewsTypePriceService _serviceNewsTypePrice;
         private readonly IBDSLanguageService _serviceLanguage;
+        private readonly IBDSPictureService _servicePicture;
         public BDSNewController(IBDSNewService service,
             IBDSAccountService serviceAccount,
             IBDSEducationService serviceEducation,
@@ -38,7 +39,8 @@ namespace Davisoft_BDSProject.Web.Controllers
             IBDSNewsTypeService serviceNewsType,
             IBDSNewsTypePriceService serviceNewsTypePrice,
               IBDSLanguageService serviceLanguage,
-            IBDSEmployerInformationService serviceEmployerInformation
+            IBDSEmployerInformationService serviceEmployerInformation,
+            IBDSPictureService servicePicture
             )
         {
             _service = service;
@@ -50,14 +52,15 @@ namespace Davisoft_BDSProject.Web.Controllers
             _serviceNewsTypePrice = serviceNewsTypePrice;
             _serviceLanguage = serviceLanguage;
             _serviceEmployerInformation = serviceEmployerInformation;
+            _servicePicture = servicePicture;
         }
 
         void LoadDataList()
         {
-            var Cities = (from a in db.states
-                          join b in db.statetexts on a.name_id equals b.id
-                          where b.language_id == "vi" && a.Status == 1
-                          select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+            //var Cities = (from a in db.states
+            //              join b in db.statetexts on a.name_id equals b.id
+            //              where b.language_id == "vi" && a.Status == 1
+            //              select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
           
             var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
@@ -67,13 +70,13 @@ namespace Davisoft_BDSProject.Web.Controllers
             var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Languages = _serviceLanguage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var EmployerInformations = _serviceEmployerInformation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.BDSAccount.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            //Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             Educations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             NewsTypes.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             EmployerInformations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             Languages.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            ViewBag.Cities = Cities;
+           // ViewBag.Cities = Cities;
             ViewBag.Educations = Educations;
             ViewBag.NewsTypes = NewsTypes;
             ViewBag.NewsTypePrices = NewsTypePrices;
@@ -124,8 +127,10 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
+            var tblNews = new BDSNew();
+            _service.CreateItem(tblNews);
             LoadDataList();
-            return View(new BDSNew{CreateDate = DateTime.Now,CreateUser = 1,ID = 0});
+            return View(new BDSNew{CreateDate = DateTime.Now,CreateUser = 1,ID = tblNews.ID });
         }
 
         [HttpPost]
@@ -238,8 +243,15 @@ namespace Davisoft_BDSProject.Web.Controllers
                 }
 
 
-                db.bdspictures.Add(picture.tblPicture);
-                db.SaveChanges();
+                var BDSPicture =new  BDSPicture(); 
+                BDSPicture.advert_id = picture.tblPicture.advert_id;
+                BDSPicture.position = picture.tblPicture.position;
+                BDSPicture.originalFilepath = picture.tblPicture.originalFilepath;
+                //BDSPicture.advert_id = newsPicture.idProducts;
+                //BDSPicture.position = newsPicture.isactive;
+                //BDSPicture.title = newsPicture.nameImg;
+                //BDSPicture.convertedFilename = newsPicture.;
+                _servicePicture.CreateItem(BDSPicture);
             }
             if (newsPicture.idpicture > 0)
             {

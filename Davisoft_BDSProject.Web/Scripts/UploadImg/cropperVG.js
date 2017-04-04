@@ -857,6 +857,7 @@
       // The width of auto crop area must large than "minWidth", and the height too. (#164)
       cropBox.width = max(cropBox.minWidth, cropBox.width * autoCropArea);
       cropBox.height = max(cropBox.minHeight, cropBox.height * autoCropArea);
+
       cropBox.oldLeft = cropBox.left = canvas.left + (canvas.width - cropBox.width) / 2;
       cropBox.oldTop = cropBox.top = canvas.top + (canvas.height - cropBox.height) / 2;
 
@@ -2607,12 +2608,12 @@
     toggleDragModeOnDblclick: true,
 
 
-      minCanvasWidth: 300,
-      minCanvasHeight: 300,
-      minCropBoxWidth: 300,
-      minCropBoxHeight: 300,
-      minContainerWidth: 300,
-      minContainerHeight: 300,
+    minCanvasWidth: 288,
+    minCanvasHeight: 192,
+    minCropBoxWidth: 288,
+    minCropBoxHeight: 192,
+    minContainerWidth: 288,
+    minContainerHeight: 192,
 
     // Shortcuts of events
     build: null,

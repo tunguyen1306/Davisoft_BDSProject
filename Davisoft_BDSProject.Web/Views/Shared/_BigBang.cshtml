@@ -12,7 +12,9 @@
     @RenderSection("css", required: false)
     <!--[if lte IE 8]>
     @Styles.Render("~/css/ie8")
+
     <![endif]-->
+    <link href="~/Content/UploadVanGia/toastr.css" rel="stylesheet" />
     <!--[if lt IE 9]>
     @Scripts.Render("~/js/ie9")
     <![endif]-->
@@ -26,7 +28,7 @@
 
     @RenderSection("js", required: false)
     @Html.RenderScripts()
-
+    <script src="~/Scripts/toastr.js"></script>
     <script>
 
         // Use $.getJSON instead of $.get if your server is not configured to return the

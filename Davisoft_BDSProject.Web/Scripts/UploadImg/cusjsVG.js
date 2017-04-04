@@ -1,28 +1,5 @@
-﻿$(function () {
+﻿
 
-
-    $('.txtdiscount_products_tra').keyup(function () {
-
-        if ($('.txtdiscount_products_tra').val() > 0) {
-            var old = $('.txtoldprice_products_tra').val();
-            console.log(old);
-            var dis = $('.txtdiscount_products_tra').val();
-            var total = (old * dis / 100)
-
-            $('.txtnewprice_products_tra').val(old - total);
-        }
-    });
-    if ($('.txtdiscount_products_tra').val() > 0) {
-        $('.txtdiscount_products_tra').keydown(function () {
-            var old = $('.txtoldprice_products_tra').val();
-            var dis = $('.txtdiscount_products_tra').val();
-            var total = (old * dis / 100)
-
-            $('.txtnewprice_products_tra').val(old - total);
-        });
-    }
-
-});
 //Edit Upload
 function Edit(ed) {
     $(ed).parents('.dz-preview').find('.cropper-container img').css({ "transform": "none" });
@@ -50,7 +27,7 @@ function GuidS4() {
 function DeleteUpload(del) {
    
     eventdelete(del);
-    DeleteImg(del);
+  
 }
 
 function eventdelete(del) {

@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSNew_WorkingPlace", "Working Place") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().DropDownListFor(m => m.AddressWork, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @*@Html.Bootstrap().DropDownListFor(m => m.AddressWork, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)*@
                      </div>  
                     <label class="control-label col-md-2">@Utilities.Resource("BDSNew_Quantity", "Quantity") <span class="required">*</span></label>
                     <div class="col-md-3">
@@ -440,14 +440,10 @@
         </section>
     </div>
 </div>
-<link href="/Content/UploadNew/main.css" rel="stylesheet" />
-<link href="/Content/UploadNew/dropzone.css" rel="stylesheet" />
-<link href="/Content/UploadNew/cropper.min.css" rel="stylesheet" />
-<link href="/Content/UploadNew/cussupload.css" rel="stylesheet" />
-<script src="~/Scripts/UploadImg/cusjsNew.js"></script>
-<script src="~/Scripts/UploadImg/dropzoneNew.js"></script>
-<script src="~/Scripts/UploadImg/cropperNew.js"></script>
 
+<input type="hidden" name="cfile" />
+<input type="hidden" name="ID" class="idProduct_" value="@Model.ID" />
+<input type="hidden" name="nameImg" />
 @Html.HiddenFor(m => m.Active)
 @Html.HiddenFor(m => m.ModifiedDate)
 @Html.HiddenFor(m => m.CreateDate)
@@ -455,6 +451,13 @@
 @Html.HiddenFor(m => m.ModifiedUser)
 @Html.Script(
     @<text>
+<link href="/Content/UploadVanGia/main.css" rel="stylesheet" />
+<link href="/Content/UploadVanGia/dropzone.css" rel="stylesheet" />
+<link href="/Content/UploadVanGia/cropper.min.css" rel="stylesheet" />
+<link href="/Content/UploadVanGia/cussupload.css" rel="stylesheet" />
+<script src="~/Scripts/UploadImg/cropperVG.js"></script>
+<script src="~/Scripts/UploadImg/cusjsVG.js"></script>
+<script src="~/Scripts/UploadImg/dropzoneVG.js"></script>
         <script>
             $(document).on('click', '#UrlImage', function () {
                 $('input[type="File"]').click();
@@ -731,7 +734,7 @@
                     document.getElementsByName('nameImg')[0].value = dataname;
                     $.ajax({
                         type: "POST",
-                        url: "@Url.Action("SaveImg", "UploadImg")",
+                        url: "@Url.Action("SaveImg", "BDSNew")",
                     data: { idProducts: $('.idProduct_').val(), index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
 
                     success: function (data) {
