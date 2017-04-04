@@ -16,6 +16,7 @@ namespace Davisoft_BDSProject.Web.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string NameEX { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
         public Nullable<int> FromTime { get; set; }

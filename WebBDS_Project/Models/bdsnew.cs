@@ -44,5 +44,13 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> FromCreateNews { get; set; }
         public Nullable<System.DateTime> ToCreateNews { get; set; }
         public Nullable<int> IdAcount { get; set; }
+        public string KeySearch { get; set; }
+        public Nullable<int> Active { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> CreateUser { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<int> ModifiedUser { get; set; }
+        public Nullable<decimal> MoneyInDay { get; set; }
+        public Nullable<decimal> TotalMoney { get; set; }
     }
 }

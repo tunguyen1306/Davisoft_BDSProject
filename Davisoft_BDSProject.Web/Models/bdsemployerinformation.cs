@@ -34,5 +34,11 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<int> CityContact { get; set; }
         public Nullable<int> DistrictContact { get; set; }
         public Nullable<int> TypeContact { get; set; }
+        public string KeySearch { get; set; }
+        public Nullable<int> Active { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public int CreateUser { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<int> ModifiedUser { get; set; }
     }
 }

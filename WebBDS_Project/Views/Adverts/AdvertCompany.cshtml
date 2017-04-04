@@ -225,7 +225,9 @@
                     <div class="content_tab-1">
                         @foreach (var typeNews in Model.Listbdsnewstype)
                         {
-                            <div id="@typeNews.Id">
+                            if (typeNews.Id==1)
+                            {
+                                 <div id="@typeNews.Id">
                                 <ul class="list_work">
                                     <li style="margin-bottom: 0">
                                         <div class="grid_3">
@@ -258,6 +260,8 @@
                                     Để được đăng tin Vip. Vui lòng liên hệ
                                 </p>
                             </div>
+                            }
+                     
                         }
 
 
@@ -280,6 +284,36 @@
 
 
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                       
+                        <label>Thành tiền(VNĐ):</label>
+                        <table class="table-responsive">
+                            <tbody>
+                                <tr>
+                                    <td>Tiền theo giá gốc</td>
+                                    <td><b>20,000 VND/1 ngày</b></td>
+													
+                                </tr>
+                                <tr style="background: none!important;">
+                                    <td>Tiền phải trả</td>
+                                    <td><b>600,000 VND</b></td>
+													
+                                </tr>
+                                                
+
+                            </tbody>
+                        </table>
+                    </div>
+                     <div class="row">
+                       
+                        <label>Mã an toàn<span class="required">*</span></label>
+                        <div class="row-right">
+                           
+                               
+                            <input type="text" class="input1"/>
+
                         </div>
                     </div>
                     <div class="row">

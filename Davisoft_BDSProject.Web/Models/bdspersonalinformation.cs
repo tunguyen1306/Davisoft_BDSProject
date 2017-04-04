@@ -15,7 +15,7 @@ namespace Davisoft_BDSProject.Web.Models
     public partial class bdspersonalinformation
     {
         public int Id { get; set; }
-        public int IdAccount { get; set; }
+        public Nullable<int> IdAccount { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
@@ -27,9 +27,16 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<int> MaritalStatus { get; set; }
         public Nullable<int> Salary { get; set; }
         public Nullable<int> Experience { get; set; }
+        public Nullable<int> ProfessionalExperience { get; set; }
         public Nullable<int> Education { get; set; }
         public Nullable<int> IdLoaiNghe { get; set; }
         public string Description { get; set; }
         public string UrlImage { get; set; }
+        public string KeySearch { get; set; }
+        public Nullable<int> Active { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> CreateUser { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<int> ModifiedUser { get; set; }
     }
 }

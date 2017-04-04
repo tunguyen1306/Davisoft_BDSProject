@@ -25,6 +25,8 @@ namespace WebBDS_Project.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<C__migrationhistory> C__migrationhistory { get; set; }
+        public DbSet<audit> audits { get; set; }
         public DbSet<bdsaccount> bdsaccounts { get; set; }
         public DbSet<bdsarea> bdsareas { get; set; }
         public DbSet<bdsbank> bdsbanks { get; set; }
