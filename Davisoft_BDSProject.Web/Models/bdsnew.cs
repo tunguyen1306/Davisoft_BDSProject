@@ -20,7 +20,7 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<int> FromSalary { get; set; }
         public Nullable<int> ToSalary { get; set; }
         public Nullable<int> Quantity { get; set; }
-        public Nullable<decimal> Bonus { get; set; }
+        public string Bonus { get; set; }
         public Nullable<int> Sex { get; set; }
         public Nullable<int> IdTimeWork { get; set; }
         public Nullable<int> IdEducation { get; set; }
@@ -52,5 +52,6 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<int> ModifiedUser { get; set; }
         public Nullable<decimal> MoneyInDay { get; set; }
         public Nullable<decimal> TotalMoney { get; set; }
+        public string UrlImage { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -11,6 +13,7 @@ using Davisoft_BDSProject.Domain.Entities;
 using Davisoft_BDSProject.Domain.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Filters;
 using Davisoft_BDSProject.Web.Models;
+using ImageResizer;
 using Resources;
 
 namespace Davisoft_BDSProject.Web.Controllers
@@ -173,6 +176,83 @@ namespace Davisoft_BDSProject.Web.Controllers
         {
             _service.DeleteItem(id);
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public void SaveImg(NewsPictures newsPicture)
+        {
+            var t = newsPicture.cfile == null ? "" : newsPicture.cfile;
+            var file = t.Replace("data:image/png;base64,", "");
+            var photoBytes = Convert.FromBase64String(file);
+            string format = "jpg";
+            if (newsPicture.isactive == 1)
+            {
+                newsPicture.isactive = 1;
+            }
+            else
+            {
+                newsPicture.isactive = 2;
+            }
+            var picture = new NewsPictures
+            {
+                tblPicture = new bdspicture() { advert_id = newsPicture.idProducts, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck = true, type_id = 1, title = newsPicture.nameImg, position = newsPicture.isactive }
+            };
+            if (newsPicture.idpicture == 0)
+            {
+                var settings = new ResizeSettings();
+                settings.Scale = ScaleMode.DownscaleOnly;
+                settings.Format = format;
+
+                //string uploadFolder = picture.DirectoryPhysical;
+
+                string path = Server.MapPath("~/fileUpload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                // check for directory
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                // filename with placeholder for size
+                if (picture.GetConvertedFileName() == null || string.IsNullOrWhiteSpace(picture.GetConvertedFileName()))
+                    picture.SetFileName(DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + "_" + picture.CreateFilename() + "_{0}." + format);
+
+                if (picture.GetFilePathPhysical(NewsPictures.PictureSize.Large) != null)
+                {
+                    string dest = path + picture.FileName(NewsPictures.PictureSize.Large);
+                    settings.MaxWidth = 800;
+                    settings.MaxHeight = 800;
+                    if (picture.WaterMarkLarge == NewsPictures.WatermarkType.None)
+                        ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
+                    // save biggest version as original
+                    if (string.IsNullOrWhiteSpace(picture.tblPicture.originalFilepath))
+                        picture.tblPicture.originalFilepath = picture.GetFilePath(NewsPictures.PictureSize.Large);
+                }
+
+                if (picture.GetFilePathPhysical(NewsPictures.PictureSize.Medium) != null)
+                {
+                    string dest = path + picture.FileName(NewsPictures.PictureSize.Medium);
+                    settings.MaxWidth = 300;
+                    settings.MaxHeight = 300;
+                    if (picture.WaterMarkLarge == NewsPictures.WatermarkType.None)
+                        ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
+                    // save biggest version as original
+                    if (string.IsNullOrWhiteSpace(picture.tblPicture.originalFilepath))
+                        picture.tblPicture.originalFilepath = picture.GetFilePath(NewsPictures.PictureSize.Medium);
+                }
+
+
+                db.bdspictures.Add(picture.tblPicture);
+                db.SaveChanges();
+            }
+            if (newsPicture.idpicture > 0)
+            {
+
+                bdspicture tblpict = db.bdspictures.Find(newsPicture.idpicture);
+                tblpict.title = newsPicture.nameImg;
+                tblpict.position = newsPicture.isactive;
+                db.Entry(tblpict).State = EntityState.Modified;
+                db.SaveChanges();
+                RedirectToAction("Index", "BDSNew");
+            }
+
+
         }
 
     }

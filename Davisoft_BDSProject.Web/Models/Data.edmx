@@ -21,6 +21,7 @@
           <EntitySet Name="bdsnewstypeprices" EntityType="Davisoft_BDSProjectModel.Store.bdsnewstypeprices" store:Type="Tables" Schema="davisoft_bdsproject" />
           <EntitySet Name="bdsnewstypes" EntityType="Davisoft_BDSProjectModel.Store.bdsnewstypes" store:Type="Tables" Schema="davisoft_bdsproject" />
           <EntitySet Name="bdspersonalinformations" EntityType="Davisoft_BDSProjectModel.Store.bdspersonalinformations" store:Type="Tables" Schema="davisoft_bdsproject" />
+          <EntitySet Name="bdspicture" EntityType="Davisoft_BDSProjectModel.Store.bdspicture" store:Type="Tables" Schema="davisoft_bdsproject" />
           <EntitySet Name="bdssalaries" EntityType="Davisoft_BDSProjectModel.Store.bdssalaries" store:Type="Tables" Schema="davisoft_bdsproject" />
           <EntitySet Name="bdsscopes" EntityType="Davisoft_BDSProjectModel.Store.bdsscopes" store:Type="Tables" Schema="davisoft_bdsproject" />
           <EntitySet Name="bdstimeworks" EntityType="Davisoft_BDSProjectModel.Store.bdstimeworks" store:Type="Tables" Schema="davisoft_bdsproject" />
@@ -285,7 +286,7 @@
           <Property Name="FromSalary" Type="int" />
           <Property Name="ToSalary" Type="int" />
           <Property Name="Quantity" Type="int" />
-          <Property Name="Bonus" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Bonus" Type="varchar" MaxLength="200" />
           <Property Name="Sex" Type="int" />
           <Property Name="IdTimeWork" Type="int" />
           <Property Name="IdEducation" Type="int" />
@@ -317,6 +318,7 @@
           <Property Name="ModifiedUser" Type="int" />
           <Property Name="MoneyInDay" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UrlImage" Type="text" />
         </EntityType>
         <EntityType Name="bdsnewstypeprices">
           <Key>
@@ -381,6 +383,28 @@
           <Property Name="CreateUser" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="bdspicture">
+          <Key>
+            <PropertyRef Name="picture_id" />
+          </Key>
+          <Property Name="picture_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="advert_id" Type="int" />
+          <Property Name="originalFilepath" Type="varchar" MaxLength="255" />
+          <Property Name="position" Type="utinyint" />
+          <Property Name="converted" Type="datetime" />
+          <Property Name="convertedFilename" Type="varchar" MaxLength="50" />
+          <Property Name="tocheck" Type="bit" />
+          <Property Name="isvalidated" Type="bit" />
+          <Property Name="convertedFilename90" Type="varchar" MaxLength="50" />
+          <Property Name="convertedFilename180" Type="varchar" MaxLength="50" />
+          <Property Name="convertedFilename270" Type="varchar" MaxLength="50" />
+          <Property Name="angleType" Type="utinyint" />
+          <Property Name="type_id" Type="utinyint" />
+          <Property Name="title" Type="text" />
+          <Property Name="description" Type="text" />
+          <Property Name="cms_sql_id" Type="int" />
+          <Property Name="shortdescription" Type="text" />
         </EntityType>
         <EntityType Name="bdssalaries">
           <Key>
@@ -861,6 +885,7 @@
           <EntitySet Name="bdsnewstypeprices" EntityType="Davisoft_BDSProjectModel.bdsnewstypeprice" />
           <EntitySet Name="bdsnewstypes" EntityType="Davisoft_BDSProjectModel.bdsnewstype" />
           <EntitySet Name="bdspersonalinformations" EntityType="Davisoft_BDSProjectModel.bdspersonalinformation" />
+          <EntitySet Name="bdspictures" EntityType="Davisoft_BDSProjectModel.bdspicture" />
           <EntitySet Name="bdssalaries" EntityType="Davisoft_BDSProjectModel.bdssalary" />
           <EntitySet Name="bdsscopes" EntityType="Davisoft_BDSProjectModel.bdsscope" />
           <EntitySet Name="bdstimeworks" EntityType="Davisoft_BDSProjectModel.bdstimework" />
@@ -1105,7 +1130,7 @@
           <Property Type="Int32" Name="FromSalary" />
           <Property Type="Int32" Name="ToSalary" />
           <Property Type="Int32" Name="Quantity" />
-          <Property Type="Decimal" Name="Bonus" />
+          <Property Type="String" Name="Bonus" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Sex" />
           <Property Type="Int32" Name="IdTimeWork" />
           <Property Type="Int32" Name="IdEducation" />
@@ -1137,6 +1162,7 @@
           <Property Type="Int32" Name="ModifiedUser" />
           <Property Type="Decimal" Name="MoneyInDay" />
           <Property Type="Decimal" Name="TotalMoney" />
+          <Property Type="String" Name="UrlImage" MaxLength="65535" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="bdsnewstypeprice">
           <Key>
@@ -1201,6 +1227,28 @@
           <Property Type="Int32" Name="CreateUser" />
           <Property Type="DateTime" Name="ModifiedDate" />
           <Property Type="Int32" Name="ModifiedUser" />
+        </EntityType>
+        <EntityType Name="bdspicture">
+          <Key>
+            <PropertyRef Name="picture_id" />
+          </Key>
+          <Property Type="Int32" Name="picture_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="advert_id" />
+          <Property Type="String" Name="originalFilepath" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="position" />
+          <Property Type="DateTime" Name="converted" />
+          <Property Type="String" Name="convertedFilename" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="tocheck" />
+          <Property Type="Boolean" Name="isvalidated" />
+          <Property Type="String" Name="convertedFilename90" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="convertedFilename180" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="convertedFilename270" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="angleType" />
+          <Property Type="Byte" Name="type_id" />
+          <Property Type="String" Name="title" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="description" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="cms_sql_id" />
+          <Property Type="String" Name="shortdescription" MaxLength="65535" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="bdssalary">
           <Key>
@@ -1750,6 +1798,7 @@
           <EntitySetMapping Name="bdsnews">
             <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.bdsnew">
               <MappingFragment StoreEntitySet="bdsnews">
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
                 <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
                 <ScalarProperty Name="MoneyInDay" ColumnName="MoneyInDay" />
                 <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
@@ -1855,6 +1904,29 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bdspictures">
+            <EntityTypeMapping TypeName="Davisoft_BDSProjectModel.bdspicture">
+              <MappingFragment StoreEntitySet="bdspicture">
+                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+                <ScalarProperty Name="cms_sql_id" ColumnName="cms_sql_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="angleType" ColumnName="angleType" />
+                <ScalarProperty Name="convertedFilename270" ColumnName="convertedFilename270" />
+                <ScalarProperty Name="convertedFilename180" ColumnName="convertedFilename180" />
+                <ScalarProperty Name="convertedFilename90" ColumnName="convertedFilename90" />
+                <ScalarProperty Name="isvalidated" ColumnName="isvalidated" />
+                <ScalarProperty Name="tocheck" ColumnName="tocheck" />
+                <ScalarProperty Name="convertedFilename" ColumnName="convertedFilename" />
+                <ScalarProperty Name="converted" ColumnName="converted" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="originalFilepath" ColumnName="originalFilepath" />
+                <ScalarProperty Name="advert_id" ColumnName="advert_id" />
+                <ScalarProperty Name="picture_id" ColumnName="picture_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

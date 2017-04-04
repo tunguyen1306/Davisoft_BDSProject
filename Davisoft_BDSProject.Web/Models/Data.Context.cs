@@ -40,6 +40,7 @@ namespace Davisoft_BDSProject.Web.Models
         public DbSet<bdsnewstypeprice> bdsnewstypeprices { get; set; }
         public DbSet<bdsnewstype> bdsnewstypes { get; set; }
         public DbSet<bdspersonalinformation> bdspersonalinformations { get; set; }
+        public DbSet<bdspicture> bdspictures { get; set; }
         public DbSet<bdssalary> bdssalaries { get; set; }
         public DbSet<bdsscope> bdsscopes { get; set; }
         public DbSet<bdstimework> bdstimeworks { get; set; }
