@@ -335,6 +335,7 @@
     <Compile Include="Controllers\AdminDistrictController.cs" />
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\BDSAccountController.cs" />
+    <Compile Include="Controllers\BDSNewController.cs" />
     <Compile Include="Controllers\BDSPersonalInformationController.cs" />
     <Compile Include="Controllers\BDSEmployerInformationController.cs" />
     <Compile Include="Controllers\BDSLanguageController.cs" />
@@ -569,6 +570,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Validation\BDSAccountValidator.cs" />
+    <Compile Include="Validation\BDSNewValidator.cs" />
+    <Compile Include="Validation\BDSPersonalInformationValidator.cs" />
     <Compile Include="Validation\BDSEmployerInformationValidator.cs" />
     <Compile Include="Validation\BDSPersonalInformationValidator.cs" />
     <Compile Include="Validation\BDSSalaryValidator.cs" />
@@ -2151,6 +2154,10 @@
     <Content Include="Views\BDSPersonalInformation\Create.cshtml" />
     <Content Include="Views\BDSPersonalInformation\Edit.cshtml" />
     <Content Include="Views\BDSPersonalInformation\Index.cshtml" />
+    <Content Include="Views\BDSNew\_Input.cshtml" />
+    <Content Include="Views\BDSNew\Create.cshtml" />
+    <Content Include="Views\BDSNew\Edit.cshtml" />
+    <Content Include="Views\BDSNew\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

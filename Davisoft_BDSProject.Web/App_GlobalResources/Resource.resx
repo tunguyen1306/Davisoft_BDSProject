@@ -6444,4 +6444,179 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSNew" xml:space="preserve">
+    <value>List Bank Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Title" xml:space="preserve">
+    <value>Title</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Add" xml:space="preserve">
+    <value>Add New Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Name" xml:space="preserve">
+    <value>Title</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_WorkingPlace" xml:space="preserve">
+    <value>Working Place</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Quantity" xml:space="preserve">
+    <value>Quantity</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Salary" xml:space="preserve">
+    <value>Salary</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_ToSalary" xml:space="preserve">
+    <value>To</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Bonus" xml:space="preserve">
+    <value>Bonus</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Sex" xml:space="preserve">
+    <value>Sex</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_TimeWork" xml:space="preserve">
+    <value>Experience</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Education" xml:space="preserve">
+    <value>Education</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Career" xml:space="preserve">
+    <value>Career</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_DesCompany" xml:space="preserve">
+    <value>Description Company</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_DesWork" xml:space="preserve">
+    <value>Description Work</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Benefit" xml:space="preserve">
+    <value>Benefit</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_TimeProbationary" xml:space="preserve">
+    <value>Time Probationary</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_FromAge" xml:space="preserve">
+    <value>From Age</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_ToAge" xml:space="preserve">
+    <value>To</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_NameCompany" xml:space="preserve">
+    <value>Name Company</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_PhoneContact" xml:space="preserve">
+    <value>Phone Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Email" xml:space="preserve">
+    <value>Email</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Language" xml:space="preserve">
+    <value>Language</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Website" xml:space="preserve">
+    <value>Website</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_TypeNews" xml:space="preserve">
+    <value>Type News</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_FromCreateNews" xml:space="preserve">
+    <value>Type News</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_ToCreateNews" xml:space="preserve">
+    <value>To</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_MoneyInDay" xml:space="preserve">
+    <value>Price</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_AddressApply" xml:space="preserve">
+    <value>Address Apply</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_NameContact" xml:space="preserve">
+    <value>Name Contact</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Deadline" xml:space="preserve">
+    <value>Dead Line</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_FromCreateNewsToCreateNews" xml:space="preserve">
+    <value>From Date - To Date</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsType_Code" xml:space="preserve">
+    <value>Code</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNewsType_Order" xml:space="preserve">
+    <value>Order</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Account" xml:space="preserve">
+    <value>Employer</value>
+    <comment>
+    </comment>
+  </data>
 </root>

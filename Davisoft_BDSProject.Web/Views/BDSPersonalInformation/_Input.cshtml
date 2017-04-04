@@ -62,7 +62,7 @@
                     <div class="col-md-4">
                         @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
-                    <label class="control-label col-md-2">@Utilities.Resource("BDSPersonalInformation_Birthda`", "Birthday") <span class="required">*</span></label>
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSPersonalInformation_Birthday", "Birthday") <span class="required">*</span></label>
                     <div class="col-md-3">
                         @Html.DatePickerFor(m => m.Birthday, new { @class = "form-control date" })
                         @Html.ValidationMessageFor(m => m.Birthday)
