@@ -1,6 +1,7 @@
 ﻿
 $(function() {
     GetCity();
+    $('.dropDistrict').selectric();
    
 $('.lblcheckEmail').click(function () {
     CheckEmail();

@@ -174,4 +174,12 @@
     width: 100%!important;
     
 }
+    .btn-primary {
+  
+    width: 30%!important;
+}
+    .btnUploadImage {
+    
+    width: 55%!important;
+}
 }

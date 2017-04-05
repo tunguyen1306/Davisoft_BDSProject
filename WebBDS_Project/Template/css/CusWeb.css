@@ -58,6 +58,32 @@
     border-radius: 3px;
     width:60%;
 }
+.btnUploadImage {
+    text-align: center;
+    background-color: #de3039;
+    color: #fff!important;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+    width:25%;
+}
+.btnCancel {
+    text-align: center;
+    background-color: #016096;
+    color: #fff!important;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+    width:25%;
+}.btn-primary {
+    text-align: center;
+    background-color: #37a344;
+    color: #fff!important;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+    width:15%;
+}
 .btnUpdate {
     text-align: center;
     background: red;
@@ -208,4 +234,8 @@ tr:nth-child(even) {
     font-weight: bold;
     font-size: 13px;
    
+}
+ .hidden {
+    display: none!important;
+    visibility: hidden!important;
 }

@@ -15,6 +15,14 @@ namespace WebBDS_Project.Controllers
         {
             return View();
         }
-     
+        public ActionResult Blank()
+        {
+            return View();
+        }
+        public ActionResult Detail(int id)
+        {
+            return View();
+        }
+
     }
 }
