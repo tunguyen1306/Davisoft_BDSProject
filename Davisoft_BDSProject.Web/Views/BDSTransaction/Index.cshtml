@@ -1,12 +1,12 @@
 ﻿@using Davisoft_BDSProject.Domain.Entities
 @using Davisoft_BDSProject.Web.Helpers
 @using Resources
-@model IEnumerable<BDSTimeWork>
+@model IEnumerable<BDSTransaction>
 <section class="panel panel-default">
     <div class="panel-heading">
-       @Utilities.Resource("BDSTimeWork", "List TimeWork")
+       @Utilities.Resource("BDSTransaction", "List Bank Transaction")
     </div>
-    @if (CurrentUser.HasPermission("BDSTimeWork", "Create"))
+    @if (CurrentUser.HasPermission("BDSTransaction", "Create"))
     {
         <div class="row wrapper dataTables_length table_basic">
             <div class="col-sm-12">
@@ -20,10 +20,14 @@
             <table class="table" id="table_data">
                 <thead>
                     <tr>
-                        <th>@Utilities.Resource("BDSTimeWork_Name", "Name")</th>
-                        <th>@Utilities.Resource("BDSTimeWork_Description", "Description")</th>
-                        <th style="width: 100px"></th>
-                        <th style="width: 100px"></th>
+                        <th>@Utilities.Resource("BDSTransaction_Name", "Name")</th>
+                        <th>@Utilities.Resource("BDSTransaction_Money", "Money")</th>
+                        <th>@Utilities.Resource("BDSTransaction_MoneyEventAdd", "Money for Event")</th>
+                        <th>@Utilities.Resource("BDSTransaction_Point", "Point")</th>
+                        <th>@Utilities.Resource("BDSTransaction_Date", "Date Transaction")</th>
+                        <th>@Utilities.Resource("BDSTransaction_Description", "Description")</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,21 +63,27 @@
                 });
             },
             ajax: {
-                url: "/BDSTimeWork/IndexAjax",
+                url: "/BDSTransaction/IndexAjax",
                 type: "GET"
             },
             "columnDefs": [
-                
-                 
-               
           {
               "render": function (data, type, row) {
 
-                  return '<a href="/BDSTimeWork/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+                  return moment(new Date(parseInt(row.TranDate.replace('/Date(', '').replace(')/', '')))).format('DD/MM/YYYY');
               },
-              "targets": 2,
-              'className': 'text-center'
+              "targets": 4
+             
           },
+           {
+               "render": function (data, type, row) {
+
+                   return '<a href="/BDSTransaction/Edit/' + row.ID + '"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+               },
+               "targets": 6,
+               'className': 'text-center'
+           },
+
           {
               "render": function (data, type, row) {
 
@@ -81,12 +91,16 @@
 
 
               },
-              "targets": 3,
+              "targets": 7,
               'className':'text-center'
           }
             ],
             columns: [
                 { "data": "Name", "orderable": true },
+                { "data": "Money", "orderable": true },
+                 { "data": "MoneyEventAdd", "orderable": true },
+                  { "data": "Point", "orderable": true },
+                { "data": "TranDate", "orderable": true },
                 { "data": "Description", "orderable": true },
                 { "data": "ID", "orderable": false },
                 { "data": "ID", "orderable": false }

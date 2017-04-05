@@ -130,7 +130,7 @@
             var $self = $(this);
             bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
                 if (isOK) {
-                    $.getJSON($self.attr('href'), function(data) {
+                    $.getJSON("@Url.Action("DeActive")?id=" + $self.attr('data-id'), function (data) {
                     }).success(function () { $modelTable._fnAjaxUpdate();})
                         .error(function () { alert(decodeURIComponent('@Resource.DontHavePermission')); });
 

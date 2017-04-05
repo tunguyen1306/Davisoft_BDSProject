@@ -9,6 +9,7 @@ using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
 using Davisoft_BDSProject.Domain.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Filters;
+using Davisoft_BDSProject.Web.Infrastructure.Utility;
 using Davisoft_BDSProject.Web.Models;
 using Resources;
 
@@ -45,11 +46,11 @@ namespace Davisoft_BDSProject.Web.Controllers
             var dir = data.order[0]["dir"];
             string columnName = ((String[])data.columns[int.Parse(column)]["data"])[0];
             var queryFilter =
-                _service.GetIQueryableItems()
-                    .Where(
-                        T =>
-                            search != null &&
-                            (T.KeySearch.ToLower().Contains(search.ToLower())));
+              _service.GetIQueryableItems()
+                  .Where(
+                      T => T.Active == 1 &&
+                          search != null &&
+                          (T.KeySearch.ToLower().Contains(search.ToLower())));
             if (dir == "asc")
             {
                 queryFilter = queryFilter.OrderByField(columnName, true);
@@ -58,7 +59,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 queryFilter = queryFilter.OrderByField(columnName, false);
             }
-            data.recordsTotal = _service.GetIQueryableItems().Count();
+            data.recordsTotal = _service.GetIQueryableItems().Where(T => T.Active == 1).Count();
             data.recordsFiltered = queryFilter.Count();
             data.data = queryFilter.Skip(data.start)
                     .Take(data.length == -1 ? data.recordsTotal : data.length)
@@ -81,6 +82,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                 ViewBag.ListNewsType = _serviceNewsType.GetIQueryableItems().Where(T => T.Active == 1).ToList();
                 return View(model);
             }
+
+           
             model.KeySearch = model.Name.NormalizeD() + " " +
                             (String.IsNullOrEmpty(model.Description)
                                 ? ""
@@ -125,6 +128,15 @@ namespace Davisoft_BDSProject.Web.Controllers
         {
             _service.DeleteItem(id);
             return RedirectToAction("Index");
+        }
+      
+        [ActionName("DeActive"), DisplayName("Delete")]
+        public JsonResult DeActiveConfirmed(int id)
+        {
+            var model = _service.GetItem(id);
+            model.Active = 0;
+            _service.UpdateItem(model);
+            return Json(new { Status = true }, JsonRequestBehavior.AllowGet);
         }
 
     }

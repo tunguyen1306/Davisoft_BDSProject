@@ -14,20 +14,31 @@ using Resources;
 
 namespace Davisoft_BDSProject.Web.Controllers
 {
-    public class BDSEducationController : Controller
+    public class BDSBranchController : Controller
     {
-        private readonly IBDSEducationService _service;
-
-        public BDSEducationController(IBDSEducationService service)
+        private readonly IBDSBranchService _service;
+        private readonly IBDSAreaService _areaservice;
+        public BDSBranchController(IBDSBranchService service, IBDSAreaService areaservice)
         {
             _service = service;
+            _areaservice = areaservice;
         }
-        [DisplayName(@"Education management")]
+        [DisplayName(@"BDSBranch management")]
         public ActionResult Index()
         {
             return View();
         }
-        [DisplayName(@"Education management")]
+
+        private void LoadDataList()
+        {
+            var Areas = _areaservice.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+
+            Areas.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            ViewBag.Areas = Areas;
+           
+        }
+
+        [DisplayName(@"BDSBranch management")]
         [AjaxOnly]
         public JsonResult IndexAjax(DataTableJS data)
         {
@@ -64,44 +75,49 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
-            return View(new BDSEducation{CreateDate = DateTime.Now,CreateUser = 1,ID = 0});
+            LoadDataList();
+            return View(new BDSBranch{CreateDate = DateTime.Now,CreateUser = 1,ID = 0});
         }
 
         [HttpPost]
-        public ActionResult Create(BDSEducation model)
+        public ActionResult Create(BDSBranch model)
         {
             if (!ModelState.IsValid)
             {
+                LoadDataList();
                 return View(model);
             }
-            model.KeySearch = model.Name.NormalizeD() + " " +
-                       (String.IsNullOrEmpty(model.Description)
-                           ? ""
-                           : model.Description.NormalizeD());
+            model.BDSArea = _areaservice.GetItem(model.IdArea);
+            model.KeySearch = model.Name.NormalizeD() + " " + model.BDSArea.Name.NormalizeD() + " " + model.Tel.NormalizeD() + " " + model.Phone.NormalizeD() + " " + model.Address.NormalizeD() + " " +
+                            (String.IsNullOrEmpty(model.Description)
+                                ? ""
+                                : model.Description.NormalizeD());
             _service.CreateItem(model);
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
         {
-            BDSEducation model = _service.GetItem(id);
+            LoadDataList();
+            BDSBranch model = _service.GetItem(id);
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(BDSEducation model)
+        public ActionResult Edit(BDSBranch model)
         {
             if (!ModelState.IsValid)
             {
-
+                LoadDataList();
                 ViewBag.Success = false;
                 ViewBag.Message = Resource.SaveFailed;
                 return View(model);
             }
-            model.KeySearch = model.Name.NormalizeD() + " " +
-                       (String.IsNullOrEmpty(model.Description)
-                           ? ""
-                           : model.Description.NormalizeD());
+            model.BDSArea = _areaservice.GetItem(model.IdArea);
+            model.KeySearch = model.Name.NormalizeD() + " " + model.BDSArea.Name.NormalizeD() + " " + model.Tel.NormalizeD() + " " + model.Phone.NormalizeD() + " " + model.Address.NormalizeD() + " " +
+                            (String.IsNullOrEmpty(model.Description)
+                                ? ""
+                                : model.Description.NormalizeD());
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
@@ -117,7 +133,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             _service.DeleteItem(id);
             return RedirectToAction("Index");
         }
-      
+       
         [ActionName("DeActive"), DisplayName("Delete")]
         public JsonResult DeActiveConfirmed(int id)
         {

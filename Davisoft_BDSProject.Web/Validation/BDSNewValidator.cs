@@ -29,7 +29,7 @@ namespace Davisoft_BDSProject.Web.Validation
             RuleFor(m => m.FromAge).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
             RuleFor(m => m.ToAge).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
-            RuleFor(m => m.UrlImage).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+         
             RuleFor(m => m.NameCompany).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
             RuleFor(m => m.AddressApply).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);

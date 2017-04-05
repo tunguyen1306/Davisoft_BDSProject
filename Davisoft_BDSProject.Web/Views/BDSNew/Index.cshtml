@@ -21,6 +21,12 @@
                 <thead>
                     <tr>
                         <th>@Utilities.Resource("BDSNew_Title", "Title")</th>
+                        <th>@Utilities.Resource("BDSNew_Email", "Email")</th>
+                        <th>@Utilities.Resource("BDSNew_NameCompany", "Name Company")</th>
+                        <th>@Utilities.Resource("BDSNew_TypeNews", "Type News")</th>
+                        <th>@Utilities.Resource("BDSNew_FromDate", "From Date")</th>
+                        <th>@Utilities.Resource("BDSNew_ToDate", "To Date")</th>
+                        <th>@Utilities.Resource("BDSNew_Description", "Description")</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -67,7 +73,7 @@
 
                   return '<a href="/BDSNew/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
               },
-              "targets":1,
+              "targets":7,
               'className': 'text-center'
           },
           {
@@ -77,13 +83,18 @@
 
 
               },
-              "targets":2,
+              "targets":8,
               'className':'text-center'
           }
             ],
             columns: [
                 { "data": "Title", "orderable": true },
-             
+                { "data": "BDSAccount.Email", "orderable": true },
+                { "data": "NameCompany", "orderable": true },
+                { "data": "BDSNewsType.Name", "orderable": true },
+                { "data": "FromCreateNews", "orderable": true },
+                { "data": "ToCreateNews", "orderable": true },
+                 { "data": "DesCompany", "orderable": true },
                 { "data": "ID", "orderable": false },
                 { "data": "ID", "orderable": false }
 
@@ -96,7 +107,7 @@
             var $self = $(this);
             bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
                 if (isOK) {
-                    $.getJSON($self.attr('href'), function(data) {
+                    $.getJSON("@Url.Action("DeActive")?id=" + $self.attr('data-id'), function (data) {
                     }).success(function () { $modelTable._fnAjaxUpdate();})
                         .error(function () { alert(decodeURIComponent('@Resource.DontHavePermission')); });
 

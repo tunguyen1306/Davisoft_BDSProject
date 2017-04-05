@@ -9,6 +9,7 @@ using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
 using Davisoft_BDSProject.Domain.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Filters;
+using Davisoft_BDSProject.Web.Infrastructure.Utility;
 using Davisoft_BDSProject.Web.Models;
 using Resources;
 
@@ -42,11 +43,11 @@ namespace Davisoft_BDSProject.Web.Controllers
             var dir = data.order[0]["dir"];
             string columnName = ((String[])data.columns[int.Parse(column)]["data"])[0];
             var queryFilter =
-                _service.GetIQueryableItems()
-                    .Where(
-                        T =>
-                            search != null &&
-                            (T.KeySearch.ToLower().Contains(search.ToLower())));
+              _service.GetIQueryableItems()
+                  .Where(
+                      T => T.Active == 1 &&
+                          search != null &&
+                          (T.KeySearch.ToLower().Contains(search.ToLower())));
             if (dir == "asc")
             {
                 queryFilter = queryFilter.OrderByField(columnName, true);
@@ -55,7 +56,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 queryFilter = queryFilter.OrderByField(columnName, false);
             }
-            data.recordsTotal = _service.GetIQueryableItems().Count();
+            data.recordsTotal = _service.GetIQueryableItems().Where(T => T.Active == 1).Count();
             data.recordsFiltered = queryFilter.Count();
             data.data = queryFilter.Skip(data.start)
                     .Take(data.length == -1 ? data.recordsTotal : data.length)
@@ -87,6 +88,11 @@ namespace Davisoft_BDSProject.Web.Controllers
                 (String.IsNullOrEmpty(model.Description)
                                 ? ""
                                 : model.Description.NormalizeD());
+            if (Request.Files.Count > 0 && Request.Files["UrlImageFile"] != null && Request.Files["UrlImageFile"].ContentLength > 0)
+            {
+                String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
+                model.UrlImage = path;
+            }
             _service.CreateItem(model);
             return RedirectToAction("Index");
         }
@@ -108,9 +114,10 @@ namespace Davisoft_BDSProject.Web.Controllers
                 return View(model);
             }
             BDSBank modelDB = _service.GetItem(model.ID);
-            if (String.IsNullOrEmpty(model.UrlImage))
+            if (Request.Files.Count > 0 && Request.Files["UrlImageFile"] != null && Request.Files["UrlImageFile"].ContentLength > 0)
             {
-                model.UrlImage = modelDB.UrlImage;
+                String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
+                model.UrlImage = path;
             }
             model.KeySearch = model.Name.NormalizeD() + " " +
                model.AccountName.NormalizeD() + " " +
@@ -137,6 +144,14 @@ namespace Davisoft_BDSProject.Web.Controllers
             _service.DeleteItem(id);
             return RedirectToAction("Index");
         }
-
+       
+        [ActionName("DeActive"), DisplayName("Delete")]
+        public JsonResult DeActiveConfirmed(int id)
+        {
+            var model = _service.GetItem(id);
+            model.Active = 0;
+            _service.UpdateItem(model);
+            return Json(new { Status = true }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

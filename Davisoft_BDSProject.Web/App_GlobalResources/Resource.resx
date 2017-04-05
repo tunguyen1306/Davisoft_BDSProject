@@ -6624,4 +6624,144 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSBranch" xml:space="preserve">
+    <value>List Branch</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_TelPhone" xml:space="preserve">
+    <value>Tel - Phone</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_Area" xml:space="preserve">
+    <value>Area</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_Address" xml:space="preserve">
+    <value>Address</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_Add" xml:space="preserve">
+    <value>Add New Branch</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_Phone" xml:space="preserve">
+    <value>Phone</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_Tel" xml:space="preserve">
+    <value>Tel</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBranch_Edit" xml:space="preserve">
+    <value>Edit Branch</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction" xml:space="preserve">
+    <value>List Bank Transaction</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Add" xml:space="preserve">
+    <value>Add New Transaction</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Account" xml:space="preserve">
+    <value>Employer</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Type" xml:space="preserve">
+    <value>Type</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Bank" xml:space="preserve">
+    <value>Bank</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Branch" xml:space="preserve">
+    <value>Branch</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Money" xml:space="preserve">
+    <value>Money</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_MoneyEventAdd" xml:space="preserve">
+    <value>Money for Event</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Point" xml:space="preserve">
+    <value>Point</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="TheValueMustBeGreaterThanValueSFM" xml:space="preserve">
+    <value>The value must be greater than {0}</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Date" xml:space="preserve">
+    <value>Date Transaction</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSTransaction_Edit" xml:space="preserve">
+    <value>Edit Transaction</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_TotalMoney" xml:space="preserve">
+    <value>Total Price</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_FromDate" xml:space="preserve">
+    <value>From Date</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_ToDate" xml:space="preserve">
+    <value>To Date</value>
+    <comment>
+    </comment>
+  </data>
 </root>

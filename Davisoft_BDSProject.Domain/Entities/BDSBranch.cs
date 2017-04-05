@@ -6,17 +6,16 @@ using System.Text;
 
 namespace Davisoft_BDSProject.Domain.Entities
 {
-    public class BDSBank : BDSBaseEntiry
+    public class BDSBranch : BDSBaseEntiry
     {
         public string Name { get; set; }
         public string Address { get; set; }
-        public string UrlImage { get; set; }
-        [NotMapped]
-        public string UrlImageFile { get; set; }
-        public string AccountNumber { get; set; }
-        public string AccountName { get; set; }
+        public string Tel { get; set; }
+        public string Phone { get; set; }
+        public int IdArea { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
-        public string Branch { get; set; }
+        [ForeignKey("IdArea")]
+        public virtual BDSArea BDSArea { get; set; }
     }
 }

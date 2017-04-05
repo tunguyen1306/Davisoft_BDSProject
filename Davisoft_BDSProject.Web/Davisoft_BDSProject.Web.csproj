@@ -105,6 +105,10 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc4.1.5.0\lib\net40-full\CaptchaMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ColorCode">
       <HintPath>..\packages\ColorCode.1.0.1\lib\ColorCode.dll</HintPath>
     </Reference>
@@ -336,6 +340,8 @@
     <Compile Include="Controllers\AdminDistrictController.cs" />
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\BDSAccountController.cs" />
+    <Compile Include="Controllers\BDSBranchController.cs" />
+    <Compile Include="Controllers\BDSTransactionController.cs" />
     <Compile Include="Controllers\BDSNewController.cs" />
     <Compile Include="Controllers\BDSPersonalInformationController.cs" />
     <Compile Include="Controllers\BDSEmployerInformationController.cs" />
@@ -538,6 +544,7 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\NewsPictures.cs" />
     <Compile Include="Models\permission.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
@@ -574,6 +581,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Validation\BDSAccountValidator.cs" />
+    <Compile Include="Validation\BDSTransactionValidator.cs" />
+    <Compile Include="Validation\BDSBranchValidator.cs" />
     <Compile Include="Validation\BDSNewValidator.cs" />
     <Compile Include="Validation\BDSPersonalInformationValidator.cs" />
     <Compile Include="Validation\BDSEmployerInformationValidator.cs" />
@@ -790,6 +799,7 @@
     <Content Include="Display\js\accounting\accounting.js" />
     <Content Include="Display\js\app.js" />
     <Content Include="Display\js\app.plugin.js" />
+    <Content Include="Display\js\autoNumeric.js" />
     <Content Include="Display\js\bootbox\bootbox.min.js" />
     <Content Include="Display\js\bootstrap-datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Display\js\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
@@ -2161,6 +2171,14 @@
     <Content Include="Views\BDSNew\Create.cshtml" />
     <Content Include="Views\BDSNew\Edit.cshtml" />
     <Content Include="Views\BDSNew\Index.cshtml" />
+    <Content Include="Views\BDSTransaction\_Input.cshtml" />
+    <Content Include="Views\BDSTransaction\Create.cshtml" />
+    <Content Include="Views\BDSTransaction\Edit.cshtml" />
+    <Content Include="Views\BDSTransaction\Index.cshtml" />
+    <Content Include="Views\BDSBranch\_Input.cshtml" />
+    <Content Include="Views\BDSBranch\Create.cshtml" />
+    <Content Include="Views\BDSBranch\Edit.cshtml" />
+    <Content Include="Views\BDSBranch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

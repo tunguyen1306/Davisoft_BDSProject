@@ -103,27 +103,24 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IBDSLanguageService>().To<EFBDSLanguage>();
             kernel.Bind<IBDSMarriageService>().To<EFBDSMarriage>();
             kernel.Bind<IBDSTransactionService>().To<EFBDSTransaction>();
-
             kernel.Bind<IBDSTypeContactService>().To<EFBDSTypeContact>();
             kernel.Bind<IBDSNewsTypePriceService>().To<EFBDSNewsTypePrice>();
             kernel.Bind<IBDSNewsTypeService>().To<EFBDSNewsType>();
             kernel.Bind<IBDSSalaryService>().To<EFBDSSalary>();
             kernel.Bind<IBDSScopeService>().To<EFBDSScope>();
-   
             kernel.Bind<IBDSTimeWorkService>().To<EFBDSTimeWork>();
             kernel.Bind<IBDSAccountService>().To<EFBDSAccount>();
             kernel.Bind<IBDSEmployerInformationService>().To<EFBDSEmployerInformation>();
             kernel.Bind<IBDSPersonalInformationService>().To<EFBDSPersonalInformation>();
             kernel.Bind<IBDSNewService>().To<EFBDSNew>();
             kernel.Bind<IBDSPictureService>().To<EFBDSPicture>();
-
+            kernel.Bind<IBDSBranchService>().To<EFBDSBranch>();
 
 
             kernel.Bind<IValidator<User>>().To<UserValidator>();
             kernel.Bind<IValidator<Menu>>().To<MenuValidator>();
             kernel.Bind<IValidator<Currency>>().To<CurrencyValidator>();
             kernel.Bind<IValidator<Language>>().To<LanguageValidator>();
-
             kernel.Bind<IValidator<BDSBank>>().To<BDSBankValidator>();
             kernel.Bind<IValidator<BDSArea>>().To<BDSAreaValidator>();
             kernel.Bind<IValidator<BDSCareer>>().To<BDSCareerValidator>();
@@ -131,19 +128,17 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IValidator<BDSEvent>>().To<BDSEventValidator>();
             kernel.Bind<IValidator<BDSLanguage>>().To<BDSLanguageValidator>();
             kernel.Bind<IValidator<BDSMarriage>>().To<BDSMarriageValidator>();
-
             kernel.Bind<IValidator<BDSNewsType>>().To<BDSNewsTypeValidator>();
             kernel.Bind<IValidator<BDSTypeContact>>().To<BDSTypeContactValidator>();
             kernel.Bind<IValidator<BDSScope>>().To<BDSScopeValidator>();
             kernel.Bind<IValidator<BDSNewsTypePrice>>().To<BDSNewsTypePriceValidator>();
             kernel.Bind<IValidator<BDSSalary>>().To<BDSSalaryValidator>();
             kernel.Bind<IValidator<BDSTimeWork>>().To<BDSTimeWorkValidator>();
-
             kernel.Bind<IValidator<BDSAccount>>().To<BDSAccountValidator>();
-
             kernel.Bind<IValidator<BDSEmployerInformation>>().To<BDSEmployerInformationValidator>();
-           
             kernel.Bind<IValidator<BDSNew>>().To<BDSNewValidator>();
+            kernel.Bind<IValidator<BDSBranch>>().To<BDSBranchValidator>();
+            kernel.Bind<IValidator<BDSTransaction>>().To<BDSTransactionValidator>();
             // cache configurations.
             kernel.Bind<ICacheStorageLocation>().To<RequestCacheSolution>().Named("InRequest");
             kernel.Bind<ICacheStorageLocation>().To<SessionCacheSolution>().Named("InSession");

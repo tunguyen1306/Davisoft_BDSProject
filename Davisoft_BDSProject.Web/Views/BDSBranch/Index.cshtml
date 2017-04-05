@@ -1,12 +1,12 @@
 ﻿@using Davisoft_BDSProject.Domain.Entities
 @using Davisoft_BDSProject.Web.Helpers
 @using Resources
-@model IEnumerable<BDSTimeWork>
+@model IEnumerable<BDSBranch>
 <section class="panel panel-default">
     <div class="panel-heading">
-       @Utilities.Resource("BDSTimeWork", "List TimeWork")
+       @Utilities.Resource("BDSBranch", "List Branch")
     </div>
-    @if (CurrentUser.HasPermission("BDSTimeWork", "Create"))
+    @if (CurrentUser.HasPermission("BDSBranch", "Create"))
     {
         <div class="row wrapper dataTables_length table_basic">
             <div class="col-sm-12">
@@ -20,10 +20,13 @@
             <table class="table" id="table_data">
                 <thead>
                     <tr>
-                        <th>@Utilities.Resource("BDSTimeWork_Name", "Name")</th>
-                        <th>@Utilities.Resource("BDSTimeWork_Description", "Description")</th>
-                        <th style="width: 100px"></th>
-                        <th style="width: 100px"></th>
+                        <th>@Utilities.Resource("BDSBranch_Name", "Name")</th>
+                        <th>@Utilities.Resource("BDSBranch_TelPhone", "Tel - Phone")</th>
+                        <th>@Utilities.Resource("BDSBranch_Area", "Area")</th>
+                        <th>@Utilities.Resource("BDSBranch_Address", "Address")</th>
+                        <th>@Utilities.Resource("BDSBranch_Description", "Description")</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,19 +62,32 @@
                 });
             },
             ajax: {
-                url: "/BDSTimeWork/IndexAjax",
+                url: "/BDSBranch/IndexAjax",
                 type: "GET"
             },
             "columnDefs": [
-                
-                 
+                {
+                    "render": function (data, type, row) {
+
+                        return row.Tel + " - " + row.phoneMode;
+                    },
+                    "targets": 1
                
+                },
+                {
+                    "render": function (data, type, row) {
+
+                        return row.BDSArea.Name;
+                    },
+                    "targets": 2
+                   
+                },
           {
               "render": function (data, type, row) {
 
-                  return '<a href="/BDSTimeWork/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+                  return '<a href="/BDSBranch/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
               },
-              "targets": 2,
+              "targets": 5,
               'className': 'text-center'
           },
           {
@@ -81,12 +97,15 @@
 
 
               },
-              "targets": 3,
+              "targets": 6,
               'className':'text-center'
           }
             ],
             columns: [
                 { "data": "Name", "orderable": true },
+                 { "data": "Tel", "orderable": true },
+                  { "data": "IdArea", "orderable": true },
+                   { "data": "Address", "orderable": true },
                 { "data": "Description", "orderable": true },
                 { "data": "ID", "orderable": false },
                 { "data": "ID", "orderable": false }

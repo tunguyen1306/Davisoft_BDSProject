@@ -57,6 +57,8 @@ namespace Davisoft_BDSProject.Domain
 
 
         public DbSet<BDSTransaction> BDSTransactions { get; set; }
+
+        public DbSet<BDSBranch> BDSBranches { get; set; }
         protected override void OnModelCreating(DbModelBuilder mb)
         {
             //EnumerationTypeConfiguration.Apply(this, mb);

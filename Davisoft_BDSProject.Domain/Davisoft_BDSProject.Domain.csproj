@@ -148,6 +148,7 @@
     <Compile Include="Abstract\IAuthenticationService.cs" />
     <Compile Include="Abstract\IAuthorizationService.cs" />
     <Compile Include="Abstract\IBDSAccountService.cs" />
+    <Compile Include="Abstract\IBDSBranchService.cs" />
     <Compile Include="Abstract\IBDSTransactionService.cs" />
     <Compile Include="Abstract\IBDSNewService.cs" />
     <Compile Include="Abstract\IBDSPersonalInformationService.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Concrete\ConcurrentLoginTracker.cs" />
     <Compile Include="Concrete\EFAuditTracker.cs" />
     <Compile Include="Concrete\EFBDSAccount.cs" />
+    <Compile Include="Concrete\EFBDSBranch.cs" />
     <Compile Include="Concrete\EFBDSTransaction.cs" />
     <Compile Include="Concrete\EFBDSNew.cs" />
     <Compile Include="Concrete\EFBDSPersonalInformation.cs" />
@@ -210,6 +212,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\BDSAccount.cs" />
+    <Compile Include="Entities\BDSBranch.cs" />
     <Compile Include="Entities\BDSPicture.cs" />
     <Compile Include="Entities\BDSTransaction.cs" />
     <Compile Include="Entities\BDSNew.cs" />

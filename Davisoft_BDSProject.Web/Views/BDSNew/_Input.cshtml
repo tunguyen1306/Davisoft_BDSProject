@@ -172,34 +172,7 @@
 
 
 
-                <div class="form-group">
-                    <label class="col-md-3 control-label">@Utilities.Resource("BDSNewsType_UrlIcon", "Icon")</label>
-                    <div class="col-md-8" style="position: relative;">
-                        <div id="picture">
-                            @if (Model.UrlImage != null)
-                            {
-                                <img style="width: 120px; height:120px;" src="@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
-                            }
-                            else
-                            {
-                                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
-                            }
-
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-9">
-                        @Html.Bootstrap().FileFor(m => m.UrlImageFile).HtmlAttributes(new { @class = "form-control hidden", @multiple = "multiple" }).ShowValidationMessage(false)
-                        @Html.Bootstrap().TextBoxFor(m => m.UrlImage).Readonly(true).HtmlAttributes(new { @class = "form-control" }).Placeholder("Please click to upload logo").ShowValidationMessage(true)
-                        <script type="text/javascript">
-                            document.getElementById("UrlImage").value = "@(Model.UrlImage)";
-
-                        </script>
-                    </div>
-                </div>
-
+               
 
 
 
@@ -490,7 +463,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSNew_FromCreateNewsToCreateNews", "From Date - To Date") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.FromDateToDateString).HtmlAttributes(new { @class = "form-control datepicker-range" }).Readonly(true).ShowValidationMessage(true)
+                        @Html.Bootstrap().TextBoxFor(m => m.FromDateToDateString).HtmlAttributes(new { @class = "form-control datepicker-range" }).ShowValidationMessage(true)
 
 
 
@@ -504,7 +477,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_MoneyInDay", "Price") <span class="required">*</span></label>
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TotalMoney", "Total Price") <span class="required">*</span></label>
                     <div class="col-md-4">
                         @Html.Bootstrap().TextBoxFor(m => m.TotalMoney).HtmlAttributes(new { @class = "form-control" }).Readonly(true).ShowValidationMessage(true)
                     </div>
@@ -523,6 +496,8 @@
 @Html.HiddenFor(m => m.CreateDate)
 @Html.HiddenFor(m => m.CreateUser)
 @Html.HiddenFor(m => m.ModifiedUser)
+@Html.HiddenFor(m => m.FromDeadline)
+
 @Html.Script(
     @<text>
 <link href="/Content/UploadVanGia/main.css" rel="stylesheet" />
@@ -569,41 +544,90 @@
         }
     });
 
-$(document).on("change", "#FromSalary", function () {
-    $('#ToSalary').val('');
-    $("#ToSalary").select2("val", "");
-    if ($('#FromSalary').val() != "") {
-        var val = $('#ToSalary').val();
-        $('#ToSalary').empty();
-        for (var i = ($('#FromSalary').val() < 5 ? 5 : $('#FromSalary').val()) ; i <= 20; i++) {
+    $(document).on("change", "#FromSalary", function () {
+        $('#ToSalary').val('');
+        $("#ToSalary").select2("val", "");
+        if ($('#FromSalary').val() != "") {
+            var val = $('#ToSalary').val();
+           
+            $('#ToSalary').empty();
+            $('#ToSalary').append('<optiop value="">Please Select</option>');
+            for (var i = ($('#FromSalary').val() < 5 ? 5 : $('#FromSalary').val()) ; i <= 20; i++) {
 
-            $('#ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' million</option>');
-            if (i == val) {
+                $('#ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' million</option>');
+                if (i > val) {
+                    $('#ToSalary').val("");
+                    $("#ToSalary").select2("val", "");
+                } else {
+                    if (i >= val) {
 
-                $("#ToSalary").select2().val(val);
+
+
+                    }
+
+                }
+
             }
-
         }
-    }
 
-});
-$(document).on("change", "#FromAge", function () {
-    $('#ToAge').val('');
-    $("#ToAge").select2("val", "");
-    if ($('#FromAge').val() != "") {
+    });
+    $(document).on("change", "#FromAge", function () {
         var val = $('#ToAge').val();
-        $('#ToAge').empty();
-        for (var i = ($('#FromAge').val() < 25 ? 25 : $('#FromAge').val()) ; i <= 35; i++) {
+        $('#ToAge').val('');
+        $("#ToAge").select2("val", "");
+        if ($('#FromAge').val() != "") {
+         
+       
+            $('#ToAge').empty();
+            $('#ToAge').append('<optiop value="">Please Select</option>');
+            for (var i = ($('#FromAge').val() < 25 ? 25 : $('#FromAge').val()) ; i <= 35; i++) {
 
-            $('#ToAge').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' age</option>');
-            if (i == val) {
+                $('#ToAge').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' age</option>');
+                if (i > val) {
+                    $('#ToAge').val("");
+                    $("#ToAge").select2("val", "");
+                } else {
+                    if (i >= val) {
+                     
 
-                $("#ToAge").select2().val(val);
+                       
+                    }
+                  
+                }
             }
         }
-    }
 
-});
+    });
+
+    $(document).on("change", "#IdTypeNews,#FromDateToDateString", function () {
+
+        var id = $('#IdTypeNews').val();
+        var rDate = $('#FromDateToDateString').val();
+        if (id != null && id != "" && id != null && id != "") {
+            $.getJSON("@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + rDate, function(data) {
+                $('#MoneyInDay').val(data.PriceInDay);
+                $('#TotalMoney').val(data.TotalPrice);
+            });
+        }
+
+    });
+   
+    $(document).on("change", "#IdAcount", function () {
+
+        var id = $('#IdAcount').val();
+      
+        if (id != null && id != "") {
+            $.getJSON("@Url.Action("EmployerInformation")?idAccount=" + id, function (data) {
+                $('#NameCompany').val(data.Name);
+                $('#AddressApply').val(data.AddressContact);
+                $('#NamesContact').val(data.NameContact);
+                $('#PhoneContact').val(data.PhoneContact);
+                $('#Email').val(data.EmailContact);
+                $('#WebSiteCompany').val(data.WebSite);
+            });
+        }
+
+    });
 function dropNew(ed) {
 
     var console = window.console || { log: function () { } };
@@ -809,29 +833,29 @@ function UploadImg(obj) {
         $.ajax({
             type: "POST",
             url: "@Url.Action("SaveImg", "BDSNew")",
-                    data: { idProducts: $('.idProduct_').val(), index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
+                data: { idProducts: $('.idProduct_').val(), index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
 
-                    success: function (data) {
-                        $(o).find('#cusimg').attr('rel', data.d);
+                success: function (data) {
+                    $(o).find('#cusimg').attr('rel', data.d);
 
-                        totalitem--;
+                    totalitem--;
 
-                        if (totalitem == 0) {
-                            $('.btnAdd1').text('Thêm');
-                            $('.btnAdd1').removeClass('disabled');
-                            $('.btnAdd').click();
-                        }
-
-                    },
-                    error: function (e) {
-                        toastr.error('Vui lòng chọn lại hình ảnh');
+                    if (totalitem == 0) {
+                        $('.btnAdd1').text('Thêm');
+                        $('.btnAdd1').removeClass('disabled');
+                        $('.btnAdd').click();
                     }
-                });
+
+                },
+                error: function (e) {
+                    toastr.error('Vui lòng chọn lại hình ảnh');
+                }
             });
+        });
 
 
-            return true;
-        }
+        return true;
+    }
 
 </script>
 </text>)

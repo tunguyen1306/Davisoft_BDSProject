@@ -16,6 +16,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public int? IdBranch { get; set; }
         public double Money { get; set; }
         public double MoneyEventAdd { get; set; }
+        public double EventDisPercent { get; set; }
         public int Point { get; set; }
         public System.DateTime TranDate { get; set; }
         public int Type { get; set; }
@@ -23,5 +24,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public virtual BDSAccount BDSAccount { get; set; }
         [ForeignKey("IdBank")]
         public virtual BDSBank BDSBank { get; set; }
+        [ForeignKey("IdBranch")]
+        public virtual BDSBranch BDSBranch { get; set; }
     }
 }

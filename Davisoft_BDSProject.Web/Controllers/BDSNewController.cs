@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -15,6 +16,7 @@ using Davisoft_BDSProject.Domain.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Filters;
 using Davisoft_BDSProject.Web.Models;
 using ImageResizer;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using Resources;
 using System.Net;
 
@@ -66,7 +68,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 
 
             var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            var NewsTypes = _serviceNewsType.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+            var NewsTypes = _serviceNewsType.GetIQueryableItems().Where(T => T.Active == 1).OrderBy(T=>T.Order).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var NewsTypePrices = _serviceNewsTypePrice.GetIQueryableItems().Where(T => T.Active == 1).ToList();
             var TimeWorks = _serviceTimeWork.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
@@ -89,16 +91,16 @@ namespace Davisoft_BDSProject.Web.Controllers
             ViewBag.Languages = Languages;
             ViewBag.EmployerInformations = EmployerInformations;
         }
-        [DisplayName(@"New management")]
+        [DisplayName(@"News management")]
         public ActionResult Index()
         {
             return View();
         }
-        [DisplayName(@"New management")]
+        [DisplayName(@"News management")]
         [AjaxOnly]
         public JsonResult IndexAjax(DataTableJS data)
         {
-            var itmes = _service.GetIQueryableItems().ToList();
+          
             String search = null;
             if (data.search != null && data.search["value"] != null)
             {
@@ -108,11 +110,11 @@ namespace Davisoft_BDSProject.Web.Controllers
             var dir = data.order[0]["dir"];
             string columnName = ((String[])data.columns[int.Parse(column)]["data"])[0];
             var queryFilter =
-                _service.GetIQueryableItems()
-                    .Where(
-                        T =>
-                           search != null &&
-                            (T.KeySearch.ToLower().Contains(search.ToLower())));
+              _service.GetIQueryableItems()
+                  .Where(
+                      T => T.Active == 1 &&
+                          search != null &&
+                          (T.KeySearch.ToLower().Contains(search.ToLower())));
             if (dir == "asc")
             {
                 queryFilter = queryFilter.OrderByField(columnName, true);
@@ -121,11 +123,21 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 queryFilter = queryFilter.OrderByField(columnName, false);
             }
-            data.recordsTotal = _service.GetIQueryableItems().Count();
+            data.recordsTotal = _service.GetIQueryableItems().Where(T => T.Active == 1).Count();
             data.recordsFiltered = queryFilter.Count();
             data.data = queryFilter.Skip(data.start)
                     .Take(data.length == -1 ? data.recordsTotal : data.length)
-                    .ToList();
+                    .ToList().Select(T => new { 
+                        ID = T.ID,
+                        Title = T.Title, 
+                        BDSNewsType = new BDSNewsType{ ID = T.BDSNewsType.ID,Name=T.BDSNewsType.Name} ,
+                        NameCompany = T.NameCompany, 
+                        BDSAccount = new BDSAccount { ID = T.BDSAccount.ID, Email = T.BDSAccount.Email }, 
+                        DesCompany = T.DesCompany,
+                        FromCreateNews=T.FromCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern),
+                        ToCreateNews = T.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern)
+                    });
+         
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
@@ -134,7 +146,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             var tblNews = new BDSNew();
             _service.CreateItem(tblNews);
             LoadDataList();
-            return View(new BDSNew { CreateDate = DateTime.Now, CreateUser = 1, ID = tblNews.ID, IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == tblNews.ID) });
+            return View(new BDSNew { CreateDate = DateTime.Now, FromDateToDateString = DateTime.Now.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) + " - " + DateTime.Now.AddDays(3).ToString(MvcApplication.DateTimeFormat.ShortDatePattern), CreateUser = 1, ID = tblNews.ID, IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == tblNews.ID) });
         }
 
         [HttpPost]
@@ -150,8 +162,14 @@ namespace Davisoft_BDSProject.Web.Controllers
                 model.BDSPictures=   _servicePicture.GetIQueryableItems().Where(T => T.Active == 1 && T.advert_id==model.ID).ToList();
                 return View(model);
             }
-          
-            _service.UpdateItem(model);
+            var fromDate = model.FromDateToDateString.Split('-')[0];
+            var toDate = model.FromDateToDateString.Split('-')[1];
+            model.FromCreateNews = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+            model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+            model.FromDeadline = DateTime.Now;
+
+            model.KeySearch = model.Title.NormalizeD() + " " + _serviceAccount.GetItem(model.IdAcount).Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
+            _service.CreateItem(model);
             return RedirectToAction("Index");
         }
 
@@ -160,7 +178,10 @@ namespace Davisoft_BDSProject.Web.Controllers
             LoadDataList();
             BDSNew model =
                 _service.GetIQueryableItems().Where(T => T.ID == id).Include(T => T.BDSPictures).FirstOrDefault();
-            model.IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == id); 
+            model.IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == id);
+            model.FromDateToDateString = model.FromCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
+                                         " - " +
+                                         model.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
             return View(model);
         }
 
@@ -174,7 +195,12 @@ namespace Davisoft_BDSProject.Web.Controllers
                 ViewBag.Message = Resource.SaveFailed;
                 return View(model);
             }
-         
+            var fromDate = model.FromDateToDateString.Split('-')[0];
+            var toDate = model.FromDateToDateString.Split('-')[1];
+            model.FromCreateNews = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+            model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+            model.FromDeadline = DateTime.Now;
+               model.KeySearch = model.Title.NormalizeD() + " " + _serviceAccount.GetItem(model.IdAcount).Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
@@ -189,7 +215,9 @@ namespace Davisoft_BDSProject.Web.Controllers
         {
             _service.DeleteItem(id);
             return RedirectToAction("Index");
-        }
+        }  
+
+        
         [HttpPost]
         public void SaveImg(NewsPictures newsPicture)
         {
@@ -290,11 +318,22 @@ namespace Davisoft_BDSProject.Web.Controllers
         public ActionResult DeleteImg(int idpicture)
         {
 
-            _servicePicture.DeleteItem(idpicture);
-            var Pic = _servicePicture.GetItem(idpicture);
-            DeleteIMG(Pic.originalFilepath);
+          
+            try
+            {
+                _servicePicture.DeleteItem(idpicture);
+                var Pic = _servicePicture.GetItem(idpicture);
+                DeleteIMG(Pic.originalFilepath);
+                return Json(Pic);
+            }
+            catch (Exception)
+            {
+                
+             
+            }
+            return Json(null);
 
-            return Json(Pic);
+
         }
         public void DeleteIMG(string picture)
         {
@@ -307,6 +346,69 @@ namespace Davisoft_BDSProject.Web.Controllers
 
 
 
+        }
+        [AjaxOnly]
+        public JsonResult CalcuMoney(int idType,string rDate)
+        {
+           var price= _serviceNewsTypePrice.GetIQueryableItems()
+                .Where(T => T.IdNewsType == idType && T.Active == 1 && T.ApplyPrice <= DateTime.Now)
+                .OrderByDescending(T => T.ApplyPrice)
+                .FirstOrDefault();
+
+           var fromDate = rDate.Split('-')[0];
+           var toDate = rDate.Split('-')[1];
+           var  FromDate = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+           var ToDate = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+            var totalDay = ToDate.Subtract(FromDate).TotalDays;
+            if (totalDay<1)
+            {
+                totalDay = 1;
+            }
+            else
+            {
+                totalDay = Math.Ceiling(totalDay);
+            }
+            var pInDay = 0.0;
+            var pAll = 0.0;
+           if (price!=null)
+           {
+               pInDay = price.Price;
+               pAll = totalDay*pInDay;
+           }
+            return Json(new{PriceInDay=pInDay,TotalPrice=pAll,TotalDay=totalDay}, JsonRequestBehavior.AllowGet);
+        }
+        
+        public JsonResult EmployerInformation(int idAccount)
+        {
+           return   Json(
+                _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == idAccount).ToList().Select(T => new
+                {
+                    Name = T.Name,
+                    AddressContact = T.AddressContact + ", " + (from a in db.districts
+                                                                join b in db.districttexts on a.name_id equals b.id
+                                                                where b.language_id == "vi" && a.state_id == T.DistrictContact
+                                                                select new { ID = a.state_id, Name = b.text }).FirstOrDefault().Name +", "+
+
+                                                                (from a in db.states
+                                                                 join b in db.statetexts on a.name_id equals b.id
+                                                                 where b.language_id == "vi" && a.Status == 1 && a.state_id == T.CityContact
+                                                                 select new { ID = a.state_id, Name = b.text }).FirstOrDefault().Name
+                                                                ,
+                    NameContact = T.NameContact,
+                    PhoneContact = T.PhoneContact,
+                    EmailContact = T.EmailContact,
+                    WebSite = T.WebSite
+                }).FirstOrDefault(),
+                JsonRequestBehavior.AllowGet);
+        }
+        
+        [ActionName("DeActive"), DisplayName("Delete")]
+        public JsonResult DeActiveConfirmed(int id)
+        {
+            var model = _service.GetItem(id);
+            model.Active = 0;
+            _service.UpdateItem(model);
+            return Json(new { Status = true }, JsonRequestBehavior.AllowGet);
         }
     }
 }

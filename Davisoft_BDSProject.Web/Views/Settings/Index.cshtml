@@ -67,6 +67,9 @@
                         }
                         else if (item.Type == "Textbox")
                         {
+
+                            var xxx = item.Name;
+                            
                             @(item.MaxLenght > 0 ? Html.Bootstrap().TextBox(item.Name).Value(item.Value).HtmlAttributes(new { maxlength = item.MaxLenght, @class = "form-control nouc" }) : Html.Bootstrap().TextBox(item.Name).Value(item.Value).HtmlAttributes(new { @class = "form-control nouc" }))
                             /*
                                                 if (! string.IsNullOrEmpty(item.TableToGetField))
