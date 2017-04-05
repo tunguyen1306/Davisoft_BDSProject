@@ -26,8 +26,9 @@
                             </label>*@
                             <button type="submit" id="submitbutton" class="btn-success btnAdd hidden"></button>
 
-                            <div onclick="UploadImg(this)" class="btn btn-success btnAdd1">Create</div>
-                            <a href="@Url.Action("Cancel", "BDSNew", new { id = Model.ID })" class="btn btn-primary">Hủy</a>
+                           
+                            <a href="@Url.Action("Cancel", "BDSNew", new { id = Model.ID })" class="btn btn-primary">Back to list</a>
+                             <div onclick="UploadImg(this)" class="btn btn-success btnAdd1">Create</div>
                         </div>
                     </div>
                 }

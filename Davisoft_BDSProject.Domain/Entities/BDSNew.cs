@@ -53,6 +53,10 @@ namespace Davisoft_BDSProject.Domain.Entities
         [ForeignKey("IdAcount")]
         public virtual BDSAccount BDSAccount { get; set; }
 
+       
+        public virtual ICollection<BDSPicture> BDSPictures { get; set; }
+
+
         [ForeignKey("IdEducation")]
         public virtual BDSEducation BDSEducation { get; set; }
 
@@ -64,5 +68,8 @@ namespace Davisoft_BDSProject.Domain.Entities
 
         [ForeignKey("IdLanguage")]
         public virtual BDSLanguage BDSLanguage { get; set; }
+
+          [NotMapped]
+        public virtual int IdPictrure { get; set; }
     }
 }

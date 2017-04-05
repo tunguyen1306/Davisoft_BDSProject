@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -7,8 +8,8 @@ namespace Davisoft_BDSProject.Domain.Entities
 {
    public class BDSPicture:BDSBaseEntiry
     {
-        public int id { get; set; }
-        public Nullable<int> advert_id { get; set; }
+      
+        public int? advert_id { get; set; }
         public string originalFilepath { get; set; }
         public Nullable<byte> position { get; set; }
         public Nullable<System.DateTime> converted { get; set; }
@@ -24,5 +25,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public string description { get; set; }
         public Nullable<int> cms_sql_id { get; set; }
         public string shortdescription { get; set; }
+        [ForeignKey("advert_id")]
+        public virtual BDSNew BDSNew { get; set; }
     }
 }

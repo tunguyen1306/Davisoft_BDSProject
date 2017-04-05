@@ -25,8 +25,10 @@
                     <div class="form-group">
                         <label class="col-sm-3"></label>
                         <label class="col-sm-9">
-                            @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
-                            @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Save).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
+                      <button type="submit" id="submitbutton" class="btnAdd hidden"></button>
+                             
+                                <a href="@Url.Action("Index", "BDSNew")" class="btn btn-primary">Back To List</a>
+                            <div onclick="UploadImg(this)" class="btn btn-success btnAdd1">Save</div>
                         </label>
                     </div>
                 </div>
@@ -37,12 +39,28 @@
 
 @Html.Script(
     @<script>
-        $("#submitbutton").on('click', function (e) {
-            e.preventDefault();
-            bootbox.confirm("@Resource.ConfirmSave", function (isOK) {
-                if (isOK) {
-                    $('#submitbutton').parents("form").submit();
-                }
-            });
+       
+    function DeleteImg(obj) {
+        $.each($('.dz-preview'), function (i, o) {
+            $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
         });
+        var idpic = $(obj).parents(".dz-preview").find('#cusimg').attr('rel');
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("DeleteImg", "BDSNew")",
+
+
+            data: { idpicture: idpic },
+
+
+            success: function (data) {
+
+            },
+            error: function (e) {
+
+            }
+        });
+        return false;
+    }
+
     </script>)

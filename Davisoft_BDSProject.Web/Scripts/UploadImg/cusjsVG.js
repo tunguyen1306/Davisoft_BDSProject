@@ -27,6 +27,7 @@ function GuidS4() {
 function DeleteUpload(del) {
    
     eventdelete(del);
+    DeleteImg(del);
   
 }
 

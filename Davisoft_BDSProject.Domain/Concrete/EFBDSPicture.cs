@@ -51,7 +51,7 @@ namespace Davisoft_BDSProject.Domain.Concrete
         {
             var data = Retrieve<BDSPicture>(
                T =>
-                   T.Active == 1 && T.id == item.id);
+                   T.Active == 1 && T.advert_id == item.advert_id);
 
             return
                 data.ToList().Count > 0

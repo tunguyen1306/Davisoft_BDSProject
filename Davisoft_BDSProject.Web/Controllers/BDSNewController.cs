@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using CsQuery.EquationParser.Implementation;
 using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
 using Davisoft_BDSProject.Domain.Helpers;
@@ -71,12 +72,14 @@ namespace Davisoft_BDSProject.Web.Controllers
             var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Languages = _serviceLanguage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var EmployerInformations = _serviceEmployerInformation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.BDSAccount.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+        
             Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             Educations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             NewsTypes.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             EmployerInformations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
             Languages.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+         
             ViewBag.Cities = Cities;
             ViewBag.Educations = Educations;
             ViewBag.NewsTypes = NewsTypes;
@@ -131,7 +134,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             var tblNews = new BDSNew();
             _service.CreateItem(tblNews);
             LoadDataList();
-            return View(new BDSNew{CreateDate = DateTime.Now,CreateUser = 1,ID = tblNews.ID });
+            return View(new BDSNew { CreateDate = DateTime.Now, CreateUser = 1, ID = tblNews.ID, IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == tblNews.ID) });
         }
 
         [HttpPost]
@@ -143,17 +146,21 @@ namespace Davisoft_BDSProject.Web.Controllers
             LoadDataList();
             if (!ModelState.IsValid)
             {
+           
+                model.BDSPictures=   _servicePicture.GetIQueryableItems().Where(T => T.Active == 1 && T.advert_id==model.ID).ToList();
                 return View(model);
             }
           
-            _service.CreateItem(model);
+            _service.UpdateItem(model);
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
         {
             LoadDataList();
-            BDSNew model = _service.GetItem(id);
+            BDSNew model =
+                _service.GetIQueryableItems().Where(T => T.ID == id).Include(T => T.BDSPictures).FirstOrDefault();
+            model.IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == id); 
             return View(model);
         }
 
@@ -248,10 +255,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                 BDSPicture.advert_id = picture.tblPicture.advert_id;
                 BDSPicture.position = picture.tblPicture.position;
                 BDSPicture.originalFilepath = picture.tblPicture.originalFilepath;
-                //BDSPicture.advert_id = newsPicture.idProducts;
-                //BDSPicture.position = newsPicture.isactive;
-                //BDSPicture.title = newsPicture.nameImg;
-                //BDSPicture.convertedFilename = newsPicture.;
+                
                 _servicePicture.CreateItem(BDSPicture);
             }
             if (newsPicture.idpicture > 0)
@@ -275,12 +279,34 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 foreach (var item in modelPicture)
                 {
-                    _servicePicture.DeleteItem(item.id);
+                    _servicePicture.DeleteItem(item.ID);
                 }
             }
           
-            _service.DeleteItem(model.ID);
+
             return RedirectToAction("Index", "BDSNew");
+        }
+        [HttpPost]
+        public ActionResult DeleteImg(int idpicture)
+        {
+
+            _servicePicture.DeleteItem(idpicture);
+            var Pic = _servicePicture.GetItem(idpicture);
+            DeleteIMG(Pic.originalFilepath);
+
+            return Json(Pic);
+        }
+        public void DeleteIMG(string picture)
+        {
+            if (picture == null)
+                return;
+            var fo = picture.Substring(0, 3);
+            string dir = Server.MapPath("~/fileUpload/" + fo + "/" + picture);
+
+            System.IO.File.Delete(dir);
+
+
+
         }
     }
 }
