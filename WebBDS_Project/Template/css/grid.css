@@ -167,4 +167,11 @@
     .btn_search-1 {
         width: 100%;
     }
+    .selectric-wrapper {
+        width: 100% !important;
+}
+    .cusLabel-2 {
+    width: 100%!important;
+    
+}
 }

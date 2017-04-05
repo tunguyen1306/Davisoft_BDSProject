@@ -66,7 +66,7 @@
                     </div>
                     <div class="row">
                         <label>Quy mô công ty<span class="required"> *</span></label>
-                        <div class="row-right styled-select slate">
+                        <div class="row-right">
 
                             @Html.DropDownListFor(m => m.TblBdsemployerinformation.Scope, new SelectList(Model.ListBdsScopes, "Id", "Name"), new { @class = "dropdown" })
                       
@@ -99,7 +99,7 @@
 
                                 <label class="cusLabel-2">Tỉnh/TP</label>
                                  @* @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
-                                <select  id="dropCity" style="width: 243px"  tabindex="7" name="TblBdsemployerinformation.City">
+                                <select  id="dropCity"   tabindex="7" name="TblBdsemployerinformation.City">
                                     <option value="0">Chọn thành phố</option>
                                 </select>
 
@@ -191,51 +191,12 @@
 }
 
 <script>
-    
-
 
     $(function() {
-        $('#TblBdsemployerinformation_City').change(function() {
-            var idCity = $("#TblBdsemployerinformation_City option:selected").val();
-            var idCityText = $("#TblBdsemployerinformation_City option:selected").text();
-            GetDistrict(idCity);
+        $('.dropDistrict').selectric();
 
-        });
     });
-    function GetDistrict(_id) {
-        //Get City
-        var url = "/Register/GetDistrict";
-        var stringCity = "<option value=\"0\">Chọn quận huyện</option>";
-        var xxx = "";
-        xxx += "<li class=\"active\">Chọn quận huyện</li>";
-        var obj = {};
-        obj.id = _id;
-        $('.dropDistrict').html('');
-        $.ajax
-        ({
-            type: "POST",
-            url: url,
-            data: JSON.stringify(obj),
-            dataType: "json",
-            contentType: "application/json;charset=utf-8",
-            success: function (data) {
-
-                $.each(data, function (i, o) {
-
-                    stringCity += "<option value=" + o.DistId + ">" + o.DistName + "</option>";
-                    xxx += "<li>" + o.DistName + "</li>";
-                });
-
-                $('.dropDistrict').html(stringCity);
-                $('select[name="TblBdsemployerinformation.District"]').parents('div').eq(0).find('> div > ul').html(xxx);
-                $('.dropDistrict').change(function () {
-
-                    var idDistric = $(".dropDistrict option:selected").val();
-
-                });
-            }
-        });
-    }
+    
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
         var t = 0;

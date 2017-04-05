@@ -16,6 +16,7 @@ function isValidEmailAddress(emailAddress) {
     return pattern.test(emailAddress);
 };
 function GetCity() {
+  
     //Get City
     var url = "/Register/GetCity";
     var stringCity = "<option selected=\"selected\" value=\"0\">Chọn thành phố</option>";
@@ -39,13 +40,14 @@ function GetCity() {
                GetDistrict(idCity);
 
            });
-           $('select').selectric();
-           
+          
+           $('#dropCity').selectric();
           
        }
    });
 }
 function GetDistrict(_id) {
+   
     //Get City
     var url = "/Register/GetDistrict";
     var stringCity = "<option value=\"0\">Chọn quận huyện</option>";
@@ -68,6 +70,7 @@ function GetDistrict(_id) {
            });
 
            $('.dropDistrict').html(stringCity);
+           $('.dropDistrict').selectric();
            $('.dropDistrict').change(function () {
               
                var idDistric = $(".dropDistrict option:selected").val();
