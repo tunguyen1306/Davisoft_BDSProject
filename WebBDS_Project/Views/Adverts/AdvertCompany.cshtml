@@ -97,13 +97,14 @@
 
                         </div>
                     </div>
-                    <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong><span class="required">*</span></p>
+                    <div class="row">
+                         <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong><span class="required">*</span></p>
                     <ul class="radio">
                         @foreach (var item in Model.ListBdscareer)
                         {
                             <li>
                                 <label>
-                                    <input type="radio" value="@item.Id">@item.Name
+                                    <input type="checkbox" class="checkCarrie" value="@item.Id">@item.Name
                                 </label>
                             </li>
                         }
@@ -111,6 +112,9 @@
 
                     </ul>
                     @Html.HiddenFor(x => x.tblbdsnew.Career)
+
+                    </div>
+                   
                     <h4>Nội dung</h4>
                     <div class="row">
                         <label>Giới thiệu công ty<span class="required">*</span></label>

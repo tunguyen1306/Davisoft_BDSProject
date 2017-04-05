@@ -174,12 +174,12 @@ tr:nth-child(even) {
     margin-left:0px!important;
 }
 
-.styled-select {
+/*.styled-select {
   
    height: 29px;
    overflow: hidden;
    width: 240px;
-}
+}*/
 .styled-select.slate {
   
    height: 34px;
