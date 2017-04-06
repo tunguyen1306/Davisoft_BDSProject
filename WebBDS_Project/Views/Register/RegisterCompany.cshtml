@@ -66,7 +66,7 @@
                     </div>
                     <div class="row">
                         <label>Quy mô công ty<span class="required"> *</span></label>
-                        <div class="row-right styled-select slate">
+                        <div class="row-right">
 
                             @Html.DropDownListFor(m => m.TblBdsemployerinformation.Scope, new SelectList(Model.ListBdsScopes, "Id", "Name"), new { @class = "dropdown" })
                       
@@ -95,11 +95,11 @@
                         </div>
                         <div class="row-right">
 
-                            <div class="pncon width2 styled-select slate">
+                            <div class="pncon width2 ">
 
                                 <label class="cusLabel-2">Tỉnh/TP</label>
-
-                                <select class="dropdown" id="dropCity"  tabindex="7" name="TblBdsemployerinformation.City">
+                                 @* @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
+                                <select  id="dropCity"   tabindex="7" name="TblBdsemployerinformation.City">
                                     <option value="0">Chọn thành phố</option>
                                 </select>
 
@@ -107,12 +107,11 @@
 
 
 
-                            <div class="pncon  width2 styled-select slate">
+                            <div class="pncon  width2 ">
 
                                 <label class="cusLabel-2">Quận/Huyện</label>
-
-                                <select class="dropDistrict dropdown" tabindex="7" name="TblBdsemployerinformation.District">
-                                    <option value="1">Chọn quận huyện</option>
+                                <select class="dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
+                                    <option value="0">Chọn quận huyện</option>
 
                                 </select>
 
@@ -192,6 +191,8 @@
 }
 
 <script>
+
+
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
         var t = 0;
@@ -224,11 +225,11 @@
         }
         else {
            
-                if ($('#EmailSeccond').val() != $('#TbBdsAdcount_Email').val()) {
+            if ($('#EmailSeccond').val() != $('#TbBdsAdcount_Email').val()) {
 
-                    toastr.error('Email không trùng khớp!');
-                    t++;
-                }
+                toastr.error('Email không trùng khớp!');
+                t++;
+            }
             
         }
         if ($('#TbBdsAdcount_PassWord').val() == "") {
@@ -250,16 +251,16 @@
             t++;
         } if ($('#TblBdsemployerinformation_Description').val() == "") {
 
-            toastr.error('Vui lòng nhập sơ lược công ty!');
-            t++;
-        }
+              toastr.error('Vui lòng nhập sơ lược công ty!');
+              t++;
+          }
         else {
-            if ($('#TblBdsemployerinformation_Description').val().length >= 4000) {
+              if ($('#TblBdsemployerinformation_Description').val().length >= 4000) {
 
-                toastr.error('Sơ lược công ty chỉ tối đa 4000 kí tự! ');
-                t++;
-            }
-        }
+                  toastr.error('Sơ lược công ty chỉ tối đa 4000 kí tự! ');
+                  t++;
+              }
+          }
 
         if ($('#TblBdsemployerinformation_Address').val() == "") {
 
@@ -267,9 +268,9 @@
             t++;
         } if ($('#TblBdsemployerinformation_NameContact').val() == "") {
 
-            toastr.error('Vui lòng nhập tên liên hệ!');
-            t++;
-        } 
+              toastr.error('Vui lòng nhập tên liên hệ!');
+              t++;
+          } 
         if ($('#TblBdsemployerinformation_Phone').val() != "") {
             if ($('#TblBdsemployerinformation_Phone').length > 11) {
 

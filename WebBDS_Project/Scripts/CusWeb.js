@@ -1,6 +1,7 @@
 ﻿
 $(function() {
     GetCity();
+    $('.dropDistrict').selectric();
    
 $('.lblcheckEmail').click(function () {
     CheckEmail();
@@ -16,6 +17,7 @@ function isValidEmailAddress(emailAddress) {
     return pattern.test(emailAddress);
 };
 function GetCity() {
+  
     //Get City
     var url = "/Register/GetCity";
     var stringCity = "<option selected=\"selected\" value=\"0\">Chọn thành phố</option>";
@@ -28,7 +30,7 @@ function GetCity() {
        dataType: "json",
        contentType: "application/json;charset=utf-8",
        success: function (data) {
-        
+            
            $.each(data, function (i, o) {
                stringCity += "<option value=" + o.CityId + ">" + o.CityName + "</option>";
            });
@@ -39,12 +41,14 @@ function GetCity() {
                GetDistrict(idCity);
 
            });
-           
+          
+           $('#dropCity').selectric();
           
        }
    });
 }
 function GetDistrict(_id) {
+   
     //Get City
     var url = "/Register/GetDistrict";
     var stringCity = "<option value=\"0\">Chọn quận huyện</option>";
@@ -67,11 +71,13 @@ function GetDistrict(_id) {
            });
 
            $('.dropDistrict').html(stringCity);
+           $('.dropDistrict').selectric();
            $('.dropDistrict').change(function () {
               
                var idDistric = $(".dropDistrict option:selected").val();
            
            });
+         
        }
    });
 }

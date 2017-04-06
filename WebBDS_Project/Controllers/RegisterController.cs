@@ -18,10 +18,14 @@ namespace WebBDS_Project.Controllers
 
         public ActionResult RegisterCompany()
         {
-           
+            var dataCity = from data in db.states
+                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new ListCity { Id = data.state_id, Name = datatext.text };
             var registerModel = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList()
+                ListBdsScopes = db.bdsscopes.ToList(),
+                ListCityText = dataCity.ToList()
                 
             };
             return View(registerModel);

@@ -40,6 +40,15 @@ namespace WebBDS_Project.Models
         public bdsnewstypeprice tblbdsnewstypeprice { get; set; }
         public CaptCha tblCaptCha { get; set; }
 
+        public List<ListCity>  ListCityText { get; set; }
+
+
        
+    }
+
+    public class ListCity
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

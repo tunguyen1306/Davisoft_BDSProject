@@ -97,13 +97,14 @@
 
                         </div>
                     </div>
-                    <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong><span class="required">*</span></p>
+                    <div class="row">
+                         <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong><span class="required">*</span></p>
                     <ul class="radio">
                         @foreach (var item in Model.ListBdscareer)
                         {
                             <li>
                                 <label>
-                                    <input type="radio" value="@item.Id">@item.Name
+                                    <input type="checkbox" class="checkCarrie" value="@item.Id">@item.Name
                                 </label>
                             </li>
                         }
@@ -111,6 +112,9 @@
 
                     </ul>
                     @Html.HiddenFor(x => x.tblbdsnew.Career)
+
+                    </div>
+                   
                     <h4>Nội dung</h4>
                     <div class="row">
                         <label>Giới thiệu công ty<span class="required">*</span></label>
@@ -340,6 +344,25 @@
 
 
                     </div>
+
+                    <div class="row">
+
+             
+                            <div class="grid_12">
+                                <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
+                                    <div class="dz-default dz-message cusbuttonmes " style="display: block;">
+                                        <span class="btn btnUploadImage">
+                                            <span class="btn btn-danger">Lựa chọn hình ảnh </span>
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+                         
+
+                        </div>
+                    </div>
                     <hr style="margin: 10px;" />
                   
                     <div class="row">
@@ -398,8 +421,10 @@
                   
                     <div class="row">
                         <label></label>
+                        <button type="submit" id="submitbutton" class="btn btn-default btnAdd hidden"></button>
 
-                        <button type="submit" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
+                        <div onclick="UploadImg(this)" class="btn btn-primary btnAdd1"><i class="fa fa-check" aria-hidden="true"></i>Đăng Tin</div>
+                        <a class="btnCancel"><i class="fa fa-close" aria-hidden="true"></i>Hủy bỏ</a>
 
                     </div>
 
@@ -448,55 +473,21 @@
 
         </div>
     </div>
-
+    <input type="hidden" name="cfile" />
+    <input type="hidden" name="tblbdsnew.Id" class="idProduct_" value="@Model.tblbdsnew.Id" />
+    <input type="hidden" name="nameImg" />
 }
+<link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
+<link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
+<link href="~/Template/css/UploadVanGia/cropper.min.css" rel="stylesheet" />
+<link href="~/Template/css/UploadVanGia/cussupload.css" rel="stylesheet" />
+<script src="~/Template/js/UploadImg/cropperVG.js"></script>
+<script src="~/Template/js/UploadImg/cusjsVG.js"></script>
+<script src="~/Template/js/UploadImg/dropzoneVG.js"></script>
 
 
 <script>
-    //jQuery(document).ready(function ($) {
-    //    $(".zendvn_res_refresh_captcha").click(function () {
-    //        $('.zendvn_res_refresh_captcha_img').attr('src', "http://nhaban.net.vn/wp-content/plugins/zendvn-real-estate/public/images/icons/loading.gif");
-    //        var dataObj = {
-    //            "action": "process",
-    //            "func": "refresh_captcha",
-    //        };
-    //        //$.ajax({
-    //        //    url: ajaxurl,//admin-ajax.php?action=user_delete_avatar
-    //        //    type: "POST",
-    //        //    data: dataObj,
-    //        //    dataType: "json",
-    //        //    success: function (data, status, jsXHR) {
-
-    //        //        $('.zendvn_res_refresh_captcha_img').attr('src', data.src);
-    //        //        $('.zendvn_res_refresh_captcha_prefix').val(data.prefix);
-    //        //    }
-    //        //});
-    //    });
-    //    $('#z-avatar-upload-item').click(function () {
-    //        $('#zendvn-res-user-avatar').trigger('click');
-    //        return false;
-    //    });
-
-    //});
-    //function showMyImage(fileInput) {
-    //    var files = fileInput.files;
-    //    for (var i = 0; i < files.length; i++) {
-    //        var file = files[i];
-    //        var imageType = /image.*/;
-    //        if (!file.type.match(imageType)) {
-    //            continue;
-    //        }
-    //        var img = document.getElementById("z-thumbnail");
-    //        img.file = file;
-    //        var reader = new FileReader();
-    //        reader.onload = (function (aImg) {
-    //            return function (e) {
-    //                aImg.src = e.target.result;
-    //            };
-    //        })(img);
-    //        reader.readAsDataURL(file);
-    //    }
-    //}
+   
     jQuery(document).ready(function ($) {
 
         if ($('.radioType').hasClass('selected')) {
@@ -536,5 +527,234 @@
         }
 
     });
+    
+    function dropNew(ed) {
+
+        var console = window.console || { log: function () { } };
+        var $image = $(ed).parents(".dz-preview").find('#cusimg');
+        var $download = $('#download');
+        var $dataX = $(ed).parents(".dz-preview").find('#dataX');
+        var $dataY = $(ed).parents(".dz-preview").find('#dataY');
+        var $dataHeight = $(ed).parents(".dz-preview").find('#dataHeight');
+        var $dataWidth = $(ed).parents(".dz-preview").find('#dataWidth');
+        var $dataRotate = $(ed).parents(".dz-preview").find('#dataRotate');
+        var $dataScaleX = $(ed).parents(".dz-preview").find('#dataScaleX');
+        var $dataScaleY = $(ed).parents(".dz-preview").find('#dataScaleY');
+        var $putData = $(ed).parents(".dz-preview").find('#dataimg');
+
+
+        var options = {
+            aspectRatio: 1 / 1,
+            preview: '.img-preview',
+            crop: function (e) {
+                $dataX.val(Math.round(e.x));
+                $dataY.val(Math.round(e.y));
+                $dataHeight.val(Math.round(e.height));
+                $dataWidth.val(Math.round(e.width));
+                $dataRotate.val(e.rotate);
+                $dataScaleX.val(e.scaleX);
+                $dataScaleY.val(e.scaleY);
+            }
+        };
+
+
+        // Tooltip
+        $(ed).find('[data-toggle="tooltip"]').tooltip();
+
+
+        // Cropper
+        $image.on({
+            'build.cropper': function (e) {
+                // console.log(e.type);
+            },
+            'built.cropper': function (e) {
+                // console.log(e.type);
+            },
+            'cropstart.cropper': function (e) {
+                // console.log(e.type, e.action);
+            },
+            'cropmove.cropper': function (e) {
+                // console.log(e.type, e.action);
+            },
+            'cropend.cropper': function (e) {
+                //console.log(e.type, e.action);
+            },
+            'crop.cropper': function (e) {
+                //console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
+                //console.log(e.type);
+                //console.log(e.x);
+                //console.log(e.y);
+                //console.log(e.width);
+                //console.log(e.height);
+                //console.log(e.rotate);
+                //console.log(e.scaleX);
+                //console.log(e.scaleY);
+
+
+            },
+            'zoom.cropper': function (e) {
+                // console.log(e.type, e.ratio);
+            }
+        }).cropper(options);
+
+
+        //// Buttons
+        if (!$.isFunction(document.createElement('canvas').getContext)) {
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="getCroppedCanvas"]').prop('disabled', true);
+        }
+
+        if (typeof document.createElement('cropper').style.transition === 'undefined') {
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="rotate"]').prop('disabled', true);
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="scale"]').prop('disabled', true);
+        }
+
+
+        // Methods
+        $(ed).parents('.dz-preview').eq(0).find('.docs-buttons').on('click', '[data-method]', function () {
+            var $this = $(this);
+            var data = $this.data();
+            var $target;
+            var result;
+
+            if ($this.prop('disabled') || $this.hasClass('disabled')) {
+                return;
+            }
+
+            if ($image.data('cropper') && data.method) {
+                data = $.extend({}, data); // Clone a new one
+
+                if (typeof data.target !== 'undefined') {
+                    $target = $(data.target);
+
+                    if (typeof data.option === 'undefined') {
+                        try {
+                            data.option = JSON.parse($target.val());
+                        } catch (e) {
+                            console.log(e.message);
+                        }
+                    }
+                }
+
+                result = $image.cropper(data.method, data.option, data.secondOption);
+
+                switch (data.method) {
+                    case 'scaleX':
+                    case 'scaleY':
+                        $(this).data('option', -data.option);
+                        break;
+
+                    case 'getCroppedCanvas':
+                        console.log(result.toDataURL().length);
+                        var duongdancrop = result.toDataURL();
+                        $(ed).parents(".dz-preview").find('.cussimg').attr("src", duongdancrop);
+                        $(ed).parents(".dz-preview").find('.cropper-canvas img:first').attr("src", duongdancrop);
+                        $(ed).parents(".dz-preview").find('.cropper-view-box img:first').attr("src", duongdancrop);
+
+                        //hiden control drop
+                        $(ed).parent().parent().find('#imgmain').find("img:first").removeClass('cropper-hidden');
+                        $(ed).parent().parent().find('#imgmain').find("img:first").next().addClass('cropper-hidden');
+                        //hiden control drop end
+                        if (result) {
+
+
+                            if (isserver) {
+                                //save to sever
+
+                                $putData.text(result.toDataURL());
+
+                            } else {
+                                $putData.text(result.toDataURL());
+                            }
+
+                            // Bootstrap's Modal
+                            //$('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+
+                            //if (!$download.hasClass('disabled')) {
+                            //    $download.attr('href', result.toDataURL());
+
+
+                            //}
+                        }
+
+                        break;
+                }
+
+                if ($.isPlainObject(result) && $target) {
+                    try {
+                        $target.val(JSON.stringify(result));
+                    } catch (e) {
+                        console.log(e.message);
+                    }
+                }
+
+            }
+        });
+
+
+    }
+    var isserver = false;
+
+    function uploadtoserver() {
+        $.each($('.cbtn-info-ok'), function (i, o) {
+
+            if ($(o).parents('.dz-preview').find('.tools.final').hasClass('hidden')) {
+                isserver = true;
+
+                $(o).click();
+            }
+        }
+        );
+        return false;
+    }
+
+    function UploadImg(obj) {
+
+        $('.cropper-container img').css({ "transform": "none" });
+        $('.btnAdd1').text('Đang xữ lý');
+        $('.btnAdd1').addClass('disabled');
+        uploadtoserver();
+        var totalitem = $('.dz-preview').size();
+        $.each($('.dz-preview'), function (i, o) {
+            $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
+            var image = $(o).find('#cusimg');
+            var valuerotate = $(o).find('#dataRotate').val();
+            var dataX = $(o).find('#dataX').val();
+            var dataY = $(o).find('#dataY').val();
+            var dataHeight = $(o).find('#dataHeight').val();
+            var dataWidth = $(o).find('#dataWidth').val();
+            var right = $(window).width() - dataX - image.width();
+            var bottom = $(window).height() - dataY - image.height();
+            var dataimg = $(o).find('#dataimg').text();
+            var dataname = $(o).find('.cusinput').val();
+            var idpic = $(o).find('#cusimg').attr('rel');
+
+            document.getElementsByName('cfile')[0].value = dataimg;
+            document.getElementsByName('nameImg')[0].value = dataname;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SaveImg", "Adverts")",
+                data: { idProducts:99999999, index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
+
+            success: function (data) {
+                $(o).find('#cusimg').attr('rel', data.d);
+
+                totalitem--;
+
+                if (totalitem == 0) {
+                    $('.btnAdd1').text('Thêm');
+                    $('.btnAdd1').removeClass('disabled');
+                    $('.btnAdd').click();
+                }
+
+            },
+            error: function (e) {
+                toastr.error('Vui lòng chọn lại hình ảnh');
+            }
+        });
+    });
+
+
+    return true;
+    }
 
 </script>

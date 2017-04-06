@@ -109,25 +109,23 @@
                         </div>
                         <div class="row-right">
 
-                            <div class="pncon width2">
+                            <div class="pncon width2 ">
 
-                                <label class="child">Tỉnh/TP</label>
-
-                                <select class="dropdown" id="dropCity" tabindex="7">
-                                    <option value="0">Chọn tỉnh/thành</option>
-
+                                <label class="cusLabel-2">Tỉnh/TP</label>
+                                @* @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
+                                <select id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
+                                    <option value="0">Chọn thành phố</option>
                                 </select>
 
                             </div>
 
 
 
-                            <div class="pncon mgl15 width2">
+                            <div class="pncon  width2 ">
 
-                                <label class="child">Quận/Huyện</label>
-
-                                <select class="dropdown" id="dropDistrict" tabindex="7">
-                                    <option value="0">Chọn quận/huyên</option>
+                                <label class="cusLabel-2">Quận/Huyện</label>
+                                <select class="dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
+                                    <option value="0">Chọn quận huyện</option>
 
                                 </select>
 

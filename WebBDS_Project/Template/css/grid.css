@@ -167,4 +167,19 @@
     .btn_search-1 {
         width: 100%;
     }
+    .selectric-wrapper {
+        width: 100% !important;
+}
+    .cusLabel-2 {
+    width: 100%!important;
+    
+}
+    .btn-primary {
+  
+    width: 30%!important;
+}
+    .btnUploadImage {
+    
+    width: 55%!important;
+}
 }
