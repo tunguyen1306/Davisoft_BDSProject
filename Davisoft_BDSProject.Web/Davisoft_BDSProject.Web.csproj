@@ -369,6 +369,9 @@
     <Compile Include="Models\bdsbank.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bdsbranch.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\bdscareer.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
@@ -415,6 +418,9 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdstypecontact.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__migrationhistory.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataTableJS.cs" />
@@ -630,6 +636,23 @@
     <Content Include="Content\Template\js\flaunt.js" />
     <Content Include="Content\Template\js\jquery.easydropdown.min.js" />
     <Content Include="Content\Template\js\tabs.js" />
+    <Content Include="Content\UploadVanGia\cropper.css" />
+    <Content Include="Content\UploadVanGia\cropper.min.css" />
+    <Content Include="Content\UploadVanGia\cropper.min.js" />
+    <Content Include="Content\UploadVanGia\cussupload.css" />
+    <Content Include="Content\UploadVanGia\dropzone.css" />
+    <Content Include="Content\UploadVanGia\icon\ic-check.svg" />
+    <Content Include="Content\UploadVanGia\icon\ic-delete.svg" />
+    <Content Include="Content\UploadVanGia\icon\ic-move.svg" />
+    <Content Include="Content\UploadVanGia\icon\ic-radio-checked.svg" />
+    <Content Include="Content\UploadVanGia\icon\ic-radio.svg" />
+    <Content Include="Content\UploadVanGia\icon\ic-rotate.svg" />
+    <Content Include="Content\UploadVanGia\icon\ic-zoomin.svg" />
+    <Content Include="Content\UploadVanGia\icon\ic-zoomout.svg" />
+    <Content Include="Content\UploadVanGia\jquery-1.10.2.js" />
+    <Content Include="Content\UploadVanGia\main.css" />
+    <Content Include="Content\UploadVanGia\pg.png" />
+    <Content Include="Content\UploadVanGia\toastr.css" />
     <Content Include="Display\css\app.css" />
     <Content Include="Display\css\bd.css" />
     <Content Include="Display\css\bootstrap-datetimepicker-standalone.css" />
@@ -2034,12 +2057,6 @@
     <Content Include="Views\Roles\_RoleEditor.cshtml" />
     <Content Include="Views\Audit\Index.cshtml" />
     <Content Include="Views\Audit\Detail.cshtml" />
-    <Content Include="wkhtmltopdf\libeay32.dll" />
-    <Content Include="wkhtmltopdf\libgcc_s_dw2-1.dll" />
-    <Content Include="wkhtmltopdf\mingwm10.dll" />
-    <Content Include="wkhtmltopdf\ssleay32.dll" />
-    <Content Include="wkhtmltopdf\wkhtmltoimage.exe" />
-    <Content Include="wkhtmltopdf\wkhtmltopdf.exe" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.signalR-1.1.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -2186,7 +2203,6 @@
     <Folder Include="Infrastructure\Notification\" />
     <Folder Include="MSReport\" />
     <Folder Include="Views\Report\" />
-    <Folder Include="wkhtmltopdf\pdf\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
