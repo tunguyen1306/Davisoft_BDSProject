@@ -237,7 +237,7 @@
                                     <li style="margin-bottom: 0">
                                         <div class="grid_3">
                                             <a href="">
-                                                <img src="~/images/1.jpg" alt="1">
+                                                <img src="~/Template/images/1.jpg" alt="1">
                                                 <p class="vip">
                                                     <i class="fa fa-star"></i>
                                                     <span>VIP</span>
@@ -438,7 +438,7 @@
                 <div class="box_info">
                     <div><strong>Công Ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589</strong></div>
                     <div class="logo_image">
-                        <img src="images/tl.png" alt="image">
+                        <img src="~/Template/images/tl.png" alt="image">
                     </div>
                     <p>
                         <em>Mã Khách Hàng</em>: <span class="color3"><strong>TD00291</strong></span>
@@ -485,9 +485,21 @@
 <script src="~/Template/js/UploadImg/cusjsVG.js"></script>
 <script src="~/Template/js/UploadImg/dropzoneVG.js"></script>
 
-
 <script>
-   
+    $('.checkCarrie').click(function () {
+
+        var listItem = $('.checkCarrie:checked').map(function () {
+
+            return $(this).val();
+        });
+        var uu = '';
+        $.each(listItem, function (i, o) {
+            uu += o + ',';
+        });
+      
+        console.log(uu);
+        
+    });
     jQuery(document).ready(function ($) {
 
         if ($('.radioType').hasClass('selected')) {

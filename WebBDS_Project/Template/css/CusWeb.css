@@ -239,3 +239,6 @@ tr:nth-child(even) {
     display: none!important;
     visibility: hidden!important;
 }
+ .radio label {
+     width: 180px;
+ }

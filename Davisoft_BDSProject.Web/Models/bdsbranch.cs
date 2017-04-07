@@ -7,15 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebBDS_Project.Models
+namespace Davisoft_BDSProject.Web.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class bdstransaction
+    public partial class bdsbranch
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Address { get; set; }
+        public string Tel { get; set; }
+        public string Phone { get; set; }
+        public Nullable<int> IdArea { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
         public int Active { get; set; }
@@ -23,14 +27,5 @@ namespace WebBDS_Project.Models
         public int CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
-        public Nullable<int> IdAccount { get; set; }
-        public Nullable<int> IdBranch { get; set; }
-        public Nullable<int> IdBank { get; set; }
-        public Nullable<decimal> Money { get; set; }
-        public Nullable<decimal> MoneyEventAdd { get; set; }
-        public Nullable<int> Point { get; set; }
-        public Nullable<System.DateTime> TranDate { get; set; }
-        public Nullable<int> Type { get; set; }
-        public Nullable<decimal> EventDisPercent { get; set; }
     }
 }

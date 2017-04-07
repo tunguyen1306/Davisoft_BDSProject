@@ -24,11 +24,13 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
         public Nullable<int> IdAccount { get; set; }
+        public Nullable<int> IdBranch { get; set; }
         public Nullable<int> IdBank { get; set; }
         public Nullable<decimal> Money { get; set; }
         public Nullable<decimal> MoneyEventAdd { get; set; }
         public Nullable<int> Point { get; set; }
         public Nullable<System.DateTime> TranDate { get; set; }
         public Nullable<int> Type { get; set; }
+        public Nullable<decimal> EventDisPercent { get; set; }
     }
 }
