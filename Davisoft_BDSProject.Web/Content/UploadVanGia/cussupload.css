@@ -88,22 +88,6 @@
      background: #ed1c24;
 }
 
-.btn {
-    -moz-user-select: none !important;
-    background-image: none !important;
-    border: 0 solid transparent !important;
-    border-radius: 4px !important;
-    cursor: pointer !important;
-    display: inline-block !important;
-    font-size: 16px !important;
-    /*font-weight: normal !important;*/
-    line-height: 1.25 !important;
-    margin-bottom: 0;
-    padding: 6px 10px ;
-    text-align: center;
-    vertical-align: middle !important;
-    white-space: nowrap !important;
-}
 .cusinput {
    
     background-color:white;

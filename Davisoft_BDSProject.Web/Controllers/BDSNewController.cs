@@ -91,6 +91,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             ViewBag.Languages = Languages;
             ViewBag.EmployerInformations = EmployerInformations;
         }
+       
         [DisplayName(@"News management")]
         public ActionResult Index()
         {
@@ -135,7 +136,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                         BDSAccount = new BDSAccount { ID = T.BDSAccount.ID, Email = T.BDSAccount.Email }, 
                         DesCompany = T.DesCompany,
                         FromCreateNews=T.FromCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern),
-                        ToCreateNews = T.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern)
+                        ToCreateNews = T.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern),
+                        Status = T.Status
                     });
          
             return Json(data, JsonRequestBehavior.AllowGet);
@@ -186,7 +188,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(BDSNew model)
+        public ActionResult Review(BDSNew model)
         {
             if (!ModelState.IsValid)
             {
@@ -204,10 +206,42 @@ namespace Davisoft_BDSProject.Web.Controllers
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
-            return Edit(model.ID);
+            return    Redirect("/");;
         }
 
-       
+        public ActionResult Review(int id)
+        {
+            LoadDataList();
+            BDSNew model =
+                _service.GetIQueryableItems().Where(T => T.ID == id).Include(T => T.BDSPictures).FirstOrDefault();
+            model.IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == id);
+            model.FromDateToDateString = model.FromCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
+                                         " - " +
+                                         model.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(BDSNew model)
+        {
+            if (!ModelState.IsValid)
+            {
+                LoadDataList();
+                ViewBag.Success = false;
+                ViewBag.Message = Resource.SaveFailed;
+                return View(model);
+            }
+            var fromDate = model.FromDateToDateString.Split('-')[0];
+            var toDate = model.FromDateToDateString.Split('-')[1];
+            model.FromCreateNews = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+            model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+            model.FromDeadline = DateTime.Now;
+            model.KeySearch = model.Title.NormalizeD() + " " + _serviceAccount.GetItem(model.IdAcount).Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
+            _service.UpdateItem(model);
+            ViewBag.Success = true;
+            ViewBag.Message = Resource.SaveSuccessful;
+            return Edit(model.ID);
+        }
 
         [HttpPost]
         [ActionName("Delete"), DisplayName("Delete")]

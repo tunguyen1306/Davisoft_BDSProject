@@ -1,4 +1,5 @@
-﻿@using Davisoft_BDSProject.Web.Models
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
 @using NS.Mvc
 @using Davisoft_BDSProject.Domain.Abstract
 @using Davisoft_BDSProject.Domain.Entities
@@ -37,7 +38,7 @@
 </style>
 @if (PermissionHelper.SalesmanId() == 0 && PermissionHelper.BranchId() == 0)
 {
-    <ul class="cd-nav-shortcuts">
+    @*<ul class="cd-nav-shortcuts">
         <li id="IconCreateAccountManager" runat="server">
             <a href="@Url.Action("Index", "Users")" class="hvr-pop">
                 <span>
@@ -54,76 +55,234 @@
                     </svg>
                 </span>
                 <em>@Resource.Users</em>
-                @*<i class="badge alert-success number-circle">@Model.NumberofUsers</i>*@
+                $1$<i class="badge alert-success number-circle">@Model.NumberofUsers</i>#1#
                 <div class="countpart">0</div>
             </a>
         </li>
         <li id="IconCreateBooking" runat="server">
-            <a href="@Url.Action("Index", "Booking")" class="hvr-pop">
+            <a href="@Url.Action("Create", "BDSNew")" class="hvr-pop">
                 <span>
                     <i data-icon="n" class="icon"></i>
                 </span>
-                <em>@Resource.Bookings</em>
-                @*<i class="badge alert-success number-circle">@Model.NumberofBookingOutstanding</i>*@
+                <em>Đăng tin</em>
+                $1$<i class="badge alert-success number-circle">@Model.NumberofBookingOutstanding</i>#1#
                 <div class="countpart">0</div>
             </a>
-        </li>
-        <li id="Clientrate" runat="server" visible="false">
-            <a href="@Url.Action("Index", "Branch")" class="hvr-pop">
-                <span>
-                    <i class="icon_hotel"></i>
-                </span>
-                <em>@Resource.Branches</em>
-                @*<i class="badge alert-success number-circle">@Model.NumberofBranches</i>*@
-                <div class="countpart">0</div>
-            </a>
-        </li>
-        <li id="IconCarModels" runat="server" style="position: relative;">
-            <a href="@Url.Action("UpdateModelList", "CarModels")" class="hvr-pop">
-                <span>
-                    <i class="icon_car"></i>
-                </span>
-                <em>@Resource.NewModels</em>
-                @*<div id="new-models-loading"></div>*@
-                <div id="new-models-number" class="countpart">0</div>
-            </a>
-        </li>
-    </ul>
+       
+    </ul>*@
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <section class="panel panel-default">
+                <h3 class="tilte_l">
+                    Tin chưa duyệt
+                </h3>
                 <div class="panel-body">
-                    <div id="byweek" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="byweek" class="table-wrapper" style="min-width: 310px; height: 400px; margin: 0 auto">
+                        @Html.Action("IndexPendingByType")
+                    </div>
                 </div>
             </section>
         </div>
         <div class="col-md-6 col-sm-12">
             <section class="panel panel-default">
+                <h3 class="tilte_l">
+                  Tin bị từ chối
+                </h3>
                 <div class="panel-body">
-                    <div id="branchpercent" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="branchpercent" style="min-width: 310px; height: 400px; margin: 0 auto">
+                        @Html.Action("IndexRejectByType")
+                    </div>
                 </div>
             </section>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 col-sm-12">
+        <div class="col-md-6 col-sm-12">
             <section class="panel panel-default">
+                <h3 class="tilte_l">
+                   Tài khoản nhà tuyển dụng
+                </h3>
                 <div class="panel-body">
-                    <div id="by30days" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="by30days" style="min-width: 310px; height: 400px; margin: 0 auto">
+                        <table class="table" id="user_em">
+                            <thead>
+                                <tr>
+                                    <th>@Utilities.Resource("BDSAccount_Email", "Email")</th>
+                                    <th>@Utilities.Resource("BDSEmployerInformation_Name", "Name")</th>
+                                    <th>@Utilities.Resource("BDSEmployerInformation_Address", "Address")</th>
+                                    <th>@Utilities.Resource("BDSAccount_Monney", "Monney")</th>
+                                    <th>@Utilities.Resource("BDSAccount_Point", "Point")</th>
+                                    <th></th>
+                                 
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+
+                    </div>
+                    @Html.Script(
+                        @<script>
+
+                             var $modelTable = $('#user_em').dataTable({
+                                 //  fixedHeader: true,
+                                 processing: false,
+                                 serverSide: true,
+                                 searching: true,
+                                 ordering: true,
+                                 info: false,
+                                 stateSave: false,
+                                 lengthMenu: [[6], [6]],
+                                 scrollY: '225px',
+                                 drawCallback: function (settings) {
+                                     $('.mt-action-dot').popover({ trigger: "hover" });
+                                 },
+                                 initComplete: function () {
+                                     $('#user_em_filter input').unbind();
+                                     var timeOutTyping;
+                                     $('#user_em_filter input').bind('keyup', function (e) {
+                                         clearTimeout(timeOutTyping);
+                                         timeOutTyping = setTimeout(function () {
+                                             $modelTable.fnFilter($('#user_em_filter input').val());
+                                         }, 600);
+                                     });
+                                 },
+                                 ajax: {
+                                     url: "/BDSEmployerInformation/IndexAjax",
+                                     type: "GET"
+                                 },
+                                 "columnDefs": [
+
+                                     {
+                                         "render": function (data, type, row) {
+
+                                             return '<a href="/BDSEmployerInformation/Edit/' + row.ID + '"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+                                         },
+                                         "targets": 5,
+                                         'className': 'text-center'
+                                     }
+                         
+                                 ],
+                                 columns: [
+                                     { "data": "BDSAccount.Email", "orderable": true },
+                                     { "data": "Name", "orderable": true },
+                                     { "data": "FullAddress", "orderable": true },
+                                     { "data": "BDSAccount.Money", "orderable": true },
+                                     { "data": "BDSAccount.Point", "orderable": true },
+                                     { "data": "ID", "orderable": false }
+                             
+
+                                 ],
+                                 order: [[0, "asc"]]
+                             });
+
+                       
+
+
+                         </script>)
+
                 </div>
             </section>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
+        
+        
+        
+        
+        
+        <div class="col-md-6 col-sm-12">
             <section class="panel panel-default">
+                <h3 class="tilte_l">
+                    Tài khoản người tìm việc
+                </h3>
                 <div class="panel-body">
-                    <div id="by12months" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="by30days" style="min-width: 310px; height: 400px; margin: 0 auto">
+                        <table class="table" id="user_per">
+                            <thead>
+                                <tr>
+                                    <th>@Utilities.Resource("BDSAccount_Email", "Email")</th>
+                                    <th>@Utilities.Resource("BDSPersonalInformation_Name", "Name")</th>
+                                    <th>@Utilities.Resource("BDSPersonalInformation_Address", "Address")</th>
+                                    <th>@Utilities.Resource("BDSAccount_Monney", "Monney")</th>
+                                    <th>@Utilities.Resource("BDSAccount_Point", "Point")</th>
+                                    <th></th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+
+                    </div>
+                    @Html.Script(
+                        @<script>
+
+                             var $modelTable = $('#user_per').dataTable({
+                                 scrollY: '225px',
+                                 processing: false,
+                                 serverSide: true,
+                                 searching: true,
+                                 ordering: true,
+                                 info: false,
+                                 stateSave: false,
+                                 lengthMenu: [[25, 50, -1], [25, 50, "All"]],
+                                 drawCallback: function (settings) {
+                                     $('.mt-action-dot').popover({ trigger: "hover" });
+                                 },
+                                 initComplete: function () {
+                                     $('#user_per_filter input').unbind();
+                                     var timeOutTyping;
+                                     $('#user_per_filter input').bind('keyup', function (e) {
+                                         clearTimeout(timeOutTyping);
+                                         timeOutTyping = setTimeout(function () {
+                                             $modelTable.fnFilter($('#user_per_filter input').val());
+                                         }, 600);
+                                     });
+                                 },
+                                 ajax: {
+                                     url: "/BDSPersonalInformation/IndexAjax",
+                                     type: "GET"
+                                 },
+                                 "columnDefs": [
+
+                                     {
+                                         "render": function (data, type, row) {
+
+                                             return '<a href="/BDSPersonalInformation/Edit/' + row.ID + '"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+                                         },
+                                         "targets": 5,
+                                         'className': 'text-center'
+                                     }
+                          
+                                 ],
+                                 columns: [
+                                     { "data": "BDSAccount.Email", "orderable": true },
+                                     { "data": "Name", "orderable": true },
+                                     { "data": "FullAddress", "orderable": true },
+                                     { "data": "BDSAccount.Money", "orderable": true },
+                                     { "data": "BDSAccount.Point", "orderable": true },
+                                     { "data": "ID", "orderable": false },
+                               
+
+                                 ],
+                                 order: [[0, "asc"]]
+                             });
+
+
+
+
+                         </script>)
+
                 </div>
             </section>
         </div>
+
+
+
+        
+
     </div>
+
 }
 else
 {

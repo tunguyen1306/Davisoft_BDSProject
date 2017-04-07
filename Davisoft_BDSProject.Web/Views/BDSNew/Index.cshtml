@@ -26,6 +26,7 @@
                         <th>@Utilities.Resource("BDSNew_TypeNews", "Type News")</th>
                         <th>@Utilities.Resource("BDSNew_FromDate", "From Date")</th>
                         <th>@Utilities.Resource("BDSNew_ToDate", "To Date")</th>
+                        <th>@Utilities.Resource("BDSNew_Status", "Status")</th>
                         <th>@Utilities.Resource("BDSNew_Description", "Description")</th>
                         <th></th>
                         <th></th>
@@ -68,24 +69,32 @@
                 type: "GET"
             },
             "columnDefs": [
-          {
-              "render": function (data, type, row) {
+            {
+                "render": function (data, type, row) {
 
-                  return '<a href="/BDSNew/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+                    return row.Status==0?"Peeding":row.Status==-1?"Reject":"Approve";
+                },
+                "targets":6
+                     
+            },
+              {
+                  "render": function (data, type, row) {
+
+                      return '<a href="/BDSNew/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+                  },
+                  "targets":8,
+                  'className': 'text-center'
               },
-              "targets":7,
-              'className': 'text-center'
-          },
-          {
-              "render": function (data, type, row) {
+              {
+                  "render": function (data, type, row) {
 
-                  return '<a href="#" data-action="delete" data-id="' + row.ID + '"><i class="fa fa-times text-danger"></i></a>';
+                      return '<a href="#" data-action="delete" data-id="' + row.ID + '"><i class="fa fa-times text-danger"></i></a>';
 
 
-              },
-              "targets":8,
-              'className':'text-center'
-          }
+                  },
+                  "targets":9,
+                  'className':'text-center'
+              }
             ],
             columns: [
                 { "data": "Title", "orderable": true },
@@ -94,6 +103,7 @@
                 { "data": "BDSNewsType.Name", "orderable": true },
                 { "data": "FromCreateNews", "orderable": true },
                 { "data": "ToCreateNews", "orderable": true },
+                     { "data": "Status", "orderable": true },
                  { "data": "DesCompany", "orderable": true },
                 { "data": "ID", "orderable": false },
                 { "data": "ID", "orderable": false }

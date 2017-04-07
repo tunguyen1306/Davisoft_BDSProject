@@ -33,6 +33,9 @@ namespace Davisoft_BDSProject.Domain.Concrete
         {
             item.Active = 1;
             item.CreateDate = DateTime.Now;
+            item.Status = 0;
+            item.CountReup = 0;
+            item.IdTypeNewsCuurent = item.IdTypeNews;
             return Create(item, false);
         }
 
