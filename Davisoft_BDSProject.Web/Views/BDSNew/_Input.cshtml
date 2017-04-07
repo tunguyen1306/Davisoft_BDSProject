@@ -497,6 +497,11 @@
 @Html.HiddenFor(m => m.CreateUser)
 @Html.HiddenFor(m => m.ModifiedUser)
 @Html.HiddenFor(m => m.FromDeadline)
+@Html.HiddenFor(m => m.IdTypeNewsCuurent)
+@Html.HiddenFor(m => m.Status)
+@Html.HiddenFor(m => m.DateReup)
+@Html.HiddenFor(m => m.CountReup)
+
 
 @Html.Script(
     @<text>
@@ -810,7 +815,7 @@ function uploadtoserver() {
 function UploadImg(obj) {
 
     $('.cropper-container img').css({ "transform": "none" });
-    $('.btnAdd1').text('Đang xữ lý');
+   // $('.btnAdd1').text('Đang xữ lý');
     $('.btnAdd1').addClass('disabled');
     uploadtoserver();
     var totalitem = $('.dz-preview').size();
@@ -841,7 +846,7 @@ function UploadImg(obj) {
                     totalitem--;
 
                     if (totalitem == 0) {
-                        $('.btnAdd1').text('Thêm');
+                    //    $('.btnAdd1').text('Thêm');
                         $('.btnAdd1').removeClass('disabled');
                         $('.btnAdd').click();
                     }

@@ -1,0 +1,66 @@
+﻿@using Davisoft_BDSProject.Web
+@using Davisoft_BDSProject.Web.Helpers
+@model IEnumerable<Davisoft_BDSProject.Domain.Entities.BDSNew>
+
+<table class="table reject">
+    <thead>
+        <tr>
+            <th>@Utilities.Resource("BDSNew_Title", "Title")</th>
+            <th>@Utilities.Resource("BDSNew_Email", "Email")</th>
+            <th>@Utilities.Resource("BDSNew_NameCompany", "Name Company")</th>
+            <th>@Utilities.Resource("BDSNew_TypeNews", "Type News")</th>
+            <th>@Utilities.Resource("BDSNew_FromDate", "From Date")</th>
+            <th>@Utilities.Resource("BDSNew_ToDate", "To Date")</th>
+
+            <th style="width: 50px">Action</th>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.BDSAccount.Email</td>
+                <td>@item.NameCompany</td>
+                <td>@item.BDSNewsType.Name</td>
+                <td>@item.FromCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern)</td>
+                <td>@item.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern)</td>
+
+                <td><a class="btn btn-primary-me " href="/BDSNew/Review/@(item.ID)">Review</a></td>
+
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+
+<style>
+    .dataTables_length {
+        display: none;
+    }
+    .dataTables_wrapper.no-footer .dataTables_scrollBody {
+        border: none !important;
+    }
+</style>
+@Html.Script(
+    @<script>
+
+       var $modelTablereject = $('.reject').dataTable({
+         //   fixedHeader: true,
+            searching: true,
+            ordering: false,
+            info: false,
+            stateSave: false,
+            lengthMenu: [[6], [6]],
+            scrollY: '225px',
+        });
+
+
+
+
+    </script>)
+                      

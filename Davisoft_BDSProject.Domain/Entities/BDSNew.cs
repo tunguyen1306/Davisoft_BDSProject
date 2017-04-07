@@ -16,11 +16,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public string Bonus { get; set; }
         public int Sex { get; set; }
         public int IdTimeWork { get; set; }
-
-
         public int IdEducation { get; set; }
-
-
         public string Career { get; set; }
         public string DesCompany { get; set; }
         public string DesWork { get; set; }
@@ -69,7 +65,11 @@ namespace Davisoft_BDSProject.Domain.Entities
         [ForeignKey("IdLanguage")]
         public virtual BDSLanguage BDSLanguage { get; set; }
 
-          [NotMapped]
+        [NotMapped]
         public virtual int IdPictrure { get; set; }
+        public int IdTypeNewsCuurent { get; set; }
+        public DateTime? DateReup { get; set; }
+        public int CountReup { get; set; }
+        public int Status { get; set; }
     }
 }

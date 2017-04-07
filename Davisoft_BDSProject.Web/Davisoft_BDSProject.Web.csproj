@@ -2196,6 +2196,11 @@
     <Content Include="Views\BDSBranch\Create.cshtml" />
     <Content Include="Views\BDSBranch\Edit.cshtml" />
     <Content Include="Views\BDSBranch\Index.cshtml" />
+    <Content Include="Views\Home\Blank.cshtml" />
+    <Content Include="Views\Home\IndexPendingByType.cshtml" />
+    <Content Include="Views\Home\IndexDeActive.cshtml" />
+    <Content Include="Views\Home\IndexRejectByType.cshtml" />
+    <Content Include="Views\BDSNew\Review.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2211,12 +2216,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Davisoft_BDSProject.Domain\Davisoft_BDSProject.Domain.csproj">
-      <Project>{0A88B25A-3F62-4323-99DB-45BF6224D477}</Project>
-      <Name>Davisoft_BDSProject.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
@@ -2254,6 +2253,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Davisoft_BDSProject.Domain\Davisoft_BDSProject.Domain.csproj">
+      <Project>{0a88b25a-3f62-4323-99db-45bf6224d477}</Project>
+      <Name>Davisoft_BDSProject.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

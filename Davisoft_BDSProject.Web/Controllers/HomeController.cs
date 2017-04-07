@@ -26,6 +26,13 @@ namespace Davisoft_BDSProject.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IBDSNewService _service;
+
+        public HomeController(IBDSNewService service)
+        {
+            _service = service;
+        }
+
 
         [DisplayName(@"Dashboard")]
         public ActionResult Index()
@@ -107,6 +114,22 @@ namespace Davisoft_BDSProject.Web.Controllers
         {
             return View("Blank");
         }
+
+        public ActionResult IndexDeActive()
+        {
+            return View();
+        }
+        public PartialViewResult IndexPendingByType()
+        {
+
+            return PartialView(_service.GetIQueryableItems().Where(T => T.Active == 1 && T.Status == 0).OrderBy(T => T.BDSNewsType.Order).ThenBy(T => T.CreateDate).ToList());
+        }
+        public PartialViewResult IndexRejectByType()
+        {
+
+            return PartialView(_service.GetIQueryableItems().Where(T => T.Active == 1 && T.Status == -1).OrderBy(T => T.BDSNewsType.Order).ThenBy(T => T.CreateDate).ToList());
+        }
+
 
     }
 }

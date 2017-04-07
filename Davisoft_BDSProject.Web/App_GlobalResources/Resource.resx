@@ -6764,4 +6764,14 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSNew_Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Review" xml:space="preserve">
+    <value>Review News</value>
+    <comment>
+    </comment>
+  </data>
 </root>
