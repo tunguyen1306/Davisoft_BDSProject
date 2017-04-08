@@ -64,7 +64,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
-            return View(new BDSSalary {Name="Khoản 0 đến 0 VND", CreateDate = DateTime.Now, CreateUser = 1, ID = 0,Type = 2,Perfix = 1});
+            return View(new BDSSalary {Name="Khoản 0 đến 0 triệu VND", CreateDate = DateTime.Now, CreateUser = 1, ID = 0,Type = 2,Perfix = 1});
         }
 
         [HttpPost]

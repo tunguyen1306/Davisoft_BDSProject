@@ -34,7 +34,7 @@
         <div class="col-md-2 perfix">
             @Html.Bootstrap().DropDownListFor(m => m.Perfix, new List<SelectListItem>
                                     {
-                                        new SelectListItem{Text="VND",Value="1",Selected = true},
+                                        new SelectListItem{Text="triệu VND",Value="1",Selected = true},
                                         new SelectListItem{Text="USD",Value="2"}
 
                                     }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
@@ -111,7 +111,7 @@
                 if ($('#Type').val() == 4) {
                     format = "Thỏa thuận";
                 }
-                format = format.replace('A', $('#FromSalary').val()).replace('P', $('#Perfix').val()==1?"VND":"USD");
+                format = format.replace('A', $('#FromSalary').val()).replace('P', $('#Perfix').val()==1?"triệu VND":"USD");
                 format = format.replace('B', $('#ToSalary').val());
                 $('#Name').val(format);
             });
