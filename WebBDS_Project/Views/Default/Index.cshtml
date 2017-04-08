@@ -1,6 +1,10 @@
-﻿@{
+﻿@using WebBDS_Project.Models
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+   
+    var states = (from a in db.states join b in db.statetexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new {Id=a.state_id,Name=b.text}).ToList();
 }
 
  <div class="container">
@@ -26,29 +30,37 @@
                                     <fieldset>
                                         <div class="grid_3">
                                             <select class="dropdown" tabindex="7">
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                                <option value="4">Option 4</option>
-                                                <option value="5">Option 5</option>
+                                                <option value="">Chọn tỉnh thành</option>
+                                                @{
+                                                    foreach (var item in states)
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                }
+                                                
+                                            
                                             </select>
                                         </div>
                                         <div class="grid_3">
                                             <select class="dropdown" tabindex="7">
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                                <option value="4">Option 4</option>
-                                                <option value="5">Option 5</option>
+                                                <option value="">Chọn ngành nghề</option>
+                                                @{
+                                                    foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="grid_3">
                                             <select class="dropdown" tabindex="7">
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                                <option value="4">Option 4</option>
-                                                <option value="5">Option 5</option>
+                                                <option value="">Chọn mức lương</option>
+                                                @{
+                                                    foreach (var item in db.bdssalaries.Where(T => T.Active == 1).ToList())
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="grid_3 omega">
@@ -63,29 +75,35 @@
                                     <fieldset>
                                         <div class="grid_3">
                                             <select class="dropdown" tabindex="7">
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                                <option value="4">Option 4</option>
-                                                <option value="5">Option 5</option>
+                                                <option value="">Chọn tỉnh thành</option>
+                                                @{
+                                                    foreach (var item in states)
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="grid_3">
                                             <select class="dropdown" tabindex="7">
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                                <option value="4">Option 4</option>
-                                                <option value="5">Option 5</option>
+                                                <option value="">Chọn ngành nghề</option>
+                                                @{
+                                                    foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="grid_3">
                                             <select class="dropdown" tabindex="7">
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                                <option value="4">Option 4</option>
-                                                <option value="5">Option 5</option>
+                                                <option value="">Chọn mức lương</option>
+                                                @{
+                                                    foreach (var item in db.bdssalaries.Where(T => T.Active == 1).ToList())
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="grid_3 omega">
@@ -98,104 +116,44 @@
                         <div class="group_work">
                             <h4><i class="fa fa-users"></i>Các công việc về bất động sản thường tìm kiếm</h4>
                             <ul class="name_group">
-                                <li><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh</a></li>
-                                <li><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên pháp lý</a></li>
-                                <li><a href="@Url.Action("Detail","Default",new { id=1})">Marketing / Quảng cáo</a></li>
-                                <li><a href="@Url.Action("Detail","Default",new { id=1})">Kế toán / Thủ quỹ</a></li>
-                                <li><a href="@Url.Action("Detail","Default",new { id=1})">Quản lý / Giám đốc</a></li>
-                                <li><a href="@Url.Action("Detail","Default",new { id=1})">Nhân sự</a></li>
-                                <li><a href="@Url.Action("Detail","Default",new { id=1})">Thư ký / Admin Sale</a></li>
-                                <li><a href="@Url.Action("Detail","Default",new { id=1})">Thẩm định viên</a></li>
+                                @{
+                                    foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
+                                    {
+                                        <li><a href="@Url.Action("Detail", "Default", new {id = 1})">@item.Name</a></li>
+                                    }
+                                }
                             </ul>
                         </div>
+                     
+                        @{
+                            var typeVip = db.bdsnewstypes.Where(T => T.Active == 1 && T.CodeNewsType == "TDB").FirstOrDefault();
+                        }
+
                         <div class="group_work">
                             <div class="header_text">
                                 <h3><span><i class="fa fa-list-ul"></i>Việc làm Bất Động Sản hấp dẫn</span></h3>
                                 <div class="search_location">
-                                    Tìm theo khu vực 
-                                             <select class="dropdown" tabindex="7">
-                                                 <option value="1">Toàn quốc</option>
-                                                 <option value="2">Option 2</option>
-                                                 <option value="3">Option 3</option>
-                                                 <option value="4">Option 4</option>
-                                                 <option value="5">Option 5</option>
-                                             </select>
+                                    Tìm theo khu vực
+                                    <select class="dropdown" tabindex="7">
+                                        <option value="">Toàn quốc</option>
+                                        @{
+                                            foreach (var itemCity in states)
+                                            {
+                                                <option value="@itemCity.Id">@itemCity.Name</option>
+                                            }
+                                        }
+                                    </select>
                                 </div>
                             </div>
-                            <ul class="list_work">
-                                <li>
-                                    <div class="grid_3">
-                                        <a  href="@Url.Action("Detail","Default",new { id=1})">
-                                            <img src="~/Template/images/1.jpg" alt="1">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <div class="grid_9 omega">
-                                        <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Tập đoàn cá tiên sa</span></a></h2>
-                                        <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                        <div>
-                                            <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                            <p class="grid_6 omega time">Mã tin: <span class="color2">P889275</span> <i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_3">
-                                        <a  href="@Url.Action("Detail","Default",new { id=1})">
-                                            <img src="~/Template/images/1.jpg" alt="1">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <div class="grid_9 omega">
-                                        <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Tập đoàn cá tiên sa</span></a></h2>
-                                        <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                        <div>
-                                            <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                            <p class="grid_6 omega time">Mã tin: <span class="color2">P889275</span> <i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_3">
-                                        <a  href="@Url.Action("Detail","Default",new { id=1})">
-                                            <img src="~/Template/images/1.jpg" alt="1">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <div class="grid_9 omega">
-                                        <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Tập đoàn cá tiên sa</span></a></h2>
-                                        <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                        <div>
-                                            <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                            <p class="grid_6 omega time">Mã tin: <span class="color2">P889275</span> <i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="page">
-                                    <div class="page_links">
-                                        <span>Trang</span>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="active">1</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">2</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">3</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">4</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">5</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">Tiếp</a>
-                                    </div>
-                                    <div class="more">
-                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="@Url.Action("Detail","Default",new { id=1})">Xem thêm</a>
-                                    </div>
-                                </li>
-                            </ul>
+                           @Html.Action("TinDacBiet", new { from=0,view=10,page=1})
                         </div>
+
+
+
+
+
+
+                       
                         <div class="group_work">
                             <div class="header_text">
                                 <h3><span><i class="fa fa-list-ul"></i>Nhà tuyển dụng tiêu biểu</span></h3>
