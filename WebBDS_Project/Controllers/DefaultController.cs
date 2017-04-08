@@ -23,8 +23,16 @@ namespace WebBDS_Project.Controllers
         {
             return View();
         }
-        public ActionResult Detail(int id)
+        public ActionResult Detail(string  id)
         {
+            var id_ = int.Parse(id.Split('-').Last());
+            var Model = new NewsModel
+            {
+                tblbdsnew = db.bdsnews.Where(x=>x.Id== id_).FirstOrDefault(),
+                ListPicture=db.bdspictures.Where(x=>x.advert_id==id_).ToList()
+
+            };
+
             return View();
         }
 
