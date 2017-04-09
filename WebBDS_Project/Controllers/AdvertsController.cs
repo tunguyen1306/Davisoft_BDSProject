@@ -21,6 +21,11 @@ namespace WebBDS_Project.Controllers
 
         public ActionResult AdvertCompany()
         {
+            if (Session["IdUser"] ==null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+           
              
             var dataCity = from data in db.states
                            join datatext in db.statetexts on data.name_id equals datatext.id
