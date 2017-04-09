@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using Antlr.Runtime.Tree;
 using WebBDS_Project.Models;
 
 namespace WebBDS_Project.Controllers
@@ -14,10 +16,37 @@ namespace WebBDS_Project.Controllers
         davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
         public ActionResult Index()
         {
-           
-           
+         
             return View();
           
+        }
+
+        public PartialViewResult TinDacBiet(string tt,int from=0,int view=12,int page=1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
+        }
+        public PartialViewResult TinNoiBat(string tt, int from = 0, int view = 6, int page = 1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
+        }
+        public PartialViewResult TinMoiNhat(string tt, int from = 0, int view = 5, int page = 1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
         }
         public ActionResult Blank()
         {

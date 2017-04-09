@@ -125,16 +125,12 @@
                             </ul>
                         </div>
                      
-                        @{
-                            var typeVip = db.bdsnewstypes.Where(T => T.Active == 1 && T.CodeNewsType == "TDB").FirstOrDefault();
-                        }
-
                         <div class="group_work">
                             <div class="header_text">
                                 <h3><span><i class="fa fa-list-ul"></i>Việc làm Bất Động Sản hấp dẫn</span></h3>
                                 <div class="search_location">
                                     Tìm theo khu vực
-                                    <select class="dropdown" tabindex="7">
+                                    <select class="dropdown" tabindex="7" onchange="loadFilterPageFrom(this)">
                                         <option value="">Toàn quốc</option>
                                         @{
                                             foreach (var itemCity in states)
@@ -145,7 +141,7 @@
                                     </select>
                                 </div>
                             </div>
-                           @Html.Action("TinDacBiet", new { from=0,view=10,page=1})
+                           @Html.Action("TinDacBiet", new { tt="", from=0,view=12,page=1})
                         </div>
 
 
@@ -160,233 +156,46 @@
                                 <div class="search_location">
                                     Tìm theo khu vực 
 
-                                             <select class="dropdown" tabindex="7">
-                                                 <option value="1">Toàn quốc</option>
-                                                 <option value="2">Option 2</option>
-                                                 <option value="3">Option 3</option>
-                                                 <option value="4">Option 4</option>
-                                                 <option value="5">Option 5</option>
-                                             </select>
+                                    <select class="dropdown" tabindex="7" onchange="loadNBFilterPageFrom(this)">
+                                        <option value="">Toàn quốc</option>
+                                        @{
+                                            foreach (var itemCity in states)
+                                            {
+                                                <option value="@itemCity.Id">@itemCity.Name</option>
+                                            }
+                                        }
+                                    </select>
+
                                 </div>
                             </div>
-                            <ul class="list_work_2">
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li class="page">
-                                    <div class="page_links">
-                                        <span>Trang</span>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="active">1</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">2</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">3</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">4</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">5</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">Tiếp</a>
-                                    </div>
-                                    <div class="more">
-                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="@Url.Action("Detail","Default",new { id=1})">Xem thêm</a>
-                                    </div>
-                                </li>
-                            </ul>
+                            @Html.Action("TinNoiBat", new { tt = "", from = 0, view = 6, page = 1 })
                         </div>
+                        
+                        
+                        
+                        
+                        
                         <div class="group_work">
                             <div class="header_text">
                                 <h3><span><i class="fa fa-list-ul"></i>Việc làm bất động sản mới</span></h3>
                                 <div class="search_location">
                                     Tìm theo khu vực 
-                                             <select class="dropdown" tabindex="7">
-                                                 <option value="1">Toàn quốc</option>
-                                                 <option value="2">Option 2</option>
-                                                 <option value="3">Option 3</option>
-                                                 <option value="4">Option 4</option>
-                                                 <option value="5">Option 5</option>
-                                             </select>
+                                    <select onchange="loadMNFilterPageFrom(this);" class="dropdown" tabindex="7">
+
+                                        <option value="">Toàn quốc</option>
+                                        @{
+                                            foreach (var itemCity in states)
+                                            {
+                                                <option value="@itemCity.Id">@itemCity.Name</option>
+                                            }
+                                        }
+                                    </select>
+
                                 </div>
                             </div>
-                            <ul class="list_work_2 green">
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                <li class="page">
-                                    <div class="page_links">
-                                        <span>Trang</span>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="active">1</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">2</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">3</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">4</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">5</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">Tiếp</a>
-                                    </div>
-                                    <div class="more">
-                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="@Url.Action("Detail","Default",new { id=1})">Xem thêm</a>
-                                    </div>
-                                </li>
-                            </ul>
+                           
+                            
+                            @Html.Action("TinMoiNhat", new { tt = "", from = 0, view = 5, page = 1 })
                         </div>
                         <div class="group_work mg0">
                             <div class="header_text">
@@ -442,47 +251,33 @@
                         <div class="right_col">
                             <h3>Việc làm bất động sản</h3>
                             <ul class="last_list_right">
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Trưởng phòng kinh doanh</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh bđs</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên Admin Sale</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên Thị Trường</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên Thị Trường</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên Thị Trường</a>
-                                </li>
+                                
+                                
+                                @{
+                                    foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
+                                    {
+                                           <li>
+                                        <a href="@Url.Action("Detail","Default",new { id=1})">@item.Name</a>
+                                        </li>
+                                    }
+                                }
+                                
+
+                               
                             </ul>
                         </div>
                         <div class="right_col">
                             <h3>Công ty nổi bật</h3>
                             <ul class="last_list_right">
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Công ty TNHH ABC</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên kinh doanh bđs</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên Admin Sale</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên Thị Trường</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên Thị Trường</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Nhân viên Thị Trường</a>
-                                </li>
+                              
+                                @{
+                                    foreach (var item in db.bdsemployerinformations.Where(T => T.Active == 1 && T.Featured==1).ToList())
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Detail","Default",new { id=1})">@item.Name</a>
+                                        </li>
+                                    }
+                                }
                             </ul>
                         </div>
                         <div class="right_col">

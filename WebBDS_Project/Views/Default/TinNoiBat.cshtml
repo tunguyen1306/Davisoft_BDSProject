@@ -1,0 +1,98 @@
+﻿@using System.Configuration
+@using System.Web.UI.WebControls
+@using WebBDS_Project.Models
+@{
+
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+    int from = ViewBag.from;
+    int page = ViewBag.page;
+    int view = ViewBag.view;
+    int tt = ViewBag.tt == "" ? 0 : int.Parse(ViewBag.tt);
+    int count = 0;
+    var states = (from a in db.states join b in db.statetexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+}
+
+<ul class="list_work_2">
+    @{
+        var query = from a in db.bdsnews join b in db.bdsemployerinformations on a.IdAcount equals b.IdAccount where a.Active == 1 && b.Active == 1 && a.Status == 1 && b.Featured == 1 && (tt == 0 || a.AddressWork == tt) select a;
+        var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
+        count = query.Count();
+        foreach (var news in ListNews)
+        {
+            <li>
+                <div class="grid_9">
+                    <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
+                        <img width="50" src="@ConfigurationManager.AppSettings["adminDomain"]@(db.bdsemployerinformations.Where(T=>T.IdAccount==news.IdAcount).FirstOrDefault().UrlImage)" alt="2">
+                        <p class="vip">
+                            <i class="fa fa-star"></i>
+                            <span>VIP</span>
+                        </p>
+                    </a>
+                    <div class="name">
+                        <h2><a href="@Url.Action("Detail","Default",new { id=1})">@( db.bdscareers.Where(T => T.Id == news.IdTypeNewsCuurent).FirstOrDefault().Name) <span>@(db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                        <p><i class="fa fa-map-marker"></i>@(states.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
+                        <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
+                    </div>
+                </div>
+                <div class="grid_3 omega">
+                    <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
+                </div>
+            </li>
+        }
+    }
+    
+    <li class="page">
+        <div class="page_links">
+            <span>Trang</span>
+            @if (count > 0)
+            {
+                var p = Math.Ceiling((double)count / view);
+                for (int i = 1; i <= (int)p; i++)
+                {
+                    <a data-ref='@(page != i ? "" + Url.Action("TinNoiBat", "Default", new { tt = ViewBag.tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadNBPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
+                }
+            }
+            <a class="nextPage" onclick="loadNBPageFromNext(this);">Tiếp</a>
+        </div>
+        <div class="more">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="@Url.Action("Detail","Default",new { id=1})">Xem thêm</a>
+        </div>
+    </li>
+</ul>
+<style>
+    a.active {
+        cursor: auto;
+    }
+</style>
+<script>
+    function loadNBFilterPageFrom(el) {
+        var url = '@Url.Action("TinNoiBat", "Default", new { from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
+        if (url != "") {
+            $.get(url, function (data) {
+                $(el).parents('.group_work').eq(0).find('ul.list_work_2').eq(0).html($(data).html());
+
+            });
+        }
+
+    }
+    function loadNBPageFrom(el) {
+        var url = $(el).attr('data-ref');
+        if (url != "") {
+            $.get(url, function (data) {
+                $(el).parents('ul.list_work_2').eq(0).html($(data).html());
+
+            });
+        }
+
+    }
+    function loadNBPageFromNext(el) {
+
+        var elNext = $(el).parents('.page_links').eq(0).find('a.active').next();
+        if (!$(elNext).hasClass('nextPage')) {
+            $(elNext).click();
+        }
+
+    }
+
+
+</script>
