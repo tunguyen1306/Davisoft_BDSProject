@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -137,8 +138,32 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FullAddress = model.Address.NormalizeD() + ", " + Districts.Where(T => T.Value == model.District.ToString()).FirstOrDefault().Text.NormalizeD() +
             ", " + Cities.Where(T => T.Value == model.City.ToString()).FirstOrDefault().Text.NormalizeD();
             model.KeySearch = model.Name.NormalizeD() + " " + model.BDSScope.Name.NormalizeD() + " " + model.FullAddress.NormalizeD()+" "+model.Phone+" "+model.Fax+" "+model.WebSite+" "+model.Description.NormalizeD()+" "+model.NameContact.NormalizeD()+" "+model.Phone+" "+model.Fax+" " ;
-            String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
-            model.UrlImage = path;
+           // String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
+            var path = string.Empty;
+            var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = string.Empty;
+
+
+
+
+            var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];
+            if (file != null && file.ContentLength > 0)
+            {
+
+                var fileName = Path.GetFileName(file.FileName);
+                string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                fortmatName = Path.GetExtension(fileName);
+
+                NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+                path = Server.MapPath("~/fileUpload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path1 = Path.Combine(path, fileNameFull);
+            }
+            model.UrlImage = fileNameFull;
             _service.CreateItem(model);
             return RedirectToAction("Index");
         }

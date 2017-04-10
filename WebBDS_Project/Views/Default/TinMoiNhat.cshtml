@@ -29,7 +29,7 @@
        {
            <li>
             <div class="grid_9">
-                <a href="@Url.Action("Detail","Default",new { id=1})" class="image_2">
+                <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.Id})" class="image_2">
                     <img width="50" src="@ConfigurationManager.AppSettings["adminDomain"]@(db.bdsemployerinformations.Where(T=>T.IdAccount==news.IdAcount).FirstOrDefault().UrlImage)" alt="2">
                     <p class="vip">
                         <i class="fa fa-star"></i>
@@ -37,7 +37,7 @@
                     </p>
                 </a>
                 <div class="name">
-                    <h2><a href="@Url.Action("Detail","Default",new { id=1})">@( db.bdscareers.Where(T => T.Id == news.IdTypeNewsCuurent).FirstOrDefault().Name) <span>@(db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                    <h2><a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.Id})">@( db.bdscareers.Where(T => T.Id == news.IdTypeNewsCuurent).FirstOrDefault().Name) <span>@(db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
                     <p><i class="fa fa-map-marker"></i>@(states.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                     <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
                 </div>
@@ -65,7 +65,7 @@
             <a class="nextPage" onclick="loadMNPageFromNext(this);">Tiếp</a>
         </div>
         <div class="more">
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="@Url.Action("Detail","Default",new { id=1})">Xem thêm</a>
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="#">Xem thêm</a>
         </div>
     </li>
 </ul>

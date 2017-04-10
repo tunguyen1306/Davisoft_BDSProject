@@ -25,7 +25,7 @@
         {
             <li>
                 <div class="grid_3">
-                    <a href="@Url.Action("Detail","Default",new { id=1})">
+                    <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.Id})">
                         <img width="120" src="@ConfigurationManager.AppSettings["adminDomain"]@(db.bdsemployerinformations.Where(T=>T.IdAccount==news.IdAcount).FirstOrDefault().UrlImage)" alt="1">
                         <p class="vip">
                             <i class="fa fa-star"></i>
@@ -34,7 +34,7 @@
                     </a>
                 </div>
                 <div class="grid_9 omega">
-                    <h2><a href="@Url.Action("Detail","Default",new { id=1})">@( db.bdscareers.Where(T => T.Id == news.IdTypeNewsCuurent).FirstOrDefault().Name) <span>@(db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                    <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.Id})">@( db.bdscareers.Where(T => T.Id == news.IdTypeNewsCuurent).FirstOrDefault().Name) <span>@(db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
                     <p><i class="fa fa-map-marker"></i>@(states.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                     <div>
                         <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triêu </p>
@@ -60,7 +60,7 @@
             <a class="nextPage" onclick="loadPageFromNext(this);">Tiếp</a>
         </div>
         <div class="more">
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="@Url.Action("Detail","Default",new { id=1})">Xem thêm</a>
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="#">Xem thêm</a>
         </div>
     </li>
 </ul>
