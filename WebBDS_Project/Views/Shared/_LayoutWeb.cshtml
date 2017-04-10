@@ -45,6 +45,8 @@
     <script src="~/Template/js/toastr.js"></script>
     <script src="~/Template/js/jquery-ui.js"></script>
     <script src="~/Template/js/jquery.selectric.js"></script>
+    <script src="~/Template/js/jssor.slider-22.2.16.min.js"></script>
+  
 </head>
 <body>
     <div id="warrper">
@@ -63,18 +65,23 @@
                             <div class="dp-wrap small-button">
                                 <a href="#" class="dropdown1"><i class="fa fa-user"></i>Đăng nhập</a>
                                 <div id="dropdown2" class="dropdown-menu">
-                                    <p>
-                                        <input placeholder="Email" type="text"></p>
-                                    <p>
-                                        <input placeholder="Mật khẩu" type="password">
-                                        <button type="button">Đăng nhập</button>
-                                    </p>
-                                    <p class="box_remember">
-                                        <a href="#">Quên mật khẩu</a><br>
-                                        Đăng nhập bằng
-                                          <a href="#"><i class="fa fa-facebook-official"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus-square"></i></a>
-                                    </p>
+                                    @using (Html.BeginForm("Login","Login"))
+                                    {
+                                        <p>
+                                            <input placeholder="Email" name="tblbdsaccount.Email" type="text">
+                                        </p>
+                                        <p>
+                                            <input placeholder="Mật khẩu" name="tblbdsaccount.PassWord" type="password">
+                                            <button type="submit" >Đăng nhập</button>
+                                        </p>
+                                        <p class="box_remember">
+                                            <a href="#">Quên mật khẩu</a><br>
+                                            Đăng nhập bằng
+                                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                                            <a href="#"><i class="fa fa-google-plus-square"></i></a>
+                                        </p>
+                                    }
+                                 
                                 </div>
                             </div>
                         </div>
@@ -91,7 +98,7 @@
                 </div>
 
                 <!--Menu-->
-                @Html.Partial("_partialMenu",modelMenu)
+                @Html.Partial("_partialMenu", modelMenu)
               
                 <!--End Menu-->
 

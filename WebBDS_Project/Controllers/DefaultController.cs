@@ -55,14 +55,25 @@ namespace WebBDS_Project.Controllers
         public ActionResult Detail(string  id)
         {
             var id_ = int.Parse(id.Split('-').Last());
+            var dataCity = from data in db.states
+                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new ListCityNew { Id = data.state_id, Name = datatext.text };
             var Model = new NewsModel
             {
-                tblbdsnew = db.bdsnews.Where(x=>x.Id== id_).FirstOrDefault(),
-                ListPicture=db.bdspictures.Where(x=>x.advert_id==id_).ToList()
+                tblbdsnew = db.bdsnews.Where(x => x.Id == id_).FirstOrDefault(),
+                ListPicture = db.bdspictures.Where(x => x.advert_id == id_).ToList(),
+                Listbdsemployerinformation = db.bdsemployerinformations.ToList(),
+                Listbdsaccount = db.bdsaccounts.ToList(),
+                ListCityText = dataCity.ToList(),
+                ListDucation = db.bdseducations.ToList(),
+                ListTimework = db.bdstimeworks.ToList(),
+                Listbdslanguage = db.bdslanguages.ToList()
+
 
             };
 
-            return View();
+            return View(Model);
         }
 
     }

@@ -36,7 +36,7 @@
                                 <select class="dropdown" tabindex="7" name="tblbdsnew.FromSalary">
                                     @for (int i = 3; i < 20; i++)
                                     {
-                                        <option value="@i@(".000.000")">@i@(".000.000")</option>
+                                        <option value="@i@("000000")">@i@(".000.000")</option>
                                     }
 
 
@@ -47,7 +47,7 @@
                                 <select class="dropdown" tabindex="7" name="tblbdsnew.ToSalary">
                                     @for (int i = 3; i < 20; i++)
                                     {
-                                        <option value="@i@(".000.000")">@i@(".000.000")</option>
+                                        <option value="@i@("000000")">@i@(".000.000")</option>
                                     }
                                 </select>
                             </div>
@@ -77,6 +77,7 @@
                         <label>Giới tính</label>
                         <div class="row-right">
                             <select class="dropdown" name="tblbdsnew.Sex" tabindex="7">
+                                <option value="0">Không yêu cầu</option>
                                 <option value="1">Nam</option>
                                 <option value="2">Nữ</option>
 
@@ -104,7 +105,7 @@
                         {
                             <li>
                                 <label>
-                                    <input type="checkbox" class="checkCarrie" value="@item.Id">@item.Name
+                                    <input type="checkbox" class="checkCarrie" value="@item.Name">@item.Name
                                 </label>
                             </li>
                         }
@@ -197,6 +198,12 @@
                         </div>
                     </div>
                     <div class="row">
+                        <label>Email</label>
+                        <div class="row-right">
+                            @Html.TextBoxFor(m => m.tblbdsnew.Email, new { @class = "input3", @placeholder = "Nhập email" })
+                        </div>
+                    </div>
+                    <div class="row">
 
                         <label>Hạn nộp hồ sơ</label>
                         <div class="row-right">
@@ -255,15 +262,9 @@
                                     </li>
 
                                 </ul>
-                                <p>
-                                    - Đứng đầu danh sách tin rao
-                                    <br>
-                                    - Kiểu hiển thị khác biệt và ấn tượng hơn các tin VIP và tin HOT.
-                                    <br>
-                                    - Tiêu đề tin có màu đỏ, có ngôi sao màu xanh ở đầu mỗi tiêu đề.
-                                    <br>
-                                    Để được đăng tin Vip. Vui lòng liên hệ
-                                </p>
+                                     <p style="white-space: pre-line">
+                                         @typeNews.Description
+                                     </p>
                             </div>
                             }
                              if (typeNews.CodeNewsType == "TVP")
@@ -496,7 +497,7 @@
         $.each(listItem, function (i, o) {
             uu += o + ',';
         });
-      
+        $('#tblbdsnew_Career').val(uu);
         console.log(uu);
         
     });

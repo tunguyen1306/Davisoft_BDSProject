@@ -2,7 +2,8 @@
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
-
+@using System.Configuration
+@model WebBDS_Project.Models.NewsModel
 <div class="container">
     <div class="grid_9 main_left">
         <ul class="idTabs">
@@ -92,21 +93,32 @@
             </div>
         </div>
 
-        <div class="grid_12 title_detail">
-            <div class="logo_detail">
+        @foreach (var itemBdsEmploye in Model.Listbdsemployerinformation.Where(x => x.IdAccount == Model.tblbdsnew.IdAcount))
+        {
+            <div class="grid_12 title_detail">
+                <div class="logo_detail">
+                    <img height="100%" alt="@itemBdsEmploye.Name" src="@ConfigurationManager.AppSettings["UrlImage"]@itemBdsEmploye.UrlImage.ToString().Split('_')[0]/@itemBdsEmploye.UrlImage" />
+                </div>
+                <div class="name_detail">
+                    <h2>@Model.tblbdsnew.Title</h2>
 
+                    <p><strong>@itemBdsEmploye.Name</strong></p>
+                    @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblbdsnew.AddressWork))
+                    {
+                        <p><i class="fa fa-map-marker"></i>Nơi làm việc: @itemCity.Name</p>
+                    }
+
+                    <p><i class="fa fa-user"></i>Công việc: @Model.tblbdsnew.Career</p>
+                    <p><i class="fa fa-usd"></i>Mức lương: @(Model.tblbdsnew.FromSalary) @("-") @Model.tblbdsnew.ToSalary  </p>
+
+
+                </div>
+                <div class="grid_12 btn_hoso">
+                    <button class="btn_search" type="button"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</button>
+                </div>
             </div>
-            <div class="name_detail">
-                <h2>Công ty đầu tư bất động sản dm thành viên</h2>
-                <p><strong>Công ty mẹ ở Việt Nam</strong></p>
-                <p><i class="fa fa-map-marker"></i>Nơi làm việc: Hồ Chí Minh</p>
-                <p><i class="fa fa-user"></i>Công việc: Hồ Chí Minh</p>
-                <p><i class="fa fa-usd"></i>Mức lương: </p>
-            </div>
-            <div class="grid_12 btn_hoso">
-                <button class="btn_search" type="button"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</button>
-            </div>
-        </div>
+        }
+
 
         <div class="row">
 
@@ -114,23 +126,60 @@
                 <table class="table-responsive">
                     <tbody>
                         <tr>
-                            <td><label>Nơi làm việc: </label> Hồ Chí Minh</td>
-                            <td><label>Lương: </label> 36 -369</td>
+                            <td>
+                            <label>Nơi làm việc: </label>
+                                @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblbdsnew.AddressWork))
+                                {
+                                     @itemCity.Name
+                                }
+                                
+
+                            </td>
+                            <td><label>Lương: </label>
+                                @(Model.tblbdsnew.FromSalary) @("-") @Model.tblbdsnew.ToSalary
+                            
+                            </td>
 
                         </tr>
                         <tr>
-                            <td><label>Công viêc: </label>Nhân viên kinh doanh / Buôn bán</td>
-                            <td><label>Phụ cấp: </label> hổ trợ tiền xăng, ăn trưa</td>
+                            <td><label>Công viêc: </label>@Model.tblbdsnew.Career</td>
+                            <td><label>Thưởng/Phụ cấp: </label> @Model.tblbdsnew.Bonus</td>
 
                         </tr>
                         <tr>
-                            <td><label>Nơi làm việc: </label> Hồ Chí Minh</td>
-                            <td><label>Lương: </label> 36 -369</td>
+                            <td><label>Số lượng: </label> @Model.tblbdsnew.Quantity</td>
+                            <td><label>Trình độ: </label>
+                                @foreach (var itemEducation in Model.ListDucation.Where(x => x.Id == Model.tblbdsnew.IdEducation))
+                                {
+                                    @itemEducation.Name
+                                }
+                            
+                            </td>
 
                         </tr>
                         <tr>
-                            <td><label>Công viêc: </label>Nhân viên kinh doanh / Buôn bán </td>
-                            <td><label>Phụ cấp: </label> hổ trợ tiền xăng, ăn trưa</td>
+                            <td>
+                                <label>Giới tính: </label>
+                                @if (Model.tblbdsnew.Sex == 0)
+                                {
+                                    @("Không yêu cầu")
+                                }
+                                @if (Model.tblbdsnew.Sex == 1)
+                                {
+                                    @("Nam")
+                                }
+                                @if (Model.tblbdsnew.Sex == 2)
+                                {
+                                    @("Nữ")
+                                }
+                            </td>
+                            <td>
+                                <label>Kinh nghiệm: </label>
+                                @foreach (var itemExpirence in Model.ListTimework.Where(x => x.Id == Model.tblbdsnew.IdTimeWork))
+                                {
+                                    @itemExpirence.Name
+                                }
+                            </td>
 
                         </tr>
 
@@ -138,51 +187,100 @@
                 </table>
 
                 <h3>Giới thiệu công ty</h3>
-                <p>Mọi giao dịch đều thông qua liên hệ trực tiếp theo nguyên tắc trao đổi tự thỏa thuận, hợp tác, trung thực, xây dựng nhằm đảm bảo quyền và lợi ích hợp pháp của các bên tham gia giao dịch. </p>
+                <p>@Model.tblbdsnew.DesCompany</p>
+                <div id="jssor_3" style="position: relative; margin: 10px auto; border: 1px solid #fefefe; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
 
+                    <div data-u="loading" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0,0,0,0.7);">
+                        <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                        <div style="position: absolute; display: block; background: url('/Template/img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                    </div>
+                    <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
+                       @foreach (var itemPicture in Model.ListPicture)
+                       {
+                        <div>
+                            <img data-u="image" src="@ConfigurationManager.AppSettings["UrlImage"]@itemPicture.originalFilepath.ToString().Split('_')[0]/@itemPicture.originalFilepath" />
+
+                        </div>
+                       }
+                        
+                      
+
+                    </div>
+                    <!-- Bullet Navigator -->
+                    @*<div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
+                        <div data-u="prototype" style="width: 12px; height: 12px;"></div>
+                    </div>*@
+                    <!-- Arrow Navigator -->
+                    <span data-u="arrowleft" class="jssora02l" style="top: 0px; left: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
+                    <span data-u="arrowright" class="jssora02r" style="top: 0px; right: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
+                </div>
                 <h3>Mô tả công việc: </h3>
                 <ul class="info">
                     <li>
-                        Cung cấp hàng hóa, dịch vụ hay thực hiện những giao dịch mà khách hàng yêu cầu.
+                       @Model.tblbdsnew.DesWork
                     </li>
-                    <li>Gửi thông tin đến khách hàng</li>
-                    <li>Phân tích đánh giá và hoàn thiện sản phẩm, dịch vụ (kể cả website), công nghệ, quy trình.</li>
-                    <li>
-                        Nâng cao mối liên kết và tương tác với khách hàng
-                    </li>
+                   
                 </ul>
 
                 <h3>Quyền lợi được hưởng: </h3>
                 <ul class="info">
                     <li>
-                        Competitive salary and attractive bonuses scheme
+                        @Model.tblbdsnew.Benefit
                     </li>
-                    <li> Opportunity for professional training & development </li>
-                    <li> Opportunity for luxury domestic and overseas travel </li>
-                    <li>
-                        Opportunity to take challenge and build up successful career in a promising new industry
-                    </li>
+                   
                 </ul>
                 <h3>Thông tin thêm nhà tuyển dụng</h3>
                 <table class="table-responsive table_nhatuyendung">
                     <tbody>
                         <tr>
-                            <td><label>Nơi làm việc: </label> Hồ Chí Minh  <i class="fa fa-check"></i></td>
+                            <td>
+                                <label>Tên công ty: </label>
+@Model.tblbdsnew.NameCompany
+                                <i class="fa fa-check"></i>
+                            </td>
 
                         </tr>
                         <tr>
-                            <td><label>Công viêc: </label>Nhân viên kinh doanh / Buôn bán <i class="fa fa-check"></i></td>
+                            <td>
+                                <label>Địa chỉ nộp: </label>@Model.tblbdsnew.AddressApply <i class="fa fa-check"></i>
+                            </td>
 
                         </tr>
                         <tr>
-                            <td><label>Nơi làm việc: </label> Hồ Chí Minh</td>
+                            <td>
+                                <label>Người liên hệ: </label>@Model.tblbdsnew.NamesContact<i class="fa fa-check"></i>
+                            </td>
 
                         </tr>
                         <tr>
-                            <td><label>Công viêc: </label>Nhân viên kinh doanh / Buôn bán</td>
+                            <td>
+                                <label>Điện thoại: </label>@Model.tblbdsnew.PhoneContact<i class="fa fa-check"></i>
+                            </td>
 
                         </tr>
+                        <tr>
+                            <td>
+                                <label>Email: </label>@Model.tblbdsnew.Email<i class="fa fa-check"></i>
+                            </td>
 
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Hạn nộp: </label>@Model.tblbdsnew.ToDeadline<i class="fa fa-check"></i>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Ngôn ngữ hồ sơ: </label>
+                                
+                                @foreach (var itemLanguage in Model.Listbdslanguage.Where(x => x.Id == Model.tblbdsnew.IdLanguage))
+                                {
+                                    @itemLanguage.Name<i class="fa fa-check"></i>
+                                }
+                            </td>
+
+                        </tr>
                     </tbody>
                 </table>
                 <div class="grid_12 btn_hoso">
@@ -385,3 +483,137 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+        jQuery(document).ready(function ($) {
+
+            var jssor_3_SlideoTransitions = [
+              [{ b: 0, d: 600, y: -290, e: { y: 27 } }],
+              [{ b: 0, d: 1000, y: 185 }, { b: 1000, d: 500, o: -1 }, { b: 1500, d: 500, o: 1 }, { b: 2000, d: 1500, r: 360 }, { b: 3500, d: 1000, rX: 30 }, { b: 4500, d: 500, rX: -30 }, { b: 5000, d: 1000, rY: 30 }, { b: 6000, d: 500, rY: -30 }, { b: 6500, d: 500, sX: 1 }, { b: 7000, d: 500, sX: -1 }, { b: 7500, d: 500, sY: 1 }, { b: 8000, d: 500, sY: -1 }, { b: 8500, d: 500, kX: 30 }, { b: 9000, d: 500, kX: -30 }, { b: 9500, d: 500, kY: 30 }, { b: 10000, d: 500, kY: -30 }, { b: 10500, d: 500, c: { x: 87.50, t: -87.50 } }, { b: 11000, d: 500, c: { x: -87.50, t: 87.50 } }],
+              [{ b: 0, d: 600, x: 410, e: { x: 27 } }],
+              [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, o: 1, e: { o: 5 } }],
+              [{ b: -1, d: 1, c: { x: 175.0, t: -175.0 } }, { b: 0, d: 800, c: { x: -175.0, t: 175.0 }, e: { c: { x: 7, t: 7 } } }],
+              [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, x: -570, o: 1, e: { x: 6 } }],
+              [{ b: -1, d: 1, o: -1, r: -180 }, { b: 0, d: 800, o: 1, r: 180, e: { r: 7 } }],
+              [{ b: 0, d: 1000, y: 80, e: { y: 24 } }, { b: 1000, d: 1100, x: 570, y: 170, o: -1, r: 30, sX: 9, sY: 9, e: { x: 2, y: 6, r: 1, sX: 5, sY: 5 } }],
+              [{ b: 2000, d: 600, rY: 30 }],
+              [{ b: 0, d: 500, x: -105 }, { b: 500, d: 500, x: 230 }, { b: 1000, d: 500, y: -120 }, { b: 1500, d: 500, x: -70, y: 120 }, { b: 2600, d: 500, y: -80 }, { b: 3100, d: 900, y: 160, e: { y: 24 } }],
+              [{ b: 0, d: 1000, o: -0.4, rX: 2, rY: 1 }, { b: 1000, d: 1000, rY: 1 }, { b: 2000, d: 1000, rX: -1 }, { b: 3000, d: 1000, rY: -1 }, { b: 4000, d: 1000, o: 0.4, rX: -1, rY: -1 }]
+            ];
+
+            var jssor_3_options = {
+                $AutoPlay: true,
+                $Idle: 2000,
+                $CaptionSliderOptions: {
+                    $Class: $JssorCaptionSlideo$,
+                    $Transitions: jssor_3_SlideoTransitions,
+                    $Breaks: [
+                      [{ d: 2000, b: 1000 }]
+                    ]
+                },
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$
+                },
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$
+                }
+            };
+
+            var jssor_3_slider = new $JssorSlider$("jssor_3", jssor_3_options);
+
+
+            function ScaleSlider() {
+                var refSize = jssor_3_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 600);
+                    jssor_3_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+
+        });
+</script>
+<style>
+    .jssorb01 {
+        position: absolute;
+    }
+
+        .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            filter: alpha(opacity=70);
+            opacity: .7;
+            overflow: hidden;
+            cursor: pointer;
+            border: #000 1px solid;
+        }
+
+        .jssorb01 div {
+            background-color: gray;
+        }
+
+            .jssorb01 div:hover, .jssorb01 .av:hover {
+                background-color: #d3d3d3;
+            }
+
+        .jssorb01 .av {
+            background-color: #fff;
+        }
+
+        .jssorb01 .dn, .jssorb01 .dn:hover {
+            background-color: #555555;
+        }
+
+
+    .jssora02l, .jssora02r {
+        display: block;
+        position: absolute;
+        width: 55px;
+        height: 55px;
+        cursor: pointer;
+        background: url('/Template/img/a02.png') no-repeat;
+        overflow: hidden;
+    }
+
+    .jssora02l {
+        background-position: -3px -33px;
+    }
+
+    .jssora02r {
+        background-position: -63px -33px;
+    }
+
+    .jssora02l:hover {
+        background-position: -123px -33px;
+    }
+
+    .jssora02r:hover {
+        background-position: -183px -33px;
+    }
+
+    .jssora02l.jssora02ldn {
+        background-position: -3px -33px;
+    }
+
+    .jssora02r.jssora02rdn {
+        background-position: -63px -33px;
+    }
+
+    .jssora02l.jssora02lds {
+        background-position: -3px -33px;
+        opacity: .3;
+        pointer-events: none;
+    }
+
+    .jssora02r.jssora02rds {
+        background-position: -63px -33px;
+        opacity: .3;
+        pointer-events: none;
+    }
+</style>
