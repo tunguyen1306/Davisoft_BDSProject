@@ -16,7 +16,11 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public IQueryable<Entities.BDSTimeWork> GetIQueryableItems()
         {
-            return _db.Set<BDSTimeWork>();
+            var q = from a in _db.Set<BDSTimeWork>()
+                    join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
+                    from b in bs.DefaultIfEmpty()
+                    select a;
+            return q;
         }
 
         public IEnumerable<Entities.BDSTimeWork> GetAllItems(System.Linq.Expressions.Expression<Func<Entities.BDSTimeWork, object>> includeProperty)

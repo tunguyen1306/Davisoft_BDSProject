@@ -16,7 +16,11 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public IQueryable<Entities.BDSNewsType> GetIQueryableItems()
         {
-            return _db.Set<BDSNewsType>();
+            var q = from a in _db.Set<BDSNewsType>()
+                    join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
+                    from b in bs.DefaultIfEmpty()
+                    select a;
+            return q;
         }
 
         public IEnumerable<Entities.BDSNewsType> GetAllItems(System.Linq.Expressions.Expression<Func<Entities.BDSNewsType, object>> includeProperty)

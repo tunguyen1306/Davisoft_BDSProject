@@ -16,7 +16,11 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public IQueryable<Entities.BDSAccount> GetIQueryableItems()
         {
-            return _db.Set<BDSAccount>();
+            var q = from a in _db.Set<BDSAccount>()
+                    join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
+                    from b in bs.DefaultIfEmpty()
+                    select a;
+            return q;
         }
 
         public IEnumerable<Entities.BDSAccount> GetAllItems(System.Linq.Expressions.Expression<Func<Entities.BDSAccount, object>> includeProperty)

@@ -16,7 +16,11 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public IQueryable<Entities.BDSEvent> GetIQueryableItems()
         {
-            return _db.Set<BDSEvent>();
+            var q = from a in _db.Set<BDSEvent>()
+                    join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
+                    from b in bs.DefaultIfEmpty()
+                    select a;
+            return q;
         }
 
         public IEnumerable<Entities.BDSEvent> GetAllItems(System.Linq.Expressions.Expression<Func<Entities.BDSEvent, object>> includeProperty)

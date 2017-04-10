@@ -16,7 +16,11 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public IQueryable<Entities.BDSCareer> GetIQueryableItems()
         {
-            return _db.Set<BDSCareer>();
+            var q = from a in _db.Set<BDSCareer>()
+                    join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
+                    from b in bs.DefaultIfEmpty()
+                    select a;
+            return q;
         }
 
         public IEnumerable<Entities.BDSCareer> GetAllItems(System.Linq.Expressions.Expression<Func<Entities.BDSCareer, object>> includeProperty)

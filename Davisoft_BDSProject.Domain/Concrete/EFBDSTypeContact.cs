@@ -16,7 +16,11 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public IQueryable<Entities.BDSTypeContact> GetIQueryableItems()
         {
-            return _db.Set<BDSTypeContact>();
+            var q = from a in _db.Set<BDSTypeContact>()
+                    join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
+                    from b in bs.DefaultIfEmpty()
+                    select a;
+            return q;
         }
 
         public IEnumerable<Entities.BDSTypeContact> GetAllItems(System.Linq.Expressions.Expression<Func<Entities.BDSTypeContact, object>> includeProperty)

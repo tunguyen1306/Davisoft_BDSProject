@@ -16,7 +16,11 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public IQueryable<Entities.BDSLanguage> GetIQueryableItems()
         {
-            return _db.Set<BDSLanguage>();
+            var q = from a in _db.Set<BDSLanguage>()
+                    join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
+                    from b in bs.DefaultIfEmpty()
+                    select a;
+            return q;
         }
 
         public IEnumerable<Entities.BDSLanguage> GetAllItems(System.Linq.Expressions.Expression<Func<Entities.BDSLanguage, object>> includeProperty)

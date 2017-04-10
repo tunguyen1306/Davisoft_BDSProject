@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
+using Humanizer;
 
 namespace Davisoft_BDSProject.Domain.Concrete
 {
@@ -16,7 +17,11 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public IQueryable<Entities.BDSNew> GetIQueryableItems()
         {
-            return _db.Set<BDSNew>();
+            var q = from a in _db.Set<BDSNew>()
+                join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
+                from b in bs.DefaultIfEmpty()
+                select a;
+            return q;
         }
 
         public IEnumerable<Entities.BDSNew> GetAllItems(System.Linq.Expressions.Expression<Func<Entities.BDSNew, object>> includeProperty)
