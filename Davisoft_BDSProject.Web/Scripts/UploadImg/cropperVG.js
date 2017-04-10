@@ -2608,12 +2608,12 @@
     toggleDragModeOnDblclick: true,
 
 
-    minCanvasWidth: 288,
-    minCanvasHeight: 192,
-    minCropBoxWidth: 288,
-    minCropBoxHeight: 192,
-    minContainerWidth: 288,
-    minContainerHeight: 192,
+    minCanvasWidth: 240,
+    minCanvasHeight: 135,
+    minCropBoxWidth: 240,
+    minCropBoxHeight: 135,
+    minContainerWidth: 240,
+    minContainerHeight: 135,
 
     // Shortcuts of events
     build: null,

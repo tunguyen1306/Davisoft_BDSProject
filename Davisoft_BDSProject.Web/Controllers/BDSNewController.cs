@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.IO;
@@ -279,7 +280,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 
                 //string uploadFolder = picture.DirectoryPhysical;
 
-                string path = Server.MapPath("~/fileUpload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                string path = Server.MapPath("~/fileUpload/").Replace("adminbds.vangia.net", "webtuyendung.vangia.net") + DateTime.Now.Day + DateTime.Now.Month + "/";
                 // check for directory
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
