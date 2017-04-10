@@ -32,7 +32,7 @@
         "<div class=\"tools final \" >" +
         "<div onclick='Edit(this)'  title=\"Edit\" class=\"btn cusIconImg cusbtn cbtn-edit hidden\"><i class=\"glyphicon glyphicon-pencil\"></i></div>" +
         "<div onclick='DeleteUpload(this)' title=\"Delete\" class=\"btn cusIconImg cusbtn cusbtn-del\">" +
-    "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"18px\" height=\"18px\" viewBox=\"0 0 15.809 20\" enable-background=\"new 0 0 15.809 20\" xml:space=\"preserve\"><g>" +
+    "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"12px\" height=\"12px\" viewBox=\"0 0 15.809 20\" enable-background=\"new 0 0 15.809 20\" xml:space=\"preserve\"><g>" +
     "<path fill=\"#FFFFFF\" d=\"M14.444,2.354h-2.67V0.62c0-0.35-0.281-0.62-0.631-0.62c-0.034,0-0.057,0.012-0.067,0.022" +
     "C11.064,0.012,11.042,0,11.03,0H4.664c-0.349,0-0.62,0.27-0.62,0.62v1.735H1.364C0.597,2.354,0,2.952,0,3.718V5.95h1.183v12.698" +
     "C1.183,19.414,1.769,20,2.535,20h10.738c0.767,0,1.362-0.586,1.362-1.353V5.95h1.173V3.718C15.809,2.952,15.211,2.354,14.444,2.354" +
@@ -47,7 +47,7 @@
 
           "<button title=\"Zoom In\" data-option=\"-0.1\" data-method=\"zoom\" class=\"cusIconImg btn cusbtn\" type=\"button\">" +
             "<span title=\"\" data-toggle=\"tooltip\" class=\"docs-tooltip\" data-original-title=\"$().cropper(&quot;zoom&quot;, -0.1)\">" +
-              "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"width=\"18px\" height=\"18px\" viewBox=\"0 0 20 20.637\" enable-background=\"new 0 0 20 20.637\" xml:space=\"preserve\"><g><g>" +
+              "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"width=\"12px\" height=\"12px\" viewBox=\"0 0 20 20.637\" enable-background=\"new 0 0 20 20.637\" xml:space=\"preserve\"><g><g>" +
               "<path fill=\"#666766\" d=\"M19.186,20.608c-0.213,0-0.418-0.088-0.576-0.246l-5.834-5.834c-1.385,1.012-3.021,1.546-4.739,1.546    C3.605,16.074,0,12.469,0,8.037S3.605,0,8.037,0c4.431,0,8.037,3.605,8.037,8.037c0,1.986-0.736,3.894-2.077,5.381l5.768,5.778    c0.314,0.329,0.314,0.851,0,1.166C19.624,20.515,19.407,20.608,19.186,20.608z M8.037,1.647c-3.524,0-6.391,2.867-6.391,6.39    s2.867,6.391,6.391,6.391s6.39-2.867,6.39-6.391S11.561,1.647,8.037,1.647z\"/>" +
 		"<path fill=\"#666766\" d=\"M8.037,15.969c1.783,0,3.421-0.586,4.75-1.579l5.897,5.897c0.144,0.144,0.323,0.216,0.502,0.216    c0.18,0,0.371-0.072,0.503-0.216c0.275-0.275,0.275-0.729,0-1.017l-5.838-5.85c1.304-1.412,2.117-3.302,2.117-5.384    c0-4.366-3.553-7.931-7.931-7.931S0.105,3.671,0.105,8.037S3.659,15.969,8.037,15.969L8.037,15.969z M8.037,1.542    c3.577,0,6.496,2.907,6.496,6.496s-2.906,6.496-6.496,6.496c-3.577,0-6.496-2.907-6.496-6.496S4.448,1.542,8.037,1.542    L8.037,1.542z M8.037,1.542\"/>" +
 		"<rect fill=\"none\" width=\"19.997\" height=\"20.637\"/></g>" +
@@ -57,7 +57,7 @@
 "</svg></span> </button>" +
           "<button title=\"Zoom Out\" data-option=\"0.1\" data-method=\"zoom\" class=\"btn cusIconImg cusbtn\" type=\"button\">" +
             "<span title=\"\" data-toggle=\"tooltip\" class=\"docs-tooltip\" data-original-title=\"$().cropper(&quot;zoom&quot;, 0.1)\">" +
-             "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"18px\" height=\"18px\" viewBox=\"0 0 20 20.637\" enable-background=\"new 0 0 20 20.637\" xml:space=\"preserve\"><g><g>\"+" +
+             "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"12px\" height=\"12px\" viewBox=\"0 0 20 20.637\" enable-background=\"new 0 0 20 20.637\" xml:space=\"preserve\"><g><g>\"+" +
 		"<path fill=\"#666766\" d=\"M19.186,20.608c-0.213,0-0.418-0.088-0.576-0.246l-5.834-5.834c-1.385,1.012-3.021,1.546-4.739,1.546    C3.605,16.074,0,12.469,0,8.037S3.605,0,8.037,0c4.431,0,8.037,3.605,8.037,8.037c0,1.986-0.736,3.894-2.077,5.381l5.768,5.778    c0.314,0.329,0.314,0.851,0,1.166C19.624,20.515,19.407,20.608,19.186,20.608z M8.037,1.647c-3.524,0-6.391,2.867-6.391,6.39    s2.867,6.391,6.391,6.391s6.39-2.867,6.39-6.391S11.561,1.647,8.037,1.647z\"/>" +
 		"<path fill=\"#666766\" d=\"M8.037,15.969c1.783,0,3.421-0.586,4.75-1.579l5.897,5.897c0.144,0.144,0.323,0.216,0.502,0.216    c0.18,0,0.371-0.072,0.503-0.216c0.275-0.275,0.275-0.729,0-1.017l-5.838-5.85c1.304-1.412,2.117-3.302,2.117-5.384    c0-4.366-3.553-7.931-7.931-7.931S0.105,3.671,0.105,8.037S3.659,15.969,8.037,15.969L8.037,15.969z M8.037,1.542    c3.577,0,6.496,2.907,6.496,6.496s-2.906,6.496-6.496,6.496c-3.577,0-6.496-2.907-6.496-6.496S4.448,1.542,8.037,1.542    L8.037,1.542z M8.037,1.542\"/>" +
 		"<rect fill=\"none\" width=\"19.997\" height=\"20.637\"/>	</g>" +
@@ -68,7 +68,7 @@
 
          "<button title=\"Move\" data-option=\"move\" data-method=\"setDragMode\" class=\"btn cusIconImg\" type=\"button\">" +
         " <span title=\"\" data-toggle=\"tooltip\" class=\"docs-tooltip\" data-original-title=\"$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)\">" +
-        " <svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"width=\"18px\" height=\"18px\" viewBox=\"0 0 12 12\" enable-background=\"new 0 0 12 12\" xml:space=\"preserve\"><g>" +
+        " <svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"width=\"12px\" height=\"12px\" viewBox=\"0 0 12 12\" enable-background=\"new 0 0 12 12\" xml:space=\"preserve\"><g>" +
 	"<path fill=\"#666766\" d=\"M11.969,5.848l-0.086-0.129l-1.602-1.602c-0.152-0.156-0.41-0.156-0.563,0c-0.156,0.156-0.156,0.41,0,0.567l0.914,0.918H6.398V1.367l0.918,0.914c0.156,0.157,0.41,0.157,0.566,0c0.156-0.156,0.156-0.41,0-0.562L6.277,0.113L6.152,0.031L6,0" +
     "L5.848,0.031L5.723,0.113L4.117,1.719c-0.156,0.152-0.156,0.406,0,0.562c0.156,0.157,0.41,0.157,0.567,0l0.918-0.914v4.235H1.367" +
     "l0.914-0.918c0.157-0.157,0.157-0.411,0-0.567c-0.156-0.156-0.41-0.156-0.562,0L0.113,5.723L0.031,5.848L0,6l0.031,0.152" +
@@ -82,7 +82,7 @@
         "<button type=\"button\" class=\"btn cusIconImg\" data-method=\"rotate\" data-option=\"90\" title=\"Rotate Right\">" +
                             "<span class=\"docs-tooltip\" data-toggle=\"tooltip\" title=\"$().cropper(&quot;rotate&quot;, 90)\">" +
                                "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"" +
-    "width=\"18px\" height=\"18px\" viewBox=\"0 0 18.728 20\" enable-background=\"new 0 0 18.728 20\" xml:space=\"preserve\">" +
+    "width=\"12px\" height=\"12px\" viewBox=\"0 0 18.728 20\" enable-background=\"new 0 0 18.728 20\" xml:space=\"preserve\">" +
     "<g><g><g>" +
     "<path fill=\"#666766\" d=\"M9.345,20c0.41,0,0.824-0.027,1.233-0.081c2.479-0.324,4.685-1.595,6.209-3.578" +
     "c1.484-1.932,2.152-4.329,1.881-6.749c-0.045-0.393-0.375-0.689-0.77-0.689c-0.029,0-0.059,0.001-0.088,0.005" +
@@ -115,12 +115,12 @@
                          "<button onclick='Ok(this)' title=\"Crop\" data-method=\"getCroppedCanvas\" class=\"btn cusIconImg cbtn-info-ok\" type=\"button\">" +
         "<span title=\"\" data-toggle=\"tooltip\" class=\"docs-tooltip\" data-original-title=\"$().cropper(&quot;crop&quot;)\">" +
 
-"<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"18px\" height=\"18px\" viewBox=\"0 0 27 20.168\" enable-background=\"new 0 0 27 20.168\" xml:space=\"preserve\">" +
+"<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"12px\" height=\"12px\" viewBox=\"0 0 27 20.168\" enable-background=\"new 0 0 27 20.168\" xml:space=\"preserve\">" +
 "<polyline fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\" points=\" 3.5,9.837 10.331,16.668 23.5,3.5 \"/>" +
 "</svg>" +
 "</span></button>" +
                          "<div onclick='DeleteUpload(this)' title=\"Delete\" class=\"btn cusIconImg cusbtn cusbtn-del\">" +
-    "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"18px\" height=\"18px\" viewBox=\"0 0 15.809 20\" enable-background=\"new 0 0 15.809 20\" xml:space=\"preserve\"><g>" +
+    "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"12px\" height=\"12px\" viewBox=\"0 0 15.809 20\" enable-background=\"new 0 0 15.809 20\" xml:space=\"preserve\"><g>" +
     "<path fill=\"#FFFFFF\" d=\"M14.444,2.354h-2.67V0.62c0-0.35-0.281-0.62-0.631-0.62c-0.034,0-0.057,0.012-0.067,0.022" +
     "C11.064,0.012,11.042,0,11.03,0H4.664c-0.349,0-0.62,0.27-0.62,0.62v1.735H1.364C0.597,2.354,0,2.952,0,3.718V5.95h1.183v12.698" +
     "C1.183,19.414,1.769,20,2.535,20h10.738c0.767,0,1.362-0.586,1.362-1.353V5.95h1.173V3.718C15.809,2.952,15.211,2.354,14.444,2.354" +

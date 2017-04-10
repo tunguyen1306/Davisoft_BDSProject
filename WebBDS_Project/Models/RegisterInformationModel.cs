@@ -9,7 +9,9 @@ namespace WebBDS_Project.Models
     {
         public bdspersonalinformation TblBdspersonalinformation { get; set; }
         public bdsaccount TbBdsAdcount { get; set; }
+        public List<bdsaccount> ListBdsAdcount { get; set; }
         public bdsemployerinformation TblBdsemployerinformation { get; set; }
+        public List< bdsemployerinformation> ListBdsemployerinformation { get; set; }
         public List<bdsscope> ListBdsScopes { get; set; }
         public List<state> ListStates { get; set; }
         public List<statetext> ListStatetexts { get; set; }

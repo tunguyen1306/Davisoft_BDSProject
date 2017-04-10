@@ -4,7 +4,7 @@
 }
 @model WebBDS_Project.Models.RegisterInformationModel
 <!-- Content -->  
-  
+  @using System.Configuration
 
 @using (Html.BeginForm("AdvertCompany", "Adverts"))
 {
@@ -215,7 +215,13 @@
                         <div class="row-right">
                             @Html.DropDownListFor(m => m.tblbdsnew.IdLanguage, new SelectList(Model.Listbdslanguage, "Id", "Name"), new { @class = "dropdown" })
                         </div>
-                    </div>
+                    </div><div class="row">
+
+    <label>Website công ty</label>
+    <div class="row-right">
+        @Html.TextBoxFor(m => m.tblbdsnew.WebSiteCompany, new { @class = "input1 ", @placeholder = "Nhập website công ty" })
+    </div>
+</div>
                     <h4>Loại tin đăng và lịch đăng tin</h4>
                     <label>Loaị tin rao<span class="required">*</span></label>
 
@@ -433,42 +439,49 @@
             </div>
         </div>
         <div class="grid_3 omega main_right">
+            @foreach (var item in Model.ListBdsemployerinformation.Where(x=>x.IdAccount==int.Parse(Session["IdUser"].ToString())))
+            {
+                <div class="right_col">
+                    <h3>Trung tâm quản lý</h3>
+                    <div class="box_info">
+                        <div><strong></strong></div>
+                        <div class="logo_image">
+                            <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" alt="image">
+                        </div>
+                      @foreach (var itemAcount in Model.ListBdsAdcount.Where(x=>x.Id== int.Parse(Session["IdUser"].ToString())))
+                      {
+                        <p>
+                            <em>Mã Khách Hàng</em>: <span class="color3"><strong>TD00291</strong></span>
+                            <br>
+                            -  Số tiền TK: <span class="color4">@itemAcount.Money</span> VNĐ
+                            <br>
+                            -  Điểm tích luỹ: <span class="color4">@itemAcount.Point</span> Điểm
+                            <br>
+                            -  Bạn có thể xem : <span class="color4">33</span> Hồ sơ
 
-            <div class="right_col">
-                <h3>Trung tâm quản lý</h3>
-                <div class="box_info">
-                    <div><strong>Công Ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589</strong></div>
-                    <div class="logo_image">
-                        <img src="~/Template/images/tl.png" alt="image">
+                        </p>
+                      }
+                        
+                        <p>
+
+                            <a class="grid_6" href="naptien.htm">Nộp tiền</a>
+                            <a class="grid_6 omega blue" href="">Mua điểm</a>
+                        </p>
+                        <ul>
+                            <li><a href=""><i class="fa fa-search" aria-hidden="true"></i>Tìm hồ sơ ứng viên</a></li>
+                            <li><a href=""><i class="fa fa-user" aria-hidden="true"></i>Taì khoản</a></li>
+                            <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i>Đăng tin tuyển dụng</a></li>
+                            <li><a href=""><i class="fa fa-edit" aria-hidden="true"></i>Quản lý tuyển dụng</a></li>
+                            <li><a href=""><i class="fa fa-download" aria-hidden="true"></i>Hồ sơ đã lưu</a></li>
+                            <li><a href=""><i class="fa fa-users" aria-hidden="true"></i>Ứng viên gửi hồ sơ</a></li>
+                            <li style="margin-top: 20px;"><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></li>
+                        </ul>
                     </div>
-                    <p>
-                        <em>Mã Khách Hàng</em>: <span class="color3"><strong>TD00291</strong></span>
-                        <br>
-                        -  Số tiền TK: <span class="color4">3.250.000</span> VNĐ
-                        <br>
-                        -  Điểm tích luỹ: <span class="color4">100</span> Điểm
-                        <br>
-                        -  Bạn có thể xem : <span class="color4">33</span> Hồ sơ
-
-                    </p>
-                    <p>
-
-                        <a class="grid_6" href="naptien.htm">Nộp tiền</a>
-                        <a class="grid_6 omega blue" href="">Mua điểm</a>
-                    </p>
-                    <ul>
-                        <li><a href=""><i class="fa fa-search" aria-hidden="true"></i>Tìm hồ sơ ứng viên</a></li>
-                        <li><a href=""><i class="fa fa-user" aria-hidden="true"></i>Taì khoản</a></li>
-                        <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i>Đăng tin tuyển dụng</a></li>
-                        <li><a href=""><i class="fa fa-edit" aria-hidden="true"></i>Quản lý tuyển dụng</a></li>
-                        <li><a href=""><i class="fa fa-download" aria-hidden="true"></i>Hồ sơ đã lưu</a></li>
-                        <li><a href=""><i class="fa fa-users" aria-hidden="true"></i>Ứng viên gửi hồ sơ</a></li>
-                        <li style="margin-top: 20px;"><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></li>
-                    </ul>
                 </div>
-            </div>
 
 
+            }
+           
 
 
 
@@ -514,30 +527,9 @@
 
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
-        var t = 0;
-        if ($('#tblbdsnew_Title').val() == "")
-        {
-            toastr.error('Vui lòng nhập Tiêu đề!');
-            t++;
-        } if ($('#tblbdsnew_Bonus').val() == "") {
-              toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
-              t++;
-          } if ($('#tblbdsnew_DesCompany').val() == "") {
-                toastr.error('Vui lòng nhập Giới thiệu công ty!');
-                t++;
-            } if ($('#tblbdsnew_DesWork').val() == "") {
-                  toastr.error('Vui lòng nhập Mô tả công việc!');
-                  t++;
-              } if ($('#tblbdsnew_Benefit').val() == "") {
-                    toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
-                    t++;
-              } if ($('#tblCaptCha_Captcha').val() == "") {
-                    toastr.error('Vui lòng nhập Mã an toàn!');
-                    t++;
-                }
-        if (t == 0) {
+       
             $('#submitbutton').parents("form").submit();
-        }
+        
 
     });
     
@@ -557,7 +549,7 @@
 
 
         var options = {
-            aspectRatio: 1 / 1,
+            aspectRatio: 16/9,
             preview: '.img-preview',
             crop: function (e) {
                 $dataX.val(Math.round(e.x));
@@ -721,53 +713,80 @@
     }
 
     function UploadImg(obj) {
+        var t = 0;
+        if ($('.dz-preview').size() == 0) {
 
-        $('.cropper-container img').css({ "transform": "none" });
-        $('.btnAdd1').text('Đang xữ lý');
-        $('.btnAdd1').addClass('disabled');
-        uploadtoserver();
-        var totalitem = $('.dz-preview').size();
-        $.each($('.dz-preview'), function (i, o) {
-            $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
-            var image = $(o).find('#cusimg');
-            var valuerotate = $(o).find('#dataRotate').val();
-            var dataX = $(o).find('#dataX').val();
-            var dataY = $(o).find('#dataY').val();
-            var dataHeight = $(o).find('#dataHeight').val();
-            var dataWidth = $(o).find('#dataWidth').val();
-            var right = $(window).width() - dataX - image.width();
-            var bottom = $(window).height() - dataY - image.height();
-            var dataimg = $(o).find('#dataimg').text();
-            var dataname = $(o).find('.cusinput').val();
-            var idpic = $(o).find('#cusimg').attr('rel');
+            toastr.error('Vui lòng chọn ít nhất một hình!');
+            t++;
+        }
+        if ($('#tblbdsnew_Title').val() == "") {
+            toastr.error('Vui lòng nhập Tiêu đề!');
+            t++;
+        } if ($('#tblbdsnew_Bonus').val() == "") {
+            toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
+            t++;
+        } if ($('#tblbdsnew_DesCompany').val() == "") {
+            toastr.error('Vui lòng nhập Giới thiệu công ty!');
+            t++;
+        } if ($('#tblbdsnew_DesWork').val() == "") {
+            toastr.error('Vui lòng nhập Mô tả công việc!');
+            t++;
+        } if ($('#tblbdsnew_Benefit').val() == "") {
+            toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
+            t++;
+        } if ($('#tblCaptCha_Captcha').val() == "") {
+            toastr.error('Vui lòng nhập Mã an toàn!');
+            t++;
+        }
+        if (t==0) {
+            $('.cropper-container img').css({ "transform": "none" });
+            $('.btnAdd1').text('Đang xữ lý');
+            $('.btnAdd1').addClass('disabled');
+            uploadtoserver();
+            var totalitem = $('.dz-preview').size();
+            $.each($('.dz-preview'), function (i, o) {
+                $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
+                var image = $(o).find('#cusimg');
+                var valuerotate = $(o).find('#dataRotate').val();
+                var dataX = $(o).find('#dataX').val();
+                var dataY = $(o).find('#dataY').val();
+                var dataHeight = $(o).find('#dataHeight').val();
+                var dataWidth = $(o).find('#dataWidth').val();
+                var right = $(window).width() - dataX - image.width();
+                var bottom = $(window).height() - dataY - image.height();
+                var dataimg = $(o).find('#dataimg').text();
+                var dataname = $(o).find('.cusinput').val();
+                var idpic = $(o).find('#cusimg').attr('rel');
 
-            document.getElementsByName('cfile')[0].value = dataimg;
-            document.getElementsByName('nameImg')[0].value = dataname;
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("SaveImg", "Adverts")",
-                data: { idProducts:99999999, index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
+                document.getElementsByName('cfile')[0].value = dataimg;
+                document.getElementsByName('nameImg')[0].value = dataname;
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SaveImg", "Adverts")",
+                    data: { idProducts:99999999, index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
 
-            success: function (data) {
-                $(o).find('#cusimg').attr('rel', data.d);
+                success: function (data) {
+                    $(o).find('#cusimg').attr('rel', data.d);
 
-                totalitem--;
+                    totalitem--;
 
-                if (totalitem == 0) {
-                    $('.btnAdd1').text('Thêm');
-                    $('.btnAdd1').removeClass('disabled');
-                    $('.btnAdd').click();
+                    if (totalitem == 0) {
+                        $('.btnAdd1').text('Đăng Tin');
+                        $('.btnAdd1').removeClass('disabled');
+                        $('.btnAdd').click();
+                    }
+
+                },
+                error: function (e) {
+                    toastr.error('Vui lòng chọn lại hình ảnh');
                 }
-
-            },
-            error: function (e) {
-                toastr.error('Vui lòng chọn lại hình ảnh');
-            }
+            });
         });
-    });
+            return true;
+        }
+        
 
 
-    return true;
     }
 
 </script>

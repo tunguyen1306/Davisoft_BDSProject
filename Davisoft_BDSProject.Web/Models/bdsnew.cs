@@ -53,7 +53,7 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<decimal> MoneyInDay { get; set; }
         public Nullable<decimal> TotalMoney { get; set; }
         public string UrlImage { get; set; }
-        public Nullable<int> IdNewsTypeCuurent { get; set; }
+        public Nullable<int> IdTypeNewsCuurent { get; set; }
         public Nullable<System.DateTime> DateReup { get; set; }
         public Nullable<int> CountReup { get; set; }
         public Nullable<int> Status { get; set; }

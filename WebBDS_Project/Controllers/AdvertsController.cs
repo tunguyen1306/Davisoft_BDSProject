@@ -45,11 +45,26 @@ namespace WebBDS_Project.Controllers
                 Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
                 tblCaptCha = cap,
-                tblbdsnew= bdsNew
+                tblbdsnew= bdsNew,
+                ListBdsemployerinformation=db.bdsemployerinformations.ToList(),
+                ListBdsAdcount = db.bdsaccounts.ToList()
 
 
             };
             return View(registerModel);
+        }
+        [HttpPost]
+        public ActionResult CheckCapcha(RegisterInformationModel create)
+        {
+            if (Session["Captcha"] == null || Session["Captcha"].ToString() != create.tblCaptCha.Captcha)
+            {
+                return Json(new { error = 0 });
+            }
+            else
+            {
+                return Json(new { error = 1 });
+            }
+            return null;
         }
         [HttpPost]
         public ActionResult AdvertCompany(RegisterInformationModel create)
@@ -57,13 +72,47 @@ namespace WebBDS_Project.Controllers
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != create.tblCaptCha.Captcha)
             {
                 ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
-                return RedirectToAction("AdvertCompany", "Adverts");
+                var dataCity = from data in db.states
+                               join datatext in db.statetexts on data.name_id equals datatext.id
+                               where datatext.language_id == "vi"
+                               select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+                CaptCha cap = new CaptCha();
+                bdsnew bdsNew = new bdsnew();
+                var registerModel = new RegisterInformationModel
+                {
+                    ListBdsScopes = db.bdsscopes.ToList(),
+                    ListMarriea = db.bdsmarriages.ToList(),
+                    ListSalary = db.bdssalaries.ToList(),
+                    ListDucation = db.bdseducations.ToList(),
+                    ListBdscareer = db.bdscareers.ToList(),
+                    ListTimework = db.bdstimeworks.ToList(),
+                    Listbdslanguage = db.bdslanguages.ToList(),
+                    Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                    ListGeoModel = dataCity.ToList(),
+                    tblCaptCha = cap,
+                    tblbdsnew = bdsNew
+
+
+                };
+                var listPicture = db.bdspictures.Where(x => x.advert_id == 99999999);
+                foreach (var item in listPicture)
+                {
+                    var pic = db.bdspictures.Find(item.id);
+                    db.bdspictures.Remove(pic);
+                }
+                
+                db.SaveChanges();
+                return View(registerModel);
             }
             else
             {
-               
+                create.tblbdsnew.IdAcount=int.Parse( Session["IdUser"].ToString());
                 create.tblbdsnew.FromDeadline = DateTime.Now;
                 create.tblbdsnew.FromCreateNews = DateTime.Now;
+                create.tblbdsnew.CreateDate = DateTime.Now;
+                // create.tblbdsnew.CreateUser = Session["EmailUser"].ToString();
+                create.tblbdsnew.Active = 1;
+
                 db.bdsnews.Add(create.tblbdsnew);
                 db.SaveChanges();
 
