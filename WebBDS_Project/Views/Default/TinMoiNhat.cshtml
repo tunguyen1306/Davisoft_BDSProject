@@ -27,10 +27,13 @@
        count = query.Count();
        foreach (var news in ListNews)
        {
-           <li>
+             var account = db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
+           if (account != null)
+           {
+                <li>
             <div class="grid_9">
                 <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.Id})" class="image_2">
-                    <img width="50" src="@ConfigurationManager.AppSettings["UrlImage"]@(db.bdsemployerinformations.Where(T=>T.IdAccount==news.IdAcount).FirstOrDefault().UrlImage.ToString().Split('_')[0])/@(db.bdsemployerinformations.Where(T=>T.IdAccount==news.IdAcount).FirstOrDefault().UrlImage)" alt="2">
+                    <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] + account.UrlImage):"img.png"))" alt="2">
                     <p class="vip">
                         <i class="fa fa-star"></i>
                         <span>VIP</span>
@@ -46,6 +49,8 @@
                 <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triêu </p>
             </div>
         </li>
+           }
+          
            
        }
    }
@@ -59,7 +64,7 @@
                 var p = Math.Ceiling((double)count / view);
                 for (int i = 1; i <= (int)p; i++)
                 {
-                    <a data-ref='@(page != i ? "" + Url.Action("TinMoiNhat", "Default", new { tt = ViewBag.tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadMNPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
+                    <a data-ref='@(page != i ? "" + Url.Action("TinMoiNhat", "Default", new { tt = tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadMNPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
                 }
             }
             <a class="nextPage" onclick="loadMNPageFromNext(this);">Tiếp</a>
@@ -79,7 +84,7 @@
 <script>
     
     function loadMNFilterPageFrom(el) {
-        var url = '@Url.Action("TinMoiNhat", "Default", new {  from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
+        var url = '@Url.Action("TinMoiNhat", "Default", new { tt=tt, from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
         if (url != "") {
             $.get(url, function (data) {
                 $(el).parents('.group_work').eq(0).find('ul.list_work_2.green').eq(0).html($(data).html());

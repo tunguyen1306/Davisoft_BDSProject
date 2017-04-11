@@ -23,10 +23,13 @@
         count = query.Count();
         foreach (var news in ListNews)
         {
-            <li>
+            var account = db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
+            if (account!=null)
+            {
+  <li>
                 <div class="grid_3">
                     <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.Id})">
-                        <img width="120" src="@ConfigurationManager.AppSettings["UrlImage"]@(db.bdsemployerinformations.Where(T=>T.IdAccount==news.IdAcount).FirstOrDefault().UrlImage.ToString().Split('_')[0])/@(db.bdsemployerinformations.Where(T=>T.IdAccount==news.IdAcount).FirstOrDefault().UrlImage)" alt="1">
+                        <img width="120" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] + account.UrlImage):"img.png"))" alt="1">
                         <p class="vip">
                             <i class="fa fa-star"></i>
                             <span>VIP</span>
@@ -42,6 +45,8 @@
                     </div>
                 </div>
             </li>
+            }
+           
         }
     }
 
@@ -54,7 +59,7 @@
     var p = Math.Ceiling((double)count / view);
     for (int i = 1; i <= (int)p; i++)
     {
-        <a data-ref='@(page != i ? "" + Url.Action("TinDacBiet", "Default", new { tt = ViewBag.tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
+        <a data-ref='@(page != i ? "" + Url.Action("TinDacBiet", "Default", new { tt=tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
     }
 }
             <a class="nextPage" onclick="loadPageFromNext(this);">Tiếp</a>
@@ -71,7 +76,7 @@
 </style>
 <script>
     function loadFilterPageFrom(el) {
-        var url = '@Url.Action("TinDacBiet", "Default", new {  from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
+        var url = '@Url.Action("TinDacBiet", "Default", new { tt = tt, from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
         if (url != "") {
             $.get(url, function (data) {
                 $(el).parents('.group_work').eq(0).find('ul.list_work').eq(0).html($(data).html());
