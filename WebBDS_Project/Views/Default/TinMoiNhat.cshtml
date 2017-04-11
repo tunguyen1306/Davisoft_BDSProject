@@ -84,11 +84,16 @@
 <script>
     
     function loadMNFilterPageFrom(el) {
-        var url = '@Url.Action("TinMoiNhat", "Default", new { tt=tt, from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
+        var url = '@Url.Action("TinMoiNhat", "Default", new { from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
         if (url != "") {
+            $(el).parents('.group_work').find('.loading').show();
+            $(el).parents('.group_work').find('.loading_icon').show();
             $.get(url, function (data) {
-                $(el).parents('.group_work').eq(0).find('ul.list_work_2.green').eq(0).html($(data).html());
-
+                //$(el).parents('.group_work').eq(0).find('ul.list_work_2.green').eq(0).html($(data).html());
+                var elP = $(el).parents('.group_work').eq(0).find('ul.list_work_2.green').eq(0);
+                elP.html($(data).html());
+                elP.parents('.group_work').find('.loading').eq(0).hide();
+                elP.parents('.group_work').find('.loading_icon').eq(0).hide();
             });
         }
 
@@ -96,8 +101,15 @@
     function loadMNPageFrom(el) {
         var url = $(el).attr('data-ref');
         if (url != "") {
+            $(el).parents('.group_work').find('.loading').show();
+            $(el).parents('.group_work').find('.loading_icon').show();
             $.get(url, function (data) {
-                $(el).parents('ul.list_work_2.green').eq(0).html($(data).html());
+                //$(el).parents('ul.list_work_2.green').eq(0).html($(data).html());
+                var elP = $(el).parents('ul.list_work_2.green').eq(0);
+                elP.html($(data).html());
+
+                elP.parents('.group_work').find('.loading').eq(0).hide();
+                elP.parents('.group_work').find('.loading_icon').eq(0).hide();
 
             });
         }

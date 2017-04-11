@@ -125,8 +125,14 @@
                             </ul>
                         </div>
                      
-                        <div class="group_work">
-                            <div class="header_text">
+                        <div class="group_work" style="position: relative">
+                           
+                             <div class="loading_icon" style="position: absolute; z-index: 11;left: 50%;top: 50%;display: none">
+                                <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-reload" ><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="rotate(11.9999 50 50)"><path d="M50 15A35 35 0 1 0 74.787 25.213" fill="none" stroke="#de3039" stroke-width="12px"></path><path d="M50 0L50 30L66 15L50 0" fill="#de3039"></path><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"></animateTransform></g></svg>
+                            </div>
+                            <div class="loading" style="left: 0px; top: 0px;right:0px;bottom:0px;position:absolute;background-color: gray;opacity: 0.5;z-index: 10;display: none"></div>
+                           
+                             <div class="header_text">
                                 <h3><span><i class="fa fa-list-ul"></i>Việc làm Bất Động Sản hấp dẫn</span></h3>
                                 <div class="search_location">
                                     Tìm theo khu vực
@@ -141,7 +147,7 @@
                                     </select>
                                 </div>
                             </div>
-                           @Html.Action("TinDacBiet", new { tt="", from=0,view=12,page=1})
+                            @Html.Action("TinDacBiet", new { tt="", from=0,view=12,page=1})
                         </div>
 
 
@@ -150,7 +156,13 @@
 
 
                        
-                        <div class="group_work">
+                        <div class="group_work" style="position: relative">
+
+                            <div class="loading_icon" style="position: absolute; z-index: 11;left: 50%;top: 50%;display: none">
+                                <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-reload"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="rotate(11.9999 50 50)"><path d="M50 15A35 35 0 1 0 74.787 25.213" fill="none" stroke="#de3039" stroke-width="12px"></path><path d="M50 0L50 30L66 15L50 0" fill="#de3039"></path><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"></animateTransform></g></svg>
+                            </div>
+                            <div class="loading" style="left: 0px; top: 0px;right:0px;bottom:0px;position:absolute;background-color: gray;opacity: 0.5;z-index: 10;display: none"></div>
+
                             <div class="header_text">
                                 <h3><span><i class="fa fa-list-ul"></i>Nhà tuyển dụng tiêu biểu</span></h3>
                                 <div class="search_location">
@@ -175,7 +187,13 @@
                         
                         
                         
-                        <div class="group_work">
+                        <div class="group_work" style="position: relative">
+
+                            <div class="loading_icon" style="position: absolute; z-index: 11;left: 50%;top: 50%;display: none">
+                                <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-reload"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="rotate(11.9999 50 50)"><path d="M50 15A35 35 0 1 0 74.787 25.213" fill="none" stroke="#de3039" stroke-width="12px"></path><path d="M50 0L50 30L66 15L50 0" fill="#de3039"></path><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"></animateTransform></g></svg>
+                            </div>
+                            <div class="loading" style="left: 0px; top: 0px;right:0px;bottom:0px;position:absolute;background-color: gray;opacity: 0.5;z-index: 10;display: none"></div>
+
                             <div class="header_text">
                                 <h3><span><i class="fa fa-list-ul"></i>Việc làm bất động sản mới</span></h3>
                                 <div class="search_location">
@@ -197,18 +215,24 @@
                             
                             @Html.Action("TinMoiNhat", new { tt = "", from = 0, view = 5, page = 1 })
                         </div>
-                        <div class="group_work mg0">
+                        <div class="group_work mg0" style="position: relative">
+
+                            <div class="loading_icon" style="position: absolute; z-index: 11;left: 50%;top: 50%;display: none">
+                                <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-reload"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="rotate(11.9999 50 50)"><path d="M50 15A35 35 0 1 0 74.787 25.213" fill="none" stroke="#de3039" stroke-width="12px"></path><path d="M50 0L50 30L66 15L50 0" fill="#de3039"></path><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"></animateTransform></g></svg>
+                            </div>
+                            <div class="loading" style="left: 0px; top: 0px;right:0px;bottom:0px;position:absolute;background-color: gray;opacity: 0.5;z-index: 10;display: none"></div>
+
                             <div class="header_text">
                                 <h3><span><i class="fa fa-list-ul"></i>Kênh nhà tuyển dụng</span></h3>
                                 <div class="search_location">
                                     Tìm theo khu vực 
-                                             <select class="dropdown" tabindex="7">
-                                                 <option value="1">Toàn quốc</option>
-                                                 <option value="2">Option 2</option>
-                                                 <option value="3">Option 3</option>
-                                                 <option value="4">Option 4</option>
-                                                 <option value="5">Option 5</option>
-                                             </select>
+                                    <select class="dropdown" tabindex="7">
+                                        <option value="1">Toàn quốc</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                    </select>
                                 </div>
                             </div>
                             <ul class="last_list">
