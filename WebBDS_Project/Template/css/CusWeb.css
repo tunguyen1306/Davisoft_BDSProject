@@ -249,3 +249,34 @@ tr:nth-child(even) {
     padding-bottom: 30px;
     margin: 10px 0 10px 0;
   }
+  .cus-h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    background: #de3039;
+    text-align: center;
+    color: #fff;
+    padding: 5px 0 4px;
+    line-height: 24px;
+    width: 100%;
+    font-weight:bold;
+}
+  .btLogin{
+      background: #f39f18;
+    float: right;
+    color: #fff;
+    border: none;
+    padding: 8px 11px;
+    font-weight: bold;
+    margin-top: 6px;
+    line-height: 17px;
+    border-radius: 2px;
+  }
+  .cus-listnew-login li{
+      padding:30px;
+  }
+  .cus-a-login{
+          color: #09C;
+    padding: 0;
+    margin: 0;
+    line-height: 29px;
+  }

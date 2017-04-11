@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebBDS_Project.Models;
@@ -189,6 +191,50 @@ namespace WebBDS_Project.Controllers
                  return Json(new { result = 0 });
              }
             
+        }
+        public ActionResult ForgetPass()
+        {
+            return View();
+
+        }
+        [HttpPost, ActionName("ForgetPass1")]
+        public ActionResult ForgetPass1(string email)
+        {
+            var augen = Guid.NewGuid();
+            var newpass = augen.ToString().Substring(0, 8);
+            var idAcount = db.bdsaccounts.FirstOrDefault(x=>x.Email==email);
+            if (idAcount!=null)
+            {
+                var tblAcount = db.bdsaccounts.Find(idAcount.Id);
+                tblAcount.PassWord = newpass;
+                db.Entry(tblAcount).State = EntityState.Modified;
+                db.SaveChanges();
+                var smtp = new SmtpClient();
+
+                var message = new MailMessage()
+                {
+                    BodyEncoding = new UTF8Encoding(),
+                    Subject = "Mail nhận mật khẩu mới",
+                    IsBodyHtml = true
+                };
+                smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
+                smtp.Credentials = new System.Net.NetworkCredential("tien131091@gmail.com", "Doilanhuthe1");
+
+                message.Body = newpass;
+                message.To.Add(email);
+
+                smtp.Send(message);
+
+
+
+                return Json(new { result=1});
+            }
+            else
+            {
+                return Json(new { result = 0 });
+            }
+           
+
         }
     }
 }

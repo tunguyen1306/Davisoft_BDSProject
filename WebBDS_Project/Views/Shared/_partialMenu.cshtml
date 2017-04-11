@@ -1,4 +1,6 @@
-﻿              <div class="nav_section">
+﻿@model IEnumerable< WebBDS_Project.Models.bdscareer>
+
+              <div class="nav_section">
                     <div class="container clearfix">
                         <!-- Nav -->
                         <div class="grid_12 mg0">
@@ -7,27 +9,13 @@
                                     <li>
                                         <a href="" class="active">Trang chủ</a>
                                     </li>
-                                    <li>
-                                        <a href="">Nhân viên kinh doanh</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Quản lý</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Văn phòng</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Thẩm định</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Marketing</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Pháp lý</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Tele Sales</a>
-                                    </li>
+                                   
+                                    @foreach (var item in Model)
+                                    {
+                                        <li>
+                                            <a href="">@item.Name</a>
+                                        </li>
+                                    }
                                     <li class="spec">
                                         <a href=""><i class="fa fa-file-text-o"></i>Bảng giá</a>
                                     </li>

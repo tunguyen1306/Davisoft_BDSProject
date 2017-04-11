@@ -378,6 +378,9 @@
     <Compile Include="Models\bdseducation.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bdsemper.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\bdsemployerinformation.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>

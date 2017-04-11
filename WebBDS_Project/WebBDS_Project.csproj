@@ -501,6 +501,7 @@
     <Content Include="Views\Register\RegisterEmployee.cshtml" />
     <Content Include="Views\Shared\_partialManagerCenter.cshtml" />
     <Content Include="Views\Shared\_partialMenu.cshtml" />
+    <Content Include="Views\Management\ForgetPass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
