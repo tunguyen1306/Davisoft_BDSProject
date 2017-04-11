@@ -1756,6 +1756,10 @@
     <Content Include="Display\lib\multi-select\img\switch.gif" />
     <Content Include="Display\lib\multi-select\js\jquery.multi-select.js" />
     <Content Include="Display\lib\multi-select\js\jquery.quicksearch.js" />
+    <Content Include="fileUpload\104\104_kWRZnAMcT0OH-ca45tmywA_1.jpg" />
+    <Content Include="fileUpload\104\104_kWRZnAMcT0OH-ca45tmywA_2.jpg" />
+    <Content Include="fileUpload\104\104_NQ4g1NXe_0uJXAJkp7uIiw_1.jpg" />
+    <Content Include="fileUpload\104\104_NQ4g1NXe_0uJXAJkp7uIiw_2.jpg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Content\SampleFiles\OptionalItem_sample.xlsx" />
     <Content Include="Content\SampleFiles\StandardItem_sample.xlsx" />
@@ -2050,6 +2054,9 @@
     <Content Include="Scripts\uploadify\uploadify-cancel.png" />
     <Content Include="Scripts\uploadify\uploadify.css" />
     <Content Include="Scripts\uploadify\uploadify.swf" />
+    <Content Include="Scripts\UploadImg\cropperVG.js" />
+    <Content Include="Scripts\UploadImg\cusjsVG.js" />
+    <Content Include="Scripts\UploadImg\dropzoneVG.js" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
@@ -2204,6 +2211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="fileUpload\54\" />
     <Folder Include="Hubs\" />
     <Folder Include="Infrastructure\Notification\" />
     <Folder Include="MSReport\" />
