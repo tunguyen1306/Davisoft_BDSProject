@@ -93,10 +93,11 @@ namespace WebBDS_Project.Controllers
         [HttpPost,ActionName("ManagementAcountEmployee")]
         public ActionResult ManagementAcountEmployee(RegisterInformationModel register)
         {
+          
             if (Session["IdUser"] == null && Session["EmailUser"] == null)
             {
                 return RedirectToAction("LoginForm", "Login");
-            }
+            }  var idAcount = int.Parse(Session["IdUser"].ToString());
             bdsaccount TblBdsAdcount  = db.bdsaccounts.Find(register.TblBdsAdcount.Id);
             TblBdsAdcount.Email = register.TblBdsAdcount.Email;
             db.Entry(TblBdsAdcount).State = EntityState.Modified;
@@ -123,7 +124,31 @@ namespace WebBDS_Project.Controllers
                 db.Entry(Tblbdsemployerinformation).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return View(register);
+            var dataCity = from data in db.states
+                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            CaptCha cap = new CaptCha();
+            bdsnew bdsNew = new bdsnew();
+            var register1 = new RegisterInformationModel
+            {
+                ListBdsScopes = db.bdsscopes.ToList(),
+                ListMarriea = db.bdsmarriages.ToList(),
+                ListSalary = db.bdssalaries.ToList(),
+                ListDucation = db.bdseducations.ToList(),
+                ListBdscareer = db.bdscareers.ToList(),
+                ListTimework = db.bdstimeworks.ToList(),
+                Listbdslanguage = db.bdslanguages.ToList(),
+                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListGeoModel = dataCity.ToList(),
+                tblCaptCha = cap,
+
+                tblbdsnew = bdsNew,
+                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
+                Listbdsemper = db.bdsempers.ToList()
+            };
+            return View(register1);
         }
         [HttpPost, ActionName("SaveYourArchive")]
         public ActionResult SaveYourArchive()
