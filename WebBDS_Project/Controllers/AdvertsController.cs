@@ -46,8 +46,10 @@ namespace WebBDS_Project.Controllers
                 ListGeoModel = dataCity.ToList(),
                 tblCaptCha = cap,
                 tblbdsnew= bdsNew,
-                ListBdsemployerinformation=db.bdsemployerinformations.ToList(),
-                ListBdsAdcount = db.bdsaccounts.ToList()
+                ListBdsemployerinformation = db.bdsemployerinformations.ToList(),
+                ListBdsAdcount = db.bdsaccounts.ToList(),
+                Listbdsemper = db.bdsempers.ToList()
+
 
 
             };
@@ -90,8 +92,10 @@ namespace WebBDS_Project.Controllers
                     Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
                     ListGeoModel = dataCity.ToList(),
                     tblCaptCha = cap,
-                    tblbdsnew = bdsNew
-
+                    tblbdsnew = bdsNew,
+                    ListBdsemployerinformation = db.bdsemployerinformations.ToList(),
+                    ListBdsAdcount = db.bdsaccounts.ToList(),
+                    Listbdsemper = db.bdsempers.ToList()
 
                 };
                 var listPicture = db.bdspictures.Where(x => x.advert_id == 99999999);
@@ -110,9 +114,8 @@ namespace WebBDS_Project.Controllers
                 create.tblbdsnew.FromDeadline = DateTime.Now;
                 create.tblbdsnew.FromCreateNews = DateTime.Now;
                 create.tblbdsnew.CreateDate = DateTime.Now;
-                // create.tblbdsnew.CreateUser = Session["EmailUser"].ToString();
                 create.tblbdsnew.Active = 1;
-
+                create.tblbdsnew.CreateUser = 1;
                 db.bdsnews.Add(create.tblbdsnew);
                 db.SaveChanges();
 
@@ -225,7 +228,7 @@ namespace WebBDS_Project.Controllers
                 {
                     string dest = path + picture.FileName(NewsPicture.PictureSize.Large);
                     settings.MaxWidth = 720;
-                    settings.MaxHeight = 480;
+                    settings.MaxHeight = 405;
                     if (picture.WaterMarkLarge == NewsPicture.WatermarkType.None)
                         ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
                     // save biggest version as original
@@ -236,8 +239,8 @@ namespace WebBDS_Project.Controllers
                 if (picture.GetFilePathPhysical(NewsPicture.PictureSize.Medium) != null)
                 {
                     string dest = path + picture.FileName(NewsPicture.PictureSize.Medium);
-                    settings.MaxWidth = 288;
-                    settings.MaxHeight = 192;
+                    settings.MaxWidth = 320;
+                    settings.MaxHeight = 180;
                     if (picture.WaterMarkLarge == NewsPicture.WatermarkType.None)
                         ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
                     // save biggest version as original
@@ -247,8 +250,8 @@ namespace WebBDS_Project.Controllers
                 if (picture.GetFilePathPhysical(NewsPicture.PictureSize.Tiny) != null)
                 {
                     string dest = path + picture.FileName(NewsPicture.PictureSize.Tiny);
-                    settings.MaxWidth = 1500;
-                    settings.MaxHeight = 600;
+                    settings.MaxWidth = 220;
+                    settings.MaxHeight = 123;
                     if (picture.WaterMarkLarge == NewsPicture.WatermarkType.None)
                         ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
                     // save biggest version as original
@@ -259,8 +262,8 @@ namespace WebBDS_Project.Controllers
                 if (picture.GetFilePathPhysical(NewsPicture.PictureSize.Small) != null)
                 {
                     string dest = path + picture.FileName(NewsPicture.PictureSize.Small);
-                    settings.MaxWidth = 600;
-                    settings.MaxHeight = 300;
+                    settings.MaxWidth = 120;
+                    settings.MaxHeight = 67;
                     if (picture.WaterMarkLarge == NewsPicture.WatermarkType.None)
                         ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
                     // save biggest version as original

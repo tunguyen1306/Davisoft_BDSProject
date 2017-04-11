@@ -13,7 +13,7 @@
 }
 
 @{
-    var typeVip = db.bdsnewstypes.Where(T => T.Active == 1 && T.CodeNewsType == "TDB").FirstOrDefault();
+    var typeVip = db.bdsnewstypes.FirstOrDefault(T => T.Active == 1 && T.CodeNewsType == "TDB");
 }
 <ul class="list_work">
     @if (typeVip != null)

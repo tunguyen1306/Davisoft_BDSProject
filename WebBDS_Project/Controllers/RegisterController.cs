@@ -35,11 +35,11 @@ namespace WebBDS_Project.Controllers
         {
             try
             {
-                bdsInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
-                bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
-                db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
+                bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
+                bdsInformationModel.TblBdsAdcount.ModifiedDate = DateTime.Now;
+                db.bdsaccounts.Add(bdsInformationModel.TblBdsAdcount);
                 db.SaveChanges();
-                bdsInformationModel.TblBdsemployerinformation.IdAccount = bdsInformationModel.TbBdsAdcount.Id;
+                bdsInformationModel.TblBdsemployerinformation.IdAccount = bdsInformationModel.TblBdsAdcount.Id;
                 bdsInformationModel.TblBdsemployerinformation.AddressContact = "tt";
                 bdsInformationModel.TblBdsemployerinformation.CityContact = 1;
                 bdsInformationModel.TblBdsemployerinformation.DistrictContact = 1;
@@ -93,11 +93,11 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public ActionResult RegisterPersonal(RegisterInformationModel bdsInformationModel)
         {
-            bdsInformationModel.TbBdsAdcount.CreateDate = DateTime.Now;
-            bdsInformationModel.TbBdsAdcount.ModifiedDate = DateTime.Now;
-            db.bdsaccounts.Add(bdsInformationModel.TbBdsAdcount);
+            bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
+            bdsInformationModel.TblBdsAdcount.ModifiedDate = DateTime.Now;
+            db.bdsaccounts.Add(bdsInformationModel.TblBdsAdcount);
             db.SaveChanges();
-            bdsInformationModel.TblBdspersonalinformation.IdAccount = bdsInformationModel.TbBdsAdcount.Id;
+            bdsInformationModel.TblBdspersonalinformation.IdAccount = bdsInformationModel.TblBdsAdcount.Id;
             db.bdspersonalinformations.Add(bdsInformationModel.TblBdspersonalinformation);
             db.SaveChanges();
             return RedirectToAction("Index", "Default");
@@ -150,7 +150,7 @@ namespace WebBDS_Project.Controllers
 
             if (HttpContext.Request.Url != null && HttpContext.Request.Url.Host.Contains("localhost"))
            
-                path = ConfigurationManager.AppSettings["domain"] + DateTime.Now.Day + DateTime.Now.Month + "/";
+                path = ConfigurationManager.AppSettings["UrlImage"] + DateTime.Now.Day + DateTime.Now.Month + "/";
             
             var _fullUrl = path + fileNameFull;
             return Json(new

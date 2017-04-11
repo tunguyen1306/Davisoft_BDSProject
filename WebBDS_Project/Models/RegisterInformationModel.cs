@@ -8,7 +8,7 @@ namespace WebBDS_Project.Models
     public class RegisterInformationModel
     {
         public bdspersonalinformation TblBdspersonalinformation { get; set; }
-        public bdsaccount TbBdsAdcount { get; set; }
+        public bdsaccount TblBdsAdcount { get; set; }
         public List<bdsaccount> ListBdsAdcount { get; set; }
         public bdsemployerinformation TblBdsemployerinformation { get; set; }
         public List< bdsemployerinformation> ListBdsemployerinformation { get; set; }
@@ -44,7 +44,8 @@ namespace WebBDS_Project.Models
 
         public List<ListCity>  ListCityText { get; set; }
 
-
+        public bdsemper tblbdsemper { get; set; }
+        public List<bdsemper> Listbdsemper { get; set; }
        
     }
 

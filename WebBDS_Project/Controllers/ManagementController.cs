@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebBDS_Project.Models;
 
 namespace WebBDS_Project.Controllers
 {
@@ -10,16 +12,158 @@ namespace WebBDS_Project.Controllers
     {
         //
         // GET: /Management/
-
-      
+        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+         [ActionName("ManagementCompany")]
         public ActionResult ManagementCompany()
         {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+           
             return View();
         }
+         [ActionName("ManagementPersonal")]
         public ActionResult ManagementPersonal()
         {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+           
             return View();
         }
+          [ActionName("YourArchive")]
+        public ActionResult YourArchive()
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+           
+            return View();
+        }
+               [ActionName("ApplyArchive")]
+        public ActionResult ApplyArchive()
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+           
+            return View();
+        }
+        [ActionName("ManagementAcountEmployee")]
+        public ActionResult ManagementAcountEmployee()
+        {
+          
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+               
+                return RedirectToAction("LoginForm", "Login");
 
+            }
+            var idAcount = int.Parse(Session["IdUser"].ToString());
+            var dataCity = from data in db.states
+                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            CaptCha cap = new CaptCha();
+            bdsnew bdsNew = new bdsnew();
+            var register = new RegisterInformationModel
+            {
+                ListBdsScopes = db.bdsscopes.ToList(),
+                ListMarriea = db.bdsmarriages.ToList(),
+                ListSalary = db.bdssalaries.ToList(),
+                ListDucation = db.bdseducations.ToList(),
+                ListBdscareer = db.bdscareers.ToList(),
+                ListTimework = db.bdstimeworks.ToList(),
+                Listbdslanguage = db.bdslanguages.ToList(),
+                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListGeoModel = dataCity.ToList(),
+                tblCaptCha = cap,
+
+                tblbdsnew = bdsNew,
+                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
+                Listbdsemper = db.bdsempers.ToList()
+            };
+            return View(register);
+        }
+        [HttpPost,ActionName("ManagementAcountEmployee")]
+        public ActionResult ManagementAcountEmployee(RegisterInformationModel register)
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+            bdsaccount TblBdsAdcount  = db.bdsaccounts.Find(register.TblBdsAdcount.Id);
+            TblBdsAdcount.Email = register.TblBdsAdcount.Email;
+            db.Entry(TblBdsAdcount).State = EntityState.Modified;
+            db.SaveChanges();
+            var idEmployee = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == register.TblBdsAdcount.Id);
+            if (idEmployee != null)
+            {
+                bdsemployerinformation Tblbdsemployerinformation = db.bdsemployerinformations.Find(idEmployee.Id);
+                Tblbdsemployerinformation.Name = register.TblBdsemployerinformation.Name;
+                Tblbdsemployerinformation.Address = register.TblBdsemployerinformation.Address;
+                Tblbdsemployerinformation.Phone = register.TblBdsemployerinformation.Phone;
+                Tblbdsemployerinformation.City = register.TblBdsemployerinformation.City;
+                Tblbdsemployerinformation.Scope = register.TblBdsemployerinformation.Scope;
+                Tblbdsemployerinformation.Description = register.TblBdsemployerinformation.Description;
+                Tblbdsemployerinformation.UrlImage = register.TblBdsemployerinformation.UrlImage;
+                Tblbdsemployerinformation.Fax = register.TblBdsemployerinformation.Fax;
+                Tblbdsemployerinformation.WebSite = register.TblBdsemployerinformation.WebSite;
+                Tblbdsemployerinformation.NameContact = register.TblBdsemployerinformation.NameContact;
+                Tblbdsemployerinformation.EmailContact = register.TblBdsemployerinformation.EmailContact;
+                Tblbdsemployerinformation.AddressContact = register.TblBdsemployerinformation.AddressContact;
+                Tblbdsemployerinformation.PhoneContact = register.TblBdsemployerinformation.PhoneContact;
+                Tblbdsemployerinformation.TypeContact = register.TblBdsemployerinformation.TypeContact;
+
+                db.Entry(Tblbdsemployerinformation).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return View(register);
+        }
+        [HttpPost, ActionName("SaveYourArchive")]
+        public ActionResult SaveYourArchive()
+        {
+            return Json("");
+        }
+        [HttpPost, ActionName("CheckEmail")]
+        public ActionResult CheckEmail(string Email)
+        {
+            var dataAcount = db.bdsaccounts.FirstOrDefault(x => x.Email == Email);
+            var sesIdAccount =int.Parse( Session["IdUser"].ToString());
+            if (dataAcount != null && dataAcount.Id == sesIdAccount)
+            {
+                
+                    return Json(new{result=1});
+                
+            }
+            else
+            {
+                return Json(new { result = 0 });
+            }
+
+        }
+         [HttpPost, ActionName("ChangePass")]
+        public ActionResult ChangePass(string Email,string oldPass,string newpass)
+         {
+             var dataAcount = db.bdsaccounts.FirstOrDefault(x => x.Email == Email && x.PassWord == oldPass);
+             if (dataAcount!=null )
+             {
+                var tblAcount= db.bdsaccounts.Find(dataAcount.Id);
+                 tblAcount.PassWord = newpass;
+                 db.Entry(tblAcount).State = EntityState.Modified;
+                 db.SaveChanges();
+                 return Json(new { result = 1 });
+             }
+             else
+             {
+                 return Json(new { result = 0 });
+             }
+            
+        }
     }
 }

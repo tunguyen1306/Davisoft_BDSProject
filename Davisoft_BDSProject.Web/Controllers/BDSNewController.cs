@@ -292,8 +292,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                 if (picture.GetFilePathPhysical(NewsPictures.PictureSize.Large) != null)
                 {
                     string dest = path + picture.FileName(NewsPictures.PictureSize.Large);
-                    settings.MaxWidth = 800;
-                    settings.MaxHeight = 800;
+                    settings.MaxWidth = 720;
+                    settings.MaxHeight = 405;
                     if (picture.WaterMarkLarge == NewsPictures.WatermarkType.None)
                         ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
                     // save biggest version as original
@@ -304,13 +304,36 @@ namespace Davisoft_BDSProject.Web.Controllers
                 if (picture.GetFilePathPhysical(NewsPictures.PictureSize.Medium) != null)
                 {
                     string dest = path + picture.FileName(NewsPictures.PictureSize.Medium);
-                    settings.MaxWidth = 300;
-                    settings.MaxHeight = 300;
+                    settings.MaxWidth = 320;
+                    settings.MaxHeight = 180;
                     if (picture.WaterMarkLarge == NewsPictures.WatermarkType.None)
                         ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
                     // save biggest version as original
                     if (string.IsNullOrWhiteSpace(picture.tblPicture.originalFilepath))
                         picture.tblPicture.originalFilepath = picture.GetFilePath(NewsPictures.PictureSize.Medium);
+                }
+                if (picture.GetFilePathPhysical(NewsPictures.PictureSize.Tiny) != null)
+                {
+                    string dest = path + picture.FileName(NewsPictures.PictureSize.Tiny);
+                    settings.MaxWidth = 220;
+                    settings.MaxHeight = 123;
+                    if (picture.WaterMarkLarge == NewsPictures.WatermarkType.None)
+                        ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
+                    // save biggest version as original
+                    if (string.IsNullOrWhiteSpace(picture.tblPicture.originalFilepath))
+                        picture.tblPicture.originalFilepath = picture.GetFilePath(NewsPictures.PictureSize.Tiny);
+                }
+
+                if (picture.GetFilePathPhysical(NewsPictures.PictureSize.Small) != null)
+                {
+                    string dest = path + picture.FileName(NewsPictures.PictureSize.Small);
+                    settings.MaxWidth = 120;
+                    settings.MaxHeight = 67;
+                    if (picture.WaterMarkLarge == NewsPictures.WatermarkType.None)
+                        ImageBuilder.Current.Build(photoBytes, dest, settings, false, false);
+                    // save biggest version as original
+                    if (string.IsNullOrWhiteSpace(picture.tblPicture.originalFilepath))
+                        picture.tblPicture.originalFilepath = picture.GetFilePath(NewsPictures.PictureSize.Small);
                 }
 
 

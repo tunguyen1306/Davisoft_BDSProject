@@ -82,7 +82,7 @@ function GetDistrict(_id) {
    });
 }
 function CheckEmail() {
-    var valEmail = $('#TbBdsAdcount_Email').val();
+    var valEmail = $('#TblBdsAdcount_Email').val();
     var url = "/Register/CheckEmail";
 
 
@@ -95,22 +95,22 @@ function CheckEmail() {
        contentType: "application/json;charset=utf-8",
        success: function (data) {
            $('#warrper').attr('value', data);
-           if ($('#TbBdsAdcount_Email').val() == "") {
+           if ($('#TblBdsAdcount_Email').val() == "") {
 
                toastr.error('Vui lòng nhập Email');
               
            }
            else
            {
-               if (!isValidEmailAddress($('#TbBdsAdcount_Email').val())) {
+               if (!isValidEmailAddress($('#TblBdsAdcount_Email').val())) {
                    toastr.error('Email không đúng định dạng');
                }
                else {
                    if (data > 0) {
-                       toastr.error('Email "' + $('#TbBdsAdcount_Email').val() + '" đã tồn tại');
+                       toastr.error('Email "' + $('#TblBdsAdcount_Email').val() + '" đã tồn tại');
                    }
                    else {
-                       toastr.success('Email "' + $('#TbBdsAdcount_Email').val() + '" có thể sử dụng');
+                       toastr.success('Email "' + $('#TblBdsAdcount_Email').val() + '" có thể sử dụng');
                    }
                }
               

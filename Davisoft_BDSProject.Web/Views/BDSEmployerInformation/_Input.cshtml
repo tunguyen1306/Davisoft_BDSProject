@@ -1,4 +1,5 @@
-﻿@using Davisoft_BDSProject.Web.Helpers
+﻿@using System.Configuration
+@using Davisoft_BDSProject.Web.Helpers
 @using Davisoft_BDSProject.Web.Models
 @using iTextSharp.text.pdf.qrcode
 @using Resources
@@ -97,7 +98,7 @@
                         <div id="picture">
                             @if (Model.UrlImage != null)
                             {
-                                <img style="width: 120px; height:120px;" src="@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
+                                <img style="width: 120px; height:120px;" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@Model.UrlImage" class="img-polaroid user-picture-preview" />
                             }
                             else
                             {
@@ -112,10 +113,22 @@
                     <div class="col-md-9">
                         @Html.Bootstrap().FileFor(m => m.UrlImageFile).HtmlAttributes(new { @class = "form-control hidden" }).ShowValidationMessage(false)
                         @Html.Bootstrap().TextBoxFor(m => m.UrlImage).Readonly(true).HtmlAttributes(new { @class = "form-control" }).Placeholder("Please click to upload logo").ShowValidationMessage(true)
-                        <script type="text/javascript">
-                                    document.getElementById("UrlImage").value = "@(Model.UrlImage)";
+                        @if (Model.UrlImage != null)
+                            {
+                                 <script type="text/javascript">
+                                     document.getElementById("UrlImage").value = "@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@Model.UrlImage";
     
-                        </script>
+                                   </script>
+                            }
+                            else
+                            {
+                               
+                            <script type="text/javascript">
+                                document.getElementById("UrlImage").value = "~/Display/img/profile.png";
+    
+                                   </script>
+                            }
+                       
                      </div>
                 </div>
                 <div class="form-group">

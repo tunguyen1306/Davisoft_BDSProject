@@ -19,7 +19,7 @@ namespace WebBDS_Project.Controllers
             Session["EmailUser"] = null;
             Session["IdTypeUser"] = null;
             Session["FullName"] = null;
-            var data = db.bdsaccounts.Where(x => x.Email == acountModel.tblbdsaccount.Email && x.PassWord == acountModel.tblbdsaccount.PassWord && x.Active == 1).FirstOrDefault();
+            var data = db.bdsaccounts.FirstOrDefault(x => x.Email == acountModel.tblbdsaccount.Email && x.PassWord == acountModel.tblbdsaccount.PassWord && x.Active == 1);
             if (data != null)
             {
                 FormsAuthentication.SetAuthCookie(data.Email, false);
@@ -28,11 +28,11 @@ namespace WebBDS_Project.Controllers
 
                 Session["IdUser"] = data.Id;
                 Session["EmailUser"] = data.Email;
-                var dataEmployee = db.bdsemployerinformations.Where(x => x.IdAccount == data.Id).Select(x=>x.Name).FirstOrDefault();
-            
-                    //Session["FullName"] = dataEmployee.Name;
-               
-           
+                var dataEmployee = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == data.Id);
+
+                if (dataEmployee != null) Session["FullName"] = dataEmployee.Name;
+
+
                 //Session["IdTypeUser"] = data.IdTypeUser;
                 //Session["FullName"] = data.LastNameUser + data.FirtNameUser;
                 if (String.IsNullOrEmpty(returnUrl))

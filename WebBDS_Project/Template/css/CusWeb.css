@@ -86,7 +86,7 @@
 }
 .btnUpdate {
     text-align: center;
-    background: red;
+    background: #de3039;
     color: #fff;
     font-weight: bold;
     padding: 7px;
@@ -94,7 +94,7 @@
 }
 .btnApply {
     text-align: center;
-    background: red;
+    background: #de3039;
     color: #fff;
     font-weight: bold;
     padding: 7px 0;
@@ -242,3 +242,10 @@ tr:nth-child(even) {
   .radio label {
      width: 180px;
  }
+  .box-note{
+          background-color: #ffeeee;
+    padding-left: 20%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 10px 0 10px 0;
+  }

@@ -4,7 +4,7 @@
     color: #666666;
     font-style: italic;
     height: 30px;
-     width: 240px;
+     width: 224px;
       padding: 6px 12px;
     
    
@@ -13,8 +13,8 @@
 .dz-image {
     border-radius: 0 !important;
     display: block !important;
-    height: 135px !important;
-    width: 240px !important;
+    height: 126px !important;
+    width: 224px !important;
     overflow: hidden !important;
     position: relative !important;
 }
@@ -27,8 +27,8 @@
 }
 
 .cussimg {
-    height: 135px !important;
-    width: 240px !important;
+    height: 126px !important;
+    width: 224px !important;
 }
 
 .dropzone .tools {
@@ -48,10 +48,10 @@
 
 .dz-preview {
     display: inline-block !important;
-    min-height: 135px !important;
+    min-height: 126px !important;
     position: relative !important;
     vertical-align: top !important;
-     margin: 0 20px 15px 0 !important;
+     margin: 0 10px 15px 0 !important;
 
 }
 
@@ -77,7 +77,7 @@
     color: #919191;
     font-style: italic;
     height: 40px;
-     /*width: 240px;*/
+     /*width: 224px;*/
 }
 .cbtn-info-ok {
     box-shadow: #d0d0d0 0 2px 0 0;

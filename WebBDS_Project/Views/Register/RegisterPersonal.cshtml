@@ -18,7 +18,7 @@
                         <label>Email đăng nhập<span class="required">*</span></label>
                         <div class="row-right">
 
-                            @Html.TextBoxFor(m => m.TbBdsAdcount.Email, new { @class = "input1", @placeholder = "Nhập email" })
+                            @Html.TextBoxFor(m => m.TblBdsAdcount.Email, new { @class = "input1", @placeholder = "Nhập email" })
                         </div>
 
                         <div class="row-right note2" style="line-height:16px;">
@@ -38,7 +38,7 @@
                     <div class="row">
                         <label>Mật khẩu<span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.PasswordFor(m => m.TbBdsAdcount.PassWord, new { @class = "input1", @placeholder = "Nhập mật khẩu" })
+                            @Html.PasswordFor(m => m.TblBdsAdcount.PassWord, new { @class = "input1", @placeholder = "Nhập mật khẩu" })
                         </div>
 
                     </div>
@@ -280,13 +280,13 @@
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
         var t = 0;
-        if ($('#TbBdsAdcount_Email').val() == "") {
+        if ($('#TblBdsAdcount_Email').val() == "") {
 
             toastr.error('Vui lòng nhập Email!');
             t++;
         }
         else {
-            if (!isValidEmailAddress($('#TbBdsAdcount_Email').val())) {
+            if (!isValidEmailAddress($('#TblBdsAdcount_Email').val())) {
                 toastr.error('Email không đúng định dạng!');
                 t++;
             }
@@ -294,7 +294,7 @@
                 CheckEmail();
                 var EmailCount = $('#warrper').attr('value');
                 if (EmailCount > 0) {
-                    toastr.error('Email "' + $('#TbBdsAdcount_Email').val() + '" đã tồn tại!');
+                    toastr.error('Email "' + $('#TblBdsAdcount_Email').val() + '" đã tồn tại!');
                     t++;
                 }
             }
@@ -309,19 +309,19 @@
         }
         else {
 
-            if ($('#EmailSeccond').val() != $('#TbBdsAdcount_Email').val()) {
+            if ($('#EmailSeccond').val() != $('#TblBdsAdcount_Email').val()) {
 
                 toastr.error('Email không trùng khớp!');
                 t++;
             }
 
         }
-        if ($('#TbBdsAdcount_PassWord').val() == "") {
+        if ($('#TblBdsAdcount_PassWord').val() == "") {
 
             toastr.error('Vui lòng nhập  Password!');
             t++;
         }
-        if ($('#TbBdsAdcount_PassWord').val() != $('#PasswordSecond').val()) {
+        if ($('#TblBdsAdcount_PassWord').val() != $('#PasswordSecond').val()) {
 
             toastr.error('Password không trùng khớp!');
             t++;
