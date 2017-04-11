@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "ApplyArchive";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Hồ sơ đã lưu</span></h3>
+            </div>
+            <div class="grid_12">
+                <table class="table-responsive" style="margin-top: 10px;">
+                    <thead>
+                        <tr>
+                            <th data-field="id">NGÀY TÌM VIỆC</th>
+                            <th data-field="name">HÌNH ẢNH</th>
+                            <th data-field="name">HỌ VÀ TÊN</th>
+                            <th data-field="name">GIỚI TÍNH</th>
+                            <th data-field="name">NĂM SINH</th>
+                            <th data-field="name">KINH NGHIỆM</th>
+                   
+                  
+                            <th data-field="name">VỊ TRÍ MONG MUỐN</th>
+                            <th data-field="name">TỈNH / THÀNH PHỐ</th>
+                            <th data-field="name">QUẬN HUYỆN</th>
+                            <th data-field="name">HỌC VẤN</th>
+                            <th data-field="name">CHI TIẾT</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>13/06/1991</td>
+                            <td><img width="50" src="~/Template/images/logo.png" /></td>
+                            <td>Nguyễn tấn tu</td>
+                            <td>Nam</td>
+                            <td>1991</td>
+                            <td>1 năm</td>
+                            <td>NV kinh doanh</td>
+                            <td>Hồ Chí Minh</td>
+                            <td>Quận 1</td>
+                            <td>Đại học</td>
+                            <td>xem</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+     <div class="grid_3 omega main_right">
+           
+            @Html.Partial("_partialManagerCenter")
+
+        </div>
+</div>
+
