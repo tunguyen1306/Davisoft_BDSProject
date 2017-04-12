@@ -116,7 +116,7 @@
                         @if (Model.UrlImage != null)
                             {
                                  <script type="text/javascript">
-                                     document.getElementById("UrlImage").value = "@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@Model.UrlImage";
+                                     document.getElementById("UrlImage").value = "@Model.UrlImage";
     
                                    </script>
                             }

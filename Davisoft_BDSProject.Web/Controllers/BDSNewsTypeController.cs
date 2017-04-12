@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -75,11 +76,32 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 return View(model);
             }
-            if (Request.Files.Count > 0 && Request.Files["UrlImageFile"] != null && Request.Files["UrlImageFile"].ContentLength > 0)
+            var path = string.Empty;
+            var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = string.Empty;
+
+
+
+
+            var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];
+            if (file != null && file.ContentLength > 0)
             {
-                String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
-                model.UrlIcon = path;
+
+                var fileName = Path.GetFileName(file.FileName);
+                string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                fortmatName = Path.GetExtension(fileName);
+
+                NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+                path = Server.MapPath("~/fileUpload/").Replace("adminbds.vangia.net", "webtuyendung.vangia.net") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path1 = Path.Combine(path, fileNameFull);
+                file.SaveAs(path1);
             }
+            model.UrlIcon = fileNameFull;
             model.KeySearch = model.Name.NormalizeD() + " " + model.CodeNewsType.NormalizeD() + " " +
                             (String.IsNullOrEmpty(model.Description)
                                 ? ""
@@ -108,11 +130,32 @@ namespace Davisoft_BDSProject.Web.Controllers
                               (String.IsNullOrEmpty(model.Description)
                                   ? ""
                                   : model.Description.NormalizeD());
-            if (Request.Files.Count > 0 && Request.Files["UrlImageFile"] != null && Request.Files["UrlImageFile"].ContentLength > 0)
+            var path = string.Empty;
+            var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = string.Empty;
+
+
+
+
+            var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];
+            if (file != null && file.ContentLength > 0)
             {
-                String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
-                model.UrlIcon = path;
+
+                var fileName = Path.GetFileName(file.FileName);
+                string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                fortmatName = Path.GetExtension(fileName);
+
+                NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+                path = Server.MapPath("~/fileUpload/").Replace("adminbds.vangia.net", "webtuyendung.vangia.net") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path1 = Path.Combine(path, fileNameFull);
+                file.SaveAs(path1);
             }
+            model.UrlIcon = fileNameFull;
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

@@ -1,0 +1,63 @@
+﻿@using Davisoft_BDSProject.Web
+@using Davisoft_BDSProject.Web.Helpers
+@model IEnumerable<Davisoft_BDSProject.Domain.Entities.BDSExtNews>
+
+
+<table class="table extpeeding">
+    <thead>
+        <tr>
+            <th>@Utilities.Resource("BDSExtNews_Name", "Name")</th>
+            <th>@Utilities.Resource("BDSExtNews_CatExtNews", "Category")</th>
+            <th>@Utilities.Resource("BDSExtNews_ShortDescription", "Short Description")</th>
+            <th>@Utilities.Resource("BDSExtNews_DateCreate", "DateCreate")</th>
+            <th style="width: 50px">Action</th>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@(item.CatExtNews==1?"Tin bất đông sản":"Chia sẽ kinh nghiệm")</td>
+                <td>@Html.Raw(item.ShortDescription)</td>
+                <td>@item.DateCreate.ToString(MvcApplication.DateTimeFormat.ShortDatePattern)</td>
+                <td><a class="btn btn-primary-me " href="/BDSExtNews/Review/@(item.ID)">Review</a></td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+<style>
+    .dataTables_length {
+        display: none;
+    }
+
+    .dataTables_wrapper.no-footer .dataTables_scrollBody {
+        border: none !important;
+    }
+</style>
+@Html.Script(
+    @<script>
+
+        var $modelTableextpeeding = $('.extpeeding').dataTable({
+            //  fixedHeader: true,
+            searching: true,
+            ordering: false,
+            info: false,
+            stateSave: false,
+            lengthMenu: [[6], [6]],
+            scrollY: '225px',
+            //    scrollCollapse: true,
+            //  paging: false
+
+        });
+
+
+
+
+    </script>)
+                 

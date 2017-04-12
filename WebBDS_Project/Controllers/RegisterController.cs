@@ -48,7 +48,12 @@ namespace WebBDS_Project.Controllers
                 bdsInformationModel.TblBdsemployerinformation.ModifiedDate = DateTime.Now;
                 bdsInformationModel.TblBdsemployerinformation.ModifiedUser = 1;
                 bdsInformationModel.TblBdsemployerinformation.Featured = 1;
-                
+                bdsInformationModel.TblBdsemployerinformation.PhoneContact = bdsInformationModel.TblBdsemployerinformation.Phone;
+                bdsInformationModel.TblBdsemployerinformation.DistrictContact = bdsInformationModel.TblBdsemployerinformation.District;
+                bdsInformationModel.TblBdsemployerinformation.City = bdsInformationModel.TblBdsemployerinformation.City;
+                bdsInformationModel.TblBdsemployerinformation.AddressContact = bdsInformationModel.TblBdsemployerinformation.Address;
+                bdsInformationModel.TblBdsemployerinformation.EmailContact = bdsInformationModel.TblBdsAdcount.Email;
+                bdsInformationModel.TblBdsemployerinformation.TypeContact = 1;
                 db.bdsemployerinformations.Add(bdsInformationModel.TblBdsemployerinformation);
                 db.SaveChanges();
             }

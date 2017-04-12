@@ -125,7 +125,15 @@
                         <label>Logo Công Ty</label>
                         <div class="logo_jobs">
                             <div class="grid_5 uploadBox">
-                                <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                                @if (Model.TblBdsemployerinformation.UrlImage!=null)
+                                {
+                                        <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.TblBdsemployerinformation.UrlImage.ToString().Split('_')[0]/@Model.TblBdsemployerinformation.UrlImage" />
+                                }
+                                else
+                                {
+                                    <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                                }
+                                
                                 <input type="hidden" value="" name="TblBdsemployerinformation.UrlImage" id="UrlImage" />
                             </div>
                             <div class="uploadBox-1">
@@ -334,7 +342,7 @@
             success: function (response) {
                 
                 $('#imgLogoCompany').attr('src', response.fullurl);
-                $('#hdUrlImg').val(response.fullurl);
+                $('#UrlImage').val(response.imgName);
 
             },
             error: function (er) {

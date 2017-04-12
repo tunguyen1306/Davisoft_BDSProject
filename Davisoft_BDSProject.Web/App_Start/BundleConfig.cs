@@ -109,6 +109,7 @@ namespace Davisoft_BDSProject.Web
                 , "~/Display/js/jquery.price_format.2.0.js"
                 , "~/Display/lib/bootstrap-daterangepicker/moment.min.js"
                 , "~/Display/lib/bootstrap-daterangepicker/daterangepicker.js"
+                    , "~/Content/ckeditor/ckeditor.js"
                 ));
 
 

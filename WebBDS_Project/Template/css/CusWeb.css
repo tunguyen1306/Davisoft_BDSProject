@@ -280,3 +280,15 @@ tr:nth-child(even) {
     margin: 0;
     line-height: 29px;
   }
+  .cus-table-responsive {
+    /* display: none; */
+    width: 100%;
+    overflow-x: auto;
+}
+  .form-horizontal .idTabs-2 li {
+    width: 50%!important;
+    float: left;
+    margin-bottom: 6px;
+}.idTabs-2 label  {
+     width: 300px;
+}

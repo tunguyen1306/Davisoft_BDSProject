@@ -1,4 +1,5 @@
-﻿@using Davisoft_BDSProject.Web.Helpers
+﻿@using System.Configuration
+@using Davisoft_BDSProject.Web.Helpers
 @using Davisoft_BDSProject.Web.Models
 @using iTextSharp.text.pdf.qrcode
 @using Ninject.Infrastructure.Language
@@ -146,11 +147,11 @@
                     <div class="col-md-8" style="position: relative;">
                         <div id="picture">
                             @if (Model.UrlImage != null)
-                            {
-                                <img style="width: 120px; height:120px;" src="@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
-                            }
-                            else
-                            {
+{
+    <img style="width: 120px; height:120px;" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
+}
+else
+{
                                 <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
                             }
                             

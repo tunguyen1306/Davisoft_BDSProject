@@ -51,6 +51,15 @@ namespace WebBDS_Project.Controllers
         {
             return View();
         }
+        public ActionResult LogOut()
+        {
+            Session["IdUser"] = null;
+            Session["EmailUser"] = null;
+            Session.Remove("IdUser");
+            Session.Remove("EmailUser");
+
+            return RedirectToAction("Index","Default");
+        }
 
     }
 }
