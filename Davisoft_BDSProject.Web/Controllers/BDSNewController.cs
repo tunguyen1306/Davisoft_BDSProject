@@ -158,10 +158,10 @@ namespace Davisoft_BDSProject.Web.Controllers
 
 
 
-            LoadDataList();
+       
             if (!ModelState.IsValid)
             {
-           
+                LoadDataList();
                 model.BDSPictures=   _servicePicture.GetIQueryableItems().Where(T => T.Active == 1 && T.advert_id==model.ID).ToList();
                 return View(model);
             }
@@ -170,9 +170,31 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromCreateNews = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.FromDeadline = DateTime.Now;
-
+            model.IdTypeNewsCuurent = model.IdTypeNewsCuurent;
             model.KeySearch = model.Title.NormalizeD() + " " + _serviceAccount.GetItem(model.IdAcount).Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
             _service.CreateItem(model);
+
+            var type = _serviceNewsType.GetItem(model.IdTypeNewsCuurent);
+
+            String Fname = "Đăng tin '{A}' trong vòng '{B}' ngày tổng giá phải trả '{C}' VNĐ";
+            string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(model.ToCreateNews.Subtract(model.FromCreateNews).TotalDays)) + "").Replace("{C}", model.TotalMoney.ToString("n2"));
+            bdstransactionhistory tran = new bdstransactionhistory
+            {
+                Name = name,
+                Description = name,
+                KeySearch = name.NormalizeD(),
+                Active = 1,
+                CreateUser = 1,
+                CreateDate = DateTime.Now,
+                TypeTran = 2,
+                PointTran = 0,
+                MoneyTran = (decimal) model.TotalMoney,
+                DateTran = DateTime.Now
+            };
+            db.Entry(tran).State = EntityState.Added;
+            db.SaveChanges();
+            model.RefTranHis = tran.Id;
+            _service.UpdateItem(model);
             return RedirectToAction("Index");
         }
 

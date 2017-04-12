@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 {
     public class BDSTransactionController : Controller
     {
+        Davisoft_BDSProjectEntities db = new Davisoft_BDSProjectEntities();
         private readonly IBDSEventService _serviceEvent;
         private readonly IBDSTransactionService _service;
         private readonly IBDSAccountService _serviceAccount;
@@ -125,6 +127,27 @@ namespace Davisoft_BDSProject.Web.Controllers
             account.Money += model.Money + model.MoneyEventAdd;
             account.Point += model.Point;
             _serviceAccount.UpdateItem(account);
+
+
+            bdstransactionhistory tran = new bdstransactionhistory
+            {
+                Name = model.Name,
+                Description = model.Name,
+                KeySearch = model.Name.NormalizeD(),
+                Active = 1,
+                CreateUser = 1,
+                CreateDate = DateTime.Now,
+                TypeTran = 1,
+                PointTran = model.Point,
+                MoneyTran = (decimal)(model.Money + model.MoneyEventAdd),
+                DateTran = DateTime.Now
+            };
+            db.Entry(tran).State = EntityState.Added;
+            db.SaveChanges();
+            model.RefTranHis = tran.Id;
+            _service.UpdateItem(model);
+
+
             return RedirectToAction("Index");
         }
 
@@ -160,14 +183,28 @@ namespace Davisoft_BDSProject.Web.Controllers
                                   ? ""
                                   : model.Description.NormalizeD());
             _service.UpdateItem(model);
-
+           
 
             var account = _serviceAccount.GetItem(model.IdAccount);
             account.Money += model.Money + model.MoneyEventAdd - modelDB.Money-model.MoneyEventAdd;
             account.Point += model.Point - modelDB.Point;
             _serviceAccount.UpdateItem(account);
 
-
+            if (model.RefTranHis.HasValue)
+            {
+                var tranhis= db.bdstransactionhistories.Where(T => T.Id == model.RefTranHis).FirstOrDefault();
+                tranhis.Name = model.Name;
+                tranhis.Description = model.Name;
+                tranhis.KeySearch = model.Name.NormalizeD();
+                tranhis.Active = 1;
+                tranhis.ModifiedUser = 1;
+                tranhis.ModifiedDate = DateTime.Now;
+                tranhis.TypeTran = 1;
+                tranhis.PointTran = model.Point;
+                tranhis.MoneyTran = (decimal) (model.Money + model.MoneyEventAdd);
+                db.Entry(tranhis).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
             return Edit(model.ID);

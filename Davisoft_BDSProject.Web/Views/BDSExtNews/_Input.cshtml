@@ -1,0 +1,125 @@
+﻿@using System.Configuration
+@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSExtNews
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSExtNews_Name", "Name") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSExtNews_Cate", "Category") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.CatExtNews,new List<SelectListItem>{ new SelectListItem{ Text = "Tin bất đông sản",Value = "1",Selected = true},new SelectListItem{Selected = false,Text = "Chia sẽ kinh nghiệm",Value = "2"}}).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-3 control-label">@Utilities.Resource("BDSExtNews_Image", "Image")</label>
+    <div class="col-md-8" style="position: relative;">
+        <div id="picture">
+            @if (Model.UrlImage != null)
+{
+    <img style="width: 120px; height:120px;" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
+}
+else
+{
+                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
+            }
+
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-3 control-label"></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().FileFor(m => m.UrlImageFile).HtmlAttributes(new { @class = "form-control hidden" }).ShowValidationMessage(false)
+        @Html.Bootstrap().TextBoxFor(m => m.UrlImage).Readonly(true).HtmlAttributes(new { @class = "form-control" }).Placeholder("Please click to upload image").ShowValidationMessage(true)
+        <script type="text/javascript">
+                                    document.getElementById("UrlImage").value = "@(Model.UrlImage)";
+
+        </script>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSExtNews_ShortDescription", "Short Description") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.ShortDescription).HtmlAttributes(new { @class = "form-control fck" }).ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSExtNews_Description", "Description") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control fck" }).Rows(5).ShowValidationMessage(true)
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+@Html.HiddenFor(m => m.DateCreate)
+@Html.HiddenFor(m => m.ApproveStatus)
+@Html.HiddenFor(m => m.ApproveDate)
+@Html.HiddenFor(m => m.ApproveUser)
+
+
+@Html.Script(
+    @<text>
+        <script>
+
+            setTimeout(function () {
+                CKEDITOR.replace('ShortDescription', {
+                    toolbar: [
+                        { name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'DocProps', 'Preview', 'Print', '-', 'Templates'] },
+                        { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                     
+
+                        '/',
+                        { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat'] },
+                        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'] },
+                   
+                        '/',
+                        { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] }
+                       
+                    ]
+                });
+                CKEDITOR.replace('Description');
+            }, 200);
+
+            $(document).on('click', '#UrlImage', function () {
+                $('input[type="File"]').click();
+            });
+
+            $(document).on('change', 'input[type="File"]', function () {
+                var upload = $(this);
+
+                var indicator = upload.next('.selected');
+                if (indicator.length == 0) {
+                    indicator = $('<span class="selected"></span>').insertAfter(upload);
+                }
+
+                if (upload.val() == '') {
+                    indicator.html('');
+                } else if (window.FileReader) {
+                    $('#UrlImage').val(upload.val());
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        if (upload[0].files[0].size > 2000000) {
+                            $.sticky("@Resource.FileToLarge", { type: 'st-danger' });
+                            upload.replaceWith(upload = upload.clone(true));
+                        } else {
+                            $('#picture').html("<img style='width: 120px; height:120px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
+                        }
+                    };
+                    reader.readAsDataURL(upload[0].files[0]);
+                } else {
+                    indicator.html("Selected");
+                }
+            });
+        </script>
+    </text>)
+

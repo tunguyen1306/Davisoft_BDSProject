@@ -48,6 +48,15 @@ namespace WebBDS_Project.Controllers
 
             return PartialView();
         }
+        public PartialViewResult TinNhaTuyenDung(string tt, int from = 0, int view = 5, int page = 1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
+        }
         public ActionResult Blank()
         {
             return View();

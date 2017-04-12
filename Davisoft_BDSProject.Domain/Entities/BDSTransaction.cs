@@ -26,5 +26,6 @@ namespace Davisoft_BDSProject.Domain.Entities
         public virtual BDSBank BDSBank { get; set; }
         [ForeignKey("IdBranch")]
         public virtual BDSBranch BDSBranch { get; set; }
+        public int? RefTranHis { get; set; }
     }
 }

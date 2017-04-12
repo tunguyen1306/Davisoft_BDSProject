@@ -27,10 +27,11 @@ namespace Davisoft_BDSProject.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IBDSNewService _service;
-
-        public HomeController(IBDSNewService service)
+        private readonly IBDSExtNewsService _serviceExt;
+        public HomeController(IBDSNewService service, IBDSExtNewsService serviceExt)
         {
             _service = service;
+            _serviceExt = serviceExt;
         }
 
 
@@ -115,9 +116,10 @@ namespace Davisoft_BDSProject.Web.Controllers
             return View("Blank");
         }
 
-        public ActionResult IndexDeActive()
+        public PartialViewResult IndexPendingExtNews()
         {
-            return View();
+
+            return PartialView(_serviceExt.GetIQueryableItems().Where(T => T.Active == 1 && T.ApproveStatus == 0).OrderBy(T => T.DateCreate).ToList());
         }
         public PartialViewResult IndexPendingByType()
         {

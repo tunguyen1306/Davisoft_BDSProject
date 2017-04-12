@@ -14,15 +14,17 @@
 }
 
 
-
+@{
+    var typeVip = db.bdsnewstypes.FirstOrDefault(T => T.Active == 1 && T.CodeNewsType == "TBT");
+}
 <ul class="list_work_2 green">
    @{
-       var query = (from a in db.bdsnews
+     /*  var query = (from a in db.bdsnews
                     join b in db.bdsnewstypes on a.IdTypeNewsCuurent equals b.Id
                     where a.Active == 1 && a.Status == 1 && (tt == 0 || a.AddressWork == tt)
            orderby b.Order ascending, a.FromCreateNews descending
-           select a);
-;
+                    select a);*/
+       var query = db.bdsnews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.Id && (tt == 0 || A.AddressWork == tt));  
        var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
        count = query.Count();
        foreach (var news in ListNews)

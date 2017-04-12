@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
+using Davisoft_BDSProject.Web.Helpers;
 using FluentValidation;
 using Resources;
 
@@ -11,8 +13,10 @@ namespace Davisoft_BDSProject.Web.Validation
 {
     public class BDSNewValidator : AbstractValidator<BDSNew>
     {
-        public BDSNewValidator()
+        private readonly IBDSEmployerInformationService _service;
+        public BDSNewValidator(IBDSEmployerInformationService service)
         {
+            this._service = service;
             RuleFor(m => m.Title).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
             RuleFor(m => m.AddressWork).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
             RuleFor(m => m.Quantity).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
@@ -52,7 +56,16 @@ namespace Davisoft_BDSProject.Web.Validation
 
             RuleFor(m => m.FromDateToDateString).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
-           
+            RuleFor(m => m.TotalMoney).Must((BDSNew model, double money) =>
+            {
+                var account = _service.GetItem(model.IdAcount);
+                if (model.ID==0 && account.BDSAccount.Money<money)
+                {
+                    return false;
+                }
+                return true;
+            }).WithMessage(Utilities.Resource("ValidateNewMoney", "Over due money"));
+          
         }
     }
 }
