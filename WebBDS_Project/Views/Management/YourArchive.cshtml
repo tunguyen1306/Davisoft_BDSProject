@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
 
+@model WebBDS_Project.Models.RegisterInformationModel
 
 <div class="container">
     <div class="grid_9 main_left">
@@ -31,19 +32,23 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>13/06/1991</td>
-                            <td><img width="50" src="~/Template/images/logo.png" /></td>
-                            <td>Nguyễn tấn tu</td>
-                            <td>Nam</td>
-                            <td>1991</td>
-                            <td>1 năm</td>
-                            <td>NV kinh doanh</td>
-                            <td>Hồ Chí Minh</td>
-                            <td>Quận 1</td>
-                            <td>Đại học</td>
+                        @foreach (var item in Model.Listbdspersonalinformation)
+                        {
+                            <tr>
+                            <td>@item.CreateDate</td>
+                            <td><img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" /></td>
+                            <td>@item.Name</td>
+                            <td>@item.Sex</td>
+                            <td>@item.Birthday</td>
+                            <td>@item.Experience</td>
+                            <td>@item.IdLoaiNghe</td>
+                            <td>@item.City</td>
+                            <td>@item.District</td>
+                            <td>@item.Education</td>
                             <td>xem</td>
-                        </tr>
+                        </tr> 
+                        }
+                        
                     </tbody>
                 </table>
             </div>

@@ -1,7 +1,7 @@
 ﻿@using WebBDS_Project.Models
 @{
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
-    var modelMenu = db.bdscareers.Take(5);
+    var modelMenu = db.bdscareers.Take(4);
  
 
 }
@@ -59,8 +59,8 @@
                         {
                            
                                 <div class="login">
-                                    <a href="@Url.Action("ManagementAcountEmployee","Management")"> @Session["EmailUser"]</a>
-                                    <a href="@Url.Action("ManagementAcountEmployee","Management")">,Thoát</a>
+                                    <a style="padding: 0 0px!important;" href="@Url.Action("ManagementAcountEmployee","Management")"> @Session["EmailUser"]</a>
+                                    <a style="padding: 0 0px!important;" href="@Url.Action("LogOut","Login")">,Thoát</a>
                                   
                                 </div>
                         }
