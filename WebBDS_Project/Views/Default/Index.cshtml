@@ -272,87 +272,11 @@
                             <img src="~/Template/images/banner2.jpg" alt="banner">
                             <img src="~/Template/images/banner2.jpg" alt="banner" style="margin: 0">
                         </div>
-                        <div class="right_col">
-                            <h3>Việc làm bất động sản</h3>
-                            <ul class="last_list_right">
-                                
-                                
-                                @{
-                                    foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
-                                    {
-                                           <li>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">@item.Name</a>
-                                        </li>
-                                    }
-                                }
-                                
-
-                               
-                            </ul>
-                        </div>
-                        <div class="right_col">
-                            <h3>Công ty nổi bật</h3>
-                            <ul class="last_list_right">
-                              
-                                @{
-                                    foreach (var item in db.bdsemployerinformations.Where(T => T.Active == 1 && T.Featured==1).ToList())
-                                    {
-                                        <li>
-                                            <a href="@Url.Action("Detail","Default",new { id=1})">@item.Name</a>
-                                        </li>
-                                    }
-                                }
-                            </ul>
-                        </div>
-                        <div class="right_col">
-                            <h3>Chia sẽ kinh nghiệm</h3>
-                            <ul class="list_news">
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">
-                                        <img src="http://nhaban.net.vn/wp-content/plugins/zendvn-real-estate/public/files/news/p65x49/20160310112710-15e7.jpg"></a>
-                                    <figcaption><a href="@Url.Action("Detail","Default",new { id=1})">Lo ngại tình trạng mua bán tùm lum chỗ để ô tô trong chung cư</a></figcaption>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">
-                                        <img src="http://nhaban.net.vn/wp-content/plugins/zendvn-real-estate/public/files/news/p65x49/20160310112710-15e7.jpg"></a>
-                                    <figcaption><a href="@Url.Action("Detail","Default",new { id=1})">Loại bỏ các cao ốc ‘phá nát biển Nha Trang’</a></figcaption>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">
-                                        <img src="http://nhaban.net.vn/wp-content/plugins/zendvn-real-estate/public/files/news/p65x49/20160310112710-15e7.jpg"></a>
-                                    <figcaption><a href="@Url.Action("Detail","Default",new { id=1})">Tiền đổ vào bất động sản chưa bao giờ giảm</a></figcaption>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="comment">
-                            <h3><i class="fa fa-comments"></i>Nhận xét khách hàng</h3>
-                            <div class="comment_box">
-                                <p>Tôi rất thoải mái cách làm việc của các bạn, tôi chúc các bạn thành công hơn nữa</p>
-                            </div>
-                            <div class="name_comment">
-                                <p><span>Anh Tú</span> Cty một thành viên</p>
-                            </div>
-                        </div>
-                        <div class="right_col">
-                            <h3>Tin bất động sản</h3>
-                            <ul class="list_news">
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">
-                                        <img src="http://nhaban.net.vn/wp-content/plugins/zendvn-real-estate/public/files/news/p65x49/20160310112710-15e7.jpg"></a>
-                                    <figcaption><a href="@Url.Action("Detail","Default",new { id=1})">Lo ngại tình trạng mua bán tùm lum chỗ để ô tô trong chung cư</a></figcaption>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">
-                                        <img src="http://nhaban.net.vn/wp-content/plugins/zendvn-real-estate/public/files/news/p65x49/20160310112710-15e7.jpg"></a>
-                                    <figcaption><a href="@Url.Action("Detail","Default",new { id=1})">Loại bỏ các cao ốc ‘phá nát biển Nha Trang’</a></figcaption>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">
-                                        <img src="http://nhaban.net.vn/wp-content/plugins/zendvn-real-estate/public/files/news/p65x49/20160310112710-15e7.jpg"></a>
-                                    <figcaption><a href="@Url.Action("Detail","Default",new { id=1})">Tiền đổ vào bất động sản chưa bao giờ giảm</a></figcaption>
-                                </li>
-                            </ul>
-                        </div>
+                       @Html.Partial("_partialCareers")
+                       @Html.Partial("_partialCompany")
+                         @Html.Partial("_partialShareExpirence")
+                          @Html.Partial("_partialComment")
+                        @Html.Partial("_partialNews")
                         <div class="banner_right">
                             <img src="~/Template/images/banner2.jpg" alt="banner">
                             <img src="~/Template/images/banner2.jpg" alt="banner">

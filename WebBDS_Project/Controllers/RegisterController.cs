@@ -39,15 +39,16 @@ namespace WebBDS_Project.Controllers
                 bdsInformationModel.TblBdsAdcount.ModifiedDate = DateTime.Now;
                 db.bdsaccounts.Add(bdsInformationModel.TblBdsAdcount);
                 db.SaveChanges();
+                bdsemployerinformation tblemployee = new bdsemployerinformation();
                 bdsInformationModel.TblBdsemployerinformation.IdAccount = bdsInformationModel.TblBdsAdcount.Id;
-                bdsInformationModel.TblBdsemployerinformation.AddressContact = "tt";
-                bdsInformationModel.TblBdsemployerinformation.CityContact = 1;
-                bdsInformationModel.TblBdsemployerinformation.DistrictContact = 1;
-                bdsInformationModel.TblBdsemployerinformation.EmailContact = "tt";
-                bdsInformationModel.TblBdsemployerinformation.FullAddress = "tt";
-                bdsInformationModel.TblBdsemployerinformation.TypeContact = 1;
-                bdsInformationModel.TblBdsemployerinformation.Fax = "tt";
-                bdsInformationModel.TblBdsemployerinformation.PhoneContact = "tt";
+              
+                bdsInformationModel.TblBdsemployerinformation.Active = 1;
+                bdsInformationModel.TblBdsemployerinformation.CreateDate = DateTime.Now;
+                bdsInformationModel.TblBdsemployerinformation.CreateUser = 1;
+                bdsInformationModel.TblBdsemployerinformation.ModifiedDate = DateTime.Now;
+                bdsInformationModel.TblBdsemployerinformation.ModifiedUser = 1;
+                bdsInformationModel.TblBdsemployerinformation.Featured = 1;
+                
                 db.bdsemployerinformations.Add(bdsInformationModel.TblBdsemployerinformation);
                 db.SaveChanges();
             }
@@ -66,7 +67,7 @@ namespace WebBDS_Project.Controllers
                 throw;
             }
            
-            return RedirectToAction("Index","Default");
+            return RedirectToAction("Thanks","Register");
         }
         public ActionResult RegisterPersonal()
         {
@@ -161,6 +162,10 @@ namespace WebBDS_Project.Controllers
             });
             
         }
-
+        public ActionResult Thanks()
+        {
+           
+            return View();
+        }
     }
 }

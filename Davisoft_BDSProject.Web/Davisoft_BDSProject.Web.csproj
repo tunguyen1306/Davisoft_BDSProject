@@ -375,6 +375,9 @@
     <Compile Include="Models\bdscareer.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bdscomment.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\bdseducation.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
@@ -385,6 +388,9 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdsevent.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bdsextnew.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdslanguage.cs">

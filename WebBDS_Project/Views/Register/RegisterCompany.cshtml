@@ -322,7 +322,7 @@
             data: data,
             success: function (response) {
                 $('#imgLogoCompany').attr('src', response.fullurl);
-                $('#hdUrlImg').val(response.fullurl);
+                $('#UrlImage').val(response.imgName);
 
             },
             error: function (er) {

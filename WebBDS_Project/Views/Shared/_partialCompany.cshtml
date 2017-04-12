@@ -1,0 +1,20 @@
+﻿ @using WebBDS_Project.Models
+@{
+   
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+  
+}
+   <div class="right_col">
+                            <h3>Công ty nổi bật</h3>
+                            <ul class="last_list_right">
+                              
+                                @{
+                                    foreach (var item in db.bdsemployerinformations.Where(T => T.Active == 1 && T.Featured==1).ToList())
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Detail","Default",new { id=1})">@item.Name</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+</div>
