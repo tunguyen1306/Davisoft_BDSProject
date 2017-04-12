@@ -516,6 +516,10 @@
     <Content Include="Views\Shared\_partialCompany.cshtml" />
     <Content Include="Views\Shared\_partialNews.cshtml" />
     <Content Include="Views\Register\Thanks.cshtml" />
+    <Content Include="Views\Management\Paymen.cshtml" />
+    <Content Include="Views\Default\TinNhaTuyenDung.cshtml" />
+    <Content Include="Views\Shared\_partialShareExpirence.cshtml" />
+    <Content Include="Views\Default\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
