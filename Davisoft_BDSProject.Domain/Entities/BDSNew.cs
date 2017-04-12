@@ -71,5 +71,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public DateTime? DateReup { get; set; }
         public int CountReup { get; set; }
         public int Status { get; set; }
+
+        public int? RefTranHis { get; set; }
     }
 }

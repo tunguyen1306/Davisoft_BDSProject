@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -191,8 +192,32 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FullAddress = model.Address.NormalizeD() + ", " + Districts.Where(T => T.Value == model.District.ToString()).FirstOrDefault().Text.NormalizeD() +
             ", " + Cities.Where(T => T.Value == model.City.ToString()).FirstOrDefault().Text.NormalizeD();
             model.KeySearch = model.Name.NormalizeD() + " " + model.Birthday.ToString("dd/MM/yyyy").NormalizeD() + " " + model.Phone.NormalizeD() + " " + (model.Sex == 1 ? "Nam" : "Nữ") + " " + model.FullAddress + " " + model.BDSMarriage.Name.NormalizeD() + " " + model.BDSSalary.Name.NormalizeD() + " " + model.BDSCareer.Name.NormalizeD() + " " + model.BDSTimeWork.Name.NormalizeD() + " " + (model.ProfessionalExperience == 1 ? "Có kinh nghiệm bất động sản".NormalizeD() : "Không có kinh nghiệm bất động sản".NormalizeD()) + " " + model.Description.NormalizeD();
-            String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
-            model.UrlImage = path;
+            var path = string.Empty;
+            var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = string.Empty;
+
+
+
+
+            var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];
+            if (file != null && file.ContentLength > 0)
+            {
+
+                var fileName = Path.GetFileName(file.FileName);
+                string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                fortmatName = Path.GetExtension(fileName);
+
+                NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+                path = Server.MapPath("~/fileUpload/").Replace("adminbds.vangia.net", "webtuyendung.vangia.net") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path1 = Path.Combine(path, fileNameFull);
+                file.SaveAs(path1);
+            }
+            model.UrlImage = fileNameFull;
             _service.CreateItem(model);
             return RedirectToAction("Index");
         }
@@ -295,11 +320,32 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 model.BDSAccount.PassWord = EncryptHelper.EncryptPassword( _service.GetItem(model.ID).BDSAccount.PassWord);
             }
-            if (Request.Files.Count > 0 && Request.Files["UrlImageFile"] != null && Request.Files["UrlImageFile"].ContentLength>0)
+            var path = string.Empty;
+            var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = string.Empty;
+
+
+
+
+            var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];
+            if (file != null && file.ContentLength > 0)
             {
-                String path = ImageUpload.GetImagePath(ImageUpload.Upload(Guid.NewGuid().ToString(), Request.Files["UrlImageFile"], 400, 400));
-                model.UrlImage = path;
+
+                var fileName = Path.GetFileName(file.FileName);
+                string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                fortmatName = Path.GetExtension(fileName);
+
+                NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+                path = Server.MapPath("~/fileUpload/").Replace("adminbds.vangia.net", "webtuyendung.vangia.net") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path1 = Path.Combine(path, fileNameFull);
+                file.SaveAs(path1);
             }
+            model.UrlImage = fileNameFull;
             model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                             model.BDSAccount.Point.Value.ToString("n2");
             _serviceAccount.UpdateItem(model.BDSAccount);

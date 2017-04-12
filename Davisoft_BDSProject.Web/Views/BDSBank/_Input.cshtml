@@ -3,6 +3,7 @@
 @Html.HiddenFor(m => m.CreateDate)
 @Html.HiddenFor(m => m.CreateUser)
 @Html.HiddenFor(m => m.ModifiedUser)
+@using System.Configuration
 @using Davisoft_BDSProject.Domain.Entities
 
 @using Davisoft_BDSProject.Domain.Enum
@@ -49,11 +50,11 @@
     <div class="col-md-8" style="position: relative;">
         <div id="picture">
             @if (Model.UrlImage != null)
-            {
-                <img style="width: 120px; height:120px;" src="@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
-            }
-            else
-            {
+{
+    <img style="width: 120px; height:120px;" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
+}
+else
+{
                 <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
             }
 

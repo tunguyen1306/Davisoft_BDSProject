@@ -26,5 +26,6 @@ namespace WebBDS_Project.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
+        public Nullable<int> RefTranHis { get; set; }
     }
 }

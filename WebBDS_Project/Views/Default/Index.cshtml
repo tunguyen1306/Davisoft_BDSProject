@@ -226,43 +226,20 @@
                                 <h3><span><i class="fa fa-list-ul"></i>Kênh nhà tuyển dụng</span></h3>
                                 <div class="search_location">
                                     Tìm theo khu vực 
-                                    <select class="dropdown" tabindex="7">
-                                        <option value="1">Toàn quốc</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                        <option value="4">Option 4</option>
-                                        <option value="5">Option 5</option>
+                                    <select class="dropdown" onchange="loadNTDFilterPageFrom(this);" tabindex="7">
+                                        <option value="">Toàn quốc</option>
+                                        @{
+                                            foreach (var itemCity in states)
+                                            {
+                                                <option value="@itemCity.Id">@itemCity.Name</option>
+                                            }
+                                        }
                                     </select>
                                 </div>
                             </div>
-                            <ul class="last_list">
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Detail","Default",new { id=1})">Những lợi thế của BĐS Việt trong mắt chuyên gia nước ngoài </a>
-                                </li>
-                                <li class="page">
-                                    <div class="page_links">
-                                        <span>Trang</span>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})" class="active">1</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">2</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">3</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">4</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">5</a>
-                                        <a href="@Url.Action("Detail","Default",new { id=1})">Tiếp</a>
-                                    </div>
-                                    <div class="more">
-                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="@Url.Action("Detail","Default",new { id=1})">Xem thêm</a>
-                                    </div>
-                                </li>
-                            </ul>
+                            @Html.Action("TinNhaTuyenDung", new { tt = "", from = 0, view = 6, page = 1 })
+                            
+
                         </div>
                         <div class="banner_bottom">
                             <img src="~/Template/images/banner.jpg" alt="logo"></div>

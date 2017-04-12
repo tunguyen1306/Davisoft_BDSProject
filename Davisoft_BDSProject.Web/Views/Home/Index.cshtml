@@ -35,6 +35,16 @@
         top: 0;
         left: 0;
     }
+    .dataTables_scroll .dataTables_scrollBody {
+        width: 100% !important;
+    }
+    .dataTables_scroll .dataTables_scrollHeadInner {
+        width: 100% !important;
+    }
+        .dataTables_scroll .dataTables_scrollHeadInner .dataTable {
+            width: 100% !important;
+        }
+    
 </style>
 @if (PermissionHelper.SalesmanId() == 0 && PermissionHelper.BranchId() == 0)
 {
@@ -87,11 +97,11 @@
         <div class="col-md-6 col-sm-12">
             <section class="panel panel-default">
                 <h3 class="tilte_l">
-                  Tin bị từ chối
+                 Tin tức bất đông sản/ kinh nghiệm chia sẽ chưa duyệt
                 </h3>
                 <div class="panel-body">
                     <div id="branchpercent" style="min-width: 310px; height: 400px; margin: 0 auto">
-                        @Html.Action("IndexRejectByType")
+                        @Html.Action("IndexPendingExtNews")
                     </div>
                 </div>
             </section>
