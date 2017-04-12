@@ -14,7 +14,7 @@
     <div class="box_info">
         <div><strong>@tblEmployee.Name</strong></div>
         <div class="logo_image">
-            <img src="@(ConfigurationManager.AppSettings["UrlImage"] +  (tblEmployee.UrlImage!=null?( tblEmployee.UrlImage.Split('_')[0] + tblEmployee.UrlImage):"img.png"))" alt="image">
+            <img src="@(ConfigurationManager.AppSettings["UrlImage"] +  (tblEmployee.UrlImage!=null?( tblEmployee.UrlImage.Split('_')[0]+"/" + tblEmployee.UrlImage):"img.png"))" alt="image">
         </div>
 
         <p>

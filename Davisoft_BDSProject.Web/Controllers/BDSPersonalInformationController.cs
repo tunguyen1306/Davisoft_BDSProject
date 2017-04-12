@@ -177,7 +177,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                 return View(model);
             }
         
-            model.BDSAccount.PassWord = EncryptHelper.EncryptPassword(model.BDSAccount.PassWord);
+            model.BDSAccount.PassWord = model.BDSAccount.PassWord;
             model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                               model.BDSAccount.Point.Value.ToString("n2");
             model.BDSAccount= _serviceAccount.CreateItem(model.BDSAccount);
@@ -293,7 +293,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 
             if (_service.GetItem(model.ID).BDSAccount.PassWord != model.BDSAccount.PassWord)
             {
-                model.BDSAccount.PassWord = EncryptHelper.EncryptPassword( _service.GetItem(model.ID).BDSAccount.PassWord);
+                model.BDSAccount.PassWord = _service.GetItem(model.ID).BDSAccount.PassWord;
             }
             if (Request.Files.Count > 0 && Request.Files["UrlImageFile"] != null && Request.Files["UrlImageFile"].ContentLength>0)
             {
