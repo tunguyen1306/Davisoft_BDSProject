@@ -32,5 +32,6 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> TranDate { get; set; }
         public Nullable<int> Type { get; set; }
         public Nullable<decimal> EventDisPercent { get; set; }
+        public Nullable<int> RefTranHis { get; set; }
     }
 }

@@ -57,5 +57,6 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> DateReup { get; set; }
         public Nullable<int> CountReup { get; set; }
         public Nullable<int> Status { get; set; }
+        public Nullable<int> RefTranHis { get; set; }
     }
 }

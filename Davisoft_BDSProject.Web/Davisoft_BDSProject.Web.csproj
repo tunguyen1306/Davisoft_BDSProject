@@ -426,6 +426,9 @@
     <Compile Include="Models\bdstransaction.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bdstransactionhistory.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\bdstypecontact.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>

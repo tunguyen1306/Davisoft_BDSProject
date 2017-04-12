@@ -57,5 +57,6 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<System.DateTime> DateReup { get; set; }
         public Nullable<int> CountReup { get; set; }
         public Nullable<int> Status { get; set; }
+        public Nullable<int> RefTranHis { get; set; }
     }
 }

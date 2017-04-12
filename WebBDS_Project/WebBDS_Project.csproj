@@ -167,6 +167,9 @@
     <Compile Include="Models\bdscareer.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bdscomment.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\bdseducation.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -177,6 +180,9 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdsevent.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bdsextnew.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdslanguage.cs">
@@ -210,6 +216,9 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdstransaction.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bdstransactionhistory.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bdstypecontact.cs">
@@ -502,6 +511,11 @@
     <Content Include="Views\Shared\_partialManagerCenter.cshtml" />
     <Content Include="Views\Shared\_partialMenu.cshtml" />
     <Content Include="Views\Management\ForgetPass.cshtml" />
+    <Content Include="Views\Shared\_partialCareers.cshtml" />
+    <Content Include="Views\Shared\_partialComment.cshtml" />
+    <Content Include="Views\Shared\_partialCompany.cshtml" />
+    <Content Include="Views\Shared\_partialNews.cshtml" />
+    <Content Include="Views\Register\Thanks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
