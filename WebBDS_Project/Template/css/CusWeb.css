@@ -292,3 +292,21 @@ tr:nth-child(even) {
 }.idTabs-2 label  {
      width: 300px;
 }
+ .boder-payment{
+     border:1px solid #004991;
+     background-color:#055699;
+     font-weight:bold;
+     color:#ffffff;
+     padding:5px 10px 5px  10px;
+     border-radius:5px;
+
+ }
+ .cusfa{
+     padding-left:10px;
+ }
+ .TextColorBlue{
+     color:#055699;
+ } 
+ .TextColorGreen{
+     color:#2a8f07;
+ }
