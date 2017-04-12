@@ -84,6 +84,10 @@ namespace WebBDS_Project.Controllers
 
             return View(Model);
         }
+        public ActionResult Search()
+        {
 
+            return View();
+        }
     }
 }
