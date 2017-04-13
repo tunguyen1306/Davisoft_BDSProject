@@ -23,5 +23,7 @@ namespace WebBDS_Project.Models
         public string polygon { get; set; }
         public System.Guid rowguid { get; set; }
         public Nullable<int> Status { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
     }
 }

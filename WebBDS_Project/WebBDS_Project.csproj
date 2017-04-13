@@ -430,6 +430,7 @@
     <Content Include="Template\home.htm" />
     <Content Include="Template\images\1.jpg" />
     <Content Include="Template\images\2.jpg" />
+    <Content Include="Template\images\avatar-default.png" />
     <Content Include="Template\images\Banner.jpg" />
     <Content Include="Template\images\banner2.jpg" />
     <Content Include="Template\images\calendar.gif" />
@@ -521,6 +522,8 @@
     <Content Include="Views\Shared\_partialShareExpirence.cshtml" />
     <Content Include="Views\Default\Search.cshtml" />
     <Content Include="Views\Shared\_searchPannel.cshtml" />
+    <Content Include="Views\Management\Paymen.cshtml" />
+    <Content Include="Views\Management\DetailPer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

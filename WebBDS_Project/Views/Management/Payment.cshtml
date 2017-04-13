@@ -237,28 +237,23 @@
 
 
 
-        $('.tableBank').eq(0).removeClass('hidden');
-        $('.tableBank').eq(0).addClass('active');
-        if ($('.radioType').hasClass('selected')) {
-            $('.selected .radioIdType').prop('checked', true);
-        }
-        $.each($('.btnBank'), function (i,o) {
-            $(this).click(function () {
-                var id = $(this).attr('rel');
-             
-                if ($('#table_' + id).hasClass('active')) {
-                    $('#table_' + id).addClass('hidden');
-                    $('#table_' + id).removeClass('active');
-                } else {
+
+            $('.tableBank').eq(0).removeClass('hidden');
+            $('.tableBank').eq(0).addClass('active');
+            if ($('.radioType').hasClass('selected')) {
+                $('.selected .radioIdType').prop('checked', true);
+            }
+            $.each($('.btnBank'), function(i, o) {
+                $(this).click(function() {
+                    var id = $(this).attr('rel');
+                    $('.tableBank').addClass('hidden');
                     $('#table_' + id).removeClass('hidden');
-                    $('#table_' + id).addClass('active');
-                }
 
+                });
             });
-        })
 
-    });
-    $('.radioType').click(function () {
-        $(this).find('.radioIdType').prop('checked', true);
-    });
+        });
+        $('.radioType').click(function () {
+            $(this).find('.radioIdType').prop('checked', true);
+        });
 </script>

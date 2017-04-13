@@ -113,7 +113,7 @@
 
                                 @*  <label class="cusLabel-2">Tỉnh/TP</label>*@
                     @* @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
-                    <select id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
+                    <select id="dropCity" tabindex="7" name="TblBdspersonalinformation.City">
                         <option value="0">Chọn thành phố</option>
                     </select>
 
@@ -124,7 +124,7 @@
                     <div class="pncon  width2 ">
 
                         @*   <label class="cusLabel-2">Quận/Huyện</label>*@
-                    <select class="dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
+                    <select class="dropDistrict" tabindex="7" name="TblBdspersonalinformation.District">
                         <option value="0">Chọn quận huyện</option>
 
                     </select>
@@ -141,7 +141,7 @@
                             <div class="row-right">
 
 
-                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"),"Chọn tình trạng hôn nhân", new { @class = "dropdown" })
 
 
 
@@ -152,7 +152,7 @@
 
                             <label class="child">Mức lương mong muốn <span class="required">*</span></label>
                             <div class="pncon">
-                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"), new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"),"Chọn mức lương", new { @class = "dropdown" })
                             </div>
                         </div>
 
@@ -164,7 +164,7 @@
                             <label>Số năm kinh nghiệm<span class="required"> *</span></label>
                             <div class="row-right">
 
-                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"), new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"),"Chọn kinh nghiệm", new { @class = "dropdown" })
 
 
                             </div>
@@ -174,7 +174,7 @@
                             <label class="child">Học vấn <span class="required">*</span></label>
                             <div class="pncon">
 
-                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Education, new SelectList(Model.ListDucation, "Id", "Name"), new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Education, new SelectList(Model.ListDucation, "Id", "Name"),"Chọn học vấn", new { @class = "dropdown" })
 
                             </div>
                         </div>
@@ -186,7 +186,7 @@
                     <div class="row">
                         <label>Công việc mong muốn<span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.TblBdspersonalinformation.IdLoaiNghe, new SelectList(Model.ListBdscareer, "Id", "Name"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.TblBdspersonalinformation.IdLoaiNghe, new SelectList(Model.ListBdscareer, "Id", "Name"),"Chọn ngành nghề", new { @class = "dropdown" })
 
 
                         </div>
@@ -195,8 +195,8 @@
                         <label class="child">Kinh nghiệm trong ngành bất động sản<span class="required">*</span></label>
 
                         <div class="pncon radio_3">
-                            <label><input name="TblBdspersonalinformation.Education" checked="checked" type="radio">Không</label>
-                            <label><input name="TblBdspersonalinformation.Education" type="radio">Đã có kinh nghiệm</label>
+                            <label><input name="TblBdspersonalinformation.ProfessionalExperience" value="0" checked="checked" type="radio">Không</label>
+                            <label><input name="TblBdspersonalinformation.ProfessionalExperience" value="1" type="radio">Đã có kinh nghiệm</label>
                         </div>
 
 
@@ -206,13 +206,7 @@
                     <div class="row">
                         <label>Giới thiệu sơ lược</label>
                         <div class="row-right">
-                            <textarea class="input4" rows="4"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Mã xác nhận<span class="required">*</span></label>
-                        <div class="row-right">
-                            <input class="input1" placeholder="Nhập mã" type="text">
+                            <textarea class="input4" name="TblBdspersonalinformation.Description" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -222,7 +216,7 @@
                             <div class="grid_5 uploadBox">
                                 <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
 
-                                
+                                <input type="hidden" value="" name="TblBdspersonalinformation.UrlImage" id="UrlImage" />
                             </div>
                             <div class="uploadBox-1">
                                 <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
@@ -236,11 +230,22 @@
 
                             <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
                         </div>
-
-
-
-
                     </div>
+                    <div class="row">
+                        <label>Mã an toàn (<span class="required">*</span>):</label>
+                        <div class="row-right">
+                            <div class="pncon marginright34">
+                                @Html.TextBoxFor(model => model.tblCaptCha.Captcha)
+                                @Html.ValidationMessageFor(model => model.tblCaptCha.Captcha)
+                            </div>
+                        </div>
+                        <div class="row-right">
+                            <div class="pncon">
+                                <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                            </div>
+                        </div>
+                    </div>
+                    
 
                     <div class="row">
 
@@ -276,10 +281,104 @@
             $('#year').val(birthday[2]);
 
         });
+        $("#year").change(function () {
+
+            var datet = $('#day').val() + "/" + $('#month').val() + "/" + $('#year').val();
+            $('#hdValuesDate').val(datet);
+        });
     });
+ 
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
         var t = 0;
+        if ($('#tblCaptCha_Captcha').val() == "") {
+
+            toastr.error('Vui lòng nhập captcha! ');
+            t++;
+        }
+        if ($('#TblBdspersonalinformation_IdLoaiNghe').val() == "") {
+
+            toastr.error('Vui lòng chọn nghành nghề! ');
+            t++;
+        }
+        if ($('#TblBdspersonalinformation_Education').val() == "") {
+
+            toastr.error('Vui lòng chọn học vấn! ');
+            t++;
+        }
+        if ($('#TblBdspersonalinformation_Experience').val() == "") {
+
+            toastr.error('Vui lòng chọn kinh nghiệm! ');
+            t++;
+        }
+        if ($('#TblBdspersonalinformation_Salary').val() == "") {
+
+            toastr.error('Vui lòng chọn mức lương! ');
+            t++;
+        }
+        if ($('#TblBdspersonalinformation_MaritalStatus').val() =="") {
+
+            toastr.error('Vui lòng chọn tình trạng hôn nhân! ');
+            t++;
+        }
+        if ($('#dropDistrict').val() == 0) {
+
+            toastr.error('Vui lòng chọn Thành/Phố ');
+            t++;
+        }
+        if ($('#dropCity').val() == 0) {
+
+            toastr.error('Vui lòng chọn Thành/Phố ');
+            t++;
+        }
+
+        if ($('#TblBdspersonalinformation_Address').val() == "") {
+
+            toastr.error('Vui lòng nhập địa chỉ ');
+            t++;
+        }
+
+        if ($('#TblBdsemployerinformation_Phone').val() != "") {
+            if ($('#TblBdsemployerinformation_Phone').length > 11) {
+
+                toastr.error('Số điện thoại tối đa 11 số!');
+                t++;
+            }
+        }
+        else {
+            toastr.error('Vui lòng nhập Số điện thoại!');
+            t++;
+        }
+       
+        if ($('#TblBdspersonalinformation_Name').val() == "") {
+
+            toastr.error('Vui lòng nhập họ và tên ');
+            t++;
+        }
+        if ($('#TblBdsAdcount_PassWord').val() != $('#PasswordSecond').val()) {
+
+            toastr.error('Password không trùng khớp!');
+            t++;
+        }
+        if ($('#TblBdsAdcount_PassWord').val() == "") {
+
+            toastr.error('Vui lòng nhập  Password!');
+            t++;
+        }
+        if ($('#EmailSeccond').val() == "") {
+
+            toastr.error('Vui lòng nhập lại Email!');
+            t++;
+        }
+        else {
+
+            if ($('#EmailSeccond').val() != $('#TblBdsAdcount_Email').val()) {
+
+                toastr.error('Email không trùng khớp!');
+                t++;
+            }
+
+        }
         if ($('#TblBdsAdcount_Email').val() == "") {
 
             toastr.error('Vui lòng nhập Email!');
@@ -302,52 +401,10 @@
         }
 
 
-        if ($('#EmailSeccond').val() == "") {
-
-            toastr.error('Vui lòng nhập lại Email!');
-            t++;
-        }
-        else {
-
-            if ($('#EmailSeccond').val() != $('#TblBdsAdcount_Email').val()) {
-
-                toastr.error('Email không trùng khớp!');
-                t++;
-            }
-
-        }
-        if ($('#TblBdsAdcount_PassWord').val() == "") {
-
-            toastr.error('Vui lòng nhập  Password!');
-            t++;
-        }
-        if ($('#TblBdsAdcount_PassWord').val() != $('#PasswordSecond').val()) {
-
-            toastr.error('Password không trùng khớp!');
-            t++;
-        }
+       
 
 
-        if ($('#TblBdspersonalinformation_Name').val() == "") {
-
-            toastr.error('Vui lòng nhập họ và tên ');
-            t++;
-        } if ($('#TblBdspersonalinformation_Address').val() == "") {
-
-            toastr.error('Vui lòng nhập địa chỉ ');
-            t++;
-        }
-        if ($('#TblBdsemployerinformation_Phone').val() != "") {
-            if ($('#TblBdsemployerinformation_Phone').length > 11) {
-
-                toastr.error('Số điện thoại tối đa 11 số!');
-                t++;
-            }
-        }
-        else {
-            toastr.error('Vui lòng nhập Số điện thoại!');
-            t++;
-        }
+     
         if (t == 0) {
             $('#submitbutton').parents("form").submit();
         }
@@ -387,7 +444,7 @@
             data: data,
             success: function (response) {
                 $('#imgLogoCompany').attr('src', response.fullurl);
-                $('#hdUrlImg').val(response.fullurl);
+                $('#UrlImage').val(response.imgName);
 
             },
             error: function (er) {
