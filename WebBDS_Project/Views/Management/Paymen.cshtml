@@ -58,7 +58,7 @@
                                         <thead>
                                             <tr>
                                                 <th data-field="id">Tên ngân hàng</th>
-                                                <th data-field="name">Ngân hàng thương mại cổ phần ngoại thương Việt Nam-Vietcombank</th>
+                                                <th data-field="name">@item1.Name</th>
 
                                             </tr>
                                         </thead>
@@ -66,17 +66,17 @@
                                         <tbody>
                                             <tr>
                                                 <td>Chin nhánh</td>
-                                                <td>Chi nhánh Phú Thọ</td>
+                                                <td>@item1.Branch</td>
 
                                             </tr>
                                             <tr>
                                                 <td>Người hưởng lợi</td>
-                                                <td>Công Ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589</td>
+                                                <td>@item1.AccountName</td>
 
                                             </tr>
                                             <tr>
                                                 <td>Số tài khoản</td>
-                                                <td>02428913123123</td>
+                                                <td>@item1.AccountNumber</td>
 
                                             </tr>
                                         </tbody>
@@ -146,21 +146,29 @@
 
                         </div>
                         <div id="a2">
-                            @foreach (var item in db.bdsbranches.Where(x => x.Active == 1).ToList())
+                            @foreach (var itemArea in db.bdsareas.Where(x => x.Active == 1).ToList())
                             {
-                                <div class="boder-payment">
-                                    Văn phòng tại miền bắc(Hà Nội,Hải Phòng)
+                                if (db.bdsbranches.Count(x => x.IdArea == itemArea.Id)>0)
+                                {
+  <div class="boder-payment">
+
+                                    @itemArea.Name
                                 </div>
+                                }
+                                 
+                                foreach (var item in db.bdsbranches.Where(x => x.Active == 1 && x.IdArea==itemArea.Id).ToList())
+                                {
+                               
                                 <div class="row">
                                     <span class="cusfa">
-                                        <i class="fa fa-home " aria-hidden="true"></i> <b class="TextColorBlue">@item.Name</b>
+                                        <i class="fa fa-home " aria-hidden="true"></i><b class="TextColorBlue">@item.Name</b>
                                     </span>
 
 
                                 </div>
                                 <div class="row">
                                     <span class="cusfa">
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>@item.Address
                                     </span>
 
 
@@ -174,6 +182,8 @@
                                 </div>
                             }
 
+                            }
+                           
                         </div>
 
                     </div>
@@ -201,20 +211,14 @@
         if ($('.radioType').hasClass('selected')) {
             $('.selected .radioIdType').prop('checked', true);
         }
-        $.each($('.btnBank'), function (i,o) {
-            $(this).click(function () {
+        $.each($('.btnBank'), function(i, o) {
+            $(this).click(function() {
                 var id = $(this).attr('rel');
-             
-                if ($('#table_' + id).hasClass('active')) {
-                    $('#table_' + id).addClass('hidden');
-                    $('#table_' + id).removeClass('active');
-                } else {
-                    $('#table_' + id).removeClass('hidden');
-                    $('#table_' + id).addClass('active');
-                }
+                $('.tableBank').addClass('hidden');
+                $('#table_' + id).removeClass('hidden');
 
             });
-        })
+        });
 
     });
     $('.radioType').click(function () {
