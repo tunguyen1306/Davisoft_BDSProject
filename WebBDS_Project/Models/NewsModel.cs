@@ -19,7 +19,7 @@ namespace WebBDS_Project.Models
       
         public List<bdsscope> ListBdsScopes { get; set; }
         public List<state> ListStates { get; set; }
-        public List<statetext> ListStatetexts { get; set; }
+        public List<stateText> ListstateTexts { get; set; }
         public List<district> ListDistrict { get; set; }
         public List<districttext> ListDistricttext { get; set; }
         public List<GeoModel> ListGeoModel { get; set; }

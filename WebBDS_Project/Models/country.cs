@@ -17,6 +17,6 @@ namespace WebBDS_Project.Models
         public string countryCode { get; set; }
         public int name_id { get; set; }
         public string languages { get; set; }
-        public string rowguid { get; set; }
+        public System.Guid rowguid { get; set; }
     }
 }

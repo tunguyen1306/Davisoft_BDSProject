@@ -18,7 +18,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 {
     public class BDSTransactionController : Controller
     {
-        Davisoft_BDSProjectEntities db = new Davisoft_BDSProjectEntities();
+        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
         private readonly IBDSEventService _serviceEvent;
         private readonly IBDSTransactionService _service;
         private readonly IBDSAccountService _serviceAccount;

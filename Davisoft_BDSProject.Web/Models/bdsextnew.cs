@@ -32,6 +32,5 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<System.DateTime> ApproveDate { get; set; }
         public Nullable<int> ApproveUser { get; set; }
         public string UrlImage { get; set; }
-
     }
 }

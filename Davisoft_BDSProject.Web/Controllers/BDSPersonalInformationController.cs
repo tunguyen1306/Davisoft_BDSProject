@@ -19,7 +19,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 {
     public class BDSPersonalInformationController : Controller
     {
-        Davisoft_BDSProjectEntities db = new Davisoft_BDSProjectEntities();
+        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
         private readonly IBDSPersonalInformationService _service;
         private readonly IBDSAccountService _serviceAccount;
         private readonly IBDSEducationService _serviceEducation;
@@ -88,7 +88,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         {
           
             var Cities = (from a in db.states
-                join b in db.statetexts on a.name_id equals b.id
+                join b in db.stateTexts on a.name_id equals b.id
                 where b.language_id == "vi" && a.Status == 1
                           select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Districts = (from a in db.districts
@@ -135,7 +135,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         public ActionResult Create(BDSPersonalInformation model)
         {
             var Cities = (from a in db.states
-                          join b in db.statetexts on a.name_id equals b.id
+                          join b in db.stateTexts on a.name_id equals b.id
                           where b.language_id == "vi" && a.Status == 1
                           select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
@@ -227,7 +227,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             BDSPersonalInformation model = _service.GetItem(id);
      
             var Cities = (from a in db.states
-                          join b in db.statetexts on a.name_id equals b.id
+                          join b in db.stateTexts on a.name_id equals b.id
                           where b.language_id == "vi" && a.Status == 1
                           select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
            
@@ -271,7 +271,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         public ActionResult Edit(BDSPersonalInformation model)
         {
             var Cities = (from a in db.states
-                          join b in db.statetexts on a.name_id equals b.id
+                          join b in db.stateTexts on a.name_id equals b.id
                           where b.language_id == "vi" && a.Status == 1
                           select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Districts = (from a in db.districts

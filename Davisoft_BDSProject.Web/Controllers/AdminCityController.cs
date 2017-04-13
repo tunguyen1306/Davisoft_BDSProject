@@ -15,11 +15,11 @@ namespace Davisoft_BDSProject.Web.Controllers
     {
         //
         // GET: /AdminCity/
-        private Davisoft_BDSProjectEntities db = new Davisoft_BDSProjectEntities();
+        private davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
         public ActionResult Index()
         {
             var queryData = from city in db.states
-                join cityTex in db.statetexts on city.name_id equals cityTex.id
+                join cityTex in db.stateTexts on city.name_id equals cityTex.id
                 where cityTex.language_id.Equals("vi")
                             select new CityModel { City = city,CityText = cityTex};
 
@@ -32,7 +32,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         public ActionResult Edit( int id)
         {
             var queryData = from city in db.states
-                            join cityTex in db.statetexts on city.name_id equals cityTex.id
+                            join cityTex in db.stateTexts on city.name_id equals cityTex.id
                             where cityTex.language_id.Equals("vi") || city.state_id==id
                             select new CityModel { City = city, CityText = cityTex };
 
@@ -48,9 +48,9 @@ namespace Davisoft_BDSProject.Web.Controllers
                 db.Entry(sta).State = EntityState.Modified;
                 sta.Status = cityModel.City.Status;
                 sta.stateCode = cityModel.City.stateCode;
-                statetext statetext = (from data in db.statetexts where data.id==cityModel.CityText.id && data.language_id=="vi" select data).ToList().FirstOrDefault();
-                db.Entry(statetext).State = EntityState.Modified;
-                statetext.text = cityModel.CityText.text;
+                stateText stateText = (from data in db.stateTexts where data.id==cityModel.CityText.id && data.language_id=="vi" select data).ToList().FirstOrDefault();
+                db.Entry(stateText).State = EntityState.Modified;
+                stateText.text = cityModel.CityText.text;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

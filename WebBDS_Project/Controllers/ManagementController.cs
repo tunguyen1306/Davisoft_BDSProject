@@ -24,7 +24,7 @@ namespace WebBDS_Project.Controllers
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             var register = new RegisterInformationModel
@@ -64,7 +64,7 @@ namespace WebBDS_Project.Controllers
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             var register = new RegisterInformationModel
@@ -107,7 +107,7 @@ namespace WebBDS_Project.Controllers
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             CaptCha cap = new CaptCha();
@@ -167,7 +167,7 @@ namespace WebBDS_Project.Controllers
                 db.SaveChanges();
             }
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             CaptCha cap = new CaptCha();

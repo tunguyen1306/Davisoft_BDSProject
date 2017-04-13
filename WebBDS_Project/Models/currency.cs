@@ -17,7 +17,7 @@ namespace WebBDS_Project.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Symbol { get; set; }
-        public bool IsDefault { get; set; }
+        public short IsDefault { get; set; }
         public int Precision { get; set; }
     }
 }

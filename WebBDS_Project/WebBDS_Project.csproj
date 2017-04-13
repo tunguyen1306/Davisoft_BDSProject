@@ -295,7 +295,7 @@
     <Compile Include="Models\state.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\statetext.cs">
+    <Compile Include="Models\stateText.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.cs">
