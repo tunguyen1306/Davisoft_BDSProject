@@ -1,0 +1,264 @@
+﻿@using WebBDS_Project.Models
+@{
+    ViewBag.Title = "Paymen";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+}
+<script src="http://www.decorplanit.com/plugin/autoNumeric-1.9.41.js"></script>
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Nộp tiền quảng cáo tuyển dụng</span></h3>
+            </div>
+            <form class="form-horizontal " data-validate="parsley" action="#">
+                <h4>Chọn phương thức thanh toán</h4>
+                <div class="row">
+
+                    <ul class="radio idTabs idTabs-1 idTabs-2">
+
+                        <li style="text-align: right">
+                            <a href="#a1" class="radioType">
+                                <label>
+                                    <input type="radio" value="1" class="radioIdType" name="tblbdsnew.IdTypeNews"> Chuyển khoản ngân hàng
+                                </label>
+                            </a>
+                        </li>
+                        <li style="text-align: left">
+                            <a href="#a2" class="radioType">
+                                <label>
+                                    <input type="radio" value="2" class="radioIdType" name="tblbdsnew.IdTypeNews"> Nộp tiền trực tiếp
+                                </label>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                    <div class="content_tab-1">
+
+
+                        <div id="a1">
+                            <div class="row">
+                                @foreach (var item in db.bdsbanks.Where(x => x.Active == 1).ToList())
+                                {
+
+
+                                    <div class="grid_2 border-bank btnBank" rel="@item.Id">
+                                        <img width="64" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" />
+                                    </div>
+                                }
+
+
+                            </div>
+                            <h4>Thông tin tài khoản</h4>
+                            <div class="row">
+                                @foreach (var item1 in db.bdsbanks.Where(x => x.Active == 1).ToList())
+                                {
+                                    <table class="cus-table-responsive tableBank hidden" id="table_@item1.Id">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="id">Tên ngân hàng</th>
+                                                <th data-field="name">Ngân hàng thương mại cổ phần ngoại thương Việt Nam-Vietcombank</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>Chin nhánh</td>
+                                                <td>Chi nhánh Phú Thọ</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Người hưởng lợi</td>
+                                                <td>Công Ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Số tài khoản</td>
+                                                <td>02428913123123</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                }
+
+
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <b>Bước 1:</b>đến ngân hàng và chuyển khoản cho tuyennhanvienbds.com theo nội dung như sau:(Mã khách hàng + Nội dung nạp tiền).
+                            </div>
+                            <div class="row">
+                                <b>Bước 2:</b>soạn tin nhắn với nội dung "Mã khách hàng + Số tiền" gửi đến số <b>091.338.589</b>.Hoặc gọi điện thoại trực tiếp đến cho chúng tôi để đc ưu tiên xữ lý sớm nhất.
+                            </div>
+                            <div class="row">
+                                <b style="color: #038e20">Tài khoản của bạn đã được nạp tiền thời gian xữ lý mất khoảng 30 phút.</b>
+                            </div>
+                            <div class="row">
+                                <div class="header-promotion">
+                                    <h4>Kiểm tra khuyến mãi</h4>
+                                    <div class="border-promotion">
+                                        Kể từ ngày 01/01/2017 tuyennhanvienbds.com áp dụng chương trình khuyến mãi tặng <b class="TextColorRed">20%</b>  giá trị nạp tiền vào tài khoản cho nhà tuyển dụng.
+                                    </div>
+                                    <div class="row">
+                                        <label class="grid_2">Số tiền nạp</label>
+                                        <div class="row-right grid_9">
+                                            <input placeholder="Nhập số tiền" class="money" name="soTien" type="text">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <label class="grid_2"></label>
+                                        <div class="row-right grid_9">
+                                            <a class="btnSubmitReview" >Xem trước</a>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <label class="grid_2"></label>
+                                        <div class="row-right grid_9">
+                                            <input placeholder="Tổng tiền" readonly="true" class="tongTien" name="tongTien" type="text">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <label class="grid_2">Điểm xem tin</label>
+                                        <div class="row-right grid_9">
+                                            <input placeholder="Điểm xem tin" readonly="true" class="point" name="point" type="text">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <label class="grid_2">Cộng</label>
+                                        <div class="row-right grid_9">
+                                            <b class="TextColorRed totalTien">3.600.000</b> VNĐ và <b class="TextColorRed tpoint">150</b> điểm xem tin.
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <script>
+                                $(document).on("click", ".btnSubmitReview", function() {
+                                    if ($('.money').val()!="") {
+                                        $.getJSON("@Url.Action("AjaxPayment")?money=" + $('.money').autoNumeric('get'), function (data) {
+                                          //  $('.tongTien').val(tien(data.M + data.ME));
+                                            $('.point').val(data.P);
+                                            $('.totalTien').html(tien(data.M + data.ME));
+                                            $('.tpoint').html(data.P);
+
+                                        
+                                            $('.tongTien').autoNumeric('set', data.M + data.ME);
+                                        });
+                                    }
+                                 
+                                });
+                                function tien(val) {
+
+                                    if (val != null) {
+
+                                        while (/(\d+)(\d{3})/.test(val.toString())) {
+                                            val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                        }
+                                        return val + '';
+                                    }
+                                    else {
+                                        return '';
+                                    }
+
+                                }
+                            </script>
+                        </div>
+                        <div id="a2">
+                            @foreach (var item in db.bdsbranches.Where(x => x.Active == 1).ToList())
+                            {
+                                <div class="boder-payment">
+                                    Văn phòng tại miền bắc(Hà Nội,Hải Phòng)
+                                </div>
+                                <div class="row">
+                                    <span class="cusfa">
+                                        <i class="fa fa-home " aria-hidden="true"></i> <b class="TextColorBlue">@item.Name</b>
+                                    </span>
+
+
+                                </div>
+                                <div class="row">
+                                    <span class="cusfa">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address
+                                    </span>
+
+
+                                </div>
+                                <div class="row">
+                                    <span class="cusfa">
+                                        <i class="fa fa-mobile" aria-hidden="true"></i><b class="TextColorGreen" style="margin-right: 30px;">@item.Tel</b><i class="fa fa-phone" aria-hidden="true"></i><b class="TextColorGreen">@item.Phone</b>
+                                    </span>
+
+
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <div class="grid_3 omega main_right">
+
+        @Html.Partial("_partialManagerCenter")
+
+
+
+
+
+    </div>
+</div>
+<style>
+    input[readonly] {
+      background-color:    #eee;
+    }
+</style>
+<script>
+    jQuery(document).ready(function ($) {
+
+        $('.money').autoNumeric('init', { currencySymbol: 'VND' });
+        $('.tongTien').autoNumeric('init', { currencySymbol: 'VND' });
+
+
+
+
+        $('.tableBank').eq(0).removeClass('hidden');
+        $('.tableBank').eq(0).addClass('active');
+        if ($('.radioType').hasClass('selected')) {
+            $('.selected .radioIdType').prop('checked', true);
+        }
+        $.each($('.btnBank'), function (i,o) {
+            $(this).click(function () {
+                var id = $(this).attr('rel');
+             
+                if ($('#table_' + id).hasClass('active')) {
+                    $('#table_' + id).addClass('hidden');
+                    $('#table_' + id).removeClass('active');
+                } else {
+                    $('#table_' + id).removeClass('hidden');
+                    $('#table_' + id).addClass('active');
+                }
+
+            });
+        })
+
+    });
+    $('.radioType').click(function () {
+        $(this).find('.radioIdType').prop('checked', true);
+    });
+</script>

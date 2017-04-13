@@ -277,10 +277,28 @@ namespace WebBDS_Project.Controllers
            
 
         }
-        public ActionResult Paymen(string email)
+        public ActionResult Payment(string email)
         {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
             return View();
 
+        }
+
+        public JsonResult AjaxPayment(double? money)
+        {
+            double M = money.Value, P = 0, ME = 0;
+            DateTime dateNow = DateTime.Now;
+            var ev= db.bdsevents.Where(T => T.Active == 1 && T.FromDate <= dateNow && dateNow <= T.ToDate)
+                .OrderByDescending(T => T.FromDate)
+                .FirstOrDefault();
+            if (ev!=null)
+            {
+                ME = money.Value*(double) ev.DisPercent/100;
+            }
+            return Json(new {M = M, P = P, ME = ME},JsonRequestBehavior.AllowGet);
         }
     }
 }

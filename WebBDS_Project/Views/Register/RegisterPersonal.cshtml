@@ -107,31 +107,31 @@
                             @Html.TextBoxFor(m => m.TblBdspersonalinformation.Address, new { @class = "input1", @placeholder = "Nhập địa chỉ liên hệ" })
 
                         </div>
-                        <div class="row-right">
+                        <div class="row-right fix">
 
                             <div class="pncon width2 ">
 
-                                <label class="cusLabel-2">Tỉnh/TP</label>
-                                @* @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
-                                <select id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
-                                    <option value="0">Chọn thành phố</option>
-                                </select>
+                                @*  <label class="cusLabel-2">Tỉnh/TP</label>*@
+                    @* @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
+                    <select id="dropCity" tabindex="7" name="TblBdsemployerinformation.City">
+                        <option value="0">Chọn thành phố</option>
+                    </select>
 
-                            </div>
+                    </div>
 
 
 
-                            <div class="pncon  width2 ">
+                    <div class="pncon  width2 ">
 
-                                <label class="cusLabel-2">Quận/Huyện</label>
-                                <select class="dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
-                                    <option value="0">Chọn quận huyện</option>
+                        @*   <label class="cusLabel-2">Quận/Huyện</label>*@
+                    <select class="dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
+                        <option value="0">Chọn quận huyện</option>
 
-                                </select>
+                    </select>
 
-                            </div>
+                    </div>
 
-                        </div>
+                    </div>
 
 
                     </div>
@@ -250,9 +250,9 @@
 
                     </div>
                     <div class="row">
-                        <label></label>
+                        <label>&nbsp;</label>
 
-                        <button type="submit" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
+                        <button type="submit" style="width: 100px" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
 
                     </div>
                 </div>
@@ -369,9 +369,9 @@
         }
     });
 
-        $(".btnUpload").click(function () {
-            $(this).next().trigger('click');
-        });
+    $(".btnUpload").click(function () {
+        $(this).next().trigger('click');
+    });
   
     $("#uploadFile").change(function () {
         var data = new FormData();
@@ -398,3 +398,36 @@
     });
 
 </script>
+<style>
+    .selectric-wrapper .selectric {
+        height: 31px;
+    }
+        .selectric-wrapper .selectric .button {
+            height: 31px;
+            line-height: 321px;
+        }
+        .selectric-wrapper .selectric .label {
+            height: 31px;
+            line-height: 31px;
+        }
+    .ui-datepicker-trigger {
+        padding-top: 10px;
+    }
+    .selectric-items {
+        left: 0px;
+    }
+
+    @("@")media only screen and (max-width: 1120px) {
+                                                .width2 {
+        width: 50% !important;
+    }      
+    .selectric-wrapper
+     {
+        width: initial
+    }
+    .row-right.fix {
+    margin-top: 3px;
+}
+        }
+
+</style>
