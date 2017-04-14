@@ -28,14 +28,9 @@ namespace WebBDS_Project.Models
         public Nullable<int> CatExtNews { get; set; }
         public Nullable<int> IdAccount { get; set; }
         public Nullable<System.DateTime> DateCreate { get; set; }
-
         public Nullable<int> ApproveStatus { get; set; }
         public Nullable<System.DateTime> ApproveDate { get; set; }
         public Nullable<int> ApproveUser { get; set; }
         public string UrlImage { get; set; }
-
-
-
-
     }
 }

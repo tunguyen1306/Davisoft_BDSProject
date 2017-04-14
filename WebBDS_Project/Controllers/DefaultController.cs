@@ -65,7 +65,7 @@ namespace WebBDS_Project.Controllers
         {
             var id_ = int.Parse(id.Split('-').Last());
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new ListCityNew { Id = data.state_id, Name = datatext.text };
             var Model = new NewsModel

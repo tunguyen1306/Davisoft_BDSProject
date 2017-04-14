@@ -25,7 +25,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 {
     public class BDSNewController : Controller
     {
-        Davisoft_BDSProjectEntities db = new Davisoft_BDSProjectEntities();
+        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
         private readonly IBDSNewService _service;
         private readonly IBDSAccountService _serviceAccount;
         private readonly IBDSEmployerInformationService _serviceEmployerInformation;
@@ -63,7 +63,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         void LoadDataList()
         {
             var Cities = (from a in db.states
-                          join b in db.statetexts on a.name_id equals b.id
+                          join b in db.stateTexts on a.name_id equals b.id
                           where b.language_id == "vi" && a.Status == 1
                           select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
@@ -292,7 +292,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             }
             var picture = new NewsPictures
             {
-                tblPicture = new bdspicture() { advert_id = newsPicture.idProducts, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck = true, type_id = 1, title = newsPicture.nameImg, position = newsPicture.isactive }
+                tblPicture = new bdspicture() { advert_id = newsPicture.idProducts, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck = 1, type_id = 1, title = newsPicture.nameImg, position = newsPicture.isactive }
             };
             if (newsPicture.idpicture == 0)
             {
@@ -470,7 +470,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                                                                 select new { ID = a.state_id, Name = b.text }).FirstOrDefault().Name +", "+
 
                                                                 (from a in db.states
-                                                                 join b in db.statetexts on a.name_id equals b.id
+                                                                 join b in db.stateTexts on a.name_id equals b.id
                                                                  where b.language_id == "vi" && a.Status == 1 && a.state_id == T.CityContact
                                                                  select new { ID = a.state_id, Name = b.text }).FirstOrDefault().Name
                                                                 ,

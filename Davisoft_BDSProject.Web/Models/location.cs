@@ -24,6 +24,6 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<decimal> longitude { get; set; }
         public bool preferred { get; set; }
         public string polygon { get; set; }
-        public string rowguid { get; set; }
+        public System.Guid rowguid { get; set; }
     }
 }

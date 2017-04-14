@@ -8,6 +8,6 @@ namespace Davisoft_BDSProject.Web.Models
     public class CityModel
     {
         public state City { get; set; }
-        public statetext CityText { get; set; }
+        public stateText CityText { get; set; }
     }
 }

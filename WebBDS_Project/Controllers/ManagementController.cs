@@ -24,7 +24,7 @@ namespace WebBDS_Project.Controllers
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             var register = new RegisterInformationModel
@@ -39,7 +39,7 @@ namespace WebBDS_Project.Controllers
                 Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
                 TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
-                Listbdspersonalinformation = db.bdspersonalinformations.ToList(),
+                Listbdspersonalinformation = db.bdspersonalinformations.Where(x=>x.Active==1).ToList(),
                 TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
                 Listbdsemper = db.bdsempers.ToList()
             };
@@ -64,7 +64,7 @@ namespace WebBDS_Project.Controllers
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             var register = new RegisterInformationModel
@@ -107,7 +107,7 @@ namespace WebBDS_Project.Controllers
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             CaptCha cap = new CaptCha();
@@ -167,7 +167,7 @@ namespace WebBDS_Project.Controllers
                 db.SaveChanges();
             }
             var dataCity = from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             CaptCha cap = new CaptCha();
@@ -277,10 +277,66 @@ namespace WebBDS_Project.Controllers
            
 
         }
-        public ActionResult Paymen(string email)
+        public ActionResult Payment(string email)
         {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
             return View();
 
+        }
+
+        public JsonResult AjaxPayment(double? money)
+        {
+            double M = money.Value, P = 0, ME = 0;
+            DateTime dateNow = DateTime.Now;
+            var ev= db.bdsevents.Where(T => T.Active == 1 && T.FromDate <= dateNow && dateNow <= T.ToDate)
+                .OrderByDescending(T => T.FromDate)
+                .FirstOrDefault();
+            if (ev!=null)
+            {
+                ME = money.Value*(double) ev.DisPercent/100;
+            }
+            return Json(new {M = M, P = P, ME = ME},JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost, ActionName("DetailPersonal")]
+        public ActionResult DetailPersonal(int id)
+        {
+            var idAcount = int.Parse(Session["IdUser"].ToString());
+            var point = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount).Point;
+            if (point>3)
+            {
+                var tblbdsaccounts = db.bdsaccounts.Find(idAcount);
+                point = point - 3;
+                tblbdsaccounts.Point = point;
+                db.Entry(tblbdsaccounts).State = EntityState.Modified;
+                db.SaveChanges();
+                var tblbdsempers = new bdsemper();
+               
+                tblbdsempers.IdAccountEm = idAcount;
+                tblbdsempers.IdAccountPer = id;
+                tblbdsempers.Active = 1;
+                tblbdsempers.CreateDate = DateTime.Now;
+                tblbdsempers.ModifiedDate = DateTime.Now;
+                tblbdsempers.CreateUser = 1;
+                tblbdsempers.ModifiedUser = 1;
+                db.bdsempers.Add(tblbdsempers);
+                db.SaveChanges();
+              
+                return RedirectToAction("DetailPer", new { id = id });
+            }
+            else
+            {
+                return Json(new { result=0});
+            }
+           
+        }
+        public ActionResult DetailPer(int id)
+        {
+
+            return View();
         }
     }
 }

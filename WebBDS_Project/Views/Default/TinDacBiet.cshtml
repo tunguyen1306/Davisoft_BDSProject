@@ -9,7 +9,7 @@
     int view = ViewBag.view;
     int tt = ViewBag.tt == "" ? 0 : int.Parse(ViewBag.tt);
     int count = 0;
-    var states = (from a in db.states join b in db.statetexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+    var states = (from a in db.states join b in db.stateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
 }
 
 @{

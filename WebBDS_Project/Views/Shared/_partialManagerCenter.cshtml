@@ -2,10 +2,7 @@
 @using WebBDS_Project.Models
 @{
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
-    //if (Session["IdUser"] == null && Session["EmailUser"] == null)
-    //{
-    //    return RedirectToAction("LoginForm", "Login");
-    //}
+   
     var IdAccount = int.Parse(Session["IdUser"].ToString());
     var tblEmployee = db.bdsemployerinformations.Where(T => T.IdAccount == IdAccount).ToList().FirstOrDefault();
     var CountApply = db.bdsempers.Count(x => x.IdAccountEm == IdAccount);
@@ -45,7 +42,7 @@
 
         <p>
 
-            <a class="grid_6" href="@Url.Action("Paymen","Management")">Nộp tiền</a>
+            <a class="grid_6" href="@Url.Action("Payment","Management")">Nộp tiền</a>
             <a class="grid_6 omega blue" href="">Mua điểm</a>
         </p>
         <ul>

@@ -26,9 +26,9 @@ namespace WebBDS_Project.Controllers
                 return RedirectToAction("LoginForm", "Login");
             }
            
-             
-            var dataCity = (from data in db.states
-                           join datatext in db.statetexts on data.name_id equals datatext.id
+ 
+            var dataCity = from data in db.states
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
             dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố"});
@@ -78,7 +78,7 @@ namespace WebBDS_Project.Controllers
             {
                 ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
                 var dataCity = from data in db.states
-                               join datatext in db.statetexts on data.name_id equals datatext.id
+                               join datatext in db.stateTexts on data.name_id equals datatext.id
                                where datatext.language_id == "vi"
                                select new GeoModel { CityId = data.state_id, CityName = datatext.text };
                 CaptCha cap = new CaptCha();
@@ -208,7 +208,7 @@ namespace WebBDS_Project.Controllers
             }
             var picture = new NewsPicture
             {
-                tblPicture = new bdspicture { advert_id = newPicture.idProducts, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck = true, type_id = 1, title = newPicture.nameImg, position = newPicture.isactive }
+                tblPicture = new bdspicture { advert_id = newPicture.idProducts, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck =1, type_id = 1, title = newPicture.nameImg, position = newPicture.isactive }
             };
             if (newPicture.idpicture == 0)
             {

@@ -20,8 +20,8 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<byte> position { get; set; }
         public Nullable<System.DateTime> converted { get; set; }
         public string convertedFilename { get; set; }
-        public Nullable<bool> tocheck { get; set; }
-        public Nullable<bool> isvalidated { get; set; }
+        public Nullable<int> tocheck { get; set; }
+        public byte[] isvalidated { get; set; }
         public string convertedFilename90 { get; set; }
         public string convertedFilename180 { get; set; }
         public string convertedFilename270 { get; set; }

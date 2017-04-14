@@ -164,7 +164,20 @@
 
 
                     </div>
-
+                    <div class="row">
+                        <label>Mã an toàn (<span class="required">*</span>):</label>
+                        <div class="row-right">
+                            <div class="pncon marginright34">
+                                @Html.TextBoxFor(model => model.tblCaptCha.Captcha)
+                                @Html.ValidationMessageFor(model => model.tblCaptCha.Captcha)
+                            </div>
+                        </div>
+                        <div class="row-right">
+                            <div class="pncon">
+                                <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
 
                         <div class="grid_12">
@@ -173,9 +186,13 @@
 
                     </div>
                     <div class="row">
-                        <label></label>
+                       
+                        <label>&nbsp</label>
+                        <div class="row-right">
+                            <button type="submit" style="width: 100px" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
+                        </div>
 
-                        <button type="submit" id="submitbutton" class="grid_2 btnSubmit">Đăng ký</button>
+                        
 
                     </div>
                 </div>
@@ -196,6 +213,82 @@
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
         var t = 0;
+        
+      
+       
+       
+
+
+
+        if ($('#tblCaptCha_Captcha').val() == "") {
+
+            toastr.error('Vui lòng nhập captcha! ');
+            t++;
+        }
+        if ($('#TblBdsemployerinformation_Phone').val() != "") {
+            if ($('#TblBdsemployerinformation_Phone').length > 11) {
+
+                toastr.error('Số điện thoại tối đa 11 số!');
+                t++;
+            }
+        }
+        else {
+            toastr.error('Vui lòng nhập Số điện thoại!');
+            t++;
+        }
+        if ($('#TblBdsemployerinformation_NameContact').val() == "") {
+
+            toastr.error('Vui lòng nhập tên liên hệ!');
+            t++;
+        }
+
+        if ($('#TblBdsemployerinformation_Address').val() == "") {
+
+            toastr.error('Vui lòng nhập địa chỉ công ty!');
+            t++;
+        }
+        if ($('#TblBdsemployerinformation_Description').val() == "") {
+
+            toastr.error('Vui lòng nhập sơ lược công ty!');
+            t++;
+        }
+        else {
+            if ($('#TblBdsemployerinformation_Description').val().length >= 4000) {
+
+                toastr.error('Sơ lược công ty chỉ tối đa 4000 kí tự! ');
+                t++;
+            }
+        }
+
+        if ($('#TblBdsemployerinformation_Name').val() == "") {
+
+            toastr.error('Vui lòng nhập tên công ty!');
+            t++;
+        }
+        if ($('#TblBdsAdcount_PassWord').val() != $('#PasswordSecond').val()) {
+
+            toastr.error('Password không trùng khớp!');
+            t++;
+        }
+        if ($('#TblBdsAdcount_PassWord').val() == "") {
+
+            toastr.error('Vui lòng nhập  Password!');
+            t++;
+        }
+        if ($('#EmailSeccond').val() == "") {
+
+            toastr.error('Vui lòng nhập lại Email!');
+            t++;
+        }
+        else {
+
+            if ($('#EmailSeccond').val() != $('#TblBdsAdcount_Email').val()) {
+
+                toastr.error('Email không trùng khớp!');
+                t++;
+            }
+
+        }
         if ($('#TblBdsAdcount_Email').val() == "") {
 
             toastr.error('Vui lòng nhập Email!');
@@ -214,74 +307,9 @@
                     t++;
                 }
             }
-           
-        }
-        
-      
-        if ($('#EmailSeccond').val() == "") {
 
-            toastr.error('Vui lòng nhập lại Email!');
-            t++;
-        }
-        else {
-           
-            if ($('#EmailSeccond').val() != $('#TblBdsAdcount_Email').val()) {
-
-                toastr.error('Email không trùng khớp!');
-                t++;
-            }
-            
-        }
-        if ($('#TblBdsAdcount_PassWord').val() == "") {
-
-            toastr.error('Vui lòng nhập  Password!');
-            t++;
-        }
-        if ($('#TblBdsAdcount_PassWord').val() != $('#PasswordSecond').val()) {
-
-            toastr.error('Password không trùng khớp!');
-            t++;
         }
 
-
-
-        if ($('#TblBdsemployerinformation_Name').val() == "") {
-
-            toastr.error('Vui lòng nhập tên công ty!');
-            t++;
-        } if ($('#TblBdsemployerinformation_Description').val() == "") {
-
-              toastr.error('Vui lòng nhập sơ lược công ty!');
-              t++;
-          }
-        else {
-              if ($('#TblBdsemployerinformation_Description').val().length >= 4000) {
-
-                  toastr.error('Sơ lược công ty chỉ tối đa 4000 kí tự! ');
-                  t++;
-              }
-          }
-
-        if ($('#TblBdsemployerinformation_Address').val() == "") {
-
-            toastr.error('Vui lòng nhập địa chỉ công ty!');
-            t++;
-        } if ($('#TblBdsemployerinformation_NameContact').val() == "") {
-
-              toastr.error('Vui lòng nhập tên liên hệ!');
-              t++;
-          } 
-        if ($('#TblBdsemployerinformation_Phone').val() != "") {
-            if ($('#TblBdsemployerinformation_Phone').length > 11) {
-
-                toastr.error('Số điện thoại tối đa 11 số!');
-                t++;
-            }
-        }
-        else {
-            toastr.error('Vui lòng nhập Số điện thoại!');
-            t++;
-        }
         if (t == 0) {
             $('#submitbutton').parents("form").submit();
         }

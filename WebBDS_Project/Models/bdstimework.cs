@@ -23,7 +23,7 @@ namespace WebBDS_Project.Models
         public Nullable<int> ToTime { get; set; }
         public int Type { get; set; }
         public int Perfix { get; set; }
-        public Nullable<bool> Default { get; set; }
+        public Nullable<short> Default { get; set; }
         public Nullable<int> Active { get; set; }
         public System.DateTime CreateDate { get; set; }
         public string CreateUser { get; set; }

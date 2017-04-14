@@ -4,52 +4,58 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3b9e5e0017324394963d3cb7bfb8df4f" Name="Diagram1" ZoomLevel="83">
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.audit" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsaccount" Width="1.5" PointX="9.75" PointY="5.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsarea" Width="1.5" PointX="5.75" PointY="10.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsbank" Width="1.5" PointX="7.75" PointY="10.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdscareer" Width="1.5" PointX="9.75" PointY="10.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdseducation" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsemployerinformation" Width="1.5" PointX="0.75" PointY="11.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsevent" Width="1.5" PointX="2.75" PointY="11.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdslanguage" Width="1.5" PointX="11.75" PointY="4.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsmarriage" Width="1.5" PointX="11.75" PointY="8.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsnew" Width="1.5" PointX="11.75" PointY="12.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsnewstypeprice" Width="1.5" PointX="13.75" PointY="0.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsnewstype" Width="1.5" PointX="13.75" PointY="5.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdspersonalinformation" Width="1.5" PointX="13.75" PointY="10.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdspicture" Width="1.5" PointX="4.75" PointY="14.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdssalary" Width="1.5" PointX="15.75" PointY="0.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdsscope" Width="1.5" PointX="15.75" PointY="5.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdstimework" Width="1.5" PointX="6.75" PointY="15.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdstransaction" Width="1.5" PointX="8.75" PointY="15.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.bdstypecontact" Width="1.5" PointX="15.75" PointY="9.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.branch" Width="1.5" PointX="5.25" PointY="5.875" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.counter" Width="1.5" PointX="7.5" PointY="6.875" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.country" Width="1.5" PointX="15.75" PointY="13.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.countrytext" Width="1.5" PointX="15.75" PointY="16.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.currency" Width="1.5" PointX="17.75" PointY="0.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.district" Width="1.5" PointX="17.75" PointY="3.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.districttext" Width="1.5" PointX="17.75" PointY="7.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.holiday" Width="1.5" PointX="17.75" PointY="10.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.language" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.location" Width="1.5" PointX="17.75" PointY="13.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.locationtext" Width="1.5" PointX="17.75" PointY="17.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.menu" Width="1.5" PointX="3" PointY="8.625" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.permission" Width="1.5" PointX="7.5" PointY="2.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.role" Width="1.5" PointX="5.25" PointY="2.625" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.setting" Width="1.5" PointX="0.75" PointY="18.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.state" Width="1.5" PointX="19.75" PointY="0.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.statetext" Width="1.5" PointX="19.75" PointY="4.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectModel.user" Width="1.5" PointX="3" PointY="2.5" />
-        <AssociationConnector Association="davisoft_bdsprojectModel.Counter_Branch" />
-        <AssociationConnector Association="davisoft_bdsprojectModel.User_Branch" />
-        <AssociationConnector Association="davisoft_bdsprojectModel.User_Language" />
-        <AssociationConnector Association="davisoft_bdsprojectModel.menus_roles" />
-        <AssociationConnector Association="davisoft_bdsprojectModel.roles_permissions" />
-        <AssociationConnector Association="davisoft_bdsprojectModel.users_branches" />
-        <AssociationConnector Association="davisoft_bdsprojectModel.users_roles" />
+      <Diagram DiagramId="3e5f3765e52445a7bd51813866aa4102" Name="Diagram1">
+        <EntityTypeShape EntityType="DataWebBDS.C__migrationhistory" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.audit" Width="1.5" PointX="2.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsaccount" Width="1.5" PointX="8.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsarea" Width="1.5" PointX="10.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsbank" Width="1.5" PointX="10.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsbranch" Width="1.5" PointX="4.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdscareer" Width="1.5" PointX="6.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdscomment" Width="1.5" PointX="12.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdseducation" Width="1.5" PointX="12.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsemper" Width="1.5" PointX="8.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsemployerinformation" Width="1.5" PointX="12.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsevent" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsextnew" Width="1.5" PointX="14.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdslanguage" Width="1.5" PointX="14.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsmarriage" Width="1.5" PointX="14.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsnew" Width="1.5" PointX="14.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsnewstypeprice" Width="1.5" PointX="16.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsnewstype" Width="1.5" PointX="2.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdspersonalinformation" Width="1.5" PointX="4.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdspicture" Width="1.5" PointX="16.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdssalary" Width="1.5" PointX="16.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdsscope" Width="1.5" PointX="16.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdstimework" Width="1.5" PointX="6.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdstransactionhistory" Width="1.5" PointX="8.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdstransaction" Width="1.5" PointX="10.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.bdstypecontact" Width="1.5" PointX="18.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.branch" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.counter" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.country" Width="1.5" PointX="18.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.countrytext" Width="1.5" PointX="18.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.currency" Width="1.5" PointX="18.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.district" Width="1.5" PointX="18.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.districttext" Width="1.5" PointX="18.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.holiday" Width="1.5" PointX="20.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.language" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.location" Width="1.5" PointX="20.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.locationtext" Width="1.5" PointX="20.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.menu" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.permission" Width="1.5" PointX="10.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.role" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.setting" Width="1.5" PointX="20.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.state" Width="1.5" PointX="20.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.stateText" Width="1.5" PointX="16.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.user" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="DataWebBDS.counters_Counter_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.users_User_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.users_User_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.menus_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.roles_permissions" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.users_branches" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.users_roles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

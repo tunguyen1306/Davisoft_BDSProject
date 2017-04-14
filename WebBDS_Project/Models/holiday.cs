@@ -17,6 +17,6 @@ namespace WebBDS_Project.Models
         public int ID { get; set; }
         public System.DateTime Date { get; set; }
         public string Description { get; set; }
-        public bool IsFullDay { get; set; }
+        public short IsFullDay { get; set; }
     }
 }

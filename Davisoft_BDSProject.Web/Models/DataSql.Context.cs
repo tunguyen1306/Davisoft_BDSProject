@@ -13,10 +13,10 @@ namespace Davisoft_BDSProject.Web.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Davisoft_BDSProjectEntities : DbContext
+    public partial class davisoft_bdsprojectEntities : DbContext
     {
-        public Davisoft_BDSProjectEntities()
-            : base("name=Davisoft_BDSProjectEntities")
+        public davisoft_bdsprojectEntities()
+            : base("name=davisoft_bdsprojectEntities")
         {
         }
     
@@ -25,14 +25,19 @@ namespace Davisoft_BDSProject.Web.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<C__migrationhistory> C__migrationhistory { get; set; }
         public DbSet<audit> audits { get; set; }
         public DbSet<bdsaccount> bdsaccounts { get; set; }
         public DbSet<bdsarea> bdsareas { get; set; }
         public DbSet<bdsbank> bdsbanks { get; set; }
+        public DbSet<bdsbranch> bdsbranches { get; set; }
         public DbSet<bdscareer> bdscareers { get; set; }
+        public DbSet<bdscomment> bdscomments { get; set; }
         public DbSet<bdseducation> bdseducations { get; set; }
+        public DbSet<bdsemper> bdsempers { get; set; }
         public DbSet<bdsemployerinformation> bdsemployerinformations { get; set; }
         public DbSet<bdsevent> bdsevents { get; set; }
+        public DbSet<bdsextnew> bdsextnews { get; set; }
         public DbSet<bdslanguage> bdslanguages { get; set; }
         public DbSet<bdsmarriage> bdsmarriages { get; set; }
         public DbSet<bdsnew> bdsnews { get; set; }
@@ -43,6 +48,7 @@ namespace Davisoft_BDSProject.Web.Models
         public DbSet<bdssalary> bdssalaries { get; set; }
         public DbSet<bdsscope> bdsscopes { get; set; }
         public DbSet<bdstimework> bdstimeworks { get; set; }
+        public DbSet<bdstransactionhistory> bdstransactionhistories { get; set; }
         public DbSet<bdstransaction> bdstransactions { get; set; }
         public DbSet<bdstypecontact> bdstypecontacts { get; set; }
         public DbSet<branch> branches { get; set; }
@@ -61,7 +67,7 @@ namespace Davisoft_BDSProject.Web.Models
         public DbSet<role> roles { get; set; }
         public DbSet<setting> settings { get; set; }
         public DbSet<state> states { get; set; }
-        public DbSet<statetext> statetexts { get; set; }
+        public DbSet<stateText> stateTexts { get; set; }
         public DbSet<user> users { get; set; }
     }
 }

@@ -17,6 +17,6 @@ namespace Davisoft_BDSProject.Web.Models
         public int id { get; set; }
         public string language_id { get; set; }
         public string text { get; set; }
-        public string rowguid { get; set; }
+        public System.Guid rowguid { get; set; }
     }
 }

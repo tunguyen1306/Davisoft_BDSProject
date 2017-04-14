@@ -20,6 +20,6 @@ namespace Davisoft_BDSProject.Web.Models
         public Nullable<decimal> latitude { get; set; }
         public Nullable<decimal> longitude { get; set; }
         public string polygon { get; set; }
-        public string rowguid { get; set; }
+        public System.Guid rowguid { get; set; }
     }
 }

@@ -12,11 +12,11 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class statetext
+    public partial class stateText
     {
         public int id { get; set; }
         public string language_id { get; set; }
         public string text { get; set; }
-        public string rowguid { get; set; }
+        public System.Guid rowguid { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace WebBDS_Project.Models
         public Nullable<int> ToSalary { get; set; }
         public int Type { get; set; }
         public int Perfix { get; set; }
-        public bool Default { get; set; }
+        public short Default { get; set; }
         public string KeySearch { get; set; }
         public Nullable<int> Active { get; set; }
         public System.DateTime CreateDate { get; set; }

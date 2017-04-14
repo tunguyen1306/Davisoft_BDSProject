@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "ManagementCompany";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+
 }
 @model WebBDS_Project.Models.RegisterInformationModel
 
@@ -61,8 +62,8 @@
                 </div>
                 <!-- Bullet Navigator -->
                 @*<div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
-                <div data-u="prototype" style="width: 12px; height: 12px;"></div>
-            </div>*@
+                        <div data-u="prototype" style="width: 12px; height: 12px;"></div>
+                    </div>*@
                 <!-- Arrow Navigator -->
                 <span data-u="arrowleft" class="jssora02l" style="top: 0px; left: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
                 <span data-u="arrowright" class="jssora02r" style="top: 0px; right: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
@@ -157,10 +158,22 @@
 
                 @foreach (var item in Model.Listbdspersonalinformation)
                 {
+
                     <tr>
                         <td>@item.CreateDate</td>
                         <td>
-                            <img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" /></td>
+                            @if (item.UrlImage != null)
+                            {
+                                <img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" />
+
+
+                            }
+                            else
+                            {
+                                <img width="50" src="~/Template/images/avatar-default.png" />
+                            }
+                        </td>
+
                         <td>@item.Name</td>
                         <td>@item.Sex</td>
                         <td>@item.Birthday</td>
@@ -171,8 +184,8 @@
                         <td>@item.City</td>
                         <td>@item.District</td>
                         <td>@item.Education</td>
-                        <td><a href="@Url.Action("Detail","Default")">xem</a></td>
-                    </tr> 
+                        <td><a  class="btnReadMore" rel="@item.Id">xem</a></td>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -180,6 +193,27 @@
 
 
 </div>
+<script>
+    $('.btnReadMore').click(function () {
+        var id = $(this).attr('rel');
+        var data = {};
+        data.id = id;
+        $.ajax
+  ({
+      type: "POST",
+      url: '@Url.Action("DetailPersonal", "Management")',
+      data: JSON.stringify(data),
+      dataType: "json",
+      contentType: "application/json;charset=utf-8",
+      success: function (data) {
+          if (data.result==0) {
+              toastr.error('Quý khách không đủ điểm.Vui lòng nạp thêm!');
+          }
+
+      }
+  });
+    });
+</script>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
 

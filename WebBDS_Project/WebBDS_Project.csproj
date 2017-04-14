@@ -295,7 +295,7 @@
     <Compile Include="Models\state.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\statetext.cs">
+    <Compile Include="Models\stateText.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.cs">
@@ -430,6 +430,7 @@
     <Content Include="Template\home.htm" />
     <Content Include="Template\images\1.jpg" />
     <Content Include="Template\images\2.jpg" />
+    <Content Include="Template\images\avatar-default.png" />
     <Content Include="Template\images\Banner.jpg" />
     <Content Include="Template\images\banner2.jpg" />
     <Content Include="Template\images\calendar.gif" />
@@ -516,10 +517,13 @@
     <Content Include="Views\Shared\_partialCompany.cshtml" />
     <Content Include="Views\Shared\_partialNews.cshtml" />
     <Content Include="Views\Register\Thanks.cshtml" />
-    <Content Include="Views\Management\Paymen.cshtml" />
+    <Content Include="Views\Management\Payment.cshtml" />
     <Content Include="Views\Default\TinNhaTuyenDung.cshtml" />
     <Content Include="Views\Shared\_partialShareExpirence.cshtml" />
     <Content Include="Views\Default\Search.cshtml" />
+    <Content Include="Views\Shared\_searchPannel.cshtml" />
+    <Content Include="Views\Management\Paymen.cshtml" />
+    <Content Include="Views\Management\DetailPer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
