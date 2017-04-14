@@ -27,7 +27,7 @@ namespace WebBDS_Project.Controllers
             }
            
  
-            var dataCity = from data in db.states
+            var dataCity = (from data in db.states
                            join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
@@ -194,7 +194,7 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public void SaveImg(NewsPicture newPicture)
         {
-            var t = newPicture.cfile == null ? "" : newPicture.cfile;
+            var t = newPicture.cfile ?? "";
             var file = t.Replace("data:image/png;base64,", "");
             var photoBytes = Convert.FromBase64String(file);
             string format = "jpg";

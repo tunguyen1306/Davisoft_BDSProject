@@ -47,6 +47,9 @@ namespace WebBDS_Project.Models
 
         public bdsemper tblbdsemper { get; set; }
         public List<bdsemper> Listbdsemper { get; set; }
+
+        public bdsapply tblbdsapply { get; set; }
+        public List<bdsapply> Listbdsapply { get; set; }
        
     }
 

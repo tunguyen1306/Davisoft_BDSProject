@@ -69,5 +69,6 @@ namespace WebBDS_Project.Models
         public DbSet<state> states { get; set; }
         public DbSet<stateText> stateTexts { get; set; }
         public DbSet<user> users { get; set; }
+        public DbSet<bdsapply> bdsapplies { get; set; }
     }
 }

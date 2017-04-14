@@ -155,6 +155,9 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BdsAcountModel.cs" />
+    <Compile Include="Models\bdsapply.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\bdsarea.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -524,6 +527,7 @@
     <Content Include="Views\Shared\_searchPannel.cshtml" />
     <Content Include="Views\Management\Paymen.cshtml" />
     <Content Include="Views\Management\DetailPer.cshtml" />
+    <Content Include="Views\Management\ThanksApply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

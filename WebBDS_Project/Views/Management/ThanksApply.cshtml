@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "ThanksApply";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+<div class="container">
+    <div class="grid_12 ">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Trang hoàn tất nộp hồ sơ</span></h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="grid_12">
+                    <div class="right_col">
+                        <ul class="list_news cus-listnew-login">
+                            <li>
+                               
+                                <p>
+                                    <b>Hồ sơ của bạn đã được gửi đến nhà tuyển dụng.Cảm ơn bạn đã liên hệ với chúng tối</b>
+                                </p>
+                                <br/>
+                                <p>
+                                        <a href="@Url.Action("ThanksApply","Management")">Quay về trang chủ</a> 
+                                 </p>
+                                   
+                                    
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+                @*<div class="grid_6 omega">
+                    <div class="right_col">
+                        <div class="cus-h3">Đăng nhập</div>
+                        <ul class="list_news cus-listnew-login">
+                            <li>
+                                @using (Html.BeginForm("Login", "Login"))
+                                {
+                                    <p>
+                                        Email
+                                        <input placeholder="Email" name="tblbdsaccount.Email" type="text">
+                                    </p>
+                                    <p>
+                                        Mật khẩu
+                                        <input placeholder="Mật khẩu" name="tblbdsaccount.PassWord" type="password">
+                                        <button type="submit" class="btLogin">Đăng nhập</button>
+                                    </p>
+                                    <p class="box_remember">
+                                        <a href="@Url.Action("ForgetPass", "Management")">Quên mật khẩu</a><br>
+                                        Đăng nhập bằng
+                                        <a href="#"><i class="fa fa-facebook-official"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus-square"></i></a>
+                                    </p>
+                                }
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>*@
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var t = setTimeout(function () {
+
+        window.location.href = '@Url.Action("Index","Default")';
+    },5000);
+</script>

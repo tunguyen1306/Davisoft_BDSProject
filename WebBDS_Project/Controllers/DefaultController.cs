@@ -70,7 +70,7 @@ namespace WebBDS_Project.Controllers
                            select new ListCityNew { Id = data.state_id, Name = datatext.text };
             var Model = new NewsModel
             {
-                tblbdsnew = db.bdsnews.Where(x => x.Id == id_).FirstOrDefault(),
+                tblbdsnew = db.bdsnews.FirstOrDefault(x => x.Id == id_),
                 ListPicture = db.bdspictures.Where(x => x.advert_id == id_).ToList(),
                 Listbdsemployerinformation = db.bdsemployerinformations.ToList(),
                 Listbdsaccount = db.bdsaccounts.ToList(),

@@ -27,7 +27,8 @@ namespace WebBDS_Project.Controllers
                            join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
-            var register = new RegisterInformationModel
+            var IdYourSave = db.bdsempers.Where(x => x.IdAccountEm == idAcount).Select(x=>x.IdAccountPer).ToList();
+             var register = new RegisterInformationModel
             {
                 ListBdsScopes = db.bdsscopes.ToList(),
                 ListMarriea = db.bdsmarriages.ToList(),
@@ -38,8 +39,8 @@ namespace WebBDS_Project.Controllers
                 Listbdslanguage = db.bdslanguages.ToList(),
                 Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
-                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
-                Listbdspersonalinformation = db.bdspersonalinformations.Where(x=>x.Active==1).ToList(),
+                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),//!IdYourSave.Contains(x.Id)
+                Listbdspersonalinformation = db.bdspersonalinformations.Where(x => x.Active == 1 && !IdYourSave.Contains(x.Id)).ToList(),
                 TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
                 Listbdsemper = db.bdsempers.ToList()
             };
@@ -67,6 +68,7 @@ namespace WebBDS_Project.Controllers
                            join datatext in db.stateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var IdYourSave = db.bdsempers.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
             var register = new RegisterInformationModel
             {
                 ListBdsScopes = db.bdsscopes.ToList(),
@@ -79,20 +81,83 @@ namespace WebBDS_Project.Controllers
                 Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
                 TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
-                Listbdspersonalinformation = db.bdspersonalinformations.Where(x => x.IdAccount == idAcount).ToList(),
+                Listbdspersonalinformation = db.bdspersonalinformations.Where(x => IdYourSave.Contains(x.Id) && x.Active==1).ToList(),
                 TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
                 Listbdsemper = db.bdsempers.ToList()
             };
             return View(register);
         }
-               [ActionName("ApplyArchive")]
+        [ActionName("ApplyArchive")]
         public ActionResult ApplyArchive()
         {
             if (Session["IdUser"] == null && Session["EmailUser"] == null)
             {
                 return RedirectToAction("LoginForm", "Login");
             }
-           
+            var idAcount = int.Parse(Session["IdUser"].ToString());
+            var dataCity = from data in db.states
+                           join datatext in db.stateTexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var IdYourSave = db.bdsapplies.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
+            var register = new RegisterInformationModel
+            {
+                ListBdsScopes = db.bdsscopes.ToList(),
+                ListMarriea = db.bdsmarriages.ToList(),
+                ListSalary = db.bdssalaries.ToList(),
+                ListDucation = db.bdseducations.ToList(),
+                ListBdscareer = db.bdscareers.ToList(),
+                ListTimework = db.bdstimeworks.ToList(),
+                Listbdslanguage = db.bdslanguages.ToList(),
+                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListGeoModel = dataCity.ToList(),
+                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                Listbdspersonalinformation = db.bdspersonalinformations.Where(x => x.IdAccount == idAcount && x.Active == 1).ToList(),
+                TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
+                Listbdsemper = db.bdsempers.ToList(),
+                Listbdsapply = db.bdsapplies.Where(x => x.IdAccountEm == idAcount).ToList()
+            };
+            return View(register);
+        }
+        [ActionName("Apply")]
+        public ActionResult Apply(int id)
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+            if (id==0)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+            var idAcount = int.Parse(Session["IdUser"].ToString());
+            var IdAccByNewId = db.bdsnews.Find(id).IdAcount;
+
+            if (IdAccByNewId != null)
+            {
+                var tblApply = new bdsapply
+                {
+                    IdAccountEm = (int) IdAccByNewId,
+                    IdAccountPer = idAcount,
+                    Active = 1,
+                    CreateDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    CreateUser = 1,
+                    ModifiedUser = 1,
+                    IdNews = id
+                };
+                db.bdsapplies.Add(tblApply);
+                db.SaveChanges();
+            }
+            return RedirectToAction("ThanksApply");
+        }
+        [ActionName("ThanksApply")]
+        public ActionResult ThanksApply()
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
             return View();
         }
         [ActionName("ManagementAcountEmployee")]
@@ -172,6 +237,7 @@ namespace WebBDS_Project.Controllers
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             CaptCha cap = new CaptCha();
             bdsnew bdsNew = new bdsnew();
+          
             var register1 = new RegisterInformationModel
             {
                 ListBdsScopes = db.bdsscopes.ToList(),
@@ -324,8 +390,9 @@ namespace WebBDS_Project.Controllers
                 tblbdsempers.ModifiedUser = 1;
                 db.bdsempers.Add(tblbdsempers);
                 db.SaveChanges();
-              
-                return RedirectToAction("DetailPer", new { id = id });
+                var namePeson = db.bdspersonalinformations.Find(id);
+                return Json(new { result = 1, name = namePeson.Name.UrlFrendly()+"-"+id });
+               
             }
             else
             {
@@ -333,9 +400,9 @@ namespace WebBDS_Project.Controllers
             }
            
         }
-        public ActionResult DetailPer(int id)
+        public ActionResult DetailPer(string id)
         {
-
+            var _id = int.Parse(id.Split('-').Last());
             return View();
         }
     }

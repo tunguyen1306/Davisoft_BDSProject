@@ -184,7 +184,7 @@
                         <td>@item.City</td>
                         <td>@item.District</td>
                         <td>@item.Education</td>
-                        <td><a  class="btnReadMore" rel="@item.Id">xem</a></td>
+                        <td><a style="cursor: pointer" class="btnReadMore" rel="@item.Id">xem</a></td>
                     </tr>
                 }
             </tbody>
@@ -208,6 +208,12 @@
       success: function (data) {
           if (data.result==0) {
               toastr.error('Quý khách không đủ điểm.Vui lòng nạp thêm!');
+          }
+          if (data.result == 1) {
+
+              var urlDetail = '/Management/DetailPer/' + data.name;
+
+              window.location.href = urlDetail;
           }
 
       }

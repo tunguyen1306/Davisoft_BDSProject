@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
 
+@using WebBDS_Project.Models
 @model WebBDS_Project.Models.RegisterInformationModel
 
 <div class="container">
@@ -45,7 +46,7 @@
                             <td>@item.City</td>
                             <td>@item.District</td>
                             <td>@item.Education</td>
-                            <td>xem</td>
+                            <td><a style="cursor: pointer" href="@Url.Action("DetailPer","Management",new {id=item.Name.UrlFrendly() +"-"+item.Id})">xem</a></td>
                         </tr> 
                         }
                         
