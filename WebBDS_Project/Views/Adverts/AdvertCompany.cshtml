@@ -33,10 +33,11 @@
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                <select class="dropdown" tabindex="7" name="tblbdsnew.FromSalary">
+                                <select class="dropdown" id="DropFromSalary" tabindex="7" name="tblbdsnew.FromSalary">
+                                    <option value="0">Chọn</option>
                                     @for (int i = 3; i < 20; i++)
                                     {
-                                        <option value="@i@("000000")">@i@(".000.000")</option>
+                                        <option value="@i">@i@(".000.000")</option>
                                     }
 
 
@@ -44,10 +45,11 @@
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                <select class="dropdown" tabindex="7" name="tblbdsnew.ToSalary">
+                                <select class="dropdown" id="DropToSalary" tabindex="7" name="tblbdsnew.ToSalary">
+                                     <option value="0">Chọn</option>
                                     @for (int i = 3; i < 20; i++)
                                     {
-                                        <option value="@i@("000000")">@i@(".000.000")</option>
+                                        <option value="@i">@i@(".000.000")</option>
                                     }
                                 </select>
                             </div>
@@ -56,8 +58,8 @@
                     <div class="row">
                         <label>Số lượng <span class="required">*</span></label>
                         <div class="row-right">
-                            <select class="dropdown" tabindex="7" name="tblbdsnew.Quantity">
-
+                            <select class="dropdown" id="DropQuantity" tabindex="7" name="tblbdsnew.Quantity">
+                                 <option value="0">Chọn số lượng</option>
                                 @for (int i = 1; i < 10; i++)
                                 {
                                     <option value="@i">@i</option>
@@ -85,7 +87,7 @@
                         </div>
                         <label class="child">Kinh nghiệm <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblbdsnew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblbdsnew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"),"Chọn", new { @class = "dropdown" })
 
 
                         </div>
@@ -93,7 +95,7 @@
                     <div class="row">
                         <label>Trình độ</label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblbdsnew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblbdsnew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name","Chọn trình độ"), new { @class = "dropdown" })
 
 
                         </div>
@@ -671,28 +673,78 @@
 
     function UploadImg(obj) {
         var t = 0;
+        if ($('#tblCaptCha_Captcha').val() == "") {
+            toastr.error('Vui lòng nhập Mã an toàn!');
+            t++;
+        }
+        if (  $('#tblbdsnew_FromCreateNews').val()>$('#tblbdsnew_ToCreateNews').val()) {
+            toastr.error('Ngày bất đầu không được lớn hơn ngày kết thúc!');
+            t++;
+        }
+
+        if ($('#tblbdsnew_ToCreateNews').val() == "") {
+            toastr.error('Vui lòng nhập Ngày kết thúc đăng tin!');
+            t++;
+        }
+if ($('#tblbdsnew_FromCreateNews').val() == "") {
+            toastr.error('Vui lòng nhập Ngày bất đầu đăng tin!');
+            t++;
+        }
         if ($('.dz-preview').size() == 0) {
 
             toastr.error('Vui lòng chọn ít nhất một hình!');
             t++;
         }
-        if ($('#tblbdsnew_Title').val() == "") {
-            toastr.error('Vui lòng nhập Tiêu đề!');
-            t++;
-        } if ($('#tblbdsnew_Bonus').val() == "") {
-            toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
-            t++;
-        } if ($('#tblbdsnew_DesCompany').val() == "") {
-            toastr.error('Vui lòng nhập Giới thiệu công ty!');
-            t++;
-        } if ($('#tblbdsnew_DesWork').val() == "") {
-            toastr.error('Vui lòng nhập Mô tả công việc!');
-            t++;
-        } if ($('#tblbdsnew_Benefit').val() == "") {
+        
+       
+
+         if ($('#tblbdsnew_Benefit').val() == "") {
             toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
             t++;
-        } if ($('#tblCaptCha_Captcha').val() == "") {
-            toastr.error('Vui lòng nhập Mã an toàn!');
+         }
+        if ($('#tblbdsnew_DesWork').val() == "") {
+            toastr.error('Vui lòng nhập Mô tả công việc!');
+            t++;
+        }
+         if ($('#tblbdsnew_DesCompany').val() == "") {
+            toastr.error('Vui lòng nhập Giới thiệu công ty!');
+            t++;
+        }
+         if ($('.checkCarrie:checked').size() > 3) {
+
+             toastr.error('Chỉ chọn được 3 việc làm!');
+             t++;
+         }
+        if ($('#tblbdsnew_IdEducation').val() == "") {
+            toastr.error('Vui lòng chọn trình độ!');
+            t++;
+        }
+        if ($('#tblbdsnew_IdTimeWork').val() == "") {
+            toastr.error('Vui lòng chọn kinh nghiệm!');
+            t++;
+        }
+        
+if ($('#tblbdsnew_Bonus').val() == "") {
+            toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
+            t++;
+        } 
+        if ($('#DropQuantity').val() == 0) {
+            toastr.error('Vui lòng chọn số lượng!');
+            t++;
+        }
+        if ($('#DropToSalary').val() == 0) {
+            toastr.error('Vui lòng chọn mức lương đến!');
+            t++;
+        }
+        if ($('#DropFromSalary').val() == 0) {
+            toastr.error('Vui lòng chọn mức lương từ!');
+            t++;
+        }
+        if ($('#tblbdsnew_AddressWork').val() == 0) {
+            toastr.error('Vui lòng chọn nơi làm việc!');
+            t++;
+        } if ($('#tblbdsnew_Title').val() == "") {
+            toastr.error('Vui lòng nhập Tiêu đề!');
             t++;
         }
         if (t==0) {

@@ -27,17 +27,20 @@ namespace WebBDS_Project.Controllers
             }
            
              
-            var dataCity = from data in db.states
+            var dataCity = (from data in db.states
                            join datatext in db.statetexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+                           select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố"});
+          var ListSalary=  db.bdssalaries.ToList();
+         
             CaptCha cap = new CaptCha();
             bdsnew bdsNew = new bdsnew();
             var registerModel = new RegisterInformationModel
             {
                 ListBdsScopes = db.bdsscopes.ToList(),
                 ListMarriea = db.bdsmarriages.ToList(),
-                ListSalary = db.bdssalaries.ToList(),
+                ListSalary = ListSalary,
                 ListDucation = db.bdseducations.ToList(),
                 ListBdscareer = db.bdscareers.ToList(),
                 ListTimework = db.bdstimeworks.ToList(),
@@ -140,7 +143,7 @@ namespace WebBDS_Project.Controllers
         {
             var rand = new Random((int) DateTime.Now.Ticks);
             //generate new question 
-            int a = rand.Next(10, 99);
+            int a = rand.Next(10, 50);
             int b = rand.Next(0, 9);
             var captcha = string.Format("{0} + {1} = ?", a, b);
 
