@@ -89,5 +89,11 @@ namespace WebBDS_Project.Controllers
 
             return View();
         }
+        public ActionResult DetailNews(string id)
+        {
+            var id_ = int.Parse(id.Split('-').Last());
+            var data = db.bdsextnews.Where(x => x.Active == 1 && x.ApproveStatus == 1).ToList();
+            return View(data);
+        }
     }
 }
