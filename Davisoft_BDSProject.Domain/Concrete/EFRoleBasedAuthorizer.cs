@@ -21,12 +21,12 @@ namespace Davisoft_BDSProject.Domain.Concrete
 
         public IEnumerable<Role> GetAllRoles()
         {
-            return GetAll<Role>(r => r.Permissions).AsEnumerable();
+            return _db.Set<Role>().Include(T=>T.Permissions).AsEnumerable();
         }
 
         public IEnumerable<Role> GetAllRoles(Func<Role, bool> predicate)
         {
-            return GetAll<Role>(predicate,r => r.Permissions).AsEnumerable();
+            return _db.Set<Role>().Include(T=>T.Permissions).Where(predicate).AsEnumerable();
         }
 
         public IEnumerable<Role> GetUserRoles(int userID)
@@ -159,8 +159,7 @@ namespace Davisoft_BDSProject.Domain.Concrete
 
         public virtual bool CheckAccess(int userID, string controller, string action, string permissionType = null)
         {
-            var user = Get<User>(u => u.ID == userID,
-                                 u => u.Roles);
+            var user =  _db.Set<User>().Where(u => u.ID == userID).Include(u => u.Roles).FirstOrDefault();
             if (user == null) return false;
 
             // Admin

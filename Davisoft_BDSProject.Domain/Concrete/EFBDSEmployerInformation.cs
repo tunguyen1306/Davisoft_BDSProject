@@ -20,6 +20,7 @@ namespace Davisoft_BDSProject.Domain.Concrete
                     join b in _db.Set<User>() on a.CreateUser equals b.ID into bs
                     from b in bs.DefaultIfEmpty()
                     select a;
+            var xx = q.ToList();
             return q;
         }
 

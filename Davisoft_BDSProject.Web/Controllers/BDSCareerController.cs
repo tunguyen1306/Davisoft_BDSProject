@@ -43,9 +43,9 @@ namespace Davisoft_BDSProject.Web.Controllers
             var queryFilter =
               _service.GetIQueryableItems()
                   .Where(
-                      T => T.Active == 1 &&
-                          search != null &&
-                          (T.KeySearch.ToLower().Contains(search.ToLower())));
+                       T => T.Active == 1 &&
+                         (search == "" || (search != null &&
+                           (T.KeySearch.ToLower().Contains(search.ToLower())))));
             if (dir == "asc")
             {
                 queryFilter = queryFilter.OrderByField(columnName, true);

@@ -227,7 +227,7 @@
                     @Html.Script(
                         @<script>
 
-                             var $modelTable = $('#user_per').dataTable({
+                             var $modelTablePer = $('#user_per').dataTable({
                                  scrollY: '225px',
                                  processing: false,
                                  serverSide: true,
@@ -245,7 +245,7 @@
                                      $('#user_per_filter input').bind('keyup', function (e) {
                                          clearTimeout(timeOutTyping);
                                          timeOutTyping = setTimeout(function () {
-                                             $modelTable.fnFilter($('#user_per_filter input').val());
+                                             $modelTablePer.fnFilter($('#user_per_filter input').val());
                                          }, 600);
                                      });
                                  },

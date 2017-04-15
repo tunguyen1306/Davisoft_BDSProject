@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using Davisoft_BDSProject.Domain.Entities;
+using Davisoft_BDSProject.Web.Models;
 using FluentValidation.Mvc;
 using FluentValidation.Validators;
 using ServiceStack.Text;
@@ -16,6 +18,7 @@ using Davisoft_BDSProject.Web.Infrastructure.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Utility;
 using NS.Mail;
 using StackExchange.Profiling;
+
 
 namespace Davisoft_BDSProject.Web
 {
@@ -52,6 +55,8 @@ namespace Davisoft_BDSProject.Web
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
             MiniProfilerEF.Initialize();
+
+  
         }
 
         protected void Session_Start()
@@ -62,6 +67,8 @@ namespace Davisoft_BDSProject.Web
             var ignored = MiniProfiler.Settings.IgnoredPaths.ToList();
             ignored.Add("signalr");
             MiniProfiler.Settings.IgnoredPaths = ignored.ToArray();
+
+          
         }
 
         protected void Session_End()
@@ -99,7 +106,9 @@ namespace Davisoft_BDSProject.Web
             }
             catch
             {
+            
             }
+            MiniProfiler.Start();
 /*
             if (Request.IsLocal)
                MiniProfiler.Start();*/

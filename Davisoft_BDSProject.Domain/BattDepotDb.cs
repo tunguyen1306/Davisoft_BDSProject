@@ -12,9 +12,9 @@ namespace Davisoft_BDSProject.Domain
         {
             
             // hook up the Migrations configuration
-            Database.SetInitializer<Davisoft_BDSProjectDb>(null);
+           Database.SetInitializer<Davisoft_BDSProjectDb>(null);
             //Configuration.ProxyCreationEnabled = false;
-            //Configuration.LazyLoadingEnabled = false;
+           // Configuration.LazyLoadingEnabled = false;
         }
 
         //public Davisoft_BDSProjectDb(string connectionName)

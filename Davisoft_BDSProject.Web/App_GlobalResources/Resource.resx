@@ -6774,4 +6774,44 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSExtNews_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews_CatExtNews" xml:space="preserve">
+    <value>Category</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews_ShortDescription" xml:space="preserve">
+    <value>Short Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews_DateCreate" xml:space="preserve">
+    <value>DateCreate</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews" xml:space="preserve">
+    <value>List Bank ExtNews</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews_Cate" xml:space="preserve">
+    <value>Category</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews_Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>
+    </comment>
+  </data>
 </root>

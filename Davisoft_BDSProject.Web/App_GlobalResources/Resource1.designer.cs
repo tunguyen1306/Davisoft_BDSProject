@@ -1384,11 +1384,1775 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List Account.
+        /// </summary>
+        internal static string BDSAccount {
+            get {
+                return ResourceManager.GetString("BDSAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Account.
+        /// </summary>
+        internal static string BDSAccount_Add {
+            get {
+                return ResourceManager.GetString("BDSAccount_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Account.
+        /// </summary>
+        internal static string BDSAccount_Edit {
+            get {
+                return ResourceManager.GetString("BDSAccount_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string BDSAccount_Email {
+            get {
+                return ResourceManager.GetString("BDSAccount_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money.
+        /// </summary>
+        internal static string BDSAccount_Money {
+            get {
+                return ResourceManager.GetString("BDSAccount_Money", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monney.
+        /// </summary>
+        internal static string BDSAccount_Monney {
+            get {
+                return ResourceManager.GetString("BDSAccount_Monney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PassWord.
+        /// </summary>
+        internal static string BDSAccount_PassWord {
+            get {
+                return ResourceManager.GetString("BDSAccount_PassWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point.
+        /// </summary>
+        internal static string BDSAccount_Point {
+            get {
+                return ResourceManager.GetString("BDSAccount_Point", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confrim PW.
+        /// </summary>
+        internal static string BDSAccount_RePassWord {
+            get {
+                return ResourceManager.GetString("BDSAccount_RePassWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Bank Area.
+        /// </summary>
+        internal static string BDSArea {
+            get {
+                return ResourceManager.GetString("BDSArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Area.
+        /// </summary>
+        internal static string BDSArea_Add {
+            get {
+                return ResourceManager.GetString("BDSArea_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSArea_Description {
+            get {
+                return ResourceManager.GetString("BDSArea_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Area.
+        /// </summary>
+        internal static string BDSArea_Edit {
+            get {
+                return ResourceManager.GetString("BDSArea_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSArea_Name {
+            get {
+                return ResourceManager.GetString("BDSArea_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Bank.
+        /// </summary>
+        internal static string BDSBank {
+            get {
+                return ResourceManager.GetString("BDSBank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Area.
+        /// </summary>
+        internal static string BDSBankArea {
+            get {
+                return ResourceManager.GetString("BDSBankArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSBankArea_Description {
+            get {
+                return ResourceManager.GetString("BDSBankArea_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Bank Area.
+        /// </summary>
+        internal static string BDSBankArea_Edit {
+            get {
+                return ResourceManager.GetString("BDSBankArea_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSBankArea_Name {
+            get {
+                return ResourceManager.GetString("BDSBankArea_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bank Management.
         /// </summary>
         internal static string BDSBankManagement {
             get {
                 return ResourceManager.GetString("BDSBankManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Name.
+        /// </summary>
+        internal static string BDSBank_AccountName {
+            get {
+                return ResourceManager.GetString("BDSBank_AccountName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Number.
+        /// </summary>
+        internal static string BDSBank_AccountNumber {
+            get {
+                return ResourceManager.GetString("BDSBank_AccountNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Bank.
+        /// </summary>
+        internal static string BDSBank_Add {
+            get {
+                return ResourceManager.GetString("BDSBank_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string BDSBank_Address {
+            get {
+                return ResourceManager.GetString("BDSBank_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Area.
+        /// </summary>
+        internal static string BDSBank_Area {
+            get {
+                return ResourceManager.GetString("BDSBank_Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Area.
+        /// </summary>
+        internal static string BDSBank_BankArea {
+            get {
+                return ResourceManager.GetString("BDSBank_BankArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        internal static string BDSBank_Branch {
+            get {
+                return ResourceManager.GetString("BDSBank_Branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSBank_Description {
+            get {
+                return ResourceManager.GetString("BDSBank_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Bank.
+        /// </summary>
+        internal static string BDSBank_Edit {
+            get {
+                return ResourceManager.GetString("BDSBank_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        internal static string BDSBank_Image {
+            get {
+                return ResourceManager.GetString("BDSBank_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSBank_Name {
+            get {
+                return ResourceManager.GetString("BDSBank_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Branch.
+        /// </summary>
+        internal static string BDSBranch {
+            get {
+                return ResourceManager.GetString("BDSBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Branch.
+        /// </summary>
+        internal static string BDSBranch_Add {
+            get {
+                return ResourceManager.GetString("BDSBranch_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string BDSBranch_Address {
+            get {
+                return ResourceManager.GetString("BDSBranch_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Area.
+        /// </summary>
+        internal static string BDSBranch_Area {
+            get {
+                return ResourceManager.GetString("BDSBranch_Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSBranch_Description {
+            get {
+                return ResourceManager.GetString("BDSBranch_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Branch.
+        /// </summary>
+        internal static string BDSBranch_Edit {
+            get {
+                return ResourceManager.GetString("BDSBranch_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSBranch_Name {
+            get {
+                return ResourceManager.GetString("BDSBranch_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string BDSBranch_Phone {
+            get {
+                return ResourceManager.GetString("BDSBranch_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tel.
+        /// </summary>
+        internal static string BDSBranch_Tel {
+            get {
+                return ResourceManager.GetString("BDSBranch_Tel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tel - Phone.
+        /// </summary>
+        internal static string BDSBranch_TelPhone {
+            get {
+                return ResourceManager.GetString("BDSBranch_TelPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Career.
+        /// </summary>
+        internal static string BDSCareer {
+            get {
+                return ResourceManager.GetString("BDSCareer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Career.
+        /// </summary>
+        internal static string BDSCareer_Add {
+            get {
+                return ResourceManager.GetString("BDSCareer_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSCareer_Description {
+            get {
+                return ResourceManager.GetString("BDSCareer_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Career.
+        /// </summary>
+        internal static string BDSCareer_Edit {
+            get {
+                return ResourceManager.GetString("BDSCareer_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSCareer_Name {
+            get {
+                return ResourceManager.GetString("BDSCareer_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Education.
+        /// </summary>
+        internal static string BDSEducation {
+            get {
+                return ResourceManager.GetString("BDSEducation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Education.
+        /// </summary>
+        internal static string BDSEducation_Add {
+            get {
+                return ResourceManager.GetString("BDSEducation_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSEducation_Description {
+            get {
+                return ResourceManager.GetString("BDSEducation_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Education.
+        /// </summary>
+        internal static string BDSEducation_Edit {
+            get {
+                return ResourceManager.GetString("BDSEducation_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSEducation_Name {
+            get {
+                return ResourceManager.GetString("BDSEducation_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Account.
+        /// </summary>
+        internal static string BDSEmployerInformation {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Account.
+        /// </summary>
+        internal static string BDSEmployerInformation_Add {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string BDSEmployerInformation_Address {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address Contact.
+        /// </summary>
+        internal static string BDSEmployerInformation_AddressContact {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_AddressContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSEmployerInformation_Description {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Account.
+        /// </summary>
+        internal static string BDSEmployerInformation_Edit {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email - Phone Contact.
+        /// </summary>
+        internal static string BDSEmployerInformation_EmailContact {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_EmailContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fax.
+        /// </summary>
+        internal static string BDSEmployerInformation_Fax {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Fax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logo.
+        /// </summary>
+        internal static string BDSEmployerInformation_Image {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSEmployerInformation_Name {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name Contact.
+        /// </summary>
+        internal static string BDSEmployerInformation_NameContact {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_NameContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string BDSEmployerInformation_Phone {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Contact.
+        /// </summary>
+        internal static string BDSEmployerInformation_PhoneContact {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_PhoneContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scope.
+        /// </summary>
+        internal static string BDSEmployerInformation_Scope {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Scope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type Contact.
+        /// </summary>
+        internal static string BDSEmployerInformation_TypeContact {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_TypeContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        internal static string BDSEmployerInformation_Website {
+            get {
+                return ResourceManager.GetString("BDSEmployerInformation_Website", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Event.
+        /// </summary>
+        internal static string BDSEvent {
+            get {
+                return ResourceManager.GetString("BDSEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Event.
+        /// </summary>
+        internal static string BDSEvent_Add {
+            get {
+                return ResourceManager.GetString("BDSEvent_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSEvent_Description {
+            get {
+                return ResourceManager.GetString("BDSEvent_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount Percent.
+        /// </summary>
+        internal static string BDSEvent_DisPercent {
+            get {
+                return ResourceManager.GetString("BDSEvent_DisPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Event.
+        /// </summary>
+        internal static string BDSEvent_Edit {
+            get {
+                return ResourceManager.GetString("BDSEvent_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FormDate.
+        /// </summary>
+        internal static string BDSEvent_FormDate {
+            get {
+                return ResourceManager.GetString("BDSEvent_FormDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Date - To Date.
+        /// </summary>
+        internal static string BDSEvent_FromDate {
+            get {
+                return ResourceManager.GetString("BDSEvent_FromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FromDate - ToDate.
+        /// </summary>
+        internal static string BDSEvent_FromDateToDate {
+            get {
+                return ResourceManager.GetString("BDSEvent_FromDateToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSEvent_Name {
+            get {
+                return ResourceManager.GetString("BDSEvent_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string BDSEvent_ToDate {
+            get {
+                return ResourceManager.GetString("BDSEvent_ToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Bank Language.
+        /// </summary>
+        internal static string BDSLanguage {
+            get {
+                return ResourceManager.GetString("BDSLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Language.
+        /// </summary>
+        internal static string BDSLanguage_Add {
+            get {
+                return ResourceManager.GetString("BDSLanguage_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSLanguage_Description {
+            get {
+                return ResourceManager.GetString("BDSLanguage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Language.
+        /// </summary>
+        internal static string BDSLanguage_Edit {
+            get {
+                return ResourceManager.GetString("BDSLanguage_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSLanguage_Name {
+            get {
+                return ResourceManager.GetString("BDSLanguage_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Bank Marriage.
+        /// </summary>
+        internal static string BDSMarriage {
+            get {
+                return ResourceManager.GetString("BDSMarriage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Marriage.
+        /// </summary>
+        internal static string BDSMarriage_Add {
+            get {
+                return ResourceManager.GetString("BDSMarriage_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSMarriage_Description {
+            get {
+                return ResourceManager.GetString("BDSMarriage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSMarriage_Name {
+            get {
+                return ResourceManager.GetString("BDSMarriage_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Bank Area.
+        /// </summary>
+        internal static string BDSNew {
+            get {
+                return ResourceManager.GetString("BDSNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List News Type.
+        /// </summary>
+        internal static string BDSNewsType {
+            get {
+                return ResourceManager.GetString("BDSNewsType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Prices.
+        /// </summary>
+        internal static string BDSNewsTypePrice {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Price.
+        /// </summary>
+        internal static string BDSNewsTypePrice_Add {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Price.
+        /// </summary>
+        internal static string BDSNewsTypePrice_ApplyPrice {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice_ApplyPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSNewsTypePrice_Description {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Price.
+        /// </summary>
+        internal static string BDSNewsTypePrice_Edit {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSNewsTypePrice_Name {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to News Type.
+        /// </summary>
+        internal static string BDSNewsTypePrice_NewsType {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice_NewsType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Perfix.
+        /// </summary>
+        internal static string BDSNewsTypePrice_Perfix {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice_Perfix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        internal static string BDSNewsTypePrice_Price {
+            get {
+                return ResourceManager.GetString("BDSNewsTypePrice_Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New News Type.
+        /// </summary>
+        internal static string BDSNewsType_Add {
+            get {
+                return ResourceManager.GetString("BDSNewsType_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        internal static string BDSNewsType_Code {
+            get {
+                return ResourceManager.GetString("BDSNewsType_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSNewsType_Description {
+            get {
+                return ResourceManager.GetString("BDSNewsType_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit News Type.
+        /// </summary>
+        internal static string BDSNewsType_Edit {
+            get {
+                return ResourceManager.GetString("BDSNewsType_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSNewsType_Name {
+            get {
+                return ResourceManager.GetString("BDSNewsType_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order.
+        /// </summary>
+        internal static string BDSNewsType_Order {
+            get {
+                return ResourceManager.GetString("BDSNewsType_Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Icon.
+        /// </summary>
+        internal static string BDSNewsType_UrlIcon {
+            get {
+                return ResourceManager.GetString("BDSNewsType_UrlIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employer.
+        /// </summary>
+        internal static string BDSNew_Account {
+            get {
+                return ResourceManager.GetString("BDSNew_Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Area.
+        /// </summary>
+        internal static string BDSNew_Add {
+            get {
+                return ResourceManager.GetString("BDSNew_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address Apply.
+        /// </summary>
+        internal static string BDSNew_AddressApply {
+            get {
+                return ResourceManager.GetString("BDSNew_AddressApply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefit.
+        /// </summary>
+        internal static string BDSNew_Benefit {
+            get {
+                return ResourceManager.GetString("BDSNew_Benefit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus.
+        /// </summary>
+        internal static string BDSNew_Bonus {
+            get {
+                return ResourceManager.GetString("BDSNew_Bonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Career.
+        /// </summary>
+        internal static string BDSNew_Career {
+            get {
+                return ResourceManager.GetString("BDSNew_Career", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dead Line.
+        /// </summary>
+        internal static string BDSNew_Deadline {
+            get {
+                return ResourceManager.GetString("BDSNew_Deadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description Company.
+        /// </summary>
+        internal static string BDSNew_DesCompany {
+            get {
+                return ResourceManager.GetString("BDSNew_DesCompany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSNew_Description {
+            get {
+                return ResourceManager.GetString("BDSNew_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description Work.
+        /// </summary>
+        internal static string BDSNew_DesWork {
+            get {
+                return ResourceManager.GetString("BDSNew_DesWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Area.
+        /// </summary>
+        internal static string BDSNew_Edit {
+            get {
+                return ResourceManager.GetString("BDSNew_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Education.
+        /// </summary>
+        internal static string BDSNew_Education {
+            get {
+                return ResourceManager.GetString("BDSNew_Education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string BDSNew_Email {
+            get {
+                return ResourceManager.GetString("BDSNew_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Age.
+        /// </summary>
+        internal static string BDSNew_FromAge {
+            get {
+                return ResourceManager.GetString("BDSNew_FromAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type News.
+        /// </summary>
+        internal static string BDSNew_FromCreateNews {
+            get {
+                return ResourceManager.GetString("BDSNew_FromCreateNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Date - To Date.
+        /// </summary>
+        internal static string BDSNew_FromCreateNewsToCreateNews {
+            get {
+                return ResourceManager.GetString("BDSNew_FromCreateNewsToCreateNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Date.
+        /// </summary>
+        internal static string BDSNew_FromDate {
+            get {
+                return ResourceManager.GetString("BDSNew_FromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string BDSNew_Language {
+            get {
+                return ResourceManager.GetString("BDSNew_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        internal static string BDSNew_MoneyInDay {
+            get {
+                return ResourceManager.GetString("BDSNew_MoneyInDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string BDSNew_Name {
+            get {
+                return ResourceManager.GetString("BDSNew_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name Company.
+        /// </summary>
+        internal static string BDSNew_NameCompany {
+            get {
+                return ResourceManager.GetString("BDSNew_NameCompany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name Contact.
+        /// </summary>
+        internal static string BDSNew_NameContact {
+            get {
+                return ResourceManager.GetString("BDSNew_NameContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Contact.
+        /// </summary>
+        internal static string BDSNew_PhoneContact {
+            get {
+                return ResourceManager.GetString("BDSNew_PhoneContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        internal static string BDSNew_Quantity {
+            get {
+                return ResourceManager.GetString("BDSNew_Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Review News.
+        /// </summary>
+        internal static string BDSNew_Review {
+            get {
+                return ResourceManager.GetString("BDSNew_Review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        internal static string BDSNew_Salary {
+            get {
+                return ResourceManager.GetString("BDSNew_Salary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sex.
+        /// </summary>
+        internal static string BDSNew_Sex {
+            get {
+                return ResourceManager.GetString("BDSNew_Sex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string BDSNew_Status {
+            get {
+                return ResourceManager.GetString("BDSNew_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Probationary.
+        /// </summary>
+        internal static string BDSNew_TimeProbationary {
+            get {
+                return ResourceManager.GetString("BDSNew_TimeProbationary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience.
+        /// </summary>
+        internal static string BDSNew_TimeWork {
+            get {
+                return ResourceManager.GetString("BDSNew_TimeWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string BDSNew_Title {
+            get {
+                return ResourceManager.GetString("BDSNew_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string BDSNew_ToAge {
+            get {
+                return ResourceManager.GetString("BDSNew_ToAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string BDSNew_ToCreateNews {
+            get {
+                return ResourceManager.GetString("BDSNew_ToCreateNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Date.
+        /// </summary>
+        internal static string BDSNew_ToDate {
+            get {
+                return ResourceManager.GetString("BDSNew_ToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string BDSNew_ToSalary {
+            get {
+                return ResourceManager.GetString("BDSNew_ToSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Price.
+        /// </summary>
+        internal static string BDSNew_TotalMoney {
+            get {
+                return ResourceManager.GetString("BDSNew_TotalMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type News.
+        /// </summary>
+        internal static string BDSNew_TypeNews {
+            get {
+                return ResourceManager.GetString("BDSNew_TypeNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        internal static string BDSNew_Website {
+            get {
+                return ResourceManager.GetString("BDSNew_Website", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working Place.
+        /// </summary>
+        internal static string BDSNew_WorkingPlace {
+            get {
+                return ResourceManager.GetString("BDSNew_WorkingPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Account.
+        /// </summary>
+        internal static string BDSPersonalInformation {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Account.
+        /// </summary>
+        internal static string BDSPersonalInformation_Add {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string BDSPersonalInformation_Address {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSPersonalInformation_Description {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Account.
+        /// </summary>
+        internal static string BDSPersonalInformation_Edit {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Education.
+        /// </summary>
+        internal static string BDSPersonalInformation_Education {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience.
+        /// </summary>
+        internal static string BDSPersonalInformation_Experience {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Experience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Career.
+        /// </summary>
+        internal static string BDSPersonalInformation_IdLoaiNghe {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_IdLoaiNghe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logo.
+        /// </summary>
+        internal static string BDSPersonalInformation_Image {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marital.
+        /// </summary>
+        internal static string BDSPersonalInformation_Marital {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Marital", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSPersonalInformation_Name {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string BDSPersonalInformation_Phone {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Professional experience.
+        /// </summary>
+        internal static string BDSPersonalInformation_ProfessionalExperience {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_ProfessionalExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        internal static string BDSPersonalInformation_Salary {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Salary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sex.
+        /// </summary>
+        internal static string BDSPersonalInformation_Sex {
+            get {
+                return ResourceManager.GetString("BDSPersonalInformation_Sex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Salary.
+        /// </summary>
+        internal static string BDSSalary {
+            get {
+                return ResourceManager.GetString("BDSSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Salary.
+        /// </summary>
+        internal static string BDSSalary_Add {
+            get {
+                return ResourceManager.GetString("BDSSalary_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSSalary_Description {
+            get {
+                return ResourceManager.GetString("BDSSalary_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Salary.
+        /// </summary>
+        internal static string BDSSalary_Edit {
+            get {
+                return ResourceManager.GetString("BDSSalary_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Salary.
+        /// </summary>
+        internal static string BDSSalary_FromSalary {
+            get {
+                return ResourceManager.GetString("BDSSalary_FromSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSSalary_Name {
+            get {
+                return ResourceManager.GetString("BDSSalary_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        internal static string BDSSalary_Salary {
+            get {
+                return ResourceManager.GetString("BDSSalary_Salary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string BDSSalary_To {
+            get {
+                return ResourceManager.GetString("BDSSalary_To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Salary.
+        /// </summary>
+        internal static string BDSSalary_ToSalary {
+            get {
+                return ResourceManager.GetString("BDSSalary_ToSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string BDSSalary_Type {
+            get {
+                return ResourceManager.GetString("BDSSalary_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Scope.
+        /// </summary>
+        internal static string BDSScope {
+            get {
+                return ResourceManager.GetString("BDSScope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Scope.
+        /// </summary>
+        internal static string BDSScope_Add {
+            get {
+                return ResourceManager.GetString("BDSScope_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSScope_Description {
+            get {
+                return ResourceManager.GetString("BDSScope_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Scope.
+        /// </summary>
+        internal static string BDSScope_Edit {
+            get {
+                return ResourceManager.GetString("BDSScope_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSScope_Name {
+            get {
+                return ResourceManager.GetString("BDSScope_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List TimeWork.
+        /// </summary>
+        internal static string BDSTimeWork {
+            get {
+                return ResourceManager.GetString("BDSTimeWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New TimeWork.
+        /// </summary>
+        internal static string BDSTimeWork_Add {
+            get {
+                return ResourceManager.GetString("BDSTimeWork_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSTimeWork_Description {
+            get {
+                return ResourceManager.GetString("BDSTimeWork_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit TimeWork.
+        /// </summary>
+        internal static string BDSTimeWork_Edit {
+            get {
+                return ResourceManager.GetString("BDSTimeWork_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSTimeWork_Name {
+            get {
+                return ResourceManager.GetString("BDSTimeWork_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TimeWork.
+        /// </summary>
+        internal static string BDSTimeWork_TimeWork {
+            get {
+                return ResourceManager.GetString("BDSTimeWork_TimeWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Bank Transaction.
+        /// </summary>
+        internal static string BDSTransaction {
+            get {
+                return ResourceManager.GetString("BDSTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employer.
+        /// </summary>
+        internal static string BDSTransaction_Account {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Transaction.
+        /// </summary>
+        internal static string BDSTransaction_Add {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank.
+        /// </summary>
+        internal static string BDSTransaction_Bank {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Bank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        internal static string BDSTransaction_Branch {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Transaction.
+        /// </summary>
+        internal static string BDSTransaction_Date {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSTransaction_Description {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Transaction.
+        /// </summary>
+        internal static string BDSTransaction_Edit {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money.
+        /// </summary>
+        internal static string BDSTransaction_Money {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Money", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money for Event.
+        /// </summary>
+        internal static string BDSTransaction_MoneyEventAdd {
+            get {
+                return ResourceManager.GetString("BDSTransaction_MoneyEventAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSTransaction_Name {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point.
+        /// </summary>
+        internal static string BDSTransaction_Point {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Point", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string BDSTransaction_Type {
+            get {
+                return ResourceManager.GetString("BDSTransaction_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Type Contact.
+        /// </summary>
+        internal static string BDSTypeContact {
+            get {
+                return ResourceManager.GetString("BDSTypeContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Type Contact.
+        /// </summary>
+        internal static string BDSTypeContact_Add {
+            get {
+                return ResourceManager.GetString("BDSTypeContact_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string BDSTypeContact_Description {
+            get {
+                return ResourceManager.GetString("BDSTypeContact_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Type Contact.
+        /// </summary>
+        internal static string BDSTypeContact_Edit {
+            get {
+                return ResourceManager.GetString("BDSTypeContact_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string BDSTypeContact_Name {
+            get {
+                return ResourceManager.GetString("BDSTypeContact_Name", resourceCulture);
             }
         }
         
@@ -11599,6 +13363,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Field Should Between {0} {1}.
+        /// </summary>
+        internal static string TheFieldShouldBetween {
+            get {
+                return ResourceManager.GetString("TheFieldShouldBetween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The field should greater than.
         /// </summary>
         internal static string TheFieldShouldGreaterThan {
@@ -11703,6 +13476,15 @@ namespace Resources {
         internal static string TheValueMustBeGreaterThanOrSame0 {
             get {
                 return ResourceManager.GetString("TheValueMustBeGreaterThanOrSame0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must be greater than {0}.
+        /// </summary>
+        internal static string TheValueMustBeGreaterThanValueSFM {
+            get {
+                return ResourceManager.GetString("TheValueMustBeGreaterThanValueSFM", resourceCulture);
             }
         }
         

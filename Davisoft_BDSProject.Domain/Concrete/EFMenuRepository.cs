@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
+using Ninject.Infrastructure.Language;
 
 namespace Davisoft_BDSProject.Domain.Concrete
 {
@@ -16,7 +17,8 @@ namespace Davisoft_BDSProject.Domain.Concrete
 
         public IEnumerable<Menu> GetAll()
         {
-            return GetAll<Menu>(m => m.Roles.Select(r => r.Permissions)).AsEnumerable();
+            return _db.Set<Menu>().Include(m => m.Roles.Select(r => r.Permissions)).ToEnumerable();
+           // return GetAll<Menu>(m => m.Roles.Select(r => r.Permissions)).AsEnumerable();
         }
 
         public virtual IEnumerable<Menu> GetAllChildren(int parentId = 0)

@@ -80,6 +80,7 @@ namespace Davisoft_BDSProject.Domain.Concrete
 
         public Currency GetDefaultCurrency()
         {
+          
             return Get<Currency>(c => c.IsDefault) ??
                    Get<Currency>(c => true);
         }

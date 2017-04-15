@@ -126,14 +126,19 @@ namespace Davisoft_BDSProject.Domain.Concrete
         }
         public User GetUserByEmail(string email)
         {
+
             return string.IsNullOrWhiteSpace(email)
+                       ? null
+                       : _db.Set<User>().Where(u => u.Email != null &&
+                                        u.Email.Trim().ToLower() == email.Trim().ToLower()).Include(u => u.Roles.Select(r => r.Permissions)).FirstOrDefault();
+           /* return string.IsNullOrWhiteSpace(email)
                        ? null
                        : Get<User>(u => u.Email != null &&
                                         u.Email.Trim().ToLower() == email.Trim().ToLower(),
                                    u => u.Roles.Select(r => r.Permissions),
                                    u => u.Branch,
                                    u => u.Branches,
-                                   u => u.Language);
+                                   u => u.Language);*/
         }
         public IEnumerable<User> GetAllUserByEmail(string email)
         {

@@ -43,10 +43,10 @@ namespace Davisoft_BDSProject.Web.Controllers
             string columnName = ((String[])data.columns[int.Parse(column)]["data"])[0];
             var queryFilter =
               _service.GetIQueryableItems()
-                  .Where(
-                      T => T.Active == 1 &&
-                          search != null &&
-                          (T.KeySearch.ToLower().Contains(search.ToLower())));
+                   .Where(
+                       T => T.Active == 1 &&
+                         (search == "" || (search != null &&
+                           (T.KeySearch.ToLower().Contains(search.ToLower())))));
             if (dir == "asc")
             {
                 queryFilter = queryFilter.OrderByField(columnName, true);

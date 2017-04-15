@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -74,9 +75,9 @@ namespace Davisoft_BDSProject.Web.Controllers
             var queryFilter =
               _service.GetIQueryableItems()
                   .Where(
-                      T => T.Active == 1 &&
-                          search != null &&
-                          (T.KeySearch.ToLower().Contains(search.ToLower())));
+                       T => T.Active == 1 &&
+                         (search == "" || (search != null &&
+                           (T.KeySearch.ToLower().Contains(search.ToLower())))));
             if (dir == "asc")
             {
                 queryFilter = queryFilter.OrderByField(columnName, true);
