@@ -3,7 +3,7 @@
 @using Resources
 @model Davisoft_BDSProject.Domain.Entities.BDSNew
 @{
-    ViewBag.Title = Utilities.Resource("BDSNew_Add", "Add New Area");
+    ViewBag.Title = Utilities.Resource("BDSNew_Add", "Add News");
 }
 <section class="panel panel-default">
     <h3 class="tilte_l">
@@ -19,16 +19,14 @@
                     <div class="form-actions">
                         <div class="form-group">
                             <label class="col-sm-3"></label>
-                            @*<label class="col-sm-9">
-                                @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
-                                @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Create).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
-                                
-                            </label>*@
-                            <button type="submit" id="submitbutton" class="btn-success btnAdd hidden"></button>
+                            <label class="col-sm-9">
+                             
+                                <a class="btn  btn-default" href="@Url.Action("Cancel", "BDSNew", new { id = Model.ID })"><i class="icon-arrow-left"></i> @Resource.ButtonBackToList</a>
+                                <button class="btn-success  btn btnAdd1" onclick="return UploadImg(this);" id="submitbutton" type="submit"><i class="icon-white icon-ok"></i> @Resource.Create</button>
+                            </label>
+                            
+                            
 
-                           
-                            <a href="@Url.Action("Cancel", "BDSNew", new { id = Model.ID })" class="btn btn-primary">Back to list</a>
-                             <div onclick="UploadImg(this)" class="btn btn-success btnAdd1">Create</div>
                         </div>
                     </div>
                 }

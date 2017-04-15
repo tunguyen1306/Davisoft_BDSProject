@@ -21,12 +21,14 @@ using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using Resources;
 using System.Net;
 using System.Data.Entity;
+using BDSNew = Davisoft_BDSProject.Domain.Entities.BDSNew;
+using BDSPicture = Davisoft_BDSProject.Domain.Entities.BDSPicture;
 
 namespace Davisoft_BDSProject.Web.Controllers
 {
     public class BDSNewController : Controller
     {
-        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+        Entities db = new Entities();
         private readonly IBDSNewService _service;
         private readonly IBDSAccountService _serviceAccount;
         private readonly IBDSEmployerInformationService _serviceEmployerInformation;
@@ -37,6 +39,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         private readonly IBDSNewsTypePriceService _serviceNewsTypePrice;
         private readonly IBDSLanguageService _serviceLanguage;
         private readonly IBDSPictureService _servicePicture;
+        private readonly IBDSTransactionHistoryService _serviceTransactionHistory;
         public BDSNewController(IBDSNewService service,
             IBDSAccountService serviceAccount,
             IBDSEducationService serviceEducation,
@@ -46,7 +49,8 @@ namespace Davisoft_BDSProject.Web.Controllers
             IBDSNewsTypePriceService serviceNewsTypePrice,
               IBDSLanguageService serviceLanguage,
             IBDSEmployerInformationService serviceEmployerInformation,
-            IBDSPictureService servicePicture
+            IBDSPictureService servicePicture,
+            IBDSTransactionHistoryService serviceTransactionHistory
             )
         {
             _service = service;
@@ -59,12 +63,13 @@ namespace Davisoft_BDSProject.Web.Controllers
             _serviceLanguage = serviceLanguage;
             _serviceEmployerInformation = serviceEmployerInformation;
             _servicePicture = servicePicture;
+            _serviceTransactionHistory = serviceTransactionHistory;
         }
 
         void LoadDataList()
         {
-            var Cities = (from a in db.states
-                          join b in db.stateTexts on a.name_id equals b.id
+            var Cities = (from a in db.States
+                          join b in db.StateTexts on a.name_id equals b.id
                           where b.language_id == "vi" && a.Status == 1
                           select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
@@ -137,8 +142,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                         NameCompany = T.NameCompany, 
                         BDSAccount = new BDSAccount { ID = T.BDSAccount.ID, Email = T.BDSAccount.Email }, 
                         DesCompany = T.DesCompany,
-                        FromCreateNews=T.FromCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern),
-                        ToCreateNews = T.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern),
+                        FromCreateNews=T.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern),
+                        ToCreateNews = T.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern),
                         Status = T.Status
                     });
          
@@ -147,10 +152,10 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
-            var tblNews = new BDSNew();
+            var tblNews = new BDSNew {CreateUser = 1,Active =0,CreateDate = DateTime.Now, DateReup = null, FromCreateNews = DateTime.Now, ToCreateNews = DateTime.Now.AddDays(3), FromDeadline = DateTime.Now, ToDeadline = null };
             _service.CreateItem(tblNews);
             LoadDataList();
-            return View(new BDSNew { CreateDate = DateTime.Now, FromDateToDateString = DateTime.Now.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) + " - " + DateTime.Now.AddDays(3).ToString(MvcApplication.DateTimeFormat.ShortDatePattern), CreateUser = 1, ID = tblNews.ID, IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == tblNews.ID) });
+            return View(new BDSNew { CreateDate = DateTime.Now, FromDateToDateString = DateTime.Now.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) + " - " + DateTime.Now.AddDays(3).ToString(MvcApplication.DateTimeFormat.ShortDatePattern), CreateUser = 1,Active = 1, ID = tblNews.ID, IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == tblNews.ID) });
         }
 
         [HttpPost]
@@ -172,14 +177,15 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.FromDeadline = DateTime.Now;
             model.IdTypeNewsCuurent = model.IdTypeNewsCuurent;
-            model.KeySearch = model.Title.NormalizeD() + " " + _serviceAccount.GetItem(model.IdAcount).Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
-            _service.CreateItem(model);
+            model.BDSAccount = _serviceAccount.GetItem(model.IdAcount);
+            model.KeySearch = model.Title.NormalizeD() + " " + model.BDSAccount.Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
+            _service.UpdateItem(model);
 
             var type = _serviceNewsType.GetItem(model.IdTypeNewsCuurent);
 
             String Fname = "Đăng tin '{A}' trong vòng '{B}' ngày tổng giá phải trả '{C}' VNĐ";
-            string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(model.ToCreateNews.Subtract(model.FromCreateNews).TotalDays)) + "").Replace("{C}", model.TotalMoney.ToString("n2"));
-            bdstransactionhistory tran = new bdstransactionhistory
+            string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(model.ToCreateNews.Value.Subtract(model.FromCreateNews.Value).TotalDays)) + "").Replace("{C}", model.TotalMoney.ToString("n2"));
+            Davisoft_BDSProject.Domain.Entities.BDSTransactionHistory tran = new Davisoft_BDSProject.Domain.Entities.BDSTransactionHistory()
             {
                 Name = name,
                 Description = name,
@@ -189,13 +195,15 @@ namespace Davisoft_BDSProject.Web.Controllers
                 CreateDate = DateTime.Now,
                 TypeTran = 2,
                 PointTran = 0,
-                MoneyTran = (decimal) model.TotalMoney,
+                MoneyTran =  model.TotalMoney,
                 DateTran = DateTime.Now
             };
-            db.Entry(tran).State = EntityState.Added;
-            db.SaveChanges();
-            model.RefTranHis = tran.Id;
+            _serviceTransactionHistory.CreateItem(tran);
+            model.RefTranHis = tran.ID;
             _service.UpdateItem(model);
+            model.BDSAccount.Money -= model.TotalMoney;
+            _serviceAccount.UpdateItem(model.BDSAccount);
+
             return RedirectToAction("Index");
         }
 
@@ -205,9 +213,9 @@ namespace Davisoft_BDSProject.Web.Controllers
             BDSNew model =
                 _service.GetIQueryableItems().Where(T => T.ID == id).Include(T => T.BDSPictures).FirstOrDefault();
             model.IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == id);
-            model.FromDateToDateString = model.FromCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
+            model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +
-                                         model.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
+                                         model.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
             return View(model);
         }
 
@@ -225,9 +233,34 @@ namespace Davisoft_BDSProject.Web.Controllers
             var toDate = model.FromDateToDateString.Split('-')[1];
             model.FromCreateNews = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
+            model.BDSAccount = _serviceAccount.GetItem(model.IdAcount);
             model.FromDeadline = DateTime.Now;
-               model.KeySearch = model.Title.NormalizeD() + " " + _serviceAccount.GetItem(model.IdAcount).Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
+            model.KeySearch = model.Title.NormalizeD() + " " + model.BDSAccount.Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
             _service.UpdateItem(model);
+
+            if (model.RefTranHis.HasValue)
+
+            {   
+                     var type = _serviceNewsType.GetItem(model.IdTypeNewsCuurent);
+
+                String Fname = "Edit tin '{A}' trong vòng '{B}' ngày tổng giá phải trả '{C}' VNĐ";
+                 string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(model.ToCreateNews.Value.Subtract(model.FromCreateNews.Value).TotalDays)) + "").Replace("{C}", model.TotalMoney.ToString("n2"));
+                var tran = _serviceTransactionHistory.GetItem(model.RefTranHis.Value);
+                tran.Name += "-" + Fname;
+                var difMoney = model.TotalMoney - tran.MoneyTran;
+                if (difMoney!=0)
+                {
+                    tran.MoneyTran += difMoney;
+                    _serviceTransactionHistory.UpdateItem(tran);
+                    model.BDSAccount.Money += difMoney;
+                    _serviceAccount.UpdateItem(model.BDSAccount);
+
+                }
+         
+            }
+    
+
+
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
             return    Redirect("/");;
@@ -239,9 +272,9 @@ namespace Davisoft_BDSProject.Web.Controllers
             BDSNew model =
                 _service.GetIQueryableItems().Where(T => T.ID == id).Include(T => T.BDSPictures).FirstOrDefault();
             model.IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == id);
-            model.FromDateToDateString = model.FromCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
+            model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +
-                                         model.ToCreateNews.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
+                                         model.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
             return View(model);
         }
 
@@ -293,7 +326,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             }
             var picture = new NewsPictures
             {
-                tblPicture = new bdspicture() { advert_id = newsPicture.idProducts, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck = 1, type_id = 1, title = newsPicture.nameImg, position = newsPicture.isactive }
+                tblPicture = new BDSPicture() { advert_id = newsPicture.idProducts, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck =true , type_id = 1, title = newsPicture.nameImg, position = newsPicture.isactive }
             };
             if (newsPicture.idpicture == 0)
             {
@@ -465,13 +498,13 @@ namespace Davisoft_BDSProject.Web.Controllers
                 _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == idAccount).ToList().Select(T => new
                 {
                     Name = T.Name,
-                    AddressContact = T.AddressContact + ", " + (from a in db.districts
-                                                                join b in db.districttexts on a.name_id equals b.id
+                    AddressContact = T.AddressContact + ", " + (from a in db.Districts
+                                                                join b in db.DistrictTexts on a.name_id equals b.id
                                                                 where b.language_id == "vi" && a.state_id == T.DistrictContact
                                                                 select new { ID = a.state_id, Name = b.text }).FirstOrDefault().Name +", "+
 
-                                                                (from a in db.states
-                                                                 join b in db.stateTexts on a.name_id equals b.id
+                                                                (from a in db.States
+                                                                 join b in db.StateTexts on a.name_id equals b.id
                                                                  where b.language_id == "vi" && a.Status == 1 && a.state_id == T.CityContact
                                                                  select new { ID = a.state_id, Name = b.text }).FirstOrDefault().Name
                                                                 ,

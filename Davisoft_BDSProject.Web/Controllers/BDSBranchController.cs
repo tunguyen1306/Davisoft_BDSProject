@@ -9,8 +9,9 @@ using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
 using Davisoft_BDSProject.Domain.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Filters;
-using Davisoft_BDSProject.Web.Models;
+
 using Resources;
+
 
 namespace Davisoft_BDSProject.Web.Controllers
 {
@@ -40,7 +41,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 
         [DisplayName(@"BDSBranch management")]
         [AjaxOnly]
-        public JsonResult IndexAjax(DataTableJS data)
+        public JsonResult IndexAjax(Davisoft_BDSProject.Web.Models.DataTableJS data)
         {
             var itmes = _service.GetIQueryableItems().ToList();
             String search = null;

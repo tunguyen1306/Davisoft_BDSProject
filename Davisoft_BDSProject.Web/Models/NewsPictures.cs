@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using Davisoft_BDSProject.Domain.Entities;
 
 namespace Davisoft_BDSProject.Web.Models
 {
     public class NewsPictures
     {
 
-        public List<bdspicture> ListPicture { get; set; }
-        public bdspicture tblPicture { get; set; }
-        public bdsnew tblbdsnew { get; set; }
-        public List<bdsnew> ListNew { get; set; }
+        public List<BDSPicture> ListPicture { get; set; }
+        public Domain.Entities.BDSPicture tblPicture { get; set; }
+        public BDSNew  tblbdsnew { get; set; }
+        public List<BDSNew> ListNew { get; set; }
 
 
 

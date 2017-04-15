@@ -16,11 +16,11 @@ namespace Davisoft_BDSProject.Web.Controllers
     {
         //
         // GET: /AdminCity/
-        private davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+        private Entities db = new Entities();
         public ActionResult Index()
         {
-            var queryData = from city in db.states
-                join cityTex in db.stateTexts on city.name_id equals cityTex.id
+            var queryData = from city in db.States
+                join cityTex in db.StateTexts on city.name_id equals cityTex.id
                 where cityTex.language_id.Equals("vi")
                             select new CityModel { City = city,CityText = cityTex};
 
@@ -32,8 +32,8 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Edit( int id)
         {
-            var queryData = from city in db.states
-                            join cityTex in db.stateTexts on city.name_id equals cityTex.id
+            var queryData = from city in db.States
+                            join cityTex in db.StateTexts on city.name_id equals cityTex.id
                             where cityTex.language_id.Equals("vi") || city.state_id==id
                             select new CityModel { City = city, CityText = cityTex };
 
@@ -45,11 +45,11 @@ namespace Davisoft_BDSProject.Web.Controllers
             if (ModelState.IsValid)
             {
 
-                state sta = db.states.Find(cityModel.City.state_id);
+                State sta = db.States.Find(cityModel.City.state_id);
                 db.Entry(sta).State = EntityState.Modified;
                 sta.Status = cityModel.City.Status;
                 sta.stateCode = cityModel.City.stateCode;
-                stateText stateText = (from data in db.stateTexts where data.id==cityModel.CityText.id && data.language_id=="vi" select data).ToList().FirstOrDefault();
+                StateText stateText = (from data in db.StateTexts where data.id==cityModel.CityText.id && data.language_id=="vi" select data).ToList().FirstOrDefault();
                 db.Entry(stateText).State = EntityState.Modified;
                 stateText.text = cityModel.CityText.text;
                 db.SaveChanges();
@@ -71,7 +71,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                 cityModel.City.ModifyDate = DateTime.Now;
                 cityModel.City.countryCode = "VN";
                 cityModel.City.name_id = 1234;
-                db.states.Add(cityModel.City);
+                db.States.Add(cityModel.City);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -7,7 +7,7 @@ namespace Davisoft_BDSProject.Web.Models
 {
     public class CityModel
     {
-        public state City { get; set; }
-        public stateText CityText { get; set; }
+        public State City { get; set; }
+        public StateText CityText { get; set; }
     }
 }

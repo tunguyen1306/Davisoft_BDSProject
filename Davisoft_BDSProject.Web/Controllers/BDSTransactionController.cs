@@ -14,14 +14,16 @@ using Davisoft_BDSProject.Domain.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Filters;
 using Davisoft_BDSProject.Web.Models;
 using Resources;
+using BDSTransactionHistory = Davisoft_BDSProject.Domain.Entities.BDSTransactionHistory;
 
 namespace Davisoft_BDSProject.Web.Controllers
 {
     public class BDSTransactionController : Controller
     {
-        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+    
         private readonly IBDSEventService _serviceEvent;
         private readonly IBDSTransactionService _service;
+        private readonly IBDSTransactionHistoryService _serviceTranHis;
         private readonly IBDSAccountService _serviceAccount;
         private readonly IBDSBankService _serviceBank;
         private readonly IBDSEmployerInformationService _serviceEmployerInformation;
@@ -31,7 +33,8 @@ namespace Davisoft_BDSProject.Web.Controllers
             IBDSBankService serviceBank,
             IBDSEmployerInformationService serviceEmployerInformation,
             IBDSBranchService serviceBranch,
-            IBDSEventService serviceEvent
+            IBDSEventService serviceEvent,
+            IBDSTransactionHistoryService serviceTranHis
             )
         {
             _service = service;
@@ -40,6 +43,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             _serviceEmployerInformation = serviceEmployerInformation;
             _serviceBranch = serviceBranch;
             _serviceEvent = serviceEvent;
+            _serviceTranHis = serviceTranHis;
         }
 
         void LoadDataList()
@@ -130,7 +134,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             _serviceAccount.UpdateItem(account);
 
 
-            bdstransactionhistory tran = new bdstransactionhistory
+            BDSTransactionHistory tran = new BDSTransactionHistory
             {
                 Name = model.Name,
                 Description = model.Name,
@@ -140,12 +144,11 @@ namespace Davisoft_BDSProject.Web.Controllers
                 CreateDate = DateTime.Now,
                 TypeTran = 1,
                 PointTran = model.Point,
-                MoneyTran = (decimal)(model.Money + model.MoneyEventAdd),
+                MoneyTran = (model.Money + model.MoneyEventAdd),
                 DateTran = DateTime.Now
             };
-            db.Entry(tran).State = EntityState.Added;
-            db.SaveChanges();
-            model.RefTranHis = tran.Id;
+            _serviceTranHis.CreateItem(tran);
+            model.RefTranHis = tran.ID;
             _service.UpdateItem(model);
 
 
@@ -193,7 +196,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 
             if (model.RefTranHis.HasValue)
             {
-                var tranhis= db.bdstransactionhistories.Where(T => T.Id == model.RefTranHis).FirstOrDefault();
+                var tranhis=_serviceTranHis.GetIQueryableItems().Where(T => T.ID == model.RefTranHis).FirstOrDefault();
                 tranhis.Name = model.Name;
                 tranhis.Description = model.Name;
                 tranhis.KeySearch = model.Name.NormalizeD();
@@ -202,9 +205,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                 tranhis.ModifiedDate = DateTime.Now;
                 tranhis.TypeTran = 1;
                 tranhis.PointTran = model.Point;
-                tranhis.MoneyTran = (decimal) (model.Money + model.MoneyEventAdd);
-                db.Entry(tranhis).State = EntityState.Modified;
-                db.SaveChanges();
+                tranhis.MoneyTran =  (model.Money + model.MoneyEventAdd);
+                _serviceTranHis.UpdateItem(tranhis);
             }
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

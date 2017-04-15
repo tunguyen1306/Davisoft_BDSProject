@@ -12,7 +12,7 @@ namespace Davisoft_BDSProject.Web.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class district
+    public partial class District
     {
         public int district_id { get; set; }
         public int state_id { get; set; }

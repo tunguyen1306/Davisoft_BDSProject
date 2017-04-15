@@ -6814,4 +6814,24 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSExtNews_Add" xml:space="preserve">
+    <value>Add New ExtNews</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews_Image" xml:space="preserve">
+    <value>Image</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Birthday" xml:space="preserve">
+    <value>Birthday</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="ValidateNewMoney" xml:space="preserve">
+    <value>Over due money</value>
+    <comment>
+    </comment>
+  </data>
 </root>

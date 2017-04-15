@@ -363,113 +363,20 @@
     <Compile Include="Controllers\BDSBankController.cs" />
     <Compile Include="Helpers\UrlFriendly.cs" />
     <Compile Include="Helpers\Utilities.cs" />
-    <Compile Include="Models\audit.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\BDSApply.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsaccount.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\BDSComment.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsarea.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\BDSEmper.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsbank.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\Country.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsbranch.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdscareer.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdscomment.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdseducation.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsemper.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsemployerinformation.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsevent.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsextnew.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdslanguage.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsmarriage.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsnew.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsnewstype.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsnewstypeprice.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdspersonalinformation.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdspicture.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdssalary.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdsscope.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdstimework.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdstransaction.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdstransactionhistory.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bdstypecontact.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\branch.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\counter.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\country.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\countrytext.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\currency.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__migrationhistory.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataSql.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSql.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataSql.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataSql.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSql.edmx</DependentUpon>
+    <Compile Include="Models\CountryText.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataTableJS.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
@@ -538,56 +445,50 @@
     <Compile Include="Infrastructure\Utility\StringHelper.cs" />
     <Compile Include="Infrastructure\Utility\UserPicture.cs" />
     <Compile Include="Models\CityModel.cs" />
-    <Compile Include="Models\district.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\District.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\districttext.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\DistrictText.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EFModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EFModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EFModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\EmailReceiveSettingModel.cs" />
-    <Compile Include="Models\holiday.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\HolidayModelView.cs" />
     <Compile Include="Models\HomeSearchModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
-    <Compile Include="Models\language.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LanguageResourceModel.cs" />
-    <Compile Include="Models\location.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\Location.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\locationtext.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\menu.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\LocationText.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\NewsPictures.cs" />
-    <Compile Include="Models\permission.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ResourceItemModel.cs" />
     <Compile Include="Models\ResourceModel.cs" />
-    <Compile Include="Models\role.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\setting.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SettingModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
-    <Compile Include="Models\state.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\State.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\stateText.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\user.cs">
-      <DependentUpon>DataSql.tt</DependentUpon>
+    <Compile Include="Models\StateText.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2747,16 +2648,6 @@
     <Content Include="Content\SampleFiles\OptionalItem_sample.xlsx" />
     <Content Include="Content\SampleFiles\StandardItem_sample.xlsx" />
     <Content Include="Global.asax" />
-    <Content Include="Models\DataSql.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataSql.edmx</DependentUpon>
-      <LastGenOutput>DataSql.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DataSql.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataSql.edmx</DependentUpon>
-      <LastGenOutput>DataSql.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -3004,12 +2895,22 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="Models\DataSql.edmx">
+    <EntityDeploy Include="Models\EFModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataSql.Designer.cs</LastGenOutput>
+      <LastGenOutput>EFModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DataSql.edmx.diagram">
-      <DependentUpon>DataSql.edmx</DependentUpon>
+    <Content Include="Models\EFModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EFModel.edmx</DependentUpon>
+      <LastGenOutput>EFModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EFModel.edmx.diagram">
+      <DependentUpon>EFModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\EFModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EFModel.edmx</DependentUpon>
+      <LastGenOutput>EFModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\subaru.pubxml" />

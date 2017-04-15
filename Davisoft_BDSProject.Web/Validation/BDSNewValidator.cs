@@ -14,9 +14,11 @@ namespace Davisoft_BDSProject.Web.Validation
     public class BDSNewValidator : AbstractValidator<BDSNew>
     {
         private readonly IBDSEmployerInformationService _service;
-        public BDSNewValidator(IBDSEmployerInformationService service)
+        private readonly IBDSNewService _serviceNew;
+        public BDSNewValidator(IBDSEmployerInformationService service,IBDSNewService serviceNew)
         {
             this._service = service;
+            this._serviceNew = serviceNew;
             RuleFor(m => m.Title).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
             RuleFor(m => m.AddressWork).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
             RuleFor(m => m.Quantity).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
@@ -59,9 +61,21 @@ namespace Davisoft_BDSProject.Web.Validation
             RuleFor(m => m.TotalMoney).Must((BDSNew model, double money) =>
             {
                 var account = _service.GetItem(model.IdAcount);
-                if (model.ID==0 && account.BDSAccount.Money<money)
+                if (model.ID==0 )
                 {
-                    return false;
+                    if ( account.BDSAccount.Money<money)
+                    {
+                        return false;
+                    }
+                  
+                }
+                else
+                {
+                    var modelOld= _serviceNew.GetItem(model.ID);
+                    if (account.BDSAccount.Money + model.TotalMoney - modelOld.TotalMoney < 0)
+                    {
+                        return false;
+                    }
                 }
                 return true;
             }).WithMessage(Utilities.Resource("ValidateNewMoney", "Over due money"));

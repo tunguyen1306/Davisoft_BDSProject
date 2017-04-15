@@ -36,7 +36,7 @@ namespace Davisoft_BDSProject.Domain.Concrete
 
         public Entities.BDSNew CreateItem(Entities.BDSNew item)
         {
-            item.Active = 1;
+          //  item.Active = 1;
             item.CreateDate = DateTime.Now;
             item.Status = 0;
             item.CountReup = 0;

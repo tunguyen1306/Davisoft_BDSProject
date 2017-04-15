@@ -29,13 +29,13 @@ namespace Davisoft_BDSProject.Domain.Entities
         public string NamesContact { get; set; }
         public string PhoneContact { get; set; }
         public string Email { get; set; }
-        public DateTime FromDeadline { get; set; }
-        public DateTime ToDeadline { get; set; }
+        public DateTime? FromDeadline { get; set; }
+        public DateTime? ToDeadline { get; set; }
         public int IdLanguage { get; set; }
         public string WebSiteCompany { get; set; }
         public int IdTypeNews { get; set; }
-        public DateTime FromCreateNews { get; set; }
-        public DateTime ToCreateNews { get; set; }
+        public DateTime? FromCreateNews { get; set; }
+        public DateTime? ToCreateNews { get; set; }
         [NotMapped]
         public string FromDateToDateString { get; set; }
         public int IdAcount { get; set; }

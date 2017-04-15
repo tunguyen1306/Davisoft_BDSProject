@@ -538,6 +538,9 @@
                 $(this).addClass('active');
             }
         });
+        $(document).on('change', 'input.form-control,select.form-control,textarea.form-control',function() {
+            $(document.forms[0]).valid();
+        });
         //$("#search_menu").on("keypress", function(e) {
 
         //});money-amount

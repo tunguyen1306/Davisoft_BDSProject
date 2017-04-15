@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="22ae950e0f2343f1a76ccb58dc080219" Name="Diagram1">
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSApply" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSComment" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSEmper" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.Country" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.CountryText" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.District" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.DistrictText" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.Location" Width="1.5" PointX="6.75" PointY="8.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.LocationText" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.State" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.StateText" Width="1.5" PointX="10.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

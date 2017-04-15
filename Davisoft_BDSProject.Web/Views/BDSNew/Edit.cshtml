@@ -25,10 +25,12 @@
                     <div class="form-group">
                         <label class="col-sm-3"></label>
                         <label class="col-sm-9">
-                      <button type="submit" id="submitbutton" class="btnAdd hidden"></button>
-                             
-                                <a href="@Url.Action("Index", "BDSNew")" class="btn btn-primary">Back To List</a>
-                            <div onclick="UploadImg(this)" class="btn btn-success btnAdd1">Save</div>
+                            
+                            
+                            <a class="btn  btn-default" href="@Url.Action("Index", "BDSNew")"><i class="icon-arrow-left"></i> @Resource.ButtonBackToList</a>
+                            <button class="btn-success  btn btnAdd1" onclick="return UploadImg(this);" id="submitbutton" type="submit"><i class="icon-white icon-ok"></i> @Resource.Save</button>
+
+                          
                         </label>
                     </div>
                 </div>

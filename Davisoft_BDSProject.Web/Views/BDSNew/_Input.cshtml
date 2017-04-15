@@ -814,6 +814,9 @@ function uploadtoserver() {
 
 function UploadImg(obj) {
 
+    if (!$(document.forms[0]).valid()) {
+        return false;
+    }
     $('.cropper-container img').css({ "transform": "none" });
    // $('.btnAdd1').text('Đang xữ lý');
     $('.btnAdd1').addClass('disabled');
