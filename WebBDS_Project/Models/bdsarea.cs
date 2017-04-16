@@ -12,16 +12,23 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdsarea
+    public partial class BDSArea
     {
-        public int Id { get; set; }
+        public BDSArea()
+        {
+            this.BDSBranches = new HashSet<BDSBranch>();
+        }
+    
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
         public int Active { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public int CreateUser { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
+    
+        public virtual ICollection<BDSBranch> BDSBranches { get; set; }
     }
 }

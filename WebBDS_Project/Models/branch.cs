@@ -12,13 +12,15 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class branch
+    public partial class Branch
     {
-        public branch()
+        public Branch()
         {
-            this.counters = new HashSet<counter>();
-            this.users = new HashSet<user>();
-            this.users1 = new HashSet<user>();
+            this.Counters = new HashSet<Counter>();
+            this.Counters1 = new HashSet<Counter>();
+            this.Users = new HashSet<User>();
+            this.Users1 = new HashSet<User>();
+            this.Users2 = new HashSet<User>();
         }
     
         public int ID { get; set; }
@@ -30,13 +32,16 @@ namespace WebBDS_Project.Models
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
         public string TaxNumber { get; set; }
-        public System.DateTime C_Created { get; set; }
-        public Nullable<System.DateTime> C_Updated { get; set; }
-        public Nullable<System.DateTime> C_Deleted { get; set; }
+        public System.DateTime CreatedTime { get; set; }
+        public Nullable<System.DateTime> UpdatedTime { get; set; }
+        public Nullable<System.DateTime> DeletedTime { get; set; }
         public string EntityStatus_Value { get; set; }
+        public string EntityStatus_DisplayName { get; set; }
     
-        public virtual ICollection<counter> counters { get; set; }
-        public virtual ICollection<user> users { get; set; }
-        public virtual ICollection<user> users1 { get; set; }
+        public virtual ICollection<Counter> Counters { get; set; }
+        public virtual ICollection<Counter> Counters1 { get; set; }
+        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users1 { get; set; }
+        public virtual ICollection<User> Users2 { get; set; }
     }
 }

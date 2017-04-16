@@ -2,7 +2,7 @@
 @{
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
 
-    var states = (from a in db.states join b in db.stateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
 }
 <ul class="idTabs">
     <li>
@@ -27,7 +27,7 @@
                     <select class="dropdown" tabindex="7">
                         <option value="">Chọn tỉnh thành</option>
                         @{
-                            foreach (var item in states)
+                            foreach (var item in States)
                             {
                                 <option value="@item.Id">@item.Name</option>
                             }
@@ -40,9 +40,9 @@
                     <select class="dropdown" tabindex="7">
                         <option value="">Chọn ngành nghề</option>
                         @{
-                            foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
+                            foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                <option value="@item.ID">@item.Name</option>
                             }
                         }
                     </select>
@@ -51,9 +51,9 @@
                     <select class="dropdown" tabindex="7">
                         <option value="">Chọn mức lương</option>
                         @{
-                            foreach (var item in db.bdssalaries.Where(T => T.Active == 1).ToList())
+                            foreach (var item in db.BDSSalaries.Where(T => T.Active == 1).ToList())
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                <option value="@item.ID">@item.Name</option>
                             }
                         }
                     </select>
@@ -72,7 +72,7 @@
                     <select class="dropdown" tabindex="7">
                         <option value="">Chọn tỉnh thành</option>
                         @{
-                            foreach (var item in states)
+                            foreach (var item in States)
                             {
                                 <option value="@item.Id">@item.Name</option>
                             }
@@ -83,9 +83,9 @@
                     <select class="dropdown" tabindex="7">
                         <option value="">Chọn ngành nghề</option>
                         @{
-                            foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
+                            foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                <option value="@item.ID">@item.Name</option>
                             }
                         }
                     </select>
@@ -94,9 +94,9 @@
                     <select class="dropdown" tabindex="7">
                         <option value="">Chọn mức lương</option>
                         @{
-                            foreach (var item in db.bdssalaries.Where(T => T.Active == 1).ToList())
+                            foreach (var item in db.BDSSalaries.Where(T => T.Active == 1).ToList())
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                <option value="@item.ID">@item.Name</option>
                             }
                         }
                     </select>

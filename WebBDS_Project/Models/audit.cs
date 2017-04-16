@@ -12,7 +12,7 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class audit
+    public partial class Audit
     {
         public int ID { get; set; }
         public string Username { get; set; }

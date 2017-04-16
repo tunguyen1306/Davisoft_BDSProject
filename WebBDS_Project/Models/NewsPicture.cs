@@ -8,10 +8,10 @@ namespace WebBDS_Project.Models
 {
     public class NewsPicture
     {
-        public List<bdspicture> ListPicture { get; set; }
-        public bdspicture tblPicture { get; set; }
-        public bdsnew tblbdsnew { get; set; }
-        public List<bdsnew> ListNew { get; set; }
+        public List<BDSPicture> ListPicture { get; set; }
+        public BDSPicture tblPicture { get; set; }
+        public BDSNew tblBDSNew { get; set; }
+        public List<BDSNew> ListNew { get; set; }
 
 
 

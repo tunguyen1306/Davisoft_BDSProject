@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
 
-    var states = (from a in db.states join b in db.stateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
 }
 @using System.Configuration
 @using WebBDS_Project.Models
@@ -12,23 +12,23 @@
     <div class="grid_9 main_left">
         @Html.Partial("_searchPannel")
 
-        @foreach (var itemBdsEmploye in Model.Listbdsemployerinformation.Where(x => x.IdAccount == Model.tblbdsnew.IdAcount))
+        @foreach (var itemBdsEmploye in Model.ListBDSEmployerInformation.Where(x => x.IdAccount == Model.tblBDSNew.IdAcount))
         {
             <div class="grid_12 title_detail">
                 <div class="logo_detail">
                     <img height="100%" alt="@itemBdsEmploye.Name" src="@ConfigurationManager.AppSettings["UrlImage"]@itemBdsEmploye.UrlImage.ToString().Split('_')[0]/@itemBdsEmploye.UrlImage" />
                 </div>
                 <div class="name_detail">
-                    <h2>@Model.tblbdsnew.Title</h2>
+                    <h2>@Model.tblBDSNew.Title</h2>
 
                     <p><strong>@itemBdsEmploye.Name</strong></p>
-                    @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblbdsnew.AddressWork))
+                    @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblBDSNew.AddressWork))
                     {
                         <p><i class="fa fa-map-marker"></i>Nơi làm việc: @itemCity.Name</p>
                     }
 
-                    <p><i class="fa fa-user"></i>Công việc: @Model.tblbdsnew.Career</p>
-                    <p><i class="fa fa-usd"></i>Mức lương: @(Model.tblbdsnew.FromSalary) @("-") @Model.tblbdsnew.ToSalary  </p>
+                    <p><i class="fa fa-user"></i>Công việc: @Model.tblBDSNew.Career</p>
+                    <p><i class="fa fa-usd"></i>Mức lương: @(Model.tblBDSNew.FromSalary) @("-") @Model.tblBDSNew.ToSalary  </p>
 
 
                 </div>
@@ -36,15 +36,15 @@
                     @if (Session["IdUser"] != null)
                     {
                         var idAcount = int.Parse(Session["IdUser"].ToString());
-                        if (db.bdspersonalinformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
+                        if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
                         {
-                            if (db.bdsapplies.Select(x => x.IdAccountPer).ToList().Contains(idAcount))
+                            if (db.BDSApplies.Select(x => x.IdAccountPer).ToList().Contains(idAcount))
                             {
   <a style="cursor: pointer"  class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>ĐÃ NỘP HỒ SƠ</a>
                             }
                             else
                             {
-  <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=Model.tblbdsnew.Id})" class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
+  <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=Model.tblBDSNew.ID})" class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
                             }
                             
                         }
@@ -72,7 +72,7 @@
                         <tr>
                             <td>
                                 <label>Nơi làm việc: </label>
-                                @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblbdsnew.AddressWork))
+                                @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblBDSNew.AddressWork))
                                 {
                                     @itemCity.Name
                                 }
@@ -80,20 +80,20 @@
 
                             </td>
                             <td><label>Lương: </label>
-                                @(Model.tblbdsnew.FromSalary) @("-") @Model.tblbdsnew.ToSalary
+                                @(Model.tblBDSNew.FromSalary) @("-") @Model.tblBDSNew.ToSalary
                             
                             </td>
 
                         </tr>
                         <tr>
-                            <td><label>Công viêc: </label>@Model.tblbdsnew.Career</td>
-                            <td><label>Thưởng/Phụ cấp: </label> @Model.tblbdsnew.Bonus</td>
+                            <td><label>Công viêc: </label>@Model.tblBDSNew.Career</td>
+                            <td><label>Thưởng/Phụ cấp: </label> @Model.tblBDSNew.Bonus</td>
 
                         </tr>
                         <tr>
-                            <td><label>Số lượng: </label> @Model.tblbdsnew.Quantity</td>
+                            <td><label>Số lượng: </label> @Model.tblBDSNew.Quantity</td>
                             <td><label>Trình độ: </label>
-                                @foreach (var itemEducation in Model.ListDucation.Where(x => x.Id == Model.tblbdsnew.IdEducation))
+                                @foreach (var itemEducation in Model.ListDucation.Where(x => x.ID == Model.tblBDSNew.IdEducation))
                                 {
                                     @itemEducation.Name
                                 }
@@ -104,22 +104,22 @@
                         <tr>
                             <td>
                                 <label>Giới tính: </label>
-                                @if (Model.tblbdsnew.Sex == 0)
+                                @if (Model.tblBDSNew.Sex == 0)
                                 {
                                     @("Không yêu cầu")
                                 }
-                                @if (Model.tblbdsnew.Sex == 1)
+                                @if (Model.tblBDSNew.Sex == 1)
                                 {
                                     @("Nam")
                                 }
-                                @if (Model.tblbdsnew.Sex == 2)
+                                @if (Model.tblBDSNew.Sex == 2)
                                 {
                                     @("Nữ")
                                 }
                             </td>
                             <td>
                                 <label>Kinh nghiệm: </label>
-                                @foreach (var itemExpirence in Model.ListTimework.Where(x => x.Id == Model.tblbdsnew.IdTimeWork))
+                                @foreach (var itemExpirence in Model.ListTimework.Where(x => x.ID == Model.tblBDSNew.IdTimeWork))
                                 {
                                     @itemExpirence.Name
                                 }
@@ -131,7 +131,7 @@
                 </table>
 
                 <h3>Giới thiệu công ty</h3>
-                <p>@Model.tblbdsnew.DesCompany</p>
+                <p>@Model.tblBDSNew.DesCompany</p>
                 <div id="jssor_3" style="position: relative; margin: 10px auto; border: 1px solid #fefefe; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
 
                     <div data-u="loading" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0,0,0,0.7);">
@@ -161,7 +161,7 @@
                 <h3>Mô tả công việc: </h3>
                 <ul class="info">
                     <li>
-                        @Model.tblbdsnew.DesWork
+                        @Model.tblBDSNew.DesWork
                     </li>
                    
                 </ul>
@@ -169,7 +169,7 @@
                 <h3>Quyền lợi được hưởng: </h3>
                 <ul class="info">
                     <li>
-                        @Model.tblbdsnew.Benefit
+                        @Model.tblBDSNew.Benefit
                     </li>
                    
                 </ul>
@@ -179,38 +179,38 @@
                         <tr>
                             <td>
                                 <label>Tên công ty: </label>
-                                @Model.tblbdsnew.NameCompany
+                                @Model.tblBDSNew.NameCompany
                                 <i class="fa fa-check"></i>
                             </td>
 
                         </tr>
                         <tr>
                             <td>
-                                <label>Địa chỉ nộp: </label>@Model.tblbdsnew.AddressApply <i class="fa fa-check"></i>
+                                <label>Địa chỉ nộp: </label>@Model.tblBDSNew.AddressApply <i class="fa fa-check"></i>
                             </td>
 
                         </tr>
                         <tr>
                             <td>
-                                <label>Người liên hệ: </label>@Model.tblbdsnew.NamesContact<i class="fa fa-check"></i>
+                                <label>Người liên hệ: </label>@Model.tblBDSNew.NamesContact<i class="fa fa-check"></i>
                             </td>
 
                         </tr>
                         <tr>
                             <td>
-                                <label>Điện thoại: </label>@Model.tblbdsnew.PhoneContact<i class="fa fa-check"></i>
+                                <label>Điện thoại: </label>@Model.tblBDSNew.PhoneContact<i class="fa fa-check"></i>
                             </td>
 
                         </tr>
                         <tr>
                             <td>
-                                <label>Email: </label>@Model.tblbdsnew.Email<i class="fa fa-check"></i>
+                                <label>Email: </label>@Model.tblBDSNew.Email<i class="fa fa-check"></i>
                             </td>
 
                         </tr>
                         <tr>
                             <td>
-                                <label>Hạn nộp: </label>@Model.tblbdsnew.ToDeadline<i class="fa fa-check"></i>
+                                <label>Hạn nộp: </label>@Model.tblBDSNew.ToDeadline<i class="fa fa-check"></i>
                             </td>
 
                         </tr>
@@ -218,7 +218,7 @@
                             <td>
                                 <label>Ngôn ngữ hồ sơ: </label>
                                 
-                                @foreach (var itemLanguage in Model.Listbdslanguage.Where(x => x.Id == Model.tblbdsnew.IdLanguage))
+                                @foreach (var itemLanguage in Model.ListBDSLanguage.Where(x => x.ID == Model.tblBDSNew.IdLanguage))
                                 {
                                     @itemLanguage.Name<i class="fa fa-check"></i>
                                 }
@@ -231,15 +231,15 @@
                     @if (Session["IdUser"] != null)
                     {
                         var idAcount = int.Parse(Session["IdUser"].ToString());
-                        if (db.bdspersonalinformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
+                        if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
                         {
-                            if (db.bdsapplies.Select(x => x.IdAccountPer).ToList().Contains(idAcount))
+                            if (db.BDSApplies.Select(x => x.IdAccountPer).ToList().Contains(idAcount))
                             {
   <a style="cursor: pointer"  class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>ĐÃ NỘP HỒ SƠ</a>
                             }
                             else
                             {
-  <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=Model.tblbdsnew.Id})" class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
+  <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=Model.tblBDSNew.ID})" class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
                             }
                             
                         }
@@ -269,7 +269,7 @@
                             <select class="dropdown" tabindex="7" onchange="loadFilterPageFrom(this)">
                                 <option value="">Toàn quốc</option>
                                 @{
-                                    foreach (var itemCity in states)
+                                    foreach (var itemCity in States)
                                     {
                                         <option value="@itemCity.Id">@itemCity.Name</option>
                                     }

@@ -12,21 +12,28 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdsbank
+    public partial class BDSBank
     {
-        public int Id { get; set; }
+        public BDSBank()
+        {
+            this.BDSTransactions = new HashSet<BDSTransaction>();
+        }
+    
+        public int ID { get; set; }
         public string Name { get; set; }
-        public string Branch { get; set; }
         public string Address { get; set; }
         public string UrlImage { get; set; }
         public string AccountNumber { get; set; }
         public string AccountName { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
+        public string Branch { get; set; }
         public int Active { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public int CreateUser { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
+    
+        public virtual ICollection<BDSTransaction> BDSTransactions { get; set; }
     }
 }

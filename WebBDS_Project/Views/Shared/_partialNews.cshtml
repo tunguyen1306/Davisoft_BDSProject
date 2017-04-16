@@ -9,13 +9,13 @@
                             <h3>Tin bất động sản</h3>
                             <ul class="list_news">
                               
-                                @foreach (var item in db.bdsextnews.Where(x => x.Active == 1 && x.ApproveStatus == 1 && x.CatExtNews == 1).ToList())
+                                @foreach (var item in db.BDSExtNews.Where(x => x.Active == 1 && x.ApproveStatus == 1 && x.CatExtNews == 1).ToList())
                                 {
                                     <li>
-                                        <a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.Id})">
+                                        <a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">
                                             <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
                                         </a>
-                                        <figcaption><a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.Id})">@item.Name</a></figcaption>
+                                        <figcaption><a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">@item.Name</a></figcaption>
                                     </li>
                                 }
 

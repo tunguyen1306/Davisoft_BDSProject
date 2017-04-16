@@ -4,9 +4,9 @@
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
    
     var IdAccount = int.Parse(Session["IdUser"].ToString());
-    var tblEmployee = db.bdsemployerinformations.Where(T => T.IdAccount == IdAccount).ToList().FirstOrDefault();
-    var CountApply = db.bdsempers.Count(x => x.IdAccountEm == IdAccount);
-    var tblAccount = db.bdsaccounts.FirstOrDefault(x => x.Id == IdAccount);
+    var tblEmployee = db.BDSEmployerInformations.Where(T => T.IdAccount == IdAccount).ToList().FirstOrDefault();
+    var CountApply = db.BDSEmpers.Count(x => x.IdAccountEm == IdAccount);
+    var tblAccount = db.BDSAccounts.FirstOrDefault(x => x.ID == IdAccount);
 }
 
 

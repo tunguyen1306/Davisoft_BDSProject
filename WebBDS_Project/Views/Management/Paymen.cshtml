@@ -20,14 +20,14 @@
                         <li>
                             <a href="#a1" class="radioType">
                                 <label>
-                                    <input type="radio" value="1" class="radioIdType" name="tblbdsnew.IdTypeNews"> Chuyển khoản ngân hàng
+                                    <input type="radio" value="1" class="radioIdType" name="tblBDSNew.IdTypeNews"> Chuyển khoản ngân hàng
                                 </label>
                             </a>
                         </li>
                         <li>
                             <a href="#a2" class="radioType">
                                 <label>
-                                    <input type="radio" value="2" class="radioIdType" name="tblbdsnew.IdTypeNews"> Nộp tiền trực tiếp
+                                    <input type="radio" value="2" class="radioIdType" name="tblBDSNew.IdTypeNews"> Nộp tiền trực tiếp
                                 </label>
                             </a>
                         </li>
@@ -148,7 +148,7 @@
                         <div id="a2">
                             @foreach (var itemArea in db.bdsareas.Where(x => x.Active == 1).ToList())
                             {
-                                if (db.bdsbranches.Count(x => x.IdArea == itemArea.Id)>0)
+                                if (db.bdsbranches.Count(x => x.IdArea == itemArea.ID)>0)
                                 {
   <div class="boder-payment">
 
@@ -156,7 +156,7 @@
                                 </div>
                                 }
                                  
-                                foreach (var item in db.bdsbranches.Where(x => x.Active == 1 && x.IdArea==itemArea.Id).ToList())
+                                foreach (var item in db.bdsbranches.Where(x => x.Active == 1 && x.IdArea==itemArea.ID).ToList())
                                 {
                                
                                 <div class="row">

@@ -1,7 +1,7 @@
 ﻿@using WebBDS_Project.Models
 @{
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
-    var modelMenu = db.bdscareers.Take(4);
+    var modelMenu = db.BDSCareers.Take(4);
  
 
 }
@@ -79,10 +79,10 @@
                                         @using (Html.BeginForm("Login", "Login"))
                                         {
                                             <p>
-                                                <input placeholder="Email" name="tblbdsaccount.Email" type="text">
+                                                <input placeholder="Email" name="tblBDSAccount.Email" type="text">
                                             </p>
                                             <p>
-                                                <input placeholder="Mật khẩu" name="tblbdsaccount.PassWord" type="password">
+                                                <input placeholder="Mật khẩu" name="tblBDSAccount.PassWord" type="password">
                                                 <button type="submit">Đăng nhập</button>
                                             </p>
                                             <p class="box_remember">

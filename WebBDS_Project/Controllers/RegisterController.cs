@@ -22,28 +22,28 @@ namespace WebBDS_Project.Controllers
         public ActionResult RegisterCompany()
         {
             CaptCha cap = new CaptCha();
-            bdsnew bdsNew = new bdsnew();
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            BDSNew BDSNew = new BDSNew();
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             var registerModel = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList(),
-                ListMarriea = db.bdsmarriages.ToList(),
-                ListSalary = db.bdssalaries.ToList(),
-                ListDucation = db.bdseducations.ToList(),
-                ListBdscareer = db.bdscareers.ToList(),
-                ListTimework = db.bdstimeworks.ToList(),
-                Listbdslanguage = db.bdslanguages.ToList(),
-                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListBDSScopes = db.BDSScopes.ToList(),
+                ListMarriea = db.BDSMarriages.ToList(),
+                ListSalary = db.BDSSalaries.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
                 tblCaptCha = cap,
-                tblbdsnew = bdsNew,
-                ListBdsemployerinformation = db.bdsemployerinformations.ToList(),
-                Listbdspersonalinformation = db.bdspersonalinformations.ToList(),
-                ListBdsAdcount = db.bdsaccounts.ToList(),
-                Listbdsemper = db.bdsempers.ToList()
+                tblBDSNew = BDSNew,
+                ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                ListBDSPersonalInformation = db.BDSPersonalInformations.ToList(),
+                ListBdsAdcount = db.BDSAccounts.ToList(),
+                ListBDSEmper = db.BDSEmpers.ToList()
             };
             return View(registerModel);
         }
@@ -55,28 +55,28 @@ namespace WebBDS_Project.Controllers
                 if (Session["Captcha"] == null || Session["Captcha"].ToString() != bdsInformationModel.tblCaptCha.Captcha)
                 {
                     CaptCha cap = new CaptCha();
-                    bdsnew bdsNew = new bdsnew();
-                    var dataCity = from data in db.states
-                                   join datatext in db.stateTexts on data.name_id equals datatext.id
+                    BDSNew BDSNew = new BDSNew();
+                    var dataCity = from data in db.States
+                                   join datatext in db.StateTexts on data.name_id equals datatext.id
                                    where datatext.language_id == "vi"
                                    select new GeoModel { CityId = data.state_id, CityName = datatext.text };
                     var registerModel = new RegisterInformationModel
                     {
-                        ListBdsScopes = db.bdsscopes.ToList(),
-                        ListMarriea = db.bdsmarriages.ToList(),
-                        ListSalary = db.bdssalaries.ToList(),
-                        ListDucation = db.bdseducations.ToList(),
-                        ListBdscareer = db.bdscareers.ToList(),
-                        ListTimework = db.bdstimeworks.ToList(),
-                        Listbdslanguage = db.bdslanguages.ToList(),
-                        Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                        ListBDSScopes = db.BDSScopes.ToList(),
+                        ListMarriea = db.BDSMarriages.ToList(),
+                        ListSalary = db.BDSSalaries.ToList(),
+                        ListDucation = db.BDSEducations.ToList(),
+                        ListBDSCareer = db.BDSCareers.ToList(),
+                        ListTimework = db.BDSTimeWorks.ToList(),
+                        ListBDSLanguage = db.BDSLanguages.ToList(),
+                        ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                         ListGeoModel = dataCity.ToList(),
                         tblCaptCha = cap,
-                        tblbdsnew = bdsNew,
-                        ListBdsemployerinformation = db.bdsemployerinformations.ToList(),
-                        Listbdspersonalinformation = db.bdspersonalinformations.ToList(),
-                        ListBdsAdcount = db.bdsaccounts.ToList(),
-                        Listbdsemper = db.bdsempers.ToList()
+                        tblBDSNew = BDSNew,
+                        ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                        ListBDSPersonalInformation = db.BDSPersonalInformations.ToList(),
+                        ListBdsAdcount = db.BDSAccounts.ToList(),
+                        ListBDSEmper = db.BDSEmpers.ToList()
                     };
                     return View(registerModel);
                 }
@@ -84,24 +84,24 @@ namespace WebBDS_Project.Controllers
                 {
                     bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
                     bdsInformationModel.TblBdsAdcount.ModifiedDate = DateTime.Now;
-                    db.bdsaccounts.Add(bdsInformationModel.TblBdsAdcount);
+                    db.BDSAccounts.Add(bdsInformationModel.TblBdsAdcount);
                     db.SaveChanges();
-                    bdsemployerinformation tblemployee = new bdsemployerinformation();
-                    bdsInformationModel.TblBdsemployerinformation.IdAccount = bdsInformationModel.TblBdsAdcount.Id;
+                    BDSEmployerInformation tblemployee = new BDSEmployerInformation();
+                    bdsInformationModel.TblBDSEmployerInformation.IdAccount = bdsInformationModel.TblBdsAdcount.ID;
 
-                    bdsInformationModel.TblBdsemployerinformation.Active = 1;
-                    bdsInformationModel.TblBdsemployerinformation.CreateDate = DateTime.Now;
-                    bdsInformationModel.TblBdsemployerinformation.CreateUser = 1;
-                    bdsInformationModel.TblBdsemployerinformation.ModifiedDate = DateTime.Now;
-                    bdsInformationModel.TblBdsemployerinformation.ModifiedUser = 1;
-                    bdsInformationModel.TblBdsemployerinformation.Featured = 1;
-                    bdsInformationModel.TblBdsemployerinformation.PhoneContact = bdsInformationModel.TblBdsemployerinformation.Phone;
-                    bdsInformationModel.TblBdsemployerinformation.DistrictContact = bdsInformationModel.TblBdsemployerinformation.District;
-                    bdsInformationModel.TblBdsemployerinformation.City = bdsInformationModel.TblBdsemployerinformation.City;
-                    bdsInformationModel.TblBdsemployerinformation.AddressContact = bdsInformationModel.TblBdsemployerinformation.Address;
-                    bdsInformationModel.TblBdsemployerinformation.EmailContact = bdsInformationModel.TblBdsAdcount.Email;
-                    bdsInformationModel.TblBdsemployerinformation.TypeContact = 1;
-                    db.bdsemployerinformations.Add(bdsInformationModel.TblBdsemployerinformation);
+                    bdsInformationModel.TblBDSEmployerInformation.Active = 1;
+                    bdsInformationModel.TblBDSEmployerInformation.CreateDate = DateTime.Now;
+                    bdsInformationModel.TblBDSEmployerInformation.CreateUser = 1;
+                    bdsInformationModel.TblBDSEmployerInformation.ModifiedDate = DateTime.Now;
+                    bdsInformationModel.TblBDSEmployerInformation.ModifiedUser = 1;
+                    bdsInformationModel.TblBDSEmployerInformation.Featured = 1;
+                    bdsInformationModel.TblBDSEmployerInformation.PhoneContact = bdsInformationModel.TblBDSEmployerInformation.Phone;
+                    bdsInformationModel.TblBDSEmployerInformation.DistrictContact = bdsInformationModel.TblBDSEmployerInformation.District;
+                    bdsInformationModel.TblBDSEmployerInformation.City = bdsInformationModel.TblBDSEmployerInformation.City;
+                    bdsInformationModel.TblBDSEmployerInformation.AddressContact = bdsInformationModel.TblBDSEmployerInformation.Address;
+                    bdsInformationModel.TblBDSEmployerInformation.EmailContact = bdsInformationModel.TblBdsAdcount.Email;
+                    bdsInformationModel.TblBDSEmployerInformation.TypeContact = 1;
+                    db.BDSEmployerInformations.Add(bdsInformationModel.TblBDSEmployerInformation);
                     db.SaveChanges();
                 }
             }
@@ -109,7 +109,7 @@ namespace WebBDS_Project.Controllers
             {
                 foreach (var eve in e.EntityValidationErrors)
                 {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    Console.WriteLine("Entity of type \"{0}\" in State \"{1}\" has the following validation errors:",
                         eve.Entry.Entity.GetType().Name, eve.Entry.State);
                     foreach (var ve in eve.ValidationErrors)
                     {
@@ -126,35 +126,35 @@ namespace WebBDS_Project.Controllers
         {
 
             CaptCha cap = new CaptCha();
-            bdsnew bdsNew = new bdsnew();
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            BDSNew BDSNew = new BDSNew();
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             var registerModel = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList(),
-                ListMarriea = db.bdsmarriages.ToList(),
-                ListSalary = db.bdssalaries.ToList(),
-                ListDucation = db.bdseducations.ToList(),
-                ListBdscareer = db.bdscareers.ToList(),
-                ListTimework = db.bdstimeworks.ToList(),
-                Listbdslanguage = db.bdslanguages.ToList(),
-                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListBDSScopes = db.BDSScopes.ToList(),
+                ListMarriea = db.BDSMarriages.ToList(),
+                ListSalary = db.BDSSalaries.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
                 tblCaptCha = cap,
-                tblbdsnew = bdsNew,
-                ListBdsemployerinformation = db.bdsemployerinformations.ToList(),
-                Listbdspersonalinformation = db.bdspersonalinformations.ToList(),
-                ListBdsAdcount = db.bdsaccounts.ToList(),
-                Listbdsemper = db.bdsempers.ToList()
+                tblBDSNew = BDSNew,
+                ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                ListBDSPersonalInformation = db.BDSPersonalInformations.ToList(),
+                ListBdsAdcount = db.BDSAccounts.ToList(),
+                ListBDSEmper = db.BDSEmpers.ToList()
             };
             return View(registerModel);
         }
         [HttpPost]
         public ActionResult CheckEmail(string Email)
         {
-            var countEmail = db.bdsaccounts.Where(x => x.Email == Email).Count();
+            var countEmail = db.BDSAccounts.Where(x => x.Email == Email).Count();
 
             return Json(countEmail);
         }
@@ -164,50 +164,50 @@ namespace WebBDS_Project.Controllers
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != bdsInformationModel.tblCaptCha.Captcha)
             {
                 CaptCha cap = new CaptCha();
-                bdsnew bdsNew = new bdsnew();
-                var dataCity = from data in db.states
-                               join datatext in db.stateTexts on data.name_id equals datatext.id
+                BDSNew BDSNew = new BDSNew();
+                var dataCity = from data in db.States
+                               join datatext in db.StateTexts on data.name_id equals datatext.id
                                where datatext.language_id == "vi"
                                select new GeoModel { CityId = data.state_id, CityName = datatext.text };
                 var registerModel = new RegisterInformationModel
                 {
-                    ListBdsScopes = db.bdsscopes.ToList(),
-                    ListMarriea = db.bdsmarriages.ToList(),
-                    ListSalary = db.bdssalaries.ToList(),
-                    ListDucation = db.bdseducations.ToList(),
-                    ListBdscareer = db.bdscareers.ToList(),
-                    ListTimework = db.bdstimeworks.ToList(),
-                    Listbdslanguage = db.bdslanguages.ToList(),
-                    Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                    ListBDSScopes = db.BDSScopes.ToList(),
+                    ListMarriea = db.BDSMarriages.ToList(),
+                    ListSalary = db.BDSSalaries.ToList(),
+                    ListDucation = db.BDSEducations.ToList(),
+                    ListBDSCareer = db.BDSCareers.ToList(),
+                    ListTimework = db.BDSTimeWorks.ToList(),
+                    ListBDSLanguage = db.BDSLanguages.ToList(),
+                    ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                     ListGeoModel = dataCity.ToList(),
                     tblCaptCha = cap,
-                    tblbdsnew = bdsNew,
-                    ListBdsemployerinformation = db.bdsemployerinformations.ToList(),
-                    Listbdspersonalinformation = db.bdspersonalinformations.ToList(),
-                    ListBdsAdcount = db.bdsaccounts.ToList(),
-                    Listbdsemper = db.bdsempers.ToList()
+                    tblBDSNew = BDSNew,
+                    ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                    ListBDSPersonalInformation = db.BDSPersonalInformations.ToList(),
+                    ListBdsAdcount = db.BDSAccounts.ToList(),
+                    ListBDSEmper = db.BDSEmpers.ToList()
                 };
                 return View(registerModel);
             }
             else
             {
-                var dataCity = from data in db.states
-                               join datatext in db.stateTexts on data.name_id equals datatext.id
+                var dataCity = from data in db.States
+                               join datatext in db.StateTexts on data.name_id equals datatext.id
                                where datatext.language_id == "vi"
                                select new GeoModel { CityId = data.state_id, CityName = datatext.text };
                 bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
                 bdsInformationModel.TblBdsAdcount.ModifiedDate = DateTime.Now;
 
-                db.bdsaccounts.Add(bdsInformationModel.TblBdsAdcount);
+                db.BDSAccounts.Add(bdsInformationModel.TblBdsAdcount);
                 db.SaveChanges();
-                bdsInformationModel.TblBdspersonalinformation.IdAccount = bdsInformationModel.TblBdsAdcount.Id;
-                bdsInformationModel.TblBdspersonalinformation.Active = 1;
-                bdsInformationModel.TblBdspersonalinformation.CreateDate = DateTime.Now;
-                bdsInformationModel.TblBdspersonalinformation.ModifiedDate = DateTime.Now;
-                bdsInformationModel.TblBdspersonalinformation.CreateUser = 1;
-                bdsInformationModel.TblBdspersonalinformation.ModifiedUser = 1;
-                bdsInformationModel.TblBdspersonalinformation.FullAddress = bdsInformationModel.TblBdspersonalinformation.Address + "," + dataCity.FirstOrDefault(x => x.CityId == bdsInformationModel.TblBdspersonalinformation.City).CityName;
-                db.bdspersonalinformations.Add(bdsInformationModel.TblBdspersonalinformation);
+                bdsInformationModel.TblBDSPersonalInformation.IdAccount = bdsInformationModel.TblBdsAdcount.ID;
+                bdsInformationModel.TblBDSPersonalInformation.Active = 1;
+                bdsInformationModel.TblBDSPersonalInformation.CreateDate = DateTime.Now;
+                bdsInformationModel.TblBDSPersonalInformation.ModifiedDate = DateTime.Now;
+                bdsInformationModel.TblBDSPersonalInformation.CreateUser = 1;
+                bdsInformationModel.TblBDSPersonalInformation.ModifiedUser = 1;
+                bdsInformationModel.TblBDSPersonalInformation.FullAddress = bdsInformationModel.TblBDSPersonalInformation.Address + "," + dataCity.FirstOrDefault(x => x.CityId == bdsInformationModel.TblBDSPersonalInformation.City).CityName;
+                db.BDSPersonalInformations.Add(bdsInformationModel.TblBDSPersonalInformation);
                 db.SaveChanges();
 
             }
@@ -216,8 +216,8 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public ActionResult GetCity()
         {
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             return Json(dataCity.ToList());
@@ -225,8 +225,8 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public ActionResult GetDistrict(int id)
         {
-            var dataDistrict = from data in db.districts
-                               join datatext in db.districttexts on data.name_id equals datatext.id
+            var dataDistrict = from data in db.Districts
+                               join datatext in db.DistrictTexts on data.name_id equals datatext.id
                                where datatext.language_id == "vi" && data.state_id == id
                                select new GeoModel { DistId = data.district_id, DistName = datatext.text };
             return Json(dataDistrict.ToList());

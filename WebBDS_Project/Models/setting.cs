@@ -12,7 +12,7 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class setting
+    public partial class Setting
     {
         public int ID { get; set; }
         public string Module { get; set; }

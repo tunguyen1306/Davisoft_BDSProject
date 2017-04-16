@@ -9,26 +9,26 @@
     int view = ViewBag.view;
     int tt = ViewBag.tt == "" ? 0 : int.Parse(ViewBag.tt);
     int count = 0;
-    var states = (from a in db.states join b in db.stateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
 }
 @{
-    var typeVip = db.bdsnewstypes.FirstOrDefault(T => T.Active == 1 && T.CodeNewsType == "TVP");
+    var typeVip = db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.CodeNewsType == "TVP");
 }
 <ul class="list_work_2">
     @{
-       /* var query = from a in db.bdsnews join b in db.bdsemployerinformations on a.IdAcount equals b.IdAccount where a.Active == 1 && b.Active == 1 && a.Status == 1 && b.Featured == 1 && (tt == 0 || a.AddressWork == tt) select a;*/
-        var query = db.bdsnews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.Id && (tt == 0 || A.AddressWork == tt));
+       /* var query = from a in db.BDSNews join b in db.BDSEmployerInformations on a.IdAcount equals b.IdAccount where a.Active == 1 && b.Active == 1 && a.Status == 1 && b.Featured == 1 && (tt == 0 || a.AddressWork == tt) select a;*/
+        var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.ID && (tt == 0 || A.AddressWork == tt));
      
         var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
         count = query.Count();
         foreach (var news in ListNews)
         {
-                var account = db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
+                var account = db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
             if (account != null)
             {
                  <li>
                 <div class="grid_9">
-                    <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.Id})" class="image_2">
+                    <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})" class="image_2">
                         <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] + account.UrlImage):"img.png"))" alt="2">
                         <p class="vip">
                             <i class="fa fa-star"></i>
@@ -36,8 +36,8 @@
                         </p>
                     </a>
                     <div class="name">
-                        <h2><a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.Id})">@( news.Title)  <span>@(db.bdsemployerinformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
-                        <p><i class="fa fa-map-marker"></i>@(states.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
+                        <h2><a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title)  <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                        <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                         <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
                     </div>
                 </div>

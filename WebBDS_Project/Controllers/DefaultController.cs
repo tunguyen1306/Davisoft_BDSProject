@@ -64,20 +64,20 @@ namespace WebBDS_Project.Controllers
         public ActionResult Detail(string  id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new ListCityNew { Id = data.state_id, Name = datatext.text };
             var Model = new NewsModel
             {
-                tblbdsnew = db.bdsnews.FirstOrDefault(x => x.Id == id_),
-                ListPicture = db.bdspictures.Where(x => x.advert_id == id_).ToList(),
-                Listbdsemployerinformation = db.bdsemployerinformations.ToList(),
-                Listbdsaccount = db.bdsaccounts.ToList(),
+                tblBDSNew = db.BDSNews.FirstOrDefault(x => x.ID == id_),
+                ListPicture = db.BDSPictures.Where(x => x.advert_id == id_).ToList(),
+                ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                ListBDSAccount = db.BDSAccounts.ToList(),
                 ListCityText = dataCity.ToList(),
-                ListDucation = db.bdseducations.ToList(),
-                ListTimework = db.bdstimeworks.ToList(),
-                Listbdslanguage = db.bdslanguages.ToList()
+                ListDucation = db.BDSEducations.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList()
 
 
             };
@@ -92,7 +92,7 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailNews(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var data = db.bdsextnews.Where(x => x.Active == 1 && x.ApproveStatus == 1).ToList();
+            var data = db.BDSExtNews.Where(x => x.Active == 1 && x.ApproveStatus == 1).ToList();
             return View(data);
         }
     }

@@ -7,12 +7,12 @@ namespace WebBDS_Project.Models
 {
     public class BdsAcountModel
     {
-        public bdsemployerinformation tblbdsemployerinformation { get; set; }
-        public List<bdsemployerinformation> Listbdsemployerinformation { get; set; }
-        public bdsaccount tblbdsaccount { get; set; }
-        public List<bdsaccount> Listbdsaccount { get; set; }
-        public bdspersonalinformation tblbdsbdspersonalinformation { get; set; }
-        public List<bdspersonalinformation> Listbdsbdspersonalinformation { get; set; }
+        public BDSEmployerInformation tblBDSEmployerInformation { get; set; }
+        public List<BDSEmployerInformation> ListBDSEmployerInformation { get; set; }
+        public BDSAccount tblBDSAccount { get; set; }
+        public List<BDSAccount> ListBDSAccount { get; set; }
+        public BDSPersonalInformation tblbdsBDSPersonalInformation { get; set; }
+        public List<BDSPersonalInformation> ListbdsBDSPersonalInformation { get; set; }
 
     }
 }

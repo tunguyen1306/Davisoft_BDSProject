@@ -12,11 +12,12 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdsapply
+    public partial class BDSApply
     {
         public int Id { get; set; }
         public int IdAccountEm { get; set; }
         public int IdAccountPer { get; set; }
+        public Nullable<int> IdNews { get; set; }
         public Nullable<int> Point { get; set; }
         public Nullable<int> Active { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
@@ -27,6 +28,5 @@ namespace WebBDS_Project.Models
         public string Description { get; set; }
         public string KeySearch { get; set; }
         public Nullable<int> RefTranHis { get; set; }
-        public Nullable<int> IdNews { get; set; }
     }
 }

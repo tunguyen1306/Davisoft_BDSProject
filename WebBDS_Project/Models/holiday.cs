@@ -12,11 +12,11 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class holiday
+    public partial class Holiday
     {
         public int ID { get; set; }
         public System.DateTime Date { get; set; }
         public string Description { get; set; }
-        public short IsFullDay { get; set; }
+        public bool IsFullDay { get; set; }
     }
 }

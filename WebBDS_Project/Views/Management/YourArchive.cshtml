@@ -33,7 +33,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach (var item in Model.Listbdspersonalinformation)
+                        @foreach (var item in Model.ListBDSPersonalInformation)
                         {
                             <tr>
                             <td>@item.CreateDate</td>
@@ -46,7 +46,7 @@
                             <td>@item.City</td>
                             <td>@item.District</td>
                             <td>@item.Education</td>
-                            <td><a style="cursor: pointer" href="@Url.Action("DetailPer","Management",new {id=item.Name.UrlFrendly() +"-"+item.Id})">xem</a></td>
+                            <td><a style="cursor: pointer" href="@Url.Action("DetailPer","Management",new {id=item.Name.UrlFrendly() +"-"+item.ID})">xem</a></td>
                         </tr> 
                         }
                         

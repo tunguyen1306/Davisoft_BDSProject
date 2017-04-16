@@ -12,13 +12,14 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class counter
+    public partial class Counter
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public int Value { get; set; }
         public Nullable<int> BranchID { get; set; }
     
-        public virtual branch branch { get; set; }
+        public virtual Branch Branch { get; set; }
+        public virtual Branch Branch1 { get; set; }
     }
 }

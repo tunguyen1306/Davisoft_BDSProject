@@ -6,7 +6,7 @@
 }
  
     <div class="comment">
-        <h3><i class="fa fa-comments"></i>Nhận xét khách hàng</h3>@foreach (var item in db.bdscomments.Where(x => x.Active == 1 && x.ApproveUser == 1).OrderByDescending(x=>x.Id).Take(1).ToList())
+        <h3><i class="fa fa-comments"></i>Nhận xét khách hàng</h3>@foreach (var item in db.BDSComments.Where(x => x.Active == 1 && x.ApproveUser == 1).OrderByDescending(x=>x.Id).Take(1).ToList())
         {
         <div class="comment_box">
             <p>@item.TextComment</p>

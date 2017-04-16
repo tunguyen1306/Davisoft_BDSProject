@@ -20,14 +20,14 @@
                         <li style="text-align: right">
                             <a href="#a1" class="radioType">
                                 <label>
-                                    <input type="radio" value="1" class="radioIdType" name="tblbdsnew.IdTypeNews"> Chuyển khoản ngân hàng
+                                    <input type="radio" value="1" class="radioIdType" name="tblBDSNew.IdTypeNews"> Chuyển khoản ngân hàng
                                 </label>
                             </a>
                         </li>
                         <li style="text-align: left">
                             <a href="#a2" class="radioType">
                                 <label>
-                                    <input type="radio" value="2" class="radioIdType" name="tblbdsnew.IdTypeNews"> Nộp tiền trực tiếp
+                                    <input type="radio" value="2" class="radioIdType" name="tblBDSNew.IdTypeNews"> Nộp tiền trực tiếp
                                 </label>
                             </a>
                         </li>
@@ -39,11 +39,11 @@
 
                         <div id="a1">
                             <div class="row">
-                                @foreach (var item in db.bdsbanks.Where(x => x.Active == 1).ToList())
+                                @foreach (var item in db.BDSBanks.Where(x => x.Active == 1).ToList())
                                 {
 
 
-                                    <div class="grid_2 border-bank btnBank" rel="@item.Id">
+                                    <div class="grid_2 border-bank btnBank" rel="@item.ID">
                                         <img width="64" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" />
                                     </div>
                                 }
@@ -52,9 +52,9 @@
                             </div>
                             <h4>Thông tin tài khoản</h4>
                             <div class="row">
-                                @foreach (var item1 in db.bdsbanks.Where(x => x.Active == 1).ToList())
+                                @foreach (var item1 in db.BDSBanks.Where(x => x.Active == 1).ToList())
                                 {
-                                    <table class="cus-table-responsive tableBank hidden" id="table_@item1.Id">
+                                    <table class="cus-table-responsive tableBank hidden" id="table_@item1.ID">
                                         <thead>
                                             <tr>
                                                 <th data-field="id">Tên ngân hàng</th>
@@ -175,7 +175,7 @@
                             </script>
                         </div>
                         <div id="a2">
-                            @foreach (var item in db.bdsbranches.Where(x => x.Active == 1).ToList())
+                            @foreach (var item in db.BDSBranches.Where(x => x.Active == 1).ToList())
                             {
                                 <div class="boder-payment">
                                     Văn phòng tại miền bắc(Hà Nội,Hải Phòng)

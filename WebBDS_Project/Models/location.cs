@@ -12,7 +12,7 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class location
+    public partial class Location
     {
         public int location_id { get; set; }
         public string countryCode { get; set; }

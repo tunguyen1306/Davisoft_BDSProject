@@ -59,7 +59,7 @@
                         <label>Tên công ty<span class="required"> *</span></label>
                         <div class="row-right">
 
-                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.Name, new { @class = "input1", @placeholder = "Nhập tên công ty" })
+                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Name, new { @class = "input1", @placeholder = "Nhập tên công ty" })
                         </div>
 
 
@@ -68,7 +68,7 @@
                         <label>Quy mô công ty<span class="required"> *</span></label>
                         <div class="row-right">
 
-                            @Html.DropDownListFor(m => m.TblBdsemployerinformation.Scope, new SelectList(Model.ListBdsScopes, "Id", "Name"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Scope, new SelectList(Model.ListBDSScopes, "Id", "Name"), new { @class = "dropdown" })
                       
                           </div>
 
@@ -78,7 +78,7 @@
                         <label>Sơ lược về công ty<span class="required">*</span></label>
                         <div class="row-right">
 
-                            @Html.TextAreaFor(m => m.TblBdsemployerinformation.Description, new { @class = "input4" })
+                            @Html.TextAreaFor(m => m.TblBDSEmployerInformation.Description, new { @class = "input4" })
 
 
                         </div>
@@ -91,15 +91,15 @@
                         <div class="row-right">
 
 
-                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.Address, new { @class = "input1", @placeholder = "Nhập địa chỉ liên hệ" })
+                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @class = "input1", @placeholder = "Nhập địa chỉ liên hệ" })
                         </div>
                         <div class="row-right">
 
                             <div class="pncon width2 ">
 
                                 <label class="cusLabel-2">Tỉnh/TP</label>
-                                 @* @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
-                                <select  id="dropCity"   tabindex="7" name="TblBdsemployerinformation.City">
+                                 @* @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
+                                <select  id="dropCity"   tabindex="7" name="TblBDSEmployerInformation.City">
                                     <option value="0">Chọn thành phố</option>
                                 </select>
 
@@ -110,7 +110,7 @@
                             <div class="pncon  width2 ">
 
                                 <label class="cusLabel-2">Quận/Huyện</label>
-                                <select class="dropDistrict" tabindex="7" name="TblBdsemployerinformation.District">
+                                <select class="dropDistrict" tabindex="7" name="TblBDSEmployerInformation.District">
                                     <option value="0">Chọn quận huyện</option>
 
                                 </select>
@@ -126,7 +126,7 @@
                         <label>Tên người liên hệ<span class="required">*</span></label>
                         <div class="row-right">
 
-                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.NameContact, new { @class = "input1", @placeholder = "Nhập tên người liên hệ" })
+                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.NameContact, new { @class = "input1", @placeholder = "Nhập tên người liên hệ" })
                         </div>
 
 
@@ -134,7 +134,7 @@
                     <div class="row">
                         <label>Điện thoại<span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.Phone, new { @class = "input1", @placeholder = "Nhập điện thoại" })
+                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Phone, new { @class = "input1", @placeholder = "Nhập điện thoại" })
                         </div>
 
 
@@ -145,7 +145,7 @@
                         <div class="logo_jobs">
                             <div class="grid_5 uploadBox">
                                 <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
-                                <input type="hidden" value="" name="TblBdsemployerinformation.UrlImage" id="UrlImage" />
+                                <input type="hidden" value="" name="TblBDSEmployerInformation.UrlImage" id="UrlImage" />
                             </div>
                             <div class="uploadBox-1">
                                 <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
@@ -225,8 +225,8 @@
             toastr.error('Vui lòng nhập captcha! ');
             t++;
         }
-        if ($('#TblBdsemployerinformation_Phone').val() != "") {
-            if ($('#TblBdsemployerinformation_Phone').length > 11) {
+        if ($('#TblBDSEmployerInformation_Phone').val() != "") {
+            if ($('#TblBDSEmployerInformation_Phone').length > 11) {
 
                 toastr.error('Số điện thoại tối đa 11 số!');
                 t++;
@@ -236,31 +236,31 @@
             toastr.error('Vui lòng nhập Số điện thoại!');
             t++;
         }
-        if ($('#TblBdsemployerinformation_NameContact').val() == "") {
+        if ($('#TblBDSEmployerInformation_NameContact').val() == "") {
 
             toastr.error('Vui lòng nhập tên liên hệ!');
             t++;
         }
 
-        if ($('#TblBdsemployerinformation_Address').val() == "") {
+        if ($('#TblBDSEmployerInformation_Address').val() == "") {
 
             toastr.error('Vui lòng nhập địa chỉ công ty!');
             t++;
         }
-        if ($('#TblBdsemployerinformation_Description').val() == "") {
+        if ($('#TblBDSEmployerInformation_Description').val() == "") {
 
             toastr.error('Vui lòng nhập sơ lược công ty!');
             t++;
         }
         else {
-            if ($('#TblBdsemployerinformation_Description').val().length >= 4000) {
+            if ($('#TblBDSEmployerInformation_Description').val().length >= 4000) {
 
                 toastr.error('Sơ lược công ty chỉ tối đa 4000 kí tự! ');
                 t++;
             }
         }
 
-        if ($('#TblBdsemployerinformation_Name').val() == "") {
+        if ($('#TblBDSEmployerInformation_Name').val() == "") {
 
             toastr.error('Vui lòng nhập tên công ty!');
             t++;
@@ -317,7 +317,7 @@
     });
 
 
-    $("#TblBdsemployerinformation_Phone").keydown(function (e) {
+    $("#TblBDSEmployerInformation_Phone").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
             // Allow: Ctrl+A, Command+A

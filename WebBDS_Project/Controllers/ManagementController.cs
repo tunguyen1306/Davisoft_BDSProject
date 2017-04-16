@@ -23,26 +23,26 @@ namespace WebBDS_Project.Controllers
                 return RedirectToAction("LoginForm", "Login");
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
-            var IdYourSave = db.bdsempers.Where(x => x.IdAccountEm == idAcount).Select(x=>x.IdAccountPer).ToList();
+            var IdYourSave = db.BDSEmpers.Where(x => x.IdAccountEm == idAcount).Select(x=>x.IdAccountPer).ToList();
              var register = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList(),
-                ListMarriea = db.bdsmarriages.ToList(),
-                ListSalary = db.bdssalaries.ToList(),
-                ListDucation = db.bdseducations.ToList(),
-                ListBdscareer = db.bdscareers.ToList(),
-                ListTimework = db.bdstimeworks.ToList(),
-                Listbdslanguage = db.bdslanguages.ToList(),
-                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListBDSScopes = db.BDSScopes.ToList(),
+                ListMarriea = db.BDSMarriages.ToList(),
+                ListSalary = db.BDSSalaries.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
-                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),//!IdYourSave.Contains(x.Id)
-                Listbdspersonalinformation = db.bdspersonalinformations.Where(x => x.Active == 1 && !IdYourSave.Contains(x.Id)).ToList(),
-                TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
-                Listbdsemper = db.bdsempers.ToList()
+                TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),//!IdYourSave.Contains(x.ID)
+                ListBDSPersonalInformation = db.BDSPersonalInformations.Where(x => x.Active == 1 && !IdYourSave.Contains(x.ID)).ToList(),
+                TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
+                ListBDSEmper = db.BDSEmpers.ToList()
             };
             return View(register);
         }
@@ -64,26 +64,26 @@ namespace WebBDS_Project.Controllers
                 return RedirectToAction("LoginForm", "Login");
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
-            var IdYourSave = db.bdsempers.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
+            var IdYourSave = db.BDSEmpers.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
             var register = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList(),
-                ListMarriea = db.bdsmarriages.ToList(),
-                ListSalary = db.bdssalaries.ToList(),
-                ListDucation = db.bdseducations.ToList(),
-                ListBdscareer = db.bdscareers.ToList(),
-                ListTimework = db.bdstimeworks.ToList(),
-                Listbdslanguage = db.bdslanguages.ToList(),
-                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListBDSScopes = db.BDSScopes.ToList(),
+                ListMarriea = db.BDSMarriages.ToList(),
+                ListSalary = db.BDSSalaries.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
-                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
-                Listbdspersonalinformation = db.bdspersonalinformations.Where(x => IdYourSave.Contains(x.Id) && x.Active==1).ToList(),
-                TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
-                Listbdsemper = db.bdsempers.ToList()
+                TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                ListBDSPersonalInformation = db.BDSPersonalInformations.Where(x => IdYourSave.Contains(x.ID) && x.Active==1).ToList(),
+                TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
+                ListBDSEmper = db.BDSEmpers.ToList()
             };
             return View(register);
         }
@@ -95,27 +95,27 @@ namespace WebBDS_Project.Controllers
                 return RedirectToAction("LoginForm", "Login");
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
-            var IdYourSave = db.bdsapplies.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
+            var IdYourSave = db.BDSApplies.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
             var register = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList(),
-                ListMarriea = db.bdsmarriages.ToList(),
-                ListSalary = db.bdssalaries.ToList(),
-                ListDucation = db.bdseducations.ToList(),
-                ListBdscareer = db.bdscareers.ToList(),
-                ListTimework = db.bdstimeworks.ToList(),
-                Listbdslanguage = db.bdslanguages.ToList(),
-                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListBDSScopes = db.BDSScopes.ToList(),
+                ListMarriea = db.BDSMarriages.ToList(),
+                ListSalary = db.BDSSalaries.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
-                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
-                Listbdspersonalinformation = db.bdspersonalinformations.Where(x => x.IdAccount == idAcount && x.Active == 1).ToList(),
-                TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
-                Listbdsemper = db.bdsempers.ToList(),
-                Listbdsapply = db.bdsapplies.Where(x => x.IdAccountEm == idAcount).ToList()
+                TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                ListBDSPersonalInformation = db.BDSPersonalInformations.Where(x => x.IdAccount == idAcount && x.Active == 1).ToList(),
+                TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
+                ListBDSEmper = db.BDSEmpers.ToList(),
+                ListBDSApply = db.BDSApplies.Where(x => x.IdAccountEm == idAcount).ToList()
             };
             return View(register);
         }
@@ -131,11 +131,11 @@ namespace WebBDS_Project.Controllers
                 return RedirectToAction("LoginForm", "Login");
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var IdAccByNewId = db.bdsnews.Find(id).IdAcount;
+            var IdAccByNewId = db.BDSNews.Find(id).IdAcount;
 
             if (IdAccByNewId != null)
             {
-                var tblApply = new bdsapply
+                var tblApply = new BDSApply
                 {
                     IdAccountEm = (int) IdAccByNewId,
                     IdAccountPer = idAcount,
@@ -146,7 +146,7 @@ namespace WebBDS_Project.Controllers
                     ModifiedUser = 1,
                     IdNews = id
                 };
-                db.bdsapplies.Add(tblApply);
+                db.BDSApplies.Add(tblApply);
                 db.SaveChanges();
             }
             return RedirectToAction("ThanksApply");
@@ -171,29 +171,29 @@ namespace WebBDS_Project.Controllers
 
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             CaptCha cap = new CaptCha();
-            bdsnew bdsNew = new bdsnew();
+            BDSNew BDSNew = new BDSNew();
             var register = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList(),
-                ListMarriea = db.bdsmarriages.ToList(),
-                ListSalary = db.bdssalaries.ToList(),
-                ListDucation = db.bdseducations.ToList(),
-                ListBdscareer = db.bdscareers.ToList(),
-                ListTimework = db.bdstimeworks.ToList(),
-                Listbdslanguage = db.bdslanguages.ToList(),
-                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListBDSScopes = db.BDSScopes.ToList(),
+                ListMarriea = db.BDSMarriages.ToList(),
+                ListSalary = db.BDSSalaries.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
                 tblCaptCha = cap,
 
-                tblbdsnew = bdsNew,
-                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
-                TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
-                Listbdsemper = db.bdsempers.ToList()
+                tblBDSNew = BDSNew,
+                TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
+                ListBDSEmper = db.BDSEmpers.ToList()
             };
             return View(register);
         }
@@ -205,56 +205,56 @@ namespace WebBDS_Project.Controllers
             {
                 return RedirectToAction("LoginForm", "Login");
             }  var idAcount = int.Parse(Session["IdUser"].ToString());
-            bdsaccount TblBdsAdcount  = db.bdsaccounts.Find(register.TblBdsAdcount.Id);
+            BDSAccount TblBdsAdcount  = db.BDSAccounts.Find(register.TblBdsAdcount.ID);
             TblBdsAdcount.Email = register.TblBdsAdcount.Email;
             db.Entry(TblBdsAdcount).State = EntityState.Modified;
             db.SaveChanges();
-            var idEmployee = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == register.TblBdsAdcount.Id);
+            var idEmployee = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == register.TblBdsAdcount.ID);
             if (idEmployee != null)
             {
-                bdsemployerinformation Tblbdsemployerinformation = db.bdsemployerinformations.Find(idEmployee.Id);
-                Tblbdsemployerinformation.Name = register.TblBdsemployerinformation.Name;
-                Tblbdsemployerinformation.Address = register.TblBdsemployerinformation.Address;
-                Tblbdsemployerinformation.Phone = register.TblBdsemployerinformation.Phone;
-                Tblbdsemployerinformation.City = register.TblBdsemployerinformation.City;
-                Tblbdsemployerinformation.Scope = register.TblBdsemployerinformation.Scope;
-                Tblbdsemployerinformation.Description = register.TblBdsemployerinformation.Description;
-                Tblbdsemployerinformation.UrlImage = register.TblBdsemployerinformation.UrlImage;
-                Tblbdsemployerinformation.Fax = register.TblBdsemployerinformation.Fax;
-                Tblbdsemployerinformation.WebSite = register.TblBdsemployerinformation.WebSite;
-                Tblbdsemployerinformation.NameContact = register.TblBdsemployerinformation.NameContact;
-                Tblbdsemployerinformation.EmailContact = register.TblBdsemployerinformation.EmailContact;
-                Tblbdsemployerinformation.AddressContact = register.TblBdsemployerinformation.AddressContact;
-                Tblbdsemployerinformation.PhoneContact = register.TblBdsemployerinformation.PhoneContact;
-                Tblbdsemployerinformation.TypeContact = register.TblBdsemployerinformation.TypeContact;
+                BDSEmployerInformation TblBDSEmployerInformation = db.BDSEmployerInformations.Find(idEmployee.ID);
+                TblBDSEmployerInformation.Name = register.TblBDSEmployerInformation.Name;
+                TblBDSEmployerInformation.Address = register.TblBDSEmployerInformation.Address;
+                TblBDSEmployerInformation.Phone = register.TblBDSEmployerInformation.Phone;
+                TblBDSEmployerInformation.City = register.TblBDSEmployerInformation.City;
+                TblBDSEmployerInformation.Scope = register.TblBDSEmployerInformation.Scope;
+                TblBDSEmployerInformation.Description = register.TblBDSEmployerInformation.Description;
+                TblBDSEmployerInformation.UrlImage = register.TblBDSEmployerInformation.UrlImage;
+                TblBDSEmployerInformation.Fax = register.TblBDSEmployerInformation.Fax;
+                TblBDSEmployerInformation.WebSite = register.TblBDSEmployerInformation.WebSite;
+                TblBDSEmployerInformation.NameContact = register.TblBDSEmployerInformation.NameContact;
+                TblBDSEmployerInformation.EmailContact = register.TblBDSEmployerInformation.EmailContact;
+                TblBDSEmployerInformation.AddressContact = register.TblBDSEmployerInformation.AddressContact;
+                TblBDSEmployerInformation.PhoneContact = register.TblBDSEmployerInformation.PhoneContact;
+                TblBDSEmployerInformation.TypeContact = register.TblBDSEmployerInformation.TypeContact;
 
-                db.Entry(Tblbdsemployerinformation).State = EntityState.Modified;
+                db.Entry(TblBDSEmployerInformation).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            var dataCity = from data in db.states
-                           join datatext in db.stateTexts on data.name_id equals datatext.id
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             CaptCha cap = new CaptCha();
-            bdsnew bdsNew = new bdsnew();
+            BDSNew BDSNew = new BDSNew();
           
             var register1 = new RegisterInformationModel
             {
-                ListBdsScopes = db.bdsscopes.ToList(),
-                ListMarriea = db.bdsmarriages.ToList(),
-                ListSalary = db.bdssalaries.ToList(),
-                ListDucation = db.bdseducations.ToList(),
-                ListBdscareer = db.bdscareers.ToList(),
-                ListTimework = db.bdstimeworks.ToList(),
-                Listbdslanguage = db.bdslanguages.ToList(),
-                Listbdsnewstype = db.bdsnewstypes.OrderBy(x => x.Order).ToList(),
+                ListBDSScopes = db.BDSScopes.ToList(),
+                ListMarriea = db.BDSMarriages.ToList(),
+                ListSalary = db.BDSSalaries.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
                 tblCaptCha = cap,
 
-                tblbdsnew = bdsNew,
-                TblBdsemployerinformation = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == idAcount),
-                TblBdsAdcount = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount),
-                Listbdsemper = db.bdsempers.ToList()
+                tblBDSNew = BDSNew,
+                TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
+                ListBDSEmper = db.BDSEmpers.ToList()
             };
             return View(register1);
         }
@@ -266,9 +266,9 @@ namespace WebBDS_Project.Controllers
         [HttpPost, ActionName("CheckEmail")]
         public ActionResult CheckEmail(string Email)
         {
-            var dataAcount = db.bdsaccounts.FirstOrDefault(x => x.Email == Email);
+            var dataAcount = db.BDSAccounts.FirstOrDefault(x => x.Email == Email);
             var sesIdAccount =int.Parse( Session["IdUser"].ToString());
-            if (dataAcount != null && dataAcount.Id == sesIdAccount)
+            if (dataAcount != null && dataAcount.ID == sesIdAccount)
             {
                 
                     return Json(new{result=1});
@@ -283,10 +283,10 @@ namespace WebBDS_Project.Controllers
          [HttpPost, ActionName("ChangePass")]
         public ActionResult ChangePass(string Email,string oldPass,string newpass)
          {
-             var dataAcount = db.bdsaccounts.FirstOrDefault(x => x.Email == Email && x.PassWord == oldPass);
+             var dataAcount = db.BDSAccounts.FirstOrDefault(x => x.Email == Email && x.PassWord == oldPass);
              if (dataAcount!=null )
              {
-                var tblAcount= db.bdsaccounts.Find(dataAcount.Id);
+                var tblAcount= db.BDSAccounts.Find(dataAcount.ID);
                  tblAcount.PassWord = newpass;
                  db.Entry(tblAcount).State = EntityState.Modified;
                  db.SaveChanges();
@@ -309,10 +309,10 @@ namespace WebBDS_Project.Controllers
         {
             var augen = Guid.NewGuid();
             var newpass = augen.ToString().Substring(0, 8);
-            var idAcount = db.bdsaccounts.FirstOrDefault(x=>x.Email==email);
+            var idAcount = db.BDSAccounts.FirstOrDefault(x=>x.Email==email);
             if (idAcount!=null)
             {
-                var tblAcount = db.bdsaccounts.Find(idAcount.Id);
+                var tblAcount = db.BDSAccounts.Find(idAcount.ID);
                 tblAcount.PassWord = newpass;
                 db.Entry(tblAcount).State = EntityState.Modified;
                 db.SaveChanges();
@@ -357,7 +357,7 @@ namespace WebBDS_Project.Controllers
         {
             double M = money.Value, P = 0, ME = 0;
             DateTime dateNow = DateTime.Now;
-            var ev= db.bdsevents.Where(T => T.Active == 1 && T.FromDate <= dateNow && dateNow <= T.ToDate)
+            var ev= db.BDSEvents.Where(T => T.Active == 1 && T.FromDate <= dateNow && dateNow <= T.ToDate)
                 .OrderByDescending(T => T.FromDate)
                 .FirstOrDefault();
             if (ev!=null)
@@ -371,26 +371,26 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailPersonal(int id)
         {
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var point = db.bdsaccounts.FirstOrDefault(x => x.Id == idAcount).Point;
+            var point = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount).Point;
             if (point>3)
             {
-                var tblbdsaccounts = db.bdsaccounts.Find(idAcount);
+                var tblBDSAccounts = db.BDSAccounts.Find(idAcount);
                 point = point - 3;
-                tblbdsaccounts.Point = point;
-                db.Entry(tblbdsaccounts).State = EntityState.Modified;
+                tblBDSAccounts.Point = point;
+                db.Entry(tblBDSAccounts).State = EntityState.Modified;
                 db.SaveChanges();
-                var tblbdsempers = new bdsemper();
+                var tblBDSEmpers = new BDSEmper();
                
-                tblbdsempers.IdAccountEm = idAcount;
-                tblbdsempers.IdAccountPer = id;
-                tblbdsempers.Active = 1;
-                tblbdsempers.CreateDate = DateTime.Now;
-                tblbdsempers.ModifiedDate = DateTime.Now;
-                tblbdsempers.CreateUser = 1;
-                tblbdsempers.ModifiedUser = 1;
-                db.bdsempers.Add(tblbdsempers);
+                tblBDSEmpers.IdAccountEm = idAcount;
+                tblBDSEmpers.IdAccountPer = id;
+                tblBDSEmpers.Active = 1;
+                tblBDSEmpers.CreateDate = DateTime.Now;
+                tblBDSEmpers.ModifiedDate = DateTime.Now;
+                tblBDSEmpers.CreateUser = 1;
+                tblBDSEmpers.ModifiedUser = 1;
+                db.BDSEmpers.Add(tblBDSEmpers);
                 db.SaveChanges();
-                var namePeson = db.bdspersonalinformations.Find(id);
+                var namePeson = db.BDSPersonalInformations.Find(id);
                 return Json(new { result = 1, name = namePeson.Name.UrlFrendly()+"-"+id });
                
             }

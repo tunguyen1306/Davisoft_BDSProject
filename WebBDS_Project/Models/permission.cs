@@ -12,11 +12,11 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class permission
+    public partial class Permission
     {
-        public permission()
+        public Permission()
         {
-            this.roles = new HashSet<role>();
+            this.Roles = new HashSet<Role>();
         }
     
         public int ID { get; set; }
@@ -24,6 +24,6 @@ namespace WebBDS_Project.Models
         public string Right { get; set; }
         public string Description { get; set; }
     
-        public virtual ICollection<role> roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

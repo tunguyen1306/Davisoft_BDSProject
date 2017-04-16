@@ -36,9 +36,9 @@
                     </thead>
 
                     <tbody>
-                        @foreach (var item in Model.Listbdsapply)
+                        @foreach (var item in Model.ListBDSApply)
                         {
-                            foreach (var itemPer in db.bdspersonalinformations.Where(x => x.IdAccount == item.IdAccountPer))
+                            foreach (var itemPer in db.BDSPersonalInformations.Where(x => x.ID == item.IdAccountEm))
                             {
                                 <tr>
                             <td>@itemPer.CreateDate</td>
@@ -51,7 +51,7 @@
                             <td>@itemPer.City</td>
                             <td>@itemPer.District</td>
                             <td>@itemPer.Education</td>
-                            <td><a style="cursor: pointer" href="@Url.Action("DetailPer","Management",new {id=itemPer.Name.UrlFrendly() +"-"+itemPer.Id})">xem</a></td>
+                            <td><a style="cursor: pointer" href="@Url.Action("DetailPer","Management",new {id=itemPer.Name.UrlFrendly() +"-"+itemPer.ID})">xem</a></td>
                         </tr> 
                             }
                             

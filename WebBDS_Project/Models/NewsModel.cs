@@ -7,44 +7,44 @@ namespace WebBDS_Project.Models
 {
     public class NewsModel
     {
-        public List<bdspicture> ListPicture { get; set; }
-        public bdspicture tblPicture { get; set; }
-        public bdsnew tblbdsnew { get; set; }
-        public List<bdsnew> ListNew { get; set; }
-                public bdsemployerinformation tblbdsemployerinformation { get; set; }
-        public List<bdsemployerinformation> Listbdsemployerinformation { get; set; }
-                public bdsaccount tblbdsaccount { get; set; }
-        public List<bdsaccount> Listbdsaccount { get; set; }
+        public List<BDSPicture> ListPicture { get; set; }
+        public BDSPicture tblPicture { get; set; }
+        public BDSNew tblBDSNew { get; set; }
+        public List<BDSNew> ListNew { get; set; }
+                public BDSEmployerInformation tblBDSEmployerInformation { get; set; }
+        public List<BDSEmployerInformation> ListBDSEmployerInformation { get; set; }
+                public BDSAccount tblBDSAccount { get; set; }
+        public List<BDSAccount> ListBDSAccount { get; set; }
        
       
-        public List<bdsscope> ListBdsScopes { get; set; }
-        public List<state> ListStates { get; set; }
-        public List<stateText> ListstateTexts { get; set; }
-        public List<district> ListDistrict { get; set; }
-        public List<districttext> ListDistricttext { get; set; }
+        public List<BDSScope> ListBDSScopes { get; set; }
+        public List<State> ListStates { get; set; }
+        public List<StateText> ListStateTexts { get; set; }
+        public List<District> ListDistrict { get; set; }
+        public List<DistrictText> ListDistrictText { get; set; }
         public List<GeoModel> ListGeoModel { get; set; }
-        public List<bdsmarriage> ListMarriea { get; set; }
-        public bdsmarriage tblMarriea { get; set; }
+        public List<BDSMarriage> ListMarriea { get; set; }
+        public BDSMarriage tblMarriea { get; set; }
 
-        public List<bdssalary> ListSalary { get; set; }
-        public bdssalary tblSalary { get; set; }
+        public List<BDSSalary> ListSalary { get; set; }
+        public BDSSalary tblSalary { get; set; }
 
-        public List<bdseducation> ListDucation { get; set; }
-        public bdseducation tblDucation { get; set; }
+        public List<BDSEducation> ListDucation { get; set; }
+        public BDSEducation tblDucation { get; set; }
 
-        public List<bdscareer> ListBdscareer { get; set; }
-        public bdscareer tblBdscareer { get; set; }
-        public List<bdstimework> ListTimework { get; set; }
-        public bdstimework tbltimework { get; set; }
+        public List<BDSCareer> ListBDSCareer { get; set; }
+        public BDSCareer tblBDSCareer { get; set; }
+        public List<BDSTimeWork> ListTimework { get; set; }
+        public BDSTimeWork tbltimework { get; set; }
       
 
-        public bdsnewstype tblbdsnewstype { get; set; }
-        public List<bdsnewstype> Listbdsnewstype { get; set; }
+        public BDSNewsType tblBDSNewsType { get; set; }
+        public List<BDSNewsType> ListBDSNewsType { get; set; }
 
-        public bdslanguage tblbdslanguage { get; set; }
-        public List<bdslanguage> Listbdslanguage { get; set; }
+        public BDSLanguage tblBDSLanguage { get; set; }
+        public List<BDSLanguage> ListBDSLanguage { get; set; }
 
-        public bdsnewstypeprice tblbdsnewstypeprice { get; set; }
+        public BDSNewsTypePrice tblBDSNewsTypePrice { get; set; }
         public CaptCha tblCaptCha { get; set; }
 
         public List<ListCityNew> ListCityText { get; set; }

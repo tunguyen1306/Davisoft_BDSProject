@@ -12,22 +12,23 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class role
+    public partial class Role
     {
-        public role()
+        public Role()
         {
-            this.menus = new HashSet<menu>();
-            this.permissions = new HashSet<permission>();
-            this.users = new HashSet<user>();
+            this.Menus = new HashSet<Menu>();
+            this.Permissions = new HashSet<Permission>();
+            this.Users = new HashSet<User>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string RoleLevel_Value { get; set; }
+        public string RoleLevel_DisplayName { get; set; }
     
-        public virtual ICollection<menu> menus { get; set; }
-        public virtual ICollection<permission> permissions { get; set; }
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

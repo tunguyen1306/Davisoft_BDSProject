@@ -6,7 +6,7 @@
 @model WebBDS_Project.Models.RegisterInformationModel
 @using (Html.BeginForm("ManagementAcountEmployee", "Management"))
 {
-    @Html.HiddenFor(x=>x.TblBdsAdcount.Id)
+    @Html.HiddenFor(x=>x.TblBdsAdcount.ID)
     <div class="container">
                     <div class="grid_9 main_left">
                         <div class="group_work">
@@ -78,14 +78,14 @@
                                     <label class="grid_2">Tên công ty</label>
                                     <div class="row-right grid_9">
                                        
-                                       @Html.TextBoxFor(m => m.TblBdsemployerinformation.Name, new { @placeholder = "Nhập tên công ty" })
+                                       @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Name, new { @placeholder = "Nhập tên công ty" })
                                     </div>
                                 </div>
                                 
                                 <div class="row">
                                     <label class="grid_2">Địa chỉ<span class="required"> *</span></label>
                                     <div class="grid_9 row-right">
-                                            @Html.TextBoxFor(m => m.TblBdsemployerinformation.Address, new { @placeholder = "Nhập địa chỉ " })
+                                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @placeholder = "Nhập địa chỉ " })
                                     </div>
                                 </div>
                                  <div class="row">
@@ -93,13 +93,13 @@
                                     <div class="grid_9 row-right">
 
                                        
-                                        @Html.TextBoxFor(m => m.TblBdsemployerinformation.Phone, new { @placeholder = "Nhập số điện thoại" })
+                                        @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Phone, new { @placeholder = "Nhập số điện thoại" })
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="grid_2">Tỉnh thành phố<span class="required"> *</span></label>
                                     <div class=" grid_9 row-right">
-                                        @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
+                                        @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
                                     </div>
 
 
@@ -108,7 +108,7 @@
                                 <div class="row">
                                     <label class="grid_2">Quy mô công ty<span class="required"> *</span></label>
                                     <div class="grid_9 row-right">
-                                             @Html.DropDownListFor(m => m.TblBdsemployerinformation.Scope, new SelectList(Model.ListBdsScopes, "Id", "Name"), new { @class = "dropdown" })
+                                             @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Scope, new SelectList(Model.ListBDSScopes, "Id", "Name"), new { @class = "dropdown" })
                                     </div>
 
 
@@ -116,7 +116,7 @@
                                 <div class="row">
                                     <label class="grid_2">Sơ lược về công ty<span>*</span></label>
                                     <div class="grid_9 row-right">
-                                         @Html.TextAreaFor(m => m.TblBdsemployerinformation.Description)
+                                         @Html.TextAreaFor(m => m.TblBDSEmployerInformation.Description)
                                     </div>
                                 </div>
 
@@ -125,16 +125,16 @@
                         <label>Logo Công Ty</label>
                         <div class="logo_jobs">
                             <div class="grid_5 uploadBox">
-                                @if (Model.TblBdsemployerinformation.UrlImage!=null)
+                                @if (Model.TblBDSEmployerInformation.UrlImage!=null)
                                 {
-                                        <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.TblBdsemployerinformation.UrlImage.ToString().Split('_')[0]/@Model.TblBdsemployerinformation.UrlImage" />
+                                        <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.TblBDSEmployerInformation.UrlImage.ToString().Split('_')[0]/@Model.TblBDSEmployerInformation.UrlImage" />
                                 }
                                 else
                                 {
                                     <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
                                 }
                                 
-                                <input type="hidden" value="" name="TblBdsemployerinformation.UrlImage" id="UrlImage" />
+                                <input type="hidden" value="" name="TblBDSEmployerInformation.UrlImage" id="UrlImage" />
                             </div>
                             <div class="uploadBox-1">
                                 <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
@@ -158,7 +158,7 @@
                                     <label class="grid_2">Fax<span class="required">*</span></label>
                                     <div class="grid_9 row-right">
                                        
-                                          @Html.TextBoxFor(m => m.TblBdsemployerinformation.Fax, new { @placeholder = "Nhập số fax" })
+                                          @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Fax, new { @placeholder = "Nhập số fax" })
                                     </div>
 
 
@@ -167,7 +167,7 @@
                                     <label class="grid_2">WebSite<span class="required">*</span></label>
                                     <div class="grid_9 row-right">
                                        
-                                          @Html.TextBoxFor(m => m.TblBdsemployerinformation.WebSite, new { @placeholder = "Nhập Website" })
+                                          @Html.TextBoxFor(m => m.TblBDSEmployerInformation.WebSite, new { @placeholder = "Nhập Website" })
                                     </div>
 
 
@@ -178,7 +178,7 @@
                                     <label class="grid_2">Tên người liên hệ<span class="required">*</span></label>
                                     <div class="grid_9 row-right">
                                        
-                                         @Html.TextBoxFor(m => m.TblBdsemployerinformation.NameContact, new { @placeholder = "Nhập tên người liên hệ" })
+                                         @Html.TextBoxFor(m => m.TblBDSEmployerInformation.NameContact, new { @placeholder = "Nhập tên người liên hệ" })
                                     </div>
 
                                 </div>
@@ -187,7 +187,7 @@
                                     <label class="grid_2">Email liên hệ<span class="required">*</span></label>
                                     <div class="grid_9 row-right">
 
-                                         @Html.TextBoxFor(m => m.TblBdsemployerinformation.EmailContact, new { @placeholder = "Nhập tên email người liên hệ" })
+                                         @Html.TextBoxFor(m => m.TblBDSEmployerInformation.EmailContact, new { @placeholder = "Nhập tên email người liên hệ" })
                                     </div>
 
                                 </div>
@@ -196,7 +196,7 @@
                                     <label class="grid_2">Địa chỉ liên hệ<span class="required">*</span></label>
                                     <div class="grid_9 row-right">
                                      
-                                          @Html.TextBoxFor(m => m.TblBdsemployerinformation.AddressContact, new { @placeholder = "Nhập tên địa chỉ người liên hệ" })
+                                          @Html.TextBoxFor(m => m.TblBDSEmployerInformation.AddressContact, new { @placeholder = "Nhập tên địa chỉ người liên hệ" })
                                     </div>
 
                                 </div>
@@ -205,7 +205,7 @@
                                     <label class="grid_2">Điện thoại liên hệ<span class="required">*</span></label>
                                     <div class="grid_9 row-right">
                                         
-                                          @Html.TextBoxFor(m => m.TblBdsemployerinformation.PhoneContact, new { @placeholder = "Nhập tên điển thoại người liên hệ" })
+                                          @Html.TextBoxFor(m => m.TblBDSEmployerInformation.PhoneContact, new { @placeholder = "Nhập tên điển thoại người liên hệ" })
                                     </div>
 
                                 </div>
@@ -213,7 +213,7 @@
                                     <label class="grid_2">Hinh thức liên hệ<span class="required"> *</span></label>
                                     <div class="grid_9 row-right">
                                         
-                                        @Html.DropDownListFor(model => model.TblBdsemployerinformation.TypeContact,
+                                        @Html.DropDownListFor(model => model.TblBDSEmployerInformation.TypeContact,
                             new List<SelectListItem> { 
                                 new SelectListItem { Value = "1" , Text = "Gọi điện thoại" },
                                 new SelectListItem { Value = "2" , Text = "Đến trực tiếp công ty" }

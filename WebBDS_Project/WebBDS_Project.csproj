@@ -148,102 +148,102 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\UrlFriendly.cs" />
-    <Compile Include="Models\audit.cs">
+    <Compile Include="Models\Audit.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsaccount.cs">
+    <Compile Include="Models\BDSAccount.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BdsAcountModel.cs" />
-    <Compile Include="Models\bdsapply.cs">
+    <Compile Include="Models\BDSApply.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsarea.cs">
+    <Compile Include="Models\BDSArea.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsbank.cs">
+    <Compile Include="Models\BDSBank.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsbranch.cs">
+    <Compile Include="Models\BDSBranch.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdscareer.cs">
+    <Compile Include="Models\BDSCareer.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdscomment.cs">
+    <Compile Include="Models\BDSComment.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdseducation.cs">
+    <Compile Include="Models\BDSEducation.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsemper.cs">
+    <Compile Include="Models\BDSEmper.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsemployerinformation.cs">
+    <Compile Include="Models\BDSEmployerInformation.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsevent.cs">
+    <Compile Include="Models\BDSEvent.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsextnew.cs">
+    <Compile Include="Models\BDSExtNew.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdslanguage.cs">
+    <Compile Include="Models\BDSLanguage.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsmarriage.cs">
+    <Compile Include="Models\BDSMarriage.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsnew.cs">
+    <Compile Include="Models\BDSNew.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsnewstype.cs">
+    <Compile Include="Models\BDSNewsType.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsnewstypeprice.cs">
+    <Compile Include="Models\BDSNewsTypePrice.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdspersonalinformation.cs">
+    <Compile Include="Models\BDSPersonalInformation.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdspicture.cs">
+    <Compile Include="Models\BDSPicture.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdssalary.cs">
+    <Compile Include="Models\BDSSalary.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdsscope.cs">
+    <Compile Include="Models\BDSScope.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdstimework.cs">
+    <Compile Include="Models\BDSTimeWork.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdstransaction.cs">
+    <Compile Include="Models\BDSTransaction.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdstransactionhistory.cs">
+    <Compile Include="Models\BDSTransactionHistory.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bdstypecontact.cs">
+    <Compile Include="Models\BDSTypeContact.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\branch.cs">
+    <Compile Include="Models\Branch.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CaptCha.cs" />
-    <Compile Include="Models\counter.cs">
+    <Compile Include="Models\Counter.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\country.cs">
+    <Compile Include="Models\Country.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\countrytext.cs">
+    <Compile Include="Models\CountryText.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\currency.cs">
+    <Compile Include="Models\Currency.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C__migrationhistory.cs">
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataWebBDS.Context.cs">
@@ -261,47 +261,47 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataWebBDS.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\district.cs">
+    <Compile Include="Models\District.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\districttext.cs">
+    <Compile Include="Models\DistrictText.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GeoModel.cs" />
-    <Compile Include="Models\holiday.cs">
+    <Compile Include="Models\Holiday.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\language.cs">
+    <Compile Include="Models\Language.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\location.cs">
+    <Compile Include="Models\Location.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\locationtext.cs">
+    <Compile Include="Models\LocationText.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\menu.cs">
+    <Compile Include="Models\Menu.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\NewsPicture.cs" />
-    <Compile Include="Models\permission.cs">
+    <Compile Include="Models\Permission.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RegisterInformationModel.cs" />
-    <Compile Include="Models\role.cs">
+    <Compile Include="Models\Role.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\setting.cs">
+    <Compile Include="Models\Setting.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\state.cs">
+    <Compile Include="Models\State.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\stateText.cs">
+    <Compile Include="Models\StateText.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\user.cs">
+    <Compile Include="Models\User.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -363,15 +363,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="Models\DataWebBDS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataWebBDS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DataWebBDS.edmx.diagram">
-      <DependentUpon>DataWebBDS.edmx</DependentUpon>
-    </Content>
-    <None Include="Properties\PublishProfiles\publish.pubxml" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Models\DataWebBDS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DataWebBDS.edmx</DependentUpon>
@@ -382,6 +373,15 @@
       <DependentUpon>DataWebBDS.edmx</DependentUpon>
       <LastGenOutput>DataWebBDS.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\DataWebBDS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataWebBDS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataWebBDS.edmx.diagram">
+      <DependentUpon>DataWebBDS.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\CusWeb.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -528,10 +528,12 @@
     <Content Include="Views\Management\Paymen.cshtml" />
     <Content Include="Views\Management\DetailPer.cshtml" />
     <Content Include="Views\Management\ThanksApply.cshtml" />
+    <Content Include="Views\Default\DetailNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="fileupload\" />
+    <Folder Include="Views\_Partial\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

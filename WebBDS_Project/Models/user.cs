@@ -12,12 +12,12 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class User
     {
-        public user()
+        public User()
         {
-            this.branches = new HashSet<branch>();
-            this.roles = new HashSet<role>();
+            this.Branches = new HashSet<Branch>();
+            this.Roles = new HashSet<Role>();
         }
     
         public int ID { get; set; }
@@ -33,12 +33,15 @@ namespace WebBDS_Project.Models
         public string FaxNo { get; set; }
         public string Website { get; set; }
         public string Status_Value { get; set; }
+        public string Status_DisplayName { get; set; }
         public Nullable<int> BranchID { get; set; }
         public Nullable<int> LanguageID { get; set; }
     
-        public virtual branch branch { get; set; }
-        public virtual language language { get; set; }
-        public virtual ICollection<branch> branches { get; set; }
-        public virtual ICollection<role> roles { get; set; }
+        public virtual Branch Branch { get; set; }
+        public virtual Branch Branch1 { get; set; }
+        public virtual Language Language { get; set; }
+        public virtual Language Language1 { get; set; }
+        public virtual ICollection<Branch> Branches { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

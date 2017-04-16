@@ -59,7 +59,7 @@
                         <label>Họ và tên<span class="required">*</span></label>
                         <div class="row-right">
 
-                            @Html.TextBoxFor(m => m.TblBdspersonalinformation.Name, new { @class = "input1", @placeholder = "Nhập họ và tên" })
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1", @placeholder = "Nhập họ và tên" })
                         </div>
 
 
@@ -74,7 +74,7 @@
 
                         <div class="pncon">
                             <input class="cus-input2 mg0_0 " id="year" placeholder="YYYY" type="text">
-                            <input class="cus-input2 mg0_0 datepicker" name="TblBdspersonalinformation.Birthday" style="display:none;" value="" id="hdValuesDate" placeholder="YYYY" type="text">
+                            <input class="cus-input2 mg0_0 datepicker" name="TblBDSPersonalInformation.Birthday" style="display:none;" value="" id="hdValuesDate" placeholder="YYYY" type="text">
                         </div>
                     </div>
 
@@ -82,15 +82,15 @@
                         <label>Số điện thoại<span class="required">*</span></label>
                         <div class="row-right">
 
-                            @Html.TextBoxFor(m => m.TblBdspersonalinformation.Phone, new { @class = "input1", @placeholder = "Nhập số điện thoại" })
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Phone, new { @class = "input1", @placeholder = "Nhập số điện thoại" })
                         </div>
 
 
                         <label class="child">Giới tính<span class="required">*</span></label>
 
                         <div class="pncon radio_2">
-                            <label><input type="radio" value="1" name="TblBdspersonalinformation.Sex" checked="checked"> Nam</label>
-                            <label><input type="radio" value="2" name="TblBdspersonalinformation.Sex"> Nữ</label>
+                            <label><input type="radio" value="1" name="TblBDSPersonalInformation.Sex" checked="checked"> Nam</label>
+                            <label><input type="radio" value="2" name="TblBDSPersonalInformation.Sex"> Nữ</label>
 
                         </div>
 
@@ -104,7 +104,7 @@
                         <div class="row-right">
 
 
-                            @Html.TextBoxFor(m => m.TblBdspersonalinformation.Address, new { @class = "input1", @placeholder = "Nhập địa chỉ liên hệ" })
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Address, new { @class = "input1", @placeholder = "Nhập địa chỉ liên hệ" })
 
                         </div>
                         <div class="row-right fix">
@@ -112,8 +112,8 @@
                             <div class="pncon width2 ">
 
                                 @*  <label class="cusLabel-2">Tỉnh/TP</label>*@
-                    @* @Html.DropDownListFor(m => m.TblBdsemployerinformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
-                    <select id="dropCity" tabindex="7" name="TblBdspersonalinformation.City">
+                    @* @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
+                    <select id="dropCity" tabindex="7" name="TblBDSPersonalInformation.City">
                         <option value="0">Chọn thành phố</option>
                     </select>
 
@@ -124,7 +124,7 @@
                     <div class="pncon  width2 ">
 
                         @*   <label class="cusLabel-2">Quận/Huyện</label>*@
-                    <select class="dropDistrict" tabindex="7" name="TblBdspersonalinformation.District">
+                    <select class="dropDistrict" tabindex="7" name="TblBDSPersonalInformation.District">
                         <option value="0">Chọn quận huyện</option>
 
                     </select>
@@ -141,7 +141,7 @@
                             <div class="row-right">
 
 
-                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"),"Chọn tình trạng hôn nhân", new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"),"Chọn tình trạng hôn nhân", new { @class = "dropdown" })
 
 
 
@@ -152,7 +152,7 @@
 
                             <label class="child">Mức lương mong muốn <span class="required">*</span></label>
                             <div class="pncon">
-                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"),"Chọn mức lương", new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"),"Chọn mức lương", new { @class = "dropdown" })
                             </div>
                         </div>
 
@@ -164,7 +164,7 @@
                             <label>Số năm kinh nghiệm<span class="required"> *</span></label>
                             <div class="row-right">
 
-                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"),"Chọn kinh nghiệm", new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"),"Chọn kinh nghiệm", new { @class = "dropdown" })
 
 
                             </div>
@@ -174,7 +174,7 @@
                             <label class="child">Học vấn <span class="required">*</span></label>
                             <div class="pncon">
 
-                                @Html.DropDownListFor(m => m.TblBdspersonalinformation.Education, new SelectList(Model.ListDucation, "Id", "Name"),"Chọn học vấn", new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Education, new SelectList(Model.ListDucation, "Id", "Name"),"Chọn học vấn", new { @class = "dropdown" })
 
                             </div>
                         </div>
@@ -186,7 +186,7 @@
                     <div class="row">
                         <label>Công việc mong muốn<span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.TblBdspersonalinformation.IdLoaiNghe, new SelectList(Model.ListBdscareer, "Id", "Name"),"Chọn ngành nghề", new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.TblBDSPersonalInformation.IdLoaiNghe, new SelectList(Model.ListBDSCareer, "Id", "Name"),"Chọn ngành nghề", new { @class = "dropdown" })
 
 
                         </div>
@@ -195,8 +195,8 @@
                         <label class="child">Kinh nghiệm trong ngành bất động sản<span class="required">*</span></label>
 
                         <div class="pncon radio_3">
-                            <label><input name="TblBdspersonalinformation.ProfessionalExperience" value="0" checked="checked" type="radio">Không</label>
-                            <label><input name="TblBdspersonalinformation.ProfessionalExperience" value="1" type="radio">Đã có kinh nghiệm</label>
+                            <label><input name="TblBDSPersonalInformation.ProfessionalExperience" value="0" checked="checked" type="radio">Không</label>
+                            <label><input name="TblBDSPersonalInformation.ProfessionalExperience" value="1" type="radio">Đã có kinh nghiệm</label>
                         </div>
 
 
@@ -206,7 +206,7 @@
                     <div class="row">
                         <label>Giới thiệu sơ lược</label>
                         <div class="row-right">
-                            <textarea class="input4" name="TblBdspersonalinformation.Description" rows="4"></textarea>
+                            <textarea class="input4" name="TblBDSPersonalInformation.Description" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -216,7 +216,7 @@
                             <div class="grid_5 uploadBox">
                                 <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
 
-                                <input type="hidden" value="" name="TblBdspersonalinformation.UrlImage" id="UrlImage" />
+                                <input type="hidden" value="" name="TblBDSPersonalInformation.UrlImage" id="UrlImage" />
                             </div>
                             <div class="uploadBox-1">
                                 <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
@@ -296,27 +296,27 @@
             toastr.error('Vui lòng nhập captcha! ');
             t++;
         }
-        if ($('#TblBdspersonalinformation_IdLoaiNghe').val() == "") {
+        if ($('#TblBDSPersonalInformation_IdLoaiNghe').val() == "") {
 
             toastr.error('Vui lòng chọn nghành nghề! ');
             t++;
         }
-        if ($('#TblBdspersonalinformation_Education').val() == "") {
+        if ($('#TblBDSPersonalInformation_Education').val() == "") {
 
             toastr.error('Vui lòng chọn học vấn! ');
             t++;
         }
-        if ($('#TblBdspersonalinformation_Experience').val() == "") {
+        if ($('#TblBDSPersonalInformation_Experience').val() == "") {
 
             toastr.error('Vui lòng chọn kinh nghiệm! ');
             t++;
         }
-        if ($('#TblBdspersonalinformation_Salary').val() == "") {
+        if ($('#TblBDSPersonalInformation_Salary').val() == "") {
 
             toastr.error('Vui lòng chọn mức lương! ');
             t++;
         }
-        if ($('#TblBdspersonalinformation_MaritalStatus').val() =="") {
+        if ($('#TblBDSPersonalInformation_MaritalStatus').val() =="") {
 
             toastr.error('Vui lòng chọn tình trạng hôn nhân! ');
             t++;
@@ -332,14 +332,14 @@
             t++;
         }
 
-        if ($('#TblBdspersonalinformation_Address').val() == "") {
+        if ($('#TblBDSPersonalInformation_Address').val() == "") {
 
             toastr.error('Vui lòng nhập địa chỉ ');
             t++;
         }
 
-        if ($('#TblBdsemployerinformation_Phone').val() != "") {
-            if ($('#TblBdsemployerinformation_Phone').length > 11) {
+        if ($('#TblBDSEmployerInformation_Phone').val() != "") {
+            if ($('#TblBDSEmployerInformation_Phone').length > 11) {
 
                 toastr.error('Số điện thoại tối đa 11 số!');
                 t++;
@@ -350,7 +350,7 @@
             t++;
         }
        
-        if ($('#TblBdspersonalinformation_Name').val() == "") {
+        if ($('#TblBDSPersonalInformation_Name').val() == "") {
 
             toastr.error('Vui lòng nhập họ và tên ');
             t++;
@@ -410,7 +410,7 @@
         }
 
     });
-    $("#TblBdspersonalinformation_Phone").keydown(function (e) {
+    $("#TblBDSPersonalInformation_Phone").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
             // Allow: Ctrl+A, Command+A

@@ -10,7 +10,7 @@
                                 
                                 
                                 @{
-                                    foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
+                                    foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
                                     {
                                            <li>
                                         <a href="@Url.Action("Detail","Default",new { id=1})">@item.Name</a>

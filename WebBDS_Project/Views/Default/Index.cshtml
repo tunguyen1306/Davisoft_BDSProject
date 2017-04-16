@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
    
-    var states = (from a in db.states join b in db.stateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new {Id=a.state_id,Name=b.text}).ToList();
+    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new {Id=a.state_id,Name=b.text}).ToList();
 }
 
  <div class="container">
@@ -20,7 +20,7 @@
                             <h4><i class="fa fa-users"></i>Các công việc về bất động sản thường tìm kiếm</h4>
                             <ul class="name_group">
                                 @{
-                                    foreach (var item in db.bdscareers.Where(T => T.Active == 1).ToList())
+                                    foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
                                     {
                                         <li><a href="@Url.Action("Detail", "Default", new {id = 1})">@item.Name</a></li>
                                     }
@@ -42,7 +42,7 @@
                                     <select class="dropdown" tabindex="7" onchange="loadFilterPageFrom(this)">
                                         <option value="">Toàn quốc</option>
                                         @{
-                                            foreach (var itemCity in states)
+                                            foreach (var itemCity in States)
                                             {
                                                 <option value="@itemCity.Id">@itemCity.Name</option>
                                             }
@@ -74,7 +74,7 @@
                                     <select class="dropdown" tabindex="7" onchange="loadNBFilterPageFrom(this)">
                                         <option value="">Toàn quốc</option>
                                         @{
-                                            foreach (var itemCity in states)
+                                            foreach (var itemCity in States)
                                             {
                                                 <option value="@itemCity.Id">@itemCity.Name</option>
                                             }
@@ -105,7 +105,7 @@
 
                                         <option value="">Toàn quốc</option>
                                         @{
-                                            foreach (var itemCity in states)
+                                            foreach (var itemCity in States)
                                             {
                                                 <option value="@itemCity.Id">@itemCity.Name</option>
                                             }
@@ -132,7 +132,7 @@
                                     <select class="dropdown" onchange="loadNTDFilterPageFrom(this);" tabindex="7">
                                         <option value="">Toàn quốc</option>
                                         @{
-                                            foreach (var itemCity in states)
+                                            foreach (var itemCity in States)
                                             {
                                                 <option value="@itemCity.Id">@itemCity.Name</option>
                                             }

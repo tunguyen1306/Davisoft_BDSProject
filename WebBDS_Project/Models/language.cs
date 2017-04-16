@@ -12,11 +12,12 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class language
+    public partial class Language
     {
-        public language()
+        public Language()
         {
-            this.users = new HashSet<user>();
+            this.Users = new HashSet<User>();
+            this.Users1 = new HashSet<User>();
         }
     
         public int ID { get; set; }
@@ -24,6 +25,7 @@ namespace WebBDS_Project.Models
         public string DisplayName { get; set; }
         public string Image { get; set; }
     
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users1 { get; set; }
     }
 }

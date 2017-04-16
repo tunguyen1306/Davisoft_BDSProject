@@ -12,12 +12,12 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class currency
+    public partial class Currency
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public string Symbol { get; set; }
-        public short IsDefault { get; set; }
+        public bool IsDefault { get; set; }
         public int Precision { get; set; }
     }
 }

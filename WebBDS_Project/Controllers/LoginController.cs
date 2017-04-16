@@ -19,16 +19,16 @@ namespace WebBDS_Project.Controllers
             Session["EmailUser"] = null;
             Session["IdTypeUser"] = null;
             Session["FullName"] = null;
-            var data = db.bdsaccounts.FirstOrDefault(x => x.Email == acountModel.tblbdsaccount.Email && x.PassWord == acountModel.tblbdsaccount.PassWord && x.Active == 1);
+            var data = db.BDSAccounts.FirstOrDefault(x => x.Email == acountModel.tblBDSAccount.Email && x.PassWord == acountModel.tblBDSAccount.PassWord && x.Active == 1);
             if (data != null)
             {
                 FormsAuthentication.SetAuthCookie(data.Email, false);
                 String returnUrl = Request.Params["ReturnUrl"];
 
 
-                Session["IdUser"] = data.Id;
+                Session["IdUser"] = data.ID;
                 Session["EmailUser"] = data.Email;
-                var dataEmployee = db.bdsemployerinformations.FirstOrDefault(x => x.IdAccount == data.Id);
+                var dataEmployee = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == data.ID);
 
                 if (dataEmployee != null) Session["FullName"] = dataEmployee.Name;
 

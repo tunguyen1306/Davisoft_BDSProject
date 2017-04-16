@@ -19,21 +19,21 @@
                     <div class="row">
                         <label>Tiêu đề đăng tin<span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.tblbdsnew.Title, new { @class = "input3", @placeholder = "Nhập tiêu đề" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.Title, new { @class = "input3", @placeholder = "Nhập tiêu đề" })
 
                         </div>
                     </div>
                     <div class="row">
                         <label>Nơi làm việc <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblbdsnew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
 
                         </div>
                         <label class="child">Mức lương <span class="required">*</span></label>
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                <select class="dropdown" id="DropFromSalary" tabindex="7" name="tblbdsnew.FromSalary">
+                                <select class="dropdown" id="DropFromSalary" tabindex="7" name="tblBDSNew.FromSalary">
                                     <option value="0">Chọn</option>
                                     @for (int i = 3; i < 20; i++)
                                     {
@@ -45,7 +45,7 @@
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                <select class="dropdown" id="DropToSalary" tabindex="7" name="tblbdsnew.ToSalary">
+                                <select class="dropdown" id="DropToSalary" tabindex="7" name="tblBDSNew.ToSalary">
                                      <option value="0">Chọn</option>
                                     @for (int i = 3; i < 20; i++)
                                     {
@@ -58,7 +58,7 @@
                     <div class="row">
                         <label>Số lượng <span class="required">*</span></label>
                         <div class="row-right">
-                            <select class="dropdown" id="DropQuantity" tabindex="7" name="tblbdsnew.Quantity">
+                            <select class="dropdown" id="DropQuantity" tabindex="7" name="tblBDSNew.Quantity">
                                  <option value="0">Chọn số lượng</option>
                                 @for (int i = 1; i < 10; i++)
                                 {
@@ -70,7 +70,7 @@
                         <label class="child">Thưởng/Phụ cấp <span class="required">*</span></label>
                         <div class="row-right">
 
-                            @Html.TextBoxFor(m => m.tblbdsnew.Bonus, new { @class = "input1", @placeholder = "Nhập thưởng /phụ cấp" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.Bonus, new { @class = "input1", @placeholder = "Nhập thưởng /phụ cấp" })
 
 
                         </div>
@@ -78,7 +78,7 @@
                     <div class="row">
                         <label>Giới tính</label>
                         <div class="row-right">
-                            <select class="dropdown" name="tblbdsnew.Sex" tabindex="7">
+                            <select class="dropdown" name="tblBDSNew.Sex" tabindex="7">
                                 <option value="0">Không yêu cầu</option>
                                 <option value="1">Nam</option>
                                 <option value="2">Nữ</option>
@@ -87,7 +87,7 @@
                         </div>
                         <label class="child">Kinh nghiệm <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblbdsnew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"),"Chọn", new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"),"Chọn", new { @class = "dropdown" })
 
 
                         </div>
@@ -95,7 +95,7 @@
                     <div class="row">
                         <label>Trình độ</label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblbdsnew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name","Chọn trình độ"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name","Chọn trình độ"), new { @class = "dropdown" })
 
 
                         </div>
@@ -103,7 +103,7 @@
                     <div class="row">
                          <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong><span class="required">*</span></p>
                     <ul class="radio">
-                        @foreach (var item in Model.ListBdscareer)
+                        @foreach (var item in Model.ListBDSCareer)
                         {
                             <li>
                                 <label>
@@ -114,7 +114,7 @@
 
 
                     </ul>
-                    @Html.HiddenFor(x => x.tblbdsnew.Career)
+                    @Html.HiddenFor(x => x.tblBDSNew.Career)
 
                     </div>
                    
@@ -123,7 +123,7 @@
                         <label>Giới thiệu công ty<span class="required">*</span></label>
                         <div class="row-right">
 
-                            @Html.TextAreaFor(m => m.tblbdsnew.DesCompany, new { @class = "input3" })
+                            @Html.TextAreaFor(m => m.tblBDSNew.DesCompany, new { @class = "input3" })
 
 
                         </div>
@@ -132,13 +132,13 @@
                         <label>Mô tả công việc<span class="required">*</span></label>
                         <div class="row-right">
 
-                            @Html.TextAreaFor(m => m.tblbdsnew.DesWork, new { @class = "input3" })
+                            @Html.TextAreaFor(m => m.tblBDSNew.DesWork, new { @class = "input3" })
                         </div>
                     </div>
                     <div class="row">
                         <label>Quyền lợi được hưởng<span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.TextAreaFor(m => m.tblbdsnew.Benefit, new { @class = "input3" })
+                            @Html.TextAreaFor(m => m.tblBDSNew.Benefit, new { @class = "input3" })
                         </div>
                     </div>
                     <div class="row">
@@ -147,7 +147,7 @@
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                <select class="dropdown" tabindex="7" name="tblbdsnew.FromAge">
+                                <select class="dropdown" tabindex="7" name="tblBDSNew.FromAge">
                                     @for (int i = 18; i < 50; i++)
                                     {
                                         <option value="@i">@i</option>
@@ -156,7 +156,7 @@
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                <select class="dropdown" tabindex="7" name="tblbdsnew.ToAge">
+                                <select class="dropdown" tabindex="7" name="tblBDSNew.ToAge">
                                     @for (int i = 18; i < 50; i++)
                                     {
                                         <option value="@i">@i</option>
@@ -168,7 +168,7 @@
                     <div class="row">
                         <label>Thời gian thử việc</label>
                         <div class="row-right">
-                            <select class="dropdown" tabindex="7" name="tblbdsnew.TimeProbationary">
+                            <select class="dropdown" tabindex="7" name="tblBDSNew.TimeProbationary">
 
                                 @for (int i = 1; i <= 12; i++)
                                 {
@@ -182,7 +182,7 @@
                         <label>Tên công ty</label>
                         <div class="row-right">
 
-                            @Html.TextBoxFor(m => m.tblbdsnew.NameCompany, new { @class = "input3", @placeholder = "Nhập tên công ty" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.NameCompany, new { @class = "input3", @placeholder = "Nhập tên công ty" })
 
 
                         </div>
@@ -190,38 +190,38 @@
                     <div class="row">
                         <label>Địa chỉ nộp hồ sơ</label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.tblbdsnew.AddressApply, new { @class = "input3", @placeholder = "Nhập địa chỉ nộp hồ sơ" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.AddressApply, new { @class = "input3", @placeholder = "Nhập địa chỉ nộp hồ sơ" })
                         </div>
                     </div>
                     <div class="row">
                         <label>Người liên hệ</label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.tblbdsnew.NamesContact, new { @class = "input3", @placeholder = "Nhập người liên hệ" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.NamesContact, new { @class = "input3", @placeholder = "Nhập người liên hệ" })
                         </div>
                     </div>
                     <div class="row">
                         <label>Email</label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.tblbdsnew.Email, new { @class = "input3", @placeholder = "Nhập email" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.Email, new { @class = "input3", @placeholder = "Nhập email" })
                         </div>
                     </div>
                     <div class="row">
 
                         <label>Hạn nộp hồ sơ</label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.tblbdsnew.ToDeadline, new { @class = "input1 datepicker1", @placeholder = "dd/MM/yyyy" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.ToDeadline, new { @class = "input1 datepicker1", @placeholder = "dd/MM/yyyy" })
                         </div>
                     </div>
                     <div class="row">
                         <label>Ngôn ngữ hồ sơ</label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblbdsnew.IdLanguage, new SelectList(Model.Listbdslanguage, "Id", "Name"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdLanguage, new SelectList(Model.ListBDSLanguage, "Id", "Name"), new { @class = "dropdown" })
                         </div>
                     </div><div class="row">
 
     <label>Website công ty</label>
     <div class="row-right">
-        @Html.TextBoxFor(m => m.tblbdsnew.WebSiteCompany, new { @class = "input1 ", @placeholder = "Nhập website công ty" })
+        @Html.TextBoxFor(m => m.tblBDSNew.WebSiteCompany, new { @class = "input1 ", @placeholder = "Nhập website công ty" })
     </div>
 </div>
                     <h4>Loại tin đăng và lịch đăng tin</h4>
@@ -229,12 +229,12 @@
 
 
                     <ul class="radio idTabs idTabs-1 ">
-                        @foreach (var typeNews in Model.Listbdsnewstype)
+                        @foreach (var typeNews in Model.ListBDSNewsType)
                         {
                             <li>
                                 <a href="#@typeNews.CodeNewsType" class="radioType">
                                     <label>
-                                        <input type="radio" value="@typeNews.Id" class="radioIdType" name="tblbdsnew.IdTypeNews">@typeNews.Name
+                                        <input type="radio" value="@typeNews.ID" class="radioIdType" name="tblBDSNew.IdTypeNews">@typeNews.Name
                                     </label>
                                 </a>
                             </li>
@@ -243,7 +243,7 @@
 
                     </ul>
                     <div class="content_tab-1">
-                        @foreach (var typeNews in Model.Listbdsnewstype)
+                        @foreach (var typeNews in Model.ListBDSNewsType)
                         {
                             if (typeNews.CodeNewsType == "TDB")
                             {
@@ -380,13 +380,13 @@
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                @Html.TextBoxFor(m => m.tblbdsnew.FromCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
 
 
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                @Html.TextBoxFor(m => m.tblbdsnew.ToCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
 
 
                             </div>
@@ -447,7 +447,7 @@
         </div>
     </div>
     <input type="hidden" name="cfile" />
-    <input type="hidden" name="tblbdsnew.Id" class="idProduct_" value="@Model.tblbdsnew.Id" />
+    <input type="hidden" name="tblBDSNew.ID" class="idProduct_" value="@Model.tblBDSNew.ID" />
     <input type="hidden" name="nameImg" />
 }
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
@@ -469,7 +469,7 @@
         $.each(listItem, function (i, o) {
             uu += o + ',';
         });
-        $('#tblbdsnew_Career').val(uu);
+        $('#tblBDSNew_Career').val(uu);
         console.log(uu);
         
     });
@@ -677,16 +677,16 @@
             toastr.error('Vui lòng nhập Mã an toàn!');
             t++;
         }
-        if (  $('#tblbdsnew_FromCreateNews').val()>$('#tblbdsnew_ToCreateNews').val()) {
+        if (  $('#tblBDSNew_FromCreateNews').val()>$('#tblBDSNew_ToCreateNews').val()) {
             toastr.error('Ngày bất đầu không được lớn hơn ngày kết thúc!');
             t++;
         }
 
-        if ($('#tblbdsnew_ToCreateNews').val() == "") {
+        if ($('#tblBDSNew_ToCreateNews').val() == "") {
             toastr.error('Vui lòng nhập Ngày kết thúc đăng tin!');
             t++;
         }
-if ($('#tblbdsnew_FromCreateNews').val() == "") {
+if ($('#tblBDSNew_FromCreateNews').val() == "") {
             toastr.error('Vui lòng nhập Ngày bất đầu đăng tin!');
             t++;
         }
@@ -698,15 +698,15 @@ if ($('#tblbdsnew_FromCreateNews').val() == "") {
         
        
 
-         if ($('#tblbdsnew_Benefit').val() == "") {
+         if ($('#tblBDSNew_Benefit').val() == "") {
             toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
             t++;
          }
-        if ($('#tblbdsnew_DesWork').val() == "") {
+        if ($('#tblBDSNew_DesWork').val() == "") {
             toastr.error('Vui lòng nhập Mô tả công việc!');
             t++;
         }
-         if ($('#tblbdsnew_DesCompany').val() == "") {
+         if ($('#tblBDSNew_DesCompany').val() == "") {
             toastr.error('Vui lòng nhập Giới thiệu công ty!');
             t++;
         }
@@ -715,16 +715,16 @@ if ($('#tblbdsnew_FromCreateNews').val() == "") {
              toastr.error('Chỉ chọn được 3 việc làm!');
              t++;
          }
-        if ($('#tblbdsnew_IdEducation').val() == "") {
+        if ($('#tblBDSNew_IdEducation').val() == "") {
             toastr.error('Vui lòng chọn trình độ!');
             t++;
         }
-        if ($('#tblbdsnew_IdTimeWork').val() == "") {
+        if ($('#tblBDSNew_IdTimeWork').val() == "") {
             toastr.error('Vui lòng chọn kinh nghiệm!');
             t++;
         }
         
-if ($('#tblbdsnew_Bonus').val() == "") {
+if ($('#tblBDSNew_Bonus').val() == "") {
             toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
             t++;
         } 
@@ -740,10 +740,10 @@ if ($('#tblbdsnew_Bonus').val() == "") {
             toastr.error('Vui lòng chọn mức lương từ!');
             t++;
         }
-        if ($('#tblbdsnew_AddressWork').val() == 0) {
+        if ($('#tblBDSNew_AddressWork').val() == 0) {
             toastr.error('Vui lòng chọn nơi làm việc!');
             t++;
-        } if ($('#tblbdsnew_Title').val() == "") {
+        } if ($('#tblBDSNew_Title').val() == "") {
             toastr.error('Vui lòng nhập Tiêu đề!');
             t++;
         }

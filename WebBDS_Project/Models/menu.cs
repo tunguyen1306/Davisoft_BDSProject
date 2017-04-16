@@ -12,11 +12,11 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class menu
+    public partial class Menu
     {
-        public menu()
+        public Menu()
         {
-            this.roles = new HashSet<role>();
+            this.Roles = new HashSet<Role>();
         }
     
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace WebBDS_Project.Models
         public int Order { get; set; }
         public int ParentID { get; set; }
     
-        public virtual ICollection<role> roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }
