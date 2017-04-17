@@ -12,7 +12,7 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdscomment
+    public partial class BDSComment
     {
         public int Id { get; set; }
         public string Name { get; set; }

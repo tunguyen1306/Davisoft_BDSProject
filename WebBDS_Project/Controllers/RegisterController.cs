@@ -15,7 +15,7 @@ namespace WebBDS_Project.Controllers
 {
     public class RegisterController : Controller
     {
-        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+        davisoft_bdsprojectEntities2 db = new davisoft_bdsprojectEntities2();
         //
         // GET: /Register/
 

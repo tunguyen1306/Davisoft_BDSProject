@@ -12,7 +12,7 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdsemper
+    public partial class BDSEmper
     {
         public int Id { get; set; }
         public int IdAccountEm { get; set; }

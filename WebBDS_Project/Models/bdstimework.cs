@@ -12,22 +12,22 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdstimework
+    public partial class BDSTimeWork
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-        public string NameEX { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
-        public Nullable<int> FromTime { get; set; }
-        public Nullable<int> ToTime { get; set; }
+        public int FromTime { get; set; }
+        public int ToTime { get; set; }
         public int Type { get; set; }
         public int Perfix { get; set; }
-        public Nullable<short> Default { get; set; }
-        public Nullable<int> Active { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public string CreateUser { get; set; }
+        public int Default { get; set; }
+        public int Active { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public string ModifiedUser { get; set; }
+        public Nullable<int> ModifiedUser { get; set; }
+        public string NameEX { get; set; }
     }
 }

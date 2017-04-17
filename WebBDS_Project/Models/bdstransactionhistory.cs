@@ -12,20 +12,20 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdstransactionhistory
+    public partial class BDSTransactionHistory
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
-        public Nullable<int> Active { get; set; }
+        public int TypeTran { get; set; }
+        public System.DateTime DateTran { get; set; }
+        public int PointTran { get; set; }
+        public double MoneyTran { get; set; }
+        public int Active { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
-        public Nullable<int> TypeTran { get; set; }
-        public Nullable<System.DateTime> DateTran { get; set; }
-        public Nullable<int> PointTran { get; set; }
-        public Nullable<decimal> MoneyTran { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace WebBDS_Project.Controllers
     {
         //
         // GET: /Login/
-        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+        davisoft_bdsprojectEntities2 db = new davisoft_bdsprojectEntities2();
         public ActionResult Login(BdsAcountModel acountModel)
         {
             Session["IdUser"] = null;

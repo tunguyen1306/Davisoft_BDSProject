@@ -12,9 +12,14 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdsnew
+    public partial class BDSNew
     {
-        public int Id { get; set; }
+        public BDSNew()
+        {
+            this.BDSPictures = new HashSet<BDSPicture>();
+        }
+    
+        public int ID { get; set; }
         public string Title { get; set; }
         public Nullable<int> AddressWork { get; set; }
         public Nullable<int> FromSalary { get; set; }
@@ -45,18 +50,20 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> ToCreateNews { get; set; }
         public Nullable<int> IdAcount { get; set; }
         public string KeySearch { get; set; }
-        public Nullable<int> Active { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
-        public Nullable<int> CreateUser { get; set; }
-        public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> ModifiedUser { get; set; }
-        public Nullable<decimal> MoneyInDay { get; set; }
-        public Nullable<decimal> TotalMoney { get; set; }
+        public Nullable<double> MoneyInDay { get; set; }
+        public Nullable<double> TotalMoney { get; set; }
         public string UrlImage { get; set; }
         public Nullable<int> IdTypeNewsCuurent { get; set; }
         public Nullable<System.DateTime> DateReup { get; set; }
         public Nullable<int> CountReup { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<int> RefTranHis { get; set; }
+        public Nullable<int> Active { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> CreateUser { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<int> ModifiedUser { get; set; }
+    
+        public virtual ICollection<BDSPicture> BDSPictures { get; set; }
     }
 }

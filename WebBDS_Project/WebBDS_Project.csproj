@@ -243,9 +243,6 @@
     <Compile Include="Models\Currency.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DataWebBDS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

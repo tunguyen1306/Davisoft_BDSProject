@@ -13,10 +13,10 @@ namespace WebBDS_Project.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class davisoft_bdsprojectEntities : DbContext
+    public partial class davisoft_bdsprojectEntities2 : DbContext
     {
-        public davisoft_bdsprojectEntities()
-            : base("name=davisoft_bdsprojectEntities")
+        public davisoft_bdsprojectEntities2()
+            : base("name=davisoft_bdsprojectEntities2")
         {
         }
     
@@ -25,50 +25,49 @@ namespace WebBDS_Project.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<C__migrationhistory> C__migrationhistory { get; set; }
-        public DbSet<audit> audits { get; set; }
-        public DbSet<bdsaccount> bdsaccounts { get; set; }
-        public DbSet<bdsarea> bdsareas { get; set; }
-        public DbSet<bdsbank> bdsbanks { get; set; }
-        public DbSet<bdsbranch> bdsbranches { get; set; }
-        public DbSet<bdscareer> bdscareers { get; set; }
-        public DbSet<bdscomment> bdscomments { get; set; }
-        public DbSet<bdseducation> bdseducations { get; set; }
-        public DbSet<bdsemper> bdsempers { get; set; }
-        public DbSet<bdsemployerinformation> bdsemployerinformations { get; set; }
-        public DbSet<bdsevent> bdsevents { get; set; }
-        public DbSet<bdsextnew> bdsextnews { get; set; }
-        public DbSet<bdslanguage> bdslanguages { get; set; }
-        public DbSet<bdsmarriage> bdsmarriages { get; set; }
-        public DbSet<bdsnew> bdsnews { get; set; }
-        public DbSet<bdsnewstypeprice> bdsnewstypeprices { get; set; }
-        public DbSet<bdsnewstype> bdsnewstypes { get; set; }
-        public DbSet<bdspersonalinformation> bdspersonalinformations { get; set; }
-        public DbSet<bdspicture> bdspictures { get; set; }
-        public DbSet<bdssalary> bdssalaries { get; set; }
-        public DbSet<bdsscope> bdsscopes { get; set; }
-        public DbSet<bdstimework> bdstimeworks { get; set; }
-        public DbSet<bdstransactionhistory> bdstransactionhistories { get; set; }
-        public DbSet<bdstransaction> bdstransactions { get; set; }
-        public DbSet<bdstypecontact> bdstypecontacts { get; set; }
-        public DbSet<branch> branches { get; set; }
-        public DbSet<counter> counters { get; set; }
-        public DbSet<country> countries { get; set; }
-        public DbSet<countrytext> countrytexts { get; set; }
-        public DbSet<currency> currencies { get; set; }
-        public DbSet<district> districts { get; set; }
-        public DbSet<districttext> districttexts { get; set; }
-        public DbSet<holiday> holidays { get; set; }
-        public DbSet<language> languages { get; set; }
-        public DbSet<location> locations { get; set; }
-        public DbSet<locationtext> locationtexts { get; set; }
-        public DbSet<menu> menus { get; set; }
-        public DbSet<permission> permissions { get; set; }
-        public DbSet<role> roles { get; set; }
-        public DbSet<setting> settings { get; set; }
-        public DbSet<state> states { get; set; }
-        public DbSet<stateText> stateTexts { get; set; }
-        public DbSet<user> users { get; set; }
-        public DbSet<bdsapply> bdsapplies { get; set; }
+        public DbSet<Audit> Audits { get; set; }
+        public DbSet<BDSAccount> BDSAccounts { get; set; }
+        public DbSet<BDSApply> BDSApplies { get; set; }
+        public DbSet<BDSArea> BDSAreas { get; set; }
+        public DbSet<BDSBank> BDSBanks { get; set; }
+        public DbSet<BDSBranch> BDSBranches { get; set; }
+        public DbSet<BDSCareer> BDSCareers { get; set; }
+        public DbSet<BDSComment> BDSComments { get; set; }
+        public DbSet<BDSEducation> BDSEducations { get; set; }
+        public DbSet<BDSEmper> BDSEmpers { get; set; }
+        public DbSet<BDSEmployerInformation> BDSEmployerInformations { get; set; }
+        public DbSet<BDSEvent> BDSEvents { get; set; }
+        public DbSet<BDSExtNew> BDSExtNews { get; set; }
+        public DbSet<BDSLanguage> BDSLanguages { get; set; }
+        public DbSet<BDSMarriage> BDSMarriages { get; set; }
+        public DbSet<BDSNew> BDSNews { get; set; }
+        public DbSet<BDSNewsTypePrice> BDSNewsTypePrices { get; set; }
+        public DbSet<BDSNewsType> BDSNewsTypes { get; set; }
+        public DbSet<BDSPersonalInformation> BDSPersonalInformations { get; set; }
+        public DbSet<BDSPicture> BDSPictures { get; set; }
+        public DbSet<BDSSalary> BDSSalaries { get; set; }
+        public DbSet<BDSScope> BDSScopes { get; set; }
+        public DbSet<BDSTimeWork> BDSTimeWorks { get; set; }
+        public DbSet<BDSTransactionHistory> BDSTransactionHistories { get; set; }
+        public DbSet<BDSTransaction> BDSTransactions { get; set; }
+        public DbSet<BDSTypeContact> BDSTypeContacts { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Counter> Counters { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<CountryText> CountryTexts { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<DistrictText> DistrictTexts { get; set; }
+        public DbSet<Holiday> Holidays { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<LocationText> LocationTexts { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<StateText> StateTexts { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

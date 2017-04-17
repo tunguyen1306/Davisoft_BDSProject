@@ -12,19 +12,19 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bdsnewstypeprice
+    public partial class BDSNewsTypePrice
     {
-        public int Id { get; set; }
-        public string Description { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-        public int IdNewsType { get; set; }
-        public decimal Price { get; set; }
-        public Nullable<System.DateTime> ApplyPrice { get; set; }
-        public Nullable<int> Perfix { get; set; }
+        public string Description { get; set; }
         public string KeySearch { get; set; }
+        public int IdNewsType { get; set; }
+        public double Price { get; set; }
+        public System.DateTime ApplyPrice { get; set; }
+        public int Perfix { get; set; }
         public int Active { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public int CreateUser { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
     }
