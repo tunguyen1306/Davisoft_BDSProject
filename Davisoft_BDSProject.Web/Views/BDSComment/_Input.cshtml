@@ -1,0 +1,49 @@
+﻿@using Davisoft_BDSProject.Web
+@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSComment
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSComment_NameComment", "Name") <span class="required">*</span></label>
+    <div class="col-md-3">
+        @Html.Bootstrap().TextBoxFor(m => m.NameComment).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+    
+    <label class="control-label col-md-2">@Utilities.Resource("BDSComment_DateComment", "Date") <span class="required">*</span></label>
+    <div class="col-md-3">
+        @Html.DateTextBoxFor(m => m.DateComment, MvcApplication.DateTimeFormat.ShortDatePattern, new { @class = "form-control datepicker" })
+        @Html.ValidationMessageFor(T=>T.DateComment)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSComment_CompanyComment", "Company") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.CompanyComment).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSComment_TextComment", "Comment")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.TextComment).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSComment_DescriptionComment", "Description")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.DescriptionComment).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+    </div>
+</div>
+
+
+@Html.HiddenFor(m => m.Name)
+@Html.HiddenFor(m => m.Description)
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+@Html.HiddenFor(m => m.ApproveUser)
+@Html.HiddenFor(m => m.Status)

@@ -26,7 +26,6 @@ namespace Davisoft_BDSProject.Web.Models
         }
     
         public DbSet<BDSApply> BDSApplies { get; set; }
-        public DbSet<BDSComment> BDSComments { get; set; }
         public DbSet<BDSEmper> BDSEmpers { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<CountryText> CountryTexts { get; set; }

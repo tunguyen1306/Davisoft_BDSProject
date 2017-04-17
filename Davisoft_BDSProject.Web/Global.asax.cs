@@ -108,7 +108,7 @@ namespace Davisoft_BDSProject.Web
             {
             
             }
-            MiniProfiler.Start();
+          //  MiniProfiler.Start();
 /*
             if (Request.IsLocal)
                MiniProfiler.Start();*/

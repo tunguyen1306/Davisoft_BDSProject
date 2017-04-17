@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="22ae950e0f2343f1a76ccb58dc080219" Name="Diagram1">
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSApply" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSComment" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSEmper" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.Country" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.CountryText" Width="1.5" PointX="6.75" PointY="5.75" />

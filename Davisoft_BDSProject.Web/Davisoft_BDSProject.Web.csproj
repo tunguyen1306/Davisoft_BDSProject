@@ -342,6 +342,7 @@
     <Compile Include="Controllers\AdminDistrictController.cs" />
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\BDSAccountController.cs" />
+    <Compile Include="Controllers\BDSCommentController.cs" />
     <Compile Include="Controllers\BDSExtNewsController.cs" />
     <Compile Include="Controllers\BDSBranchController.cs" />
     <Compile Include="Controllers\BDSTransactionController.cs" />
@@ -364,9 +365,6 @@
     <Compile Include="Helpers\UrlFriendly.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Models\BDSApply.cs">
-      <DependentUpon>EFModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BDSComment.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSEmper.cs">
@@ -503,6 +501,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Validation\BDSAccountValidator.cs" />
+    <Compile Include="Validation\BDSCommentValidator.cs" />
     <Compile Include="Validation\BDSExtNewsValidator.cs" />
     <Compile Include="Validation\BDSTransactionValidator.cs" />
     <Compile Include="Validation\BDSBranchValidator.cs" />
@@ -3120,6 +3119,10 @@
     <Content Include="Views\BDSExtNews\Index.cshtml" />
     <Content Include="Views\Home\IndexPendingExtNews.cshtml" />
     <Content Include="Views\BDSExtNews\Review.cshtml" />
+    <Content Include="Views\BDSComment\Create.cshtml" />
+    <Content Include="Views\BDSComment\Edit.cshtml" />
+    <Content Include="Views\BDSComment\Index.cshtml" />
+    <Content Include="Views\BDSComment\_Input.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

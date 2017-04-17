@@ -10,6 +10,7 @@ using Davisoft_BDSProject.Domain.Abstract;
 using Davisoft_BDSProject.Domain.Entities;
 using Davisoft_BDSProject.Domain.Helpers;
 using Davisoft_BDSProject.Web.Infrastructure.Filters;
+using Davisoft_BDSProject.Web.Infrastructure.Utility;
 using Davisoft_BDSProject.Web.Models;
 using Resources;
 
@@ -190,7 +191,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                 file.SaveAs(path1);
             }
             model.UrlImage = fileNameFull;
-
+            model.ApproveDate = DateTime.Now;
+            model.ApproveUser = CurrentUser.Identity.ID;
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

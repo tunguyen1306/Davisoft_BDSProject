@@ -64,6 +64,7 @@ namespace Davisoft_BDSProject.Domain
         public DbSet<BDSTransactionHistory> BDSTransactionHistories { get; set; }
 
         public DbSet<BDSExtNews> BDSExtNews { get; set; }
+        public DbSet<BDSComment> BDSComments { get; set; }
         protected override void OnModelCreating(DbModelBuilder mb)
         {
             //EnumerationTypeConfiguration.Apply(this, mb);
