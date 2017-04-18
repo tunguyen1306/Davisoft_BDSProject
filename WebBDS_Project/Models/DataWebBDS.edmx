@@ -1153,7 +1153,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataWebBDS" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="davisoft_bdsprojectEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="davisoft_bdsprojectEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Audits" EntityType="DataWebBDS.Audit" />
           <EntitySet Name="BDSAccounts" EntityType="DataWebBDS.BDSAccount" />
           <EntitySet Name="BDSApplies" EntityType="DataWebBDS.BDSApply" />
@@ -2184,7 +2184,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DataWebBDSStoreContainer" CdmEntityContainer="davisoft_bdsprojectEntities2">
+        <EntityContainerMapping StorageEntityContainer="DataWebBDSStoreContainer" CdmEntityContainer="davisoft_bdsprojectEntities">
           <EntitySetMapping Name="Audits">
             <EntityTypeMapping TypeName="DataWebBDS.Audit">
               <MappingFragment StoreEntitySet="Audits">

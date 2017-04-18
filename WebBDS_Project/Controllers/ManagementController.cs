@@ -14,7 +14,7 @@ namespace WebBDS_Project.Controllers
     {
         //
         // GET: /Management/
-        davisoft_bdsprojectEntities2 db = new davisoft_bdsprojectEntities2();
+        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
          [ActionName("ManagementCompany")]
         public ActionResult ManagementCompany()
         {
