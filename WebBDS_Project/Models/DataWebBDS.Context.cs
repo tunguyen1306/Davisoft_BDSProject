@@ -13,10 +13,10 @@ namespace WebBDS_Project.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class davisoft_bdsprojectEntities2 : DbContext
+    public partial class davisoft_bdsprojectEntities : DbContext
     {
-        public davisoft_bdsprojectEntities2()
-            : base("name=davisoft_bdsprojectEntities2")
+        public davisoft_bdsprojectEntities()
+            : base("name=davisoft_bdsprojectEntities")
         {
         }
     

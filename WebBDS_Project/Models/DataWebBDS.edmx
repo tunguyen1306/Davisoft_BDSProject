@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DataWebBDS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DataWebBDS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Audits">
           <Key>
             <PropertyRef Name="ID" />
@@ -1149,116 +1149,11 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataWebBDS" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="davisoft_bdsprojectEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Audits" EntityType="DataWebBDS.Audit" />
-          <EntitySet Name="BDSAccounts" EntityType="DataWebBDS.BDSAccount" />
-          <EntitySet Name="BDSApplies" EntityType="DataWebBDS.BDSApply" />
-          <EntitySet Name="BDSAreas" EntityType="DataWebBDS.BDSArea" />
-          <EntitySet Name="BDSBanks" EntityType="DataWebBDS.BDSBank" />
-          <EntitySet Name="BDSBranches" EntityType="DataWebBDS.BDSBranch" />
-          <EntitySet Name="BDSCareers" EntityType="DataWebBDS.BDSCareer" />
-          <EntitySet Name="BDSComments" EntityType="DataWebBDS.BDSComment" />
-          <EntitySet Name="BDSEducations" EntityType="DataWebBDS.BDSEducation" />
-          <EntitySet Name="BDSEmpers" EntityType="DataWebBDS.BDSEmper" />
-          <EntitySet Name="BDSEmployerInformations" EntityType="DataWebBDS.BDSEmployerInformation" />
-          <EntitySet Name="BDSEvents" EntityType="DataWebBDS.BDSEvent" />
-          <EntitySet Name="BDSExtNews" EntityType="DataWebBDS.BDSExtNew" />
-          <EntitySet Name="BDSLanguages" EntityType="DataWebBDS.BDSLanguage" />
-          <EntitySet Name="BDSMarriages" EntityType="DataWebBDS.BDSMarriage" />
-          <EntitySet Name="BDSNews" EntityType="DataWebBDS.BDSNew" />
-          <EntitySet Name="BDSNewsTypePrices" EntityType="DataWebBDS.BDSNewsTypePrice" />
-          <EntitySet Name="BDSNewsTypes" EntityType="DataWebBDS.BDSNewsType" />
-          <EntitySet Name="BDSPersonalInformations" EntityType="DataWebBDS.BDSPersonalInformation" />
-          <EntitySet Name="BDSPictures" EntityType="DataWebBDS.BDSPicture" />
-          <EntitySet Name="BDSSalaries" EntityType="DataWebBDS.BDSSalary" />
-          <EntitySet Name="BDSScopes" EntityType="DataWebBDS.BDSScope" />
-          <EntitySet Name="BDSTimeWorks" EntityType="DataWebBDS.BDSTimeWork" />
-          <EntitySet Name="BDSTransactionHistories" EntityType="DataWebBDS.BDSTransactionHistory" />
-          <EntitySet Name="BDSTransactions" EntityType="DataWebBDS.BDSTransaction" />
-          <EntitySet Name="BDSTypeContacts" EntityType="DataWebBDS.BDSTypeContact" />
-          <EntitySet Name="Branches" EntityType="DataWebBDS.Branch" />
-          <EntitySet Name="Counters" EntityType="DataWebBDS.Counter" />
-          <EntitySet Name="Countries" EntityType="DataWebBDS.Country" />
-          <EntitySet Name="CountryTexts" EntityType="DataWebBDS.CountryText" />
-          <EntitySet Name="Currencies" EntityType="DataWebBDS.Currency" />
-          <EntitySet Name="Districts" EntityType="DataWebBDS.District" />
-          <EntitySet Name="DistrictTexts" EntityType="DataWebBDS.DistrictText" />
-          <EntitySet Name="Holidays" EntityType="DataWebBDS.Holiday" />
-          <EntitySet Name="Languages" EntityType="DataWebBDS.Language" />
-          <EntitySet Name="Locations" EntityType="DataWebBDS.Location" />
-          <EntitySet Name="LocationTexts" EntityType="DataWebBDS.LocationText" />
-          <EntitySet Name="Menus" EntityType="DataWebBDS.Menu" />
-          <EntitySet Name="Permissions" EntityType="DataWebBDS.Permission" />
-          <EntitySet Name="Roles" EntityType="DataWebBDS.Role" />
-          <EntitySet Name="Settings" EntityType="DataWebBDS.Setting" />
-          <EntitySet Name="States" EntityType="DataWebBDS.State" />
-          <EntitySet Name="StateTexts" EntityType="DataWebBDS.StateText" />
-          <EntitySet Name="Users" EntityType="DataWebBDS.User" />
-          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount">
-            <End Role="BDSAccount" EntitySet="BDSAccounts" />
-            <End Role="BDSTransaction" EntitySet="BDSTransactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" Association="DataWebBDS.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea">
-            <End Role="BDSArea" EntitySet="BDSAreas" />
-            <End Role="BDSBranch" EntitySet="BDSBranches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank">
-            <End Role="BDSBank" EntitySet="BDSBanks" />
-            <End Role="BDSTransaction" EntitySet="BDSTransactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch">
-            <End Role="BDSBranch" EntitySet="BDSBranches" />
-            <End Role="BDSTransaction" EntitySet="BDSTransactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_BDSPictures_dbo_BDSNews_advert_id" Association="DataWebBDS.FK_dbo_BDSPictures_dbo_BDSNews_advert_id">
-            <End Role="BDSNew" EntitySet="BDSNews" />
-            <End Role="BDSPicture" EntitySet="BDSPictures" />
-          </AssociationSet>
-          <AssociationSet Name="counters_Counter_Branch" Association="DataWebBDS.counters_Counter_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="Counter" EntitySet="Counters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Counters_dbo_Branches_BranchID" Association="DataWebBDS.FK_dbo_Counters_dbo_Branches_BranchID">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="Counter" EntitySet="Counters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Users_dbo_Branches_BranchID" Association="DataWebBDS.FK_dbo_Users_dbo_Branches_BranchID">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="users_User_Branch" Association="DataWebBDS.users_User_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Users_dbo_Languages_LanguageID" Association="DataWebBDS.FK_dbo_Users_dbo_Languages_LanguageID">
-            <End Role="Language" EntitySet="Languages" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="users_User_Language" Association="DataWebBDS.users_User_Language">
-            <End Role="Language" EntitySet="Languages" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="Menus_Roles" Association="DataWebBDS.Menus_Roles">
-            <End Role="Menu" EntitySet="Menus" />
-            <End Role="Role" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="Roles_Permissions" Association="DataWebBDS.Roles_Permissions">
-            <End Role="Permission" EntitySet="Permissions" />
-            <End Role="Role" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="Users_Branches" Association="DataWebBDS.Users_Branches">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="Users_Roles" Association="DataWebBDS.Users_Roles">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Audit">
           <Key>
             <PropertyRef Name="ID" />
@@ -1293,7 +1188,7 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
-          <NavigationProperty Name="BDSTransactions" Relationship="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" FromRole="BDSAccount" ToRole="BDSTransaction" />
+          <NavigationProperty Name="BDSTransactions" Relationship="Self.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" FromRole="BDSAccounts" ToRole="BDSTransactions" />
         </EntityType>
         <EntityType Name="BDSApply">
           <Key>
@@ -1327,7 +1222,7 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
-          <NavigationProperty Name="BDSBranches" Relationship="DataWebBDS.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" FromRole="BDSArea" ToRole="BDSBranch" />
+          <NavigationProperty Name="BDSBranches" Relationship="Self.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" FromRole="BDSAreas" ToRole="BDSBranches" />
         </EntityType>
         <EntityType Name="BDSBank">
           <Key>
@@ -1347,7 +1242,7 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
-          <NavigationProperty Name="BDSTransactions" Relationship="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" FromRole="BDSBank" ToRole="BDSTransaction" />
+          <NavigationProperty Name="BDSTransactions" Relationship="Self.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" FromRole="BDSBanks" ToRole="BDSTransactions" />
         </EntityType>
         <EntityType Name="BDSBranch">
           <Key>
@@ -1366,8 +1261,8 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
-          <NavigationProperty Name="BDSArea" Relationship="DataWebBDS.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" FromRole="BDSBranch" ToRole="BDSArea" />
-          <NavigationProperty Name="BDSTransactions" Relationship="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" FromRole="BDSBranch" ToRole="BDSTransaction" />
+          <NavigationProperty Name="BDSArea" Relationship="Self.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" FromRole="BDSBranches" ToRole="BDSAreas" />
+          <NavigationProperty Name="BDSTransactions" Relationship="Self.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" FromRole="BDSBranches" ToRole="BDSTransactions" />
         </EntityType>
         <EntityType Name="BDSCareer">
           <Key>
@@ -1388,7 +1283,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Int32" Nullable="false" />
@@ -1586,7 +1481,7 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
-          <NavigationProperty Name="BDSPictures" Relationship="DataWebBDS.FK_dbo_BDSPictures_dbo_BDSNews_advert_id" FromRole="BDSNew" ToRole="BDSPicture" />
+          <NavigationProperty Name="BDSPictures" Relationship="Self.FK_dbo_BDSPictures_dbo_BDSNews_advert_id" FromRole="BDSNews" ToRole="BDSPictures" />
         </EntityType>
         <EntityType Name="BDSNewsTypePrice">
           <Key>
@@ -1678,7 +1573,7 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
-          <NavigationProperty Name="BDSNew" Relationship="DataWebBDS.FK_dbo_BDSPictures_dbo_BDSNews_advert_id" FromRole="BDSPicture" ToRole="BDSNew" />
+          <NavigationProperty Name="BDSNew" Relationship="Self.FK_dbo_BDSPictures_dbo_BDSNews_advert_id" FromRole="BDSPictures" ToRole="BDSNews" />
         </EntityType>
         <EntityType Name="BDSSalary">
           <Key>
@@ -1774,9 +1669,9 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
-          <NavigationProperty Name="BDSAccount" Relationship="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" FromRole="BDSTransaction" ToRole="BDSAccount" />
-          <NavigationProperty Name="BDSBank" Relationship="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" FromRole="BDSTransaction" ToRole="BDSBank" />
-          <NavigationProperty Name="BDSBranch" Relationship="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" FromRole="BDSTransaction" ToRole="BDSBranch" />
+          <NavigationProperty Name="BDSAccount" Relationship="Self.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" FromRole="BDSTransactions" ToRole="BDSAccounts" />
+          <NavigationProperty Name="BDSBank" Relationship="Self.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" FromRole="BDSTransactions" ToRole="BDSBanks" />
+          <NavigationProperty Name="BDSBranch" Relationship="Self.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" FromRole="BDSTransactions" ToRole="BDSBranches" />
         </EntityType>
         <EntityType Name="BDSTypeContact">
           <Key>
@@ -1810,11 +1705,11 @@
           <Property Name="DeletedTime" Type="DateTime" Precision="3" />
           <Property Name="EntityStatus_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EntityStatus_DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Counters" Relationship="DataWebBDS.counters_Counter_Branch" FromRole="Branch" ToRole="Counter" />
-          <NavigationProperty Name="Counters1" Relationship="DataWebBDS.FK_dbo_Counters_dbo_Branches_BranchID" FromRole="Branch" ToRole="Counter" />
-          <NavigationProperty Name="Users" Relationship="DataWebBDS.FK_dbo_Users_dbo_Branches_BranchID" FromRole="Branch" ToRole="User" />
-          <NavigationProperty Name="Users1" Relationship="DataWebBDS.users_User_Branch" FromRole="Branch" ToRole="User" />
-          <NavigationProperty Name="Users2" Relationship="DataWebBDS.Users_Branches" FromRole="Branch" ToRole="User" />
+          <NavigationProperty Name="Counters" Relationship="Self.counters_Counter_Branch" FromRole="Branches" ToRole="Counters" />
+          <NavigationProperty Name="Counters1" Relationship="Self.FK_dbo_Counters_dbo_Branches_BranchID" FromRole="Branches" ToRole="Counters" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_Branches_BranchID" FromRole="Branches" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.users_User_Branch" FromRole="Branches" ToRole="Users" />
+          <NavigationProperty Name="Users2" Relationship="Self.Users_Branches" FromRole="Branches" ToRole="Users" />
         </EntityType>
         <EntityType Name="Counter">
           <Key>
@@ -1824,14 +1719,14 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="BranchID" Type="Int32" />
-          <NavigationProperty Name="Branch" Relationship="DataWebBDS.counters_Counter_Branch" FromRole="Counter" ToRole="Branch" />
-          <NavigationProperty Name="Branch1" Relationship="DataWebBDS.FK_dbo_Counters_dbo_Branches_BranchID" FromRole="Counter" ToRole="Branch" />
+          <NavigationProperty Name="Branch" Relationship="Self.counters_Counter_Branch" FromRole="Counters" ToRole="Branches" />
+          <NavigationProperty Name="Branch1" Relationship="Self.FK_dbo_Counters_dbo_Branches_BranchID" FromRole="Counters" ToRole="Branches" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="countryCode" />
           </Key>
-          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="countryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="name_id" Type="Int32" Nullable="false" />
           <Property Name="languages" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="rowguid" Type="Guid" Nullable="false" />
@@ -1842,8 +1737,8 @@
             <PropertyRef Name="language_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="language_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="rowguid" Type="Guid" Nullable="false" />
         </EntityType>
         <EntityType Name="Currency">
@@ -1874,8 +1769,8 @@
             <PropertyRef Name="language_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="language_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="rowguid" Type="Guid" Nullable="false" />
         </EntityType>
         <EntityType Name="Holiday">
@@ -1895,15 +1790,15 @@
           <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="DataWebBDS.FK_dbo_Users_dbo_Languages_LanguageID" FromRole="Language" ToRole="User" />
-          <NavigationProperty Name="Users1" Relationship="DataWebBDS.users_User_Language" FromRole="Language" ToRole="User" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_Languages_LanguageID" FromRole="Languages" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.users_User_Language" FromRole="Languages" ToRole="Users" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
             <PropertyRef Name="location_id" />
           </Key>
           <Property Name="location_id" Type="Int32" Nullable="false" />
-          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="countryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="state_id" Type="Int32" Nullable="false" />
           <Property Name="district_id" Type="Int32" />
           <Property Name="name_id" Type="Int32" Nullable="false" />
@@ -1920,8 +1815,8 @@
             <PropertyRef Name="language_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="language_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="rowguid" Type="Guid" Nullable="false" />
         </EntityType>
         <EntityType Name="Menu">
@@ -1934,7 +1829,7 @@
           <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Order" Type="Int32" Nullable="false" />
           <Property Name="ParentID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="DataWebBDS.Menus_Roles" FromRole="Menu" ToRole="Role" />
+          <NavigationProperty Name="Roles" Relationship="Self.Menus_Roles" FromRole="Menus" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Permission">
           <Key>
@@ -1944,7 +1839,7 @@
           <Property Name="Target" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Right" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Roles" Relationship="DataWebBDS.Roles_Permissions" FromRole="Permission" ToRole="Role" />
+          <NavigationProperty Name="Roles" Relationship="Self.Roles_Permissions" FromRole="Permissions" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -1955,9 +1850,9 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RoleLevel_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RoleLevel_DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Menus" Relationship="DataWebBDS.Menus_Roles" FromRole="Role" ToRole="Menu" />
-          <NavigationProperty Name="Permissions" Relationship="DataWebBDS.Roles_Permissions" FromRole="Role" ToRole="Permission" />
-          <NavigationProperty Name="Users" Relationship="DataWebBDS.Users_Roles" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="Menus" Relationship="Self.Menus_Roles" FromRole="Roles" ToRole="Menus" />
+          <NavigationProperty Name="Permissions" Relationship="Self.Roles_Permissions" FromRole="Roles" ToRole="Permissions" />
+          <NavigationProperty Name="Users" Relationship="Self.Users_Roles" FromRole="Roles" ToRole="Users" />
         </EntityType>
         <EntityType Name="Setting">
           <Key>
@@ -1979,7 +1874,7 @@
             <PropertyRef Name="state_id" />
           </Key>
           <Property Name="state_id" Type="Int32" Nullable="false" />
-          <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="countryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="name_id" Type="Int32" Nullable="false" />
           <Property Name="stateCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="latitude" Type="Decimal" Precision="9" Scale="5" />
@@ -1996,8 +1891,8 @@
             <PropertyRef Name="language_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="language_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="rowguid" Type="Guid" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -2020,979 +1915,1085 @@
           <Property Name="Status_DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BranchID" Type="Int32" />
           <Property Name="LanguageID" Type="Int32" />
-          <NavigationProperty Name="Branch" Relationship="DataWebBDS.FK_dbo_Users_dbo_Branches_BranchID" FromRole="User" ToRole="Branch" />
-          <NavigationProperty Name="Branch1" Relationship="DataWebBDS.users_User_Branch" FromRole="User" ToRole="Branch" />
-          <NavigationProperty Name="Language" Relationship="DataWebBDS.FK_dbo_Users_dbo_Languages_LanguageID" FromRole="User" ToRole="Language" />
-          <NavigationProperty Name="Language1" Relationship="DataWebBDS.users_User_Language" FromRole="User" ToRole="Language" />
-          <NavigationProperty Name="Branches" Relationship="DataWebBDS.Users_Branches" FromRole="User" ToRole="Branch" />
-          <NavigationProperty Name="Roles" Relationship="DataWebBDS.Users_Roles" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_dbo_Users_dbo_Branches_BranchID" FromRole="Users" ToRole="Branches" />
+          <NavigationProperty Name="Branch1" Relationship="Self.users_User_Branch" FromRole="Users" ToRole="Branches" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Users_dbo_Languages_LanguageID" FromRole="Users" ToRole="Languages" />
+          <NavigationProperty Name="Language1" Relationship="Self.users_User_Language" FromRole="Users" ToRole="Languages" />
+          <NavigationProperty Name="Branches" Relationship="Self.Users_Branches" FromRole="Users" ToRole="Branches" />
+          <NavigationProperty Name="Roles" Relationship="Self.Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount">
-          <End Type="DataWebBDS.BDSAccount" Role="BDSAccount" Multiplicity="1">
+          <End Role="BDSAccounts" Type="Self.BDSAccount" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="DataWebBDS.BDSTransaction" Role="BDSTransaction" Multiplicity="*" />
+          <End Role="BDSTransactions" Type="Self.BDSTransaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BDSAccount">
+            <Principal Role="BDSAccounts">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="BDSTransaction">
+            <Dependent Role="BDSTransactions">
               <PropertyRef Name="IdAccount" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_BDSBranches_dbo_BDSAreas_IdArea">
-          <End Type="DataWebBDS.BDSArea" Role="BDSArea" Multiplicity="1">
+          <End Role="BDSAreas" Type="Self.BDSArea" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="DataWebBDS.BDSBranch" Role="BDSBranch" Multiplicity="*" />
+          <End Role="BDSBranches" Type="Self.BDSBranch" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BDSArea">
+            <Principal Role="BDSAreas">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="BDSBranch">
+            <Dependent Role="BDSBranches">
               <PropertyRef Name="IdArea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank">
-          <End Type="DataWebBDS.BDSBank" Role="BDSBank" Multiplicity="0..1" />
-          <End Type="DataWebBDS.BDSTransaction" Role="BDSTransaction" Multiplicity="*" />
+          <End Role="BDSBanks" Type="Self.BDSBank" Multiplicity="0..1" />
+          <End Role="BDSTransactions" Type="Self.BDSTransaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BDSBank">
+            <Principal Role="BDSBanks">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="BDSTransaction">
+            <Dependent Role="BDSTransactions">
               <PropertyRef Name="IdBank" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch">
-          <End Type="DataWebBDS.BDSBranch" Role="BDSBranch" Multiplicity="0..1" />
-          <End Type="DataWebBDS.BDSTransaction" Role="BDSTransaction" Multiplicity="*" />
+          <End Role="BDSBranches" Type="Self.BDSBranch" Multiplicity="0..1" />
+          <End Role="BDSTransactions" Type="Self.BDSTransaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BDSBranch">
+            <Principal Role="BDSBranches">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="BDSTransaction">
+            <Dependent Role="BDSTransactions">
               <PropertyRef Name="IdBranch" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_BDSPictures_dbo_BDSNews_advert_id">
-          <End Type="DataWebBDS.BDSNew" Role="BDSNew" Multiplicity="0..1" />
-          <End Type="DataWebBDS.BDSPicture" Role="BDSPicture" Multiplicity="*" />
+          <End Role="BDSNews" Type="Self.BDSNew" Multiplicity="0..1" />
+          <End Role="BDSPictures" Type="Self.BDSPicture" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BDSNew">
+            <Principal Role="BDSNews">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="BDSPicture">
+            <Dependent Role="BDSPictures">
               <PropertyRef Name="advert_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="counters_Counter_Branch">
-          <End Type="DataWebBDS.Branch" Role="Branch" Multiplicity="0..1" />
-          <End Type="DataWebBDS.Counter" Role="Counter" Multiplicity="*" />
+          <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Counters" Type="Self.Counter" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Branch">
+            <Principal Role="Branches">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Counter">
+            <Dependent Role="Counters">
               <PropertyRef Name="BranchID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Counters_dbo_Branches_BranchID">
-          <End Type="DataWebBDS.Branch" Role="Branch" Multiplicity="0..1" />
-          <End Type="DataWebBDS.Counter" Role="Counter" Multiplicity="*" />
+          <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Counters" Type="Self.Counter" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Branch">
+            <Principal Role="Branches">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Counter">
+            <Dependent Role="Counters">
               <PropertyRef Name="BranchID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Users_dbo_Branches_BranchID">
-          <End Type="DataWebBDS.Branch" Role="Branch" Multiplicity="0..1" />
-          <End Type="DataWebBDS.User" Role="User" Multiplicity="*" />
+          <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Branch">
+            <Principal Role="Branches">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="User">
+            <Dependent Role="Users">
               <PropertyRef Name="BranchID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="users_User_Branch">
-          <End Type="DataWebBDS.Branch" Role="Branch" Multiplicity="0..1" />
-          <End Type="DataWebBDS.User" Role="User" Multiplicity="*" />
+          <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Branch">
+            <Principal Role="Branches">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="User">
+            <Dependent Role="Users">
               <PropertyRef Name="BranchID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Users_dbo_Languages_LanguageID">
-          <End Type="DataWebBDS.Language" Role="Language" Multiplicity="0..1" />
-          <End Type="DataWebBDS.User" Role="User" Multiplicity="*" />
+          <End Role="Languages" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Language">
+            <Principal Role="Languages">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="User">
+            <Dependent Role="Users">
               <PropertyRef Name="LanguageID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="users_User_Language">
-          <End Type="DataWebBDS.Language" Role="Language" Multiplicity="0..1" />
-          <End Type="DataWebBDS.User" Role="User" Multiplicity="*" />
+          <End Role="Languages" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Language">
+            <Principal Role="Languages">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="User">
+            <Dependent Role="Users">
               <PropertyRef Name="LanguageID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="Menus_Roles">
-          <End Type="DataWebBDS.Menu" Role="Menu" Multiplicity="*" />
-          <End Type="DataWebBDS.Role" Role="Role" Multiplicity="*" />
+          <End Role="Menus" Type="Self.Menu" Multiplicity="*" />
+          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
         </Association>
         <Association Name="Roles_Permissions">
-          <End Type="DataWebBDS.Permission" Role="Permission" Multiplicity="*" />
-          <End Type="DataWebBDS.Role" Role="Role" Multiplicity="*" />
+          <End Role="Permissions" Type="Self.Permission" Multiplicity="*" />
+          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
         </Association>
         <Association Name="Users_Branches">
-          <End Type="DataWebBDS.Branch" Role="Branch" Multiplicity="*" />
-          <End Type="DataWebBDS.User" Role="User" Multiplicity="*" />
+          <End Role="Branches" Type="Self.Branch" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
         </Association>
         <Association Name="Users_Roles">
-          <End Type="DataWebBDS.Role" Role="Role" Multiplicity="*" />
-          <End Type="DataWebBDS.User" Role="User" Multiplicity="*" />
+          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
         </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Audits" EntityType="Self.Audit" />
+          <EntitySet Name="BDSAccounts" EntityType="Self.BDSAccount" />
+          <EntitySet Name="BDSApplies" EntityType="Self.BDSApply" />
+          <EntitySet Name="BDSAreas" EntityType="Self.BDSArea" />
+          <EntitySet Name="BDSBanks" EntityType="Self.BDSBank" />
+          <EntitySet Name="BDSBranches" EntityType="Self.BDSBranch" />
+          <EntitySet Name="BDSCareers" EntityType="Self.BDSCareer" />
+          <EntitySet Name="BDSComments" EntityType="Self.BDSComment" />
+          <EntitySet Name="BDSEducations" EntityType="Self.BDSEducation" />
+          <EntitySet Name="BDSEmpers" EntityType="Self.BDSEmper" />
+          <EntitySet Name="BDSEmployerInformations" EntityType="Self.BDSEmployerInformation" />
+          <EntitySet Name="BDSEvents" EntityType="Self.BDSEvent" />
+          <EntitySet Name="BDSExtNews" EntityType="Self.BDSExtNew" />
+          <EntitySet Name="BDSLanguages" EntityType="Self.BDSLanguage" />
+          <EntitySet Name="BDSMarriages" EntityType="Self.BDSMarriage" />
+          <EntitySet Name="BDSNews" EntityType="Self.BDSNew" />
+          <EntitySet Name="BDSNewsTypePrices" EntityType="Self.BDSNewsTypePrice" />
+          <EntitySet Name="BDSNewsTypes" EntityType="Self.BDSNewsType" />
+          <EntitySet Name="BDSPersonalInformations" EntityType="Self.BDSPersonalInformation" />
+          <EntitySet Name="BDSPictures" EntityType="Self.BDSPicture" />
+          <EntitySet Name="BDSSalaries" EntityType="Self.BDSSalary" />
+          <EntitySet Name="BDSScopes" EntityType="Self.BDSScope" />
+          <EntitySet Name="BDSTimeWorks" EntityType="Self.BDSTimeWork" />
+          <EntitySet Name="BDSTransactionHistories" EntityType="Self.BDSTransactionHistory" />
+          <EntitySet Name="BDSTransactions" EntityType="Self.BDSTransaction" />
+          <EntitySet Name="BDSTypeContacts" EntityType="Self.BDSTypeContact" />
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="Counters" EntityType="Self.Counter" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="CountryTexts" EntityType="Self.CountryText" />
+          <EntitySet Name="Currencies" EntityType="Self.Currency" />
+          <EntitySet Name="Districts" EntityType="Self.District" />
+          <EntitySet Name="DistrictTexts" EntityType="Self.DistrictText" />
+          <EntitySet Name="Holidays" EntityType="Self.Holiday" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="LocationTexts" EntityType="Self.LocationText" />
+          <EntitySet Name="Menus" EntityType="Self.Menu" />
+          <EntitySet Name="Permissions" EntityType="Self.Permission" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="StateTexts" EntityType="Self.StateText" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" Association="Self.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount">
+            <End Role="BDSAccounts" EntitySet="BDSAccounts" />
+            <End Role="BDSTransactions" EntitySet="BDSTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" Association="Self.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea">
+            <End Role="BDSAreas" EntitySet="BDSAreas" />
+            <End Role="BDSBranches" EntitySet="BDSBranches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" Association="Self.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank">
+            <End Role="BDSBanks" EntitySet="BDSBanks" />
+            <End Role="BDSTransactions" EntitySet="BDSTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" Association="Self.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch">
+            <End Role="BDSBranches" EntitySet="BDSBranches" />
+            <End Role="BDSTransactions" EntitySet="BDSTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BDSPictures_dbo_BDSNews_advert_id" Association="Self.FK_dbo_BDSPictures_dbo_BDSNews_advert_id">
+            <End Role="BDSNews" EntitySet="BDSNews" />
+            <End Role="BDSPictures" EntitySet="BDSPictures" />
+          </AssociationSet>
+          <AssociationSet Name="counters_Counter_Branch" Association="Self.counters_Counter_Branch">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Counters" EntitySet="Counters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Counters_dbo_Branches_BranchID" Association="Self.FK_dbo_Counters_dbo_Branches_BranchID">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Counters" EntitySet="Counters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Branches_BranchID" Association="Self.FK_dbo_Users_dbo_Branches_BranchID">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="users_User_Branch" Association="Self.users_User_Branch">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Languages_LanguageID" Association="Self.FK_dbo_Users_dbo_Languages_LanguageID">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="users_User_Language" Association="Self.users_User_Language">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Menus_Roles" Association="Self.Menus_Roles">
+            <End Role="Menus" EntitySet="Menus" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="Roles_Permissions" Association="Self.Roles_Permissions">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="Users_Branches" Association="Self.Users_Branches">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Users_Roles" Association="Self.Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DataWebBDSStoreContainer" CdmEntityContainer="davisoft_bdsprojectEntities2">
+        <EntityContainerMapping StorageEntityContainer="DataWebBDSStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Audits">
             <EntityTypeMapping TypeName="DataWebBDS.Audit">
               <MappingFragment StoreEntitySet="Audits">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ActionId" ColumnName="ActionId" />
-                <ScalarProperty Name="Controller" ColumnName="Controller" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
-                <ScalarProperty Name="TimeAccessed" ColumnName="TimeAccessed" />
-                <ScalarProperty Name="UrlAccessed" ColumnName="UrlAccessed" />
-                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="UrlAccessed" ColumnName="UrlAccessed" />
+                <ScalarProperty Name="TimeAccessed" ColumnName="TimeAccessed" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSAccounts">
             <EntityTypeMapping TypeName="DataWebBDS.BDSAccount">
               <MappingFragment StoreEntitySet="BDSAccounts">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="MailActive" ColumnName="MailActive" />
-                <ScalarProperty Name="Point" ColumnName="Point" />
-                <ScalarProperty Name="Money" ColumnName="Money" />
-                <ScalarProperty Name="Token" ColumnName="Token" />
-                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="MailActive" ColumnName="MailActive" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSApplies">
             <EntityTypeMapping TypeName="DataWebBDS.BDSApply">
               <MappingFragment StoreEntitySet="BDSApply">
-                <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Point" ColumnName="Point" />
-                <ScalarProperty Name="IdNews" ColumnName="IdNews" />
-                <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
-                <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
+                <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
+                <ScalarProperty Name="IdNews" ColumnName="IdNews" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSAreas">
             <EntityTypeMapping TypeName="DataWebBDS.BDSArea">
               <MappingFragment StoreEntitySet="BDSAreas">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSBanks">
             <EntityTypeMapping TypeName="DataWebBDS.BDSBank">
               <MappingFragment StoreEntitySet="BDSBanks">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
-                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSBranches">
             <EntityTypeMapping TypeName="DataWebBDS.BDSBranch">
               <MappingFragment StoreEntitySet="BDSBranches">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="IdArea" ColumnName="IdArea" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Tel" ColumnName="Tel" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IdArea" ColumnName="IdArea" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSCareers">
             <EntityTypeMapping TypeName="DataWebBDS.BDSCareer">
               <MappingFragment StoreEntitySet="BDSCareers">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSComments">
             <EntityTypeMapping TypeName="DataWebBDS.BDSComment">
               <MappingFragment StoreEntitySet="BDSComments">
-                <ScalarProperty Name="CompanyComment" ColumnName="CompanyComment" />
-                <ScalarProperty Name="DescriptionComment" ColumnName="DescriptionComment" />
-                <ScalarProperty Name="NameComment" ColumnName="NameComment" />
-                <ScalarProperty Name="ApproveUser" ColumnName="ApproveUser" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="TextComment" ColumnName="TextComment" />
-                <ScalarProperty Name="DateComment" ColumnName="DateComment" />
-                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="DateComment" ColumnName="DateComment" />
+                <ScalarProperty Name="TextComment" ColumnName="TextComment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ApproveUser" ColumnName="ApproveUser" />
+                <ScalarProperty Name="NameComment" ColumnName="NameComment" />
+                <ScalarProperty Name="DescriptionComment" ColumnName="DescriptionComment" />
+                <ScalarProperty Name="CompanyComment" ColumnName="CompanyComment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSEducations">
             <EntityTypeMapping TypeName="DataWebBDS.BDSEducation">
               <MappingFragment StoreEntitySet="BDSEducations">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSEmpers">
             <EntityTypeMapping TypeName="DataWebBDS.BDSEmper">
               <MappingFragment StoreEntitySet="BDSEmpers">
-                <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Point" ColumnName="Point" />
-                <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
-                <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
+                <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSEmployerInformations">
             <EntityTypeMapping TypeName="DataWebBDS.BDSEmployerInformation">
               <MappingFragment StoreEntitySet="BDSEmployerInformations">
-                <ScalarProperty Name="Featured" ColumnName="Featured" />
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="TypeContact" ColumnName="TypeContact" />
-                <ScalarProperty Name="DistrictContact" ColumnName="DistrictContact" />
-                <ScalarProperty Name="CityContact" ColumnName="CityContact" />
-                <ScalarProperty Name="AddressContact" ColumnName="AddressContact" />
-                <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
-                <ScalarProperty Name="EmailContact" ColumnName="EmailContact" />
-                <ScalarProperty Name="NameContact" ColumnName="NameContact" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Scope" ColumnName="Scope" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="NameContact" ColumnName="NameContact" />
+                <ScalarProperty Name="EmailContact" ColumnName="EmailContact" />
+                <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
+                <ScalarProperty Name="AddressContact" ColumnName="AddressContact" />
+                <ScalarProperty Name="CityContact" ColumnName="CityContact" />
+                <ScalarProperty Name="DistrictContact" ColumnName="DistrictContact" />
+                <ScalarProperty Name="TypeContact" ColumnName="TypeContact" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="Featured" ColumnName="Featured" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSEvents">
             <EntityTypeMapping TypeName="DataWebBDS.BDSEvent">
               <MappingFragment StoreEntitySet="BDSEvents">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="TypeApply" ColumnName="TypeApply" />
-                <ScalarProperty Name="DisPercent" ColumnName="DisPercent" />
-                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
-                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="DisPercent" ColumnName="DisPercent" />
+                <ScalarProperty Name="TypeApply" ColumnName="TypeApply" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSExtNews">
             <EntityTypeMapping TypeName="DataWebBDS.BDSExtNew">
               <MappingFragment StoreEntitySet="BDSExtNews">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
-                <ScalarProperty Name="ApproveUser" ColumnName="ApproveUser" />
-                <ScalarProperty Name="ApproveStatus" ColumnName="ApproveStatus" />
-                <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
-                <ScalarProperty Name="CatExtNews" ColumnName="CatExtNews" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="CatExtNews" ColumnName="CatExtNews" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
+                <ScalarProperty Name="ApproveStatus" ColumnName="ApproveStatus" />
+                <ScalarProperty Name="ApproveUser" ColumnName="ApproveUser" />
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSLanguages">
             <EntityTypeMapping TypeName="DataWebBDS.BDSLanguage">
               <MappingFragment StoreEntitySet="BDSLanguages">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSMarriages">
             <EntityTypeMapping TypeName="DataWebBDS.BDSMarriage">
               <MappingFragment StoreEntitySet="BDSMarriages">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSNews">
             <EntityTypeMapping TypeName="DataWebBDS.BDSNew">
               <MappingFragment StoreEntitySet="BDSNews">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CountReup" ColumnName="CountReup" />
-                <ScalarProperty Name="DateReup" ColumnName="DateReup" />
-                <ScalarProperty Name="IdTypeNewsCuurent" ColumnName="IdTypeNewsCuurent" />
-                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
-                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
-                <ScalarProperty Name="MoneyInDay" ColumnName="MoneyInDay" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="IdAcount" ColumnName="IdAcount" />
-                <ScalarProperty Name="ToCreateNews" ColumnName="ToCreateNews" />
-                <ScalarProperty Name="FromCreateNews" ColumnName="FromCreateNews" />
-                <ScalarProperty Name="IdTypeNews" ColumnName="IdTypeNews" />
-                <ScalarProperty Name="WebSiteCompany" ColumnName="WebSiteCompany" />
-                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
-                <ScalarProperty Name="ToDeadline" ColumnName="ToDeadline" />
-                <ScalarProperty Name="FromDeadline" ColumnName="FromDeadline" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
-                <ScalarProperty Name="NamesContact" ColumnName="NamesContact" />
-                <ScalarProperty Name="AddressApply" ColumnName="AddressApply" />
-                <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
-                <ScalarProperty Name="TimeProbationary" ColumnName="TimeProbationary" />
-                <ScalarProperty Name="ToAge" ColumnName="ToAge" />
-                <ScalarProperty Name="FromAge" ColumnName="FromAge" />
-                <ScalarProperty Name="Benefit" ColumnName="Benefit" />
-                <ScalarProperty Name="DesWork" ColumnName="DesWork" />
-                <ScalarProperty Name="DesCompany" ColumnName="DesCompany" />
-                <ScalarProperty Name="Career" ColumnName="Career" />
-                <ScalarProperty Name="IdEducation" ColumnName="IdEducation" />
-                <ScalarProperty Name="IdTimeWork" ColumnName="IdTimeWork" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ToSalary" ColumnName="ToSalary" />
-                <ScalarProperty Name="FromSalary" ColumnName="FromSalary" />
-                <ScalarProperty Name="AddressWork" ColumnName="AddressWork" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AddressWork" ColumnName="AddressWork" />
+                <ScalarProperty Name="FromSalary" ColumnName="FromSalary" />
+                <ScalarProperty Name="ToSalary" ColumnName="ToSalary" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="IdTimeWork" ColumnName="IdTimeWork" />
+                <ScalarProperty Name="IdEducation" ColumnName="IdEducation" />
+                <ScalarProperty Name="Career" ColumnName="Career" />
+                <ScalarProperty Name="DesCompany" ColumnName="DesCompany" />
+                <ScalarProperty Name="DesWork" ColumnName="DesWork" />
+                <ScalarProperty Name="Benefit" ColumnName="Benefit" />
+                <ScalarProperty Name="FromAge" ColumnName="FromAge" />
+                <ScalarProperty Name="ToAge" ColumnName="ToAge" />
+                <ScalarProperty Name="TimeProbationary" ColumnName="TimeProbationary" />
+                <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
+                <ScalarProperty Name="AddressApply" ColumnName="AddressApply" />
+                <ScalarProperty Name="NamesContact" ColumnName="NamesContact" />
+                <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FromDeadline" ColumnName="FromDeadline" />
+                <ScalarProperty Name="ToDeadline" ColumnName="ToDeadline" />
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="WebSiteCompany" ColumnName="WebSiteCompany" />
+                <ScalarProperty Name="IdTypeNews" ColumnName="IdTypeNews" />
+                <ScalarProperty Name="FromCreateNews" ColumnName="FromCreateNews" />
+                <ScalarProperty Name="ToCreateNews" ColumnName="ToCreateNews" />
+                <ScalarProperty Name="IdAcount" ColumnName="IdAcount" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="MoneyInDay" ColumnName="MoneyInDay" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+                <ScalarProperty Name="IdTypeNewsCuurent" ColumnName="IdTypeNewsCuurent" />
+                <ScalarProperty Name="DateReup" ColumnName="DateReup" />
+                <ScalarProperty Name="CountReup" ColumnName="CountReup" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSNewsTypePrices">
             <EntityTypeMapping TypeName="DataWebBDS.BDSNewsTypePrice">
               <MappingFragment StoreEntitySet="BDSNewsTypePrices">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Perfix" ColumnName="Perfix" />
-                <ScalarProperty Name="ApplyPrice" ColumnName="ApplyPrice" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="IdNewsType" ColumnName="IdNewsType" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="IdNewsType" ColumnName="IdNewsType" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ApplyPrice" ColumnName="ApplyPrice" />
+                <ScalarProperty Name="Perfix" ColumnName="Perfix" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSNewsTypes">
             <EntityTypeMapping TypeName="DataWebBDS.BDSNewsType">
               <MappingFragment StoreEntitySet="BDSNewsTypes">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="UrlIcon" ColumnName="UrlIcon" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="CodeNewsType" ColumnName="CodeNewsType" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CodeNewsType" ColumnName="CodeNewsType" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="UrlIcon" ColumnName="UrlIcon" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSPersonalInformations">
             <EntityTypeMapping TypeName="DataWebBDS.BDSPersonalInformation">
               <MappingFragment StoreEntitySet="BDSPersonalInformations">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="IdLoaiNghe" ColumnName="IdLoaiNghe" />
-                <ScalarProperty Name="Education" ColumnName="Education" />
-                <ScalarProperty Name="ProfessionalExperience" ColumnName="ProfessionalExperience" />
-                <ScalarProperty Name="Experience" ColumnName="Experience" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="ProfessionalExperience" ColumnName="ProfessionalExperience" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="IdLoaiNghe" ColumnName="IdLoaiNghe" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSPictures">
             <EntityTypeMapping TypeName="DataWebBDS.BDSPicture">
               <MappingFragment StoreEntitySet="BDSPictures">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
-                <ScalarProperty Name="cms_sql_id" ColumnName="cms_sql_id" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="type_id" ColumnName="type_id" />
-                <ScalarProperty Name="angleType" ColumnName="angleType" />
-                <ScalarProperty Name="convertedFilename270" ColumnName="convertedFilename270" />
-                <ScalarProperty Name="convertedFilename180" ColumnName="convertedFilename180" />
-                <ScalarProperty Name="convertedFilename90" ColumnName="convertedFilename90" />
-                <ScalarProperty Name="isvalidated" ColumnName="isvalidated" />
-                <ScalarProperty Name="tocheck" ColumnName="tocheck" />
-                <ScalarProperty Name="convertedFilename" ColumnName="convertedFilename" />
-                <ScalarProperty Name="converted" ColumnName="converted" />
-                <ScalarProperty Name="position" ColumnName="position" />
-                <ScalarProperty Name="originalFilepath" ColumnName="originalFilepath" />
-                <ScalarProperty Name="advert_id" ColumnName="advert_id" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="advert_id" ColumnName="advert_id" />
+                <ScalarProperty Name="originalFilepath" ColumnName="originalFilepath" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="converted" ColumnName="converted" />
+                <ScalarProperty Name="convertedFilename" ColumnName="convertedFilename" />
+                <ScalarProperty Name="tocheck" ColumnName="tocheck" />
+                <ScalarProperty Name="isvalidated" ColumnName="isvalidated" />
+                <ScalarProperty Name="convertedFilename90" ColumnName="convertedFilename90" />
+                <ScalarProperty Name="convertedFilename180" ColumnName="convertedFilename180" />
+                <ScalarProperty Name="convertedFilename270" ColumnName="convertedFilename270" />
+                <ScalarProperty Name="angleType" ColumnName="angleType" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="cms_sql_id" ColumnName="cms_sql_id" />
+                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSSalaries">
             <EntityTypeMapping TypeName="DataWebBDS.BDSSalary">
               <MappingFragment StoreEntitySet="BDSSalaries">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Default" ColumnName="Default" />
-                <ScalarProperty Name="Perfix" ColumnName="Perfix" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ToSalary" ColumnName="ToSalary" />
-                <ScalarProperty Name="FromSalary" ColumnName="FromSalary" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="FromSalary" ColumnName="FromSalary" />
+                <ScalarProperty Name="ToSalary" ColumnName="ToSalary" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Perfix" ColumnName="Perfix" />
+                <ScalarProperty Name="Default" ColumnName="Default" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSScopes">
             <EntityTypeMapping TypeName="DataWebBDS.BDSScope">
               <MappingFragment StoreEntitySet="BDSScopes">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSTimeWorks">
             <EntityTypeMapping TypeName="DataWebBDS.BDSTimeWork">
               <MappingFragment StoreEntitySet="BDSTimeWorks">
-                <ScalarProperty Name="NameEX" ColumnName="NameEX" />
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Default" ColumnName="Default" />
-                <ScalarProperty Name="Perfix" ColumnName="Perfix" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
-                <ScalarProperty Name="FromTime" ColumnName="FromTime" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Perfix" ColumnName="Perfix" />
+                <ScalarProperty Name="Default" ColumnName="Default" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="NameEX" ColumnName="NameEX" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSTransactionHistories">
             <EntityTypeMapping TypeName="DataWebBDS.BDSTransactionHistory">
               <MappingFragment StoreEntitySet="BDSTransactionHistories">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="MoneyTran" ColumnName="MoneyTran" />
-                <ScalarProperty Name="PointTran" ColumnName="PointTran" />
-                <ScalarProperty Name="DateTran" ColumnName="DateTran" />
-                <ScalarProperty Name="TypeTran" ColumnName="TypeTran" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="TypeTran" ColumnName="TypeTran" />
+                <ScalarProperty Name="DateTran" ColumnName="DateTran" />
+                <ScalarProperty Name="PointTran" ColumnName="PointTran" />
+                <ScalarProperty Name="MoneyTran" ColumnName="MoneyTran" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSTransactions">
             <EntityTypeMapping TypeName="DataWebBDS.BDSTransaction">
               <MappingFragment StoreEntitySet="BDSTransactions">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="TranDate" ColumnName="TranDate" />
-                <ScalarProperty Name="Point" ColumnName="Point" />
-                <ScalarProperty Name="EventDisPercent" ColumnName="EventDisPercent" />
-                <ScalarProperty Name="MoneyEventAdd" ColumnName="MoneyEventAdd" />
-                <ScalarProperty Name="Money" ColumnName="Money" />
-                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
-                <ScalarProperty Name="IdBank" ColumnName="IdBank" />
-                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="IdBank" ColumnName="IdBank" />
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="MoneyEventAdd" ColumnName="MoneyEventAdd" />
+                <ScalarProperty Name="EventDisPercent" ColumnName="EventDisPercent" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="TranDate" ColumnName="TranDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BDSTypeContacts">
             <EntityTypeMapping TypeName="DataWebBDS.BDSTypeContact">
               <MappingFragment StoreEntitySet="BDSTypeContacts">
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Branches">
             <EntityTypeMapping TypeName="DataWebBDS.Branch">
               <MappingFragment StoreEntitySet="Branches">
-                <ScalarProperty Name="EntityStatus_DisplayName" ColumnName="EntityStatus_DisplayName" />
-                <ScalarProperty Name="EntityStatus_Value" ColumnName="EntityStatus_Value" />
-                <ScalarProperty Name="DeletedTime" ColumnName="DeletedTime" />
-                <ScalarProperty Name="UpdatedTime" ColumnName="UpdatedTime" />
-                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
-                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
-                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="AddressEnglish" ColumnName="AddressEnglish" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name2" ColumnName="Name2" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AddressEnglish" ColumnName="AddressEnglish" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="UpdatedTime" ColumnName="UpdatedTime" />
+                <ScalarProperty Name="DeletedTime" ColumnName="DeletedTime" />
+                <ScalarProperty Name="EntityStatus_Value" ColumnName="EntityStatus_Value" />
+                <ScalarProperty Name="EntityStatus_DisplayName" ColumnName="EntityStatus_DisplayName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Counters">
             <EntityTypeMapping TypeName="DataWebBDS.Counter">
               <MappingFragment StoreEntitySet="Counters">
-                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="DataWebBDS.Country">
               <MappingFragment StoreEntitySet="Country">
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-                <ScalarProperty Name="languages" ColumnName="languages" />
-                <ScalarProperty Name="name_id" ColumnName="name_id" />
                 <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="languages" ColumnName="languages" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CountryTexts">
             <EntityTypeMapping TypeName="DataWebBDS.CountryText">
               <MappingFragment StoreEntitySet="CountryText">
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-                <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="language_id" ColumnName="language_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Currencies">
             <EntityTypeMapping TypeName="DataWebBDS.Currency">
               <MappingFragment StoreEntitySet="Currencies">
-                <ScalarProperty Name="Precision" ColumnName="Precision" />
-                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
-                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Precision" ColumnName="Precision" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Districts">
             <EntityTypeMapping TypeName="DataWebBDS.District">
               <MappingFragment StoreEntitySet="District">
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-                <ScalarProperty Name="polygon" ColumnName="polygon" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="name_id" ColumnName="name_id" />
-                <ScalarProperty Name="state_id" ColumnName="state_id" />
                 <ScalarProperty Name="district_id" ColumnName="district_id" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="polygon" ColumnName="polygon" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DistrictTexts">
             <EntityTypeMapping TypeName="DataWebBDS.DistrictText">
               <MappingFragment StoreEntitySet="DistrictText">
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-                <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="language_id" ColumnName="language_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Holidays">
             <EntityTypeMapping TypeName="DataWebBDS.Holiday">
               <MappingFragment StoreEntitySet="Holidays">
-                <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Languages">
             <EntityTypeMapping TypeName="DataWebBDS.Language">
               <MappingFragment StoreEntitySet="Languages">
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Locations">
             <EntityTypeMapping TypeName="DataWebBDS.Location">
               <MappingFragment StoreEntitySet="Location">
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-                <ScalarProperty Name="polygon" ColumnName="polygon" />
-                <ScalarProperty Name="preferred" ColumnName="preferred" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
-                <ScalarProperty Name="name_id" ColumnName="name_id" />
-                <ScalarProperty Name="district_id" ColumnName="district_id" />
-                <ScalarProperty Name="state_id" ColumnName="state_id" />
-                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
                 <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="district_id" ColumnName="district_id" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="preferred" ColumnName="preferred" />
+                <ScalarProperty Name="polygon" ColumnName="polygon" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LocationTexts">
             <EntityTypeMapping TypeName="DataWebBDS.LocationText">
               <MappingFragment StoreEntitySet="LocationText">
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-                <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="language_id" ColumnName="language_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="DataWebBDS.Menu">
               <MappingFragment StoreEntitySet="Menus">
-                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Permissions">
             <EntityTypeMapping TypeName="DataWebBDS.Permission">
               <MappingFragment StoreEntitySet="Permissions">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Right" ColumnName="Right" />
-                <ScalarProperty Name="Target" ColumnName="Target" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Right" ColumnName="Right" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="DataWebBDS.Role">
               <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleLevel_DisplayName" ColumnName="RoleLevel_DisplayName" />
-                <ScalarProperty Name="RoleLevel_Value" ColumnName="RoleLevel_Value" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleLevel_Value" ColumnName="RoleLevel_Value" />
+                <ScalarProperty Name="RoleLevel_DisplayName" ColumnName="RoleLevel_DisplayName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Settings">
             <EntityTypeMapping TypeName="DataWebBDS.Setting">
               <MappingFragment StoreEntitySet="Settings">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="MaxLenght" ColumnName="MaxLenght" />
-                <ScalarProperty Name="TableToGetField" ColumnName="TableToGetField" />
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Module" ColumnName="Module" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="TableToGetField" ColumnName="TableToGetField" />
+                <ScalarProperty Name="MaxLenght" ColumnName="MaxLenght" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="States">
             <EntityTypeMapping TypeName="DataWebBDS.State">
               <MappingFragment StoreEntitySet="State">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-                <ScalarProperty Name="polygon" ColumnName="polygon" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="stateCode" ColumnName="stateCode" />
-                <ScalarProperty Name="name_id" ColumnName="name_id" />
-                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
                 <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+                <ScalarProperty Name="name_id" ColumnName="name_id" />
+                <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="polygon" ColumnName="polygon" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StateTexts">
             <EntityTypeMapping TypeName="DataWebBDS.StateText">
               <MappingFragment StoreEntitySet="StateText">
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-                <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="language_id" ColumnName="language_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DataWebBDS.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
-                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
-                <ScalarProperty Name="Status_DisplayName" ColumnName="Status_DisplayName" />
-                <ScalarProperty Name="Status_Value" ColumnName="Status_Value" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
-                <ScalarProperty Name="AddressEnglish" ColumnName="AddressEnglish" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AddressEnglish" ColumnName="AddressEnglish" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Status_Value" ColumnName="Status_Value" />
+                <ScalarProperty Name="Status_DisplayName" ColumnName="Status_DisplayName" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="Menus_Roles" TypeName="DataWebBDS.Menus_Roles" StoreEntitySet="Menus_Roles">
-            <EndProperty Name="Role">
-              <ScalarProperty Name="ID" ColumnName="Role_Id" />
-            </EndProperty>
-            <EndProperty Name="Menu">
+            <EndProperty Name="Menus">
               <ScalarProperty Name="ID" ColumnName="Menu_Id" />
+            </EndProperty>
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="ID" ColumnName="Role_Id" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="Roles_Permissions" TypeName="DataWebBDS.Roles_Permissions" StoreEntitySet="Roles_Permissions">
-            <EndProperty Name="Role">
-              <ScalarProperty Name="ID" ColumnName="Role_Id" />
-            </EndProperty>
-            <EndProperty Name="Permission">
+            <EndProperty Name="Permissions">
               <ScalarProperty Name="ID" ColumnName="Permission_Id" />
+            </EndProperty>
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="ID" ColumnName="Role_Id" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="Users_Branches" TypeName="DataWebBDS.Users_Branches" StoreEntitySet="Users_Branches">
-            <EndProperty Name="User">
-              <ScalarProperty Name="ID" ColumnName="User_Id" />
-            </EndProperty>
-            <EndProperty Name="Branch">
+            <EndProperty Name="Branches">
               <ScalarProperty Name="ID" ColumnName="Branch_Id" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="User_Id" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="Users_Roles" TypeName="DataWebBDS.Users_Roles" StoreEntitySet="Users_Roles">
-            <EndProperty Name="User">
-              <ScalarProperty Name="ID" ColumnName="User_Id" />
-            </EndProperty>
-            <EndProperty Name="Role">
+            <EndProperty Name="Roles">
               <ScalarProperty Name="ID" ColumnName="Role_Id" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="User_Id" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

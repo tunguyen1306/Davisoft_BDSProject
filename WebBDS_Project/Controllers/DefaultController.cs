@@ -13,7 +13,7 @@ namespace WebBDS_Project.Controllers
     {
         //
         // GET: /Default/
-        davisoft_bdsprojectEntities2 db = new davisoft_bdsprojectEntities2();
+        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
         public ActionResult Index()
         {
          

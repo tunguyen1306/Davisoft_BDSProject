@@ -360,6 +360,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <EntityDeploy Include="Models\DataWebBDS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataWebBDS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataWebBDS.edmx.diagram">
+      <DependentUpon>DataWebBDS.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Models\DataWebBDS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DataWebBDS.edmx</DependentUpon>
@@ -370,15 +379,6 @@
       <DependentUpon>DataWebBDS.edmx</DependentUpon>
       <LastGenOutput>DataWebBDS.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\DataWebBDS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataWebBDS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DataWebBDS.edmx.diagram">
-      <DependentUpon>DataWebBDS.edmx</DependentUpon>
-    </Content>
-    <None Include="Properties\PublishProfiles\publish.pubxml" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\CusWeb.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

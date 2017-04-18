@@ -4,66 +4,66 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3e5f3765e52445a7bd51813866aa4102" Name="Diagram1">
-        <EntityTypeShape EntityType="DataWebBDS.Audit" Width="1.5" PointX="5.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSAccount" Width="1.5" PointX="11" PointY="13" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSApply" Width="1.5" PointX="7.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSArea" Width="1.5" PointX="8.75" PointY="2.25" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSBank" Width="1.5" PointX="11" PointY="8.375" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSBranch" Width="1.5" PointX="11" PointY="1.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSCareer" Width="1.5" PointX="5.75" PointY="13.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSComment" Width="1.5" PointX="7.75" PointY="13.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSEducation" Width="1.5" PointX="15.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSEmper" Width="1.5" PointX="0.75" PointY="15.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSEmployerInformation" Width="1.5" PointX="2.75" PointY="15.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSEvent" Width="1.5" PointX="15.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSExtNew" Width="1.5" PointX="15.75" PointY="16.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSLanguage" Width="1.5" PointX="17.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSMarriage" Width="1.5" PointX="17.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSNew" Width="1.5" PointX="13.75" PointY="8.25" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSNewsTypePrice" Width="1.5" PointX="4.75" PointY="17.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSNewsType" Width="1.5" PointX="9.75" PointY="17.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSPersonalInformation" Width="1.5" PointX="17.75" PointY="16.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSPicture" Width="1.5" PointX="16" PointY="10.375" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSSalary" Width="1.5" PointX="18.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSScope" Width="1.5" PointX="11.75" PointY="18.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSTimeWork" Width="1.5" PointX="19.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSTransactionHistory" Width="1.5" PointX="6.75" PointY="19.75" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSTransaction" Width="1.5" PointX="13.25" PointY="1.125" />
-        <EntityTypeShape EntityType="DataWebBDS.BDSTypeContact" Width="1.5" PointX="19.75" PointY="13.75" />
-        <EntityTypeShape EntityType="DataWebBDS.Branch" Width="1.5" PointX="0.75" PointY="3" />
-        <EntityTypeShape EntityType="DataWebBDS.Counter" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="DataWebBDS.Country" Width="1.5" PointX="19.75" PointY="5.75" />
-        <EntityTypeShape EntityType="DataWebBDS.CountryText" Width="1.5" PointX="19.75" PointY="17.75" />
-        <EntityTypeShape EntityType="DataWebBDS.Currency" Width="1.5" PointX="20.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DataWebBDS.District" Width="1.5" PointX="19.75" PointY="20.75" />
-        <EntityTypeShape EntityType="DataWebBDS.DistrictText" Width="1.5" PointX="21.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DataWebBDS.Holiday" Width="1.5" PointX="21.75" PointY="3.75" />
-        <EntityTypeShape EntityType="DataWebBDS.Language" Width="1.5" PointX="3.75" PointY="1.25" />
-        <EntityTypeShape EntityType="DataWebBDS.Location" Width="1.5" PointX="21.75" PointY="11.75" />
-        <EntityTypeShape EntityType="DataWebBDS.LocationText" Width="1.5" PointX="21.75" PointY="15.75" />
-        <EntityTypeShape EntityType="DataWebBDS.Menu" Width="1.5" PointX="1.5" PointY="12" />
-        <EntityTypeShape EntityType="DataWebBDS.Permission" Width="1.5" PointX="1.5" PointY="9.25" />
-        <EntityTypeShape EntityType="DataWebBDS.Role" Width="1.5" PointX="3.75" PointY="10.5" />
-        <EntityTypeShape EntityType="DataWebBDS.Setting" Width="1.5" PointX="21.75" PointY="18.75" />
-        <EntityTypeShape EntityType="DataWebBDS.State" Width="1.5" PointX="0.75" PointY="22.75" />
-        <EntityTypeShape EntityType="DataWebBDS.StateText" Width="1.5" PointX="2.75" PointY="22.75" />
-        <EntityTypeShape EntityType="DataWebBDS.User" Width="1.5" PointX="6" PointY="2.75" />
-        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" />
-        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" />
-        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" />
-        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" />
-        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSPictures_dbo_BDSNews_advert_id" />
-        <AssociationConnector Association="DataWebBDS.counters_Counter_Branch" />
-        <AssociationConnector Association="DataWebBDS.FK_dbo_Counters_dbo_Branches_BranchID" />
-        <AssociationConnector Association="DataWebBDS.FK_dbo_Users_dbo_Branches_BranchID" />
-        <AssociationConnector Association="DataWebBDS.users_User_Branch" />
-        <AssociationConnector Association="DataWebBDS.FK_dbo_Users_dbo_Languages_LanguageID" />
-        <AssociationConnector Association="DataWebBDS.users_User_Language" />
-        <AssociationConnector Association="DataWebBDS.Menus_Roles" />
-        <AssociationConnector Association="DataWebBDS.Roles_Permissions" />
-        <AssociationConnector Association="DataWebBDS.Users_Branches" />
-        <AssociationConnector Association="DataWebBDS.Users_Roles" />
+      <Diagram DiagramId="f09333533770445995235393bc8253f5" Name="Diagram1">
+        <EntityTypeShape EntityType="DataWebBDS.Audit" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSAccount" Width="1.5" PointX="11" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSApply" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSArea" Width="1.5" PointX="8.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSBank" Width="1.5" PointX="11" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSBranch" Width="1.5" PointX="11" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSCareer" Width="1.5" PointX="5.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSComment" Width="1.5" PointX="7.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSEducation" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSEmper" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSEmployerInformation" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSEvent" Width="1.5" PointX="15.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSExtNew" Width="1.5" PointX="15.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSLanguage" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSMarriage" Width="1.5" PointX="17.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSNew" Width="1.5" PointX="13.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSNewsTypePrice" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSNewsType" Width="1.5" PointX="9.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSPersonalInformation" Width="1.5" PointX="17.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSPicture" Width="1.5" PointX="16" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSSalary" Width="1.5" PointX="18.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSScope" Width="1.5" PointX="11.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSTimeWork" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSTransactionHistory" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSTransaction" Width="1.5" PointX="13.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSTypeContact" Width="1.5" PointX="19.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Branch" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Counter" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Country" Width="1.5" PointX="19.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.CountryText" Width="1.5" PointX="19.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Currency" Width="1.5" PointX="20.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.District" Width="1.5" PointX="19.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.DistrictText" Width="1.5" PointX="21.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Holiday" Width="1.5" PointX="21.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Language" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Location" Width="1.5" PointX="21.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.LocationText" Width="1.5" PointX="21.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Menu" Width="1.5" PointX="1.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Permission" Width="1.5" PointX="1.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Role" Width="1.5" PointX="3.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.Setting" Width="1.5" PointX="21.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.State" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.StateText" Width="1.5" PointX="2.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataWebBDS.User" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.FK_dbo_BDSPictures_dbo_BDSNews_advert_id" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.counters_Counter_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.FK_dbo_Counters_dbo_Branches_BranchID" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.FK_dbo_Users_dbo_Branches_BranchID" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.users_User_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.FK_dbo_Users_dbo_Languages_LanguageID" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.users_User_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.Menus_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.Roles_Permissions" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.Users_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="DataWebBDS.Users_Roles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
