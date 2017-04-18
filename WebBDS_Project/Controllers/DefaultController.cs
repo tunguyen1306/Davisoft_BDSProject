@@ -89,6 +89,11 @@ namespace WebBDS_Project.Controllers
 
             return View();
         }
+        public ActionResult SearchForEmployee()
+        {
+
+            return View();
+        }
         public ActionResult DetailNews(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
