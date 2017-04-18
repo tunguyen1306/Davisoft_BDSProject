@@ -62,6 +62,7 @@ namespace Davisoft_BDSProject.Web
         protected void Session_Start()
         {
             // http://stackoverflow.com/questions/2874078/asp-net-session-sessionid-changes-between-requests
+            //Install-Package MiniProfiler -Version 3.0.12
             Session["init"] = 0;
 
             var ignored = MiniProfiler.Settings.IgnoredPaths.ToList();
