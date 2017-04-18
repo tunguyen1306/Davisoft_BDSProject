@@ -1,0 +1,43 @@
+﻿@using WebBDS_Project.Models
+@{
+
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+
+    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+
+}
+<div class="right_col">
+    <h3>Tìm kiếm theo nơi làm việc</h3>
+    <ul class="last_list_right filter" style="">
+
+
+        @{
+            foreach (var item in States)
+            {
+                <li>
+                    <a><input class="check_filter" type="checkbox" name="filterWorkingPlace" value="@item.Id" /> <label>@item.Name</label></a>
+                </li>
+            }
+        }
+
+
+
+    </ul>
+</div>
+<style>
+    .check_filter {
+        position: relative;
+        top: 2px;
+    }
+    .last_list_right.filter {
+        max-height: 252px;
+        overflow-y: auto;
+    }
+    .last_list_right.filter a:before{
+        content: '';
+    }
+        .last_list_right.filter label {
+            padding-left: 5px;
+        }
+  
+</style>

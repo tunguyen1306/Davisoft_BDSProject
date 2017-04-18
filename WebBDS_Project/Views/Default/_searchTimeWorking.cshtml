@@ -1,0 +1,24 @@
+﻿@using WebBDS_Project.Models
+@{
+
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+
+}
+<div class="right_col" >
+    <h3>Tìm kiếm theo kinh nghiệm</h3>
+    <ul class="last_list_right filter" style="">
+
+
+        @{
+            foreach (var item in db.BDSTimeWorks.Where(T=>T.Active==1).ToList())
+            {
+                <li>
+                    <a><input class="check_filter" type="radio" name="filterTimeWorking" value="@item.ID" /> <label>@item.Name</label></a>
+                </li>
+            }
+        }
+
+
+
+    </ul>
+</div>

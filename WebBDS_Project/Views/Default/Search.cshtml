@@ -5,10 +5,33 @@
 
 
 <div class="container">
-    <div class="grid_9 main_left">
+    <div class="grid_9 main_left" style="margin-top: 12px">
        
        
         <div class="group_work">
+            <span> Tìm theo đại điểm</span>
+            <ul class="name_group">
+                <li><a href="#">Nhân viên kinh doanh</a></li>
+                <li><a href="#">Nhân viên pháp lý</a></li>
+                <li><a href="#">Marketing / Quảng cáo</a></li>
+                <li><a href="#">Kế toán / Thủ quỹ</a></li>
+                <li><a href="#">Quản lý / Giám đốc</a></li>
+                <li><a href="#">Nhân sự</a></li>
+                <li><a href="#">Thư ký / Admin Sale</a></li>
+                <li><a href="#">Thẩm định viên</a></li>
+            </ul>
+            <span> Tìm theo đại điểm</span>
+            <ul class="name_group">
+                <li><a href="#">Nhân viên kinh doanh</a></li>
+                <li><a href="#">Nhân viên pháp lý</a></li>
+                <li><a href="#">Marketing / Quảng cáo</a></li>
+                <li><a href="#">Kế toán / Thủ quỹ</a></li>
+                <li><a href="#">Quản lý / Giám đốc</a></li>
+                <li><a href="#">Nhân sự</a></li>
+                <li><a href="#">Thư ký / Admin Sale</a></li>
+                <li><a href="#">Thẩm định viên</a></li>
+            </ul>
+            <span> Tìm theo đại điểm</span>
             <ul class="name_group">
                 <li><a href="#">Nhân viên kinh doanh</a></li>
                 <li><a href="#">Nhân viên pháp lý</a></li>
@@ -29,8 +52,8 @@
             <div class="loading" style="left: 0px; top: 0px;right:0px;bottom:0px;position:absolute;background-color: gray;opacity: 0.5;z-index: 10;display: none"></div>
 
             <div class="header_text">
-                <h3><span><i class="fa fa-list-ul"></i>Việc làm Bất Động Sản</span></h3>
-                <div class="search_location">
+                <h3><span><i class="fa fa-list-ul"></i>Tìm việc làm bất đông sản</span></h3>
+               @* <div class="search_location">
                     Tìm theo khu vực
                     <select class="dropdown" tabindex="7">
                         <option value="1">Toàn quốc</option>
@@ -39,17 +62,23 @@
                         <option value="4">Option 4</option>
                         <option value="5">Option 5</option>
                     </select>
-                </div>
+                </div>*@
             </div>
             @Html.Action("TinDacBiet", new { tt = "", from = 0, view = 12, page = 1 })
         </div>
     </div>
     <div class="grid_3 omega main_right">
-        <div class="banner_right">
-            <img src="~/Template/images/banner2.jpg" alt="banner">
-            <img src="~/Template/images/banner2.jpg" alt="banner" style="margin: 0">
+       <div class="banner_right">
+           @* <img src="~/Template/images/banner2.jpg" alt="banner">
+            <img src="~/Template/images/banner2.jpg" alt="banner" style="margin: 0">*@
         </div>
-        @Html.Partial("_partialCareers")
+        @Html.Partial("_searchWorkingPlace")
+        @Html.Partial("_searchCareer")
+        @Html.Partial("_searchSalary")
+        @Html.Partial("_searchTimeWorking")
+     
+
+       @* @Html.Partial("_partialCareers")*@
         @Html.Partial("_partialCompany")
         @Html.Partial("_partialShareExpirence")
         @Html.Partial("_partialComment")
