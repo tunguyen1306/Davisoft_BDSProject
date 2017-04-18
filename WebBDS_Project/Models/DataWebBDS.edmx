@@ -1154,6 +1154,113 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataWebBDS" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="davisoft_bdsprojectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Audits" EntityType="DataWebBDS.Audit" />
+          <EntitySet Name="BDSAccounts" EntityType="DataWebBDS.BDSAccount" />
+          <EntitySet Name="BDSApplies" EntityType="DataWebBDS.BDSApply" />
+          <EntitySet Name="BDSAreas" EntityType="DataWebBDS.BDSArea" />
+          <EntitySet Name="BDSBanks" EntityType="DataWebBDS.BDSBank" />
+          <EntitySet Name="BDSBranches" EntityType="DataWebBDS.BDSBranch" />
+          <EntitySet Name="BDSCareers" EntityType="DataWebBDS.BDSCareer" />
+          <EntitySet Name="BDSComments" EntityType="DataWebBDS.BDSComment" />
+          <EntitySet Name="BDSEducations" EntityType="DataWebBDS.BDSEducation" />
+          <EntitySet Name="BDSEmpers" EntityType="DataWebBDS.BDSEmper" />
+          <EntitySet Name="BDSEmployerInformations" EntityType="DataWebBDS.BDSEmployerInformation" />
+          <EntitySet Name="BDSEvents" EntityType="DataWebBDS.BDSEvent" />
+          <EntitySet Name="BDSExtNews" EntityType="DataWebBDS.BDSExtNew" />
+          <EntitySet Name="BDSLanguages" EntityType="DataWebBDS.BDSLanguage" />
+          <EntitySet Name="BDSMarriages" EntityType="DataWebBDS.BDSMarriage" />
+          <EntitySet Name="BDSNews" EntityType="DataWebBDS.BDSNew" />
+          <EntitySet Name="BDSNewsTypePrices" EntityType="DataWebBDS.BDSNewsTypePrice" />
+          <EntitySet Name="BDSNewsTypes" EntityType="DataWebBDS.BDSNewsType" />
+          <EntitySet Name="BDSPersonalInformations" EntityType="DataWebBDS.BDSPersonalInformation" />
+          <EntitySet Name="BDSPictures" EntityType="DataWebBDS.BDSPicture" />
+          <EntitySet Name="BDSSalaries" EntityType="DataWebBDS.BDSSalary" />
+          <EntitySet Name="BDSScopes" EntityType="DataWebBDS.BDSScope" />
+          <EntitySet Name="BDSTimeWorks" EntityType="DataWebBDS.BDSTimeWork" />
+          <EntitySet Name="BDSTransactionHistories" EntityType="DataWebBDS.BDSTransactionHistory" />
+          <EntitySet Name="BDSTransactions" EntityType="DataWebBDS.BDSTransaction" />
+          <EntitySet Name="BDSTypeContacts" EntityType="DataWebBDS.BDSTypeContact" />
+          <EntitySet Name="Branches" EntityType="DataWebBDS.Branch" />
+          <EntitySet Name="Counters" EntityType="DataWebBDS.Counter" />
+          <EntitySet Name="Countries" EntityType="DataWebBDS.Country" />
+          <EntitySet Name="CountryTexts" EntityType="DataWebBDS.CountryText" />
+          <EntitySet Name="Currencies" EntityType="DataWebBDS.Currency" />
+          <EntitySet Name="Districts" EntityType="DataWebBDS.District" />
+          <EntitySet Name="DistrictTexts" EntityType="DataWebBDS.DistrictText" />
+          <EntitySet Name="Holidays" EntityType="DataWebBDS.Holiday" />
+          <EntitySet Name="Languages" EntityType="DataWebBDS.Language" />
+          <EntitySet Name="Locations" EntityType="DataWebBDS.Location" />
+          <EntitySet Name="LocationTexts" EntityType="DataWebBDS.LocationText" />
+          <EntitySet Name="Menus" EntityType="DataWebBDS.Menu" />
+          <EntitySet Name="Permissions" EntityType="DataWebBDS.Permission" />
+          <EntitySet Name="Roles" EntityType="DataWebBDS.Role" />
+          <EntitySet Name="Settings" EntityType="DataWebBDS.Setting" />
+          <EntitySet Name="States" EntityType="DataWebBDS.State" />
+          <EntitySet Name="StateTexts" EntityType="DataWebBDS.StateText" />
+          <EntitySet Name="Users" EntityType="DataWebBDS.User" />
+          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount">
+            <End Role="BDSAccount" EntitySet="BDSAccounts" />
+            <End Role="BDSTransaction" EntitySet="BDSTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" Association="DataWebBDS.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea">
+            <End Role="BDSArea" EntitySet="BDSAreas" />
+            <End Role="BDSBranch" EntitySet="BDSBranches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank">
+            <End Role="BDSBank" EntitySet="BDSBanks" />
+            <End Role="BDSTransaction" EntitySet="BDSTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" Association="DataWebBDS.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch">
+            <End Role="BDSBranch" EntitySet="BDSBranches" />
+            <End Role="BDSTransaction" EntitySet="BDSTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BDSPictures_dbo_BDSNews_advert_id" Association="DataWebBDS.FK_dbo_BDSPictures_dbo_BDSNews_advert_id">
+            <End Role="BDSNew" EntitySet="BDSNews" />
+            <End Role="BDSPicture" EntitySet="BDSPictures" />
+          </AssociationSet>
+          <AssociationSet Name="counters_Counter_Branch" Association="DataWebBDS.counters_Counter_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Counter" EntitySet="Counters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Counters_dbo_Branches_BranchID" Association="DataWebBDS.FK_dbo_Counters_dbo_Branches_BranchID">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Counter" EntitySet="Counters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Branches_BranchID" Association="DataWebBDS.FK_dbo_Users_dbo_Branches_BranchID">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="users_User_Branch" Association="DataWebBDS.users_User_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Languages_LanguageID" Association="DataWebBDS.FK_dbo_Users_dbo_Languages_LanguageID">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="users_User_Language" Association="DataWebBDS.users_User_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Menus_Roles" Association="DataWebBDS.Menus_Roles">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="Roles_Permissions" Association="DataWebBDS.Roles_Permissions">
+            <End Role="Permission" EntitySet="Permissions" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="Users_Branches" Association="DataWebBDS.Users_Branches">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Users_Roles" Association="DataWebBDS.Users_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+
         <EntityType Name="Audit">
           <Key>
             <PropertyRef Name="ID" />
@@ -2185,7 +2292,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DataWebBDSStoreContainer" CdmEntityContainer="Entities">
+
+        <EntityContainerMapping StorageEntityContainer="DataWebBDSStoreContainer" CdmEntityContainer="davisoft_bdsprojectEntities">
+
+     
           <EntitySetMapping Name="Audits">
             <EntityTypeMapping TypeName="DataWebBDS.Audit">
               <MappingFragment StoreEntitySet="Audits">
