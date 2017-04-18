@@ -310,3 +310,33 @@ tr:nth-child(even) {
  .TextColorGreen{
      color:#2a8f07;
  }
+ .result-info .filter {
+    background-color: #fff;
+    border: solid 1px #ccc;
+    display: inline-block;
+    float: none;
+    padding: 3px;
+     margin-top: 5px;
+}
+ .result-info{
+    
+ }
+ .cus-name-group{
+     margin: 0;
+    padding: 12px 15px;
+    border: 1px solid #dfdfdf;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    margin-top: -1px;
+    background: #f3f3f3;
+    overflow: hidden;
+ }
+ .grid_1-9-5 {
+    width: 9.5%;
+}
+ @media screen and (max-width: 480px)
+ {
+.grid_1-9-5 {
+    width: 100%;
+}
+ }

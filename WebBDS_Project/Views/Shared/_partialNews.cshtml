@@ -13,7 +13,16 @@
                                 {
                                     <li>
                                         <a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">
-                                            <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
+
+                                            @if (item.UrlImage != null)
+                                            {
+                                                <img width="40" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
+                                            }
+                                            else
+                                            {
+                                                <img width="40" src="~/Template/images/avatar-default.png" />
+                                            }
+
                                         </a>
                                         <figcaption><a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">@item.Name</a></figcaption>
                                     </li>

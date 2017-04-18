@@ -1,20 +1,33 @@
-﻿ @using WebBDS_Project.Models
+﻿@using WebBDS_Project.Models
 @{
-   
+
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
-  
+
 }
-   <div class="right_col">
-                            <h3>Công ty nổi bật</h3>
-                            <ul class="last_list_right">
-                              
-                                @{
-                                    foreach (var item in db.BDSEmployerInformations.Where(T => T.Active == 1 && T.Featured==1).ToList())
-                                    {
-                                        <li>
-                                            <a href="@Url.Action("Detail","Default",new { id=1})">@item.Name</a>
-                                        </li>
-                                    }
-                                }
-                            </ul>
+@using System.Configuration
+<div class="right_col">
+    <h3>Công ty nổi bật</h3>
+    <ul class="list_news">
+
+
+        @foreach (var item in db.BDSEmployerInformations.Where(T => T.Active == 1 && T.Featured == 1).ToList())
+        {
+            <li>
+                <a href="@Url.Action("DetailEmployee","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">
+                    @if (item.UrlImage != null)
+                    {
+                        <img width="40" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
+                    }
+                    else
+                    {
+                        <img width="40" src="~/Template/images/avatar-default.png" />
+                    }
+
+                </a>
+                <figcaption><a href="@Url.Action("DetailEmployee","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">@item.Name</a></figcaption>
+            </li>
+
+        }
+
+    </ul>
 </div>

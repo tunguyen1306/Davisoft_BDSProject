@@ -12,16 +12,15 @@
     <div class="grid_9 main_left">
         @Html.Partial("_searchPannel")
 
-        @foreach (var itemBdsEmploye in Model.ListBDSEmployerInformation.Where(x => x.IdAccount == Model.tblBDSNew.IdAcount))
-        {
+      
             <div class="grid_12 title_detail">
                 <div class="logo_detail">
-                    <img height="100%" alt="@itemBdsEmploye.Name" src="@ConfigurationManager.AppSettings["UrlImage"]@itemBdsEmploye.UrlImage.ToString().Split('_')[0]/@itemBdsEmploye.UrlImage" />
+                    <img height="100%" alt="@Model.tblBDSEmployerInformation.Name" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.tblBDSEmployerInformation.UrlImage.ToString().Split('_')[0]/@Model.tblBDSEmployerInformation.UrlImage" />
                 </div>
                 <div class="name_detail">
                     <h2>@Model.tblBDSNew.Title</h2>
 
-                    <p><strong>@itemBdsEmploye.Name</strong></p>
+                    <p><strong>@Model.tblBDSEmployerInformation.Name</strong></p>
                     @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblBDSNew.AddressWork))
                     {
                         <p><i class="fa fa-map-marker"></i>Nơi làm việc: @itemCity.Name</p>
@@ -61,7 +60,7 @@
                    
                 </div>
             </div>
-        }
+        
 
 
         <div class="row">
