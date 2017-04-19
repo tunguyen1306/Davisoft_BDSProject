@@ -13,7 +13,7 @@
         @foreach (var item in db.BDSEmployerInformations.Where(T => T.Active == 1 && T.Featured == 1).ToList())
         {
             <li>
-                <a href="@Url.Action("DetailEmployee","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">
+               @* <a href="@Url.Action("DetailEmployee", "Default", new { id = item.Name.UrlFrendly() + "-" + item.ID })">
                     @if (item.UrlImage != null)
                     {
                         <img width="40" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
@@ -24,7 +24,19 @@
                     }
 
                 </a>
-                <figcaption><a href="@Url.Action("DetailEmployee","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">@item.Name</a></figcaption>
+                        <figcaption><a href="@Url.Action("DetailEmployee", "Default", new { id = item.Name.UrlFrendly() + "-" + item.ID })">@item.Name</a></figcaption>*@
+                <a href="@item.WebSite" target="_blank">
+                    @if (item.UrlImage != null)
+                    {
+                        <img width="40" height="30px" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
+                    }
+                    else
+                    {
+                        <img width="40" height="30px" src="~/Template/images/avatar-default.png" />
+                    }
+
+                </a>
+                <figcaption><a target="_blank" href="@item.WebSite">@item.Name</a></figcaption>
             </li>
 
         }

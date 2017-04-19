@@ -98,13 +98,13 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailNews(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var data = db.BDSExtNews.Where(x => x.Active == 1 && x.ApproveStatus == 1).ToList();
+            var data = db.BDSExtNews.FirstOrDefault(x => x.Active == 1 && x.ApproveStatus == 1 && x.ID==id_);
             return View(data);
         }
         public ActionResult DetailEmployee(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var data = db.BDSEmployerInformations.Where(x => x.ID== id_).ToList();
+            var data = db.BDSEmployerInformations.FirstOrDefault(x => x.ID== id_);
 
             return View(data);
         }

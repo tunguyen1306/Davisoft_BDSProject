@@ -12,7 +12,20 @@
     <div class="grid_9 main_left">
         @Html.Partial("_searchPannel")
 
-      
+         @section share_fb{
+
+                    <meta property="og:title" content="@Model.tblBDSEmployerInformation.Name" />
+
+                    <meta property="og:url" content='@ConfigurationManager.AppSettings["UrlImage"]@Model.tblBDSEmployerInformation.UrlImage.ToString().Split('_')[0]/@Model.tblBDSEmployerInformation.UrlImage' />
+                    <meta name="description" content="@Model.tblBDSEmployerInformation.Description">
+                    <meta property="og:description" content="@Model.tblBDSEmployerInformation.Description" />
+                    <meta name="keywords" content="tuyển dụng ,công việc,cong viec,việc làm,viec lam,bất động sản,bat dong san" />
+                 
+                    <meta property="og:image:width" content="600" />
+                    <meta property="og:image:height" content="315" />
+                   
+
+                }
             <div class="grid_12 title_detail">
                 <div class="logo_detail">
                     <img height="100%" alt="@Model.tblBDSEmployerInformation.Name" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.tblBDSEmployerInformation.UrlImage.ToString().Split('_')[0]/@Model.tblBDSEmployerInformation.UrlImage" />

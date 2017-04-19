@@ -1,23 +1,30 @@
-﻿ @using WebBDS_Project.Models
+﻿@using WebBDS_Project.Models
 @{
 
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
 
 }
 @using System.Configuration
- <div class="right_col">
-                            <h3>Chia sẽ kinh nghiệm</h3>
-                            <ul class="list_news">
-                                @foreach (var item in db.BDSExtNews.Where(x => x.Active == 1 && x.ApproveStatus == 1 && x.CatExtNews==2).ToList())
-                                {
-                                    <li>
-                                        <a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">
-                                            <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
-                                        </a>
-                                        <figcaption><a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">@item.Name</a></figcaption>
-                                    </li>
+<div class="right_col">
+    <h3>Chia sẽ kinh nghiệm</h3>
+    <ul class="list_news">
+        @foreach (var item in db.BDSExtNews.Where(x => x.Active == 1 && x.ApproveStatus == 1 && x.CatExtNews == 2).ToList())
+        {
+            <li>
+                <a href="@Url.Action("DetailNews", "Default", new { id = item.Name.UrlFrendly() + "-" + item.ID })">
+                    @if (item.UrlImage != null)
+                    {
+                        <img width="40" height="30px" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
+                    }
+                    else
+                    {
+                        <img width="40" height="30px" src="~/Template/images/avatar-default.png" />
+                    }
+                </a>
+                <figcaption><a href="@Url.Action("DetailNews", "Default", new { id = item.Name.UrlFrendly() + "-" + item.ID })">@item.Name</a></figcaption>
+            </li>
                                 }
-                               
-                               
-                            </ul>
-                        </div>
+
+
+    </ul>
+</div>

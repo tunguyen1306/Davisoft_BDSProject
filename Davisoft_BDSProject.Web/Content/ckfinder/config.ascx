@@ -31,11 +31,20 @@
         LicenseKey = "5G4W6QF3BCANQXL5JNXACT71MQM11XWC";
 
 		// The base URL used to reach files in CKFinder through the browser.
-        BaseUrl = "/Content/ckfinder/userfiles/";
-
+        BaseUrl = ConfigurationManager.AppSettings["UrlImage"];
+        
 		// The phisical directory in the server where the file will end up. If
 		// blank, CKFinder attempts to resolve BaseUrl.
         BaseDir = "C:/LocLM/FreeLancer/Davisoft_BDSProject/Davisoft_BDSProject.Web/Content/ckfinder/userfiles/";
+
+        if (Server.MapPath("~/fileUpload/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
+        {
+            BaseDir = Server.MapPath("~/fileUpload/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]);
+        }
+        else
+        {
+            BaseDir = Server.MapPath("~/fileUpload/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project");
+        }
 
 		// Optional: enable extra plugins (remember to copy .dll files first).
 		Plugins = new string[] {

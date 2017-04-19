@@ -13,6 +13,7 @@ using Davisoft_BDSProject.Web.Infrastructure.Filters;
 using Davisoft_BDSProject.Web.Infrastructure.Utility;
 using Davisoft_BDSProject.Web.Models;
 using Resources;
+using System.Configuration;
 
 namespace Davisoft_BDSProject.Web.Controllers
 {
@@ -95,7 +96,14 @@ namespace Davisoft_BDSProject.Web.Controllers
 
                 NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
                 fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
-                path = Server.MapPath("~/fileUpload/").Replace("adminbds.vangia.net", "webtuyendung.vangia.net") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                if (Server.MapPath("~/fileUpload/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]) + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+                else
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 path1 = Path.Combine(path, fileNameFull);
@@ -149,7 +157,14 @@ namespace Davisoft_BDSProject.Web.Controllers
 
                 NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
                 fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
-                path = Server.MapPath("~/fileUpload/").Replace("adminbds.vangia.net", "webtuyendung.vangia.net") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                if (Server.MapPath("~/fileUpload/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]) + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+                else
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 path1 = Path.Combine(path, fileNameFull);
