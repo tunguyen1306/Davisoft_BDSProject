@@ -5,15 +5,15 @@
                         <!-- Nav -->
                         <div class="grid_12 mg0">
                             <nav class="nav">
-                                <ul class="nav-list">
+                                <ul class="nav-list grid_9">
                                     <li>
                                         <a href="@Url.Action("Index","Default")" class="active">Trang chủ</a>
                                     </li>
-                                   
+
                                     @foreach (var item in Model)
                                     {
                                         <li>
-                                            <a href="">@item.Name</a>
+                                            <a href="@Url.Action("Search", "Default", new { filterCareer = item.ID })">@item.Name</a>
                                         </li>
                                     }
                                     <li class="spec">
@@ -23,7 +23,8 @@
                                         <a href=""><i class="fa fa-volume-control-phone"></i>08) 39393939</a>
                                     </li>
                                 </ul>
-                            </nav>
+                               
+</nav>
                             <!-- /Nav -->
                         </div>
                     </div>
