@@ -84,11 +84,20 @@ namespace WebBDS_Project.Controllers
 
             return View(Model);
         }
-        public ActionResult Search()
+        public ActionResult Search(int?[] filterWorkingPlace, int? filterCareer, int? filterSalary, int? filterTimeWorking, int page = 1, int view = 1)
         {
-
-            return View();
+            var q = (from a in db.BDSNews
+                join b in db.BDSNewsTypes on a.IdTypeNewsCuurent equals b.ID
+                where a.Active == 1 && a.Status == 1
+                orderby b.Order ascending, a.FromCreateNews descending
+                select a);
+            var total = q.Count();
+            var data = q.Skip(page * view - view).Take(view).ToList();
+            ViewBag.Total = total;
+            ViewBag.From = page * view - view;
+            return View(data);
         }
+        
         public ActionResult SearchForEmployee()
         {
 
