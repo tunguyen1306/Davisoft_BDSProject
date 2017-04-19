@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="davisoft_bdsprojectEntities" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BDSApplies" EntityType="davisoft_bdsprojectEntities.BDSApply" />
+    <EntitySet Name="BDSEmpers" EntityType="davisoft_bdsprojectEntities.BDSEmper" />
+    <EntitySet Name="Countries" EntityType="davisoft_bdsprojectEntities.Country" />
+    <EntitySet Name="CountryTexts" EntityType="davisoft_bdsprojectEntities.CountryText" />
+    <EntitySet Name="Districts" EntityType="davisoft_bdsprojectEntities.District" />
+    <EntitySet Name="DistrictTexts" EntityType="davisoft_bdsprojectEntities.DistrictText" />
+    <EntitySet Name="Locations" EntityType="davisoft_bdsprojectEntities.Location" />
+    <EntitySet Name="LocationTexts" EntityType="davisoft_bdsprojectEntities.LocationText" />
+    <EntitySet Name="States" EntityType="davisoft_bdsprojectEntities.State" />
+    <EntitySet Name="StateTexts" EntityType="davisoft_bdsprojectEntities.StateText" />
+  </EntityContainer>
+  <EntityType Name="BDSApply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAccountEm" Type="Int32" Nullable="false" />
+    <Property Name="IdAccountPer" Type="Int32" Nullable="false" />
+    <Property Name="IdNews" Type="Int32" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="7" />
+    <Property Name="ModifiedUser" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RefTranHis" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BDSEmper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAccountEm" Type="Int32" Nullable="false" />
+    <Property Name="IdAccountPer" Type="Int32" Nullable="false" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="7" />
+    <Property Name="ModifiedUser" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RefTranHis" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="countryCode" />
+    </Key>
+    <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="name_id" Type="Int32" Nullable="false" />
+    <Property Name="languages" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="rowguid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CountryText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="rowguid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="district_id" />
+    </Key>
+    <Property Name="district_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="state_id" Type="Int32" Nullable="false" />
+    <Property Name="name_id" Type="Int32" Nullable="false" />
+    <Property Name="latitude" Type="Decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="Decimal" Precision="9" Scale="5" />
+    <Property Name="polygon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="rowguid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DistrictText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="rowguid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="Int32" Nullable="false" />
+    <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="state_id" Type="Int32" Nullable="false" />
+    <Property Name="district_id" Type="Int32" />
+    <Property Name="name_id" Type="Int32" Nullable="false" />
+    <Property Name="zipCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="latitude" Type="Decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="Decimal" Precision="9" Scale="5" />
+    <Property Name="preferred" Type="Boolean" Nullable="false" />
+    <Property Name="polygon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="rowguid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="rowguid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="state_id" />
+    </Key>
+    <Property Name="state_id" Type="Int32" Nullable="false" />
+    <Property Name="countryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="name_id" Type="Int32" Nullable="false" />
+    <Property Name="stateCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="latitude" Type="Decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="Decimal" Precision="9" Scale="5" />
+    <Property Name="polygon" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="rowguid" Type="Guid" Nullable="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="StateText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="rowguid" Type="Guid" Nullable="false" />
+  </EntityType>
+</Schema>
