@@ -11,7 +11,7 @@
                               
                                 @foreach (var item in db.BDSExtNews.Where(x => x.Active == 1 && x.ApproveStatus == 1 && x.CatExtNews == 1).ToList())
                                 {
-                                    <li>
+                                   <li>
                                         <a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">
 
                                             @if (item.UrlImage != null)

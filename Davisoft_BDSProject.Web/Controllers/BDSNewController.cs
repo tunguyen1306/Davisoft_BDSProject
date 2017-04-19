@@ -336,7 +336,15 @@ namespace Davisoft_BDSProject.Web.Controllers
 
                 //string uploadFolder = picture.DirectoryPhysical;
 
-                string path = Server.MapPath("~/fileUpload/").Replace("adminbds.vangia.net", "webtuyendung.vangia.net") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                string path = "";
+                if (Server.MapPath("~/fileUpload/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]) + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+                else
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
                 // check for directory
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);

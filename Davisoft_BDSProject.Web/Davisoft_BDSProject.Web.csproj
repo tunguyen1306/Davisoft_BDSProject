@@ -111,7 +111,19 @@
     </Reference>
     <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Content\ckfinder\bin\Release\CKFinder.dll</HintPath>
+      <HintPath>Content\ckfinder\bin\Debug\CKFinder.dll</HintPath>
+    </Reference>
+    <Reference Include="CKFinder_FileEditor, Version=2.1.0.1132, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\ckfinder\bin\Debug\CKFinder_FileEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="CKFinder_ImageResize, Version=2.1.0.1132, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\ckfinder\bin\Debug\CKFinder_ImageResize.dll</HintPath>
+    </Reference>
+    <Reference Include="CKFinder_Watermark, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\ckfinder\bin\Debug\CKFinder_Watermark.dll</HintPath>
     </Reference>
     <Reference Include="ColorCode">
       <HintPath>..\packages\ColorCode.1.0.1\lib\ColorCode.dll</HintPath>
@@ -2639,10 +2651,6 @@
     <Content Include="Display\lib\multi-select\img\switch.gif" />
     <Content Include="Display\lib\multi-select\js\jquery.multi-select.js" />
     <Content Include="Display\lib\multi-select\js\jquery.quicksearch.js" />
-    <Content Include="fileUpload\104\104_kWRZnAMcT0OH-ca45tmywA_1.jpg" />
-    <Content Include="fileUpload\104\104_kWRZnAMcT0OH-ca45tmywA_2.jpg" />
-    <Content Include="fileUpload\104\104_NQ4g1NXe_0uJXAJkp7uIiw_1.jpg" />
-    <Content Include="fileUpload\104\104_NQ4g1NXe_0uJXAJkp7uIiw_2.jpg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Content\SampleFiles\OptionalItem_sample.xlsx" />
     <Content Include="Content\SampleFiles\StandardItem_sample.xlsx" />
@@ -3126,7 +3134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="fileUpload\54\" />
     <Folder Include="Hubs\" />
     <Folder Include="Infrastructure\Notification\" />
     <Folder Include="MSReport\" />

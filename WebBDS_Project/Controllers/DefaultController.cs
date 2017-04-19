@@ -68,11 +68,12 @@ namespace WebBDS_Project.Controllers
                            join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
                            select new ListCityNew { Id = data.state_id, Name = datatext.text };
+            var idEmployee = db.BDSNews.FirstOrDefault(x=>x.ID== id_).IdAcount;
             var Model = new NewsModel
             {
                 tblBDSNew = db.BDSNews.FirstOrDefault(x => x.ID == id_),
                 ListPicture = db.BDSPictures.Where(x => x.advert_id == id_).ToList(),
-                ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                tblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x=>x.IdAccount== idEmployee),
                 ListBDSAccount = db.BDSAccounts.ToList(),
                 ListCityText = dataCity.ToList(),
                 ListDucation = db.BDSEducations.ToList(),
@@ -106,7 +107,14 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailNews(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var data = db.BDSExtNews.Where(x => x.Active == 1 && x.ApproveStatus == 1).ToList();
+            var data = db.BDSExtNews.FirstOrDefault(x => x.Active == 1 && x.ApproveStatus == 1 && x.ID==id_);
+            return View(data);
+        }
+        public ActionResult DetailEmployee(string id)
+        {
+            var id_ = int.Parse(id.Split('-').Last());
+            var data = db.BDSEmployerInformations.FirstOrDefault(x => x.ID== id_);
+
             return View(data);
         }
     }
