@@ -42,9 +42,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CaptchaMvc">
-      <HintPath>..\packages\CaptchaMvc.Mvc4.1.5.0\lib\net40-full\CaptchaMvc.dll</HintPath>
-    </Reference>
     <Reference Include="ImageResizer, Version=3.4.3.103, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
@@ -477,7 +474,9 @@
     <Content Include="Template\naptien.htm" />
     <Content Include="Template\QuanLyNhaTuyenDung.htm" />
     <Content Include="Template\QuanLyTaiKhoanNhaTuyenDung.htm" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -537,6 +536,13 @@
     <Content Include="Views\Default\_searchSalary.cshtml" />
     <Content Include="Views\Default\_searchTimeWorking.cshtml" />
     <Content Include="Views\Default\_searchWorkingPlace.cshtml" />
+
+    <Content Include="Views\Default\DetailEmployee.cshtml" />
+
+    <Content Include="Views\Management\ListNewOfUser.cshtml" />
+
+    <Content Include="Views\Default\_searchContent.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

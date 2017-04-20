@@ -405,5 +405,10 @@ namespace WebBDS_Project.Controllers
             var _id = int.Parse(id.Split('-').Last());
             return View();
         }
+        public ActionResult ListNewOfUser()
+        {
+            
+            return View();
+        }
     }
 }
