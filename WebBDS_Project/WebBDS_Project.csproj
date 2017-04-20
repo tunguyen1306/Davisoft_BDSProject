@@ -538,6 +538,7 @@
     <Content Include="Views\Default\_searchTimeWorking.cshtml" />
     <Content Include="Views\Default\_searchWorkingPlace.cshtml" />
     <Content Include="Views\Default\DetailEmployee.cshtml" />
+    <Content Include="Views\Management\ListNewOfUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
