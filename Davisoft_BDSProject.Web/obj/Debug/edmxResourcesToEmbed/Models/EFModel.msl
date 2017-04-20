@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="davisoft_bdsprojectEntitiesStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="BDSApplies">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSApply">
+        <MappingFragment StoreEntitySet="BDSApply">
+          <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="IdNews" ColumnName="IdNews" />
+          <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
+          <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSEmpers">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSEmper">
+        <MappingFragment StoreEntitySet="BDSEmpers">
+          <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
+          <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="languages" ColumnName="languages" />
+          <ScalarProperty Name="name_id" ColumnName="name_id" />
+          <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountryTexts">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.CountryText">
+        <MappingFragment StoreEntitySet="CountryText">
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="language_id" ColumnName="language_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.District">
+        <MappingFragment StoreEntitySet="District">
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="polygon" ColumnName="polygon" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="name_id" ColumnName="name_id" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="district_id" ColumnName="district_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DistrictTexts">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.DistrictText">
+        <MappingFragment StoreEntitySet="DistrictText">
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="language_id" ColumnName="language_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.Location">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="polygon" ColumnName="polygon" />
+          <ScalarProperty Name="preferred" ColumnName="preferred" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+          <ScalarProperty Name="name_id" ColumnName="name_id" />
+          <ScalarProperty Name="district_id" ColumnName="district_id" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationTexts">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.LocationText">
+        <MappingFragment StoreEntitySet="LocationText">
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="language_id" ColumnName="language_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="polygon" ColumnName="polygon" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+          <ScalarProperty Name="name_id" ColumnName="name_id" />
+          <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateTexts">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.StateText">
+        <MappingFragment StoreEntitySet="StateText">
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="language_id" ColumnName="language_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

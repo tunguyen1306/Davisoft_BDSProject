@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="davisoft_bdsprojectEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="BDSApply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAccountEm" Type="int" Nullable="false" />
+    <Property Name="IdAccountPer" Type="int" Nullable="false" />
+    <Property Name="IdNews" Type="int" />
+    <Property Name="Point" Type="int" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="RefTranHis" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSEmpers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAccountEm" Type="int" Nullable="false" />
+    <Property Name="IdAccountPer" Type="int" Nullable="false" />
+    <Property Name="Point" Type="int" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="RefTranHis" Type="int" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="countryCode" />
+    </Key>
+    <Property Name="countryCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="name_id" Type="int" Nullable="false" />
+    <Property Name="languages" Type="varchar" MaxLength="50" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CountryText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="language_id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="district_id" />
+    </Key>
+    <Property Name="district_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="state_id" Type="int" Nullable="false" />
+    <Property Name="name_id" Type="int" Nullable="false" />
+    <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="polygon" Type="nvarchar(max)" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DistrictText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="language_id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="int" Nullable="false" />
+    <Property Name="countryCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="state_id" Type="int" Nullable="false" />
+    <Property Name="district_id" Type="int" />
+    <Property Name="name_id" Type="int" Nullable="false" />
+    <Property Name="zipCode" Type="varchar" MaxLength="12" />
+    <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="preferred" Type="bit" Nullable="false" />
+    <Property Name="polygon" Type="nvarchar(max)" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="language_id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="state_id" />
+    </Key>
+    <Property Name="state_id" Type="int" Nullable="false" />
+    <Property Name="countryCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="name_id" Type="int" Nullable="false" />
+    <Property Name="stateCode" Type="nvarchar" MaxLength="4" />
+    <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="polygon" Type="varchar(max)" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StateText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="language_id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="davisoft_bdsprojectEntitiesStoreContainer">
+    <EntitySet Name="BDSApply" EntityType="Self.BDSApply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSEmpers" EntityType="Self.BDSEmpers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CountryText" EntityType="Self.CountryText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DistrictText" EntityType="Self.DistrictText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationText" EntityType="Self.LocationText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateText" EntityType="Self.StateText" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

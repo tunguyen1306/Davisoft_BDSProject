@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="davisoft_bdsprojectModelStoreContainer" CdmEntityContainer="davisoft_bdsprojectEntities">
-    <EntitySetMapping Name="C__migrationhistory">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.C__migrationhistory">
-        <MappingFragment StoreEntitySet="__migrationhistory">
+  <EntityContainerMapping StorageEntityContainer="DataWebBDSStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="DataWebBDS.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
           <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
           <ScalarProperty Name="Model" ColumnName="Model" />
           <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="audits">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.audit">
-        <MappingFragment StoreEntitySet="audits">
+    <EntitySetMapping Name="Audits">
+      <EntityTypeMapping TypeName="DataWebBDS.Audit">
+        <MappingFragment StoreEntitySet="Audits">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -28,16 +29,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsaccounts">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsaccount">
-        <MappingFragment StoreEntitySet="bdsaccount">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSAccounts">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSAccount">
+        <MappingFragment StoreEntitySet="BDSAccounts">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PassWord" ColumnName="PassWord" />
           <ScalarProperty Name="Token" ColumnName="Token" />
           <ScalarProperty Name="Money" ColumnName="Money" />
           <ScalarProperty Name="Point" ColumnName="Point" />
           <ScalarProperty Name="MailActive" ColumnName="MailActive" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
@@ -46,10 +48,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsareas">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsarea">
-        <MappingFragment StoreEntitySet="bdsareas">
+    <EntitySetMapping Name="BDSApplies">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSApply">
+        <MappingFragment StoreEntitySet="BDSApply">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
+          <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
+          <ScalarProperty Name="IdNews" ColumnName="IdNews" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSAreas">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSArea">
+        <MappingFragment StoreEntitySet="BDSAreas">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
@@ -61,18 +83,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsbanks">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsbank">
-        <MappingFragment StoreEntitySet="bdsbanks">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSBanks">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSBank">
+        <MappingFragment StoreEntitySet="BDSBanks">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Branch" ColumnName="Branch" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
           <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
           <ScalarProperty Name="AccountName" ColumnName="AccountName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
@@ -81,10 +103,67 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdscareers">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdscareer">
-        <MappingFragment StoreEntitySet="bdscareers">
+    <EntitySetMapping Name="BDSBranches">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSBranch">
+        <MappingFragment StoreEntitySet="BDSBranches">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="IdArea" ColumnName="IdArea" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSCareers">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSCareer">
+        <MappingFragment StoreEntitySet="BDSCareers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSComments">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSComment">
+        <MappingFragment StoreEntitySet="BDSComments">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+          <ScalarProperty Name="DateComment" ColumnName="DateComment" />
+          <ScalarProperty Name="TextComment" ColumnName="TextComment" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ApproveUser" ColumnName="ApproveUser" />
+          <ScalarProperty Name="NameComment" ColumnName="NameComment" />
+          <ScalarProperty Name="DescriptionComment" ColumnName="DescriptionComment" />
+          <ScalarProperty Name="CompanyComment" ColumnName="CompanyComment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSEducations">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSEducation">
+        <MappingFragment StoreEntitySet="BDSEducations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
@@ -96,25 +175,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdseducations">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdseducation">
-        <MappingFragment StoreEntitySet="bdseducations">
+    <EntitySetMapping Name="BDSEmpers">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSEmper">
+        <MappingFragment StoreEntitySet="BDSEmpers">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
+          <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsemployerinformations">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsemployerinformation">
-        <MappingFragment StoreEntitySet="bdsemployerinformation">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSEmployerInformations">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSEmployerInformation">
+        <MappingFragment StoreEntitySet="BDSEmployerInformations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Scope" ColumnName="Scope" />
@@ -134,21 +217,26 @@
           <ScalarProperty Name="CityContact" ColumnName="CityContact" />
           <ScalarProperty Name="DistrictContact" ColumnName="DistrictContact" />
           <ScalarProperty Name="TypeContact" ColumnName="TypeContact" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="Featured" ColumnName="Featured" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsevents">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsevent">
-        <MappingFragment StoreEntitySet="bdsevents">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSEvents">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSEvent">
+        <MappingFragment StoreEntitySet="BDSEvents">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
           <ScalarProperty Name="FromDate" ColumnName="FromDate" />
           <ScalarProperty Name="ToDate" ColumnName="ToDate" />
           <ScalarProperty Name="DisPercent" ColumnName="DisPercent" />
-          <ScalarProperty Name="FromDateToDate" ColumnName="FromDateToDate" />
-          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-          <ScalarProperty Name="MultiApply" ColumnName="MultiApply" />
           <ScalarProperty Name="TypeApply" ColumnName="TypeApply" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -158,10 +246,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdslanguages">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdslanguage">
-        <MappingFragment StoreEntitySet="bdslanguages">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSExtNews">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSExtNew">
+        <MappingFragment StoreEntitySet="BDSExtNews">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="CatExtNews" ColumnName="CatExtNews" />
+          <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
+          <ScalarProperty Name="ApproveStatus" ColumnName="ApproveStatus" />
+          <ScalarProperty Name="ApproveUser" ColumnName="ApproveUser" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSLanguages">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSLanguage">
+        <MappingFragment StoreEntitySet="BDSLanguages">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
@@ -173,10 +285,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsmarriages">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsmarriage">
-        <MappingFragment StoreEntitySet="bdsmarriages">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSMarriages">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSMarriage">
+        <MappingFragment StoreEntitySet="BDSMarriages">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
@@ -188,10 +300,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsnews">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsnew">
-        <MappingFragment StoreEntitySet="bdsnews">
-          <ScalarProperty Name="IdAdvert" ColumnName="IdAdvert" />
+    <EntitySetMapping Name="BDSNews">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSNew">
+        <MappingFragment StoreEntitySet="BDSNews">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="AddressWork" ColumnName="AddressWork" />
           <ScalarProperty Name="FromSalary" ColumnName="FromSalary" />
@@ -199,42 +311,56 @@
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Bonus" ColumnName="Bonus" />
           <ScalarProperty Name="Sex" ColumnName="Sex" />
-          <ScalarProperty Name="Experience" ColumnName="Experience" />
-          <ScalarProperty Name="Level" ColumnName="Level" />
-          <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
-          <ScalarProperty Name="DesInfoCompany" ColumnName="DesInfoCompany" />
+          <ScalarProperty Name="IdTimeWork" ColumnName="IdTimeWork" />
+          <ScalarProperty Name="IdEducation" ColumnName="IdEducation" />
+          <ScalarProperty Name="Career" ColumnName="Career" />
+          <ScalarProperty Name="DesCompany" ColumnName="DesCompany" />
           <ScalarProperty Name="DesWork" ColumnName="DesWork" />
           <ScalarProperty Name="Benefit" ColumnName="Benefit" />
           <ScalarProperty Name="FromAge" ColumnName="FromAge" />
           <ScalarProperty Name="ToAge" ColumnName="ToAge" />
-          <ScalarProperty Name="IdTimeWork" ColumnName="IdTimeWork" />
+          <ScalarProperty Name="TimeProbationary" ColumnName="TimeProbationary" />
           <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
           <ScalarProperty Name="AddressApply" ColumnName="AddressApply" />
-          <ScalarProperty Name="AddressContact" ColumnName="AddressContact" />
+          <ScalarProperty Name="NamesContact" ColumnName="NamesContact" />
           <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
           <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="FromDeadlineSubmit" ColumnName="FromDeadlineSubmit" />
-          <ScalarProperty Name="toDeadlineSubmit" ColumnName="toDeadlineSubmit" />
+          <ScalarProperty Name="FromDeadline" ColumnName="FromDeadline" />
+          <ScalarProperty Name="ToDeadline" ColumnName="ToDeadline" />
           <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
           <ScalarProperty Name="WebSiteCompany" ColumnName="WebSiteCompany" />
           <ScalarProperty Name="IdTypeNews" ColumnName="IdTypeNews" />
           <ScalarProperty Name="FromCreateNews" ColumnName="FromCreateNews" />
           <ScalarProperty Name="ToCreateNews" ColumnName="ToCreateNews" />
           <ScalarProperty Name="IdAcount" ColumnName="IdAcount" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="MoneyInDay" ColumnName="MoneyInDay" />
+          <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+          <ScalarProperty Name="IdTypeNewsCuurent" ColumnName="IdTypeNewsCuurent" />
+          <ScalarProperty Name="DateReup" ColumnName="DateReup" />
+          <ScalarProperty Name="CountReup" ColumnName="CountReup" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsnewstypeprices">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsnewstypeprice">
-        <MappingFragment StoreEntitySet="bdsnewstypeprices">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
+    <EntitySetMapping Name="BDSNewsTypePrices">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSNewsTypePrice">
+        <MappingFragment StoreEntitySet="BDSNewsTypePrices">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
           <ScalarProperty Name="IdNewsType" ColumnName="IdNewsType" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="ApplyPrice" ColumnName="ApplyPrice" />
           <ScalarProperty Name="Perfix" ColumnName="Perfix" />
-          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
@@ -243,14 +369,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsnewstypes">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsnewstype">
-        <MappingFragment StoreEntitySet="bdsnewstypes">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSNewsTypes">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSNewsType">
+        <MappingFragment StoreEntitySet="BDSNewsTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CodeNewsType" ColumnName="CodeNewsType" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="UrlIcon" ColumnName="UrlIcon" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="UrlIcon" ColumnName="UrlIcon" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
@@ -259,10 +387,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdspersonalinformations">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdspersonalinformation">
-        <MappingFragment StoreEntitySet="bdspersonalinformations">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSPersonalInformations">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSPersonalInformation">
+        <MappingFragment StoreEntitySet="BDSPersonalInformations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -275,25 +403,13 @@
           <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
           <ScalarProperty Name="Salary" ColumnName="Salary" />
           <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="ProfessionalExperience" ColumnName="ProfessionalExperience" />
           <ScalarProperty Name="Education" ColumnName="Education" />
           <ScalarProperty Name="IdLoaiNghe" ColumnName="IdLoaiNghe" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="bdssalaries">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdssalary">
-        <MappingFragment StoreEntitySet="bdssalaries">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="FromSalary" ColumnName="FromSalary" />
-          <ScalarProperty Name="ToSalary" ColumnName="ToSalary" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="Perfix" ColumnName="Perfix" />
-          <ScalarProperty Name="Default" ColumnName="Default" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -301,10 +417,58 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdsscopes">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdsscope">
-        <MappingFragment StoreEntitySet="bdsscopes">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSPictures">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSPicture">
+        <MappingFragment StoreEntitySet="BDSPictures">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="advert_id" ColumnName="advert_id" />
+          <ScalarProperty Name="originalFilepath" ColumnName="originalFilepath" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="converted" ColumnName="converted" />
+          <ScalarProperty Name="convertedFilename" ColumnName="convertedFilename" />
+          <ScalarProperty Name="tocheck" ColumnName="tocheck" />
+          <ScalarProperty Name="isvalidated" ColumnName="isvalidated" />
+          <ScalarProperty Name="convertedFilename90" ColumnName="convertedFilename90" />
+          <ScalarProperty Name="convertedFilename180" ColumnName="convertedFilename180" />
+          <ScalarProperty Name="convertedFilename270" ColumnName="convertedFilename270" />
+          <ScalarProperty Name="angleType" ColumnName="angleType" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="cms_sql_id" ColumnName="cms_sql_id" />
+          <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSSalaries">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSSalary">
+        <MappingFragment StoreEntitySet="BDSSalaries">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="FromSalary" ColumnName="FromSalary" />
+          <ScalarProperty Name="ToSalary" ColumnName="ToSalary" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Perfix" ColumnName="Perfix" />
+          <ScalarProperty Name="Default" ColumnName="Default" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSScopes">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSScope">
+        <MappingFragment StoreEntitySet="BDSScopes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
@@ -316,10 +480,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdstimeworks">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdstimework">
-        <MappingFragment StoreEntitySet="bdstimeworks">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSTimeWorks">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSTimeWork">
+        <MappingFragment StoreEntitySet="BDSTimeWorks">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
@@ -328,6 +492,27 @@
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Perfix" ColumnName="Perfix" />
           <ScalarProperty Name="Default" ColumnName="Default" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="NameEX" ColumnName="NameEX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSTransactionHistories">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSTransactionHistory">
+        <MappingFragment StoreEntitySet="BDSTransactionHistories">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="TypeTran" ColumnName="TypeTran" />
+          <ScalarProperty Name="DateTran" ColumnName="DateTran" />
+          <ScalarProperty Name="PointTran" ColumnName="PointTran" />
+          <ScalarProperty Name="MoneyTran" ColumnName="MoneyTran" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -335,10 +520,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bdstypecontacts">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.bdstypecontact">
-        <MappingFragment StoreEntitySet="bdstypecontacts">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="BDSTransactions">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSTransaction">
+        <MappingFragment StoreEntitySet="BDSTransactions">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+          <ScalarProperty Name="IdBank" ColumnName="IdBank" />
+          <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="MoneyEventAdd" ColumnName="MoneyEventAdd" />
+          <ScalarProperty Name="EventDisPercent" ColumnName="EventDisPercent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="TranDate" ColumnName="TranDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSTypeContacts">
+      <EntityTypeMapping TypeName="DataWebBDS.BDSTypeContact">
+        <MappingFragment StoreEntitySet="BDSTypeContacts">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
@@ -350,9 +560,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="branches">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.branch">
-        <MappingFragment StoreEntitySet="branches">
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="DataWebBDS.Branch">
+        <MappingFragment StoreEntitySet="Branches">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -362,16 +572,17 @@
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
           <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
-          <ScalarProperty Name="C_Created" ColumnName="_Created" />
-          <ScalarProperty Name="C_Updated" ColumnName="_Updated" />
-          <ScalarProperty Name="C_Deleted" ColumnName="_Deleted" />
+          <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+          <ScalarProperty Name="UpdatedTime" ColumnName="UpdatedTime" />
+          <ScalarProperty Name="DeletedTime" ColumnName="DeletedTime" />
           <ScalarProperty Name="EntityStatus_Value" ColumnName="EntityStatus_Value" />
+          <ScalarProperty Name="EntityStatus_DisplayName" ColumnName="EntityStatus_DisplayName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="counters">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.counter">
-        <MappingFragment StoreEntitySet="counters">
+    <EntitySetMapping Name="Counters">
+      <EntityTypeMapping TypeName="DataWebBDS.Counter">
+        <MappingFragment StoreEntitySet="Counters">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Value" ColumnName="Value" />
@@ -379,9 +590,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="countries">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.country">
-        <MappingFragment StoreEntitySet="country">
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="DataWebBDS.Country">
+        <MappingFragment StoreEntitySet="Country">
           <ScalarProperty Name="countryCode" ColumnName="countryCode" />
           <ScalarProperty Name="name_id" ColumnName="name_id" />
           <ScalarProperty Name="languages" ColumnName="languages" />
@@ -389,9 +600,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="countrytexts">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.countrytext">
-        <MappingFragment StoreEntitySet="countrytext">
+    <EntitySetMapping Name="CountryTexts">
+      <EntityTypeMapping TypeName="DataWebBDS.CountryText">
+        <MappingFragment StoreEntitySet="CountryText">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="language_id" ColumnName="language_id" />
           <ScalarProperty Name="text" ColumnName="text" />
@@ -399,9 +610,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="currencies">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.currency">
-        <MappingFragment StoreEntitySet="currencies">
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="DataWebBDS.Currency">
+        <MappingFragment StoreEntitySet="Currencies">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Symbol" ColumnName="Symbol" />
@@ -410,9 +621,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="districts">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.district">
-        <MappingFragment StoreEntitySet="district">
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="DataWebBDS.District">
+        <MappingFragment StoreEntitySet="District">
           <ScalarProperty Name="district_id" ColumnName="district_id" />
           <ScalarProperty Name="state_id" ColumnName="state_id" />
           <ScalarProperty Name="name_id" ColumnName="name_id" />
@@ -423,9 +634,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="districttexts">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.districttext">
-        <MappingFragment StoreEntitySet="districttext">
+    <EntitySetMapping Name="DistrictTexts">
+      <EntityTypeMapping TypeName="DataWebBDS.DistrictText">
+        <MappingFragment StoreEntitySet="DistrictText">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="language_id" ColumnName="language_id" />
           <ScalarProperty Name="text" ColumnName="text" />
@@ -433,9 +644,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="holidays">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.holiday">
-        <MappingFragment StoreEntitySet="holidays">
+    <EntitySetMapping Name="Holidays">
+      <EntityTypeMapping TypeName="DataWebBDS.Holiday">
+        <MappingFragment StoreEntitySet="Holidays">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -443,9 +654,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="languages">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.language">
-        <MappingFragment StoreEntitySet="languages">
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="DataWebBDS.Language">
+        <MappingFragment StoreEntitySet="Languages">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
@@ -453,9 +664,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="locations">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.location">
-        <MappingFragment StoreEntitySet="location">
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="DataWebBDS.Location">
+        <MappingFragment StoreEntitySet="Location">
           <ScalarProperty Name="location_id" ColumnName="location_id" />
           <ScalarProperty Name="countryCode" ColumnName="countryCode" />
           <ScalarProperty Name="state_id" ColumnName="state_id" />
@@ -470,9 +681,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="locationtexts">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.locationtext">
-        <MappingFragment StoreEntitySet="locationtext">
+    <EntitySetMapping Name="LocationTexts">
+      <EntityTypeMapping TypeName="DataWebBDS.LocationText">
+        <MappingFragment StoreEntitySet="LocationText">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="language_id" ColumnName="language_id" />
           <ScalarProperty Name="text" ColumnName="text" />
@@ -480,9 +691,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="menus">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.menu">
-        <MappingFragment StoreEntitySet="menus">
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="DataWebBDS.Menu">
+        <MappingFragment StoreEntitySet="Menus">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Url" ColumnName="Url" />
@@ -492,9 +703,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="permissions">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.permission">
-        <MappingFragment StoreEntitySet="permissions">
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="DataWebBDS.Permission">
+        <MappingFragment StoreEntitySet="Permissions">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Target" ColumnName="Target" />
           <ScalarProperty Name="Right" ColumnName="Right" />
@@ -502,19 +713,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="roles">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.role">
-        <MappingFragment StoreEntitySet="roles">
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="DataWebBDS.Role">
+        <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="RoleLevel_Value" ColumnName="RoleLevel_Value" />
+          <ScalarProperty Name="RoleLevel_DisplayName" ColumnName="RoleLevel_DisplayName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="settings">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.setting">
-        <MappingFragment StoreEntitySet="settings">
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="DataWebBDS.Setting">
+        <MappingFragment StoreEntitySet="Settings">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Module" ColumnName="Module" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -528,9 +740,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="states">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.state">
-        <MappingFragment StoreEntitySet="state">
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="DataWebBDS.State">
+        <MappingFragment StoreEntitySet="State">
           <ScalarProperty Name="state_id" ColumnName="state_id" />
           <ScalarProperty Name="countryCode" ColumnName="countryCode" />
           <ScalarProperty Name="name_id" ColumnName="name_id" />
@@ -538,16 +750,16 @@
           <ScalarProperty Name="latitude" ColumnName="latitude" />
           <ScalarProperty Name="longitude" ColumnName="longitude" />
           <ScalarProperty Name="polygon" ColumnName="polygon" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="statetexts">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.statetext">
-        <MappingFragment StoreEntitySet="statetext">
+    <EntitySetMapping Name="StateTexts">
+      <EntityTypeMapping TypeName="DataWebBDS.StateText">
+        <MappingFragment StoreEntitySet="StateText">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="language_id" ColumnName="language_id" />
           <ScalarProperty Name="text" ColumnName="text" />
@@ -555,9 +767,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="users">
-      <EntityTypeMapping TypeName="davisoft_bdsprojectModel.user">
-        <MappingFragment StoreEntitySet="users">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DataWebBDS.User">
+        <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -571,41 +783,42 @@
           <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
           <ScalarProperty Name="Website" ColumnName="Website" />
           <ScalarProperty Name="Status_Value" ColumnName="Status_Value" />
+          <ScalarProperty Name="Status_DisplayName" ColumnName="Status_DisplayName" />
           <ScalarProperty Name="BranchID" ColumnName="BranchID" />
           <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="menus_roles" TypeName="davisoft_bdsprojectModel.menus_roles" StoreEntitySet="menus_roles">
-      <EndProperty Name="menus">
+    <AssociationSetMapping Name="Menus_Roles" TypeName="DataWebBDS.Menus_Roles" StoreEntitySet="Menus_Roles">
+      <EndProperty Name="Menus">
         <ScalarProperty Name="ID" ColumnName="Menu_Id" />
       </EndProperty>
-      <EndProperty Name="roles">
+      <EndProperty Name="Roles">
         <ScalarProperty Name="ID" ColumnName="Role_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="roles_permissions" TypeName="davisoft_bdsprojectModel.roles_permissions" StoreEntitySet="roles_permissions">
-      <EndProperty Name="roles">
-        <ScalarProperty Name="ID" ColumnName="Role_Id" />
-      </EndProperty>
-      <EndProperty Name="permissions">
+    <AssociationSetMapping Name="Roles_Permissions" TypeName="DataWebBDS.Roles_Permissions" StoreEntitySet="Roles_Permissions">
+      <EndProperty Name="Permissions">
         <ScalarProperty Name="ID" ColumnName="Permission_Id" />
       </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="users_branches" TypeName="davisoft_bdsprojectModel.users_branches" StoreEntitySet="users_branches">
-      <EndProperty Name="users">
-        <ScalarProperty Name="ID" ColumnName="User_Id" />
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="ID" ColumnName="Role_Id" />
       </EndProperty>
-      <EndProperty Name="branches">
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Users_Branches" TypeName="DataWebBDS.Users_Branches" StoreEntitySet="Users_Branches">
+      <EndProperty Name="Branches">
         <ScalarProperty Name="ID" ColumnName="Branch_Id" />
       </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="users_roles" TypeName="davisoft_bdsprojectModel.users_roles" StoreEntitySet="users_roles">
-      <EndProperty Name="users">
+      <EndProperty Name="Users">
         <ScalarProperty Name="ID" ColumnName="User_Id" />
       </EndProperty>
-      <EndProperty Name="roles">
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Users_Roles" TypeName="DataWebBDS.Users_Roles" StoreEntitySet="Users_Roles">
+      <EndProperty Name="Roles">
         <ScalarProperty Name="ID" ColumnName="Role_Id" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="ID" ColumnName="User_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

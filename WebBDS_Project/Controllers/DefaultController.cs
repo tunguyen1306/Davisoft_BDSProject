@@ -85,19 +85,62 @@ namespace WebBDS_Project.Controllers
 
             return View(Model);
         }
-        public ActionResult Search(int?[] filterWorkingPlace, int? filterCareer, int? filterSalary, int? filterTimeWorking, int page = 1, int view = 1)
+        public ActionResult Search(int?[] filterWorkingPlace, int[] filterCareer, int? filterSalary, int? filterTimeWorking, int page = 1, int view = 25)
         {
+            String fCareer = "";
+            if (filterCareer!=null  && filterCareer.Length > 0)
+            {
+                for (int i = 0; i < filterCareer.Length; i++)
+                {
+                    fCareer += "" + i;
+                    if (i < filterCareer.Length - 1)
+                    {
+                        fCareer += ",";
+                    }
+                }
+            }
+            int fromS = 0;
+            int toS = int.MaxValue;
+            var salary = db.BDSSalaries.FirstOrDefault(T => T.ID == filterSalary);
+            if (salary != null)
+            {
+                switch (salary.Type)
+                {
+                    case 1:
+                        toS = salary.FromSalary;
+                        break;
+                    case 2:
+                        fromS = salary.FromSalary;
+                        toS = salary.ToSalary;
+                        break;
+                    case 3:
+                        fromS = salary.FromSalary;
+                        break;
+                }
+            }
+
             var q = (from a in db.BDSNews
-                join b in db.BDSNewsTypes on a.IdTypeNewsCuurent equals b.ID
-                where a.Active == 1 && a.Status == 1
-                orderby b.Order ascending, a.FromCreateNews descending
-                select a);
+                     join b in db.BDSNewsTypes on a.IdTypeNewsCuurent equals b.ID
+                     where a.Active == 1 && a.Status == 1 && a.FromSalary >= fromS && a.ToSalary <= toS
+                     orderby b.Order ascending, a.FromCreateNews descending
+                     select a);
+            if (filterWorkingPlace != null && filterWorkingPlace.Length>0)
+            {
+               
+               q= q.Where(T => filterWorkingPlace.Contains(T.AddressWork));
+            }
+            if (filterTimeWorking.HasValue)
+            {
+                q = q.Where(a => a.IdTimeWork == filterTimeWorking);
+            }
+
             var total = q.Count();
             var data = q.Skip(page * view - view).Take(view).ToList();
             ViewBag.Total = total;
             ViewBag.From = page * view - view;
             return View(data);
         }
+        
         
         public ActionResult SearchForEmployee()
         {

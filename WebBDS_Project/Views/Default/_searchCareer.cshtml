@@ -10,10 +10,11 @@
 
 
         @{
+            var checklist = Request["filterCareer"] != null ? Request["filterCareer"].ToString().Split(',').Select(T => int.Parse(T)) : new int[0];
             foreach (var item in db.BDSCareers.Where(T=>T.Active==1).ToList())
             {
                 <li>
-                    <a><input class="check_filter" type="checkbox" name="filterCareer" value="@item.ID" /> <label>@item.Name</label></a>
+                    <a><input @(checklist.Contains(item.ID) ? "checked='checked'" : "") class="check_filter" type="checkbox" name="filterCareer" value="@item.ID" /> <label>@item.Name</label></a>
                 </li>
             }
         }

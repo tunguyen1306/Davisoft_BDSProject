@@ -18,93 +18,114 @@
         </a>
     </li>
 </ul>
+<script>
+    function searchEmp() {
+        var url = '@Url.Action("Search","Default")';
+
+        var params = '?page=1';
+        $($('#searchEmp').serializeArray()).each(function (i, item) {
+            if (item.value!="") {
+                params += "&" + item.name + "=" + item.value;
+            }
+          
+
+        });
+        url += params;
+        location.href = url;
+    }
+</script>
 <div class="content_tab">
     <div id="tab1">
-        <h4>Tìm tin tuyển dụng nhân viên kinh doanh bất động sản</h4>
-        <div class="box_select">
-            <fieldset>
-                <div class="grid_3">
-                    <select class="dropdown" tabindex="7">
-                        <option value="">Chọn tỉnh thành</option>
-                        @{
-                            foreach (var item in States)
-                            {
-                                <option value="@item.Id">@item.Name</option>
+        <form id="searchEmp">
+            <h4>Tìm tin tuyển dụng nhân viên kinh doanh bất động sản</h4>
+            <div class="box_select">
+
+                <fieldset>
+                    <div class="grid_3">
+                        <select class="dropdown" name="filterWorkingPlace" tabindex="7">
+                            <option value="">Chọn tỉnh thành</option>
+                            @{
+                                foreach (var item in States)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
                             }
-                        }
 
 
-                    </select>
-                </div>
-                <div class="grid_3">
-                    <select class="dropdown" tabindex="7">
-                        <option value="">Chọn ngành nghề</option>
-                        @{
-                            foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
-                            {
-                                <option value="@item.ID">@item.Name</option>
+                        </select>
+                    </div>
+                    <div class="grid_3">
+                        <select class="dropdown" name="filterCareer" tabindex="7">
+                            <option value="">Chọn ngành nghề</option>
+                            @{
+                                foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
                             }
-                        }
-                    </select>
-                </div>
-                <div class="grid_3">
-                    <select class="dropdown" tabindex="7">
-                        <option value="">Chọn mức lương</option>
-                        @{
-                            foreach (var item in db.BDSSalaries.Where(T => T.Active == 1).ToList())
-                            {
-                                <option value="@item.ID">@item.Name</option>
+                        </select>
+                    </div>
+                    <div class="grid_3">
+                        <select class="dropdown" name="filterSalary" tabindex="7">
+                            <option value="">Chọn mức lương</option>
+                            @{
+                                foreach (var item in db.BDSSalaries.Where(T => T.Active == 1).ToList())
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
                             }
-                        }
-                    </select>
-                </div>
-                <div class="grid_3 omega">
-                    <button class="btn_search" type="button"><i class="fa fa-search"></i>TÌM KIẾM</button>
-                </div>
-            </fieldset>
-        </div>
+                        </select>
+                    </div>
+                    <div class="grid_3 omega">
+                        <button class="btn_search" type="button" onclick="searchEmp(); return false;"><i class="fa fa-search"></i>TÌM KIẾM</button>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
     </div>
     <div id="tab2">
-        <h4>Tìm tin tuyển dụng nhân viên kinh doanh bất động sản abc</h4>
-        <div class="box_select">
-            <fieldset>
-                <div class="grid_3">
-                    <select class="dropdown" tabindex="7">
-                        <option value="">Chọn tỉnh thành</option>
-                        @{
-                            foreach (var item in States)
-                            {
-                                <option value="@item.Id">@item.Name</option>
+        <form id="searchPer">
+            <h4>Tìm tin tuyển dụng nhân viên kinh doanh bất động sản abc</h4>
+            <div class="box_select">
+                <fieldset>
+                    <div class="grid_3">
+                        <select class="dropdown" tabindex="7">
+                            <option value="">Chọn tỉnh thành</option>
+                            @{
+                                foreach (var item in States)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
                             }
-                        }
-                    </select>
-                </div>
-                <div class="grid_3">
-                    <select class="dropdown" tabindex="7">
-                        <option value="">Chọn ngành nghề</option>
-                        @{
-                            foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
-                            {
-                                <option value="@item.ID">@item.Name</option>
+                        </select>
+                    </div>
+                    <div class="grid_3">
+                        <select class="dropdown" tabindex="7">
+                            <option value="">Chọn ngành nghề</option>
+                            @{
+                                foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
                             }
-                        }
-                    </select>
-                </div>
-                <div class="grid_3">
-                    <select class="dropdown" tabindex="7">
-                        <option value="">Chọn mức lương</option>
-                        @{
-                            foreach (var item in db.BDSSalaries.Where(T => T.Active == 1).ToList())
-                            {
-                                <option value="@item.ID">@item.Name</option>
+                        </select>
+                    </div>
+                    <div class="grid_3">
+                        <select class="dropdown" tabindex="7">
+                            <option value="">Chọn mức lương</option>
+                            @{
+                                foreach (var item in db.BDSSalaries.Where(T => T.Active == 1).ToList())
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
                             }
-                        }
-                    </select>
-                </div>
-                <div class="grid_3 omega">
-                    <button class="btn_search" type="button"><i class="fa fa-search"></i>TÌM KIẾM</button>
-                </div>
-            </fieldset>
-        </div>
-    </div>
+                        </select>
+                    </div>
+                    <div class="grid_3 omega">
+                        <button class="btn_search" type="button" onclick="return false"><i class="fa fa-search"></i>TÌM KIẾM</button>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+</div>
 </div>

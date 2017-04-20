@@ -12,10 +12,12 @@
 
 
         @{
+
+            var checklist = Request["filterWorkingPlace"] != null ? Request["filterWorkingPlace"].ToString().Split(',').Select(T=>int.Parse(T)) : new int[0];
             foreach (var item in States)
             {
                 <li>
-                    <a><input class="check_filter" type="checkbox" name="filterWorkingPlace" value="@item.Id" /> <label>@item.Name</label></a>
+                    <a><input class="check_filter" @(checklist.Contains(item.Id) ? "checked='checked'" : "")  type="checkbox" name="filterWorkingPlace" value="@item.Id" /> <label>@item.Name</label></a>
                 </li>
             }
         }
