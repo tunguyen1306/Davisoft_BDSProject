@@ -1,25 +1,141 @@
 ﻿@{
     ViewBag.Title = "ApplyArchive";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
-    davisoft_bdsprojectEntities db=new davisoft_bdsprojectEntities();
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+    int from = 0;
+    int page = 1;
+    int view = 12;
+    int tt = 0;
+    int count = 0;
+    var typeVip = db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1).CodeNewsType;
+    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+    var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && (tt == 0 || A.AddressWork == tt));
+    var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
+    count = query.Count();
 }
 
 
 
+@using System.Configuration
 @using WebBDS_Project.Models
 <div class="container">
     <div class="grid_9 main_left">
         <div class="group_work">
             <div class="header_text">
-                <h3><span><i class="fa fa-list-ul"></i>Danh sách ứng viên</span></h3>
+                <h3><span><i class="fa fa-list-ul"></i>Danh sách tin đăng</span></h3>
             </div>
-            
+            <div class="grid_12">
+                @foreach (var news in ListNews)
+                {
+                    var account = db.BDSEmployerInformations.FirstOrDefault(T => T.IdAccount == news.IdAcount);
+                    if (db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.ID == news.IdTypeNewsCuurent).CodeNewsType == "TDB")
+                    {
+
+                        if (account != null)
+                        {
+                    <ul class="list_work">
+                        <li style="margin-bottom: 0">
+                            <div class="grid_3">
+                                <a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })">
+                                    <img width="120" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + account.UrlImage) : "img.png"))" alt="1">
+                                    <p class="vip">
+                                        <i class="fa fa-star"></i>
+                                        <span>VIP</span>
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="grid_9 omega">
+                                <h2><a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })">@( news.Title) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                                <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
+                                <div>
+                                    <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triêu </p>
+                                    <p class="grid_6 omega time">Mã tin: <span class="color2">P@(news.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                        }
+                    }
+                    if (db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.ID == news.IdTypeNewsCuurent).CodeNewsType == "TVP")
+                    {
+
+                        if (account != null)
+                        {
+                    <ul class="list_work_2">
+                        <li>
+                            <div class="grid_9">
+                                <a href="#" class="image_2">
+                                    <img src="~/Template/images/2.jpg" alt="2">
+                                    <p class="vip">
+                                        <i class="fa fa-star"></i>
+                                        <span>VIP</span>
+                                    </p>
+                                </a>
+                                <div class="name">
+                                    <h2><a href="#">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
+                                    <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
+                                    <p><i class="fa fa-clock-o"></i>12/12/1224</p>
+                                </div>
+                            </div>
+                            <div class="grid_3 omega">
+                                <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
+                            </div>
+                        </li>
+
+                    </ul>
+                        }
+                    }
+                    if (db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.ID == news.IdTypeNewsCuurent).CodeNewsType == "TBT")
+                    {
+                        if (account != null)
+                        {
+                    <ul class="list_work_2 green">
+                        <li>
+                            <div class="grid_9">
+                                <a href="#" class="image_2">
+                                    <img src="~/Template/images/2.jpg" alt="2">
+                                    <p class="vip">
+                                        <i class="fa fa-star"></i>
+                                        <span>VIP</span>
+                                    </p>
+                                </a>
+                                <div class="name">
+                                    <h2><a href="#">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
+                                    <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
+                                    <p><i class="fa fa-clock-o"></i>12/12/1224</p>
+                                </div>
+                            </div>
+                            <div class="grid_3 omega">
+                                <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
+                            </div>
+                        </li>
+
+                    </ul>
+                        }
+                    } if (db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.ID == news.IdTypeNewsCuurent).CodeNewsType == "TFE")
+                    {
+                        if (account != null)
+                        {
+                    <ul class="last_list">
+                        <li style="border-top: 1px solid #dfdfdf;">
+                            <a href="#">Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
+                        </li>
+
+
+                    </ul>
+                        }
+                    }
+
+                }
+
+            </div>
 
         </div>
     </div>
-     <div class="grid_3 omega main_right">
-           
-            @Html.Partial("_partialManagerCenter")
+    <div class="grid_3 omega main_right">
 
-        </div>
+        @Html.Partial("_partialManagerCenter")
+
+    </div>
 </div>
