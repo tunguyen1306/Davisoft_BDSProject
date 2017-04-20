@@ -3,54 +3,87 @@
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
 
-
 <div class="container">
     <div class="grid_12 ">
         <div class="group_work">
             <div class="header_text">
-                <h3><span><i class="fa fa-list-ul"></i>Hồ sơ đã lưu</span></h3>
+                <h3><span><i class="fa fa-list-ul"></i>Quên mật khẩu</span></h3>
             </div>
-            <div class="grid_12">
-                <table class="table-responsive" style="margin-top: 10px;">
-                    <thead>
-                        <tr>
-                            <th data-field="id">NGÀY TÌM VIỆC</th>
-                            <th data-field="name">HÌNH ẢNH</th>
-                            <th data-field="name">HỌ VÀ TÊN</th>
-                            <th data-field="name">GIỚI TÍNH</th>
-                            <th data-field="name">NĂM SINH</th>
-                            <th data-field="name">KINH NGHIỆM</th>
+            <div class="form-horizontal">
+                <div class="grid_6">
+                    <div class="right_col">
+                        <ul class="list_news cus-listnew-login">
+                            <li>
 
+                                <p>
+                                    <input placeholder="Email" id="email" type="text">
+                                </p>
+                                <p>
 
-                            <th data-field="name">VỊ TRÍ MONG MUỐN</th>
-                            <th data-field="name">TỈNH / THÀNH PHỐ</th>
-                            <th data-field="name">QUẬN HUYỆN</th>
-                            <th data-field="name">HỌC VẤN</th>
-                            <th data-field="name">CHI TIẾT</th>
-                        </tr>
-                    </thead>
+                                    <a class="btLogin btnForgetPass">Lấy lại mật khẩu</a>
+                                </p>
 
-                    <tbody>
-                        <tr>
-                            <td>13/06/1991</td>
-                            <td><img width="50" src="~/Template/images/logo.png" /></td>
-                            <td>Nguyễn tấn tu</td>
-                            <td>Nam</td>
-                            <td>1991</td>
-                            <td>1 năm</td>
-                            <td>NV kinh doanh</td>
-                            <td>Hồ Chí Minh</td>
-                            <td>Quận 1</td>
-                            <td>Đại học</td>
-                            <td>xem</td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="grid_6 omega">
+                    <div class="right_col">
+                        <div class="cus-h3">Đăng nhập</div>
+                        <ul class="list_news cus-listnew-login">
+                            <li>
+                                @using (Html.BeginForm("Login", "Login"))
+                                {
+                                    <p>
+                                        Email
+                                        <input placeholder="Email" name="tblBDSAccount.Email" type="text">
+                                    </p>
+                                    <p>
+                                        Mật khẩu
+                                        <input placeholder="Mật khẩu" name="tblBDSAccount.PassWord" type="password">
+                                        <button type="submit" class="btLogin">Đăng nhập</button>
+                                    </p>
+                                    <p class="box_remember">
+                                        <a href="@Url.Action("ForgetPass", "Management")">Quên mật khẩu</a><br>
+                                        Đăng nhập bằng
+                                        <a href="#"><i class="fa fa-facebook-official"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus-square"></i></a>
+                                    </p>
+                                }
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
             </div>
-
         </div>
     </div>
 
 </div>
+<script>
+    $('.btnForgetPass').click(function () {
+        ForGetPass();
+    });
+    function ForGetPass()
+    {
+        var obj = {};
+        obj.email = $('#email').val();
 
+        $.ajax
+       ({
+           type: "POST",
+           url: '@Url.Action("ForgetPass1", "Management")',
+           data: JSON.stringify(obj),
+           dataType: "json",
+           contentType: "application/json;charset=utf-8",
+           success: function (data) {
+
+
+           }
+       });
+    }
+</script>
 

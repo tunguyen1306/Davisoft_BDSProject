@@ -25,7 +25,7 @@
 
                 </a>
                         <figcaption><a href="@Url.Action("DetailEmployee", "Default", new { id = item.Name.UrlFrendly() + "-" + item.ID })">@item.Name</a></figcaption>*@
-                <a href="@item.WebSite" target="_blank">
+                <a href="@(item.WebSite!=null ?item.WebSite: Url.Action("Index","Default") )" target="_blank">
                     @if (item.UrlImage != null)
                     {
                         <img width="40" height="30px" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
@@ -36,7 +36,7 @@
                     }
 
                 </a>
-                <figcaption><a target="_blank" href="@item.WebSite">@item.Name</a></figcaption>
+                <figcaption><a target="_blank" href="@(item.WebSite!=null ?item.WebSite: Url.Action("Index","Default") )">@item.Name</a></figcaption>
             </li>
 
         }
