@@ -32,9 +32,6 @@ namespace WebBDS_Project.Controllers
 
                 if (dataEmployee != null) Session["FullName"] = dataEmployee.Name;
 
-
-                //Session["IdTypeUser"] = data.IdTypeUser;
-                //Session["FullName"] = data.LastNameUser + data.FirtNameUser;
                 if (String.IsNullOrEmpty(returnUrl))
                 {
                     return RedirectToAction("Index", "Default");

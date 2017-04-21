@@ -12,6 +12,15 @@
     var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && (tt == 0 || A.AddressWork == tt));
     var ListNews = query.OrderByDescending(T => T.FromCreateNews).OrderBy(x => x.IdTypeNewsCuurent).Skip(from).Take(view).ToList();
     count = query.Count();
+    var idAcount = 0;
+    if (Session["IdUser"]!=null)
+    {
+        idAcount = int.Parse(Session["IdUser"].ToString());
+    }
+    else
+    {
+        idAcount = 0;
+    }
 }
 
 
@@ -25,7 +34,7 @@
                 <h3><span><i class="fa fa-list-ul"></i>Danh sách tin đăng</span></h3>
             </div>
             <div class="grid_12">
-                @foreach (var news in ListNews)
+                @foreach (var news in ListNews.Where(x => x.IdAcount == idAcount))
                 {
                     var account = db.BDSEmployerInformations.FirstOrDefault(T => T.IdAccount == news.IdAcount);
                     if (db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.ID == news.IdTypeNewsCuurent).CodeNewsType == "TDB")
