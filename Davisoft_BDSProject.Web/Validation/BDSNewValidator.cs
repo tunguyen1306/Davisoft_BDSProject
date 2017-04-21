@@ -60,7 +60,7 @@ namespace Davisoft_BDSProject.Web.Validation
 
             RuleFor(m => m.TotalMoney).Must((BDSNew model, double money) =>
             {
-                var account = _service.GetItem(model.IdAcount);
+                var account = _service.GetIQueryableItems().FirstOrDefault(T=>T.IdAccount==model.IdAcount);
                 if (model.ID==0 )
                 {
                     if ( account.BDSAccount.Money<money)

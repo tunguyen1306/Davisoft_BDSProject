@@ -39,6 +39,7 @@ namespace WebBDS_Project.Controllers
 
             return PartialView();
         }
+      
         public PartialViewResult TinMoiNhat(string tt, int from = 0, int view = 5, int page = 1)
         {
             ViewBag.from = from;
