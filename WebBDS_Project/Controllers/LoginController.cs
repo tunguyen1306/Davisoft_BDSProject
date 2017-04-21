@@ -45,7 +45,8 @@ namespace WebBDS_Project.Controllers
                 }
 
             }
-            return View();
+            return RedirectToAction("Index", "Default", acountModel);
+
         }
         public ActionResult LoginForm()
         {
