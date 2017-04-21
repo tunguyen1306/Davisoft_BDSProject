@@ -85,20 +85,36 @@ namespace WebBDS_Project.Controllers
 
             return View(Model);
         }
+        public class CareerSearch
+        {
+            public int ID_News { get; set; }
+            public string GString { get; set; }
+        }
         public ActionResult Search(int?[] filterWorkingPlace, int[] filterCareer, int? filterSalary, int? filterTimeWorking, int page = 1, int view = 25)
         {
-            String fCareer = "";
-            if (filterCareer!=null  && filterCareer.Length > 0)
+            int[] arrayIDNEWS=new int[]{};
+            if (filterCareer != null && filterCareer.Length>0)
             {
-                for (int i = 0; i < filterCareer.Length; i++)
-                {
-                    fCareer += "" + i;
-                    if (i < filterCareer.Length - 1)
-                    {
-                        fCareer += ",";
-                    }
-                }
+                var str = String.Join(",", filterCareer.OrderBy(T=>T));
+                String qStr = @"select 
+	                        [ID_News],
+                                   (select originalFilepath = STUFF((
+                                  SELECT ',' + CAST( [dbo].[BDSNews_Career].[ID_Career] AS VARCHAR(10))
+                                  FROM  [dbo].[BDSNews_Career]
+                                  WHERE [dbo].[BDSNews_Career].[ID_News]=t1.ID_News    and ID_Career in (" + String.Join(",", filterCareer) + @")              
+                                  FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, '')
+                                  ) AS GString
+                         from
+                        [dbo].[BDSNews_Career] t1 where ID_Career in (" + String.Join(",", filterCareer) + @")
+                        group by [ID_News]";
+                var qCareer = db.Database.SqlQuery<CareerSearch>( qStr);
+               arrayIDNEWS= qCareer.Where(T => T.GString.StartsWith(str)).Select(T => T.ID_News).ToArray();
+               if (arrayIDNEWS.Length==0)
+               {
+                   arrayIDNEWS = new[] {-1};
+               }
             }
+         
             int fromS = 0;
             int toS = int.MaxValue;
             var salary = db.BDSSalaries.FirstOrDefault(T => T.ID == filterSalary);
@@ -121,7 +137,7 @@ namespace WebBDS_Project.Controllers
 
             var q = (from a in db.BDSNews
                      join b in db.BDSNewsTypes on a.IdTypeNewsCuurent equals b.ID
-                     where a.Active == 1 && a.Status == 1 && a.FromSalary >= fromS && a.ToSalary <= toS
+                     where a.Active == 1 && a.Status == 1 && ((a.FromSalary >= fromS && a.ToSalary <= toS) || (a.FromSalary <= fromS && fromS <= a.ToSalary)||(a.FromSalary <= toS && toS <= a.ToSalary))
                      orderby b.Order ascending, a.FromCreateNews descending
                      select a);
             if (filterWorkingPlace != null && filterWorkingPlace.Length>0)
@@ -133,7 +149,11 @@ namespace WebBDS_Project.Controllers
             {
                 q = q.Where(a => a.IdTimeWork == filterTimeWorking);
             }
+            if (arrayIDNEWS.Length > 0)
+            {
 
+                q = q.Where(a =>arrayIDNEWS.Contains(a.ID));
+            }
             var total = q.Count();
             var data = q.Skip(page * view - view).Take(view).ToList();
             ViewBag.Total = total;

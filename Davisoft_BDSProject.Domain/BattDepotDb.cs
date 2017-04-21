@@ -77,6 +77,9 @@ namespace Davisoft_BDSProject.Domain
 
             mb.Entity<Menu>().HasMany(m => m.Roles).WithMany().Map(map => map.ToTable("Menus_Roles").MapLeftKey("Menu_Id").MapRightKey("Role_Id"));
 
+
+            mb.Entity<BDSNew>().HasMany(r => r.BDSCareers).WithMany().Map(map => map.ToTable("BDSNews_Career").MapLeftKey("ID_News").MapRightKey("ID_Career"));
+
             //mb.Entity<CarModel>().HasMany(m => m.Colors).WithMany().Map(map => map.ToTable("Models_Colors").MapLeftKey("Model_Id").MapRightKey("Color_Id"));
             
             //mb.ComplexType<InvoiceBookingModel>();

@@ -48,27 +48,27 @@
             {
                  if (currentPage != 1)
                 {
-                    <a class="nextPage" onclick="">Trước</a>
+                    <a class="nextPage" onclick="prevPage()">Trước</a>
                 }
-            
-                if (currentPage - 3 > 2)
-                {
-                    <a data-ref='' style="cursor: pointer">1</a>
+
+                 if (currentPage - 3 > 2)
+                 {
+                    <a data-ref='' onclick="goPage(1)" style="cursor: pointer">1</a>
                    <a data-ref='' style="cursor: pointer">....</a>
-                }
-                for (int i = currentPage - 3 > 2 ? currentPage - 3 : 1; i <= ((int)p - currentPage > 3 ? currentPage+3 : (int)p); i++)
-                {
-                    <a data-ref='' style="cursor: pointer" onclick="" @(currentPage == i ? " class=active" : "")>@i</a>
-                }
-                if ((int)p - currentPage>3)
-                {
+                 }
+                 for (int i = currentPage - 3 > 2 ? currentPage - 3 : 1; i <= ((int)p - currentPage > 3 ? currentPage + 3 : (int)p); i++)
+                 {
+                    <a data-ref='' style="cursor: pointer" onclick="goPage(@p)" @(currentPage == i ? " class=active" : "")>@i</a>
+                 }
+                 if ((int)p - currentPage > 3)
+                 {
                     <a data-ref='' style="cursor: pointer">....</a>
-                   <a data-ref='' style="cursor: pointer">@p</a>
+    <a data-ref='' onclick="goPage(@p)" style="cursor: pointer">@p</a>
                 }
             }
             @if (currentPage != (int) p)
             {
-                <a class="nextPage" onclick="">Tiếp</a>
+                <a class="nextPage" onclick="nextPage()">Tiếp</a>
             }
             
         </div>
@@ -80,3 +80,17 @@
         cursor: auto;
     }
 </style>
+<script>
+    function nextPage() {
+        $('#page').val(parseInt( $('#page').val()) + 1);
+        reloadPage();
+    }
+    function prevPage() {
+        $('#page').val(parseInt($('#page').val()) - 1);
+        reloadPage();
+    }
+    function goPage(page) {
+        $('#page').val(page);
+        reloadPage();
+    }
+</script>

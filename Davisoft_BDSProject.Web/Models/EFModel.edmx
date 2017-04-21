@@ -42,6 +42,14 @@
           <Property Name="KeySearch" Type="nvarchar(max)" />
           <Property Name="RefTranHis" Type="int" />
         </EntityType>
+        <EntityType Name="BDSNews_Career">
+          <Key>
+            <PropertyRef Name="ID_News" />
+            <PropertyRef Name="ID_Career" />
+          </Key>
+          <Property Name="ID_News" Type="int" Nullable="false" />
+          <Property Name="ID_Career" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="countryCode" />
@@ -138,6 +146,7 @@
         <EntityContainer Name="davisoft_bdsprojectEntitiesStoreContainer">
           <EntitySet Name="BDSApply" EntityType="Self.BDSApply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSEmpers" EntityType="Self.BDSEmpers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDSNews_Career" EntityType="Self.BDSNews_Career" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CountryText" EntityType="Self.CountryText" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
@@ -162,6 +171,7 @@
           <EntitySet Name="LocationTexts" EntityType="davisoft_bdsprojectEntities.LocationText" />
           <EntitySet Name="States" EntityType="davisoft_bdsprojectEntities.State" />
           <EntitySet Name="StateTexts" EntityType="davisoft_bdsprojectEntities.StateText" />
+          <EntitySet Name="BDSNews_Career" EntityType="davisoft_bdsprojectEntities.BDSNews_Career" />
         </EntityContainer>
         <EntityType Name="BDSApply">
           <Key>
@@ -292,6 +302,14 @@
           <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="rowguid" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BDSNews_Career">
+          <Key>
+            <PropertyRef Name="ID_News" />
+            <PropertyRef Name="ID_Career" />
+          </Key>
+          <Property Name="ID_News" Type="Int32" Nullable="false" />
+          <Property Name="ID_Career" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -432,6 +450,14 @@
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="language_id" ColumnName="language_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSNews_Career">
+            <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSNews_Career">
+              <MappingFragment StoreEntitySet="BDSNews_Career">
+                <ScalarProperty Name="ID_Career" ColumnName="ID_Career" />
+                <ScalarProperty Name="ID_News" ColumnName="ID_News" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

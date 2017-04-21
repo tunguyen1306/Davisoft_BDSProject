@@ -380,6 +380,9 @@
     <Compile Include="Models\BDSEmper.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BDSNews_Career.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Country.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
@@ -2918,7 +2921,7 @@
       <LastGenOutput>EFModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
-    <None Include="Properties\PublishProfiles\subaru.pubxml" />
+    <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

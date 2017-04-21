@@ -144,9 +144,13 @@
 }
 <script>
     $(document).on('change', 'input[type="radio"],input[type="checkbox"]', function () {
+        $('#page').val(1);
+        reloadPage();
+    })
+    function reloadPage() {
         var url= '@Url.Action("Search")';
         console.log(url + "?" + $(document.forms[1]).serialize());
         url = url + "?" + $(document.forms[1]).serialize();
         location.href = url;
-    })
+    }
 </script>

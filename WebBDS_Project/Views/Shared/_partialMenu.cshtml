@@ -5,7 +5,7 @@
                         <!-- Nav -->
                         <div class="grid_12 mg0">
                             <nav class="nav">
-                                <ul class="nav-list grid_9">
+                                <ul class="nav-list grid_12">
                                     <li>
                                         <a href="@Url.Action("Index","Default")" class="active">Trang chủ</a>
                                     </li>
@@ -16,7 +16,7 @@
                                             <a href="@Url.Action("Search", "Default", new { filterCareer = item.ID })">@item.Name</a>
                                         </li>
                                     }
-                                    <li class="spec">
+                                    <li class="spec" style="float: right">
                                         <a href=""><i class="fa fa-file-text-o"></i>Bảng giá</a>
                                     </li>
                                     <li class="spec">

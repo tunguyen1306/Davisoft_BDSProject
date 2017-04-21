@@ -18,6 +18,8 @@ namespace Davisoft_BDSProject.Domain.Entities
         public int IdTimeWork { get; set; }
         public int IdEducation { get; set; }
         public string Career { get; set; }
+        [NotMapped]
+        public int[] CareerID { get; set; }
         public string DesCompany { get; set; }
         public string DesWork { get; set; }
         public string Benefit { get; set; }
@@ -73,5 +75,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public int Status { get; set; }
 
         public int? RefTranHis { get; set; }
+
+        public virtual ICollection<BDSCareer> BDSCareers { get; set; }
     }
 }
