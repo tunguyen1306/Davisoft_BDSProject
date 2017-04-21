@@ -43,27 +43,28 @@
            
        
                 <div class="cus-name-group result-info">
-                    <div class="grid_1 grid_1-9-5" style="line-height: 36px; padding: 0px; margin: 0px;"><b @(listStr.Count == 0 ? " style=display:none " : "")>Lọc Theo:</b></div>
+                    <p style="margin: 0px;">Đã tìm thấy <strong> @ViewBag.Total</strong> <strong>tin tuyển dụng phù hợp</strong> theo như tiêu chí tìm kiếm</p>
+                    <div class="grid_1 grid_1-9-5" style="line-height: 30px; padding: 0px; margin: 0px; padding-top: 5px;"><b @(listStr.Count == 0 ? " style=display:none " : "")>Lọc Theo:</b></div>
                 
                  
                     
-                        @{
+                    @{
 
 
    
-    if (listStr.Count>0)
+                        if (listStr.Count>0)
+                        {
+                            foreach (var selectListItem in listStr)
                             {
-                               foreach (var selectListItem in listStr)
-    {
-        <a  style="cursor: pointer" data-ref="@(selectListItem.Split(';')[1])" onclick="removeFilter(this,@(selectListItem.Split(';')[1]),'@(selectListItem.Split(';')[2])')" class="filter">@(selectListItem.Split(';')[0])<span class="badge-filter"><img class="margin-bot-3" style=" padding-left: 5px; padding-right: 5px;" src="~/Template/images/x.png" alt=""></span></a>
-    }  
-                            }
-    else
-    {
+                                <a  style="cursor: pointer" data-ref="@(selectListItem.Split(';')[1])" onclick="removeFilter(this,@(selectListItem.Split(';')[1]),'@(selectListItem.Split(';')[2])')" class="filter">@(selectListItem.Split(';')[0])<span class="badge-filter"><img class="margin-bot-3" style=" padding-left: 5px; padding-right: 5px;" src="~/Template/images/x.png" alt=""></span></a>
+                            }  
+                        }
+                        else
+                        {
  
-    }
+                        }
    
-}                   
+                    }                   
                     
                     
             

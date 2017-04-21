@@ -160,12 +160,37 @@ namespace WebBDS_Project.Controllers
             ViewBag.From = page * view - view;
             return View(data);
         }
-        
-        
-        public ActionResult SearchForEmployee()
+
+
+        public ActionResult SearchForEmployee(int[] filterWorkingPlace, int[] filterCareer, int? filterSalary, int? filterTimeWorking, int page = 1, int view = 25)
         {
 
-            return View();
+           
+
+            var q = (from a in db.BDSPersonalInformations
+                     where a.Active == 1
+                     join b in db.BDSEducations on a.Education equals b.ID
+                     orderby a.CreateDate ascending 
+                     select a);
+            if (filterWorkingPlace != null && filterWorkingPlace.Length > 0)
+            {
+
+                q = q.Where(T => filterWorkingPlace.Contains(T.City));
+            }
+            if (filterTimeWorking.HasValue)
+            {
+                q = q.Where(a => a.Experience == filterTimeWorking);
+            }
+            if (filterCareer!=null && filterCareer.Length > 0)
+            {
+
+                q = q.Where(a => filterCareer.Contains(a.IdLoaiNghe));
+            }
+            var total = q.Count();
+            var data = q.Skip(page * view - view).Take(view).ToList();
+            ViewBag.Total = total;
+            ViewBag.From = page * view - view;
+            return View(data);
         }
         public ActionResult DetailNews(string id)
         {
