@@ -46,6 +46,15 @@ namespace WebBDS_Project.Controllers
             };
             return View(register);
         }
+         public PartialViewResult PListNewsOfUser(string tt, int from = 0, int view = 6, int page = 1)
+         {
+             ViewBag.from = from;
+             ViewBag.view = view;
+             ViewBag.page = page;
+             ViewBag.tt = tt;
+
+             return PartialView();
+         }
          [ActionName("ManagementPersonal")]
         public ActionResult ManagementPersonal()
         {
@@ -409,6 +418,43 @@ namespace WebBDS_Project.Controllers
         {
             
             return View();
+        }
+        public PartialViewResult PManaTinDacBiet(string tt, int from = 0, int view = 12, int page = 1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
+        }
+        public PartialViewResult PManaTinNoiBat(string tt, int from = 0, int view = 6, int page = 1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
+        }
+
+        public PartialViewResult PManaTinMoiNhat(string tt, int from = 0, int view = 5, int page = 1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
+        }
+        public PartialViewResult PManaTinNhaTuyenDung(string tt, int from = 0, int view = 5, int page = 1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
         }
     }
 }

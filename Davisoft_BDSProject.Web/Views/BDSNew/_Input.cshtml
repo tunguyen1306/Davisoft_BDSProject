@@ -138,10 +138,11 @@
                     <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Career", "Career") <span class="required">*</span></label>
                     <div class="col-md-9">
 
-                        @Html.Bootstrap().DropDownListFor(m => m.CareerID, new MultiSelectList((List<SelectListItem>)ViewBag.Careers, "Value", "Text", (List<SelectListItem>)ViewBag.MultiSelectCareer)).HtmlAttributes(new { @class = "form-control", @multiple = "multiple" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().DropDownListFor(m => m.CareerID,(List<SelectListItem>)ViewBag.Careers).HtmlAttributes(new { @class = "form-control", @multiple = "multiple" }).ShowValidationMessage(true)
                         <script>
                             setTimeout(function() {
                                 $('#CareerID').val('@(Model.Career)'.split(','));
+                                $('#CareerID').select2();
                             },0);
                         </script>
                     
@@ -511,6 +512,7 @@
 @Html.HiddenFor(m => m.CountReup)
 @Html.HiddenFor(m => m.RefTranHis)
 @Html.HiddenFor(m => m.Career)
+@Html.HiddenFor(m => m.MaxReup)
 @Html.Script(
     @<text>
 <link href="/Content/UploadVanGia/main.css" rel="stylesheet" />

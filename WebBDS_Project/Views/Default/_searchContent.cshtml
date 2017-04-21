@@ -19,7 +19,7 @@
                 <li>
                     <div class="grid_3">
                         <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">
-                            <img width="120" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] + account.UrlImage):"img.png"))" alt="1">
+                            <img width="120" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] +"/"+ account.UrlImage):"img.png"))" alt="1">
                             <p class="vip @(type.CodeNewsType)">
                                 <i class="fa fa-star"></i>
                                 <span>@type.Name</span>

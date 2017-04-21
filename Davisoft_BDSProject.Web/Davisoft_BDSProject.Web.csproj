@@ -372,22 +372,6 @@
     <Compile Include="Controllers\BDSBankController.cs" />
     <Compile Include="Helpers\UrlFriendly.cs" />
     <Compile Include="Helpers\Utilities.cs" />
-    <Compile Include="Models\BDSApply.cs">
-      <DependentUpon>EFModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BDSEmper.cs">
-      <DependentUpon>EFModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BDSNews_Career.cs">
-      <DependentUpon>EFModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Country.cs">
-      <DependentUpon>EFModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CountryText.cs">
-      <DependentUpon>EFModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataTableJS.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HolidayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -453,7 +437,23 @@
     <Compile Include="Infrastructure\Utility\StandardItemPicture.cs" />
     <Compile Include="Infrastructure\Utility\StringHelper.cs" />
     <Compile Include="Infrastructure\Utility\UserPicture.cs" />
+    <Compile Include="Models\BDSApply.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSEmper.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSNews_Career.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CityModel.cs" />
+    <Compile Include="Models\Country.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CountryText.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataTableJS.cs" />
     <Compile Include="Models\District.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
@@ -461,19 +461,19 @@
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EFModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EFModel.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\EFModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EFModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\EFModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EFModel.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\EmailReceiveSettingModel.cs" />
     <Compile Include="Models\HolidayModelView.cs" />
@@ -486,13 +486,13 @@
     <Compile Include="Models\LocationText.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\NewsPictures.cs" />
     <Compile Include="Models\ResourceItemModel.cs" />
     <Compile Include="Models\ResourceModel.cs" />
-    <Compile Include="Models\SettingModel.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\SettingModel.cs" />
     <Compile Include="Models\State.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
@@ -2654,6 +2654,19 @@
     <Content Include="Content\SampleFiles\OptionalItem_sample.xlsx" />
     <Content Include="Content\SampleFiles\StandardItem_sample.xlsx" />
     <Content Include="Global.asax" />
+    <Content Include="Models\EFModel.Context.tt">
+      <DependentUpon>EFModel.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EFModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EFModel.edmx.diagram">
+      <DependentUpon>EFModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\EFModel.tt">
+      <DependentUpon>EFModel.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EFModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -2901,23 +2914,6 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="Models\EFModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EFModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\EFModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EFModel.edmx</DependentUpon>
-      <LastGenOutput>EFModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\EFModel.edmx.diagram">
-      <DependentUpon>EFModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\EFModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EFModel.edmx</DependentUpon>
-      <LastGenOutput>EFModel.cs</LastGenOutput>
-    </Content>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -3188,6 +3184,12 @@
       <Project>{0a88b25a-3f62-4323-99db-45bf6224d477}</Project>
       <Name>Davisoft_BDSProject.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\EFModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EFModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
