@@ -155,6 +155,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             var tblNews = new BDSNew {CreateUser = 1,Active =0,CreateDate = DateTime.Now, DateReup = null, FromCreateNews = DateTime.Now, ToCreateNews = DateTime.Now.AddDays(3), FromDeadline = DateTime.Now, ToDeadline = null };
             _service.CreateItem(tblNews);
             LoadDataList();
+            ViewBag.MultiSelectCareer = new int[]{};
             return View(new BDSNew { CreateDate = DateTime.Now, FromDateToDateString = DateTime.Now.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) + " - " + DateTime.Now.AddDays(3).ToString(MvcApplication.DateTimeFormat.ShortDatePattern), CreateUser = 1,Active = 1, ID = tblNews.ID, IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == tblNews.ID) });
         }
 
@@ -169,6 +170,19 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 LoadDataList();
                 model.BDSPictures=   _servicePicture.GetIQueryableItems().Where(T => T.Active == 1 && T.advert_id==model.ID).ToList();
+                var list = (List<SelectListItem>)ViewBag.Careers;
+                List<SelectListItem> lst = new List<SelectListItem>();
+                foreach (var item in list)
+                {
+                    if (model.Career.Split(',').Contains(item.Value))
+                    {
+                        lst.Add(new SelectListItem { Value = item.Value, Text = item.Text, Selected = true });
+                    }
+
+                }
+
+
+                ViewBag.MultiSelectCareer = lst;
                 return View(model);
             }
             var fromDate = model.FromDateToDateString.Split('-')[0];
@@ -203,7 +217,19 @@ namespace Davisoft_BDSProject.Web.Controllers
             _service.UpdateItem(model);
             model.BDSAccount.Money -= model.TotalMoney;
             _serviceAccount.UpdateItem(model.BDSAccount);
-
+             var listMap=  db.BDSNews_Career.Where(T => T.ID_News == model.ID).ToList();
+             foreach (var item in listMap)
+            {
+                db.Entry(item).State=EntityState.Deleted;
+                
+            }
+            db.SaveChanges();
+            foreach (var item in model.Career.Split(','))
+            {
+                BDSNews_Career i = new BDSNews_Career {ID_News = model.ID, ID_Career = int.Parse(item)};
+                db.Entry(i).State=EntityState.Added;
+            }
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -216,6 +242,20 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +
                                          model.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
+            model.CareerID = model.Career.Split(',').Select(T => int.Parse(T)).ToArray();
+
+            var list = (List<SelectListItem>) ViewBag.Careers;
+            List<SelectListItem> lst=new List<SelectListItem>();
+            foreach (var item in list)
+            {
+                if (model.Career.Split(',').Contains(item.Value))
+                {
+                    lst.Add(new SelectListItem { Value = item.Value, Text = item.Text, Selected = true });
+                }
+               
+            }
+         
+            ViewBag.MultiSelectCareer = lst;
             return View(model);
         }
 
@@ -227,6 +267,19 @@ namespace Davisoft_BDSProject.Web.Controllers
                 LoadDataList();
                 ViewBag.Success = false;
                 ViewBag.Message = Resource.SaveFailed;
+                var list = (List<SelectListItem>)ViewBag.Careers;
+                List<SelectListItem> lst = new List<SelectListItem>();
+                foreach (var item in list)
+                {
+                    if (model.Career.Split(',').Contains(item.Value))
+                    {
+                        lst.Add(new SelectListItem { Value = item.Value, Text = item.Text, Selected = true });
+                    }
+
+                }
+
+
+                ViewBag.MultiSelectCareer = lst;
                 return View(model);
             }
             var fromDate = model.FromDateToDateString.Split('-')[0];
@@ -275,6 +328,20 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +
                                          model.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
+            model.CareerID = model.Career.Split(',').Select(T => int.Parse(T)).ToArray();
+            var list = (List<SelectListItem>)ViewBag.Careers;
+            List<SelectListItem> lst = new List<SelectListItem>();
+            foreach (var item in list)
+            {
+                if (model.Career.Split(',').Contains(item.Value))
+                {
+                    lst.Add(new SelectListItem { Value = item.Value, Text = item.Text, Selected = true });
+                }
+
+            }
+
+
+            ViewBag.MultiSelectCareer = lst;
             return View(model);
         }
 
@@ -286,6 +353,19 @@ namespace Davisoft_BDSProject.Web.Controllers
                 LoadDataList();
                 ViewBag.Success = false;
                 ViewBag.Message = Resource.SaveFailed;
+                var list = (List<SelectListItem>)ViewBag.Careers;
+                List<SelectListItem> lst = new List<SelectListItem>();
+                foreach (var item in list)
+                {
+                    if (model.Career.Split(',').Contains(item.Value))
+                    {
+                        lst.Add(new SelectListItem { Value = item.Value, Text = item.Text, Selected = true });
+                    }
+
+                }
+
+
+                ViewBag.MultiSelectCareer = lst;
                 return View(model);
             }
             var fromDate = model.FromDateToDateString.Split('-')[0];
@@ -295,6 +375,20 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromDeadline = DateTime.Now;
             model.KeySearch = model.Title.NormalizeD() + " " + _serviceAccount.GetItem(model.IdAcount).Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
             _service.UpdateItem(model);
+            var listMap = db.BDSNews_Career.Where(T => T.ID_News == model.ID).ToList();
+            foreach (var item in listMap)
+            {
+                db.Entry(item).State = EntityState.Deleted;
+
+            }
+            db.SaveChanges();
+            foreach (var item in model.Career.Split(','))
+            {
+                BDSNews_Career i = new BDSNews_Career { ID_News = model.ID, ID_Career = int.Parse(item) };
+                db.Entry(i).State = EntityState.Added;
+            }
+            db.SaveChanges();
+
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
             return Edit(model.ID);

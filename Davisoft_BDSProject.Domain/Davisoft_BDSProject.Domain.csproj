@@ -94,10 +94,6 @@
     <Reference Include="PdfSharp">
       <HintPath>..\packages\PdfSharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp">
-      <HintPath>..\packages\PostSharp.3.1.48\lib\net20\PostSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Quartz">
       <HintPath>..\packages\Quartz.2.2.3\lib\net40\Quartz.dll</HintPath>
     </Reference>
@@ -335,8 +331,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="BattDepotDb.cs" />
-    <Compile Include="RequestCacheAttribute.cs" />
-    <Compile Include="TransactionAttribute.cs" />
     <Compile Include="TransactionWrapper.cs">
       <SubType>Code</SubType>
     </Compile>

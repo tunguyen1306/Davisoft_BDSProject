@@ -147,7 +147,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                 file.SaveAs(path1);
             }
             model.UrlImage = fileNameFull;
-
+           
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

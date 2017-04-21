@@ -1,6 +1,7 @@
 ﻿@using System.Configuration
 @using Davisoft_BDSProject.Web.Helpers
 @using Davisoft_BDSProject.Web.Models
+@using OfficeOpenXml.FormulaParsing.Excel.Functions.Math
 @using Resources
 @model Davisoft_BDSProject.Domain.Entities.BDSNew
 
@@ -137,7 +138,14 @@
                     <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Career", "Career") <span class="required">*</span></label>
                     <div class="col-md-9">
 
-                        @Html.Bootstrap().DropDownListFor(m => m.Career, (List<SelectListItem>)ViewBag.Careers).HtmlAttributes(new { @class = "form-control", @multiple = "multiple" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().DropDownListFor(m => m.CareerID, new MultiSelectList((List<SelectListItem>)ViewBag.Careers, "Value", "Text", (List<SelectListItem>)ViewBag.MultiSelectCareer)).HtmlAttributes(new { @class = "form-control", @multiple = "multiple" }).ShowValidationMessage(true)
+                        <script>
+                            setTimeout(function() {
+                                $('#CareerID').val('@(Model.Career)'.split(','));
+                            },200);
+                        </script>
+                    
+                    
                     </div>
 
                 </div>
@@ -502,7 +510,7 @@
 @Html.HiddenFor(m => m.DateReup)
 @Html.HiddenFor(m => m.CountReup)
 @Html.HiddenFor(m => m.RefTranHis)
-
+@Html.HiddenFor(m => m.Career)
 @Html.Script(
     @<text>
 <link href="/Content/UploadVanGia/main.css" rel="stylesheet" />
@@ -633,116 +641,116 @@
         }
 
     });
-function dropNew(ed) {
+    function dropNew(ed) {
 
-    var console = window.console || { log: function () { } };
-    var $image = $(ed).parents(".dz-preview").find('#cusimg');
-    var $download = $('#download');
-    var $dataX = $(ed).parents(".dz-preview").find('#dataX');
-    var $dataY = $(ed).parents(".dz-preview").find('#dataY');
-    var $dataHeight = $(ed).parents(".dz-preview").find('#dataHeight');
-    var $dataWidth = $(ed).parents(".dz-preview").find('#dataWidth');
-    var $dataRotate = $(ed).parents(".dz-preview").find('#dataRotate');
-    var $dataScaleX = $(ed).parents(".dz-preview").find('#dataScaleX');
-    var $dataScaleY = $(ed).parents(".dz-preview").find('#dataScaleY');
-    var $putData = $(ed).parents(".dz-preview").find('#dataimg');
-
-
-    var options = {
-        aspectRatio: 16 /9,
-        preview: '.img-preview',
-        crop: function (e) {
-            $dataX.val(Math.round(e.x));
-            $dataY.val(Math.round(e.y));
-            $dataHeight.val(Math.round(e.height));
-            $dataWidth.val(Math.round(e.width));
-            $dataRotate.val(e.rotate);
-            $dataScaleX.val(e.scaleX);
-            $dataScaleY.val(e.scaleY);
-        }
-    };
+        var console = window.console || { log: function () { } };
+        var $image = $(ed).parents(".dz-preview").find('#cusimg');
+        var $download = $('#download');
+        var $dataX = $(ed).parents(".dz-preview").find('#dataX');
+        var $dataY = $(ed).parents(".dz-preview").find('#dataY');
+        var $dataHeight = $(ed).parents(".dz-preview").find('#dataHeight');
+        var $dataWidth = $(ed).parents(".dz-preview").find('#dataWidth');
+        var $dataRotate = $(ed).parents(".dz-preview").find('#dataRotate');
+        var $dataScaleX = $(ed).parents(".dz-preview").find('#dataScaleX');
+        var $dataScaleY = $(ed).parents(".dz-preview").find('#dataScaleY');
+        var $putData = $(ed).parents(".dz-preview").find('#dataimg');
 
 
-    // Tooltip
-    $(ed).find('[data-toggle="tooltip"]').tooltip();
+        var options = {
+            aspectRatio: 16 /9,
+            preview: '.img-preview',
+            crop: function (e) {
+                $dataX.val(Math.round(e.x));
+                $dataY.val(Math.round(e.y));
+                $dataHeight.val(Math.round(e.height));
+                $dataWidth.val(Math.round(e.width));
+                $dataRotate.val(e.rotate);
+                $dataScaleX.val(e.scaleX);
+                $dataScaleY.val(e.scaleY);
+            }
+        };
 
 
-    // Cropper
-    $image.on({
-        'build.cropper': function (e) {
-            // console.log(e.type);
-        },
-        'built.cropper': function (e) {
-            // console.log(e.type);
-        },
-        'cropstart.cropper': function (e) {
-            // console.log(e.type, e.action);
-        },
-        'cropmove.cropper': function (e) {
-            // console.log(e.type, e.action);
-        },
-        'cropend.cropper': function (e) {
-            //console.log(e.type, e.action);
-        },
-        'crop.cropper': function (e) {
-            //console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
-            //console.log(e.type);
-            //console.log(e.x);
-            //console.log(e.y);
-            //console.log(e.width);
-            //console.log(e.height);
-            //console.log(e.rotate);
-            //console.log(e.scaleX);
-            //console.log(e.scaleY);
+        // Tooltip
+        $(ed).find('[data-toggle="tooltip"]').tooltip();
 
 
-        },
-        'zoom.cropper': function (e) {
-            // console.log(e.type, e.ratio);
-        }
-    }).cropper(options);
+        // Cropper
+        $image.on({
+            'build.cropper': function (e) {
+                // console.log(e.type);
+            },
+            'built.cropper': function (e) {
+                // console.log(e.type);
+            },
+            'cropstart.cropper': function (e) {
+                // console.log(e.type, e.action);
+            },
+            'cropmove.cropper': function (e) {
+                // console.log(e.type, e.action);
+            },
+            'cropend.cropper': function (e) {
+                //console.log(e.type, e.action);
+            },
+            'crop.cropper': function (e) {
+                //console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
+                //console.log(e.type);
+                //console.log(e.x);
+                //console.log(e.y);
+                //console.log(e.width);
+                //console.log(e.height);
+                //console.log(e.rotate);
+                //console.log(e.scaleX);
+                //console.log(e.scaleY);
 
 
-    //// Buttons
-    if (!$.isFunction(document.createElement('canvas').getContext)) {
-        $(ed).parents('.dz-preview').eq(0).find('button[data-method="getCroppedCanvas"]').prop('disabled', true);
-    }
-
-    if (typeof document.createElement('cropper').style.transition === 'undefined') {
-        $(ed).parents('.dz-preview').eq(0).find('button[data-method="rotate"]').prop('disabled', true);
-        $(ed).parents('.dz-preview').eq(0).find('button[data-method="scale"]').prop('disabled', true);
-    }
+            },
+            'zoom.cropper': function (e) {
+                // console.log(e.type, e.ratio);
+            }
+        }).cropper(options);
 
 
-    // Methods
-    $(ed).parents('.dz-preview').eq(0).find('.docs-buttons').on('click', '[data-method]', function () {
-        var $this = $(this);
-        var data = $this.data();
-        var $target;
-        var result;
-
-        if ($this.prop('disabled') || $this.hasClass('disabled')) {
-            return;
+        //// Buttons
+        if (!$.isFunction(document.createElement('canvas').getContext)) {
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="getCroppedCanvas"]').prop('disabled', true);
         }
 
-        if ($image.data('cropper') && data.method) {
-            data = $.extend({}, data); // Clone a new one
+        if (typeof document.createElement('cropper').style.transition === 'undefined') {
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="rotate"]').prop('disabled', true);
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="scale"]').prop('disabled', true);
+        }
 
-            if (typeof data.target !== 'undefined') {
-                $target = $(data.target);
 
-                if (typeof data.option === 'undefined') {
-                    try {
-                        data.option = JSON.parse($target.val());
-                    } catch (e) {
-                        console.log(e.message);
-                    }
-                }
+        // Methods
+        $(ed).parents('.dz-preview').eq(0).find('.docs-buttons').on('click', '[data-method]', function () {
+            var $this = $(this);
+            var data = $this.data();
+            var $target;
+            var result;
+
+            if ($this.prop('disabled') || $this.hasClass('disabled')) {
+                return;
             }
 
-            result = $image.cropper(data.method, data.option, data.secondOption);
+            if ($image.data('cropper') && data.method) {
+                data = $.extend({}, data); // Clone a new one
 
-            switch (data.method) {
+                if (typeof data.target !== 'undefined') {
+                    $target = $(data.target);
+
+                    if (typeof data.option === 'undefined') {
+                        try {
+                            data.option = JSON.parse($target.val());
+                        } catch (e) {
+                            console.log(e.message);
+                        }
+                    }
+                }
+
+                result = $image.cropper(data.method, data.option, data.secondOption);
+
+                switch (data.method) {
                 case 'scaleX':
                 case 'scaleY':
                     $(this).data('option', -data.option);
@@ -782,65 +790,66 @@ function dropNew(ed) {
                     }
 
                     break;
-            }
+                }
 
-            if ($.isPlainObject(result) && $target) {
-                try {
-                    $target.val(JSON.stringify(result));
-                } catch (e) {
-                    console.log(e.message);
+                if ($.isPlainObject(result) && $target) {
+                    try {
+                        $target.val(JSON.stringify(result));
+                    } catch (e) {
+                        console.log(e.message);
+                    }
+                }
+
+            }
+        });
+
+
+    }
+    var isserver = false;
+
+    function uploadtoserver() {
+        $.each($('.cbtn-info-ok'), function (i, o) {
+
+                if ($(o).parents('.dz-preview').find('.tools.final').hasClass('hidden')) {
+                    isserver = true;
+
+                    $(o).click();
                 }
             }
-
-        }
-    });
-
-
-}
-var isserver = false;
-
-function uploadtoserver() {
-    $.each($('.cbtn-info-ok'), function (i, o) {
-
-        if ($(o).parents('.dz-preview').find('.tools.final').hasClass('hidden')) {
-            isserver = true;
-
-            $(o).click();
-        }
-    }
-    );
-    return false;
-}
-
-function UploadImg(obj) {
-
-    if (!$(document.forms[0]).valid()) {
+        );
         return false;
     }
-    $('.cropper-container img').css({ "transform": "none" });
-   // $('.btnAdd1').text('Đang xữ lý');
-    $('.btnAdd1').addClass('disabled');
-    uploadtoserver();
-    var totalitem = $('.dz-preview').size();
-    $.each($('.dz-preview'), function (i, o) {
-        $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
-        var image = $(o).find('#cusimg');
-        var valuerotate = $(o).find('#dataRotate').val();
-        var dataX = $(o).find('#dataX').val();
-        var dataY = $(o).find('#dataY').val();
-        var dataHeight = $(o).find('#dataHeight').val();
-        var dataWidth = $(o).find('#dataWidth').val();
-        var right = $(window).width() - dataX - image.width();
-        var bottom = $(window).height() - dataY - image.height();
-        var dataimg = $(o).find('#dataimg').text();
-        var dataname = $(o).find('.cusinput').val();
-        var idpic = $(o).find('#cusimg').attr('rel');
 
-        document.getElementsByName('cfile')[0].value = dataimg;
-        document.getElementsByName('nameImg')[0].value = dataname;
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("SaveImg", "BDSNew")",
+    function UploadImg(obj) {
+
+        $('#Career').val($('#CareerID').val().join(','));
+        if (!$(document.forms[0]).valid()) {
+            return false;
+        }
+        $('.cropper-container img').css({ "transform": "none" });
+        // $('.btnAdd1').text('Đang xữ lý');
+        $('.btnAdd1').addClass('disabled');
+        uploadtoserver();
+        var totalitem = $('.dz-preview').size();
+        $.each($('.dz-preview'), function (i, o) {
+            $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
+            var image = $(o).find('#cusimg');
+            var valuerotate = $(o).find('#dataRotate').val();
+            var dataX = $(o).find('#dataX').val();
+            var dataY = $(o).find('#dataY').val();
+            var dataHeight = $(o).find('#dataHeight').val();
+            var dataWidth = $(o).find('#dataWidth').val();
+            var right = $(window).width() - dataX - image.width();
+            var bottom = $(window).height() - dataY - image.height();
+            var dataimg = $(o).find('#dataimg').text();
+            var dataname = $(o).find('.cusinput').val();
+            var idpic = $(o).find('#cusimg').attr('rel');
+
+            document.getElementsByName('cfile')[0].value = dataimg;
+            document.getElementsByName('nameImg')[0].value = dataname;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SaveImg", "BDSNew")",
                 data: { idProducts: $('.idProduct_').val(), index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
 
                 success: function (data) {
@@ -849,7 +858,7 @@ function UploadImg(obj) {
                     totalitem--;
 
                     if (totalitem == 0) {
-                    //    $('.btnAdd1').text('Thêm');
+                        //    $('.btnAdd1').text('Thêm');
                         $('.btnAdd1').removeClass('disabled');
                         $('.btnAdd').click();
                     }
