@@ -71,7 +71,8 @@ namespace Davisoft_BDSProject.Domain.Entities
         public virtual int IdPictrure { get; set; }
         public int IdTypeNewsCuurent { get; set; }
         public DateTime? DateReup { get; set; }
-        public int CountReup { get; set; }
+        public int? CountReup { get; set; }
+        public int? MaxReup { get; set; }
         public int Status { get; set; }
 
         public int? RefTranHis { get; set; }

@@ -30,7 +30,9 @@ namespace Davisoft_BDSProject.Domain.Entities
         public string UrlImageFile { get; set; }
 
         public string KeySearch { get; set; }
-
+        public DateTime? DateReup { get; set; }
+        public int? CountReup { get; set; }
+        public int? MaxReup { get; set; }
         [ForeignKey("IdAccount")]
         public virtual BDSAccount BDSAccount { get; set; }
         [ForeignKey("Salary")]
