@@ -50,7 +50,9 @@ namespace WebBDS_Project.Models
 
         public BDSApply tblBDSApply { get; set; }
         public List<BDSApply> ListBDSApply { get; set; }
-       
+        public BDSPicture tblBDSPicture { get; set; }
+        public List<BDSPicture> ListBDSPicture { get; set; }
+
     }
 
     public class ListCity

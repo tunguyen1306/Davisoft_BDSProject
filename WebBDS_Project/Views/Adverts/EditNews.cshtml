@@ -6,7 +6,7 @@
 <!-- Content -->  
   @using System.Configuration
 
-@using (Html.BeginForm("AdvertCompany", "Adverts"))
+@using (Html.BeginForm("EditNews", "Adverts"))
 {
     <div class="container">
         <div class="grid_9 main_left">
@@ -26,7 +26,7 @@
                     <div class="row">
                         <label>Nơi làm việc <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" ,@stlye="width: 100 %; height: 100 % " })
 
                         </div>
                         <label class="child">Mức lương <span class="required">*</span></label>
@@ -458,14 +458,71 @@
 
 
                         <div class="grid_12">
-                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
+                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Home/Blank">
+
                                 <div class="dz-default dz-message cusbuttonmes " style="display: block;">
-                                    <span class="btn btnUploadImage">
-                                        <span class="btn btn-danger">Lựa chọn hình ảnh </span>
+                                    <span class="btn btn-action">
+                                        <label style="margin-left: 5px;" class="btn btn-danger">Lựa chọn hình ảnh Edit</label>
                                     </span>
 
                                 </div>
 
+
+
+
+
+
+                                @foreach (var item in Model.ListBDSPicture)
+                                {
+                                    <div class="dz-preview dz-processing dz-image-preview dz-success dz-complete">
+                                        <div class="tools final">
+                                            <div class="btn cusbtn cbtn-edit hidden" title="Edit" onclick=" Edit(this) "><i class="glyphicon glyphicon-pencil"></i></div>
+                                            <div class="btn cusbtn cusbtn-del" title="Delete" onclick=" DeleteUpload(this) ">
+                                                <svg xml:space="preserve" enable-background="new 0 0 15.809 20" viewBox="0 0 15.809 20" height="13px" width="13px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Layer_1" version="1.1">
+                                                <g>
+                                                <path d="M14.444,2.354h-2.67V0.62c0-0.35-0.281-0.62-0.631-0.62c-0.034,0-0.057,0.012-0.067,0.022C11.064,0.012,11.042,0,11.03,0H4.664c-0.349,0-0.62,0.27-0.62,0.62v1.735H1.364C0.597,2.354,0,2.952,0,3.718V5.95h1.183v12.698C1.183,19.414,1.769,20,2.535,20h10.738c0.767,0,1.362-0.586,1.362-1.353V5.95h1.173V3.718C15.809,2.952,15.211,2.354,14.444,2.354L14.444,2.354z M5.284,1.239h5.239v1.115H5.284V1.239z M13.386,18.647c0,0.079-0.034,0.113-0.112,0.113H2.535c-0.079,0-0.113-0.034-0.113-0.113V5.95h10.963V18.647z M14.558,4.71H1.251V3.718c0-0.079,0.033-0.125,0.113-0.125h13.081c0.079,0,0.113,0.046,0.113,0.125V4.71z M14.558,4.71" fill="#FFFFFF" />
+                                                <rect height="10.254" width="1.25" fill="#FFFFFF" y="7.402" x="10.175" />
+                                                <rect height="10.254" width="1.251" fill="#FFFFFF" y="7.402" x="7.29" />
+                                                <rect height="10.254" width="1.25" fill="#FFFFFF" y="7.402" x="4.406" />
+                                                    </g></svg>
+                                            </div>
+                                        </div>
+                                        <div class="containerUpload cusdefault">
+                                            <input type="radio" data-defalut-enabled="false" class="reset-data cusradio" name="groupimg" checked="checked">Chọn ảnh này làm đại diện
+                                        </div>
+                                        <div id="imgmain" class="dz-image containerUpload">
+                                            <img data-dz-thumbnail="" class="ghost cussimg" rel="@item.ID" id="cusimg" alt="" src="@ConfigurationManager.AppSettings["UrlImage"]@item.originalFilepath.ToString().Split('_')[0]/@item.originalFilepath" />
+                                        </div>
+                                        <div class="dz-filename cusfilename">
+                                            <span data-dz-name="">
+                                                <input type="text" placeholder="Tiêu đề hình ảnh" class="col-xs-12 form-control valid cusinput" id="txtImage" value="@item.title" name="">
+                                            </span>
+                                        </div>
+                                        <div class="dz-progress"><span data-dz-uploadprogress="" class="dz-upload" style="width: 100%;"></span></div>
+                                        <div class="dz-error-message"><span data-dz-errormessage=""></span></div>
+                                        <div class="dz-success-mark" id="cussucess">
+                                            <svg xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 54 54" height="54px" width="54px">
+                                                <title>Check</title>
+                                                <defs />
+                                                <g sketch:type="MSPage" fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="Page-1">
+                                                    <path sketch:type="MSShapeGroup" fill="#FFFFFF" fill-opacity="0.816519475" stroke="#747474" stroke-opacity="0.198794158" id="Oval-2" d="M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" />
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div class="dz-error-mark">
+                                            <svg xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 54 54" height="54px" width="54px">
+                                                <title>Error</title>
+                                                <defs />
+                                                <g sketch:type="MSPage" fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="Page-1">
+                                                    <g fill-opacity="0.816519475" fill="#FFFFFF" stroke-opacity="0.198794158" stroke="#747474" sketch:type="MSLayerGroup" id="Check-+-Oval-2">
+                                                        <path sketch:type="MSShapeGroup" id="Oval-2" d="M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" />
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                            "
+                                        </div>
+                                    </div>
+                                }
 
                             </div>
 
@@ -549,6 +606,19 @@
     <input type="hidden" name="cfile" />
     <input type="hidden" name="tblBDSNew.ID" class="idProduct_" value="@Model.tblBDSNew.ID" />
     <input type="hidden" name="nameImg" />
+    @Html.HiddenFor(m => m.tblBDSNew.Active)
+    @Html.HiddenFor(m => m.tblBDSNew.ModifiedDate)
+    @Html.HiddenFor(m => m.tblBDSNew.CreateDate)
+    @Html.HiddenFor(m => m.tblBDSNew.CreateUser)
+    @Html.HiddenFor(m => m.tblBDSNew.ModifiedUser)
+    @Html.HiddenFor(m => m.tblBDSNew.FromDeadline)
+    @Html.HiddenFor(m => m.tblBDSNew.IdTypeNewsCuurent)
+    @Html.HiddenFor(m => m.tblBDSNew.Status)
+    @Html.HiddenFor(m => m.tblBDSNew.DateReup)
+    @Html.HiddenFor(m => m.tblBDSNew.CountReup)
+    @Html.HiddenFor(m => m.tblBDSNew.RefTranHis)
+    @Html.HiddenFor(m => m.tblBDSNew.Career)
+    @Html.HiddenFor(m => m.tblBDSNew.MaxReup)
 }
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
@@ -796,7 +866,28 @@
         );
         return false;
     }
+    function DeleteImg(obj) {
+        $.each($('.dz-preview'), function (i, o) {
+            $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
+        });
+        var idpic = $(obj).parents(".dz-preview").find('#cusimg').attr('rel');
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("DeleteImg", "Adverts")",
 
+               
+            data: { idpicture: idpic },
+               
+
+        success: function (data) {
+
+        },
+        error: function (e) {
+
+        }
+    });
+    return false;
+    }
     function UploadImg(obj) {
         var t = 0;
         if ($('#tblCaptCha_Captcha').val() == "") {
