@@ -115,6 +115,11 @@ defaults: new { controller = "Register", action = "Thanks" }
                defaults: new { controller = "Default", action = "Search" }
            );
             routes.MapRoute(
+               name: "sua-tin-dang",
+               url: "ti-tuc-tuyen-dung/sua-tin-dang",
+               defaults: new { controller = "Adverts", action = "EditNews" }
+           );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Default", action = "Index", id = UrlParameter.Optional }
