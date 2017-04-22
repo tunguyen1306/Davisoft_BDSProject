@@ -539,7 +539,11 @@
             }
         });
         $(document).on('change', 'input.form-control,select.form-control,textarea.form-control',function() {
-            $(document.forms[0]).valid();
+            try {
+                $(document.forms[0]).valid();
+            } catch (e) {
+                
+            }
         });
         //$("#search_menu").on("keypress", function(e) {
 

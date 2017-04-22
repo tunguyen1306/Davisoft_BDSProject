@@ -204,7 +204,9 @@
     <Compile Include="Models\BDSNewsTypePrice.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BDSNews_Career.cs" />
+    <Compile Include="Models\BDSNews_Career.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BDSPersonalInformation.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -301,6 +303,9 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StateText.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -551,6 +556,7 @@
     <Content Include="Views\Management\PManaTinNhaTuyenDung.cshtml" />
     <Content Include="Views\Management\PManaTinNoiBat.cshtml" />
     <Content Include="Views\Adverts\EditNews.cshtml" />
+    <Content Include="Views\Default\_searchContentPer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

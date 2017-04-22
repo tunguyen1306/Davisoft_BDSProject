@@ -268,9 +268,71 @@ namespace WebBDS_Project.Controllers
             return View(register1);
         }
         [HttpPost, ActionName("SaveYourArchive")]
-        public ActionResult SaveYourArchive()
+        public JsonResult SaveYourArchive(int? id)
         {
-            return Json("");
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return Json(new {Status=false,Message="Vui lòng đăng nhập tài khoản nhà tuyển dụng!"}); ;
+            } 
+            var idAcount = int.Parse(Session["IdUser"].ToString());
+            var emp= db.BDSEmployerInformations.FirstOrDefault(T => T.IdAccount == idAcount);
+            if (emp==null)
+            {
+                return Json(new { Status = false, Message = "Vui lòng đăng nhập tài khoản nhà tuyển dụng!" }); ;
+            }
+
+            if (db.BDSEmpers.Where(T => T.IdAccountEm == emp.ID && T.IdAccountPer == id && T.Active == 1).Count()>0)
+            {
+                return Json(new { Status = false, Message = "Hồ sơ đã được lưu!" }); ;
+            }
+
+
+
+            BDSEmper em = new BDSEmper();
+            em.Active = 1;
+            em.CreateDate = DateTime.Now;
+            em.CreateUser = 1;
+            em.Name = "Lưu hồ sơ PER" + id.Value.ToString("000000") + "";
+            em.IdAccountEm = emp.ID;
+            em.IdAccountPer = id.Value;
+            em.Description = em.Name;
+          
+            em.KeySearch = "";
+            em.Point = 3;
+            var account = db.BDSAccounts.FirstOrDefault(T => T.ID == idAcount);
+            if (account.Point < em.Point)
+            {
+                return Json(new { Status = false, Message = "Tài khoản không đủ điểm!" });
+            }
+          
+            String Fname = "Lưu hồ sơ '{A}' điểm phải trả {B}";
+            string name = Fname.Replace("{A}", "PER" + id.Value.ToString("000000") + "").Replace("{B}", em.Point.ToString());
+            BDSTransactionHistory tranhist = new BDSTransactionHistory
+            {
+                Name = name,
+                Description = name,
+                KeySearch = name.NormalizeD(),
+                Active = 1,
+                CreateUser = 1,
+                CreateDate = DateTime.Now,
+                TypeTran = 2,
+                PointTran = em.Point.Value,
+                MoneyTran =0,
+                DateTran = DateTime.Now
+            };
+            db.Entry(tranhist).State = EntityState.Added;
+
+            db.SaveChanges();
+
+            em.RefTranHis = tranhist.ID;
+
+            db.BDSEmpers.Add(em);
+
+           
+            account.Point = account.Point - em.Point;
+            db.Entry(account).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(new { Status = true, Message = "Lưu hồ sơ thành công!" });
         }
         [HttpPost, ActionName("CheckEmail")]
         public ActionResult CheckEmail(string Email)

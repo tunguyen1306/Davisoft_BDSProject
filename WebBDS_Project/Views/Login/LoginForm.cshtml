@@ -17,6 +17,14 @@
                             <li>
                                 @using (Html.BeginForm("Login", "Login"))
                                 {
+                                    if (Request["authen"] != null && bool.Parse(Request["authen"].ToString())==false)
+                                    {
+   <p>
+                                      
+                                          <b class="TextColorRed">Tài khoản không hợp lệ!</b><br />
+                                    </p>
+                                    }
+                                    
                                     <p>
                                         Email
                                         <input placeholder="Email" name="tblBDSAccount.Email" type="text">
@@ -25,7 +33,10 @@
                                         Mật khẩu
                                         <input placeholder="Mật khẩu" name="tblBDSAccount.PassWord" type="password">
                                         <button type="submit" class="btLogin">Đăng nhập</button>
+                                      
                                     </p>
+                                     
+                                  
                                     <p class="box_remember">
                                         <a href="@Url.Action("ForgetPass", "Management")">Quên mật khẩu</a><br>
                                         Đăng nhập bằng
@@ -58,4 +69,16 @@
     </div>
     
 </div>
-
+<style>
+    .btLogin {
+        background: #f39f18;
+        float: right;
+        color: #fff;
+        border: none;
+        padding: 8px 11px;
+        font-weight: bold;
+        margin-top: 13px;
+        line-height: 22px;
+        border-radius: 2px;
+    }
+</style>
