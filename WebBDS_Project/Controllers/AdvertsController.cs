@@ -425,7 +425,7 @@ namespace WebBDS_Project.Controllers
 
                 }
                 db.SaveChanges();
-                return RedirectToAction("Index", "Default");
+                return RedirectToAction("ListNewOfUser", "Management");
             }
             return null;
         }
@@ -467,6 +467,13 @@ namespace WebBDS_Project.Controllers
 
 
 
+        }
+        public ActionResult DeleteAdvert(int idAdvert)
+        {
+            BDSNew tblNew = db.BDSNews.Find(idAdvert);
+            db.BDSNews.Remove(tblNew);
+            db.SaveChanges();
+            return RedirectToAction("ListNewOfUser", "Management");
         }
     }
 }

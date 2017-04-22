@@ -34,7 +34,9 @@
     <link href="~/Template/css/jquery-ui.css" rel="stylesheet" />
     <link href="~/Template/css/selectric.css" rel="stylesheet" />
     <link href="~/Template/css/customoptions.css" rel="stylesheet" />
+    <link href="~/Template/select2/css/select2.css" rel="stylesheet" />
     <link href="~/Template/css/select2.css" rel="stylesheet" />
+
     <script src="~/Template/js/jquery-1.12.4.js"></script>
 
     <script src="~/Scripts/CusWeb.js"></script>
@@ -47,7 +49,7 @@
     <script src="~/Template/js/jquery-ui.js"></script>
     <script src="~/Template/js/jquery.selectric.js"></script>
     <script src="~/Template/js/jssor.slider-22.2.16.min.js"></script>
-  
+    <script src="~/Template/select2/js/select2.js"></script>
 </head>
 <body>
     <div id="warrper">
@@ -230,6 +232,11 @@
     </div>
     <script>
         //$('select').selectric();
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
     </script>
 </body>
 </html>

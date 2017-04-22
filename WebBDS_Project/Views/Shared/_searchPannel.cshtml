@@ -4,74 +4,9 @@
 
     var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
 }
-<link href="~/Template/select2/css/select2.css" rel="stylesheet" />
-<script src="~/Template/select2/js/select2.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.select2').select2();
-    });
-</script>
-<style>
-    .select2-selection__arrow > b:before {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        margin-top: -12px;
-        font-family: 'FontAwesome';
-        content: '\f078';
-        font-size: 12px;
-        color: #de3039;
-    }
-    .select2-container--default .select2-selection--single {
-        border-radius: 0px;
-    }
-     .select2-selection {
-        height: 34px;
-    }
-    .select2-selection__arrow > b {
-        border-color: initial;
-        border-style: none;
-    }
-  
-   .select2-container--default .select2-selection--single .select2-selection__rendered {
-        line-height: 34px;
-        padding: 0px 12px 0px;
-    }
-    .selection > .select2-selection {
-        height: 34px;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__arrow {
-        height: 32px;
-    }
-        .select2-container--default .select2-selection--single .select2-selection__arrow b {
-            border-color: initial;
-            border-style: none;
-            border-width: initial;
-            height: initial;
-            left: inherit;
-            margin-left: inherit;
-            margin-top: inherit;
-            position: inherit;
-         
-            width: inherit;
-        }
-      
-        .select2-container--default .select2-results__option[aria-selected=true]
-        {
-            background:none;
-            font-weight:700;
-        }
-          .select2-container--default .select2-results__option--highlighted[aria-selected]
-        {
-                background: #DE3039;
-   
-                color: #fff;
-        }
-          .select2-results__option {
-            padding: 8px 12px;          
-            line-height: 1;
-        }
-</style>
+
+
+
 <ul class="idTabs">
     <li>
         <a href="#tab1">

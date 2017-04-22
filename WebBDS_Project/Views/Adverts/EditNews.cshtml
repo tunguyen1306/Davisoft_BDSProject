@@ -331,7 +331,7 @@
                         @foreach (var typeNews in Model.ListBDSNewsType)
                         {
                             <li>
-                                <a href="#@typeNews.CodeNewsType" class="radioType">
+                                <a href="#@typeNews.CodeNewsType" class="radioType_@typeNews.ID">
                                     <label>
                                         <input type="radio" value="@typeNews.ID" id="radioIdType_@typeNews.ID" class="radioIdType" name="tblBDSNew.IdTypeNews">@typeNews.Name
                                     </label>
@@ -458,7 +458,7 @@
 
 
                         <div class="grid_12">
-                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Home/Blank">
+                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
 
                                 <div class="dz-default dz-message cusbuttonmes " style="display: block;">
                                     <span class="btn btn-action">
@@ -619,6 +619,12 @@
     @Html.HiddenFor(m => m.tblBDSNew.RefTranHis)
     @Html.HiddenFor(m => m.tblBDSNew.Career)
     @Html.HiddenFor(m => m.tblBDSNew.MaxReup)
+    @Html.HiddenFor(m => m.tblBDSNew.TotalMoney)
+     @Html.HiddenFor(m => m.tblBDSNew.MoneyInDay)
+    @Html.HiddenFor(m => m.tblBDSNew.UrlImage) 
+       @Html.HiddenFor(m => m.tblBDSNew.KeySearch)
+    @Html.HiddenFor(m => m.tblBDSNew.IdAcount)
+    
 }
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
@@ -1048,6 +1054,8 @@ if ($('#tblBDSNew_Bonus').val() == "") {
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             $('#radioIdType_' + data.idData).prop('checked', true);
+           
+           
         }
     });
 
