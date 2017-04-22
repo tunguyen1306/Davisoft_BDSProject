@@ -2,8 +2,9 @@
 @using WebBDS_Project.Models
 @{
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+
+    var IdAccount = Session["IdUser"]!=null? int.Parse(Session["IdUser"].ToString()) : 0;
    
-    var IdAccount = int.Parse(Session["IdUser"].ToString());
     var tblEmployee = db.BDSEmployerInformations.Where(T => T.IdAccount == IdAccount).ToList().FirstOrDefault();
     var CountApply = db.BDSEmpers.Count(x => x.IdAccountEm == IdAccount);
     var tblAccount = db.BDSAccounts.FirstOrDefault(x => x.ID == IdAccount);

@@ -204,6 +204,7 @@
     <Compile Include="Models\BDSNewsTypePrice.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BDSNews_Career.cs" />
     <Compile Include="Models\BDSPersonalInformation.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -242,6 +243,9 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Currency.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataWebBDS.Context.cs">
@@ -395,6 +399,8 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Template\css\bfFur.css" />
+    <Content Include="Template\css\bfFur.sass.css" />
     <Content Include="Template\css\customoptions.css" />
     <Content Include="Template\css\CusWeb.css" />
     <Content Include="Template\css\font-awesome.css" />
@@ -536,13 +542,15 @@
     <Content Include="Views\Default\_searchSalary.cshtml" />
     <Content Include="Views\Default\_searchTimeWorking.cshtml" />
     <Content Include="Views\Default\_searchWorkingPlace.cshtml" />
-
     <Content Include="Views\Default\DetailEmployee.cshtml" />
-
     <Content Include="Views\Management\ListNewOfUser.cshtml" />
-
     <Content Include="Views\Default\_searchContent.cshtml" />
-
+    <Content Include="Views\Management\PListNewsOfUser.cshtml" />
+    <Content Include="Views\Management\PManaTinDacBiet.cshtml" />
+    <Content Include="Views\Management\PManaTinMoiNhat.cshtml" />
+    <Content Include="Views\Management\PManaTinNhaTuyenDung.cshtml" />
+    <Content Include="Views\Management\PManaTinNoiBat.cshtml" />
+    <Content Include="Views\Adverts\EditNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

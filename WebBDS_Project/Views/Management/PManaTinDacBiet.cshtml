@@ -45,6 +45,10 @@
                         <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triêu </p>
                         <p class="grid_6 omega time">Mã tin: <span class="color2">P@(news.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i> @(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
                     </div>
+                    <div>
+                        <p class="grid_11 omega size-text-15"><a class="btn btnManage" href="@Url.Action("EditNews","Adverts",new { id=news.ID})"><b class="fa fa-edit" aria-hidden="true"></b>Sửa</a>    <a class="btn btnManage" href="#"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin  </a><a class="btn btnManage" href="#">   <b class="fa fa-remove" aria-hidden="true"></b>Xóa tin </a></p>
+                       
+                    </div>
                 </div>
             </li>
             }

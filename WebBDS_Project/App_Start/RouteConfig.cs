@@ -124,12 +124,7 @@ defaults: new { controller = "Register", action = "Thanks" }
 );
 
 
-            routes.MapRoute(
-
-               name: "tim-kiem",
-               url: "tim-kiem",
-               defaults: new { controller = "Default", action = "Search" }
-           );
+            
             routes.MapRoute(
                name: "sua-tin-dang",
                url: "ti-tuc-tuyen-dung/sua-tin-dang",

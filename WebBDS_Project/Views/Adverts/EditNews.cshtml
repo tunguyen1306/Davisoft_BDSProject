@@ -6,7 +6,6 @@
 <!-- Content -->  
   @using System.Configuration
 
-
 @using (Html.BeginForm("AdvertCompany", "Adverts"))
 {
     <div class="container">
@@ -160,7 +159,7 @@
                             {
                                 <li>
                                     <label>
-                                        <input type="checkbox" class="checkCarrie" value="@item.ID">@item.Name
+                                        <input type="checkbox" id="checkCarrie_@item.ID" class="checkCarrie" value="@item.ID">@item.Name
                                     </label>
                                 </li>
                             }
@@ -200,7 +199,7 @@
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                              
+
 
                                 @Html.DropDownListFor(m => m.tblBDSNew.FromAge, new List<SelectListItem>
                         {
@@ -223,14 +222,14 @@
                         }, new { @class = "dropdown" })
 
 
-                               
+
 
 
 
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                               
+
                                 @Html.DropDownListFor(m => m.tblBDSNew.ToAge, new List<SelectListItem>
                         {
                             new SelectListItem{Text = "Chọn tuổi",Value = "0",Selected = true},
@@ -254,24 +253,24 @@
                     <div class="row">
                         <label>Thời gian thử việc</label>
                         <div class="row-right">
-                           @Html.DropDownListFor(m => m.tblBDSNew.TimeProbationary, new List<SelectListItem>
+                            @Html.DropDownListFor(m => m.tblBDSNew.TimeProbationary, new List<SelectListItem>
                         {
                             new SelectListItem{Text = "Chọn thời gian",Value = "0",Selected = true},
-                            new SelectListItem{Text = "1",Value = "1",Selected = true},
-                            new SelectListItem{Text = "2",Value = "2",Selected = false},
-                            new SelectListItem{Text = "3",Value = "3",Selected = false},
-                            new SelectListItem{Text = "4",Value = "4",Selected = false},
-                            new SelectListItem{Text = "5",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9",Value = "9",Selected = false},
-                            new SelectListItem{Text = "10",Value = "10",Selected = false},
-                            new SelectListItem{Text = "11",Value = "11",Selected = false},
-                            new SelectListItem{Text = "12",Value = "12",Selected = false},
-                            new SelectListItem{Text = "13",Value = "13",Selected = false},
-                            new SelectListItem{Text = "14",Value = "14",Selected = false},
-                            new SelectListItem{Text = "15",Value = "15",Selected = false}
+                            new SelectListItem{Text = "1 Tuần",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2 Tuần",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3 Tuần",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 Tuần",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 Tuần",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 Tuần",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 Tuần",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 Tuần",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 Tuần",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 Tuần",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 Tuần",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 Tuần",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 Tuần",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 Tuần",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 Tuần",Value = "15",Selected = false}
 
 
                         }, new { @class = "dropdown" })
@@ -334,7 +333,7 @@
                             <li>
                                 <a href="#@typeNews.CodeNewsType" class="radioType">
                                     <label>
-                                        <input type="radio" value="@typeNews.ID" class="radioIdType" name="tblBDSNew.IdTypeNews">@typeNews.Name
+                                        <input type="radio" value="@typeNews.ID" id="radioIdType_@typeNews.ID" class="radioIdType" name="tblBDSNew.IdTypeNews">@typeNews.Name
                                     </label>
                                 </a>
                             </li>
@@ -560,6 +559,31 @@
 <script src="~/Template/js/UploadImg/dropzoneVG.js"></script>
 
 <script>
+    $(document).on("change", "#tblBDSNew_FromSalary", function () {
+        $('#tblBDSNew_ToSalary').val('');
+        if ($('#tblBDSNew_FromSalary').val() != "") {
+            var val = $('#tblBDSNew_ToSalary').val();
+
+            
+            $('#tblBDSNew_ToSalary').append('<optiop value="">Please Select</option>');
+            for (var i = ($('#tblBDSNew_FromSalary').val() < 5 ? 5 : $('#tblBDSNew_FromSalary').val()) ; i <= 20; i++) {
+
+                $('#tblBDSNew_ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' triệu</option>');
+                if (i > val) {
+                    $('#tblBDSNew_ToSalary').val("");
+                } else {
+                    if (i >= val) {
+
+
+
+                    }
+
+                }
+
+            }
+        }
+
+    });
     $('.checkCarrie').click(function () {
 
         var listItem = $('.checkCarrie:checked').map(function () {
@@ -579,6 +603,7 @@
         if ($('.radioType').hasClass('selected')) {
             $('.selected .radioIdType').prop('checked', true);
         }
+        LoadCarre();
         
     });
     $('.radioType').click(function() {
@@ -829,15 +854,15 @@ if ($('#tblBDSNew_Bonus').val() == "") {
             toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
             t++;
         } 
-        if ($('#DropQuantity').val() == "0") {
+        if ($('#DropQuantity').val() == 0) {
             toastr.error('Vui lòng chọn số lượng!');
             t++;
         }
-        if ($('#DropToSalary').val() == "0") {
+        if ($('#DropToSalary').val() == 0) {
             toastr.error('Vui lòng chọn mức lương đến!');
             t++;
         }
-        if ($('#DropFromSalary').val() == "0") {
+        if ($('#DropFromSalary').val() == 0) {
             toastr.error('Vui lòng chọn mức lương từ!');
             t++;
         }
@@ -898,5 +923,42 @@ if ($('#tblBDSNew_Bonus').val() == "") {
 
 
     }
+   
+    function LoadCarre() {
+       
+        var url = "/Adverts/LoadCarre";
+        var url1 = "/Adverts/LoadTypeNew";
+        var obj = {};
+        obj.id = $('.idProduct_').val();
+    
+        $.ajax
+       ({
+           type: "POST",
+           url: url,
+           data: JSON.stringify(obj),
+           dataType: "json",
+           contentType: "application/json;charset=utf-8",
+           success: function (data) {
+               var list = data.idData.split(',');
+               $.each(list, function (i,o) {
+                       $('#checkCarrie_'+o).prop('checked', true);
+               })
+             
+              
+             
+           }
+       });
+        $.ajax
+    ({
+        type: "POST",
+        url: url1,
+        data: JSON.stringify(obj),
+        dataType: "json",
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            $('#radioIdType_' + data.idData).prop('checked', true);
+        }
+    });
 
+    }
 </script>

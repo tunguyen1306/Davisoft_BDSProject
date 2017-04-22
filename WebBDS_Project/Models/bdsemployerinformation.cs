@@ -41,5 +41,8 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
         public Nullable<int> Featured { get; set; }
+        public Nullable<System.DateTime> DateReup { get; set; }
+        public Nullable<int> CountReup { get; set; }
+        public Nullable<int> MaxReup { get; set; }
     }
 }

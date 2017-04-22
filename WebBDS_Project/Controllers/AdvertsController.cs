@@ -291,5 +291,48 @@ namespace WebBDS_Project.Controllers
 
 
         }
+        public ActionResult EditNews(string id)
+        {
+            var id_ = int.Parse(id.Split('-').Last());
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            CaptCha cap = new CaptCha();
+            BDSNew BDSNew = new BDSNew();
+            var registerModel = new RegisterInformationModel
+            {
+                ListBDSScopes = db.BDSScopes.ToList(),
+                ListMarriea = db.BDSMarriages.ToList(),
+                ListSalary = db.BDSSalaries.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+                ListGeoModel = dataCity.ToList(),
+                tblCaptCha = cap,
+                tblBDSNew = db.BDSNews.FirstOrDefault(x=>x.ID==id_),
+                ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                ListBdsAdcount = db.BDSAccounts.ToList(),
+                ListBDSEmper = db.BDSEmpers.ToList()
+
+            };
+            return View(registerModel);
+        }
+       [ActionName("LoadCarre")]
+        public ActionResult LoadCarre(int id)
+        {
+            var data = db.BDSNews.FirstOrDefault(x=>x.ID== id).Career;
+            
+            return Json(new { idData = data });
+        }
+        [ActionName("LoadTypeNew")]
+        public ActionResult LoadTypeNew(int id)
+        {
+            var data = db.BDSNews.FirstOrDefault(x => x.ID == id).IdTypeNews;
+
+            return Json(new { idData = data });
+        }
     }
 }
