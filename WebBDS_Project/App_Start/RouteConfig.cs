@@ -12,6 +12,21 @@ namespace WebBDS_Project
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+
+            routes.MapRoute(
+           name: "tim-kiem",
+           url: "tim-kiem",
+           defaults: new { controller = "Default", action = "Search" }
+       );
+
+            routes.MapRoute(
+           name: "tim-kiem-ung-vien",
+           url: "tim-kiem-ung-vien",
+           defaults: new { controller = "Default", action = "SearchForEmployee" }
+       );
+
+
             //Management
             routes.MapRoute(
              name: "quan-li-tin-dang",
@@ -110,6 +125,7 @@ defaults: new { controller = "Register", action = "Thanks" }
 
 
             routes.MapRoute(
+
                name: "tim-kiem",
                url: "tim-kiem",
                defaults: new { controller = "Default", action = "Search" }
@@ -120,6 +136,7 @@ defaults: new { controller = "Register", action = "Thanks" }
                defaults: new { controller = "Adverts", action = "EditNews" }
            );
             routes.MapRoute(
+
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Default", action = "Index", id = UrlParameter.Optional }
