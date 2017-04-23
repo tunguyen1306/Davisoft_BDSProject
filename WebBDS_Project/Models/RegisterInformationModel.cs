@@ -19,6 +19,7 @@ namespace WebBDS_Project.Models
         public List<District> ListDistrict { get; set; }
         public List<DistrictText> ListDistrictText { get; set; }
         public List<GeoModel> ListGeoModel { get; set; }
+        public List<GeoModel> ListGeoDisModel { get; set; }
         public List<BDSMarriage> ListMarriea{ get; set; }
         public BDSMarriage tblMarriea { get; set; }
 

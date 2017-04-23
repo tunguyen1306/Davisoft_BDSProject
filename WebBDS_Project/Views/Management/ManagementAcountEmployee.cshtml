@@ -4,251 +4,560 @@
 }
 @using System.Configuration
 @model WebBDS_Project.Models.RegisterInformationModel
-@using (Html.BeginForm("ManagementAcountEmployee", "Management"))
-{
-    @Html.HiddenFor(x=>x.TblBdsAdcount.ID)
+
+    @Html.HiddenFor(x => x.TblBdsAdcount.ID)
     <div class="container">
-                    <div class="grid_9 main_left">
-                        <div class="group_work">
-                            <div class="header_text">
-                                <h3><span><i class="fa fa-list-ul"></i>Quản lý tài khoản nhà tuyển dụng</span></h3>
-                            </div>
-                            <form class="form-horizontal " data-validate="parsley" action="#">
+        <div class="grid_9 main_left">
 
-                                <div class="row">
-                                    <div class="border-manager-recruitment">
-                                        tài khoản của bạn đang có <b class="TextColorRed">@Model.TblBdsAdcount.Money</b>VNĐ số điểm tích lũy của bạn hiện tại là <b class="TextColorRed">@Model.TblBdsAdcount.Point</b> điểm
-                                        <div class="box-note">
-                                            <b>Chú ý:</b>Hãy kiểm tra hồ sơ ứng viên gửi thông tin cho bạn hằng ngày
-                                        </div>
-                                        Để được hỗ trợ vui lòng liên hệ Chuyên viên tư vấn phụ trách tài khoản của Quý khách<br />
-                                        Tên CSKH: <b>Lê Thị Minh Thư</b> - ĐT:<b>091234567 </b> - Email: <b></b>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <h4>Thông tin đăng nhập</h4>
-                                    <label class="grid_2">Email</label>
-                                    <div class="row-right grid_9">
-                                       
-                                         @Html.TextBoxFor(m => m.TblBdsAdcount.Email, new { @placeholder = "Nhập email" })
-                                    </div>
-                                </div>
-                                 <div class="row showCheck">
-                                    
-                                    <label class="grid_2"></label>
-                                     <div class="row-right grid_9">
-                                         <a class="grid_3  btnApply btnCheck">Đổi mật khẩu</a>
-                                     </div>
-
-                                 </div>
-                                <div class="showFormPass hidden">
-                                       <div class="row">
-                                   
-                                    <label class="grid_2">Mật khẩu cũ</label>
-                                    <div class="row-right grid_9">
-                                        <input placeholder="Nhập mật khẩu cũ" class="oldPass" type="password">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                   
-                                    <label class="grid_2">Mật khẩu Mới</label>
-                                    <div class="row-right grid_9">
-                                        <input placeholder="Nhập mật khẩu mới" class="newPass" type="password">
-                                    </div>
-                                </div>
-                                    <div class="row">
-                                   
-                                        <label class="grid_2">Nhập lại mật khẩu</label>
-                                        <div class="row-right grid_9">
-                                            <input placeholder="Nhập lại mật khẩu mới" class="newPass1" type="password">
-                                        </div>
-                                    </div>
-                                     <div class="row">
-                                    
-                                    <label class="grid_2"></label>
-                                    <div class="row-right grid_9">
-                                       <a class="grid_3  btnApply btnChangePass">Đổi mật khẩu</a>
-                                    </div>
-                                </div>
-                                </div>
-                               
-                               
-                                <div class="row">
-                                    <h4>Thông tin công ty</h4>
-                                    <label class="grid_2">Tên công ty</label>
-                                    <div class="row-right grid_9">
-                                       
-                                       @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Name, new { @placeholder = "Nhập tên công ty" })
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <label class="grid_2">Địa chỉ<span class="required"> *</span></label>
-                                    <div class="grid_9 row-right">
-                                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @placeholder = "Nhập địa chỉ " })
-                                    </div>
-                                </div>
-                                 <div class="row">
-                                    <label class="grid_2">Điện thoại<span class="required"> *</span></label>
-                                    <div class="grid_9 row-right">
-
-                                       
-                                        @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Phone, new { @placeholder = "Nhập số điện thoại" })
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="grid_2">Tỉnh thành phố<span class="required"> *</span></label>
-                                    <div class=" grid_9 row-right">
-                                        @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
-                                    </div>
-
-
-                                </div>
-                               
-                                <div class="row">
-                                    <label class="grid_2">Quy mô công ty<span class="required"> *</span></label>
-                                    <div class="grid_9 row-right">
-                                             @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Scope, new SelectList(Model.ListBDSScopes, "Id", "Name"), new { @class = "dropdown" })
-                                    </div>
-
-
-                                </div>
-                                <div class="row">
-                                    <label class="grid_2">Sơ lược về công ty<span>*</span></label>
-                                    <div class="grid_9 row-right">
-                                         @Html.TextAreaFor(m => m.TblBDSEmployerInformation.Description)
-                                    </div>
-                                </div>
-
-                                 <div class="row">
-
-                        <label>Logo Công Ty</label>
-                        <div class="logo_jobs">
-                            <div class="grid_5 uploadBox">
-                                @if (Model.TblBDSEmployerInformation.UrlImage!=null)
-                                {
-                                        <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.TblBDSEmployerInformation.UrlImage.ToString().Split('_')[0]/@Model.TblBDSEmployerInformation.UrlImage" />
-                                }
-                                else
-                                {
-                                    <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
-                                }
-                                
-                                <input type="hidden" value="" name="TblBDSEmployerInformation.UrlImage" id="UrlImage" />
-                            </div>
-                            <div class="uploadBox-1">
-                                <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                                    + UpLoad Image
-                                </a>
-                                <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
-                            </div>
-                        </div>
-
-                        <div class="text_jobs">
-
-                            <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
-                        </div>
-
-
-
-
+            @if (Session["IdUserEmployee"] != null)
+            {
+             using (Html.BeginForm("ManagementAcountEmployee", "Management"))
+            {
+                <div class="group_work">
+                    <div class="header_text">
+                        <h3><span><i class="fa fa-list-ul"></i>Quản lý tài khoản nhà tuyển dụng</span></h3>
                     </div>
+                    <form class="form-horizontal " data-validate="parsley" action="#">
 
-                                <div class="row">
-                                    <label class="grid_2">Fax<span class="required">*</span></label>
-                                    <div class="grid_9 row-right">
-                                       
-                                          @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Fax, new { @placeholder = "Nhập số fax" })
-                                    </div>
-
-
+                        <div class="row">
+                            <div class="border-manager-recruitment">
+                                tài khoản của bạn đang có <b class="TextColorRed">@Model.TblBdsAdcount.Money</b>VNĐ số điểm tích lũy của bạn hiện tại là <b class="TextColorRed">@Model.TblBdsAdcount.Point</b> điểm
+                                <div class="box-note">
+                                    <b>Chú ý:</b>Hãy kiểm tra hồ sơ ứng viên gửi thông tin cho bạn hằng ngày
                                 </div>
-                                <div class="row">
-                                    <label class="grid_2">WebSite<span class="required">*</span></label>
-                                    <div class="grid_9 row-right">
-                                       
-                                          @Html.TextBoxFor(m => m.TblBDSEmployerInformation.WebSite, new { @placeholder = "Nhập Website" })
-                                    </div>
+                                Để được hỗ trợ vui lòng liên hệ Chuyên viên tư vấn phụ trách tài khoản của Quý khách<br />
+                                Tên CSKH: <b>Lê Thị Minh Thư</b> - ĐT:<b>091234567 </b> - Email: <b></b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h4>Thông tin đăng nhập</h4>
+                            <label class="grid_2">Email</label>
+                            <div class="row-right grid_9">
 
+                                @Html.TextBoxFor(m => m.TblBdsAdcount.Email, new { @placeholder = "Nhập email" })
+                            </div>
+                        </div>
+                        <div class="row showCheck">
 
+                            <label class="grid_2"></label>
+                            <div class="row-right grid_9">
+                                <a class="grid_3  btnApply btnCheck">Đổi mật khẩu</a>
+                            </div>
+
+                        </div>
+                        <div class="showFormPass hidden">
+                            <div class="row">
+
+                                <label class="grid_2">Mật khẩu cũ</label>
+                                <div class="row-right grid_9">
+                                    <input placeholder="Nhập mật khẩu cũ" class="oldPass" type="password">
                                 </div>
+                            </div>
+                            <div class="row">
 
-                                <div class="row">
-                                    <h4>Thông tin liên hệ</h4>
-                                    <label class="grid_2">Tên người liên hệ<span class="required">*</span></label>
-                                    <div class="grid_9 row-right">
-                                       
-                                         @Html.TextBoxFor(m => m.TblBDSEmployerInformation.NameContact, new { @placeholder = "Nhập tên người liên hệ" })
-                                    </div>
-
+                                <label class="grid_2">Mật khẩu Mới</label>
+                                <div class="row-right grid_9">
+                                    <input placeholder="Nhập mật khẩu mới" class="newPass" type="password">
                                 </div>
-                                <div class="row">
-                                    
-                                    <label class="grid_2">Email liên hệ<span class="required">*</span></label>
-                                    <div class="grid_9 row-right">
+                            </div>
+                            <div class="row">
 
-                                         @Html.TextBoxFor(m => m.TblBDSEmployerInformation.EmailContact, new { @placeholder = "Nhập tên email người liên hệ" })
-                                    </div>
-
+                                <label class="grid_2">Nhập lại mật khẩu</label>
+                                <div class="row-right grid_9">
+                                    <input placeholder="Nhập lại mật khẩu mới" class="newPass1" type="password">
                                 </div>
-                                <div class="row">
-                                    
-                                    <label class="grid_2">Địa chỉ liên hệ<span class="required">*</span></label>
-                                    <div class="grid_9 row-right">
-                                     
-                                          @Html.TextBoxFor(m => m.TblBDSEmployerInformation.AddressContact, new { @placeholder = "Nhập tên địa chỉ người liên hệ" })
-                                    </div>
+                            </div>
+                            <div class="row">
 
+                                <label class="grid_2"></label>
+                                <div class="row-right grid_9">
+                                    <a class="grid_3  btnApply btnChangePass">Đổi mật khẩu</a>
                                 </div>
-                                <div class="row">
-                                    
-                                    <label class="grid_2">Điện thoại liên hệ<span class="required">*</span></label>
-                                    <div class="grid_9 row-right">
-                                        
-                                          @Html.TextBoxFor(m => m.TblBDSEmployerInformation.PhoneContact, new { @placeholder = "Nhập tên điển thoại người liên hệ" })
-                                    </div>
+                            </div>
+                        </div>
 
+
+                        <div class="row">
+                            <h4>Thông tin công ty</h4>
+                            <label class="grid_2">Tên công ty</label>
+                            <div class="row-right grid_9">
+
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Name, new { @placeholder = "Nhập tên công ty" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="grid_2">Địa chỉ<span class="required"> *</span></label>
+                            <div class="grid_9 row-right">
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @placeholder = "Nhập địa chỉ " })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="grid_2">Điện thoại<span class="required"> *</span></label>
+                            <div class="grid_9 row-right">
+
+
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Phone, new { @placeholder = "Nhập số điện thoại" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="grid_2">Tỉnh thành phố<span class="required"> *</span></label>
+                            <div class=" grid_9 row-right">
+                                @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <label class="grid_2">Quy mô công ty<span class="required"> *</span></label>
+                            <div class="grid_9 row-right">
+                                @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Scope, new SelectList(Model.ListBDSScopes, "Id", "Name"), new { @class = "dropdown" })
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <label class="grid_2">Sơ lược về công ty<span>*</span></label>
+                            <div class="grid_9 row-right">
+                                @Html.TextAreaFor(m => m.TblBDSEmployerInformation.Description)
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                           <label class="grid_2">Logo Công Ty</label>
+                            <div class="logo_jobs">
+                                <div class="grid_5 uploadBox">
+                                    @if (Model.TblBDSEmployerInformation.UrlImage != null)
+                                    {
+                                        <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.TblBDSEmployerInformation.UrlImage.ToString().Split('_')[0]/@Model.TblBDSEmployerInformation.UrlImage" />
+                                    }
+                                    else
+                                    {
+                                        <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                                    }
+
+                                    <input type="hidden" value="" name="TblBDSEmployerInformation.UrlImage" id="UrlImage" />
                                 </div>
-                                 <div class="row">
-                                    <label class="grid_2">Hinh thức liên hệ<span class="required"> *</span></label>
-                                    <div class="grid_9 row-right">
-                                        
-                                        @Html.DropDownListFor(model => model.TblBDSEmployerInformation.TypeContact,
-                            new List<SelectListItem> { 
+                                <div class="uploadBox-1">
+                                    <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                        + UpLoad Image
+                                    </a>
+                                    <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
+                                </div>
+                            </div>
+
+                            <div class="text_jobs">
+
+                                <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="row">
+                            <label class="grid_2">Fax<span class="required">*</span></label>
+                            <div class="grid_9 row-right">
+
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Fax, new { @placeholder = "Nhập số fax" })
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <label class="grid_2">WebSite<span class="required">*</span></label>
+                            <div class="grid_9 row-right">
+
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.WebSite, new { @placeholder = "Nhập Website" })
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <h4>Thông tin liên hệ</h4>
+                            <label class="grid_2">Tên người liên hệ<span class="required">*</span></label>
+                            <div class="grid_9 row-right">
+
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.NameContact, new { @placeholder = "Nhập tên người liên hệ" })
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <label class="grid_2">Email liên hệ<span class="required">*</span></label>
+                            <div class="grid_9 row-right">
+
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.EmailContact, new { @placeholder = "Nhập tên email người liên hệ" })
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <label class="grid_2">Địa chỉ liên hệ<span class="required">*</span></label>
+                            <div class="grid_9 row-right">
+
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.AddressContact, new { @placeholder = "Nhập tên địa chỉ người liên hệ" })
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <label class="grid_2">Điện thoại liên hệ<span class="required">*</span></label>
+                            <div class="grid_9 row-right">
+
+                                @Html.TextBoxFor(m => m.TblBDSEmployerInformation.PhoneContact, new { @placeholder = "Nhập tên điển thoại người liên hệ" })
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <label class="grid_2">Hinh thức liên hệ<span class="required"> *</span></label>
+                            <div class="grid_9 row-right">
+
+                                @Html.DropDownListFor(model => model.TblBDSEmployerInformation.TypeContact,
+         new List<SelectListItem> {
                                 new SelectListItem { Value = "1" , Text = "Gọi điện thoại" },
                                 new SelectListItem { Value = "2" , Text = "Đến trực tiếp công ty" }
-                            },
-                            new { @class = "dropdown" })
-                                    </div>
+         },
+         new { @class = "dropdown" })
+                            </div>
 
-
-                                </div>
-                                <div class="row">
-
-                                    <label class="grid_2"></label>
-                                    <div class="row-right grid_9">
-                                        <a class="grid_3  btnApply" onclick="$('#submitbutton').click();">Cập nhật</a>
-                                        <button type="submit" style="display: none" id="submitbutton" class="grid_2 btnUpdate">Cập nhật</button>
-
-                                    </div>
-
-                                </div>
-                                
-
-                            </form>
 
                         </div>
-                    </div>
-                    <div class="grid_3 omega main_right">
-                         @Html.Partial("_partialManagerCenter")
-                    </div>
+                        <div class="row">
+
+                            <label class="grid_2"></label>
+                            <div class="row-right grid_9">
+                                <a class="grid_3  btnApply" onclick="$('#submitbutton').click();">Cập nhật</a>
+                                <button type="submit" style="display: none" id="submitbutton" class="grid_2 btnUpdate">Cập nhật</button>
+
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
                 </div>
+            }
 }
 
+            @if (Session["IdUserPer"] != null)
+            {
+                using (Html.BeginForm("ManagementAcountEmployee", "Management"))
+                {
+                <div class="group_work">
+                    <div class="header_text">
+                        <h3><span><i class="fa fa-list-ul"></i>Quản lý tài khoản người tìm việc</span></h3>
+                    </div>
+                    <form class="form-horizontal " data-validate="parsley" action="#">
+
+                        <div class="row">
+                            <h4>Thông tin đăng nhập</h4>
+                            <label class="grid_2">Email</label>
+                            <div class="row-right grid_9">
+
+                                @Html.TextBoxFor(m => m.TblBdsAdcount.Email, new { @placeholder = "Nhập email" })
+                            </div>
+                        </div>
+                        <div class="row showCheck">
+
+                            <label class="grid_2"></label>
+                            <div class="row-right grid_9">
+                                <a class="grid_3  btnApply btnCheck">Đổi mật khẩu</a>
+                            </div>
+
+                        </div>
+                        <div class="showFormPass hidden">
+                            <div class="row">
+
+                                <label class="grid_2">Mật khẩu cũ</label>
+                                <div class="row-right grid_9">
+                                    <input placeholder="Nhập mật khẩu cũ" class="oldPass" type="password">
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <label class="grid_2">Mật khẩu Mới</label>
+                                <div class="row-right grid_9">
+                                    <input placeholder="Nhập mật khẩu mới" class="newPass" type="password">
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <label class="grid_2">Nhập lại mật khẩu</label>
+                                <div class="row-right grid_9">
+                                    <input placeholder="Nhập lại mật khẩu mới" class="newPass1" type="password">
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <label class="grid_2"></label>
+                                <div class="row-right grid_9">
+                                    <a class="grid_3  btnApply btnChangePass">Đổi mật khẩu</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <h4>Thông tin cá nhân</h4>
+                            <label class="grid_2">Họ và tên</label>
+                            <div class="row-right grid_3">
+
+                                @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @placeholder = "Nhập họ và tên" })
+                            </div>
+                            <label class="grid_2">Ngày sinh<span class="required">*</span></label>
+                            <div class="row-right grid_1">
+
+                            
+                                @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Birthday.Day, new { @placeholder = "DD" })
+                            </div>
+                            <div class="row-right grid_1">
+
+                                @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Birthday.Month, new { @placeholder = "MM" })
+                            </div>
+                            <div class="row-right grid_2">
+
+                            
+                                @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Birthday.Year, new { @class = "grid_2-9px omega", @placeholder = "YYYY" })
+                                <input class="cus-input2 mg0_0 datepicker" name="TblBDSPersonalInformation.Birthday" style="display:none;" value="" id="hdValuesDate" placeholder="YYYY" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="grid_2">Số điện thoại<span class="required">*</span></label>
+                            <div class="row-right grid_3">
+
+                                @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Phone, new { @placeholder = "Nhập số điện thoại" })
+                            </div>
+
+
+                            <label class="grid_2">Giới tính<span class="required">*</span></label>
+
+                            <div class="pncon radio_2">
+                                <label><input type="radio" value="1" name="TblBDSPersonalInformation.Sex" checked="checked"> Nam</label>
+                                <label><input type="radio" value="2" name="TblBDSPersonalInformation.Sex"> Nữ</label>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <label class="grid_2">Địa chỉ liên hệ<span class="required"> *</span></label>
+                            <div class="row-right grid_3">
+
+
+                                @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Address, new { @placeholder = "Nhập địa chỉ liên hệ" })
+
+                            </div>
+                            <label class="grid_1">Tỉnh</label>
+                            <div class="row-right  grid_2">
+
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2", @style = "width:100%;" })
+                                   
+                            </div>
+                            
+                            <div class="row-right  grid_2">
+                             
+                              
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.District, new SelectList(Model.ListGeoDisModel, "DistId", "DistName"), new { @class = "select2", @style = "width:100%;" })
+                            </div>
+
+
+                            </div>
+                        <div class="row">
+                            <label class="grid_2">Tình trạng hôn nhân<span class="required"> *</span></label>
+                            <div class="row-right grid_3 ">
+
+
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), "Chọn tình trạng hôn nhân", new { @class = "select2", @style = "width:100%;" })
+
+                            </div>
+                            <label class="grid_2">Mức lương mong muốn <span class="required">*</span></label>
+                            <div class="row-right grid_4">
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"), "Chọn mức lương", new { @class = "select2", @style = "width:100%;" })
+                            </div>
+
+
+
+
+                        </div>
+                            
+                        <div class="row">
+                            <label class="grid_2">Tình trạng hôn nhân<span class="required"> *</span></label>
+                            <div class="row-right grid_3 ">
+
+
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), "Chọn tình trạng hôn nhân", new { @class = "select2", @style = "width:100%;" })
+
+                            </div>
+                            <label class="grid_2">Mức lương mong muốn <span class="required">*</span></label>
+                            <div class="row-right grid_4">
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"), "Chọn mức lương", new { @class = "select2", @style = "width:100%;" })
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="row">
+                            <label class="grid_2">Số năm kinh nghiệm<span class="required"> *</span></label>
+                            <div class="row-right grid_3 ">
+
+
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn kinh nghiệm", new { @class = "select2", @style = "width:100%;" })
+
+
+
+
+                            </div>
+                            <label class="grid_2">Học vấn <span class="required">*</span></label>
+                            <div class="row-right grid_4">
+
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Education, new SelectList(Model.ListDucation, "Id", "Name"), "Chọn học vấn", new { @class = "select2", @style = "width:100%;" })
+
+
+                            </div>
+
+
+
+
+                        </div>
+                       
+
+                        <div class="row">
+                            <label class="grid_2">Công việc mong muốn<span class="required">*</span></label>
+                            <div class="row-right grid_3">
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.IdLoaiNghe, new SelectList(Model.ListBDSCareer, "Id", "Name"), "Chọn ngành nghề", new { @class = "select2", @style = "width:100%;" })
+
+
+                            </div>
+
+
+                            <label class="grid_2">Kinh nghiệm trong ngành bất động sản<span class="required">*</span></label>
+
+                            <div class="row-right grid_4 radio_3-1">
+                                <label><input name="TblBDSPersonalInformation.ProfessionalExperience" value="0" checked="checked" type="radio">Không</label>
+                                <label><input name="TblBDSPersonalInformation.ProfessionalExperience" value="1" type="radio">Đã có kinh nghiệm</label>
+                            </div>
+
+
+
+                        </div>
+                        
+                        <div class="row">
+                            <label class="grid_2">Giới thiệu sơ lược</label>
+                            <div class="row-right grid_9 omega">
+                                @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Description, new { @class = "grid_12" })
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+
+                            <label class="grid_2">Hình cá nhân</label>
+                            <div class="logo_jobs">
+                                <div class="grid_5 uploadBox">
+                                    @if (Model.TblBDSPersonalInformation.UrlImage != null)
+                                    {
+                                        <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.TblBDSPersonalInformation.UrlImage.ToString().Split('_')[0]/@Model.TblBDSPersonalInformation.UrlImage" />
+                                    }
+                                    else
+                                    {
+                                        <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                                    }
+
+                                    <input type="hidden" value="" name="TblBDSPersonalInformation.UrlImage" id="UrlImage" />
+                                </div>
+                                <div class="uploadBox-1">
+                                    <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                        + UpLoad Image
+                                    </a>
+                                    <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
+                                </div>
+                            </div>
+
+                            <div class="text_jobs">
+
+                                <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
+                            </div>
+
+
+
+
+                        </div>
+                      
+
+
+                        <div class="row">
+
+                            <div class="grid_12">
+                                <span>Bằng việc nhấp vào "Đăng ký nhanh",bạn đã đồng ý với các điều khoản ghi trong   <a class="lblcheckEmail" href="#">thỏa thuận dịch vụ của CareerBuilder.vn</a></span>
+                            </div>
+
+                        </div>
+                      
+                        
+                    
+                        <div class="row">
+
+                            <label class="grid_2"></label>
+                            <div class="row-right grid_9">
+                                <a class="grid_3  btnApply" onclick="$('#submitbutton1').click();">Cập nhật</a>
+                                <button type="submit" style="display: none" id="submitbutton1" class="grid_2 btnUpdate">Cập nhật</button>
+
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+                }
+            }
+        </div>
+        <div class="grid_3 omega main_right">
+            @Html.Partial("_partialManagerCenter")
+        </div>
+    </div>
+
+
 <script>
+    $(function () {
+        $('.select2').select2();
+        $(".datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Template/images/calendar.gif",
+            buttonImageOnly: true,
+            buttonText: "Select date"
+        });
+        $('#hdValuesDate').change(function () {
+            var birthday = $('#hdValuesDate').val().split('/');
+            $('#TblBDSPersonalInformation_Birthday_Day').val(birthday[1]);
+            $('#TblBDSPersonalInformation_Birthday_Month').val(birthday[0]);
+            $('#TblBDSPersonalInformation_Birthday_Year').val(birthday[2]);
+
+        });
+        $("#TblBDSPersonalInformation_Birthday_Year").change(function () {
+
+            var datet = $('#TblBDSPersonalInformation_Birthday_Day').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Month').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Year').val();
+            $('#hdValuesDate').val(datet);
+        });
+    });
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
         $('#submitbutton').parents("form").submit();
+    });
+    $("#submitbutton1").on('click', function (e) {
+        e.preventDefault();
+        $('#submitbutton1').parents("form").submit();
     });
     $('.btnCheck').click(function () {
         CheckEmail();
@@ -262,29 +571,29 @@
             toastr.error('Vui lòng nhập Email');
             t++;
         }
-        if (t==0) {
+        if (t == 0) {
             var obj = {};
             obj.Email = $('#TblBdsAdcount_Email').val();
-            $.ajax ({
+            $.ajax({
                 type: "POST",
                 url: '@Url.Action("CheckEmail", "Management")',
                 data: JSON.stringify(obj),
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {
-                    if (data.result==1) {
+                    if (data.result == 1) {
                         $('.showCheck').addClass('hidden');
                         $('.showFormPass').removeClass('hidden');
                     }
-                    if (data.result==0) {
+                    if (data.result == 0) {
                         toastr.error('Email không khớp với tài khoản đang đăng nhập!');
                     }
-                    
+
 
                 }
             });
         }
-        
+
     }
     function ChangePass() {
         var t = 0;
@@ -346,7 +655,7 @@
             contentType: false,
             data: data,
             success: function (response) {
-                
+
                 $('#imgLogoCompany').attr('src', response.fullurl);
                 $('#UrlImage').val(response.imgName);
 
@@ -357,4 +666,43 @@
 
         });
     });
+    $('#TblBDSPersonalInformation_City').change(function () {
+        var idCity = $("#TblBDSPersonalInformation_City option:selected").val();
+        var idCityText = $("#TblBDSPersonalInformation_City option:selected").text();
+        GetDistrict1(idCity);
+        $('.select2').select2();
+    });
+    function GetDistrict1(_id) {
+
+        //Get City
+        var url = "/Register/GetDistrict";
+        var stringCity = "<option value=\"0\">Chọn quận huyện</option>";
+        var obj = {};
+        obj.id = _id;
+        $('#TblBDSPersonalInformation_District').html('');
+        $.ajax
+       ({
+           type: "POST",
+           url: url,
+           data: JSON.stringify(obj),
+           dataType: "json",
+           contentType: "application/json;charset=utf-8",
+           success: function (data) {
+
+               $.each(data, function (i, o) {
+
+                   stringCity += "<option value=" + o.DistId + ">" + o.DistName + "</option>";
+
+               });
+
+               $('#TblBDSPersonalInformation_District').html(stringCity);
+               $('#TblBDSPersonalInformation_District').change(function () {
+
+                   var idDistric = $("#TblBDSPersonalInformation_District option:selected").val();
+
+               });
+
+           }
+       });
+    }
 </script>

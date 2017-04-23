@@ -50,7 +50,35 @@
             </div>
             <div class="grid_3 omega">
                 <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triêu </p>
+
             </div>
+                    <div>
+                        <p class="grid_11 omega size-text-15"><a class="btn btnManage" href="@Url.Action("EditNews","Adverts",new { id=news.ID})"><b class="fa fa-edit" aria-hidden="true"></b>Sửa</a>    <a class="btn btnManage" href="#"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin  </a><button type="button" class="btn btnManage" data-toggle="modal" data-target="#myModal_@news.ID"><b class="fa fa-remove" aria-hidden="true"></b>Xóa tin</button></p>
+
+                    </div>
+                    <!-- Modal -->
+                    <div id="myModal_@news.ID" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Xóa bỏ</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bạn có chắc chắn muốn xóa tin đăng này? Lưu ý tất cả dữ liệu của bạn sẽ bị mất! Vì vậy bạn có thể chuyển sang chế độ ngưng đăng tin này để lưu dữ liệu. Vui lòng xác nhận việc xóa tin đăng<b> @news.Title</b> </p>
+
+                                </div>
+                                <div class="modal-footer">
+
+                                    <a class="btn btn-default" href="@Url.Action("DeleteAdvert","Adverts",new { idAdvert = news.ID})">Xóa </a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
         </li>
            }
           

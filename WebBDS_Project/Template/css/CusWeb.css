@@ -344,6 +344,9 @@ tr:nth-child(even) {
 .grid_1-9-5 {
     width: 100%;
 }
+ .grid_2-9px{
+     width: 100%;
+ }
  }
  .btnManage{
     text-align: center;
@@ -355,3 +358,9 @@ tr:nth-child(even) {
         margin-right: 10px;
         margin-top:3px;
 }
+ .grid_2-9px{
+     width: 75%!important;
+ }
+ .radio_3-1 label{
+     width: 116px;
+ }

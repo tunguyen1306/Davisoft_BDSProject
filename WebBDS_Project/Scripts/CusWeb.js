@@ -1,7 +1,7 @@
 ﻿
 $(function() {
     GetCity();
-    $('.dropDistrict').selectric();
+   // $('.dropDistrict').selectric();
    
 $('.lblcheckEmail').click(function () {
     CheckEmail();
@@ -42,7 +42,7 @@ function GetCity() {
 
            });
           
-           $('#dropCity').selectric();
+          // $('#dropCity').selectric();
           
        }
    });
@@ -71,7 +71,7 @@ function GetDistrict(_id) {
            });
 
            $('.dropDistrict').html(stringCity);
-           $('.dropDistrict').selectric();
+           //$('.dropDistrict').selectric();
            $('.dropDistrict').change(function () {
               
                var idDistric = $(".dropDistrict option:selected").val();

@@ -32,17 +32,32 @@ namespace WebBDS_Project.Controllers
                 var dataPer= db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == data.ID && x.Active == 1);
                 if (dataEmployee != null)
                 {
+                    Session["IdUser"] = null;
+                    Session["EmailUser"] = null;
+                    Session["IdUserEmployee"] = null;
+                    Session.Remove("IdUser");
+                    Session.Remove("EmailUser");
+                    Session.Remove("IdUserPer");
                     Session["FullName"] = dataEmployee.Name;
                     Session["EmailUser"] = data.Email;
                     Session["IdUser"] = data.ID;
+                    Session["IdUserEmployee"] = dataEmployee.ID;
                 }
                 else
                 {
                     if (dataPer != null)
                     {
-                            Session["IdUser"] = data.ID;
+                        Session["IdUser"] = null;
+                        Session["EmailUser"] = null;
+                        Session["IdUserEmployee"] = null;
+                        Session.Remove("IdUser");
+                        Session.Remove("EmailUser");
+                        Session.Remove("IdUserEmployee");
+                       
+                        Session["IdUser"] = data.ID;
                             Session["EmailUser"] = data.Email;
                             Session["FullName"] = dataPer.Name;
+                        Session["IdUserPer"] = dataPer.ID;
                     }
                     else
                     {
