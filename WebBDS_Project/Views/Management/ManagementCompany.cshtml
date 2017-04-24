@@ -1,10 +1,13 @@
 ﻿@{
     ViewBag.Title = "ManagementCompany";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
 
 }
-@model WebBDS_Project.Models.RegisterInformationModel
+@using WebBDS_Project.Models
 
+@model WebBDS_Project.Models.RegisterInformationModel
+@using System.Configuration
 <div class="container">
     <div class="grid_9 main_left">
         <div class="group_work">
@@ -17,25 +20,31 @@
                     <div class="border-manager-work grid_12">
                         <div class="row">
                             <div class="border-upload-img" style="text-align: center">
-                                <div class="row"><i class="fa fa-plus" aria-hidden="true"></i></div>
-                                <div class="row">Upload IMG</div>
-
+                               
+                                @if (Model.TblBDSEmployerInformation.UrlImage != null)
+                                {
+                                    <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.TblBDSEmployerInformation.UrlImage.ToString().Split('_')[0]/@Model.TblBDSEmployerInformation.UrlImage" />
+                                }
+                                else
+                                {
+                                    <img width="100%" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                                }
 
                             </div>
                             <div class="omega">
 
-                                <h4 class="margin-0px">Công ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589</h4>
+                                <h4 class="margin-0px">@Model.TblBDSEmployerInformation.Name</h4>
 
                                 <div>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>13A Hồ Hảo Hớn,Phường Cô Giang,Quận 1.Tp.Hồ Chí Minh.
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>@Model.TblBDSEmployerInformation.Address,@Model.ListGeoDisModel.FirstOrDefault(x=>x.DistId==Model.TblBDSEmployerInformation.District).DistName    .@Model.ListGeoModel.FirstOrDefault(x => x.CityId == Model.TblBDSEmployerInformation.City).CityName .
                                 </div>
 
-                                <div>
-                                    <i class="fa fa-address-book-o" aria-hidden="true"></i>Người liên hệ Mr.Tu 0984094691.
+                                <div style="margin-left: 85px;">
+                                    <i class="fa fa-address-book-o" aria-hidden="true"></i>Người liên hệ @Model.TblBDSEmployerInformation.NameContact @Model.TblBDSEmployerInformation.PhoneContact.
                                 </div>
 
                                 <div class="padding-10px">
-                                    Công ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589.Công ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589.Công ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589
+                                   @Model.TblBDSEmployerInformation.Description
                                 </div>
 
                             </div>
@@ -74,7 +83,7 @@
                 <li>
                     <a href="#tab1">
                         <img src="~/Template/images/icon_1.png" alt="icon">
-                        <figcaption>Dành cho người tìm việc</figcaption>
+                        <figcaption>Tìm kiếm ứng viên</figcaption>
                     </a>
                 </li>
 
