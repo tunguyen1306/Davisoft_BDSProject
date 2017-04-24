@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Security;
 using WebBDS_Project.Models;
 
@@ -26,12 +27,43 @@ namespace WebBDS_Project.Controllers
                 String returnUrl = Request.Params["ReturnUrl"];
 
 
-                Session["IdUser"] = data.ID;
-                Session["EmailUser"] = data.Email;
-                var dataEmployee = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == data.ID);
-
-                if (dataEmployee != null) Session["FullName"] = dataEmployee.Name;
-
+              
+                var dataEmployee = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == data.ID && x.Active == 1);
+                var dataPer= db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == data.ID && x.Active == 1);
+                if (dataEmployee != null)
+                {
+                    Session["IdUser"] = null;
+                    Session["EmailUser"] = null;
+                    Session["IdUserEmployee"] = null;
+                    Session.Remove("IdUser");
+                    Session.Remove("EmailUser");
+                    Session.Remove("IdUserPer");
+                    Session["FullName"] = dataEmployee.Name;
+                    Session["EmailUser"] = data.Email;
+                    Session["IdUser"] = data.ID;
+                    Session["IdUserEmployee"] = dataEmployee.ID;
+                }
+                else
+                {
+                    if (dataPer != null)
+                    {
+                        Session["IdUser"] = null;
+                        Session["EmailUser"] = null;
+                        Session["IdUserEmployee"] = null;
+                        Session.Remove("IdUser");
+                        Session.Remove("EmailUser");
+                        Session.Remove("IdUserEmployee");
+                       
+                        Session["IdUser"] = data.ID;
+                            Session["EmailUser"] = data.Email;
+                            Session["FullName"] = dataPer.Name;
+                        Session["IdUserPer"] = dataPer.ID;
+                    }
+                    else
+                    {
+                        return RedirectToAction("LoginForm", new { authen = false });
+                    }
+                }
                 if (String.IsNullOrEmpty(returnUrl))
                 {
                     return RedirectToAction("Index", "Default");

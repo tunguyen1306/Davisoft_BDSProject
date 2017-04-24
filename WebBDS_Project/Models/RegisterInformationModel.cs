@@ -19,6 +19,7 @@ namespace WebBDS_Project.Models
         public List<District> ListDistrict { get; set; }
         public List<DistrictText> ListDistrictText { get; set; }
         public List<GeoModel> ListGeoModel { get; set; }
+        public List<GeoModel> ListGeoDisModel { get; set; }
         public List<BDSMarriage> ListMarriea{ get; set; }
         public BDSMarriage tblMarriea { get; set; }
 
@@ -50,7 +51,9 @@ namespace WebBDS_Project.Models
 
         public BDSApply tblBDSApply { get; set; }
         public List<BDSApply> ListBDSApply { get; set; }
-       
+        public BDSPicture tblBDSPicture { get; set; }
+        public List<BDSPicture> ListBDSPicture { get; set; }
+
     }
 
     public class ListCity

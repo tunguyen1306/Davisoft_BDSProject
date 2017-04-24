@@ -245,6 +245,9 @@
     <Compile Include="Models\Currency.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataWebBDS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -399,6 +402,7 @@
     <Content Include="Template\css\bfFur.css" />
     <Content Include="Template\js\bfFur.js" />
     <Content Include="Template\css\bfFur.sass.css" />
+    <Content Include="Template\css\bootstrap.min.css" />
     <Content Include="Template\css\customoptions.css" />
     <Content Include="Template\css\CusWeb.css" />
     <Content Include="Template\css\font-awesome.css" />
@@ -407,6 +411,7 @@
     <Content Include="Template\css\jquery-ui.css" />
     <Content Include="Template\css\normalize.css" />
     <Content Include="Template\css\reponsive.css" />
+    <Content Include="Template\css\select2.css" />
     <Content Include="Template\css\selectric.css" />
     <Content Include="Template\css\style.css" />
     <Content Include="Template\css\toastr.css" />
@@ -463,6 +468,7 @@
     <Content Include="Template\img\icon_chrome.png" />
     <Content Include="Template\img\loading.gif" />
     <Content Include="Template\js\bootbox.min.js" />
+    <Content Include="Template\js\bootstrap.min.js" />
     <Content Include="Template\js\dropdown.js" />
     <Content Include="Template\js\flaunt.js" />
     <Content Include="Template\js\jquery-1.11.3.min.js" />
@@ -541,6 +547,8 @@
     <Content Include="Views\Default\_searchSalary.cshtml" />
     <Content Include="Views\Default\_searchTimeWorking.cshtml" />
     <Content Include="Views\Default\_searchWorkingPlace.cshtml" />
+    <Content Include="Views\Default\DetailEmployee.cshtml" />
+
     <Content Include="Views\Management\ListNewOfUser.cshtml" />
     <Content Include="Views\Default\_searchContent.cshtml" />
     <Content Include="Views\Management\PListNewsOfUser.cshtml" />
@@ -548,6 +556,9 @@
     <Content Include="Views\Management\PManaTinMoiNhat.cshtml" />
     <Content Include="Views\Management\PManaTinNhaTuyenDung.cshtml" />
     <Content Include="Views\Management\PManaTinNoiBat.cshtml" />
+
+    <Content Include="Views\Adverts\EditNews.cshtml" />
+    <Content Include="Views\Shared\_partialManagerCenterEmp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -180,10 +180,16 @@ namespace WebBDS_Project.Controllers
 
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity = from data in db.States
+            var dataCity =( from data in db.States
                            join datatext in db.StateTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+                           select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+            var dataDist  =( from data in db.Districts
+                           join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
             CaptCha cap = new CaptCha();
             BDSNew BDSNew = new BDSNew();
             var register = new RegisterInformationModel
@@ -197,10 +203,11 @@ namespace WebBDS_Project.Controllers
                 ListBDSLanguage = db.BDSLanguages.ToList(),
                 ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
+                ListGeoDisModel= dataDist.ToList(),
                 tblCaptCha = cap,
-
                 tblBDSNew = BDSNew,
                 TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                TblBDSPersonalInformation = db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == idAcount),
                 TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
                 ListBDSEmper = db.BDSEmpers.ToList()
             };
@@ -213,31 +220,151 @@ namespace WebBDS_Project.Controllers
             if (Session["IdUser"] == null && Session["EmailUser"] == null)
             {
                 return RedirectToAction("LoginForm", "Login");
-            }  var idAcount = int.Parse(Session["IdUser"].ToString());
-            BDSAccount TblBdsAdcount  = db.BDSAccounts.Find(register.TblBdsAdcount.ID);
+            }
+            if (Session["IdUserEmployee"] != null)
+            {
+                var idAcount = int.Parse(Session["IdUser"].ToString());
+                BDSAccount TblBdsAdcount = db.BDSAccounts.Find(register.TblBdsAdcount.ID);
+                TblBdsAdcount.Email = register.TblBdsAdcount.Email;
+                db.Entry(TblBdsAdcount).State = EntityState.Modified;
+                db.SaveChanges();
+                var idEmployee = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == register.TblBdsAdcount.ID);
+                if (idEmployee != null)
+                {
+                    BDSEmployerInformation TblBDSEmployerInformation = db.BDSEmployerInformations.Find(idEmployee.ID);
+                    TblBDSEmployerInformation.Name = register.TblBDSEmployerInformation.Name;
+                    TblBDSEmployerInformation.Address = register.TblBDSEmployerInformation.Address;
+                    TblBDSEmployerInformation.Phone = register.TblBDSEmployerInformation.Phone;
+                    TblBDSEmployerInformation.City = register.TblBDSEmployerInformation.City;
+                    TblBDSEmployerInformation.Scope = register.TblBDSEmployerInformation.Scope;
+                    TblBDSEmployerInformation.Description = register.TblBDSEmployerInformation.Description;
+                    TblBDSEmployerInformation.UrlImage = register.TblBDSEmployerInformation.UrlImage;
+                    TblBDSEmployerInformation.Fax = register.TblBDSEmployerInformation.Fax;
+                    TblBDSEmployerInformation.WebSite = register.TblBDSEmployerInformation.WebSite;
+                    TblBDSEmployerInformation.NameContact = register.TblBDSEmployerInformation.NameContact;
+                    TblBDSEmployerInformation.EmailContact = register.TblBDSEmployerInformation.EmailContact;
+                    TblBDSEmployerInformation.AddressContact = register.TblBDSEmployerInformation.AddressContact;
+                    TblBDSEmployerInformation.PhoneContact = register.TblBDSEmployerInformation.PhoneContact;
+                    TblBDSEmployerInformation.TypeContact = register.TblBDSEmployerInformation.TypeContact;
+
+                    db.Entry(TblBDSEmployerInformation).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                var dataCity = (from data in db.States
+                                join datatext in db.StateTexts on data.name_id equals datatext.id
+                                where datatext.language_id == "vi"
+                                select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+                var dataDist = (from data in db.Districts
+                                join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                                where datatext.language_id == "vi"
+                                select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
+                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
+                CaptCha cap = new CaptCha();
+                BDSNew BDSNew = new BDSNew();
+                var register1 = new RegisterInformationModel
+                {
+                    ListBDSScopes = db.BDSScopes.ToList(),
+                    ListMarriea = db.BDSMarriages.ToList(),
+                    ListSalary = db.BDSSalaries.ToList(),
+                    ListDucation = db.BDSEducations.ToList(),
+                    ListBDSCareer = db.BDSCareers.ToList(),
+                    ListTimework = db.BDSTimeWorks.ToList(),
+                    ListBDSLanguage = db.BDSLanguages.ToList(),
+                    ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+                    ListGeoModel = dataCity.ToList(),
+                    ListGeoDisModel = dataDist.ToList(),
+                    tblCaptCha = cap,
+                    tblBDSNew = BDSNew,
+                    TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                    TblBDSPersonalInformation = db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                    TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
+                    ListBDSEmper = db.BDSEmpers.ToList()
+                };
+                return View(register1);
+
+            }
+            if (Session["IdUserPer"] != null)
+            {
+                var idAcount = int.Parse(Session["IdUser"].ToString());
+                BDSAccount TblBdsAdcount = db.BDSAccounts.Find(idAcount);
+                TblBdsAdcount.Email = register.TblBdsAdcount.Email;
+                db.Entry(TblBdsAdcount).State = EntityState.Modified;
+                db.SaveChanges();
+                var idEmployee = db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == idAcount);
+                if (idEmployee != null)
+                {
+                    BDSPersonalInformation BDSPersonalInformation = db.BDSPersonalInformations.Find(idEmployee.ID);
+                    BDSPersonalInformation.Name = register.TblBDSPersonalInformation.Name;
+                    BDSPersonalInformation.Address = register.TblBDSPersonalInformation.Address;
+                    BDSPersonalInformation.Phone = register.TblBDSPersonalInformation.Phone;
+                    BDSPersonalInformation.City = register.TblBDSPersonalInformation.City;
+                    BDSPersonalInformation.Description = register.TblBDSPersonalInformation.Description;
+                    BDSPersonalInformation.UrlImage = register.TblBDSPersonalInformation.UrlImage;
+                    db.Entry(BDSPersonalInformation).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                var dataCity = (from data in db.States
+                                join datatext in db.StateTexts on data.name_id equals datatext.id
+                                where datatext.language_id == "vi"
+                                select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+                var dataDist = (from data in db.Districts
+                                join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                                where datatext.language_id == "vi"
+                                select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
+                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
+                CaptCha cap = new CaptCha();
+                BDSNew BDSNew = new BDSNew();
+                var register1 = new RegisterInformationModel
+                {
+                    ListBDSScopes = db.BDSScopes.ToList(),
+                    ListMarriea = db.BDSMarriages.ToList(),
+                    ListSalary = db.BDSSalaries.ToList(),
+                    ListDucation = db.BDSEducations.ToList(),
+                    ListBDSCareer = db.BDSCareers.ToList(),
+                    ListTimework = db.BDSTimeWorks.ToList(),
+                    ListBDSLanguage = db.BDSLanguages.ToList(),
+                    ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+                    ListGeoModel = dataCity.ToList(),
+                    ListGeoDisModel = dataDist.ToList(),
+                    tblCaptCha = cap,
+                    tblBDSNew = BDSNew,
+                    TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                    TblBDSPersonalInformation = db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                    TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
+                    ListBDSEmper = db.BDSEmpers.ToList()
+                };
+                return View(register1);
+            }
+            return null;
+        }
+
+  [HttpPost,ActionName("ManagementAcountPersonal")]
+        public ActionResult ManagementAcountPersonal(RegisterInformationModel register)
+        {
+          
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+
+            var idAcount = int.Parse(Session["IdUser"].ToString());
+            BDSAccount TblBdsAdcount  = db.BDSAccounts.Find(idAcount);
             TblBdsAdcount.Email = register.TblBdsAdcount.Email;
             db.Entry(TblBdsAdcount).State = EntityState.Modified;
             db.SaveChanges();
-            var idEmployee = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == register.TblBdsAdcount.ID);
+            var idEmployee = db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == idAcount);
             if (idEmployee != null)
             {
-                BDSEmployerInformation TblBDSEmployerInformation = db.BDSEmployerInformations.Find(idEmployee.ID);
-                TblBDSEmployerInformation.Name = register.TblBDSEmployerInformation.Name;
-                TblBDSEmployerInformation.Address = register.TblBDSEmployerInformation.Address;
-                TblBDSEmployerInformation.Phone = register.TblBDSEmployerInformation.Phone;
-                TblBDSEmployerInformation.City = register.TblBDSEmployerInformation.City;
-                TblBDSEmployerInformation.Scope = register.TblBDSEmployerInformation.Scope;
-                TblBDSEmployerInformation.Description = register.TblBDSEmployerInformation.Description;
-                TblBDSEmployerInformation.UrlImage = register.TblBDSEmployerInformation.UrlImage;
-                TblBDSEmployerInformation.Fax = register.TblBDSEmployerInformation.Fax;
-                TblBDSEmployerInformation.WebSite = register.TblBDSEmployerInformation.WebSite;
-                TblBDSEmployerInformation.NameContact = register.TblBDSEmployerInformation.NameContact;
-                TblBDSEmployerInformation.EmailContact = register.TblBDSEmployerInformation.EmailContact;
-                TblBDSEmployerInformation.AddressContact = register.TblBDSEmployerInformation.AddressContact;
-                TblBDSEmployerInformation.PhoneContact = register.TblBDSEmployerInformation.PhoneContact;
-                TblBDSEmployerInformation.TypeContact = register.TblBDSEmployerInformation.TypeContact;
-
-                db.Entry(TblBDSEmployerInformation).State = EntityState.Modified;
+                BDSPersonalInformation BDSPersonalInformation = db.BDSPersonalInformations.Find(idEmployee.ID);
+                BDSPersonalInformation.Name = register.TblBDSPersonalInformation.Name;
+                BDSPersonalInformation.Address = register.TblBDSPersonalInformation.Address;
+                BDSPersonalInformation.Phone = register.TblBDSPersonalInformation.Phone;
+                BDSPersonalInformation.City = register.TblBDSPersonalInformation.City;
+                BDSPersonalInformation.Description = register.TblBDSPersonalInformation.Description;
+                BDSPersonalInformation.UrlImage = register.TblBDSPersonalInformation.UrlImage;
+                db.Entry(BDSPersonalInformation).State = EntityState.Modified;
                 db.SaveChanges();
             }
             var dataCity = from data in db.States
@@ -261,16 +388,81 @@ namespace WebBDS_Project.Controllers
                 tblCaptCha = cap,
 
                 tblBDSNew = BDSNew,
-                TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                TblBDSPersonalInformation = db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == idAcount),
                 TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
                 ListBDSEmper = db.BDSEmpers.ToList()
             };
             return View(register1);
         }
+
+
+
         [HttpPost, ActionName("SaveYourArchive")]
-        public ActionResult SaveYourArchive()
+        public JsonResult SaveYourArchive(int? id)
         {
-            return Json("");
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return Json(new {Status=false,Message="Vui lòng đăng nhập tài khoản nhà tuyển dụng!"}); ;
+            } 
+            var idAcount = int.Parse(Session["IdUser"].ToString());
+            var emp= db.BDSEmployerInformations.FirstOrDefault(T => T.IdAccount == idAcount);
+            if (emp==null)
+            {
+                return Json(new { Status = false, Message = "Vui lòng đăng nhập tài khoản nhà tuyển dụng!" }); ;
+            }
+
+            if (db.BDSEmpers.Where(T => T.IdAccountEm == emp.ID && T.IdAccountPer == id && T.Active == 1).Count()>0)
+            {
+                return Json(new { Status = false, Message = "Hồ sơ đã được lưu!" }); ;
+            }
+
+
+
+            BDSEmper em = new BDSEmper();
+            em.Active = 1;
+            em.CreateDate = DateTime.Now;
+            em.CreateUser = 1;
+            em.Name = "Lưu hồ sơ PER" + id.Value.ToString("000000") + "";
+            em.IdAccountEm = emp.ID;
+            em.IdAccountPer = id.Value;
+            em.Description = em.Name;
+          
+            em.KeySearch = "";
+            em.Point = 3;
+            var account = db.BDSAccounts.FirstOrDefault(T => T.ID == idAcount);
+            if (account.Point < em.Point)
+            {
+                return Json(new { Status = false, Message = "Tài khoản không đủ điểm!" });
+            }
+          
+            String Fname = "Lưu hồ sơ '{A}' điểm phải trả {B}";
+            string name = Fname.Replace("{A}", "PER" + id.Value.ToString("000000") + "").Replace("{B}", em.Point.ToString());
+            BDSTransactionHistory tranhist = new BDSTransactionHistory
+            {
+                Name = name,
+                Description = name,
+                KeySearch = name.NormalizeD(),
+                Active = 1,
+                CreateUser = 1,
+                CreateDate = DateTime.Now,
+                TypeTran = 2,
+                PointTran = em.Point.Value,
+                MoneyTran =0,
+                DateTran = DateTime.Now
+            };
+            db.Entry(tranhist).State = EntityState.Added;
+
+            db.SaveChanges();
+
+            em.RefTranHis = tranhist.ID;
+
+            db.BDSEmpers.Add(em);
+
+           
+            account.Point = account.Point - em.Point;
+            db.Entry(account).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(new { Status = true, Message = "Lưu hồ sơ thành công!" });
         }
         [HttpPost, ActionName("CheckEmail")]
         public ActionResult CheckEmail(string Email)

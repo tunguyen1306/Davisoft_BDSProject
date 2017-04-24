@@ -87,36 +87,24 @@
 
                     <div class="row">
 
-                        <label>Địa chỉ công ty<span class="required"> *</span></label>
+                        <label >Địa chỉ công ty<span class="required"> *</span></label>
                         <div class="row-right">
 
 
-                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @class = "input1", @placeholder = "Nhập địa chỉ liên hệ" })
+                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @placeholder = "Nhập địa chỉ liên hệ" })
+
                         </div>
-                        <div class="row-right">
+                        <label>Tỉnh/Thành phố</label>
+                        <div class="row-right  grid_2">
 
-                            <div class="pncon width2 ">
+                            @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2", @style = "width:100%;" })
 
-                                <label class="cusLabel-2">Tỉnh/TP</label>
-                                 @* @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListCityText, "Id", "Name"), new { @class = "dropdown" })*@
-                                <select  id="dropCity"   tabindex="7" name="TblBDSEmployerInformation.City">
-                                    <option value="0">Chọn thành phố</option>
-                                </select>
+                        </div>
 
-                            </div>
+                        <div class="row-right  grid_2">
 
 
-
-                            <div class="pncon  width2 ">
-
-                                <label class="cusLabel-2">Quận/Huyện</label>
-                                <select class="dropDistrict" tabindex="7" name="TblBDSEmployerInformation.District">
-                                    <option value="0">Chọn quận huyện</option>
-
-                                </select>
-
-                            </div>
-
+                            @Html.DropDownListFor(m => m.TblBDSEmployerInformation.District, new SelectList(Model.ListGeoDisModel, "DistId", "DistName"), new { @class = "select2", @style = "width:100%;" })
                         </div>
 
 
@@ -359,4 +347,43 @@
 
         });
     });
+    $('#TblBDSEmployerInformation_City').change(function () {
+        var idCity = $("#TblBDSEmployerInformation_City option:selected").val();
+        var idCityText = $("#TblBDSEmployerInformation_City option:selected").text();
+        GetDistrict1(idCity);
+        $('.select2').select2();
+    });
+    function GetDistrict1(_id) {
+
+        //Get City
+        var url = "/Register/GetDistrict";
+        var stringCity = "<option value=\"0\">Chọn quận huyện</option>";
+        var obj = {};
+        obj.id = _id;
+        $('#TblBDSEmployerInformation_District').html('');
+        $.ajax
+       ({
+           type: "POST",
+           url: url,
+           data: JSON.stringify(obj),
+           dataType: "json",
+           contentType: "application/json;charset=utf-8",
+           success: function (data) {
+
+               $.each(data, function (i, o) {
+
+                   stringCity += "<option value=" + o.DistId + ">" + o.DistName + "</option>";
+
+               });
+
+               $('#TblBDSEmployerInformation_District').html(stringCity);
+               $('#TblBDSEmployerInformation_District').change(function () {
+
+                   var idDistric = $("#TblBDSEmployerInformation_District option:selected").val();
+
+               });
+
+           }
+       });
+    }
 </script>

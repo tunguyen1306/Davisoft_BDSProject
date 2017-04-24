@@ -1,83 +1,149 @@
-﻿@{
+﻿@using System.Web.UI.WebControls
+@using WebBDS_Project.Models
+@model IEnumerable<BDSPersonalInformation>
+
+@{
     ViewBag.Title = "SearchForEmployee";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+
+    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+
+    
+    String[] array = Request.Url.Query.Length > 0 ? Request.Url.Query.Substring(1).Split('&') : new string[] { };
+    List<String> listStr = new List<string>();
+    foreach (var item in array)
+    {
+        var p = item.Split('=');
+        int id = int.Parse(p[1]);
+        switch (p[0])
+        {
+            case "filterWorkingPlace":
+                listStr.AddRange(States.Where(T => T.Id == id).ToList().Select(T => T.Name + ";" + T.Id + ";WK").ToList());
+                break;
+            case "filterCareer":
+                listStr.AddRange(db.BDSCareers.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";CR").ToList());
+                break;
+            case "filterSalary":
+                listStr.AddRange(db.BDSSalaries.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";SR").ToList());
+                break;
+            case "filterTimeWorking":
+                listStr.AddRange(db.BDSTimeWorks.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";TW").ToList());
+                break;
+        }
+    }
+       }
 }
 
+@using (Html.BeginForm("Search", "Default"))
+{
+    <div class="container">
+        <div class="grid_9 main_left" style="margin-top: 12px">
 
-<div class="container">
-    <div class="grid_9 main_left">
-        
 
 
-        <div class="group_work">
-           
-       
-            <div class="cus-name-group result-info">
-                <div class="grid_1 grid_1-9-5" style="line-height: 36px; padding: 0px; margin: 0px;"><b>Lọc Theo:</b></div>
-                
-                 
-                    
-                <a style="cursor: pointer" data-ref="2" onclick="removeFilter(this,2,'CR')" class="filter">Nhân viên pháp lý<span class="badge-filter"><img class="margin-bot-3" style=" padding-left: 5px; padding-right: 5px;" src="/Template/images/x.png" alt=""></span></a>
-                   
-                    
-                    
-            
+            <div class="group_work">
+
+
+                <div class="cus-name-group result-info">
+                    <p style="margin: 0px;">Đã tìm thấy <strong> @ViewBag.Total</strong> <strong>hồ sơ phù hợp</strong> theo như tiêu chí tìm kiếm</p>
+                    <div class="grid_1 grid_1-9-5" style="line-height: 30px; padding: 0px; margin: 0px; padding-top: 5px;"><b @(listStr.Count == 0 ? " style=display:none " : "")>Lọc Theo:</b></div>
+
+                    @{
+
+
+
+                        if (listStr.Count > 0)
+                        {
+                            foreach (var selectListItem in listStr)
+                            {
+                                <a style="cursor: pointer" data-ref="@(selectListItem.Split(';')[1])" onclick="removeFilter(this, @(selectListItem.Split(';')[1]), '@(selectListItem.Split(';')[2])') " class="filter">@(selectListItem.Split(';')[0])<span class="badge-filter"><img class="margin-bot-3" style="padding-left: 5px; padding-right: 5px;" src="~/Template/images/x.png" alt=""></span></a>
+                            }
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+                </div>
             </div>
-        
-            
-        </div>
-        <div class="group_work">
-            <div class="header_text">
-                <h3><span><i class="fa fa-list-ul"></i>Tìm kiếm ứng viên</span></h3>
-                <ul class="list_work">
-                    <li style="margin-bottom: 0">
+            <script>
+                function removeFilter(el, id, type) {
+                    $(this).remove();
+                    switch (type) {
+                    case 'WK':
+                        $('input[name="filterWorkingPlace"][value="' + id + '"]')[0].checked = false;
+                        break
+                    case 'CR':
+                        $('input[name="filterCareer"][value="' + id + '"]')[0].checked = false;
+                        break;
+                    case 'SR':
+                        $('input[name="filterSalary"][value="' + id + '"]')[0].checked = false;
+                        break;
+                    case 'TW':
+                        $('input[name="filterTimeWorking"][value="' + id + '"]')[0].checked = false;
+                        break;
+                    }
+                    var url = '@Url.Action("SearchForEmployee")';
+                    console.log(url + "?" + $(document.forms[1]).serialize());
+                    url = url + "?" + $(document.forms[1]).serialize();
+                    location.href = url;
+                }
+            </script>
+            <div class="group_work" style="position: relative">
+                <div class="loading_icon" style="position: absolute; z-index: 11; left: 50%; top: 50%; display: none">
+                    <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-reload"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="rotate(11.9999 50 50)"><path d="M50 15A35 35 0 1 0 74.787 25.213" fill="none" stroke="#de3039" stroke-width="12px"></path><path d="M50 0L50 30L66 15L50 0" fill="#de3039"></path><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"></animateTransform></g></svg>
+                </div>
+                <div class="loading" style="left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; background-color: gray; opacity: 0.5; z-index: 10; display: none"></div>
 
-                        <div class="grid_12">
+                <div class="header_text">
+                    <h3><span><i class="fa fa-list-ul"></i>Tìm kiếm ứng viên</span></h3>
+               
+                    @Html.Partial("_searchContentPer", Model)
+                </div>
 
-
-                            <h2><a href="#">Nhân viên kinh doanh <span>Nguyễn Tấn Tú</span></a></h2>
-                            <p class="grid_6"><i class="fa fa-map-marker"></i>Nơi làm việc:Hồ Chí Minh</p>
-                            <p class="grid_6 omega time"><i class="fa fa-mortar-board" aria-hidden="true"></i> Học vấn: <span class="color2">Cao đẳng</span> </p>
-
-
-
-                            <div>
-                                <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                <p class="grid_6 omega time"><i class="fa fa-clock-o"></i> Ngày cập nhật: 12/12/1224</p>
-                            </div>
-                            <div>
-                                THỊ TƯỜNG 16/03/[...]/83/188A Võ Duy Ninh, P.22 Q.Bình Thạnh, TP.HCM. VI [...] [...] Độc thân Mức lương mong muốn: [...] – [...] TRƯỞNG PHÒNG KINH DOANH & MARKETING KI
-                            </div>
-                            <div>
-                                <p class="grid_4"></p>
-                                <p class="grid_8 omega time"><i class="fa fa-user-plus" aria-hidden="true"></i>Lưu vào thư mục <i class="fa fa-search-plus" aria-hidden="true"></i>Tìm hồ sơ tương tự<i class="fa fa-remove" aria-hidden="true"></i> Ẩn hồ sơ </p>
-
-                            </div>
-                        </div>
-                    </li>
-
-                </ul>
             </div>
-
         </div>
-    </div>
-    @* <link href="~/Template/css/bfFur.sass.css" rel="stylesheet" />
+        @* <link href="~/Template/css/bfFur.sass.css" rel="stylesheet" />
     <link href="~/Template/css/bfFur.css" rel="stylesheet" />
     <script src="~/Template/js/bfFur.js"></script>*@
-    <div class="grid_3 omega main_right">
-        <div class="banner_right">
-            <img src="~/Template/images/banner2.jpg" alt="banner">
-            <img src="~/Template/images/banner2.jpg" alt="banner" style="margin: 0">
-        </div>
-        @Html.Partial("_partialCareers")
-        @Html.Partial("_partialCompany")
-        @Html.Partial("_partialShareExpirence")
-        @Html.Partial("_partialComment")
-        @Html.Partial("_partialNews")
-        <div class="banner_right">
-            <img src="~/Template/images/banner2.jpg" alt="banner">
-            <img src="~/Template/images/banner2.jpg" alt="banner">
+        @Html.Hidden("page", Request["page"] == null ? "1" : Request["page"].ToString())
+        @Html.Hidden("view", Request["view"] == null ? "25" : Request["view"].ToString())
+        <div class="grid_3 omega main_right">
+            <div class="banner_right">
+                @* <img src="~/Template/images/banner2.jpg" alt="banner">
+            <img src="~/Template/images/banner2.jpg" alt="banner" style="margin: 0">*@
+            </div>
+            @Html.Partial("_searchWorkingPlace")
+            @Html.Partial("_searchCareer")
+            @Html.Partial("_searchSalary")
+            @Html.Partial("_searchTimeWorking")
+
+
+            @Html.Partial("_partialCareers")
+            @Html.Partial("_partialCareers")
+            @Html.Partial("_partialCompany")
+            @Html.Partial("_partialShareExpirence")
+            @Html.Partial("_partialComment")
+            @Html.Partial("_partialNews")
+            <div class="banner_right">
+                <img src="~/Template/images/banner2.jpg" alt="banner">
+                <img src="~/Template/images/banner2.jpg" alt="banner">
+            </div>
         </div>
     </div>
-</div>
-
+}
+<script>
+    $(document).on('change', 'input[type="radio"],input[type="checkbox"]', function () {
+        $('#page').val(1);
+        reloadPage();
+    })
+    function reloadPage() {
+        var url= '@Url.Action("SearchForEmployee")';
+        console.log(url + "?" + $(document.forms[1]).serialize());
+        url = url + "?" + $(document.forms[1]).serialize();
+        location.href = url;
+    }
+</script>

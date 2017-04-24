@@ -253,6 +253,7 @@ tr:nth-child(even) {
     padding-bottom: 30px;
     margin: 10px 0 10px 0;
   }
+  .size-text-15{font-size:15px!important;}
   .cus-h3 {
     font-size: 13px;
     text-transform: uppercase;
@@ -343,4 +344,23 @@ tr:nth-child(even) {
 .grid_1-9-5 {
     width: 100%;
 }
+ .grid_2-9px{
+     width: 100%;
+ }
+ }
+ .btnManage{
+    text-align: center;
+    background: #de3039;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 3px;
+        margin-right: 10px;
+        margin-top:3px;
+}
+ .grid_2-9px{
+     width: 75%!important;
+ }
+ .radio_3-1 label{
+     width: 116px;
  }

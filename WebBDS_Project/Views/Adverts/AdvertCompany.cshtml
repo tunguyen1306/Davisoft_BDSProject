@@ -6,6 +6,7 @@
 <!-- Content -->  
   @using System.Configuration
 
+
 @using (Html.BeginForm("AdvertCompany", "Adverts"))
 {
     <div class="container">
@@ -26,46 +27,95 @@
                     <div class="row">
                         <label>Nơi làm việc <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
 
                         </div>
                         <label class="child">Mức lương <span class="required">*</span></label>
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                <select class="dropdown" id="DropFromSalary" tabindex="7" name="tblBDSNew.FromSalary">
-                                    <option value="0">Chọn</option>
-                                    @for (int i = 3; i < 20; i++)
-                                    {
-                                        <option value="@i">@i@(".000.000")</option>
-                                    }
+                                @*<select class="dropdown" id="DropFromSalary" tabindex="7" name="tblBDSNew.FromSalary">
+                                        <option value="0">Chọn</option>
+                                        @for (int i = 3; i < 20; i++)
+                                        {
+                                            <option value="@i">@i@(".000.000")</option>
+                                        }
 
 
-                                </select>
+                                    </select>*@
+                                @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Please Select",Value = "",Selected = true},
+                            new SelectListItem{Text = "3 triệu",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 triệu",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 triệu",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 triệu",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 triệu",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 triệu",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 triệu",Value = "10",Selected = false}
+
+                        }, new { @class = "dropdown" })
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                <select class="dropdown" id="DropToSalary" tabindex="7" name="tblBDSNew.ToSalary">
-                                     <option value="0">Chọn</option>
-                                    @for (int i = 3; i < 20; i++)
-                                    {
-                                        <option value="@i">@i@(".000.000")</option>
-                                    }
-                                </select>
+                                @*<select class="dropdown" id="DropToSalary" tabindex="7" name="tblBDSNew.ToSalary">
+                                         <option value="0">Chọn</option>
+                                        @for (int i = 3; i < 20; i++)
+                                        {
+                                            <option value="@i">@i@(".000.000")</option>
+                                        }
+                                    </select>*@
+                                @Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
+                        {
+
+                           new SelectListItem{Text = "Please Select",Value = "",Selected = true},
+                            new SelectListItem{Text = "5 triệu",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 triệu",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 triệu",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 triệu",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 triệu",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 triệu",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 triệu",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 triệu",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 triệu",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 triệu",Value = "15",Selected = false},
+                            new SelectListItem{Text = "16 triệu",Value = "16",Selected = false},
+                            new SelectListItem{Text = "17 triệu",Value = "17",Selected = false},
+                            new SelectListItem{Text = "18 triệu",Value = "18",Selected = false},
+                            new SelectListItem{Text = "19 triệu",Value = "19",Selected = false},
+                            new SelectListItem{Text = "20 triệu",Value = "20",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <label>Số lượng <span class="required">*</span></label>
                         <div class="row-right">
-                            <select class="dropdown" id="DropQuantity" tabindex="7" name="tblBDSNew.Quantity">
-                                 <option value="0">Chọn số lượng</option>
-                                @for (int i = 1; i < 10; i++)
-                                {
-                                    <option value="@i">@i</option>
-                                }
+                            @Html.DropDownListFor(m => m.tblBDSNew.Quantity, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Chọn số lượng",Value = "0",Selected = true},
+                            new SelectListItem{Text = "1",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15",Value = "15",Selected = false}
 
-                            </select>
+
+                        }, new { @class = "dropdown" })
                         </div>
                         <label class="child">Thưởng/Phụ cấp <span class="required">*</span></label>
                         <div class="row-right">
@@ -78,16 +128,19 @@
                     <div class="row">
                         <label>Giới tính</label>
                         <div class="row-right">
-                            <select class="dropdown" name="tblBDSNew.Sex" tabindex="7">
-                                <option value="0">Không yêu cầu</option>
-                                <option value="1">Nam</option>
-                                <option value="2">Nữ</option>
 
-                            </select>
+                            @Html.DropDownListFor(m => m.tblBDSNew.Sex, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Không yêu cầu",Value = "0",Selected = true},
+                            new SelectListItem{Text = "Nam",Value = "1",Selected = false},
+                            new SelectListItem{Text = "Nữ",Value = "2",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
                         </div>
                         <label class="child">Kinh nghiệm <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"),"Chọn", new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn", new { @class = "dropdown" })
 
 
                         </div>
@@ -95,29 +148,29 @@
                     <div class="row">
                         <label>Trình độ</label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name","Chọn trình độ"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name", "Chọn trình độ"), new { @class = "dropdown" })
 
 
                         </div>
                     </div>
                     <div class="row">
-                         <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong><span class="required">*</span></p>
-                    <ul class="radio">
-                        @foreach (var item in Model.ListBDSCareer)
-                        {
-                            <li>
-                                <label>
-                                    <input type="checkbox" class="checkCarrie" value="@item.ID">@item.Name
-                                </label>
-                            </li>
-                        }
+                        <p><strong>Công việc: nhà tuyển dụng vui lòng chọn tối đa 3 công việc</strong><span class="required">*</span></p>
+                        <ul class="radio">
+                            @foreach (var item in Model.ListBDSCareer)
+                            {
+                                <li>
+                                    <label>
+                                        <input type="checkbox" class="checkCarrie" value="@item.ID">@item.Name
+                                    </label>
+                                </li>
+                            }
 
 
-                    </ul>
-                    @Html.HiddenFor(x => x.tblBDSNew.Career)
+                        </ul>
+                        @Html.HiddenFor(x => x.tblBDSNew.Career)
 
                     </div>
-                   
+
                     <h4>Nội dung</h4>
                     <div class="row">
                         <label>Giới thiệu công ty<span class="required">*</span></label>
@@ -147,34 +200,81 @@
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                <select class="dropdown" tabindex="7" name="tblBDSNew.FromAge">
-                                    @for (int i = 18; i < 50; i++)
-                                    {
-                                        <option value="@i">@i</option>
-                                    }
-                                </select>
+                              
+
+                                @Html.DropDownListFor(m => m.tblBDSNew.FromAge, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Chọn tuổi",Value = "0",Selected = true},
+                                new SelectListItem{Text = "18",Value = "18",Selected = false},
+                                new SelectListItem{Text = "19",Value = "19",Selected = false},
+                                new SelectListItem{Text = "20",Value = "20",Selected = false},
+                                new SelectListItem{Text = "21",Value = "21",Selected = false},
+                                new SelectListItem{Text = "22",Value = "22",Selected = false},
+                                new SelectListItem{Text = "23",Value = "23",Selected = false},
+                                new SelectListItem{Text = "24",Value = "24",Selected = false},
+                                new SelectListItem{Text = "25",Value = "25",Selected = false},
+                                new SelectListItem{Text = "26",Value = "26",Selected = false},
+                                new SelectListItem{Text = "27",Value = "27",Selected = false},
+                                new SelectListItem{Text = "28",Value = "28",Selected = false},
+                                new SelectListItem{Text = "29",Value = "29",Selected = false},
+                                new SelectListItem{Text = "30",Value = "30",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
+
+
+                               
+
+
+
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                <select class="dropdown" tabindex="7" name="tblBDSNew.ToAge">
-                                    @for (int i = 18; i < 50; i++)
-                                    {
-                                        <option value="@i">@i</option>
-                                    }
-                                </select>
+                               
+                                @Html.DropDownListFor(m => m.tblBDSNew.ToAge, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Chọn tuổi",Value = "0",Selected = true},
+                            new SelectListItem{Text = "25",Value = "25",Selected = false},
+                            new SelectListItem{Text = "26",Value = "26",Selected = false},
+                            new SelectListItem{Text = "27",Value = "27",Selected = false},
+                            new SelectListItem{Text = "28",Value = "28",Selected = false},
+                            new SelectListItem{Text = "29",Value = "29",Selected = false},
+                            new SelectListItem{Text = "30",Value = "30",Selected = false},
+                            new SelectListItem{Text = "31",Value = "31",Selected = false},
+                            new SelectListItem{Text = "32",Value = "32",Selected = false},
+                            new SelectListItem{Text = "33",Value = "33",Selected = false},
+                            new SelectListItem{Text = "34",Value = "34",Selected = false},
+                            new SelectListItem{Text = "35",Value = "35",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <label>Thời gian thử việc</label>
                         <div class="row-right">
-                            <select class="dropdown" tabindex="7" name="tblBDSNew.TimeProbationary">
+                           @Html.DropDownListFor(m => m.tblBDSNew.TimeProbationary, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Chọn thời gian",Value = "0",Selected = true},
+                            new SelectListItem{Text = "1",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15",Value = "15",Selected = false}
 
-                                @for (int i = 1; i <= 12; i++)
-                                {
-                                    <option value="@i">@i@(" Tháng")</option>
-                                }
-                            </select>
+
+                        }, new { @class = "dropdown" })
                         </div>
                     </div>
                     <h4>Thông tin liên hệ nhà tuyển dụng</h4>
@@ -219,11 +319,32 @@
                         </div>
                     </div><div class="row">
 
-    <label>Website công ty</label>
-    <div class="row-right">
-        @Html.TextBoxFor(m => m.tblBDSNew.WebSiteCompany, new { @class = "input1 ", @placeholder = "Nhập website công ty" })
-    </div>
-</div>
+                        <label>Website công ty</label>
+                        <div class="row-right">
+                            @Html.TextBoxFor(m => m.tblBDSNew.WebSiteCompany, new { @class = "input1 ", @placeholder = "Nhập website công ty" })
+                        </div>
+                    </div>
+                   
+
+                    <div class="row">
+
+
+                        <div class="grid_12">
+                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
+                                <div class="dz-default dz-message cusbuttonmes " style="display: block;">
+                                    <span class="btn btnUploadImage">
+                                        <span class="btn btn-danger">Lựa chọn hình ảnh </span>
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <hr style="margin: 10px;" />
                     <h4>Loại tin đăng và lịch đăng tin</h4>
                     <label>Loaị tin rao<span class="required">*</span></label>
 
@@ -247,167 +368,147 @@
                         {
                             if (typeNews.CodeNewsType == "TDB")
                             {
-                                 <div id="@typeNews.CodeNewsType">
-                                <ul class="list_work">
-                                    <li style="margin-bottom: 0">
-                                        <div class="grid_3">
-                                            <a href="">
-                                                <img src="~/Template/images/1.jpg" alt="1">
-                                                <p class="vip">
-                                                    <i class="fa fa-star"></i>
-                                                    <span>VIP</span>
-                                                </p>
-                                            </a>
-                                        </div>
-                                        <div class="grid_9 omega">
-                                            <h2><a href="#">Nhân viên kinh doanh <span>Tập đoàn cá tiên sa</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <div>
-                                                <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                                <p class="grid_6 omega time">Mã tin: <span class="color2">P889275</span> <i class="fa fa-clock-o"></i>12/12/1224</p>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                                     <p style="white-space: pre-line">
-                                         @typeNews.Description
-                                     </p>
-                            </div>
-                            }
-                             if (typeNews.CodeNewsType == "TVP")
-                            {
-                                 <div id="@typeNews.CodeNewsType">
-                                 <ul class="list_work_2">
-                                <li>
-                                    <div class="grid_9">
-                                        <a href="#" class="image_2">
-                                            <img src="~/Template/images/2.jpg" alt="2">
-                                            <p class="vip">
-                                                <i class="fa fa-star"></i>
-                                                <span>VIP</span>
-                                            </p>
-                                        </a>
-                                        <div class="name">
-                                            <h2><a href="#">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                            <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                            <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                        </div>
-                                    </div>
-                                    <div class="grid_3 omega">
-                                        <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                    </div>
-                                </li>
-                                
-                            </ul>
-                                <p style="white-space: pre-line">
-                                   @typeNews.Description
-                                </p>
-                            </div>
-                            }    if (typeNews.CodeNewsType == "TBT")
-                            {
                                 <div id="@typeNews.CodeNewsType">
-                                     <ul class="list_work_2 green">
-                                               <li>
-                                                   <div class="grid_9">
-                                                       <a href="#" class="image_2">
-                                                           <img src="~/Template/images/2.jpg" alt="2">
-                                                           <p class="vip">
-                                                               <i class="fa fa-star"></i>
-                                                               <span>VIP</span>
-                                                           </p>
-                                                       </a>
-                                                       <div class="name">
-                                                           <h2><a href="#">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                                           <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                                           <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                                       </div>
-                                                   </div>
-                                                   <div class="grid_3 omega">
-                                                       <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                                   </div>
-                                               </li>
-                                
-                                           </ul>
+                                    <ul class="list_work">
+                                        <li style="margin-bottom: 0">
+                                            <div class="grid_3">
+                                                <a href="">
+                                                    <img src="~/Template/images/1.jpg" alt="1">
+                                                    <p class="vip">
+                                                        <i class="fa fa-star"></i>
+                                                        <span>VIP</span>
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <div class="grid_9 omega">
+                                                <h2><a href="#">Nhân viên kinh doanh <span>Tập đoàn cá tiên sa</span></a></h2>
+                                                <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
+                                                <div>
+                                                    <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triệu </p>
+                                                    <p class="grid_6 omega time">Mã tin: <span class="color2">P889275</span> <i class="fa fa-clock-o"></i>12/12/1224</p>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
                                     <p style="white-space: pre-line">
                                         @typeNews.Description
                                     </p>
-                                  
-                                   
+                                </div>
+                            }
+                            if (typeNews.CodeNewsType == "TVP")
+                            {
+                                <div id="@typeNews.CodeNewsType">
+                                    <ul class="list_work_2">
+                                        <li>
+                                            <div class="grid_9">
+                                                <a href="#" class="image_2">
+                                                    <img src="~/Template/images/2.jpg" alt="2">
+                                                    <p class="vip">
+                                                        <i class="fa fa-star"></i>
+                                                        <span>VIP</span>
+                                                    </p>
+                                                </a>
+                                                <div class="name">
+                                                    <h2><a href="#">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
+                                                    <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
+                                                    <p><i class="fa fa-clock-o"></i>12/12/1224</p>
+                                                </div>
+                                            </div>
+                                            <div class="grid_3 omega">
+                                                <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triệu </p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <p style="white-space: pre-line">
+                                        @typeNews.Description
+                                    </p>
+                                </div>
+                            }
+                            if (typeNews.CodeNewsType == "TBT")
+                            {
+                                <div id="@typeNews.CodeNewsType">
+                                    <ul class="list_work_2 green">
+                                        <li>
+                                            <div class="grid_9">
+                                                <a href="#" class="image_2">
+                                                    <img src="~/Template/images/2.jpg" alt="2">
+                                                    <p class="vip">
+                                                        <i class="fa fa-star"></i>
+                                                        <span>VIP</span>
+                                                    </p>
+                                                </a>
+                                                <div class="name">
+                                                    <h2><a href="#">Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
+                                                    <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
+                                                    <p><i class="fa fa-clock-o"></i>12/12/1224</p>
+                                                </div>
+                                            </div>
+                                            <div class="grid_3 omega">
+                                                <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triệu </p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <p style="white-space: pre-line">
+                                        @typeNews.Description
+                                    </p>
+
+
                                 </div>
                             }
                             if (typeNews.CodeNewsType == "TFE")
                             {
-                                 <div id="@typeNews.CodeNewsType">
-                                <ul class="last_list">
-                                <li style="border-top: 1px solid #dfdfdf;">
-                                    <a href="#">Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
-                                </li>
-                               
-                                
-                            </ul>
-                            </div>
+                                <div id="@typeNews.CodeNewsType">
+                                    <ul class="last_list">
+                                        <li style="border-top: 1px solid #dfdfdf;">
+                                            <a href="#">Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
                             }
-                     
+
                         }
 
 
                     </div>
-
                     <div class="row">
 
-             
-                            <div class="grid_12">
-                                <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
-                                    <div class="dz-default dz-message cusbuttonmes " style="display: block;">
-                                        <span class="btn btnUploadImage">
-                                            <span class="btn btn-danger">Lựa chọn hình ảnh </span>
-                                        </span>
-
-                                    </div>
-
-
-                                </div>
-                         
-
-                        </div>
-                    </div>
-                    <hr style="margin: 10px;" />
-                  
-                    <div class="row">
-                       
                         <label>Thời gian đăng<span class="required">*</span></label>
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
 
 
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
 
 
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                       
+
                         <label>Thành tiền(VNĐ):</label>
                         <table class="table-responsive">
                             <tbody>
                                 <tr>
                                     <td>Tiền theo giá gốc</td>
-                                    <td><b>20,000 VND/1 ngày</b></td>
-													
+                                    <td><b><span class="priceInDay">20,000</span> VND/<span class="totalDay">1</span> ngày</b></td>
+
                                 </tr>
                                 <tr style="background: none!important;">
                                     <td>Tiền phải trả</td>
-                                    <td><b>600,000 VND</b></td>
-													
+                                    <td><b><span class="TotalMoney"></span> VND</b></td>
+
                                 </tr>
-                                                
+
 
                             </tbody>
                         </table>
@@ -417,17 +518,17 @@
                         <label>Mã an toàn (<span class="required">*</span>):</label>
                         <div class="row-right">
                             <div class="pncon marginright34">
-                                  @Html.TextBoxFor(model => model.tblCaptCha.Captcha)
-                                  @Html.ValidationMessageFor(model => model.tblCaptCha.Captcha)
+                                @Html.TextBoxFor(model => model.tblCaptCha.Captcha)
+                                @Html.ValidationMessageFor(model => model.tblCaptCha.Captcha)
                             </div>
                         </div>
                         <div class="row-right">
                             <div class="pncon">
-                               <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                                <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
                             </div>
                         </div>
                     </div>
-                  
+
                     <div class="row">
                         <label></label>
                         <button type="submit" id="submitbutton" class="btn btn-default btnAdd hidden"></button>
@@ -441,7 +542,7 @@
             </div>
         </div>
         <div class="grid_3 omega main_right">
-           
+
             @Html.Partial("_partialManagerCenter")
 
         </div>
@@ -449,6 +550,9 @@
     <input type="hidden" name="cfile" />
     <input type="hidden" name="tblBDSNew.ID" class="idProduct_" value="@Model.tblBDSNew.ID" />
     <input type="hidden" name="nameImg" />
+    <input type="hidden" id="hdMoneyInDay" name="tblBDSNew.MoneyInDay" />
+    <input type="hidden" id="hdTotalMoney" name="tblBDSNew.TotalMoney" />
+
 }
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
@@ -459,6 +563,73 @@
 <script src="~/Template/js/UploadImg/dropzoneVG.js"></script>
 
 <script>
+
+    $(document).on("change", 'input:radio[name="tblBDSNew.IdTypeNews"],#tblBDSNew_FromCreateNews,#tblBDSNew_ToCreateNews', function () {
+
+        var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
+        var rDate = $('#tblBDSNew_FromCreateNews').val() + "-" + $('#tblBDSNew_ToCreateNews').val();
+        if (id != null && id != "" && id != null && id != "" && $('#tblBDSNew_ToCreateNews').val() != "" && $('#tblBDSNew_FromCreateNews').val()!="") {
+            $.getJSON("@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + encodeURIComponent( rDate), function(data) {
+                $('#hdMoneyInDay').val(data.PriceInDay);
+                $('#hdTotalMoney').val(data.TotalPrice);
+
+                $('.priceInDay').html(tien(data.PriceInDay));
+                $('.TotalMoney').html(tien(data.TotalPrice));
+            });
+        }
+
+    });
+    function tien(val) {
+
+        if (val != null) {
+
+            while (/(\d+)(\d{3})/.test(val.toString())) {
+                val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            }
+            return val + '';
+        }
+        else {
+            return '';
+        }
+
+    }
+
+
+	$( function() {
+	    var dateFormat = "dd/mm/yy",
+			from = $("#tblBDSNew_FromCreateNews")
+				.datepicker({
+					defaultDate: "+0d",
+					changeMonth: true,
+					numberOfMonths: 1,
+					dateFormat: dateFormat
+				})
+				.on( "change", function() {
+					to.datepicker( "option", "minDate", getDate( this ) );
+				}),
+			to = $("#tblBDSNew_ToCreateNews").datepicker({
+				defaultDate: "+3d",
+				changeMonth: true,
+				numberOfMonths: 1,
+				dateFormat: dateFormat
+			})
+			.on( "change", function() {
+				from.datepicker( "option", "maxDate", getDate( this ) );
+			});
+
+		function getDate( element ) {
+			var date;
+		    try {
+
+				date = $.datepicker.parseDate( dateFormat, element.value );
+			} catch( error ) {
+				date = null;
+			}
+
+			return date;
+		}
+	} );
+
     $('.checkCarrie').click(function () {
 
         var listItem = $('.checkCarrie:checked').map(function () {
@@ -471,14 +642,14 @@
         });
         $('#tblBDSNew_Career').val(uu);
         console.log(uu);
-        
+
     });
     jQuery(document).ready(function ($) {
 
         if ($('.radioType').hasClass('selected')) {
             $('.selected .radioIdType').prop('checked', true);
         }
-        
+
     });
     $('.radioType').click(function() {
         $(this).find('.radioIdType').prop('checked', true);
@@ -486,12 +657,12 @@
 
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
-       
+
             $('#submitbutton').parents("form").submit();
-        
+
 
     });
-    
+
     function dropNew(ed) {
 
         var console = window.console || { log: function () { } };
@@ -695,8 +866,8 @@ if ($('#tblBDSNew_FromCreateNews').val() == "") {
             toastr.error('Vui lòng chọn ít nhất một hình!');
             t++;
         }
-        
-       
+
+
 
          if ($('#tblBDSNew_Benefit').val() == "") {
             toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
@@ -723,20 +894,20 @@ if ($('#tblBDSNew_FromCreateNews').val() == "") {
             toastr.error('Vui lòng chọn kinh nghiệm!');
             t++;
         }
-        
+
 if ($('#tblBDSNew_Bonus').val() == "") {
             toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
             t++;
-        } 
-        if ($('#DropQuantity').val() == 0) {
+        }
+        if ($('#DropQuantity').val() == "0") {
             toastr.error('Vui lòng chọn số lượng!');
             t++;
         }
-        if ($('#DropToSalary').val() == 0) {
+        if ($('#DropToSalary').val() == "0") {
             toastr.error('Vui lòng chọn mức lương đến!');
             t++;
         }
-        if ($('#DropFromSalary').val() == 0) {
+        if ($('#DropFromSalary').val() == "0") {
             toastr.error('Vui lòng chọn mức lương từ!');
             t++;
         }
@@ -793,7 +964,7 @@ if ($('#tblBDSNew_Bonus').val() == "") {
         });
             return true;
         }
-        
+
 
 
     }

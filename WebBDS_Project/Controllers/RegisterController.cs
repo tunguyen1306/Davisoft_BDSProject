@@ -23,10 +23,16 @@ namespace WebBDS_Project.Controllers
         {
             CaptCha cap = new CaptCha();
             BDSNew BDSNew = new BDSNew();
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi"
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+            var dataDist = (from data in db.Districts
+                            join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi"
+                            select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
             var registerModel = new RegisterInformationModel
             {
                 ListBDSScopes = db.BDSScopes.ToList(),
@@ -38,6 +44,7 @@ namespace WebBDS_Project.Controllers
                 ListBDSLanguage = db.BDSLanguages.ToList(),
                 ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
+                ListGeoDisModel = dataDist.ToList(),
                 tblCaptCha = cap,
                 tblBDSNew = BDSNew,
                 ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
@@ -56,10 +63,16 @@ namespace WebBDS_Project.Controllers
                 {
                     CaptCha cap = new CaptCha();
                     BDSNew BDSNew = new BDSNew();
-                    var dataCity = from data in db.States
-                                   join datatext in db.StateTexts on data.name_id equals datatext.id
-                                   where datatext.language_id == "vi"
-                                   select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+                    var dataCity = (from data in db.States
+                                    join datatext in db.StateTexts on data.name_id equals datatext.id
+                                    where datatext.language_id == "vi"
+                                    select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+                    var dataDist = (from data in db.Districts
+                                    join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                                    where datatext.language_id == "vi"
+                                    select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
+                    dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                    dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
                     var registerModel = new RegisterInformationModel
                     {
                         ListBDSScopes = db.BDSScopes.ToList(),
@@ -71,6 +84,7 @@ namespace WebBDS_Project.Controllers
                         ListBDSLanguage = db.BDSLanguages.ToList(),
                         ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                         ListGeoModel = dataCity.ToList(),
+                        ListGeoDisModel= dataCity.ToList(),
                         tblCaptCha = cap,
                         tblBDSNew = BDSNew,
                         ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
@@ -127,10 +141,16 @@ namespace WebBDS_Project.Controllers
 
             CaptCha cap = new CaptCha();
             BDSNew BDSNew = new BDSNew();
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi"
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+            var dataDist = (from data in db.Districts
+                            join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi"
+                            select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
             var registerModel = new RegisterInformationModel
             {
                 ListBDSScopes = db.BDSScopes.ToList(),
@@ -142,6 +162,7 @@ namespace WebBDS_Project.Controllers
                 ListBDSLanguage = db.BDSLanguages.ToList(),
                 ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
+                ListGeoDisModel = dataDist.ToList(),
                 tblCaptCha = cap,
                 tblBDSNew = BDSNew,
                 ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
@@ -165,10 +186,16 @@ namespace WebBDS_Project.Controllers
             {
                 CaptCha cap = new CaptCha();
                 BDSNew BDSNew = new BDSNew();
-                var dataCity = from data in db.States
-                               join datatext in db.StateTexts on data.name_id equals datatext.id
-                               where datatext.language_id == "vi"
-                               select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+                var dataCity = (from data in db.States
+                                join datatext in db.StateTexts on data.name_id equals datatext.id
+                                where datatext.language_id == "vi"
+                                select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+                var dataDist = (from data in db.Districts
+                                join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                                where datatext.language_id == "vi"
+                                select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
+                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
                 var registerModel = new RegisterInformationModel
                 {
                     ListBDSScopes = db.BDSScopes.ToList(),
@@ -180,6 +207,7 @@ namespace WebBDS_Project.Controllers
                     ListBDSLanguage = db.BDSLanguages.ToList(),
                     ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                     ListGeoModel = dataCity.ToList(),
+                    ListGeoDisModel = dataCity.ToList(),
                     tblCaptCha = cap,
                     tblBDSNew = BDSNew,
                     ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
@@ -329,5 +357,6 @@ namespace WebBDS_Project.Controllers
 
             return img;
         }
+        
     }
 }
