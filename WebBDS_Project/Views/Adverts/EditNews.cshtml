@@ -323,140 +323,10 @@
                             @Html.TextBoxFor(m => m.tblBDSNew.WebSiteCompany, new { @class = "input1 ", @placeholder = "Nhập website công ty" })
                         </div>
                     </div>
-                   @if (Model.tblBDSNew.ToCreateNews < DateTime.Now)
-                   {
-                    <h4>Loại tin đăng và lịch đăng tin</h4>
-                        <label>Loaị tin rao<span class="required">*</span></label>
+                  
+                  
 
-
-                        <ul class="radio idTabs idTabs-1 ">
-                            @foreach (var typeNews in Model.ListBDSNewsType)
-                            {
-                                <li>
-                                    <a href="#@typeNews.CodeNewsType" class="radioType_@typeNews.ID">
-                                        <label>
-                                            <input type="radio" value="@typeNews.ID" id="radioIdType_@typeNews.ID" class="radioIdType" name="tblBDSNew.IdTypeNews">@typeNews.Name
-                                        </label>
-                                    </a>
-                                </li>
-                            }
-
-
-                        </ul>
-                        <div class="content_tab-1">
-                            @foreach (var typeNews in Model.ListBDSNewsType)
-                            {
-                                if (typeNews.CodeNewsType == "TDB")
-                                {
-                                    <div id="@typeNews.CodeNewsType">
-                                        <ul class="list_work">
-                                            <li style="margin-bottom: 0">
-                                                <div class="grid_3">
-                                                    <a>
-                                                        <img src="~/Template/images/1.jpg" alt="1">
-                                                        <p class="vip">
-                                                            <i class="fa fa-star"></i>
-                                                            <span>VIP</span>
-                                                        </p>
-                                                    </a>
-                                                </div>
-                                                <div class="grid_9 omega">
-                                                    <h2><a>Nhân viên kinh doanh <span>Tập đoàn cá tiên sa</span></a></h2>
-                                                    <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                                    <div>
-                                                        <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                                        <p class="grid_6 omega time">Mã tin: <span class="color2">P889275</span> <i class="fa fa-clock-o"></i>12/12/1224</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-
-                                        </ul>
-                                        <p style="white-space: pre-line">
-                                            @typeNews.Description
-                                        </p>
-                                    </div>
-                                }
-                                if (typeNews.CodeNewsType == "TVP")
-                                {
-                                    <div id="@typeNews.CodeNewsType">
-                                        <ul class="list_work_2">
-                                            <li>
-                                                <div class="grid_9">
-                                                    <a class="image_2">
-                                                        <img src="~/Template/images/2.jpg" alt="2">
-                                                        <p class="vip">
-                                                            <i class="fa fa-star"></i>
-                                                            <span>VIP</span>
-                                                        </p>
-                                                    </a>
-                                                    <div class="name">
-                                                        <h2><a>Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                                        <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                                        <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                                    </div>
-                                                </div>
-                                                <div class="grid_3 omega">
-                                                    <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                                </div>
-                                            </li>
-
-                                        </ul>
-                                        <p style="white-space: pre-line">
-                                            @typeNews.Description
-                                        </p>
-                                    </div>
-                                }
-                                if (typeNews.CodeNewsType == "TBT")
-                                {
-                                    <div id="@typeNews.CodeNewsType">
-                                        <ul class="list_work_2 green">
-                                            <li>
-                                                <div class="grid_9">
-                                                    <a class="image_2">
-                                                        <img src="~/Template/images/2.jpg" alt="2">
-                                                        <p class="vip">
-                                                            <i class="fa fa-star"></i>
-                                                            <span>VIP</span>
-                                                        </p>
-                                                    </a>
-                                                    <div class="name">
-                                                        <h2><a>Nhân viên kinh doanh <span>Công Ty TNHH Nutrivita Việt Nam</span></a></h2>
-                                                        <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
-                                                        <p><i class="fa fa-clock-o"></i>12/12/1224</p>
-                                                    </div>
-                                                </div>
-                                                <div class="grid_3 omega">
-                                                    <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
-                                                </div>
-                                            </li>
-
-                                        </ul>
-                                        <p style="white-space: pre-line">
-                                            @typeNews.Description
-                                        </p>
-
-
-                                    </div>
-                                }
-                                if (typeNews.CodeNewsType == "TFE")
-                                {
-                                    <div id="@typeNews.CodeNewsType">
-                                        <ul class="last_list">
-                                            <li style="border-top: 1px solid #dfdfdf;">
-                                                <a>Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
-                                            </li>
-
-
-                                        </ul>
-                                    </div>
-                                }
-
-                            }
-
-
-                        </div>
-
-                   }
+                   
                   
                     <div class="row">
 
@@ -465,8 +335,8 @@
                             <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
 
                                 <div class="dz-default dz-message cusbuttonmes " style="display: block;">
-                                    <span class="btn btn-action">
-                                        <label style="margin-left: 5px;" class="btn btn-danger">Lựa chọn hình ảnh Edit</label>
+                                    <span class="btn btnUploadImage" style="text-align:center">
+                                        <label style="width:100%;    color: white;" class="btn btn-danger">Chọn hình</label>
                                     </span>
 
                                 </div>
@@ -534,21 +404,150 @@
                         </div>
                     </div>
                     <hr style="margin: 10px;" />
-@if (Model.tblBDSNew.ToCreateNews < DateTime.Now)
-{
+                    <h4>Loại tin đăng và lịch đăng tin</h4>
+                    <label>Loaị tin rao<span class="required">*</span></label>
+
+
+                    <ul class="radio idTabs idTabs-1 ">
+                        @foreach (var typeNews in Model.ListBDSNewsType.Where(T => T.ID == Model.tblBDSNew.IdTypeNews))
+                        {
+                            <li>
+                                <a href="#@typeNews.CodeNewsType" class="radioType_@typeNews.ID">
+                                    <label>
+                                        <input type="radio" value="@typeNews.ID" id="radioIdType_@typeNews.ID" class="radioIdType" name="tblBDSNew.IdTypeNews">@typeNews.Name
+                                    </label>
+                                </a>
+                            </li>
+                        }
+
+
+                    </ul>
+                    <div class="content_tab-1">
+                        @foreach (var typeNews in Model.ListBDSNewsType.Where(T=>T.ID==Model.tblBDSNew.IdTypeNews))
+                        {
+                            if (typeNews.CodeNewsType == "TDB")
+                            {
+                                <div id="@typeNews.CodeNewsType">
+                                    <ul class="list_work">
+                                        <li style="margin-bottom: 0">
+                                            <div class="grid_3">
+                                                <a>
+                                                    <img src="~/Template/images/1.jpg" alt="1">
+                                                    <p class="vip">
+                                                        <i class="fa fa-star"></i>
+                                                        <span>VIP</span>
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <div class="grid_9 omega">
+                                                <h2><a>Nhân viên kinh doanh <span>@Model.tblBDSNew.NameCompany</span></a></h2>
+                                                <p><i class="fa fa-map-marker"></i>@Model.ListGeoModel.FirstOrDefault(x=>x.CityId==Model.tblBDSNew.AddressWork).CityName</p>
+                                                <div>
+                                                    <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@Model.tblBDSNew.FromSalary - @Model.tblBDSNew.ToSalary</span> triệu </p>
+                                                    <p class="grid_6 omega time">Mã tin: <span class="color2">P@(Model.tblBDSNew.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i>@Model.tblBDSNew.FromCreateNews</p>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <p style="white-space: pre-line">
+                                        @typeNews.Description
+                                    </p>
+                                </div>
+                            }
+                            if (typeNews.CodeNewsType == "TVP")
+                            {
+                                <div id="@typeNews.CodeNewsType">
+                                    <ul class="list_work_2">
+                                        <li>
+                                            <div class="grid_9">
+                                                <a class="image_2">
+                                                    <img src="~/Template/images/2.jpg" alt="2">
+                                                    <p class="vip">
+                                                        <i class="fa fa-star"></i>
+                                                        <span>VIP</span>
+                                                    </p>
+                                                </a>
+                                                <div class="name">
+                                                    <h2><a>Nhân viên kinh doanh <span>@Model.tblBDSNew.NameCompany</span></a></h2>
+                                                    <p><i class="fa fa-map-marker"></i>@Model.ListGeoModel.FirstOrDefault(x=>x.CityId==Model.tblBDSNew.AddressWork).CityName</p>
+                                                    <p><i class="fa fa-clock-o"></i>@Model.tblBDSNew.FromCreateNews</p>
+                                                </div>
+                                            </div>
+                                            <div class="grid_3 omega">
+                                                <p><i class="fa fa-usd"></i>Lương: Từ <span>@Model.tblBDSNew.FromSalary - @Model.tblBDSNew.ToSalary</span> triệu  </p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <p style="white-space: pre-line">
+                                        @typeNews.Description
+                                    </p>
+                                </div>
+                            }
+                            if (typeNews.CodeNewsType == "TBT")
+                            {
+                                <div id="@typeNews.CodeNewsType">
+                                    <ul class="list_work_2 green">
+                                        <li>
+                                            <div class="grid_9">
+                                                <a class="image_2">
+                                                    <img src="~/Template/images/2.jpg" alt="2">
+                                                    <p class="vip">
+                                                        <i class="fa fa-star"></i>
+                                                        <span>VIP</span>
+                                                    </p>
+                                                </a>
+                                                <div class="name">
+                                                    <h2><a>Nhân viên kinh doanh <span>@Model.tblBDSNew.NameCompany</span></a></h2>
+                                                    <p><i class="fa fa-map-marker"></i>@Model.ListGeoModel.FirstOrDefault(x=>x.CityId==Model.tblBDSNew.AddressWork).CityName</p>
+                                                    <p><i class="fa fa-clock-o"></i>@Model.tblBDSNew.FromCreateNews</p>
+                                                </div>
+                                            </div>
+                                            <div class="grid_3 omega">
+                                                <p><i class="fa fa-usd"></i>Lương: Từ <span>@Model.tblBDSNew.FromSalary - @Model.tblBDSNew.ToSalary</span> triệu  </p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <p style="white-space: pre-line">
+                                        @typeNews.Description
+                                    </p>
+
+
+                                </div>
+                            }
+                            if (typeNews.CodeNewsType == "TFE")
+                            {
+                                <div id="@typeNews.CodeNewsType">
+                                    <ul class="last_list">
+                                        <li style="border-top: 1px solid #dfdfdf;">
+                                            <a>Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            }
+
+                        }
+
+
+                    </div>
+
                     <div class="row">
 
                         <label>Thời gian đăng<span class="required">*</span></label>
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, Model.tblBDSNew.FromCreateNews.Value.ToString("dd/MM/yyyy"), new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy", @readonly = "true" })
 
 
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, Model.tblBDSNew.ToCreateNews.Value.ToString( "dd/MM/yyyy"), new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy", @readonly = "true" })
 
 
                             </div>
@@ -561,12 +560,12 @@
                             <tbody>
                                 <tr>
                                     <td>Tiền theo giá gốc</td>
-                                    <td><b>20,000 VND/1 ngày</b></td>
+                                    <td><b>@Model.tblBDSNew.MoneyInDay.Value.ToString("n2") VND/1 ngày</b></td>
 
                                 </tr>
                                 <tr style="background: none!important;">
                                     <td>Tiền phải trả</td>
-                                    <td><b>600,000 VND</b></td>
+                                    <td><b>@Model.tblBDSNew.TotalMoney.Value.ToString("n2") VND</b></td>
 
                                 </tr>
 
@@ -574,7 +573,7 @@
                             </tbody>
                         </table>
                     </div>
-}
+
                     <div class="row">
                         <label>Mã an toàn (<span class="required">*</span>):</label>
                         <div class="row-right">
@@ -594,7 +593,7 @@
                         <label></label>
                         <button type="submit" id="submitbutton" class="btn btn-default btnAdd hidden"></button>
 
-                        <div onclick="UploadImg(this)" class="btn btn-primary btnAdd1"><i class="fa fa-check" aria-hidden="true"></i>Đăng Tin</div>
+                        <div onclick="UploadImg(this)" class="btn btn-primary btnAdd1"><i class="fa fa-check" aria-hidden="true"></i>Chỉnh sửa</div>
                         <a class="btnCancel"><i class="fa fa-close" aria-hidden="true"></i>Hủy bỏ</a>
 
                     </div>
@@ -631,6 +630,13 @@
     @Html.HiddenFor(m => m.tblBDSNew.IdAcount)
     
 }
+<style>
+    input:read-only
+    {
+        background:#d2d2d2;
+        cursor:not-allowed;
+    }
+</style>
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/cropper.min.css" rel="stylesheet" />
@@ -1008,7 +1014,7 @@ if ($('#tblBDSNew_Bonus').val() == "") {
                     totalitem--;
 
                     if (totalitem == 0) {
-                        $('.btnAdd1').text('Đăng Tin');
+                        $('.btnAdd1').text('Chỉnh sửa');
                         $('.btnAdd1').removeClass('disabled');
                         $('.btnAdd').click();
                     }

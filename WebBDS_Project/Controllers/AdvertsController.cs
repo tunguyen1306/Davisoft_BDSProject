@@ -109,6 +109,19 @@ namespace WebBDS_Project.Controllers
                 }
                 
                 db.SaveChanges();
+                var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
+                foreach (var item in listMap)
+                {
+                    db.Entry(item).State = EntityState.Deleted;
+
+                }
+                db.SaveChanges();
+                foreach (var item in create.tblBDSNew.Career.Split(','))
+                {
+                    BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
+                    db.Entry(i).State = EntityState.Added;
+                }
+                db.SaveChanges();
                 return View(registerModel);
             }
             else
@@ -119,11 +132,49 @@ namespace WebBDS_Project.Controllers
                 create.tblBDSNew.CreateDate = DateTime.Now;
                 create.tblBDSNew.Active = 1;
                 create.tblBDSNew.CreateUser = 1;
-                db.BDSNews.Add(create.tblBDSNew);
+                create.tblBDSNew.IdTypeNewsCuurent = create.tblBDSNew.IdTypeNews;
+                var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
+                foreach (var item in listMap)
+                {
+                    db.Entry(item).State = EntityState.Deleted;
+
+                }
+                db.SaveChanges();
+                foreach (var item in create.tblBDSNew.Career.Split(','))
+                {
+                    BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
+                    db.Entry(i).State = EntityState.Added;
+                }
                 db.SaveChanges();
 
+                var type = db.BDSNewsTypes.FirstOrDefault(T=>T.ID==create.tblBDSNew.IdTypeNewsCuurent.Value);
+                String Fname = "Đăng tin '{A}' trong vòng '{B}' ngày tổng giá phải trả '{C}' VNĐ";
+                string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(create.tblBDSNew.ToCreateNews.Value.Subtract(create.tblBDSNew.FromCreateNews.Value).TotalDays)) + "").Replace("{C}", create.tblBDSNew.TotalMoney.Value.ToString("n2"));
+                BDSTransactionHistory tran = new BDSTransactionHistory()
+                {
+                    Name = name,
+                    Description = name,
+                    KeySearch = name.NormalizeD(),
+                    Active = 1,
+                    CreateUser = 1,
+                    CreateDate = DateTime.Now,
+                    TypeTran = 2,
+                    PointTran = 0,
+                    MoneyTran = create.tblBDSNew.TotalMoney.Value,
+                    DateTran = DateTime.Now
+                };
 
-               var tblpict = db.BDSPictures.Where(x => x.advert_id == 99999999);
+                db.BDSTransactionHistories.Add(tran);
+                db.SaveChanges();
+                create.tblBDSNew.RefTranHis = tran.ID;
+                db.BDSNews.Add(create.tblBDSNew);
+                db.SaveChanges();
+                var account = db.BDSAccounts.FirstOrDefault(T => T.ID == create.tblBDSNew.IdAcount);
+                account.Money -= create.tblBDSNew.TotalMoney;
+                db.Entry(account).State = EntityState.Modified;              
+                db.SaveChanges();
+
+                var tblpict = db.BDSPictures.Where(x => x.advert_id == 99999999);
                 foreach (var item in tblpict)
                 {
 
@@ -133,6 +184,11 @@ namespace WebBDS_Project.Controllers
                    
                 }
                 db.SaveChanges();
+             
+
+
+
+
                 return RedirectToAction("Index", "Default");
             }
             return null;
@@ -363,6 +419,19 @@ namespace WebBDS_Project.Controllers
                 }
 
                 db.SaveChanges();
+                var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
+                foreach (var item in listMap)
+                {
+                    db.Entry(item).State = EntityState.Deleted;
+
+                }
+                db.SaveChanges();
+                foreach (var item in create.tblBDSNew.Career.Split(','))
+                {
+                    BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
+                    db.Entry(i).State = EntityState.Added;
+                }
+                db.SaveChanges();
                 return View(registerModel);
             }
             else
@@ -393,25 +462,25 @@ namespace WebBDS_Project.Controllers
                 tblNews.ToDeadline = create.tblBDSNew.ToDeadline;
                 tblNews.IdLanguage = create.tblBDSNew.IdLanguage;
                 tblNews.WebSiteCompany = create.tblBDSNew.WebSiteCompany;
-                tblNews.IdTypeNews = create.tblBDSNew.IdTypeNews;
-                tblNews.FromCreateNews = create.tblBDSNew.FromCreateNews;
-                tblNews.ToCreateNews = create.tblBDSNew.ToCreateNews;
-                tblNews.IdAcount = create.tblBDSNew.IdAcount;
-                tblNews.KeySearch = create.tblBDSNew.KeySearch;
-                tblNews.MoneyInDay = create.tblBDSNew.MoneyInDay;
-                tblNews.TotalMoney = create.tblBDSNew.TotalMoney;
+             //   tblNews.IdTypeNews = create.tblBDSNew.IdTypeNews;
+               // tblNews.FromCreateNews = create.tblBDSNew.FromCreateNews;
+               // tblNews.ToCreateNews = create.tblBDSNew.ToCreateNews;
+             //   tblNews.IdAcount = create.tblBDSNew.IdAcount;
+              //  tblNews.KeySearch = create.tblBDSNew.KeySearch;
+                //tblNews.MoneyInDay = create.tblBDSNew.MoneyInDay;
+              //  tblNews.TotalMoney = create.tblBDSNew.TotalMoney;
                 tblNews.UrlImage = create.tblBDSNew.UrlImage;
-                tblNews.IdTypeNewsCuurent = create.tblBDSNew.IdTypeNewsCuurent;
-                tblNews.DateReup = create.tblBDSNew.DateReup;
-                tblNews.CountReup = create.tblBDSNew.CountReup;
-                tblNews.Status = create.tblBDSNew.Status;
-                tblNews.RefTranHis = create.tblBDSNew.RefTranHis;
-                tblNews.Active = create.tblBDSNew.Active;
-                tblNews.CreateDate = create.tblBDSNew.CreateDate;
-                tblNews.CreateUser = create.tblBDSNew.CreateUser;
-                tblNews.ModifiedDate = create.tblBDSNew.ModifiedDate;
-                tblNews.ModifiedUser = create.tblBDSNew.ModifiedUser;
-                tblNews.MaxReup = create.tblBDSNew.MaxReup;
+            //    tblNews.IdTypeNewsCuurent = create.tblBDSNew.IdTypeNewsCuurent;
+           //     tblNews.DateReup = create.tblBDSNew.DateReup;
+            //    tblNews.CountReup = create.tblBDSNew.CountReup;
+              //  tblNews.Status = create.tblBDSNew.Status;
+            //    tblNews.RefTranHis = create.tblBDSNew.RefTranHis;
+           //     tblNews.Active = create.tblBDSNew.Active;
+           //     tblNews.CreateDate = create.tblBDSNew.CreateDate;
+              //  tblNews.CreateUser = create.tblBDSNew.CreateUser;
+             //   tblNews.ModifiedDate = create.tblBDSNew.ModifiedDate;
+              //  tblNews.ModifiedUser = create.tblBDSNew.ModifiedUser;
+             //   tblNews.MaxReup = create.tblBDSNew.MaxReup;
                  db.Entry(tblNews).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -423,6 +492,19 @@ namespace WebBDS_Project.Controllers
                     tblpic.advert_id = create.tblBDSNew.ID;
                     db.Entry(tblpic).State = EntityState.Modified;
 
+                }
+                db.SaveChanges();
+                var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
+                foreach (var item in listMap)
+                {
+                    db.Entry(item).State = EntityState.Deleted;
+
+                }
+                db.SaveChanges();
+                foreach (var item in create.tblBDSNew.Career.Split(','))
+                {
+                    BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
+                    db.Entry(i).State = EntityState.Added;
                 }
                 db.SaveChanges();
                 return RedirectToAction("ListNewOfUser", "Management");
@@ -475,5 +557,70 @@ namespace WebBDS_Project.Controllers
             db.SaveChanges();
             return RedirectToAction("ListNewOfUser", "Management");
         }
+
+  
+        public JsonResult CalcuMoney(int idType, string rDate)
+        {
+            try
+            {
+                var price = db.BDSNewsTypePrices
+                .Where(T => T.IdNewsType == idType && T.Active == 1 && T.ApplyPrice <= DateTime.Now)
+                .OrderByDescending(T => T.ApplyPrice)
+                .FirstOrDefault();
+
+                var fromDate = rDate.Split('-')[0];
+                var toDate = rDate.Split('-')[1];
+                var FromDate = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
+                var ToDate = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
+                var totalDay = ToDate.Subtract(FromDate).TotalDays;
+                if (totalDay < 1)
+                {
+                    totalDay = 1;
+                }
+                else
+                {
+                    totalDay = Math.Ceiling(totalDay);
+                }
+                var pInDay = 0.0;
+                var pAll = 0.0;
+                if (price != null)
+                {
+                    pInDay = price.Price;
+                    pAll = totalDay * pInDay;
+                }
+                return Json(new { PriceInDay = pInDay, TotalPrice = pAll, TotalDay = totalDay }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+        }
+
+        public JsonResult EmployerInformation(int idAccount)
+        {
+            return Json(
+               db.BDSEmployerInformations.Where(T => T.IdAccount == idAccount).ToList().Select(T => new
+                 {
+                     Name = T.Name,
+                     AddressContact = T.AddressContact + ", " + (from a in db.Districts
+                                                                 join b in db.DistrictTexts on a.name_id equals b.id
+                                                                 where b.language_id == "vi" && a.state_id == T.DistrictContact
+                                                                 select new { ID = a.state_id, Name = b.text }).FirstOrDefault().Name + ", " +
+
+                                                                 (from a in db.States
+                                                                  join b in db.StateTexts on a.name_id equals b.id
+                                                                  where b.language_id == "vi" && a.Status == 1 && a.state_id == T.CityContact
+                                                                  select new { ID = a.state_id, Name = b.text }).FirstOrDefault().Name
+                                                                 ,
+                     NameContact = T.NameContact,
+                     PhoneContact = T.PhoneContact,
+                     EmailContact = T.EmailContact,
+                     WebSite = T.WebSite
+                 }).FirstOrDefault(),
+                 JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

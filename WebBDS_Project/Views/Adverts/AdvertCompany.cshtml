@@ -324,6 +324,27 @@
                             @Html.TextBoxFor(m => m.tblBDSNew.WebSiteCompany, new { @class = "input1 ", @placeholder = "Nhập website công ty" })
                         </div>
                     </div>
+                   
+
+                    <div class="row">
+
+
+                        <div class="grid_12">
+                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
+                                <div class="dz-default dz-message cusbuttonmes " style="display: block;">
+                                    <span class="btn btnUploadImage">
+                                        <span class="btn btn-danger">Lựa chọn hình ảnh </span>
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <hr style="margin: 10px;" />
                     <h4>Loại tin đăng và lịch đăng tin</h4>
                     <label>Loaị tin rao<span class="required">*</span></label>
 
@@ -363,7 +384,7 @@
                                                 <h2><a href="#">Nhân viên kinh doanh <span>Tập đoàn cá tiên sa</span></a></h2>
                                                 <p><i class="fa fa-map-marker"></i>Hồ Chí Minh</p>
                                                 <div>
-                                                    <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
+                                                    <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triệu </p>
                                                     <p class="grid_6 omega time">Mã tin: <span class="color2">P889275</span> <i class="fa fa-clock-o"></i>12/12/1224</p>
                                                 </div>
                                             </div>
@@ -395,7 +416,7 @@
                                                 </div>
                                             </div>
                                             <div class="grid_3 omega">
-                                                <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
+                                                <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triệu </p>
                                             </div>
                                         </li>
 
@@ -425,7 +446,7 @@
                                                 </div>
                                             </div>
                                             <div class="grid_3 omega">
-                                                <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triêu </p>
+                                                <p><i class="fa fa-usd"></i>Lương: Từ <span>5 - 10</span> triệu </p>
                                             </div>
                                         </li>
 
@@ -454,40 +475,19 @@
 
 
                     </div>
-
-                    <div class="row">
-
-
-                        <div class="grid_12">
-                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
-                                <div class="dz-default dz-message cusbuttonmes " style="display: block;">
-                                    <span class="btn btnUploadImage">
-                                        <span class="btn btn-danger">Lựa chọn hình ảnh </span>
-                                    </span>
-
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <hr style="margin: 10px;" />
-
                     <div class="row">
 
                         <label>Thời gian đăng<span class="required">*</span></label>
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
 
 
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 datepicker1", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
 
 
                             </div>
@@ -500,12 +500,12 @@
                             <tbody>
                                 <tr>
                                     <td>Tiền theo giá gốc</td>
-                                    <td><b>20,000 VND/1 ngày</b></td>
+                                    <td><b><span class="priceInDay">20,000</span> VND/<span class="totalDay">1</span> ngày</b></td>
 
                                 </tr>
                                 <tr style="background: none!important;">
                                     <td>Tiền phải trả</td>
-                                    <td><b>600,000 VND</b></td>
+                                    <td><b><span class="TotalMoney"></span> VND</b></td>
 
                                 </tr>
 
@@ -550,6 +550,9 @@
     <input type="hidden" name="cfile" />
     <input type="hidden" name="tblBDSNew.ID" class="idProduct_" value="@Model.tblBDSNew.ID" />
     <input type="hidden" name="nameImg" />
+    <input type="hidden" id="hdMoneyInDay" name="tblBDSNew.MoneyInDay" />
+    <input type="hidden" id="hdTotalMoney" name="tblBDSNew.TotalMoney" />
+
 }
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
@@ -560,6 +563,73 @@
 <script src="~/Template/js/UploadImg/dropzoneVG.js"></script>
 
 <script>
+
+    $(document).on("change", 'input:radio[name="tblBDSNew.IdTypeNews"],#tblBDSNew_FromCreateNews,#tblBDSNew_ToCreateNews', function () {
+
+        var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
+        var rDate = $('#tblBDSNew_FromCreateNews').val() + "-" + $('#tblBDSNew_ToCreateNews').val();
+        if (id != null && id != "" && id != null && id != "" && $('#tblBDSNew_ToCreateNews').val() != "" && $('#tblBDSNew_FromCreateNews').val()!="") {
+            $.getJSON("@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + encodeURIComponent( rDate), function(data) {
+                $('#hdMoneyInDay').val(data.PriceInDay);
+                $('#hdTotalMoney').val(data.TotalPrice);
+
+                $('.priceInDay').html(tien(data.PriceInDay));
+                $('.TotalMoney').html(tien(data.TotalPrice));
+            });
+        }
+
+    });
+    function tien(val) {
+
+        if (val != null) {
+
+            while (/(\d+)(\d{3})/.test(val.toString())) {
+                val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            }
+            return val + '';
+        }
+        else {
+            return '';
+        }
+
+    }
+
+
+	$( function() {
+	    var dateFormat = "dd/mm/yy",
+			from = $("#tblBDSNew_FromCreateNews")
+				.datepicker({
+					defaultDate: "+0d",
+					changeMonth: true,
+					numberOfMonths: 1,
+					dateFormat: dateFormat
+				})
+				.on( "change", function() {
+					to.datepicker( "option", "minDate", getDate( this ) );
+				}),
+			to = $("#tblBDSNew_ToCreateNews").datepicker({
+				defaultDate: "+3d",
+				changeMonth: true,
+				numberOfMonths: 1,
+				dateFormat: dateFormat
+			})
+			.on( "change", function() {
+				from.datepicker( "option", "maxDate", getDate( this ) );
+			});
+
+		function getDate( element ) {
+			var date;
+		    try {
+
+				date = $.datepicker.parseDate( dateFormat, element.value );
+			} catch( error ) {
+				date = null;
+			}
+
+			return date;
+		}
+	} );
+
     $('.checkCarrie').click(function () {
 
         var listItem = $('.checkCarrie:checked').map(function () {
@@ -572,14 +642,14 @@
         });
         $('#tblBDSNew_Career').val(uu);
         console.log(uu);
-        
+
     });
     jQuery(document).ready(function ($) {
 
         if ($('.radioType').hasClass('selected')) {
             $('.selected .radioIdType').prop('checked', true);
         }
-        
+
     });
     $('.radioType').click(function() {
         $(this).find('.radioIdType').prop('checked', true);
@@ -587,12 +657,12 @@
 
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
-       
+
             $('#submitbutton').parents("form").submit();
-        
+
 
     });
-    
+
     function dropNew(ed) {
 
         var console = window.console || { log: function () { } };
@@ -796,8 +866,8 @@ if ($('#tblBDSNew_FromCreateNews').val() == "") {
             toastr.error('Vui lòng chọn ít nhất một hình!');
             t++;
         }
-        
-       
+
+
 
          if ($('#tblBDSNew_Benefit').val() == "") {
             toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
@@ -824,11 +894,11 @@ if ($('#tblBDSNew_FromCreateNews').val() == "") {
             toastr.error('Vui lòng chọn kinh nghiệm!');
             t++;
         }
-        
+
 if ($('#tblBDSNew_Bonus').val() == "") {
             toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
             t++;
-        } 
+        }
         if ($('#DropQuantity').val() == "0") {
             toastr.error('Vui lòng chọn số lượng!');
             t++;
@@ -894,7 +964,7 @@ if ($('#tblBDSNew_Bonus').val() == "") {
         });
             return true;
         }
-        
+
 
 
     }
