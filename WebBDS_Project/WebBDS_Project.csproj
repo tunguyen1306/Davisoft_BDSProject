@@ -414,6 +414,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\css\bfFur.css" />
+    <Content Include="Template\js\bfFur.js" />
     <Content Include="Template\css\bfFur.sass.css" />
     <Content Include="Template\css\bootstrap.min.css" />
     <Content Include="Template\css\customoptions.css" />
@@ -466,6 +467,7 @@
     <Content Include="Template\images\tl.png" />
     <Content Include="Template\images\ui-icons_444444_256x240.png" />
     <Content Include="Template\images\ui-icons_555555_256x240.png" />
+    <Content Include="Template\images\x.png" />
     <Content Include="Template\img\002.jpg" />
     <Content Include="Template\img\003.jpg" />
     <Content Include="Template\img\004.jpg" />
@@ -559,6 +561,7 @@
     <Content Include="Views\Default\_searchSalary.cshtml" />
     <Content Include="Views\Default\_searchTimeWorking.cshtml" />
     <Content Include="Views\Default\_searchWorkingPlace.cshtml" />
+    <Content Include="Views\Default\DetailEmployee.cshtml" />
     <Content Include="Views\Management\ListNewOfUser.cshtml" />
     <Content Include="Views\Default\_searchContent.cshtml" />
     <Content Include="Views\Management\PListNewsOfUser.cshtml" />
@@ -566,6 +569,7 @@
     <Content Include="Views\Management\PManaTinMoiNhat.cshtml" />
     <Content Include="Views\Management\PManaTinNhaTuyenDung.cshtml" />
     <Content Include="Views\Management\PManaTinNoiBat.cshtml" />
+
     <Content Include="Views\Adverts\EditNews.cshtml" />
     <Content Include="Views\Shared\_partialManagerCenterEmp.cshtml" />
   </ItemGroup>
