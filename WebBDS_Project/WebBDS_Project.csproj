@@ -287,9 +287,6 @@
     <Compile Include="Models\Menu.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Menus_Roles.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\NewsPicture.cs" />
     <Compile Include="Models\Permission.cs">
@@ -297,9 +294,6 @@
     </Compile>
     <Compile Include="Models\RegisterInformationModel.cs" />
     <Compile Include="Models\Role.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Roles_Permissions.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Setting.cs">
@@ -312,12 +306,6 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users_Branches.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users_Roles.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -414,6 +402,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\css\bfFur.css" />
+    <Content Include="Template\css\pushy.css" />
     <Content Include="Template\js\bfFur.js" />
     <Content Include="Template\css\bfFur.sass.css" />
     <Content Include="Template\css\bootstrap.min.css" />
@@ -499,6 +488,59 @@
     <Content Include="Template\naptien.htm" />
     <Content Include="Template\QuanLyNhaTuyenDung.htm" />
     <Content Include="Template\QuanLyTaiKhoanNhaTuyenDung.htm" />
+    <Content Include="Template\select2\css\select2.css" />
+    <Content Include="Template\select2\css\select2.min.css" />
+    <Content Include="Template\select2\js\i18n\ar.js" />
+    <Content Include="Template\select2\js\i18n\az.js" />
+    <Content Include="Template\select2\js\i18n\bg.js" />
+    <Content Include="Template\select2\js\i18n\ca.js" />
+    <Content Include="Template\select2\js\i18n\cs.js" />
+    <Content Include="Template\select2\js\i18n\da.js" />
+    <Content Include="Template\select2\js\i18n\de.js" />
+    <Content Include="Template\select2\js\i18n\el.js" />
+    <Content Include="Template\select2\js\i18n\en.js" />
+    <Content Include="Template\select2\js\i18n\es.js" />
+    <Content Include="Template\select2\js\i18n\et.js" />
+    <Content Include="Template\select2\js\i18n\eu.js" />
+    <Content Include="Template\select2\js\i18n\fa.js" />
+    <Content Include="Template\select2\js\i18n\fi.js" />
+    <Content Include="Template\select2\js\i18n\fr.js" />
+    <Content Include="Template\select2\js\i18n\gl.js" />
+    <Content Include="Template\select2\js\i18n\he.js" />
+    <Content Include="Template\select2\js\i18n\hi.js" />
+    <Content Include="Template\select2\js\i18n\hr.js" />
+    <Content Include="Template\select2\js\i18n\hu.js" />
+    <Content Include="Template\select2\js\i18n\id.js" />
+    <Content Include="Template\select2\js\i18n\is.js" />
+    <Content Include="Template\select2\js\i18n\it.js" />
+    <Content Include="Template\select2\js\i18n\ja.js" />
+    <Content Include="Template\select2\js\i18n\km.js" />
+    <Content Include="Template\select2\js\i18n\ko.js" />
+    <Content Include="Template\select2\js\i18n\lt.js" />
+    <Content Include="Template\select2\js\i18n\lv.js" />
+    <Content Include="Template\select2\js\i18n\mk.js" />
+    <Content Include="Template\select2\js\i18n\ms.js" />
+    <Content Include="Template\select2\js\i18n\nb.js" />
+    <Content Include="Template\select2\js\i18n\nl.js" />
+    <Content Include="Template\select2\js\i18n\pl.js" />
+    <Content Include="Template\select2\js\i18n\pt-BR.js" />
+    <Content Include="Template\select2\js\i18n\pt.js" />
+    <Content Include="Template\select2\js\i18n\ro.js" />
+    <Content Include="Template\select2\js\i18n\ru.js" />
+    <Content Include="Template\select2\js\i18n\sk.js" />
+    <Content Include="Template\select2\js\i18n\sr-Cyrl.js" />
+    <Content Include="Template\select2\js\i18n\sr.js" />
+    <Content Include="Template\select2\js\i18n\sv.js" />
+    <Content Include="Template\select2\js\i18n\th.js" />
+    <Content Include="Template\select2\js\i18n\tr.js" />
+    <Content Include="Template\select2\js\i18n\uk.js" />
+    <Content Include="Template\select2\js\i18n\vi.js" />
+    <Content Include="Template\select2\js\i18n\zh-CN.js" />
+    <Content Include="Template\select2\js\i18n\zh-TW.js" />
+    <Content Include="Template\select2\js\select2.full.js" />
+    <Content Include="Template\select2\js\select2.full.min.js" />
+    <Content Include="Template\select2\js\select2.js" />
+    <Content Include="Template\select2\js\select2.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -550,6 +592,7 @@
     <Content Include="Views\Shared\_partialShareExpirence.cshtml" />
     <Content Include="Views\Default\Search.cshtml" />
     <Content Include="Views\Shared\_searchPannel.cshtml" />
+    <Content Include="Views\Management\Paymen.cshtml" />
     <Content Include="Views\Management\DetailPer.cshtml" />
     <Content Include="Views\Management\ThanksApply.cshtml" />
     <Content Include="Views\Default\DetailNews.cshtml" />
@@ -569,8 +612,6 @@
     <Content Include="Views\Management\PManaTinNhaTuyenDung.cshtml" />
     <Content Include="Views\Management\PManaTinNoiBat.cshtml" />
     <Content Include="Views\Adverts\EditNews.cshtml" />
-    <Content Include="Views\Default\_searchContentPer.cshtml" />
-    <Content Include="Views\Management\MoneyToPoint.cshtml" />
     <Content Include="Views\Shared\_partialManagerCenterEmp.cshtml" />
     <Content Include="Views\Default\_searchContentPer.cshtml" />
   </ItemGroup>
