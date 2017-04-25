@@ -13,7 +13,9 @@ namespace WebBDS_Project.Models
         public List<BDSNew> ListNew { get; set; }
                 public BDSEmployerInformation tblBDSEmployerInformation { get; set; }
         public List<BDSEmployerInformation> ListBDSEmployerInformation { get; set; }
-                public BDSAccount tblBDSAccount { get; set; }
+        public BDSPersonalInformation tblBDSPersonalInformation { get; set; }
+        public List<BDSPersonalInformation> ListBDSPersonalInformation { get; set; }
+        public BDSAccount tblBDSAccount { get; set; }
         public List<BDSAccount> ListBDSAccount { get; set; }
        
       
@@ -48,8 +50,10 @@ namespace WebBDS_Project.Models
         public CaptCha tblCaptCha { get; set; }
 
         public List<ListCityNew> ListCityText { get; set; }
-       
+        public List<ListCityNew> ListDisText { get; set; }
 
+        public BDSSalary tblBDSSalary { get; set; }
+        public List<BDSSalary> ListBDSSalary { get; set; }
 
 
     }
