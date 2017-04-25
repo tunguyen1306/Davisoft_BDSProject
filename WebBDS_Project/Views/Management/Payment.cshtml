@@ -1,6 +1,6 @@
 ﻿@using WebBDS_Project.Models
 @{
-    ViewBag.Title = "Paymen";
+    ViewBag.Title = "Nạp tiền";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
 }
@@ -54,11 +54,11 @@
                             <div class="row">
                                 @foreach (var item1 in db.BDSBanks.Where(x => x.Active == 1).ToList())
                                 {
-                                    <table class="cus-table-responsive tableBank hidden" id="table_@item1.ID">
+                                    <table class="cus-table-responsive tableBank hidden" id="table_@(item1.ID)">
                                         <thead>
                                             <tr>
                                                 <th data-field="id">Tên ngân hàng</th>
-                                                <th data-field="name">Ngân hàng thương mại cổ phần ngoại thương Việt Nam-Vietcombank</th>
+                                                <th data-field="name">@item1.Name</th>
 
                                             </tr>
                                         </thead>
@@ -66,17 +66,17 @@
                                         <tbody>
                                             <tr>
                                                 <td>Chin nhánh</td>
-                                                <td>Chi nhánh Phú Thọ</td>
+                                                <td>@item1.Branch</td>
 
                                             </tr>
                                             <tr>
                                                 <td>Người hưởng lợi</td>
-                                                <td>Công Ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589</td>
+                                                <td>@item1.AccountName</td>
 
                                             </tr>
                                             <tr>
                                                 <td>Số tài khoản</td>
-                                                <td>02428913123123</td>
+                                                <td>@item1.AccountNumber</td>
 
                                             </tr>
                                         </tbody>
@@ -135,7 +135,7 @@
                                     <div class="row">
                                         <label class="grid_2">Cộng</label>
                                         <div class="row-right grid_9">
-                                            <b class="TextColorRed totalTien">3.600.000</b> VNĐ và <b class="TextColorRed tpoint">150</b> điểm xem tin.
+                                            <b class="TextColorRed totalTien">0</b> VNĐ và <b class="TextColorRed tpoint">0</b> điểm xem tin.
                                         </div>
 
                                     </div>
