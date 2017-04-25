@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="~/Template/css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="~/Template/css/font-awesome.css" type="text/css" media="screen">
     <link rel="stylesheet" href="~/Template/css/reponsive.css" type="text/css" media="screen">
-
+    <link href="~/Template/css/pushy.css" rel="stylesheet" />
     <link href="~/Template/css/CusWeb.css" rel="stylesheet" />
     <link href="~/Template/css/toastr.css" rel="stylesheet" />
     <link href="~/Template/css/jquery-ui.css" rel="stylesheet" />
@@ -238,6 +238,16 @@
     $(document).ready(function () {
         $('.select2').select2();
     });
+    var optionSideRight = {
+        button: "side-right-pushy-button",
+        container: "container",
+        containerPush: false,
+        menuPosition: "right",
+        menuOpen: false,
+        overlayShow: true
+    };
+
+    $("#sideRightPushy").Pushy(optionSideRight);
     </script>
 </body>
 </html>
