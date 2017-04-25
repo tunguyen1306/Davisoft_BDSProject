@@ -287,6 +287,9 @@
     <Compile Include="Models\Menu.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Menus_Roles.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\NewsPicture.cs" />
     <Compile Include="Models\Permission.cs">
@@ -294,6 +297,9 @@
     </Compile>
     <Compile Include="Models\RegisterInformationModel.cs" />
     <Compile Include="Models\Role.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Roles_Permissions.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Setting.cs">
@@ -306,6 +312,12 @@
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users_Branches.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users_Roles.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -549,6 +561,7 @@
     <Content Include="Views\Default\_searchSalary.cshtml" />
     <Content Include="Views\Default\_searchTimeWorking.cshtml" />
     <Content Include="Views\Default\_searchWorkingPlace.cshtml" />
+    <Content Include="Views\Default\DetailEmployee.cshtml" />
     <Content Include="Views\Management\ListNewOfUser.cshtml" />
     <Content Include="Views\Default\_searchContent.cshtml" />
     <Content Include="Views\Management\PListNewsOfUser.cshtml" />

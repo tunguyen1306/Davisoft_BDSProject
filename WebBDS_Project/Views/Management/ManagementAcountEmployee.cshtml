@@ -348,7 +348,31 @@
                         </div>
 
                         <div class="row">
+                            @*<label class="grid_2">Địa chỉ liên hệ<span class="required"> *</span></label>
+                            <div class="row-right grid_3">
 
+                                @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Address, new { @placeholder = "Nhập địa chỉ liên hệ" })
+                            </div>
+                            <div class="row-right">
+
+                                <div class="pncon width2">
+
+
+
+                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2", @style = "width:100%;" })
+
+                                </div>
+
+
+
+                                <div class="pncon mgl15 width2">
+
+
+                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.District, new SelectList(Model.ListGeoDisModel, "DistId", "DistName"), new { @class = "select2", @style = "width:100%;" })
+
+                                </div>
+
+                            </div>*@
                             <label class="grid_2">Địa chỉ liên hệ<span class="required"> *</span></label>
                             <div class="row-right grid_3">
 

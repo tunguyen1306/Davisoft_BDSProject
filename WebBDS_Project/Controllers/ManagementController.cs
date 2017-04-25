@@ -23,10 +23,14 @@ namespace WebBDS_Project.Controllers
                 return RedirectToAction("LoginForm", "Login");
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi"
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+            var dataDist = (from data in db.Districts
+                            join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi"
+                            select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
             var IdYourSave = db.BDSEmpers.Where(x => x.IdAccountEm == idAcount).Select(x=>x.IdAccountPer).ToList();
              var register = new RegisterInformationModel
             {
@@ -39,6 +43,7 @@ namespace WebBDS_Project.Controllers
                 ListBDSLanguage = db.BDSLanguages.ToList(),
                 ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
+                 ListGeoDisModel = dataDist.ToList(),
                 TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),//!IdYourSave.Contains(x.ID)
                 ListBDSPersonalInformation = db.BDSPersonalInformations.Where(x => x.Active == 1 && !IdYourSave.Contains(x.ID)).ToList(),
                 TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
@@ -603,8 +608,34 @@ namespace WebBDS_Project.Controllers
         }
         public ActionResult DetailPer(string id)
         {
-            var _id = int.Parse(id.Split('-').Last());
-            return View();
+            var id_ = int.Parse(id.Split('-').Last());
+            var dataCity = from data in db.States
+                           join datatext in db.StateTexts on data.name_id equals datatext.id
+                           where datatext.language_id == "vi"
+                           select new ListCityNew { Id = data.state_id, Name = datatext.text };
+
+          
+            var dataDist = (from data in db.Districts
+                            join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi"
+                            select new ListCityNew { Id = data.district_id, Name = datatext.text }).ToList();
+
+            var Model = new NewsModel
+            {
+                tblBDSPersonalInformation = db.BDSPersonalInformations.FirstOrDefault(x => x.ID == id_),
+                ListBDSAccount = db.BDSAccounts.ToList(),
+                ListCityText = dataCity.ToList(),
+                ListDisText = dataDist.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSCareer=db.BDSCareers.ToList(),
+                ListBDSSalary = db.BDSSalaries.ToList()
+
+
+            };
+           
+            return View(Model);
         }
         public ActionResult ListNewOfUser()
         {
