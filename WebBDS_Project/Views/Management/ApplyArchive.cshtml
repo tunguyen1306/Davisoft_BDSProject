@@ -2,6 +2,7 @@
     ViewBag.Title = "ApplyArchive";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
     davisoft_bdsprojectEntities db=new davisoft_bdsprojectEntities();
+    var IdAccount = Session["IdUser"] != null ? int.Parse(Session["IdUser"].ToString()) : 0;
 }
 
 
@@ -36,9 +37,9 @@
                     </thead>
 
                     <tbody>
-                        @foreach (var item in Model.ListBDSApply)
+                        @foreach (var item in Model.ListBDSApply.Where(x=>x.IdAccountEm== IdAccount))
                         {
-                            foreach (var itemPer in db.BDSPersonalInformations.Where(x => x.ID == item.IdAccountEm))
+                            foreach (var itemPer in db.BDSPersonalInformations)
                             {
                                 <tr>
                             <td>@itemPer.CreateDate</td>

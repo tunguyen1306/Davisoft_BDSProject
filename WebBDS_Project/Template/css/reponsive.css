@@ -11,10 +11,10 @@
     width: 100%;
 	
 }
-.row-right .input1, .row-right .input3, .row-right, .row-right .dropdown {
+.row-right .input1, .row-right .input3, .row-right, .row-right .dropdown , .row-right .select2{
 	width:100% !important
 }
-.row-right .pncon .dropdown {
+.row-right .pncon .dropdown ,.row-right .pncon .select2{
 	width:120px !important
 }
 .padding_box .row label.child {
@@ -32,7 +32,7 @@
 .width2 {
 	width:48%;
 }
-.row-right .width2 .dropdown {
+.row-right .width2 .dropdown ,.row-right .width2 .select2{
 	width:100% !important;
 }
 .mgl15 {
@@ -47,7 +47,7 @@
 	margin-left:4%
 }
 
-.row .width3 .pncon , .row .width3 .pncon .dropdown {
+.row .width3 .pncon , .row .width3 .pncon .dropdown, .row .width3 .pncon .select2 {
 	width:100% !important;
 }
 .row_name .pncon {
@@ -218,7 +218,7 @@
 .list_work li div p.time i {
 	margin-left:8px;
 }
-.row-right .pncon .dropdown {
+.row-right .pncon .dropdown,.row-right .pncon .select2 {
 	width: 100% !important
 }
 .pncon {
