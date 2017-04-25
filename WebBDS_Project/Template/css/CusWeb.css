@@ -364,3 +364,6 @@ tr:nth-child(even) {
  .radio_3-1 label{
      width: 116px;
  }
+ .row .row-right1 {
+    float: left;
+}
