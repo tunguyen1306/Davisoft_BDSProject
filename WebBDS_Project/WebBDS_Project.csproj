@@ -550,7 +550,6 @@
     <Content Include="Views\Shared\_partialShareExpirence.cshtml" />
     <Content Include="Views\Default\Search.cshtml" />
     <Content Include="Views\Shared\_searchPannel.cshtml" />
-    <Content Include="Views\Management\Paymen.cshtml" />
     <Content Include="Views\Management\DetailPer.cshtml" />
     <Content Include="Views\Management\ThanksApply.cshtml" />
     <Content Include="Views\Default\DetailNews.cshtml" />
@@ -570,6 +569,8 @@
     <Content Include="Views\Management\PManaTinNhaTuyenDung.cshtml" />
     <Content Include="Views\Management\PManaTinNoiBat.cshtml" />
     <Content Include="Views\Adverts\EditNews.cshtml" />
+    <Content Include="Views\Default\_searchContentPer.cshtml" />
+    <Content Include="Views\Management\MoneyToPoint.cshtml" />
     <Content Include="Views\Shared\_partialManagerCenterEmp.cshtml" />
     <Content Include="Views\Default\_searchContentPer.cshtml" />
   </ItemGroup>

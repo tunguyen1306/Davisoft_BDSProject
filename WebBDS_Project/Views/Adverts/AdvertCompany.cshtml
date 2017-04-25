@@ -353,9 +353,10 @@
                         @foreach (var typeNews in Model.ListBDSNewsType)
                         {
                             <li>
-                                <a href="#@typeNews.CodeNewsType" class="radioType">
+                                <a href="#@typeNews.CodeNewsType" class="radioType" onclick="document.forms[0]['tblBDSNew.IdTypeNews'].value='@typeNews.ID';calcMoney();">
+                                    <input type="radio" value="@typeNews.ID" onclick="setTimeout(function(){document.forms[0]['tblBDSNew.IdTypeNews'].value='@typeNews.ID';},100)" class="radioIdType" name="tblBDSNew.IdTypeNews">
                                     <label>
-                                        <input type="radio" value="@typeNews.ID" class="radioIdType" name="tblBDSNew.IdTypeNews">@typeNews.Name
+                                        @typeNews.Name
                                     </label>
                                 </a>
                             </li>
@@ -500,12 +501,12 @@
                             <tbody>
                                 <tr>
                                     <td>Tiền theo giá gốc</td>
-                                    <td><b><span class="priceInDay">20,000</span> VND/<span class="totalDay">1</span> ngày</b></td>
+                                    <td><b><span class="priceInDay">0</span> VND/<span class="totalDay">1</span> ngày</b></td>
 
                                 </tr>
                                 <tr style="background: none!important;">
                                     <td>Tiền phải trả</td>
-                                    <td><b><span class="TotalMoney"></span> VND</b></td>
+                                    <td><b><span class="TotalMoney">0</span> VND</b></td>
 
                                 </tr>
 
@@ -561,10 +562,30 @@
 <script src="~/Template/js/UploadImg/cropperVG.js"></script>
 <script src="~/Template/js/UploadImg/cusjsVG.js"></script>
 <script src="~/Template/js/UploadImg/dropzoneVG.js"></script>
-
+<style>
+    a.radioType.selected {
+       /* color: red;*/
+    }
+</style>
 <script>
 
-    $(document).on("change", 'input:radio[name="tblBDSNew.IdTypeNews"],#tblBDSNew_FromCreateNews,#tblBDSNew_ToCreateNews', function () {
+     
+    function calcMoney() {
+       
+        var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
+        var rDate = $('#tblBDSNew_FromCreateNews').val() + "-" + $('#tblBDSNew_ToCreateNews').val();
+        if (id != null && id != "" && id != null && id != "" && $('#tblBDSNew_ToCreateNews').val() != "" && $('#tblBDSNew_FromCreateNews').val()!="") {
+            $.getJSON("@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + encodeURIComponent( rDate), function(data) {
+                $('#hdMoneyInDay').val(data.PriceInDay);
+                $('#hdTotalMoney').val(data.TotalPrice);
+
+                $('.priceInDay').html(tien(data.PriceInDay));
+                $('.TotalMoney').html(tien(data.TotalPrice));
+            });
+        }
+
+    };
+    $(document).on("change", 'a.radioType,#tblBDSNew_FromCreateNews,#tblBDSNew_ToCreateNews', function () {
 
         var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
         var rDate = $('#tblBDSNew_FromCreateNews').val() + "-" + $('#tblBDSNew_ToCreateNews').val();
@@ -579,6 +600,7 @@
         }
 
     });
+   
     function tien(val) {
 
         if (val != null) {

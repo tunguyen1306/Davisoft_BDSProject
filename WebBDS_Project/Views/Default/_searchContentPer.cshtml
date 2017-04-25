@@ -46,17 +46,17 @@
                                 <div class="grid_8 omega time" style="text-align: right">
                                     @if (Session["IdUser"] == null || em==null)
                                     {
-                                        @Html.Raw("<a style='cursor: pointer;' onclick=\"saveDocument(" + per.ID + ")\"><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Lưu hồ sơ </i></a>");
+                                        @Html.Raw("<a href='' style='cursor: pointer;' onclick=\"saveDocument(" + per.ID + ")\"><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Lưu hồ sơ </i></a>");
                                     }
                                     else
                                     {
                                         if (per.BDSEmpers.Where(T => T.Active == 1 && T.IdAccountEm ==em.ID).Count()>0)
                                         {
-                                            @Html.Raw("<a ><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Hồ sơ đã lưu</i></a>");
+                                            @Html.Raw("<a href='' ><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Hồ sơ đã lưu</i></a>");
                                         }
                                         else
                                         {
-                                            @Html.Raw("<a style='cursor: pointer;' onclick=\"saveDocument(" + per.ID + ")\" ><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Lưu hồ sơ </i></a>");
+                                            @Html.Raw("<a href='' style='cursor: pointer;' onclick=\"saveDocument(" + per.ID + ")\" ><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Lưu hồ sơ </i></a>");
                                         }
                                     }
                                   
@@ -130,7 +130,8 @@
     function saveDocument(id) {
         var url = '@Url.Action("SaveYourArchive","Management")?id='+id;
         $.post(url,function(data) {
-            console.log(data);
+            alert(data.Message);
         });
+        return false;
     }
 </script>

@@ -549,7 +549,7 @@ namespace WebBDS_Project.Controllers
            
 
         }
-        public ActionResult Payment(string email)
+        public ActionResult Payment()
         {
             if (Session["IdUser"] == null && Session["EmailUser"] == null)
             {
@@ -558,20 +558,98 @@ namespace WebBDS_Project.Controllers
             return View();
 
         }
-
         public JsonResult AjaxPayment(double? money)
         {
             double M = money.Value, P = 0, ME = 0;
             DateTime dateNow = DateTime.Now;
-            var ev= db.BDSEvents.Where(T => T.Active == 1 && T.FromDate <= dateNow && dateNow <= T.ToDate)
+            var ev = db.BDSEvents.Where(T => T.Active == 1 && T.FromDate <= dateNow && dateNow <= T.ToDate)
                 .OrderByDescending(T => T.FromDate)
                 .FirstOrDefault();
-            if (ev!=null)
+            if (ev != null)
             {
-                ME = money.Value*(double) ev.DisPercent/100;
+                ME = money.Value * (double)ev.DisPercent / 100;
             }
-            return Json(new {M = M, P = P, ME = ME},JsonRequestBehavior.AllowGet);
+            return Json(new { M = M, P = P, ME = ME }, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult MoneyToPoint()
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+
+            ViewBag.Error = false;
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult MoneyToPoint(double sotien)
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+            int id = (int)Session["IdUser"];
+            var account=db.BDSAccounts.First(T => T.ID == id);
+            if (account.Money.Value >= sotien)
+            {
+                var P = 0.0;
+                 var setting=  db.Settings.FirstOrDefault(T => T.Name == "MoneyToPoint");
+                if (setting==null)
+                {
+                    P =sotien;
+                }
+                else
+                {
+                    P =   Math.Ceiling( sotien * double.Parse(setting.Value));
+                }
+              
+                String Fname = "Đổi '{A}' VND thành '{B}' điểm";
+                string name = Fname.Replace("{A}", sotien.ToString("n2")).Replace("{B}",P.ToString("n2") );
+                BDSTransactionHistory tran = new BDSTransactionHistory()
+                {
+                    Name = name,
+                    Description = name,
+                    KeySearch = name.NormalizeD(),
+                    Active = 1,
+                    CreateUser = 1,
+                    CreateDate = DateTime.Now,
+                    TypeTran = 3,
+                    PointTran = (int)P,
+                    MoneyTran = sotien,
+                    DateTran = DateTime.Now
+                };
+                db.BDSTransactionHistories.Add(tran);
+                account.Money = account.Money - sotien;
+                account.Point = account.Point + (int) P;
+                db.Entry(account).State=EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Error = false;
+                return RedirectToAction("ManagementAcountEmployee");
+            }
+            else
+            {
+                ViewBag.Error = true;
+            }
+
+            return View();
+
+        }
+        public JsonResult AjaxMoneyToPoint(double? money)
+        {
+            double M = money.Value, P = 0, ME = 0;
+            var setting=  db.Settings.FirstOrDefault(T => T.Name == "MoneyToPoint");
+            if (setting==null)
+            {
+                P = money.Value;
+            }
+            else
+            {
+                P =   Math.Ceiling( money.Value * double.Parse(setting.Value));
+            }
+            return Json(new { M = M, P = P, ME = ME }, JsonRequestBehavior.AllowGet);
+        }
+       
 
         [HttpPost, ActionName("DetailPersonal")]
         public ActionResult DetailPersonal(int id)
