@@ -83,6 +83,7 @@ namespace WebBDS_Project.Controllers
                            where datatext.language_id == "vi"
                            select new GeoModel { CityId = data.state_id, CityName = datatext.text };
             var IdYourSave = db.BDSEmpers.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
+            var IdYourSavePer = db.BDSEmpers.Where(x => x.IdAccountPer == idAcount).Select(x => x.IdAccountEm).ToList();
             var register = new RegisterInformationModel
             {
                 ListBDSScopes = db.BDSScopes.ToList(),
@@ -94,7 +95,7 @@ namespace WebBDS_Project.Controllers
                 ListBDSLanguage = db.BDSLanguages.ToList(),
                 ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
-                TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),
+                ListBDSEmployerInformation = db.BDSEmployerInformations.Where(x => IdYourSavePer.Contains(x.ID)).ToList(),
                 ListBDSPersonalInformation = db.BDSPersonalInformations.Where(x => IdYourSave.Contains(x.ID) && x.Active==1).ToList(),
                 TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
                 ListBDSEmper = db.BDSEmpers.ToList()

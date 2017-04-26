@@ -1,10 +1,10 @@
 ﻿@using WebBDS_Project.Models
 @{
-    ViewBag.Title = "Nạp tiền";
+    ViewBag.Title = "Paymen";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
 }
-<script src="http://www.decorplanit.com/plugin/autoNumeric-1.9.41.js"></script>
+
 <div class="container">
     <div class="grid_9 main_left">
         <div class="group_work">
@@ -17,14 +17,14 @@
 
                     <ul class="radio idTabs idTabs-1 idTabs-2">
 
-                        <li style="text-align: right">
+                        <li>
                             <a href="#a1" class="radioType">
                                 <label>
                                     <input type="radio" value="1" class="radioIdType" name="tblBDSNew.IdTypeNews"> Chuyển khoản ngân hàng
                                 </label>
                             </a>
                         </li>
-                        <li style="text-align: left">
+                        <li>
                             <a href="#a2" class="radioType">
                                 <label>
                                     <input type="radio" value="2" class="radioIdType" name="tblBDSNew.IdTypeNews"> Nộp tiền trực tiếp
@@ -39,11 +39,11 @@
 
                         <div id="a1">
                             <div class="row">
-                                @foreach (var item in db.BDSBanks.Where(x => x.Active == 1).ToList())
+                                @foreach (var item in db.bdsbanks.Where(x => x.Active == 1).ToList())
                                 {
 
 
-                                    <div class="grid_2 border-bank btnBank" rel="@item.ID">
+                                    <div class="grid_2 border-bank btnBank" rel="@item.Id">
                                         <img width="64" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" />
                                     </div>
                                 }
@@ -52,9 +52,9 @@
                             </div>
                             <h4>Thông tin tài khoản</h4>
                             <div class="row">
-                                @foreach (var item1 in db.BDSBanks.Where(x => x.Active == 1).ToList())
+                                @foreach (var item1 in db.bdsbanks.Where(x => x.Active == 1).ToList())
                                 {
-                                    <table class="cus-table-responsive tableBank hidden" id="table_@(item1.ID)">
+                                    <table class="cus-table-responsive tableBank hidden" id="table_@item1.Id">
                                         <thead>
                                             <tr>
                                                 <th data-field="id">Tên ngân hàng</th>
@@ -107,35 +107,35 @@
                                     <div class="row">
                                         <label class="grid_2">Số tiền nạp</label>
                                         <div class="row-right grid_9">
-                                            <input placeholder="Nhập số tiền" class="money" name="soTien" type="text">
+                                            <input placeholder="Nhập số tiền" type="text">
                                         </div>
 
                                     </div>
                                     <div class="row">
                                         <label class="grid_2"></label>
                                         <div class="row-right grid_9">
-                                            <a class="btnSubmitReview" >Xem trước</a>
+                                            <a class="btnSubmitReview" href="#">Xem trước</a>
                                         </div>
 
                                     </div>
                                     <div class="row">
                                         <label class="grid_2"></label>
                                         <div class="row-right grid_9">
-                                            <input placeholder="Tổng tiền" readonly="true" class="tongTien" name="tongTien" type="text">
+                                            <input placeholder="Tổng tiền" type="text">
                                         </div>
 
                                     </div>
                                     <div class="row">
                                         <label class="grid_2">Điểm xem tin</label>
                                         <div class="row-right grid_9">
-                                            <input placeholder="Điểm xem tin" readonly="true" class="point" name="point" type="text">
+                                            <input placeholder="Điểm xem tin" type="text">
                                         </div>
 
                                     </div>
                                     <div class="row">
                                         <label class="grid_2">Cộng</label>
                                         <div class="row-right grid_9">
-                                            <b class="TextColorRed totalTien">0</b> VNĐ và <b class="TextColorRed tpoint">0</b> điểm xem tin.
+                                            <b class="TextColorRed">3.600.000</b> VNĐ và <b class="TextColorRed">150</b> điểm xem tin.
                                         </div>
 
                                     </div>
@@ -143,53 +143,32 @@
 
 
                             </div>
-                            <script>
-                                $(document).on("click", ".btnSubmitReview", function() {
-                                    if ($('.money').val()!="") {
-                                        $.getJSON("@Url.Action("AjaxPayment")?money=" + $('.money').autoNumeric('get'), function (data) {
-                                          //  $('.tongTien').val(tien(data.M + data.ME));
-                                            $('.point').val(data.P);
-                                            $('.totalTien').html(tien(data.M + data.ME));
-                                            $('.tpoint').html(data.P);
 
-                                        
-                                            $('.tongTien').autoNumeric('set', data.M + data.ME);
-                                        });
-                                    }
-                                 
-                                });
-                                function tien(val) {
-
-                                    if (val != null) {
-
-                                        while (/(\d+)(\d{3})/.test(val.toString())) {
-                                            val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                                        }
-                                        return val + '';
-                                    }
-                                    else {
-                                        return '';
-                                    }
-
-                                }
-                            </script>
                         </div>
                         <div id="a2">
-                            @foreach (var item in db.BDSBranches.Where(x => x.Active == 1).ToList())
+                            @foreach (var itemArea in db.bdsareas.Where(x => x.Active == 1).ToList())
                             {
-                                <div class="boder-payment">
-                                    Văn phòng tại miền bắc(Hà Nội,Hải Phòng)
+                                if (db.bdsbranches.Count(x => x.IdArea == itemArea.ID)>0)
+                                {
+  <div class="boder-payment">
+
+                                    @itemArea.Name
                                 </div>
+                                }
+                                 
+                                foreach (var item in db.bdsbranches.Where(x => x.Active == 1 && x.IdArea==itemArea.ID).ToList())
+                                {
+                               
                                 <div class="row">
                                     <span class="cusfa">
-                                        <i class="fa fa-home " aria-hidden="true"></i> <b class="TextColorBlue">@item.Name</b>
+                                        <i class="fa fa-home " aria-hidden="true"></i><b class="TextColorBlue">@item.Name</b>
                                     </span>
 
 
                                 </div>
                                 <div class="row">
                                     <span class="cusfa">
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>@item.Address
                                     </span>
 
 
@@ -203,6 +182,8 @@
                                 </div>
                             }
 
+                            }
+                           
                         </div>
 
                     </div>
@@ -223,37 +204,24 @@
 
     </div>
 </div>
-<style>
-    input[readonly] {
-      background-color:    #eee;
-    }
-</style>
 <script>
     jQuery(document).ready(function ($) {
+        $('.tableBank').eq(0).removeClass('hidden');
+        $('.tableBank').eq(0).addClass('active');
+        if ($('.radioType').hasClass('selected')) {
+            $('.selected .radioIdType').prop('checked', true);
+        }
+        $.each($('.btnBank'), function(i, o) {
+            $(this).click(function() {
+                var id = $(this).attr('rel');
+                $('.tableBank').addClass('hidden');
+                $('#table_' + id).removeClass('hidden');
 
-        $('.money').autoNumeric('init', { currencySymbol: 'VND' });
-        $('.tongTien').autoNumeric('init', { currencySymbol: 'VND' });
-
-
-
-
-
-            $('.tableBank').eq(0).removeClass('hidden');
-            $('.tableBank').eq(0).addClass('active');
-            if ($('.radioType').hasClass('selected')) {
-                $('.selected .radioIdType').prop('checked', true);
-            }
-            $.each($('.btnBank'), function(i, o) {
-                $(this).click(function() {
-                    var id = $(this).attr('rel');
-                    $('.tableBank').addClass('hidden');
-                    $('#table_' + id).removeClass('hidden');
-
-                });
             });
+        });
 
-        });
-        $('.radioType').click(function () {
-            $(this).find('.radioIdType').prop('checked', true);
-        });
+    });
+    $('.radioType').click(function () {
+        $(this).find('.radioIdType').prop('checked', true);
+    });
 </script>
