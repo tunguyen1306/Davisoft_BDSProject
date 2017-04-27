@@ -284,6 +284,9 @@
     <Compile Include="Models\Menu.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Menus_Roles.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\NewsPicture.cs" />
     <Compile Include="Models\Permission.cs">
@@ -291,6 +294,9 @@
     </Compile>
     <Compile Include="Models\RegisterInformationModel.cs" />
     <Compile Include="Models\Role.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Roles_Permissions.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Setting.cs">
@@ -307,6 +313,13 @@
     </Compile>
 
     <Compile Include="Models\User.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+
+    <Compile Include="Models\Users_Branches.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users_Roles.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
 
