@@ -1,0 +1,138 @@
+﻿@using WebBDS_Project.Models
+@{
+    ViewBag.Title = "Đổi điểm";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+}
+<script src="http://www.decorplanit.com/plugin/autoNumeric-1.9.41.js"></script>
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Mua điểm</span></h3>
+            </div>
+            <form class="form-horizontal" method="POST" action="@Url.Action("MoneyToPoint")">
+
+                <div class="row">
+                    <div class="header-promotion">
+                        <h4>Kiểm tra tỉ lệ đổi tiền thành điểm</h4>
+                        <div class="border-promotion">
+                            Đổi 1,000 VND thành <b class="TextColorRed">@db.Settings.FirstOrDefault(T => T.Name == "MoneyToPoint").Value điểm</b>.
+                        </div>
+                        <div class="row">
+                            <label class="grid_2">Số tiền nạp</label>
+                            <div class="row-right grid_9">
+                                <input placeholder="Nhập số tiền" class="money" name="soTien" type="text">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <label class="grid_2"></label>
+                            <div class="row-right grid_9">
+                                <a class="btnSubmitReview">Xem trước</a>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <label class="grid_2">Điểm xem tin</label>
+                            <div class="row-right grid_9">
+                                <input placeholder="Điểm xem tin" readonly="true" class="point" name="point" type="text">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <label class="grid_2"></label>
+
+                            Trừ <b class="TextColorRed totalTien">0</b> VNĐ và cộng <b class="TextColorRed tpoint">0</b> điểm xem tin.
+                        </div>
+
+
+                        @if (((bool)ViewBag.Error) == true)
+                        {
+                            <div class="row">
+                                <label class="grid_2"></label>
+                                <div class="row-right grid_9" style="line-height: 32px">
+                                    <b style="color: red">Số tiền trong tài khoản bạn không đủ để thực hiện</b>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="row">
+                            <label class="grid_2"></label>
+                            <div class="row-right grid_9">
+                                <a class="btnSubmit">Đổi điểm</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).on("click", ".btnSubmitReview", function () {
+                        if ($('.money').val() != "") {
+                            $.getJSON("@Url.Action("AjaxMoneyToPoint")?money=" + $('.money').autoNumeric('get'), function (data) {
+                                //  $('.tongTien').val(tien(data.M + data.ME));
+                                $('.point').val(data.P);
+                                $('.totalTien').html(tien(data.M + data.ME));
+                                $('.tpoint').html(data.P);
+
+
+                                $('.tongTien').autoNumeric('set', data.M + data.ME);
+                            });
+                        }
+
+                    });
+                    $(document).on("click", ".btnSubmit", function () {
+                        if ($('.money').val() != "") {
+                            document.forms[0].submit();
+                        }
+                       
+
+                    });
+                    function tien(val) {
+
+                        if (val != null) {
+
+                            while (/(\d+)(\d{3})/.test(val.toString())) {
+                                val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                            }
+                            return val + '';
+                        }
+                        else {
+                            return '';
+                        }
+
+                    }
+                </script>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="grid_3 omega main_right">
+
+        @Html.Partial("_partialManagerCenter")
+
+
+
+
+
+    </div>
+</div>
+<style>
+    input[readonly] {
+        background-color: #eee;
+    }
+</style>
+<script>
+    jQuery(document).ready(function ($) {
+
+        $('.money').autoNumeric('init', { currencySymbol: 'VND' });
+        $('.tongTien').autoNumeric('init', { currencySymbol: 'VND' });
+
+    });
+    $('.radioType').click(function () {
+        $(this).find('.radioIdType').prop('checked', true);
+    });
+</script>
