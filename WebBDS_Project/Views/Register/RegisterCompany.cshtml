@@ -91,17 +91,17 @@
                         <div class="row-right">
 
 
-                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @placeholder = "Nhập địa chỉ liên hệ" })
+                            @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @placeholder = "Nhập địa chỉ liên hệ",@class="input1" })
 
                         </div>
-                        <label>Tỉnh/Thành phố</label>
-                        <div class="row-right  grid_2">
+                        <label class="child">Tỉnh/Thành phố</label>
+                        <div class="row-right1  grid_2">
 
                             @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2", @style = "width:100%;" })
 
                         </div>
 
-                        <div class="row-right  grid_2">
+                        <div class="row-right1  grid_3">
 
 
                             @Html.DropDownListFor(m => m.TblBDSEmployerInformation.District, new SelectList(Model.ListGeoDisModel, "DistId", "DistName"), new { @class = "select2", @style = "width:100%;" })

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.Entity.Validation;
 using System.Drawing;
@@ -97,7 +98,13 @@ namespace WebBDS_Project.Controllers
                 else
                 {
                     bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
-                    bdsInformationModel.TblBdsAdcount.ModifiedDate = DateTime.Now;
+                    bdsInformationModel.TblBdsAdcount.CreateUser = 1;
+                    bdsInformationModel.TblBdsAdcount.Active = 1;
+                    bdsInformationModel.TblBdsAdcount.Money = 0;
+                    bdsInformationModel.TblBdsAdcount.Point = 0;
+                    bdsInformationModel.TblBdsAdcount.MailActive = 1;
+                    bdsInformationModel.TblBdsAdcount.Token = Guid.NewGuid().ToString();
+                 
                     db.BDSAccounts.Add(bdsInformationModel.TblBdsAdcount);
                     db.SaveChanges();
                     BDSEmployerInformation tblemployee = new BDSEmployerInformation();
@@ -108,13 +115,14 @@ namespace WebBDS_Project.Controllers
                     bdsInformationModel.TblBDSEmployerInformation.CreateUser = 1;
                     bdsInformationModel.TblBDSEmployerInformation.ModifiedDate = DateTime.Now;
                     bdsInformationModel.TblBDSEmployerInformation.ModifiedUser = 1;
-                    bdsInformationModel.TblBDSEmployerInformation.Featured = 1;
+                    bdsInformationModel.TblBDSEmployerInformation.Featured = 0;
                     bdsInformationModel.TblBDSEmployerInformation.PhoneContact = bdsInformationModel.TblBDSEmployerInformation.Phone;
                     bdsInformationModel.TblBDSEmployerInformation.DistrictContact = bdsInformationModel.TblBDSEmployerInformation.District;
                     bdsInformationModel.TblBDSEmployerInformation.City = bdsInformationModel.TblBDSEmployerInformation.City;
                     bdsInformationModel.TblBDSEmployerInformation.AddressContact = bdsInformationModel.TblBDSEmployerInformation.Address;
                     bdsInformationModel.TblBDSEmployerInformation.EmailContact = bdsInformationModel.TblBdsAdcount.Email;
                     bdsInformationModel.TblBDSEmployerInformation.TypeContact = 1;
+                    bdsInformationModel.TblBDSEmployerInformation.IdAccount = bdsInformationModel.TblBdsAdcount.ID;
                     db.BDSEmployerInformations.Add(bdsInformationModel.TblBDSEmployerInformation);
                     db.SaveChanges();
                 }
@@ -224,10 +232,17 @@ namespace WebBDS_Project.Controllers
                                where datatext.language_id == "vi"
                                select new GeoModel { CityId = data.state_id, CityName = datatext.text };
                 bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
-                bdsInformationModel.TblBdsAdcount.ModifiedDate = DateTime.Now;
+                bdsInformationModel.TblBdsAdcount.CreateUser = 1;
+                bdsInformationModel.TblBdsAdcount.Active = 1;
+                bdsInformationModel.TblBdsAdcount.Money = 0;
+                bdsInformationModel.TblBdsAdcount.Point = 0;
+                bdsInformationModel.TblBdsAdcount.MailActive = 1;
+                bdsInformationModel.TblBdsAdcount.Token = Guid.NewGuid().ToString();
+                 
 
                 db.BDSAccounts.Add(bdsInformationModel.TblBdsAdcount);
                 db.SaveChanges();
+
                 bdsInformationModel.TblBDSPersonalInformation.IdAccount = bdsInformationModel.TblBdsAdcount.ID;
                 bdsInformationModel.TblBDSPersonalInformation.Active = 1;
                 bdsInformationModel.TblBDSPersonalInformation.CreateDate = DateTime.Now;
@@ -235,6 +250,7 @@ namespace WebBDS_Project.Controllers
                 bdsInformationModel.TblBDSPersonalInformation.CreateUser = 1;
                 bdsInformationModel.TblBDSPersonalInformation.ModifiedUser = 1;
                 bdsInformationModel.TblBDSPersonalInformation.FullAddress = bdsInformationModel.TblBDSPersonalInformation.Address + "," + dataCity.FirstOrDefault(x => x.CityId == bdsInformationModel.TblBDSPersonalInformation.City).CityName;
+                bdsInformationModel.TblBDSPersonalInformation.BDSEmpers=new Collection<BDSEmper>();
                 db.BDSPersonalInformations.Add(bdsInformationModel.TblBDSPersonalInformation);
                 db.SaveChanges();
 
