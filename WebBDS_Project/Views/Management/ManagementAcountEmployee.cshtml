@@ -413,23 +413,7 @@
 
                             </div>
 
-                            <div class="row">
-                                <label class="grid_2">Tình trạng hôn nhân<span class="required"> *</span></label>
-                                <div class="row-right1 grid_3 ">
-
-
-                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), "Chọn tình trạng hôn nhân", new { @class = "select2", @style = "width:100%;" })
-
-                                </div>
-                                <label class="grid_2">Mức lương mong muốn <span class="required">*</span></label>
-                                <div class="row-right1 grid_4">
-                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"), "Chọn mức lương", new { @class = "select2", @style = "width:100%;" })
-                                </div>
-
-
-
-
-                            </div>
+                          
                             <div class="row">
                                 <label class="grid_2">Số năm kinh nghiệm<span class="required"> *</span></label>
                                 <div class="row-right1 grid_3 ">
@@ -555,6 +539,9 @@
 
 <script>
     $(function () {
+       
+        var datet = $('#TblBDSPersonalInformation_Birthday_Month').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Day').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Year').val();
+            $('#hdValuesDate').val(datet);
         $('.select2').select2();
         $(".datepicker").datepicker({
             showOn: "button",
@@ -571,8 +558,38 @@
         });
         $("#TblBDSPersonalInformation_Birthday_Year").change(function () {
 
-            var datet = $('#TblBDSPersonalInformation_Birthday_Day').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Month').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Year').val();
+            var datet = $('#TblBDSPersonalInformation_Birthday_Month').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Day').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Year').val();
             $('#hdValuesDate').val(datet);
+        });
+        $(function () {
+            $(".datepicker").datepicker({
+                showOn: "button",
+                buttonImage: "/Template/images/calendar.gif",
+                buttonImageOnly: true,
+                buttonText: "Select date"
+            });
+            $('#hdValuesDate').change(function () {
+                var birthday = $('#hdValuesDate').val().split('/');
+                $('#TblBDSPersonalInformation_Birthday_Day').val(birthday[1]);
+                $('#TblBDSPersonalInformation_Birthday_Month').val(birthday[0]);
+                $('#TblBDSPersonalInformation_Birthday_Year').val(birthday[2]);
+
+            });
+            $("#TblBDSPersonalInformation_Birthday_Year").change(function () {
+
+                var datet = $('#TblBDSPersonalInformation_Birthday_Month').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Day').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Year').val();
+                $('#hdValuesDate').val(datet);
+            });
+            $("#TblBDSPersonalInformation_Birthday_Day").change(function () {
+
+                var datet = $('#TblBDSPersonalInformation_Birthday_Month').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Day').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Year').val();
+                $('#hdValuesDate').val(datet);
+            });
+            $("#TblBDSPersonalInformation_Birthday_Month").change(function () {
+
+                var datet = $('#TblBDSPersonalInformation_Birthday_Month').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Day').val() + "/" + $('#TblBDSPersonalInformation_Birthday_Year').val();
+                $('#hdValuesDate').val(datet);
+            });
         });
     });
     $("#submitbutton").on('click', function (e) {

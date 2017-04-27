@@ -270,7 +270,17 @@
         });
         $("#year").change(function () {
 
-            var datet = $('#day').val() + "/" + $('#month').val() + "/" + $('#year').val();
+            var datet = $('#month').val() + "/" +  $('#day').val() + "/" + $('#year').val();
+            $('#hdValuesDate').val(datet);
+        });
+        $("#day").change(function () {
+
+            var datet = $('#month').val() + "/" +  $('#day').val() + "/" + $('#year').val();
+            $('#hdValuesDate').val(datet);
+        });
+        $("#month").change(function () {
+
+            var datet = $('#month').val() + "/" +  $('#day').val() + "/" + $('#year').val();
             $('#hdValuesDate').val(datet);
         });
     });

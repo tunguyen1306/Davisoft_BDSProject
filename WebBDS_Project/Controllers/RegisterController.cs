@@ -250,7 +250,7 @@ namespace WebBDS_Project.Controllers
                 bdsInformationModel.TblBDSPersonalInformation.CreateUser = 1;
                 bdsInformationModel.TblBDSPersonalInformation.ModifiedUser = 1;
                 bdsInformationModel.TblBDSPersonalInformation.FullAddress = bdsInformationModel.TblBDSPersonalInformation.Address + "," + dataCity.FirstOrDefault(x => x.CityId == bdsInformationModel.TblBDSPersonalInformation.City).CityName;
-                bdsInformationModel.TblBDSPersonalInformation.BDSEmpers=new Collection<BDSEmper>();
+                //bdsInformationModel.TblBDSPersonalInformation.BDSEmpers=new Collection<BDSEmper>();
                 db.BDSPersonalInformations.Add(bdsInformationModel.TblBDSPersonalInformation);
                 db.SaveChanges();
 

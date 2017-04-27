@@ -307,6 +307,16 @@ namespace WebBDS_Project.Controllers
                     BDSPersonalInformation.City = register.TblBDSPersonalInformation.City;
                     BDSPersonalInformation.Description = register.TblBDSPersonalInformation.Description;
                     BDSPersonalInformation.UrlImage = register.TblBDSPersonalInformation.UrlImage;
+                    BDSPersonalInformation.Birthday = register.TblBDSPersonalInformation.Birthday;
+                    BDSPersonalInformation.Sex = register.TblBDSPersonalInformation.Sex;
+                    BDSPersonalInformation.City= register.TblBDSPersonalInformation.City;
+                    BDSPersonalInformation.District = register.TblBDSPersonalInformation.District;
+                    BDSPersonalInformation.MaritalStatus = register.TblBDSPersonalInformation.MaritalStatus;
+                    BDSPersonalInformation.Salary = register.TblBDSPersonalInformation.Salary;
+                    BDSPersonalInformation.Experience = register.TblBDSPersonalInformation.Experience;
+                    BDSPersonalInformation.Education = register.TblBDSPersonalInformation.Education;
+                    BDSPersonalInformation.IdLoaiNghe = register.TblBDSPersonalInformation.IdLoaiNghe;
+                    BDSPersonalInformation.ProfessionalExperience = register.TblBDSPersonalInformation.ProfessionalExperience;
                     db.Entry(BDSPersonalInformation).State = EntityState.Modified;
                     db.SaveChanges();
                 }
