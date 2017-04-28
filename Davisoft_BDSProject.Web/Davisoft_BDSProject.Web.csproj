@@ -350,6 +350,7 @@
     <Compile Include="Controllers\AdminDistrictController.cs" />
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\BDSAccountController.cs" />
+    <Compile Include="Controllers\BDSBannerController.cs" />
     <Compile Include="Controllers\BDSCommentController.cs" />
     <Compile Include="Controllers\BDSExtNewsController.cs" />
     <Compile Include="Controllers\BDSBranchController.cs" />
@@ -3126,6 +3127,10 @@
     <Content Include="Views\BDSComment\Edit.cshtml" />
     <Content Include="Views\BDSComment\Index.cshtml" />
     <Content Include="Views\BDSComment\_Input.cshtml" />
+    <Content Include="Views\BDSBanner\_Input.cshtml" />
+    <Content Include="Views\BDSBanner\Create.cshtml" />
+    <Content Include="Views\BDSBanner\Edit.cshtml" />
+    <Content Include="Views\BDSBanner\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

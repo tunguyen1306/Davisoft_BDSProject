@@ -1,0 +1,212 @@
+﻿@using System.Configuration
+@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSBanner
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Name", "Name") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Page", "Page") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Page).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Position", "Position") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.Position, new List<SelectListItem>
+                                    {
+                                        new SelectListItem{Text="Top",Value="Top"},
+                                        new SelectListItem{Text="Left",Value="Left"},
+                                           new SelectListItem{Text="Right",Value="Right"},
+                                               new SelectListItem{Text="Bottom",Value="Bottom"},
+                                                     new SelectListItem{Text="ContentTopRight",Value="ContentTopRight"},
+                                                           new SelectListItem{Text="ContentBottomRight",Value="ContentBottomRight"},
+                                                                 new SelectListItem{Text="ContentLeftTop",Value="ContentLeftTop"},
+                                                                  new SelectListItem{Text="ContentCenter",Value="ContentCenter"},
+
+                                    }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Banner", "Banner") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.Type, new List<SelectListItem>
+                                    {
+                                        new SelectListItem{Text="Image",Value="1"},
+                                        new SelectListItem{Text="Iframe",Value="2"}
+
+                                    }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
+    </div>
+</div>
+
+
+<div class="form-group picture">
+    <label class="col-md-3 control-label"></label>
+    <div class="col-md-8" style="position: relative;">
+        <div id="picture">
+            @if (Model.Banner != null)
+            {
+                <img style="min-width: 120px; min-height:120px;" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.Banner.ToString().Split('_')[0]/@Model.Banner" class="img-polaroid user-picture-preview" />
+            }
+            else
+            {
+                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group iframe">
+    <label class="col-md-3 control-label"></label>
+    <div class="col-md-8" style="position: relative;">
+        <div id="iframe">
+            @if (Model.Banner != null)
+{
+    <iframe class="user-iframe-preview" src="@Model.Banner" width="100%" height="120"></iframe>
+}
+            else
+            {
+                <iframe class="user-iframe-preview" src="https://www.google.com.vn/" width="100%" height="120"></iframe>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Width", "Width") <span class="required">*</span></label>
+    <div class="col-md-2">
+        @Html.Bootstrap().TextBoxFor(m => m.Page).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+    <label class="control-label col-md-1">@Utilities.Resource("BDSBanner_Height", "Height") <span class="required">*</span></label>
+    <div class="col-md-2">
+        @Html.Bootstrap().TextBoxFor(m => m.Page).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <label class="col-md-3 control-label"></label>
+    <div class="col-md-7">
+        @Html.Bootstrap().FileFor(m => m.UrlImageFile).HtmlAttributes(new { @class = "form-control hidden" }).ShowValidationMessage(false)
+        @Html.Bootstrap().TextBoxFor(m => m.Banner).HtmlAttributes(new { @class = "form-control" }).Placeholder("Please click to upload logo").ShowValidationMessage(true)
+        @if (Model.Banner != null)
+        {
+            <script type="text/javascript">
+                document.getElementById("Banner").value = "@Model.Banner";
+
+            </script>
+        }
+        else
+        {
+
+            <script type="text/javascript">
+                document.getElementById("Banner").value = "~/Display/img/profile.png";
+
+            </script>
+        }
+
+    </div>
+    <div class="col-md-1">
+        <a class="upload btn  btn-default" style="width: 100%"><i class="icon-upload"></i> Upload</a>
+    </div>
+</div>
+
+
+
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Description", "Description")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+>
+@Html.Script(
+    @<text>
+        <script>
+            $(document).ready(function () {
+                if ($('#Type').val() == 2) {
+                    $('.iframe').show();
+                    $('.picture,.upload').hide();
+
+                } else {
+                    $('.iframe').hide();
+                    $('.picture,.upload').show();
+                }
+            });
+            $(document).on('change', '#Type', function () {
+                if ($(this).val() == 2) {
+                    $('.iframe').show();
+                    $('.picture,.upload').hide();
+
+                } else {
+                    $('.iframe').hide();
+                    $('.picture,.upload').show();
+                }
+            });
+            $(document).on('change', '#Banner', function () {
+                if ($('#Type').val() == 2) {
+                    $('.user-iframe-preview')[0].src = this.value;
+
+                } else {
+                    $('.user-picture-preview')[0].src = this.value;
+                   
+                }
+            });
+            $(document).on('click', '.upload', function () {
+                $('input[type="File"]').click();
+                return false;
+            });
+
+            $(document).on('change', 'input[type="File"]', function () {
+                var upload = $(this);
+
+                var indicator = upload.next('.selected');
+                if (indicator.length == 0) {
+                    indicator = $('<span class="selected"></span>').insertAfter(upload);
+                }
+
+                if (upload.val() == '') {
+                    indicator.html('');
+                } else if (window.FileReader) {
+                    $('#BannerUrl').val(upload.val());
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        if (upload[0].files[0].size > 2000000) {
+                            $.sticky("@Resource.FileToLarge", { type: 'st-danger' });
+                            upload.replaceWith(upload = upload.clone(true));
+                        } else {
+                            $('#picture').html("<img style='width: 120px; height:120px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
+                        }
+                    };
+                    reader.readAsDataURL(upload[0].files[0]);
+                } else {
+                    indicator.html("Selected");
+                }
+            });
+
+        </script>
+    </text>)

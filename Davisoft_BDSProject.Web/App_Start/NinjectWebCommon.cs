@@ -118,7 +118,7 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IBDSTransactionHistoryService>().To<EFBDSTransactionHistory>();
             kernel.Bind<IBDSExtNewsService>().To<EFBDSExtNews>();
             kernel.Bind<IBDSCommentService>().To<EFBDSComment>();
-
+            kernel.Bind<IBDSBannerService>().To<EFBDSBanner>();
 
 
             kernel.Bind<IValidator<User>>().To<UserValidator>();
