@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -64,7 +66,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
-            return View(new BDSBanner{CreateDate = DateTime.Now,CreateUser = 1,ID = 0,Type = 1});
+            return View(new BDSBanner{CreateDate = DateTime.Now,CreateUser = 1,ID = 0,Type = 1,BWidth = 0,BHeight = 0});
         }
 
         [HttpPost]
@@ -74,7 +76,36 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 return View(model);
             }
-            model.KeySearch = model.Name.NormalizeD() + " " +
+            var path = string.Empty;
+            var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = model.Banner;
+            var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];
+            if (file != null && file.ContentLength > 0)
+            {
+
+                var fileName = Path.GetFileName(file.FileName);
+                string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                fortmatName = Path.GetExtension(fileName);
+
+                NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+                if (Server.MapPath("~/fileUpload/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]) + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+                else
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path1 = Path.Combine(path, fileNameFull);
+                file.SaveAs(path1);
+            }
+            model.Banner = fileNameFull;
+            model.KeySearch = model.Name.NormalizeD() + " " + model.Page.NormalizeD() + " " + model.Position.NormalizeD() + " " + model.Banner.NormalizeD() + " " +( model.Type==1?"Image":"Iframe") + " " +
                             (String.IsNullOrEmpty(model.Description)
                                 ? ""
                                 : model.Description.NormalizeD());
@@ -98,10 +129,39 @@ namespace Davisoft_BDSProject.Web.Controllers
                 ViewBag.Message = Resource.SaveFailed;
                 return View(model);
             }
-            model.KeySearch = model.Name.NormalizeD() + " " +
-                              (String.IsNullOrEmpty(model.Description)
-                                  ? ""
-                                  : model.Description.NormalizeD());
+            var path = string.Empty;
+            var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = model.Banner;
+            var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];
+            if (file != null && file.ContentLength > 0)
+            {
+
+                var fileName = Path.GetFileName(file.FileName);
+                string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                fortmatName = Path.GetExtension(fileName);
+
+                NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+                if (Server.MapPath("~/fileUpload/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]) + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+                else
+                {
+                    path = Server.MapPath("~/fileUpload/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path1 = Path.Combine(path, fileNameFull);
+                file.SaveAs(path1);
+            }
+            model.Banner = fileNameFull;
+            model.KeySearch = model.Name.NormalizeD() + " " + model.Page.NormalizeD() + " " + model.Position.NormalizeD() + " " + model.Banner.NormalizeD() + " " + (model.Type == 1 ? "Image" : "Iframe") + " " +
+                           (String.IsNullOrEmpty(model.Description)
+                               ? ""
+                               : model.Description.NormalizeD());
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

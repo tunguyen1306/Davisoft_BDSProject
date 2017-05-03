@@ -513,6 +513,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Validation\BDSAccountValidator.cs" />
+    <Compile Include="Validation\BDSBannerValidator.cs" />
     <Compile Include="Validation\BDSCommentValidator.cs" />
     <Compile Include="Validation\BDSExtNewsValidator.cs" />
     <Compile Include="Validation\BDSTransactionValidator.cs" />

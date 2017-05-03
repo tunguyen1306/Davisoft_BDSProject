@@ -18,7 +18,7 @@
     </h3>
     <div class="panel-body">
         <div class="form-horizontal">
-            @using (Html.BeginForm())
+          @using (Html.BeginForm("Edit", "BDSBanner", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.Partial("_Input", Model)
                 <div class="form-actions">

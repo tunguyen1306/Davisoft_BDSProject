@@ -113,7 +113,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             var path1 = string.Empty;
             var NewPath = string.Empty;
             var fortmatName = string.Empty;
-            var fileNameFull = string.Empty;
+            var fileNameFull = model.UrlImage;
 
 
 
@@ -182,7 +182,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             var path1 = string.Empty;
             var NewPath = string.Empty;
             var fortmatName = string.Empty;
-            var fileNameFull = string.Empty;
+            var fileNameFull = model.UrlImage;
 
 
 

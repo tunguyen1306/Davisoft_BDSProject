@@ -4,12 +4,12 @@
 @using Resources
 @model Davisoft_BDSProject.Domain.Entities.BDSBanner
 
-<div class="form-group">
+@*<div class="form-group">
     <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Name", "Name") <span class="required">*</span></label>
     <div class="col-md-8">
         @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
     </div>
-</div>
+</div>*@
 
 <div class="form-group">
     <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Page", "Page") <span class="required">*</span></label>
@@ -91,11 +91,11 @@
 <div class="form-group">
     <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Width", "Width") <span class="required">*</span></label>
     <div class="col-md-2">
-        @Html.Bootstrap().TextBoxFor(m => m.Page).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+        @Html.Bootstrap().TextBoxFor(m => m.BWidth).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
     </div>
     <label class="control-label col-md-1">@Utilities.Resource("BDSBanner_Height", "Height") <span class="required">*</span></label>
     <div class="col-md-2">
-        @Html.Bootstrap().TextBoxFor(m => m.Page).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+        @Html.Bootstrap().TextBoxFor(m => m.BHeight).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
     </div>
 </div>
 
@@ -143,7 +143,8 @@
 @Html.HiddenFor(m => m.CreateDate)
 @Html.HiddenFor(m => m.CreateUser)
 @Html.HiddenFor(m => m.ModifiedUser)
->
+@Html.HiddenFor(m => m.Name)
+
 @Html.Script(
     @<text>
         <script>
@@ -168,12 +169,33 @@
                 }
             });
             $(document).on('change', '#Banner', function () {
+                var w = $('#BWidth').val() == "" || $('#BWidth').val() == "0" ? "120" : $('#BWidth').val();
+                var h = $('#BHeight').val() == "" || $('#BHeight').val() == "0" ? "120" : $('#BHeight').val();
                 if ($('#Type').val() == 2) {
                     $('.user-iframe-preview')[0].src = this.value;
+                    $('.user-iframe-preview')[0].width = w;
+                    $('.user-iframe-preview')[0].height = h;
 
                 } else {
                     $('.user-picture-preview')[0].src = this.value;
+                    $('.user-picture-preview').css('width', w + "px");
+                    $('.user-picture-preview').css('height', h + "px");
                    
+                }
+            });
+            $(document).on('change', '#BWidth,#BHeight', function () {
+                var w = $('#BWidth').val() == "" || $('#BWidth').val() == "0" ? "120" : $('#BWidth').val();
+                var h = $('#BHeight').val() == "" || $('#BHeight').val() == "0" ? "120" : $('#BHeight').val();
+                if ($('#Type').val() == 2) {
+                   
+                    $('.user-iframe-preview')[0].width = w;
+                    $('.user-iframe-preview')[0].height = h;
+
+                } else {
+                   
+                    $('.user-picture-preview').css('width',w+"px");
+                    $('.user-picture-preview').css('height',h + "px");
+
                 }
             });
             $(document).on('click', '.upload', function () {
@@ -192,14 +214,18 @@
                 if (upload.val() == '') {
                     indicator.html('');
                 } else if (window.FileReader) {
-                    $('#BannerUrl').val(upload.val());
+                    $('#Banner').val(upload.val());
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         if (upload[0].files[0].size > 2000000) {
                             $.sticky("@Resource.FileToLarge", { type: 'st-danger' });
                             upload.replaceWith(upload = upload.clone(true));
                         } else {
-                            $('#picture').html("<img style='width: 120px; height:120px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
+
+                            var w = $('#BWidth').val() == "" || $('#BWidth').val() == "0" ? "120" : $('#BWidth').val();
+                            var h = $('#BHeight').val() == "" || $('#BHeight').val() == "0" ? "120" : $('#BHeight').val();
+                         
+                            $('#picture').html("<img style='width: " + w + "px; height:" + h + "px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
                         }
                     };
                     reader.readAsDataURL(upload[0].files[0]);
