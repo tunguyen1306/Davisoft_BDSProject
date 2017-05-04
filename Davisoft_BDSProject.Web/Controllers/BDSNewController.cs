@@ -190,7 +190,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromCreateNews = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.FromDeadline = DateTime.Now;
-            model.IdTypeNewsCuurent = model.IdTypeNewsCuurent;
+            model.IdTypeNewsCuurent = model.IdTypeNews;
             model.BDSAccount = _serviceAccount.GetItem(model.IdAcount);
             model.KeySearch = model.Title.NormalizeD() + " " + model.BDSAccount.Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
             _service.UpdateItem(model);
