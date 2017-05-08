@@ -303,7 +303,7 @@ namespace WebBDS_Project.Controllers
                 }
             }
 
-            if (HttpContext.Request.Url != null && HttpContext.Request.Url.Host.Contains("localhost"))
+            //if (HttpContext.Request.Url != null && HttpContext.Request.Url.Host.Contains("localhost"))
 
                 path = ConfigurationManager.AppSettings["UrlImage"] + DateTime.Now.Day + DateTime.Now.Month + "/";
 
