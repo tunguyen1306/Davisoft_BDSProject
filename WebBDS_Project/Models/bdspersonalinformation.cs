@@ -14,6 +14,11 @@ namespace WebBDS_Project.Models
     
     public partial class BDSPersonalInformation
     {
+        public BDSPersonalInformation()
+        {
+            this.BDSEmpers = new HashSet<BDSEmper>();
+        }
+    
         public int ID { get; set; }
         public int IdAccount { get; set; }
         public string Name { get; set; }
@@ -41,5 +46,7 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> DateReup { get; set; }
         public Nullable<int> CountReup { get; set; }
         public Nullable<int> MaxReup { get; set; }
+    
+        public virtual ICollection<BDSEmper> BDSEmpers { get; set; }
     }
 }
