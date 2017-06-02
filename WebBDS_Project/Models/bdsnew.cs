@@ -56,6 +56,7 @@ namespace WebBDS_Project.Models
         public Nullable<int> IdTypeNewsCuurent { get; set; }
         public Nullable<System.DateTime> DateReup { get; set; }
         public Nullable<int> CountReup { get; set; }
+        public Nullable<int> MaxReup { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<int> RefTranHis { get; set; }
         public Nullable<int> Active { get; set; }
@@ -63,7 +64,6 @@ namespace WebBDS_Project.Models
         public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
-        public Nullable<int> MaxReup { get; set; }
     
         public virtual ICollection<BDSPicture> BDSPictures { get; set; }
     }

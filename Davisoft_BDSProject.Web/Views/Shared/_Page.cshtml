@@ -238,7 +238,7 @@
     }
 </style>
 <header class="cd-main-header" runat="server" id="topheader">
-    <a href="~/" style="color: #fff;text-transform: uppercase;" class="cd-logo"><strong>Certified Pre-Owned System</strong></a>
+    <a href="~/" style="color: #fff;text-transform: uppercase;" class="cd-logo"><strong>Davisoft</strong></a>
     <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
 
     <nav class="cd-nav">
@@ -410,17 +410,95 @@
     </footer>
 </main>
 
-@section css
-{
-    @Styles.Render("~/display/css/min")
-    @RenderSection("css", required: false)
-}
+<link href="~/Display/css/jquery-ui.min.css" rel="stylesheet"/>
+<link href="~/Display/css/OpenSans.css" rel="stylesheet"/>
+<link href="~/Display/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="~/Display/css/bootstrap-theme.css" rel="stylesheet"/>
+<link href="~/Display/css/jquery.handsontable.full.css" rel="stylesheet"/>
+<link href="~/Display/js/selectize-0.12.1/css/selectize.css" rel="stylesheet"/>
+<link href="~/Display/js/selectize-0.12.1/css/selectize.bootstrap3.css" rel="stylesheet"/>
+<link href="~/Display/js/select2-4.0.1/css/select2.css" rel="stylesheet"/>
+<link href="~/Display/js/flag-icon-css/flag-icon.css" rel="stylesheet"/>
+<link href="~/Display/css/bd.css" rel="stylesheet"/>
+<link href="~/Display/css/style.css" rel="stylesheet"/>
+<link href="~/Display/css/buttons.css" rel="stylesheet"/>
+<link href="~/Display/css/app.css" rel="stylesheet"/>
+<link href="~/Display/css/font-awesome.css" rel="stylesheet"/>
+<link href="~/Display/css/database.css" rel="stylesheet"/>
+<link href="~/Display/css/fixedHeader.dataTables.min.css" rel="stylesheet"/>
+<link href="~/Display/js/chosen/chosen.css" rel="stylesheet"/>
+<link href="~/Display/js/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet"/>
+<link href="~/Display/css/bootstrap-multiselect.css" rel="stylesheet"/>
+<link href="~/Display/js/magnific-popup/magnific-popup.css" rel="stylesheet"/>
+<link href="~/Display/js/datepicker/datepicker.css" rel="stylesheet"/>
+<link href="~/Display/js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+<link href="~/Display/lib/DataTables-1.10.0/extensions/FixedColumns/css/dataTables.fixedColumns.css" rel="stylesheet"/>
+<link href="~/Display/lib/multi-select/css/multi-select.css" rel="stylesheet"/>
+<link href="~/Display/lib/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"/>
 
-@section js
-{
-    @Scripts.Render("~/content/js/min")
+    
 
-    <script>
+    <!--[if lte IE 8]>
+    
+
+    <![endif]-->
+    <link href="/Content/UploadVanGia/toastr.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    
+    <![endif]-->
+
+    
+    <script src="~/Display/js/modernizr.js"></script>
+<script src="~/Display/js/jquery-2.1.4.js"></script>
+<script src="~/Display/js/moment.js"></script>
+<script src="~/Display/js/bootstrap.min.js"></script>
+<script src="~/Display/js/jquery-ui.min.js"></script>
+<script src="~/Display/js/main.js"></script>
+<script src="~/Display/js/datatable/datatable.js"></script>
+<script src="~/Display/js/datatable/dataTables.fixedHeader.min.js"></script>
+<script src="~/Display/js/chosen/chosen.jquery.min.js"></script>
+<script src="~/Display/js/colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/Display/js/app.plugin.js"></script>
+<script src="~/Display/js/jquery.custom-file-input.js"></script>
+<script src="~/Display/js/jquery.handsontable.full.js"></script>
+<script src="~/Display/js/select2-4.0.1/js/select2.full.js"></script>
+<script src="~/Display/js/selectize-0.12.1/js/standalone/selectize.js"></script>
+<script src="~/Display/js/bs.pagination.js"></script>
+<script src="~/Display/js/bootstrap-multiselect.js"></script>
+<script src="~/Display/js/jquery.menu-aim.js"></script>
+@*<script src="~/Display/js/highchart/highcharts.js"></script>
+<script src="~/Display/js/highchart/highcharts-more.js"></script>
+<script src="~/Display/js/highchart/grouped-categories.js"></script>
+<script src="~/Display/js/highchart/modules/exporting.js"></script>
+<script src="~/Display/js/highchart/modules/no-data-to-display.js"></script>*@
+<script src="~/Display/js/thickbox.js"></script>
+<script src="~/Display/js/magnific-popup/jquery.magnific-popup.js"></script>
+<script src="~/Display/js/ultilities/LINQ_JS.js"></script>
+<script src="~/Display/js/ultilities/string.js"></script>
+<script src="~/Display/js/uploadify/jquery.uploadify.js"></script>
+<script src="~/Display/js/accounting/accounting.js"></script>
+<script src="~/Display/js/bootbox/bootbox.min.js"></script>
+<script src="/Scripts/jQuery.tmpl.js"></script>
+<script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Display/lib/DataTables-1.10.0/extensions/FixedColumns/js/dataTables.fixedColumns.js"></script>
+<script src="/Scripts/multi-select/jquery.multi-select.js"></script>
+<script src="/Scripts/multi-select/jquery.quicksearch.js"></script>
+<script src="~/Display/js/datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Display/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Display/js/cldrjs-0.4.4/dist/cldr.js"></script>
+<script src="~/Display/js/cldrjs-0.4.4/dist/cldr/event.js"></script>
+<script src="~/Display/js/cldrjs-0.4.4/dist/cldr/supplemental.js"></script>
+<script src="~/Display/js/globalize-1.1.1/dist/globalize.js"></script>
+<script src="~/Display/js/globalize-1.1.1/dist/globalize/number.js"></script>
+<script src="~/Display/js/globalize-1.1.1/dist/globalize/date.js"></script>
+<script src="~/Display/js/jquery.price_format.2.0.js"></script>
+<script src="~/Display/lib/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="~/Display/lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/Content/ckeditor/ckeditor.js"></script>
+
+ <script>
 
        
         $('.prepend-icon').prepend("<i class='icon-list'></i>");
@@ -550,6 +628,3 @@
         //});money-amount
 
     </script>
-
-    @RenderSection("js", required: false)
-}
