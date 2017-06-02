@@ -138,11 +138,11 @@
                     <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Career", "Career") <span class="required">*</span></label>
                     <div class="col-md-9">
 
-                        @Html.Bootstrap().DropDownListFor(m => m.CareerID,(List<SelectListItem>)ViewBag.Careers).HtmlAttributes(new { @class = "form-control", @multiple = "multiple" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().DropDownListFor(m => m.Career, (List<SelectListItem>)ViewBag.Careers).HtmlAttributes(new { @class = "form-control", @multiple = "multiple" }).ShowValidationMessage(true)
                         <script>
                             setTimeout(function() {
-                                $('#CareerID').val('@(Model.Career)'.split(','));
-                                $('#CareerID').select2();
+                                $('#Career').val('@(Model.Career)'.split(','));
+                                $('#Career').select2();
                             },0);
                         </script>
                     
