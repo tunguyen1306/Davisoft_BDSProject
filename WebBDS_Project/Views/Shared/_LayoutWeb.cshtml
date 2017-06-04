@@ -110,7 +110,13 @@
                         <div class="logo"><a href="/">
                             <img src="~/Template/images/logo.png" alt="logo">Tìm việc làm bất động sản nhanh chóng</a> </div>
                         <div class="banner">
-                            <img src="~/Template/images/banner.jpg" alt="logo"></div>
+                            @foreach (var item in db.BDSBanners.Where(x=>x.Position== "Top"))
+                            {
+                                <img src="~/Template/images/banner.jpg" alt="logo">
+
+                            }
+                        </div>
+                           
                     </div>
                 </div>
 
