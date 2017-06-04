@@ -27,8 +27,5 @@ namespace WebBDS_Project.Models
         public string Description { get; set; }
         public string KeySearch { get; set; }
         public Nullable<int> RefTranHis { get; set; }
-    
-        public virtual BDSEmployerInformation BDSEmployerInformation { get; set; }
-        public virtual BDSPersonalInformation BDSPersonalInformation { get; set; }
     }
 }

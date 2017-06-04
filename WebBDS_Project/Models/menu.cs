@@ -14,18 +14,11 @@ namespace WebBDS_Project.Models
     
     public partial class Menu
     {
-        public Menu()
-        {
-            this.Roles = new HashSet<Role>();
-        }
-    
         public int ID { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
         public string Icon { get; set; }
         public int Order { get; set; }
         public int ParentID { get; set; }
-    
-        public virtual ICollection<Role> Roles { get; set; }
     }
 }

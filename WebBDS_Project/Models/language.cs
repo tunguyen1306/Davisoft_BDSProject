@@ -14,18 +14,9 @@ namespace WebBDS_Project.Models
     
     public partial class Language
     {
-        public Language()
-        {
-            this.Users = new HashSet<User>();
-            this.Users1 = new HashSet<User>();
-        }
-    
         public int ID { get; set; }
         public string Value { get; set; }
         public string DisplayName { get; set; }
         public string Image { get; set; }
-    
-        public virtual ICollection<User> Users { get; set; }
-        public virtual ICollection<User> Users1 { get; set; }
     }
 }

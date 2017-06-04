@@ -25,11 +25,13 @@ namespace WebBDS_Project.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public DbSet<Audit> Audits { get; set; }
         public DbSet<BDSAccount> BDSAccounts { get; set; }
         public DbSet<BDSApply> BDSApplies { get; set; }
         public DbSet<BDSArea> BDSAreas { get; set; }
         public DbSet<BDSBank> BDSBanks { get; set; }
+        public DbSet<BDSBanner> BDSBanners { get; set; }
         public DbSet<BDSBranch> BDSBranches { get; set; }
         public DbSet<BDSCareer> BDSCareers { get; set; }
         public DbSet<BDSComment> BDSComments { get; set; }
@@ -41,6 +43,7 @@ namespace WebBDS_Project.Models
         public DbSet<BDSLanguage> BDSLanguages { get; set; }
         public DbSet<BDSMarriage> BDSMarriages { get; set; }
         public DbSet<BDSNew> BDSNews { get; set; }
+        public DbSet<BDSNews_Career> BDSNews_Career { get; set; }
         public DbSet<BDSNewsTypePrice> BDSNewsTypePrices { get; set; }
         public DbSet<BDSNewsType> BDSNewsTypes { get; set; }
         public DbSet<BDSPersonalInformation> BDSPersonalInformations { get; set; }
@@ -63,11 +66,15 @@ namespace WebBDS_Project.Models
         public DbSet<Location> Locations { get; set; }
         public DbSet<LocationText> LocationTexts { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<Menus_Roles> Menus_Roles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Roles_Permissions> Roles_Permissions { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<StateText> StateTexts { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Users_Branches> Users_Branches { get; set; }
+        public DbSet<Users_Roles> Users_Roles { get; set; }
     }
 }

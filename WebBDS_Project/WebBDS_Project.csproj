@@ -165,6 +165,9 @@
     <Compile Include="Models\BDSBank.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BDSBanner.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BDSBranch.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
@@ -247,6 +250,9 @@
     <Compile Include="Models\Currency.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataWebBDS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -308,21 +314,15 @@
     <Compile Include="Models\StateText.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DataWebBDS.tt</DependentUpon>
-    </Compile>
-
     <Compile Include="Models\User.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-
     <Compile Include="Models\Users_Branches.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users_Roles.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
-
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

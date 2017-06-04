@@ -33,9 +33,5 @@ namespace WebBDS_Project.Models
         public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
-    
-        public virtual BDSAccount BDSAccount { get; set; }
-        public virtual BDSBank BDSBank { get; set; }
-        public virtual BDSBranch BDSBranch { get; set; }
     }
 }

@@ -14,11 +14,6 @@ namespace WebBDS_Project.Models
     
     public partial class BDSArea
     {
-        public BDSArea()
-        {
-            this.BDSBranches = new HashSet<BDSBranch>();
-        }
-    
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -28,7 +23,5 @@ namespace WebBDS_Project.Models
         public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
-    
-        public virtual ICollection<BDSBranch> BDSBranches { get; set; }
     }
 }

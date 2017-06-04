@@ -18,8 +18,5 @@ namespace WebBDS_Project.Models
         public string Name { get; set; }
         public int Value { get; set; }
         public Nullable<int> BranchID { get; set; }
-    
-        public virtual Branch Branch { get; set; }
-        public virtual Branch Branch1 { get; set; }
     }
 }

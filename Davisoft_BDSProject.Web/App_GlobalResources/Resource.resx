@@ -6839,4 +6839,49 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSBanner" xml:space="preserve">
+    <value>List Bank Banner</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBanner_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBanner_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBanner_Add" xml:space="preserve">
+    <value>Add Banner</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBanner_Page" xml:space="preserve">
+    <value>Page</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBanner_Position" xml:space="preserve">
+    <value>Position</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBanner_Banner" xml:space="preserve">
+    <value>Banner</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBanner_Width" xml:space="preserve">
+    <value>Width</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSBanner_Height" xml:space="preserve">
+    <value>Height</value>
+    <comment>
+    </comment>
+  </data>
 </root>

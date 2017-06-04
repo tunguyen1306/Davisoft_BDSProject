@@ -14,11 +14,6 @@ namespace WebBDS_Project.Models
     
     public partial class BDSEmployerInformation
     {
-        public BDSEmployerInformation()
-        {
-            this.BDSEmpers = new HashSet<BDSEmper>();
-        }
-    
         public int ID { get; set; }
         public int IdAccount { get; set; }
         public string Name { get; set; }
@@ -46,7 +41,5 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
         public Nullable<int> Featured { get; set; }
-    
-        public virtual ICollection<BDSEmper> BDSEmpers { get; set; }
     }
 }

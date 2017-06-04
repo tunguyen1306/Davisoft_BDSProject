@@ -14,12 +14,6 @@ namespace WebBDS_Project.Models
     
     public partial class User
     {
-        public User()
-        {
-            this.Branches = new HashSet<Branch>();
-            this.Roles = new HashSet<Role>();
-        }
-    
         public int ID { get; set; }
         public string DisplayName { get; set; }
         public string Password { get; set; }
@@ -36,12 +30,5 @@ namespace WebBDS_Project.Models
         public string Status_DisplayName { get; set; }
         public Nullable<int> BranchID { get; set; }
         public Nullable<int> LanguageID { get; set; }
-    
-        public virtual Branch Branch { get; set; }
-        public virtual Branch Branch1 { get; set; }
-        public virtual Language Language { get; set; }
-        public virtual Language Language1 { get; set; }
-        public virtual ICollection<Branch> Branches { get; set; }
-        public virtual ICollection<Role> Roles { get; set; }
     }
 }

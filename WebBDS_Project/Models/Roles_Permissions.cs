@@ -12,12 +12,9 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Roles_Permissions
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string RoleLevel_Value { get; set; }
-        public string RoleLevel_DisplayName { get; set; }
+        public int Role_Id { get; set; }
+        public int Permission_Id { get; set; }
     }
 }

@@ -12,21 +12,22 @@ namespace WebBDS_Project.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BDSBank
+    public partial class BDSBanner
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string UrlImage { get; set; }
-        public string AccountNumber { get; set; }
-        public string AccountName { get; set; }
-        public string Description { get; set; }
-        public string KeySearch { get; set; }
-        public string Branch { get; set; }
-        public int Active { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> Active { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Type { get; set; }
+        public string Position { get; set; }
+        public string Description { get; set; }
+        public string KeySearch { get; set; }
+        public string Page { get; set; }
+        public string Banner { get; set; }
+        public Nullable<int> BWidth { get; set; }
+        public Nullable<int> BHeight { get; set; }
     }
 }

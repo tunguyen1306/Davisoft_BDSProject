@@ -14,15 +14,6 @@ namespace WebBDS_Project.Models
     
     public partial class Branch
     {
-        public Branch()
-        {
-            this.Counters = new HashSet<Counter>();
-            this.Counters1 = new HashSet<Counter>();
-            this.Users = new HashSet<User>();
-            this.Users1 = new HashSet<User>();
-            this.Users2 = new HashSet<User>();
-        }
-    
         public int ID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
@@ -37,11 +28,5 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> DeletedTime { get; set; }
         public string EntityStatus_Value { get; set; }
         public string EntityStatus_DisplayName { get; set; }
-    
-        public virtual ICollection<Counter> Counters { get; set; }
-        public virtual ICollection<Counter> Counters1 { get; set; }
-        public virtual ICollection<User> Users { get; set; }
-        public virtual ICollection<User> Users1 { get; set; }
-        public virtual ICollection<User> Users2 { get; set; }
     }
 }

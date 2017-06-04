@@ -14,11 +14,6 @@ namespace WebBDS_Project.Models
     
     public partial class BDSAccount
     {
-        public BDSAccount()
-        {
-            this.BDSTransactions = new HashSet<BDSTransaction>();
-        }
-    
         public int ID { get; set; }
         public string Email { get; set; }
         public string PassWord { get; set; }
@@ -32,7 +27,5 @@ namespace WebBDS_Project.Models
         public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
-    
-        public virtual ICollection<BDSTransaction> BDSTransactions { get; set; }
     }
 }
