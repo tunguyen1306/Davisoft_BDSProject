@@ -861,7 +861,7 @@ line-height: 24px;
 	border-top: none;
 	display: list-item ;
     line-height: 22px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 	overflow:hidden;
 	padding: 8px 15px 5px;
 }
