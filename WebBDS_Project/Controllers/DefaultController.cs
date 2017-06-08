@@ -65,10 +65,14 @@ namespace WebBDS_Project.Controllers
         public ActionResult Detail(string  id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new ListCityNew { Id = data.state_id, Name = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new ListCityNew { Id = data.state_id, Name = datatext.text }).ToList();
+
+            dataCity.Insert(0, new ListCityNew { Id = 0, Name = "Chọn thành/phố" });
+            dataCity.Insert(0, new ListCityNew { Id = 59, Name = "TP.Hồ Chí Minh" });
+            dataCity.Insert(1, new ListCityNew { Id = 28, Name = "TP.Hà Nội" });
             var idEmployee = db.BDSNews.FirstOrDefault(x=>x.ID== id_).IdAcount;
             var Model = new NewsModel
             {

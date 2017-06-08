@@ -367,3 +367,32 @@ tr:nth-child(even) {
  .row .row-right1 {
     float: left;
 }
+ textarea{
+     height:100px;
+ }
+ 
+#zendvn-real-estate-bn-l,#zendvn-real-estate-bn-r {
+	position: fixed;
+	top: 33%;
+	z-index: 99999;
+	display: none;
+}
+#zendvn-real-estate-bn-l{
+	left: 0px;
+}
+#zendvn-real-estate-bn-r{
+	right: 0px;
+}
+#zendvn-real-estate-bn-l a,#zendvn-real-estate-bn-r a{
+	display: block;
+	margin-bottom: 2px;
+}
+@media screen and (max-width: 1200px) {
+	#zendvn-real-estate-bn-l, 
+	#zendvn-real-estate-bn-r{
+		display: none !important;
+	}
+}
+.gachTop{
+    color:white;border-left:dotted 1px; margin-right:10px;margin-left:10px;padding-top: 7px; padding-bottom: 7px;
+}

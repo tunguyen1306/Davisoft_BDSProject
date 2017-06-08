@@ -51,9 +51,9 @@ namespace Davisoft_BDSProject.Web.Controllers
             var EmployerInformations = _serviceEmployerInformation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.BDSAccount.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Banks = _serviceBank.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Branchs = _serviceBranch.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            EmployerInformations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Banks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Branchs.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            EmployerInformations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Banks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Branchs.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             ViewBag.Banks = Banks;
             ViewBag.Branchs = Branchs;
             ViewBag.EmployerInformations = EmployerInformations;

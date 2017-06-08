@@ -72,9 +72,9 @@
 	.main_left {
 		width:100%;
 	}
-	.main_right {
+	/*.main_right {
 		display:none;
-	}
+	}*/
 	.nav li {
 		width:100%;
 		background: #f5f5f5;
@@ -186,6 +186,9 @@
 		text-indent: 0;
 	}
 	.banner { 
+		 width:100%;
+	}
+    .banner_bottom { 
 		 width:100%;
 	}
 	.logo {

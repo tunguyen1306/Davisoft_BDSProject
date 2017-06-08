@@ -25,14 +25,17 @@ namespace WebBDS_Project.Controllers
             {
                 return RedirectToAction("LoginForm", "Login");
             }
-           
- 
+
+
             var dataCity = (from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+          
             dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố"});
-          var ListSalary=  db.BDSSalaries.ToList();
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
+            var ListSalary=  db.BDSSalaries.ToList();
          
             CaptCha cap = new CaptCha();
             BDSNew BDSNew = new BDSNew();
@@ -77,10 +80,14 @@ namespace WebBDS_Project.Controllers
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != create.tblCaptCha.Captcha)
             {
                 ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
-                var dataCity = from data in db.States
-                               join datatext in db.StateTexts on data.name_id equals datatext.id
-                               where datatext.language_id == "vi"
-                               select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+                var dataCity = (from data in db.States
+                                join datatext in db.StateTexts on data.name_id equals datatext.id
+                                where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                                select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+                dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
                 CaptCha cap = new CaptCha();
                 BDSNew BDSNew = new BDSNew();
                 var registerModel = new RegisterInformationModel
@@ -118,8 +125,11 @@ namespace WebBDS_Project.Controllers
                 db.SaveChanges();
                 foreach (var item in create.tblBDSNew.Career.Split(','))
                 {
-                    BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
-                    db.Entry(i).State = EntityState.Added;
+                    if (!String.IsNullOrEmpty(item))
+                    {
+                        BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
+                        db.Entry(i).State = EntityState.Added;
+                    }
                 }
                 db.SaveChanges();
                 return View(registerModel);
@@ -131,6 +141,9 @@ namespace WebBDS_Project.Controllers
                 create.tblBDSNew.FromCreateNews = DateTime.Now;
                 create.tblBDSNew.CreateDate = DateTime.Now;
                 create.tblBDSNew.Active = 1;
+                create.tblBDSNew.Status = 0;
+                create.tblBDSNew.CountReup = 0;
+                create.tblBDSNew.MaxReup = 0;
                 create.tblBDSNew.CreateUser = 1;
                 create.tblBDSNew.IdTypeNewsCuurent = create.tblBDSNew.IdTypeNews;
                 var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
@@ -142,8 +155,12 @@ namespace WebBDS_Project.Controllers
                 db.SaveChanges();
                 foreach (var item in create.tblBDSNew.Career.Split(','))
                 {
-                    BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
-                    db.Entry(i).State = EntityState.Added;
+                    if (!String.IsNullOrEmpty(item))
+                    {
+                        BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
+                        db.Entry(i).State = EntityState.Added;
+                    }
+                   
                 }
                 db.SaveChanges();
 
@@ -350,10 +367,14 @@ namespace WebBDS_Project.Controllers
         public ActionResult EditNews(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
             CaptCha cap = new CaptCha();
             BDSNew BDSNew = new BDSNew();
             var registerModel = new RegisterInformationModel
@@ -385,10 +406,14 @@ namespace WebBDS_Project.Controllers
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != create.tblCaptCha.Captcha)
             {
                 ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
-                var dataCity = from data in db.States
-                               join datatext in db.StateTexts on data.name_id equals datatext.id
-                               where datatext.language_id == "vi"
-                               select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+                var dataCity = (from data in db.States
+                                join datatext in db.StateTexts on data.name_id equals datatext.id
+                                where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                                select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+                dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
                 CaptCha cap = new CaptCha();
                 BDSNew BDSNew = new BDSNew();
                 var registerModel = new RegisterInformationModel
@@ -428,8 +453,12 @@ namespace WebBDS_Project.Controllers
                 db.SaveChanges();
                 foreach (var item in create.tblBDSNew.Career.Split(','))
                 {
-                    BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
-                    db.Entry(i).State = EntityState.Added;
+                    if (!String.IsNullOrEmpty(item))
+                    {
+                        BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
+                        db.Entry(i).State = EntityState.Added;
+                    }
+                   
                 }
                 db.SaveChanges();
                 return View(registerModel);
@@ -503,8 +532,12 @@ namespace WebBDS_Project.Controllers
                 db.SaveChanges();
                 foreach (var item in create.tblBDSNew.Career.Split(','))
                 {
-                    BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
-                    db.Entry(i).State = EntityState.Added;
+                    if (!String.IsNullOrEmpty(item))
+                    {
+                        BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
+                        db.Entry(i).State = EntityState.Added;
+                    }
+                   
                 }
                 db.SaveChanges();
                 return RedirectToAction("ListNewOfUser", "Management");

@@ -34,7 +34,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         {
             var Areas = _areaservice.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
-            Areas.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Areas.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             ViewBag.Areas = Areas;
            
         }

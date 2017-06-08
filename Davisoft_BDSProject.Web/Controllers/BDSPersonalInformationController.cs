@@ -99,8 +99,8 @@ namespace Davisoft_BDSProject.Web.Controllers
 
          
 
-            Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Districts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
 
             var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Marriages = _serviceMarriage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
@@ -109,11 +109,11 @@ namespace Davisoft_BDSProject.Web.Controllers
             var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             
 
-            Educations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Marriages.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Salaries.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Careers.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Salaries.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Careers.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
 
 
 
@@ -156,11 +156,11 @@ namespace Davisoft_BDSProject.Web.Controllers
                 var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
 
-                Educations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Marriages.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Salaries.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Careers.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+                Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Salaries.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Careers.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
 
 
 
@@ -243,8 +243,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                              join b in db.DistrictTexts on a.name_id equals b.id
                              where b.language_id == "vi"
                              select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            Districts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Marriages = _serviceMarriage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var Salaries = _serviceSalary.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
@@ -252,11 +252,11 @@ namespace Davisoft_BDSProject.Web.Controllers
             var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
 
-            Educations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Marriages.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Salaries.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Careers.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Salaries.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Careers.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
 
 
 
@@ -290,8 +290,8 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                
                
-                Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Districts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+                Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
                 var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
                 var Marriages = _serviceMarriage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
                 var Salaries = _serviceSalary.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
@@ -299,11 +299,11 @@ namespace Davisoft_BDSProject.Web.Controllers
                 var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
 
 
-                Educations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Marriages.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Salaries.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Careers.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+                Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Salaries.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Careers.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
 
 
 

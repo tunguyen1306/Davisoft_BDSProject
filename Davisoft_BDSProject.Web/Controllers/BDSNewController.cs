@@ -82,12 +82,12 @@ namespace Davisoft_BDSProject.Web.Controllers
             var Languages = _serviceLanguage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var EmployerInformations = _serviceEmployerInformation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.BDSAccount.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
         
-            Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Educations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            NewsTypes.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            EmployerInformations.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Languages.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            NewsTypes.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            EmployerInformations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Languages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
          
             ViewBag.Cities = Cities;
             ViewBag.Educations = Educations;
@@ -242,7 +242,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +
                                          model.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
-            model.CareerID = model.Career.Split(',').Select(T => int.Parse(T)).ToArray();
+            model.CareerID = model.Career.Substring(0,model.Career.Length - 1).Split(',').Select(T => int.Parse(T)).ToArray();
 
             var list = (List<SelectListItem>) ViewBag.Careers;
             List<SelectListItem> lst=new List<SelectListItem>();
@@ -328,7 +328,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +
                                          model.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
-            model.CareerID = model.Career.Split(',').Select(T => int.Parse(T)).ToArray();
+            model.CareerID = model.Career.Substring(0, model.Career.Length-1).Split(',').Select(T => int.Parse(T)).ToArray();
             var list = (List<SelectListItem>)ViewBag.Careers;
             List<SelectListItem> lst = new List<SelectListItem>();
             foreach (var item in list)

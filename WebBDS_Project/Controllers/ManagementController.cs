@@ -25,8 +25,12 @@ namespace WebBDS_Project.Controllers
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var dataCity = (from data in db.States
                             join datatext in db.StateTexts on data.name_id equals datatext.id
-                            where datatext.language_id == "vi"
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
                             select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
             var dataDist = (from data in db.Districts
                             join datatext in db.DistrictTexts on data.name_id equals datatext.id
                             where datatext.language_id == "vi"
@@ -78,10 +82,14 @@ namespace WebBDS_Project.Controllers
                 return RedirectToAction("LoginForm", "Login");
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
             var IdYourSave = db.BDSEmpers.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
             var IdYourSavePer = db.BDSEmpers.Where(x => x.IdAccountPer == idAcount).Select(x => x.IdAccountEm).ToList();
             var register = new RegisterInformationModel
@@ -110,10 +118,14 @@ namespace WebBDS_Project.Controllers
                 return RedirectToAction("LoginForm", "Login");
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
             var IdYourSave = db.BDSApplies.Where(x => x.IdAccountEm == idAcount).Select(x => x.IdAccountPer).ToList();
             var register = new RegisterInformationModel
             {
@@ -186,10 +198,14 @@ namespace WebBDS_Project.Controllers
 
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
-            var dataCity =( from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
             var dataDist  =( from data in db.Districts
                            join datatext in db.DistrictTexts on data.name_id equals datatext.id
                            where datatext.language_id == "vi"
@@ -258,8 +274,12 @@ namespace WebBDS_Project.Controllers
                 }
                 var dataCity = (from data in db.States
                                 join datatext in db.StateTexts on data.name_id equals datatext.id
-                                where datatext.language_id == "vi"
+                                where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
                                 select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+                dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
                 var dataDist = (from data in db.Districts
                                 join datatext in db.DistrictTexts on data.name_id equals datatext.id
                                 where datatext.language_id == "vi"
@@ -322,13 +342,17 @@ namespace WebBDS_Project.Controllers
                 }
                 var dataCity = (from data in db.States
                                 join datatext in db.StateTexts on data.name_id equals datatext.id
-                                where datatext.language_id == "vi"
+                                where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
                                 select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+                dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
                 var dataDist = (from data in db.Districts
                                 join datatext in db.DistrictTexts on data.name_id equals datatext.id
                                 where datatext.language_id == "vi"
                                 select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
-                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+        
                 dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
                 CaptCha cap = new CaptCha();
                 BDSNew BDSNew = new BDSNew();
@@ -383,10 +407,14 @@ namespace WebBDS_Project.Controllers
                 db.Entry(BDSPersonalInformation).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new GeoModel { CityId = data.state_id, CityName = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
             CaptCha cap = new CaptCha();
             BDSNew BDSNew = new BDSNew();
           
@@ -698,12 +726,15 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailPer(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var dataCity = from data in db.States
-                           join datatext in db.StateTexts on data.name_id equals datatext.id
-                           where datatext.language_id == "vi"
-                           select new ListCityNew { Id = data.state_id, Name = datatext.text };
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new ListCityNew { Id = data.state_id, Name = datatext.text }).ToList();
 
-          
+            dataCity.Insert(0, new ListCityNew { Id = 0, Name = "Chọn thành/phố" });
+            dataCity.Insert(0, new ListCityNew { Id = 59, Name = "TP.Hồ Chí Minh" });
+            dataCity.Insert(1, new ListCityNew { Id = 28, Name = "TP.Hà Nội" });
+
             var dataDist = (from data in db.Districts
                             join datatext in db.DistrictTexts on data.name_id equals datatext.id
                             where datatext.language_id == "vi"

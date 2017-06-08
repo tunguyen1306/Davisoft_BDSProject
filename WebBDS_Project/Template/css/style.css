@@ -6,7 +6,14 @@ body {
 	font-size: 13px;
 	color: #282828;
 	background-color:#ffffff;
-	line-height:23px
+	line-height:23px;
+    font-stretch:normal;
+    font-style:normal;
+    font-variant-caps:normal;
+    font-variant-ligatures:normal;
+    font-variant-numeric:normal;
+    font-weight:normal;
+    
 }
 img {
 	max-width: 100%;
@@ -29,7 +36,7 @@ a:hover {
 .soc_icons a {
     color: #fff;
     display: inline-block;
-    font: 13px/44px Arial, Helvetica, sans-serif;
+    font: 13px/35px Arial, Helvetica, sans-serif;
 	font-weight: bold;
     position: relative;
     text-align: center;
@@ -76,7 +83,7 @@ hr {
 	border: 1px solid #dfdfdf;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
 	box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-	height: 42px;
+	height: 35px;
 }
 .nav {
 	position:relative;
@@ -94,11 +101,12 @@ hr {
 	position:relative;
 }
 .nav li a {
-	display:block;
-	color:#333 !important;
-	padding:10px 11px 8px;
-	font-size:14px;
-	margin-right:1px;
+    display: block;
+    color: #333 !important;
+    padding: 8px 8px 8px;
+    font-size: 12px;
+    margin-right: 1px;
+    font-weight: bold;
 }
 .nav li a:hover, .nav li a.active {
 	border-bottom: 2px solid #a71e25;
@@ -189,7 +197,7 @@ hr {
 	float: left;
 }
 .idTabs li a {
-padding: 8px 15px;
+padding: 5px 15px;
 color: #282828;
 font-size: 13px;
 display: block;
@@ -209,7 +217,7 @@ border-bottom: none;
 .idTabs-1 li a.selected {
     background: #ffffff!important;
     border: 0px solid #dfdfdf!important;
-    border-radius: 8px 8px 0 0;
+    border-radius: 5px 5px 0 0;
      border-bottom: none;
 }
 
@@ -225,7 +233,7 @@ border-bottom: none;
 	float:left;
 }
 .content_tab {
-	padding: 12px 15px;
+	    padding: 6px 10px;
 	border: 1px solid #dfdfdf;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
 	box-shadow: 0 1px 1px rgba(0,0,0,0.05);
@@ -253,7 +261,7 @@ border-bottom: none;
 	
 }
 .group_work h4 {
-	    color: #a71e25;
+	    color: #de3039;
 	font-weight:bold;
 	font-size:13px;
 	margin:0 0 10px;
@@ -351,27 +359,29 @@ padding-bottom: 8px;
 	padding: 6px 8px 0;
 	display:block;
 	position:relative;
+        border: 1px solid #f0f0f0;
+    height: 105px;
 }
 .list_work .grid_3 .vip span {
-	position: absolute;
-	font-size: 10px;
-	color: #fff;
-	left: 3px;
-	top: -4px;
+	    position: absolute;
+    font-size: 8px;
+    color: #fff;
+    left: -2px;
+    top: -9px;
 }
 .list_work .grid_3 .vip i{
 	position: absolute;
-	left: -4px;
-	top: 2px;
-	margin-top: -12px;
-	font-size: 33px;
-	color: #de3039;
+    left: -7px;
+    top: 2px;
+    margin-top: -12px;
+    font-size: 25px;
+    color: #de3039;
 }
 
-.list_work a img {
+/*.list_work a img {
 	border: 1px solid #ccc;
 	
-}
+}*/
 .list_work li{
 	border: 1px solid #dfdfdf;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
@@ -394,13 +404,13 @@ padding-bottom: 8px;
 }
 .list_work li h2 span {
 	display: block;
-	font-size:13px;
+	font-size:12px;
 }
 .list_work li p {
 	color: #949494;
 	padding: 0;
 	margin: 0;
-	font-size:13px;
+	font-size:11px;
 }
 .list_work li p i {
 	margin-right:10px;
@@ -714,12 +724,13 @@ color: #ea8a00;
 .dropdown .selected,
 .dropdown li{
 	display: block;
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 1;
 	color: #282828;
 	padding: 10px 12px 9px;
 	overflow: hidden;
 	white-space: nowrap;
+    opacity: 0.6;
 }
 
 .dropdown.disabled .selected{
@@ -980,15 +991,15 @@ body > #warrper { height: auto; min-height: 100%; }
 .soc_icons {
 	background:#de3039;
 	color: #fff;
-	height: 39px;
+	height: 35px;
 	}
 .soc_icons p {
 	padding: 0;
 	margin: 0;
 	float: left;
-	line-height: 44px;
+	line-height: 35px;
 	font-size:13px;
-	font-weight:bold;
+	/*font-weight:bold;*/
 }
 .login {
 	float:right;
@@ -1378,8 +1389,8 @@ a.dropdown1.dropdown-active span {
 	background: #A71E25;
 	padding: 10px;
 	position: absolute;
-	top: 44px;
-	right: 0;
+	top: 39px;
+	right: 1px;
 	display: none;
 	z-index: 5000;
 }

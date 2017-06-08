@@ -24,7 +24,7 @@
                                             }
 
                                         </a>
-                                        <figcaption><a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">@item.Name</a></figcaption>
+                                        <figcaption><a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">@(item.Name.Length>42 ? item.Name.Substring(0,42) + "..." : item.Name) </a></figcaption>
                                     </li>
                                 }
 

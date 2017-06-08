@@ -86,12 +86,12 @@ namespace Davisoft_BDSProject.Web.Controllers
 
          
 
-            Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Districts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             var Scopes = _serviceScope.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var TypeContacts = _serviceTypeContact.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            Scopes.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            TypeContacts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Scopes.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            TypeContacts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             ViewBag.Scopes = Scopes;
             ViewBag.TypeContacts = TypeContacts;
             ViewBag.Cities = Cities;
@@ -116,12 +116,12 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
               
               
-                Districts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+                Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
                 var Scopes = _serviceScope.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
                 var TypeContacts = _serviceTypeContact.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-                Scopes.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                TypeContacts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+                Scopes.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                TypeContacts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
                 ViewBag.Scopes = Scopes;
                 ViewBag.TypeContacts = TypeContacts;
                 ViewBag.Cities = Cities;;
@@ -190,12 +190,12 @@ namespace Davisoft_BDSProject.Web.Controllers
                              join b in db.DistrictTexts on a.name_id equals b.id
                              where b.language_id == "vi"
                              select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            Districts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             var Scopes = _serviceScope.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             var TypeContacts = _serviceTypeContact.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            Scopes.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-            TypeContacts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+            Scopes.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            TypeContacts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             ViewBag.Scopes = Scopes;
             ViewBag.TypeContacts = TypeContacts;
             ViewBag.Cities = Cities;
@@ -218,12 +218,12 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                
                
-                Cities.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                Districts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+                Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
                 var Scopes = _serviceScope.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
                 var TypeContacts = _serviceTypeContact.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-                Scopes.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
-                TypeContacts.Insert(0, new SelectListItem { Value = "", Text = "Please Select", Selected = true });
+                Scopes.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+                TypeContacts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
                 ViewBag.Scopes = Scopes;
                 ViewBag.TypeContacts = TypeContacts;
                 ViewBag.Cities = Cities;

@@ -3,7 +3,13 @@
 @model IEnumerable<BDSNew>
 @{
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
-    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+    var States = (from a in db.States
+                  join b in db.StateTexts on a.state_id equals b.id
+                  where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
+                  select new { Id = a.state_id, Name = b.text }).ToList();
+
+    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
+    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
     var currentPage = (Request["page"] == null ? 1 : int.Parse(Request["page"].ToString()));
     var p = Math.Ceiling((double)ViewBag.Total / (Request["view"] == null ? 25 : int.Parse(Request["view"].ToString())));
 }
@@ -19,7 +25,7 @@
                 <li>
                     <div class="grid_3">
                         <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">
-                            <img width="120" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] +"/"+ account.UrlImage):"img.png"))" alt="1">
+                            <img width="100" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] +"/"+ account.UrlImage):"img.png"))" alt="1">
                             <p class="vip @(type.CodeNewsType)">
                                 <i class="fa fa-star"></i>
                                 <span>@type.Name</span>

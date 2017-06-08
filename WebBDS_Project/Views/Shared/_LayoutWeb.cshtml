@@ -1,4 +1,5 @@
 ﻿@using WebBDS_Project.Models
+@using System.Configuration
 @{
     davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
     var modelMenu = db.BDSCareers.Take(4);
@@ -64,7 +65,8 @@
                            
                                 <div class="login">
                                     <a style="padding: 0 0px!important;" href="@Url.Action("ManagementAcountEmployee","Management")"> @Session["EmailUser"]</a>
-                                    <a style="padding: 0 0px!important;" href="@Url.Action("LogOut","Login")">,Thoát</a>
+                                    <span class="gachTop"></span>
+                                    <a style="padding: 0 0px!important;" href="@Url.Action("LogOut","Login")">Thoát</a>
                                   
                                 </div>
                         }
@@ -77,6 +79,8 @@
                                     <a href="@Url.Action("RegisterCompany","Register")">Nhà tuyển dụng</a>
                                     <a href="@Url.Action("RegisterPersonal","Register")" class="omega">Người tìm việc</a>
                                 </div>
+                                <span class="gachTop"></span>
+                                @*<div style="padding-left:1px;background-color:white;float:left;width:1px;">|</div>*@
                                 <div class="dp-wrap small-button">
                                     <a href="#" class="dropdown1"><i class="fa fa-user"></i>Đăng nhập</a>
                                     <div id="dropdown2" class="dropdown-menu">
@@ -110,9 +114,17 @@
                         <div class="logo"><a href="/">
                             <img src="~/Template/images/logo.png" alt="logo">Tìm việc làm bất động sản nhanh chóng</a> </div>
                         <div class="banner">
-                            @foreach (var item in db.BDSBanners.Where(x=>x.Position== "Top"))
+                            @foreach (var item in db.BDSBanners.Where(x => x.Position == "Top"))
                             {
-                                <img src="~/Template/images/banner.jpg" alt="logo">
+                                if (item.Type == 1)
+                                {
+                                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                                }
+                                else
+                                {
+                                      <iframe style="border:0!important;" src="@item.Banner" width="@item.BWidth" height="@item.BHeight" scrolling="no"></iframe>
+                                }
+
 
                             }
                         </div>
@@ -139,7 +151,21 @@
         </div>
         <!--end-->
     </div>
-    <!--footer-->
+    @*<div id="zendvn-real-estate-bn-l" class="zendvn-real-estate-bn-l" style="position: fixed; top: 40px; left: 333.5px; display: block;">
+    <a href="http://nhaban.net.vn/ky-gui-nha-dat/" target="_blank" class="zendvn-real-bn-l1">
+        <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/bannerkyguinew.gif">
+        </a>
+    <a href="http://nhaban.net.vn/dang-tin-bat-dong-san/" target="_blank" class="zendvn-real-bn-l2">
+        <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/dang-tin.gif">
+        </a>
+    </div>
+    <div id="zendvn-real-estate-bn-r" class="zendvn-real-estate-bn-r" style="position: fixed; top: 40px; right: 333.5px; display: block;">
+    <a href="http://www.canhograndquan4.com/" target="_blank" class="zendvn-real-bn-r1">
+        <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/grandq4.gif"></a>
+    <a href="http://nhaban.net.vn/dang-tin-bat-dong-san/" target="_blank" class="zendvn-real-bn-r2">
+        <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/dang-tin.gif"></a>
+    </div>*@
+     <!--footer-->
     <div id="footer">
         <div class="container clearfix">
             <div class="top_footer">

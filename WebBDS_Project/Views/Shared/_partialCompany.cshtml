@@ -28,11 +28,11 @@
                 <a href="@(item.WebSite!=null ?item.WebSite: Url.Action("Index","Default") )" target="_blank">
                     @if (item.UrlImage != null)
                     {
-                        <img width="40" height="30px" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
+                        <img width="40" height="30" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
                     }
                     else
                     {
-                        <img width="40" height="30px" src="~/Template/images/avatar-default.png" />
+                        <img width="40" height="30" src="~/Template/images/avatar-default.png" />
                     }
 
                 </a>

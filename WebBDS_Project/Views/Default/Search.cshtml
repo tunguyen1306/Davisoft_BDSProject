@@ -1,5 +1,6 @@
 ﻿@using System.Activities.Statements
 @using WebBDS_Project.Models
+@using System.Configuration
 @{
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
@@ -11,32 +12,38 @@
     <div class="container">
         <div class="grid_9 main_left" style="margin-top: 12px">
        @{
-    davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+           davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
 
-    var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id where b.language_id == "vi" && a.Status == 1 select new { Id = a.state_id, Name = b.text }).ToList();
+           var States = (from a in db.States
+                         join b in db.StateTexts on a.state_id equals b.id
+                         where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
+                         select new { Id = a.state_id, Name = b.text }).ToList();
 
-    String[] array = Request.Url.Query.Length > 0 ? Request.Url.Query.Substring(1).Split('&') : new string[] { };
-    List<String> listStr = new List<string>();
-    foreach (var item in array)
-    {
-        var p = item.Split('=');
-        int id = int.Parse(p[1]);
-        switch (p[0])
-        {
-            case "filterWorkingPlace":
-                listStr.AddRange(States.Where(T => T.Id == id).ToList().Select(T => T.Name + ";" + T.Id + ";WK").ToList());
-                break;
-            case "filterCareer":
-                listStr.AddRange(db.BDSCareers.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";CR").ToList());
-                break;
-            case "filterSalary":
-                listStr.AddRange(db.BDSSalaries.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";SR").ToList());
-                break;
-            case "filterTimeWorking":
-                listStr.AddRange(db.BDSTimeWorks.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";TW").ToList());
-                break;
-        }
-    }
+           States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
+           States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+
+           String[] array = Request.Url.Query.Length > 0 ? Request.Url.Query.Substring(1).Split('&') : new string[] { };
+           List<String> listStr = new List<string>();
+           foreach (var item in array)
+           {
+               var p = item.Split('=');
+               int id = int.Parse(p[1]);
+               switch (p[0])
+               {
+                   case "filterWorkingPlace":
+                       listStr.AddRange(States.Where(T => T.Id == id).ToList().Select(T => T.Name + ";" + T.Id + ";WK").ToList());
+                       break;
+                   case "filterCareer":
+                       listStr.AddRange(db.BDSCareers.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";CR").ToList());
+                       break;
+                   case "filterSalary":
+                       listStr.AddRange(db.BDSSalaries.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";SR").ToList());
+                       break;
+                   case "filterTimeWorking":
+                       listStr.AddRange(db.BDSTimeWorks.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";TW").ToList());
+                       break;
+               }
+           }
        }
        
             <div class="group_work">
@@ -135,8 +142,32 @@
             @Html.Partial("_partialComment")
             @Html.Partial("_partialNews")
             <div class="banner_right">
-                <img src="~/Template/images/banner2.jpg" alt="banner">
-                <img src="~/Template/images/banner2.jpg" alt="banner">
+                @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight1"))
+                {
+                    if (item.Type == 1)
+                    {
+                        <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                    }
+                    else
+                    {
+                        <iframe style="border:0!important;" src="@item.Banner" width="@item.BWidth" height="@item.BHeight" scrolling="no"></iframe>
+                    }
+
+
+                }
+                @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight2"))
+                {
+                    if (item.Type == 1)
+                    {
+                        <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                    }
+                    else
+                    {
+                        <iframe style="border:0!important;" src="@item.Banner" width="@item.BWidth" height="@item.BHeight" scrolling="no"></iframe>
+                    }
+
+
+                }
             </div>
         </div>
     </div>
