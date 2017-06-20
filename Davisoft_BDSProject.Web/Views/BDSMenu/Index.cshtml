@@ -1,0 +1,246 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Web.Helpers
+@using Resources
+@model IEnumerable<BDSMenu>
+<section class="panel panel-default">
+    <div class="panel-heading">
+        @Utilities.Resource("BDSMenuTop", "List Menu Top")
+    </div>
+    @if (CurrentUser.HasPermission("BDSMenu", "Create"))
+    {
+        <div class="row wrapper dataTables_length table_basic">
+            <div class="col-sm-12">
+                <a class="btn btn-primary-me " href="/BDSMenu/Create?menu=1">Add New</a>
+              
+            </div>
+        </div>
+    }
+    <div class="panel-body">
+
+        <div class="table-responsive">
+            <table class="table" id="table_data">
+                <thead>
+                    <tr>
+                        <th>@Utilities.Resource("BDSMenu_Type", "Type")</th>
+                        <th>@Utilities.Resource("BDSMenu_Name", "Name")</th>
+                        <th>@Utilities.Resource("BDSMenu_Url", "Url")</th>
+                        <th>@Utilities.Resource("BDSMenu_Target", "Target")</th>
+                        <th>@Utilities.Resource("BDSMenu_Description", "Description")</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section class="panel panel-default">
+    <div class="panel-heading">
+        @Utilities.Resource("BDSMenuBottom", "List Menu Bottom")
+    </div>
+    @if (CurrentUser.HasPermission("BDSMenu", "Create"))
+    {
+        <div class="row wrapper dataTables_length table_basic">
+            <div class="col-sm-12">
+                <a class="btn btn-primary-me " href="/BDSMenu/Create?menu=2">Add New</a>
+
+            </div>
+        </div>
+    }
+    <div class="panel-body">
+
+        <div class="table-responsive">
+            <table class="table" id="table_data1">
+                <thead>
+                    <tr>
+                        <th>@Utilities.Resource("BDSMenu_Type", "Type")</th>
+                        <th>@Utilities.Resource("BDSMenu_Name", "Name")</th>
+                        <th>@Utilities.Resource("BDSMenu_Url", "Url")</th>
+                        <th>@Utilities.Resource("BDSMenu_Target", "Target")</th>
+                        <th>@Utilities.Resource("BDSMenu_Description", "Description")</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+@Html.Script(
+    @<script>
+
+        var $modelTable = $('#table_data').dataTable({
+            fixedHeader: true,
+            processing: false,
+            serverSide: true,
+            searching: true,
+            ordering: true,
+            info: false,
+            stateSave: false,
+            lengthMenu: [[25, 50, -1], [25, 50, "All"]],
+            drawCallback: function (settings) {
+                $('.mt-action-dot').popover({ trigger: "hover" });
+            },
+            initComplete: function() {
+                $('#table_data_filter input').unbind();
+                var timeOutTyping;
+                $('#table_data_filter input').bind('keyup', function (e) {
+                   clearTimeout(timeOutTyping);
+                   timeOutTyping = setTimeout(function () {
+                       $modelTable.fnFilter($('#table_data_filter input').val());
+                    },600);
+                });
+            },
+            ajax: {
+                url: "/BDSMenu/IndexAjax?Type=1",
+                type: "GET"
+            },
+            "columnDefs": [
+                {
+                    "render": function (data, type, row) {
+
+                        return row.Type==1?"Top":"Bottom";
+                    },
+                    "targets": 0,
+                    'className': 'text-center'
+                },
+          {
+              "render": function (data, type, row) {
+
+                  return '<a href="/BDSMenu/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+              },
+              "targets": 5,
+              'className': 'text-center'
+          },
+          {
+              "render": function (data, type, row) {
+
+                  return '<a href="#" data-action="delete" data-id="' + row.ID + '"><i class="fa fa-times text-danger"></i></a>';
+
+
+              },
+              "targets": 6,
+              'className':'text-center'
+          },
+          {
+              "render": function (data, type, row) {
+
+                  return row.Target == '_blank' ? "Mở Tab Mới" : "";
+
+
+              },
+              "targets": 3,
+              'className': 'text-center'
+          }
+            ],
+            columns: [
+                { "data": "Type", "orderable": true },
+                { "data": "Name", "orderable": true },
+                { "data": "Url", "orderable": true },
+                { "data": "Target", "orderable": true },
+                { "data": "Description", "orderable": true },
+                { "data": "ID", "orderable": false },
+                { "data": "ID", "orderable": false }
+
+            ],
+            order: [[0, "asc"]]
+        });
+
+        $(document).on('click', '[data-action="delete"]', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                if (isOK) {
+                    $.getJSON("@Url.Action("DeActive")?id=" + $self.attr('data-id'), function (data) {
+                    }).success(function () { $modelTable._fnAjaxUpdate(); $modelTable1._fnAjaxUpdate(); })
+                        .error(function () { alert(decodeURIComponent('@Resource.DontHavePermission')); });
+
+                }
+            });
+
+        });
+
+        var $modelTable1 = $('#table_data1').dataTable({
+            fixedHeader: true,
+            processing: false,
+            serverSide: true,
+            searching: true,
+            ordering: true,
+            info: false,
+            stateSave: false,
+            lengthMenu: [[25, 50, -1], [25, 50, "All"]],
+            drawCallback: function (settings) {
+                $('.mt-action-dot').popover({ trigger: "hover" });
+            },
+            initComplete: function() {
+                $('#table_data1_filter input').unbind();
+                var timeOutTyping;
+                $('#table_data1_filter input').bind('keyup', function (e) {
+                    clearTimeout(timeOutTyping);
+                    timeOutTyping = setTimeout(function () {
+                        $modelTable1.fnFilter($('#table_data1_filter input').val());
+                    },600);
+                });
+            },
+            ajax: {
+                url: "/BDSMenu/IndexAjax?Type=2",
+                type: "GET"
+            },
+            "columnDefs": [
+                {
+                    "render": function (data, type, row) {
+
+                        return row.Type==1?"Top":"Bottom";
+                    },
+                    "targets": 0,
+                    'className': 'text-center'
+                },
+          {
+              "render": function (data, type, row) {
+
+                  return '<a href="/BDSMenu/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+              },
+              "targets": 5,
+              'className': 'text-center'
+          },
+          {
+              "render": function (data, type, row) {
+
+                  return '<a href="#" data-action="delete" data-id="' + row.ID + '"><i class="fa fa-times text-danger"></i></a>';
+
+
+              },
+              "targets": 6,
+              'className':'text-center'
+          },
+          {
+              "render": function (data, type, row) {
+
+                  return row.Target == '_blank' ? "Mở Tab Mới" : "";
+
+
+              },
+              "targets": 3,
+              'className': 'text-center'
+          }
+            ],
+            columns: [
+                { "data": "Type", "orderable": true },
+                { "data": "Name", "orderable": true },
+                { "data": "Url", "orderable": true },
+                { "data": "Target", "orderable": true },
+                { "data": "Description", "orderable": true },
+                { "data": "ID", "orderable": false },
+                { "data": "ID", "orderable": false }
+
+            ],
+            order: [[0, "asc"]]
+        });
+
+    
+    </script>
+                                                                     )

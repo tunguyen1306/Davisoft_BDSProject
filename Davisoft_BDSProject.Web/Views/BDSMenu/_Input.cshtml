@@ -1,0 +1,56 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSMenu
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSMenu_Type", "Type") <span class="required">*</span></label>
+    <div class="col-md-8">
+       @Html.Bootstrap().DropDownListFor(m => m.Type, new List<SelectListItem>
+                                    {
+                                        new SelectListItem{Text="Top",Value="1"},
+                                        new SelectListItem{Text="Bottom",Value="2"},
+
+                                    }).Readonly(true).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSMenu_Name", "Name") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSMenu_Url", "Url") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Url).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSMenu_Target", "Target")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.Target, new List<SelectListItem>
+                                    {
+                                        new SelectListItem{Text="Mở Tab Mới",Value="_blank"},
+                                    
+
+                                    }).Readonly(true).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSMenu_Order", "Order")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.MOrder).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSMenu_Description", "Description")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)

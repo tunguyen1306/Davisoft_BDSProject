@@ -119,7 +119,7 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IBDSExtNewsService>().To<EFBDSExtNews>();
             kernel.Bind<IBDSCommentService>().To<EFBDSComment>();
             kernel.Bind<IBDSBannerService>().To<EFBDSBanner>();
-
+            kernel.Bind<IBDSMenuService>().To<EFBDSMenu>();
 
             kernel.Bind<IValidator<User>>().To<UserValidator>();
             kernel.Bind<IValidator<Menu>>().To<MenuValidator>();
@@ -146,6 +146,7 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IValidator<BDSExtNews>>().To<BDSExtNewsValidator>();
             kernel.Bind<IValidator<BDSComment>>().To<BDSCommentValidator>();
             kernel.Bind<IValidator<BDSBanner>>().To<BDSBannerValidator>();
+            kernel.Bind<IValidator<BDSMenu>>().To<BDSMenuValidator>();
             // cache configurations.
             kernel.Bind<ICacheStorageLocation>().To<RequestCacheSolution>().Named("InRequest");
             kernel.Bind<ICacheStorageLocation>().To<SessionCacheSolution>().Named("InSession");
