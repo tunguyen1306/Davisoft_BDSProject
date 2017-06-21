@@ -6884,4 +6884,9 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSBanner_Edit" xml:space="preserve">
+    <value>Edit Banner</value>
+    <comment>
+    </comment>
+  </data>
 </root>

@@ -418,6 +418,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\css\bfFur.css" />
     <Content Include="Template\css\pushy.css" />
+    <Content Include="Template\images\bg_footer.jpg" />
+    <Content Include="Template\images\logo_footer.png" />
+    <Content Include="Template\images\new.gif" />
     <Content Include="Template\js\bfFur.js" />
     <Content Include="Template\css\bfFur.sass.css" />
     <Content Include="Template\css\bootstrap.min.css" />
@@ -618,7 +621,6 @@
     <Content Include="Views\Default\_searchSalary.cshtml" />
     <Content Include="Views\Default\_searchTimeWorking.cshtml" />
     <Content Include="Views\Default\_searchWorkingPlace.cshtml" />
-    <Content Include="Views\Default\DetailEmployee.cshtml" />
     <Content Include="Views\Management\ListNewOfUser.cshtml" />
     <Content Include="Views\Default\_searchContent.cshtml" />
     <Content Include="Views\Management\PListNewsOfUser.cshtml" />
@@ -627,7 +629,6 @@
     <Content Include="Views\Management\PManaTinNhaTuyenDung.cshtml" />
     <Content Include="Views\Management\PManaTinNoiBat.cshtml" />
     <Content Include="Views\Adverts\EditNews.cshtml" />
-    <Content Include="Views\Shared\_partialManagerCenterEmp.cshtml" />
     <Content Include="Views\Default\_searchContentPer.cshtml" />
   </ItemGroup>
   <ItemGroup>
