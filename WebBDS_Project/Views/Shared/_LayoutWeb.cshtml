@@ -256,8 +256,13 @@
         <div class="container clearfix">
             <div class="top_footer">
                 <ul>
-                    <li><a href="#"><i class="fa fa-home"></i></a></li>
-                    <li><a href="#">Tìm việc làm</a></li>
+
+                    <li><a href="/"><i class="fa fa-home"></i></a></li>
+                    @foreach (var item in db.BDSMenus.Where(x => x.Type == 2 && x.Active == 1).OrderBy(x => x.MOrder))
+                    {
+                        <li><a href="@item.Url">@item.Name</a></li>
+                    }
+                    @*<li><a href="#">Tìm việc làm</a></li>
                     <li><a href="#">Top nhà tuyển dụng</a></li>
                     <li><a href="#">Người tìm việc</a></li>
                     <li><a href="#">Việc làm 24h</a></li>
@@ -266,7 +271,7 @@
                     <li><a href="#">Nghệ thuật quản lý</a></li>
                     <li><a href="#">Kỹ năng phỏng vấn</a></li>
                     <li><a href="#">Định hướng nghề nghiệp</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="#">Liên hệ</a></li>*@
                 </ul>
             </div>
             <div class="main_footer">

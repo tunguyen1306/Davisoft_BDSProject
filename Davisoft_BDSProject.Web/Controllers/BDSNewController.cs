@@ -236,8 +236,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         public ActionResult Edit(int id)
         {
             LoadDataList();
-            BDSNew model =
-                _service.GetIQueryableItems().Where(T => T.ID == id).Include(T => T.BDSPictures).FirstOrDefault();
+            BDSNew model =_service.GetIQueryableItems().Where(T => T.ID == id).Include(T => T.BDSPictures).FirstOrDefault();
             model.IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == id);
             model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +

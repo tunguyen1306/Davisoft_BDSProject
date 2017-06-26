@@ -14,16 +14,9 @@ namespace WebBDS_Project.Models
     
     public partial class Permission
     {
-        public Permission()
-        {
-            this.Roles = new HashSet<Role>();
-        }
-    
         public int ID { get; set; }
         public string Target { get; set; }
         public string Right { get; set; }
         public string Description { get; set; }
-    
-        public virtual ICollection<Role> Roles { get; set; }
     }
 }

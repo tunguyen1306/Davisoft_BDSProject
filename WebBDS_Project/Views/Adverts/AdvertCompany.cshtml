@@ -309,7 +309,7 @@
 
                         <label>Hạn nộp hồ sơ</label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.tblBDSNew.ToDeadline, new { @class = "input1 datepicker1", @placeholder = "dd/MM/yyyy" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.ToDeadline, new { @class = "input1", @placeholder = "MM/dd/yyyy" })
                         </div>
                     </div>
                     <div class="row">
@@ -482,13 +482,13 @@
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "MM/dd/yyyy" })
 
 
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "MM/dd/yyyy" })
 
 
                             </div>
@@ -618,7 +618,7 @@
 
 
 	$( function() {
-	    var dateFormat = "dd/mm/yy",
+	    var dateFormat = "mm/dd/yy",
 			from = $("#tblBDSNew_FromCreateNews")
 				.datepicker({
 					defaultDate: "+0d",
@@ -638,7 +638,15 @@
 			.on( "change", function() {
 				from.datepicker( "option", "maxDate", getDate( this ) );
 			});
-
+	    $("#tblBDSNew_ToDeadline").datepicker({
+	        defaultDate: "+0d",
+	        changeMonth: true,
+	        numberOfMonths: 1,
+	        dateFormat: dateFormat
+	    })
+                    .on("change", function () {
+                        from.datepicker("option", "maxDate", getDate(this));
+                    });
 		function getDate( element ) {
 			var date;
 		    try {

@@ -6,7 +6,7 @@
         font-family: 'FontAwesome';
         content: '\f078';
         font-size: 12px;
-        color: #de3039;
+        color: #019281;
     }
     .select2-container--default .select2-selection--single {
         border-radius: 0px;
@@ -21,9 +21,15 @@
   
    .select2-container--default .select2-selection--single .select2-selection__rendered {
         /*line-height: 34px;*/
-       border: none;
-        padding: 0px 12px 0px;
+        display: block;
+        font-size: 12px;
+        line-height: 1;
+        color: #282828;
+        padding: 10px 12px 9px;
+        overflow: hidden;
+        white-space: nowrap;
         opacity: 0.6;
+
     }
     .selection > .select2-selection {
         height: 34px;

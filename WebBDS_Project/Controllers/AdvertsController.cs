@@ -206,7 +206,7 @@ namespace WebBDS_Project.Controllers
 
 
 
-                return RedirectToAction("Index", "Default");
+                return RedirectToAction("ThanksApply", "Login");
             }
             return null;
         }
@@ -603,8 +603,8 @@ namespace WebBDS_Project.Controllers
 
                 var fromDate = rDate.Split('-')[0];
                 var toDate = rDate.Split('-')[1];
-                var FromDate = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
-                var ToDate = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
+                var FromDate = DateTime.Parse(DateTime.Parse( fromDate).ToString("dd/MM/yyyy").Trim(), MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
+                var ToDate = DateTime.Parse(DateTime.Parse(fromDate).ToString("dd/MM/yyyy").Trim(), MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
                 var totalDay = ToDate.Subtract(FromDate).TotalDays;
                 if (totalDay < 1)
                 {

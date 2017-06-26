@@ -354,6 +354,7 @@
     <Compile Include="Controllers\BDSCommentController.cs" />
     <Compile Include="Controllers\BDSExtNewsController.cs" />
     <Compile Include="Controllers\BDSBranchController.cs" />
+    <Compile Include="Controllers\BDSMenuController.cs" />
     <Compile Include="Controllers\BDSTransactionController.cs" />
     <Compile Include="Controllers\BDSNewController.cs" />
     <Compile Include="Controllers\BDSPersonalInformationController.cs" />
@@ -516,6 +517,7 @@
     <Compile Include="Validation\BDSBannerValidator.cs" />
     <Compile Include="Validation\BDSCommentValidator.cs" />
     <Compile Include="Validation\BDSExtNewsValidator.cs" />
+    <Compile Include="Validation\BDSMenuValidator.cs" />
     <Compile Include="Validation\BDSTransactionValidator.cs" />
     <Compile Include="Validation\BDSBranchValidator.cs" />
     <Compile Include="Validation\BDSNewValidator.cs" />
@@ -3132,6 +3134,10 @@
     <Content Include="Views\BDSBanner\Create.cshtml" />
     <Content Include="Views\BDSBanner\Edit.cshtml" />
     <Content Include="Views\BDSBanner\Index.cshtml" />
+    <Content Include="Views\BDSMenu\Create.cshtml" />
+    <Content Include="Views\BDSMenu\Edit.cshtml" />
+    <Content Include="Views\BDSMenu\Index.cshtml" />
+    <Content Include="Views\BDSMenu\_Input.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

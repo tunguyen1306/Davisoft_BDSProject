@@ -198,6 +198,9 @@
     <Compile Include="Models\BDSMarriage.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BDSMenu.cs">
+      <DependentUpon>DataWebBDS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BDSNew.cs">
       <DependentUpon>DataWebBDS.tt</DependentUpon>
     </Compile>

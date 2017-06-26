@@ -368,7 +368,7 @@ tr:nth-child(even) {
     float: left;
 }
  textarea{
-     height:100px;
+     height:180px;
  }
  
 #zendvn-real-estate-bn-l,#zendvn-real-estate-bn-r {
@@ -394,5 +394,5 @@ tr:nth-child(even) {
 	}
 }
 .gachTop{
-    color:white;border-left:dotted 1px; margin-right:10px;margin-left:10px;padding-top: 7px; padding-bottom: 7px;
+    color:white;border-left:dotted 1px; margin-right:0px;margin-left:0px;padding-top: 7px; padding-bottom: 7px;
 }
