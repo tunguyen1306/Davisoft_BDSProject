@@ -46,7 +46,18 @@
                 <h3><span><i class="fa fa-list-ul"></i>Việc làm Bất Động Sản hấp dẫn</span></h3>
                 <div class="search_location">
                     Tìm theo khu vực
-                    <select class="dropdown" tabindex="7" onchange="loadFilterPageFrom(this)">
+                    <select class="select2"   onchange="loadFilterPageFrom(this)" tabindex="7">
+                        <option value="">Toàn Quốc</option>
+                        @{
+                            foreach (var item in States)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+
+
+                    </select>
+                    @*<select class="dropdown" tabindex="7" onchange="loadFilterPageFrom(this)">
                         <option value="">Toàn quốc</option>
                         @{
                             foreach (var itemCity in States)
@@ -54,7 +65,7 @@
                                 <option value="@itemCity.Id">@itemCity.Name</option>
                             }
                         }
-                    </select>
+                    </select>*@
                 </div>
             </div>
             @Html.Action("TinDacBiet", new { tt = "", from = 0, view = 12, page = 1 })
@@ -77,8 +88,18 @@
                 <h3><span><i class="fa fa-list-ul"></i>Nhà tuyển dụng tiêu biểu</span></h3>
                 <div class="search_location">
                     Tìm theo khu vực
+                    <select class="select2" onchange="loadFilterPageFrom(this)" tabindex="7">
+                        <option value="">Toàn Quốc</option>
+                        @{
+                            foreach (var item in States)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
 
-                    <select class="dropdown" tabindex="7" onchange="loadNBFilterPageFrom(this)">
+
+                    </select>
+                    @*<select class="dropdown" tabindex="7" onchange="loadNBFilterPageFrom(this)">
                         <option value="">Toàn quốc</option>
                         @{
                             foreach (var itemCity in States)
@@ -86,7 +107,7 @@
                                 <option value="@itemCity.Id">@itemCity.Name</option>
                             }
                         }
-                    </select>
+                    </select>*@
 
                 </div>
             </div>
@@ -108,7 +129,7 @@
                 <h3><span><i class="fa fa-list-ul"></i>Việc làm bất động sản mới</span></h3>
                 <div class="search_location">
                     Tìm theo khu vực
-                    <select onchange="loadMNFilterPageFrom(this);" class="dropdown" tabindex="7">
+                    @*<select onchange="loadMNFilterPageFrom(this);" class="dropdown" tabindex="7">
 
                         <option value="">Toàn quốc</option>
                         @{
@@ -117,8 +138,18 @@
                                 <option value="@itemCity.Id">@itemCity.Name</option>
                             }
                         }
-                    </select>
+                    </select>*@
+                    <select class="select2" onchange="loadFilterPageFrom(this)" tabindex="7">
+                        <option value="">Toàn Quốc</option>
+                        @{
+                            foreach (var item in States)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
 
+
+                    </select>
                 </div>
             </div>
 
@@ -136,7 +167,7 @@
                 <h3><span><i class="fa fa-list-ul"></i>Kênh nhà tuyển dụng</span></h3>
                 <div class="search_location">
                     Tìm theo khu vực
-                    <select class="dropdown" onchange="loadNTDFilterPageFrom(this);" tabindex="7">
+                    @*<select class="dropdown" onchange="loadNTDFilterPageFrom(this);" tabindex="7">
                         <option value="">Toàn quốc</option>
                         @{
                             foreach (var itemCity in States)
@@ -144,6 +175,17 @@
                                 <option value="@itemCity.Id">@itemCity.Name</option>
                             }
                         }
+                    </select>*@
+                    <select class="select2" onchange="loadFilterPageFrom(this)" tabindex="7">
+                        <option value="">Toàn Quốc</option>
+                        @{
+                            foreach (var item in States)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+
+
                     </select>
                 </div>
             </div>

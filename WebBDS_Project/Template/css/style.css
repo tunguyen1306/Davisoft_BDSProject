@@ -13,7 +13,7 @@ body {
     font-variant-ligatures:normal;
     font-variant-numeric:normal;
     font-weight:normal;
-    
+
 }
 img {
 	box-sizing: border-box;
@@ -59,8 +59,8 @@ a:hover {
 .color1 {color:#FC6747}
 .color2 {color:#f39f18 !important}
 .menu {
-	width:100%; 
-	height:auto; 
+	width:100%;
+	height:auto;
 	background-color:#ffffff;
 	z-index:100;
 
@@ -106,7 +106,7 @@ hr {
 }
 .nav li a {
     display: block;
-    color: #616161 !important;
+    color: #616161;
     padding: 6px 7px 5px;
     font-size: 12px;
     margin-right: 1px;
@@ -124,8 +124,20 @@ hr {
 }
 .nav li.spec a{
 	font-weight: bold;
-	color: #008475 !important;
-	
+	color: #008475;
+
+}
+.nav li.spec a.dropdown1.dropdown-active {
+	color: #fff;
+}
+.nav li.spec .dropdown-menu {
+	margin-top: -1px;
+}
+.nav li.spec #dropdown1 a {
+	color: #fff;
+	font-weight: 400;
+	text-align: center;
+
 }
 .nav li.spec a:hover {
 	border: none;
@@ -151,7 +163,7 @@ hr {
 	font-size: 23px;
 	margin-right: 7px;
 	position: relative;
-	top: 3px;	
+	top: 3px;
 	display: none;
 }
 /* Mobile navigation, clickable area for revealing <ul> */
@@ -253,16 +265,16 @@ border-bottom: none;
 }
 .content_tab-1 {
     padding: 12px 15px;
-    
+
     margin-top: 0;
-    
+
     clear: both
 }
 
 .group_work {
 	margin-top: 15px;
 	margin-bottom: 20px;
-	
+
 }
 .group_work h4 {
 	    color: #008475;
@@ -310,7 +322,7 @@ padding-bottom: 8px;
 .group_work ul.name_group li {
 	float:left;
 	width:calc(100%/4);
-	
+
 }
 .group_work ul.name_group li a{
 	color: #055699;
@@ -359,12 +371,17 @@ padding-bottom: 8px;
 .list_work .grid_3 {
 	width: 21.5%;
 }
+.list_work .grid_3 a img { width: 100%; }
 .list_work .grid_3 a {
 	padding: 0px 0px 0;
 	display:block;
 	position:relative;
-        border: 1px solid #f0f0f0;
-    height: 105px;
+  border: 1px solid #f0f0f0;
+}
+.list_work_2 .name {
+    float: left;
+    font-size: 13px;
+    width: 85%;
 }
 .list_work .grid_3 .vip span {
 	    position: absolute;
@@ -384,7 +401,7 @@ padding-bottom: 8px;
 
 /*.list_work a img {
 	border: 1px solid #ccc;
-	
+
 }*/
 .list_work li{
 	border: 1px solid #dfdfdf;
@@ -419,7 +436,7 @@ padding-bottom: 8px;
 .list_work li p i {
 	margin-right:10px;
 	font-size:14px;
-	
+
 }
 .list_work li p span {
 	color: #F22121;
@@ -505,15 +522,11 @@ padding-bottom: 8px;
 .list_work_2 a img {
     border: 1px solid #ccc;
 }
-.list_work_2 .name {
-	float: left;
-	font-size: 13px;
-	margin-top: -5px;
-}
+
 .list_work_2 li .name h2 {
     font-size: 13px;
     line-height: 20px;
-	
+
 }
 .list_work_2 li .name h2 a {
 	color: #349bdc
@@ -616,7 +629,7 @@ color: #ea8a00;
 }
 .last_list .page a:before {
 	display:none;
-	
+
 }
 /*------------------------------------*\
     Select
@@ -722,7 +735,7 @@ color: #ea8a00;
 	opacity: 0;
 }
 
-/* SELECTED FEEDBACK ITEM */ 
+/* SELECTED FEEDBACK ITEM */
 
 .dropdown .selected,
 .dropdown li{
@@ -784,7 +797,7 @@ color: #ea8a00;
 	right: 0;
 	bottom: 0;
 	height: 50px;
-	
+
 	box-shadow: inset 0 -50px 30px -35px #fff;
 }
 
@@ -897,7 +910,7 @@ line-height: 24px;
 
 .list_news {
 	margin:0;
-	padding:0 8px 5px;	
+	padding:0 8px 5px;
 	border: 1px solid #dfdfdf;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
     box-shadow: 0 1px 1px rgba(0,0,0,0.05);
@@ -961,7 +974,7 @@ line-height: 24px;
 	margin-left: 6px;
 	position: relative;
 	top: 4px;
-} 
+}
 .comment_box:after {
 	font-family: 'FontAwesome';
 	content:'\f0d7';
@@ -1138,7 +1151,7 @@ top: -9px;
 
 
 /* banner */
-.banner {	
+.banner {
 	float: right;
 	line-height: 0;
 	width:75%;
@@ -1457,6 +1470,7 @@ a.dropdown1.dropdown-active span {
 #dropdown2 p input[type="password"]
 {
 	width: 150px;
+	margin-top: 4px;
 }
 #dropdown2 p button {
 	background: #f39f18;
@@ -1465,7 +1479,7 @@ a.dropdown1.dropdown-active span {
 	border: none;
 	padding: 8px 11px;
 	font-weight: bold;
-	margin-top: 6px;
+	margin-top: 4px;
 	line-height: 17px;
 	border-radius: 2px;
 }
@@ -1491,7 +1505,7 @@ a.dropdown1.dropdown-active span {
 	margin: 0 6px;
 	color:#3C579E;
 }
-#dropdown2 p.box_remember i.fa-google-plus-square 
+#dropdown2 p.box_remember i.fa-google-plus-square
 {color:#008475;
 }
 .mgl15 {
@@ -1545,14 +1559,14 @@ a.dropdown1.dropdown-active span {
 }
 
 .logo_jobs {
-	width: 220px; 
+	width: 220px;
 	float:left;
 	margin-right: 10px;
 }
 .text_jobs {
 	float:left;
 	width:60%;
-	
+
 }
 
 
@@ -1587,7 +1601,7 @@ a.dropdown1.dropdown-active span {
 }
 .btn_hoso {
 	margin-top: 15px;
-	margin-bottom: 0;	
+	margin-bottom: 0;
 }
 .btn_hoso button{
 	width:147px;

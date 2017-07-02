@@ -43,7 +43,7 @@
                     </a> 
                 </div>
                 <div class="grid_9 omega">
-                    <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                    <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length>50 ? news.Title.Substring(0,50) : news.Title ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length>50 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0,50) : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
                     <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                     <div>
                         <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>

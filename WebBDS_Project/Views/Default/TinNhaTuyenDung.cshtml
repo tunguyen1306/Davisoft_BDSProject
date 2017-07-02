@@ -33,7 +33,7 @@
             if (account != null)
             {
                  <li>
-                     <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">@news.Title</a>
+                     <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">@(news.Title.Length>50?news.Title.Substring(0,50):news.Title)</a>
                                 </li>
             }
 

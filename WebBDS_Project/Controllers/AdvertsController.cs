@@ -206,7 +206,7 @@ namespace WebBDS_Project.Controllers
 
 
 
-                return RedirectToAction("ThanksApply", "Login");
+                return RedirectToAction("ThanksApply", "Management");
             }
             return null;
         }
