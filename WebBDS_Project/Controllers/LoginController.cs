@@ -20,7 +20,8 @@ namespace WebBDS_Project.Controllers
             Session["EmailUser"] = null;
             Session["IdTypeUser"] = null;
             Session["FullName"] = null;
-            var data = db.BDSAccounts.FirstOrDefault(x => x.Email == acountModel.tblBDSAccount.Email && x.PassWord == acountModel.tblBDSAccount.PassWord && x.Active == 1);
+          
+            var data = db.BDSAccounts.Where(x => x.Email.ToLower() == acountModel.tblBDSAccount.Email.ToLower().Trim() && x.PassWord == acountModel.tblBDSAccount.PassWord.Trim() && x.Active == 1).FirstOrDefault();
             if (data != null)
             {
                 FormsAuthentication.SetAuthCookie(data.Email, false);

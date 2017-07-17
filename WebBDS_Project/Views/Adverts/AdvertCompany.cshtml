@@ -7,7 +7,7 @@
   @using System.Configuration
 
 
-@using (Html.BeginForm("AdvertCompany", "Adverts"))
+@using (Html.BeginForm("AdvertCompany", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="container">
         <div class="grid_9 main_left">
@@ -15,7 +15,7 @@
                 <div class="header_text">
                     <h3><span><i class="fa fa-list-ul"></i>Đăng tin tuyển dụng nhân viên</span></h3>
                 </div>
-                <div class="form-horizontal">
+                <div class="form-horizontal" style=" padding-left: 10px; padding-bottom: 5px; padding-right: 10px;">
                     <h4>Thông tin cơ bản</h4>
                     <div class="row">
                         <label>Tiêu đề đăng tin<span class="required">*</span></label>
@@ -327,22 +327,71 @@
                    
 
                     <div class="row">
+                        <label>Upload Hình</label>
+                        <div>
+                            <style>
+                                .thumb {
+                                    height: 75px;
+                                    border: 1px solid #000;
+                                    margin: 10px 5px 0 0;
+                                }
+                            </style>
+                           
+                            <input type="file" id="files" name="files" multiple accept="image/*" />
+                          
 
+                            <script>
+                                function handleFileSelect(evt) {
+                                    var files = evt.target.files; // FileList object
 
-                        <div class="grid_12">
-                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Default/Blank">
-                                <div class="dz-default dz-message cusbuttonmes " style="display: block;">
-                                    <span class="btn btnUploadImage">
-                                        <span class="btn btn-danger">Lựa chọn hình ảnh </span>
-                                    </span>
+                                    // Loop through the FileList and render image files as thumbnails.
+                                    for (var i = 0, f; f = files[i]; i++) {
 
-                                </div>
+                                        // Only process image files.
+                                        if (!f.type.match('image.*')) {
+                                            continue;
+                                        }
 
+                                        var reader = new FileReader();
 
-                            </div>
+                                        // Closure to capture the file information.
+                                        reader.onload = (function (theFile) {
+                                            return function (e) {
+                                                // Render thumbnail.
+                                                var span = document.createElement('span');
+                                                span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                                                                  '" title="', escape(theFile.name), '"/>'].join('');
+                                                document.getElementById('list').insertBefore(span, null);
+                                            };
+                                        })(f);
 
+                                        // Read in the image file as a data URL.
+                                        reader.readAsDataURL(f);
+                                    }
+                                }
+
+                                document.getElementById('files').addEventListener('change', handleFileSelect, false);
+                            </script>
 
                         </div>
+                        <div>
+                            <output id="list"></output>
+                        </div>
+                        @{
+                            if(Model.ListBDSPicture!=null && Model.ListBDSPicture.Count>0)
+                            {
+                                 <div>
+                                <output >
+                                    @{
+                                foreach (var pic in Model.ListBDSPicture.Where(T=>T.advert_id==Model.tblBDSNew.ID).ToList())
+                                {
+                                    <span><img class="thumb" src="@ConfigurationManager.AppSettings["UrlImage"]@pic.originalFilepath.ToString().Split('_')[0]/@pic.originalFilepath" title="@(pic.title)"></span>
+                                }
+                                    }
+                                </output>
+                            </div>
+                            }
+                        }
                     </div>
                     <hr style="margin: 10px;" />
                     <h4>Loại tin đăng và lịch đăng tin</h4>
@@ -476,24 +525,63 @@
 
 
                     </div>
-                    <div class="row">
+                    <div class="post-date" style="display:none">
+                        <ul class="idRadio">
+                            <li>
+                                <a href="#7d" class="radioType" onclick="setTimeout(function () { calcMoney(); }, 100);">
+                                    <input type="radio" value="7" class="radioIdType" checked name="post-date">
+                                    <label>
+                                        7 ngày
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#15d" class="radioType" onclick="setTimeout(function () { calcMoney(); }, 100);">
+                                    <input type="radio" value="15" class="radioIdType" name="post-date">
+                                    <label>
+                                        15 ngày
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#30d" class="radioType" onclick="setTimeout(function () { calcMoney(); }, 100);">
+                                    <input type="radio" value="30" class="radioIdType" name="post-date">
+                                    <label>
+                                        30 ngày
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#60d" class="radioType" onclick="setTimeout(function () { calcMoney(); }, 100);">
+                                    <input type="radio" value="60" class="radioIdType" name="post-date">
+                                    <label>
+                                        60 ngày
+                                    </label>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="row rowTime fromdate-todate">
 
                         <label>Thời gian đăng<span class="required">*</span></label>
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "MM/dd/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.FromCreateNews, "{0:dd/MM/yyyy}", new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
 
 
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
-                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, new { @class = "input1 ", @style = "width:190px", @placeholder = "MM/dd/yyyy" })
+                                @Html.TextBoxFor(m => m.tblBDSNew.ToCreateNews, "{0:dd/MM/yyyy}", new { @class = "input1 ", @style = "width:190px", @placeholder = "dd/MM/yyyy" })
 
 
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
 
                         <label>Thành tiền(VNĐ):</label>
@@ -532,10 +620,9 @@
 
                     <div class="row">
                         <label></label>
-                        <button type="submit" id="submitbutton" class="btn btn-default btnAdd hidden"></button>
-
-                        <div onclick="UploadImg(this)" class="btn btn-primary btnAdd1"><i class="fa fa-check" aria-hidden="true"></i>Đăng Tin</div>
-                        <a class="btnCancel"><i class="fa fa-close" aria-hidden="true"></i>Hủy bỏ</a>
+                        <a class="btnApply btnCheck" onclick="$('#submitbutton').click();" style="padding: 10px 50px; cursor: pointer;">Đăng tin</a>
+                        <button type="submit" style="width: 100px" id="submitbutton"  class="btnSubmit hidden">Đăng ký</button>    
+                        <a class="btnApply btnCheck"  style="padding-top: 10px; padding-bottom: 10px; cursor: pointer; background: #019281; ">Hủy bỏ</a>
 
                     </div>
 
@@ -555,13 +642,18 @@
     <input type="hidden" id="hdTotalMoney" name="tblBDSNew.TotalMoney" />
 
 }
+<style>
+    a.btnCheck:hover
+    {
+        color:white;
+        opacity:0.8;
+    }
+</style>
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/cropper.min.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/cussupload.css" rel="stylesheet" />
-<script src="~/Template/js/UploadImg/cropperVG.js"></script>
-<script src="~/Template/js/UploadImg/cusjsVG.js"></script>
-<script src="~/Template/js/UploadImg/dropzoneVG.js"></script>
+
 <style>
     a.radioType.selected {
        /* color: red;*/
@@ -569,23 +661,43 @@
 </style>
 <script>
 
-     
+    Number.prototype.padLeft = function (n, str) {
+        return Array(n - String(this).length + 1).join(str || '0') + this;
+    }
+
     function calcMoney() {
-       
+        var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
+        $('.fromdate-todate').show();
+        $('.post-date').hide();
+        if (id == 4) {
+            var value = $('.post-date input:checked').eq(0).val();
+            $('.fromdate-todate').hide();
+            $('.post-date').show();
+            var dateArray = ($('#tblBDSNew_FromCreateNews').val() + ' - ' + $('#tblBDSNew_ToCreateNews').val()).split(' - ');
+            var aarf = dateArray[0].split('/');
+            var aart = dateArray[1].split('/');
+            var fromDate = new Date(parseInt(aarf[2]), parseInt(aarf[1]) - 1, parseInt(aarf[0]));
+            var toDate = new Date(new Date(parseInt(aarf[2]), parseInt(aarf[1]) - 1, parseInt(aarf[0])).setDate(new Date(parseInt(aarf[2]), parseInt(aarf[1]) - 1, parseInt(aarf[0])).getDate() + parseInt(value)));
+
+            var dateString = fromDate.getDate().padLeft(2) + "/" + (fromDate.getMonth() + 1).padLeft(2) + "/" + fromDate.getFullYear() + " - " + toDate.getDate().padLeft(2) + "/" + (toDate.getMonth() + 1).padLeft(2) + "/" + toDate.getFullYear();
+            $('#tblBDSNew_FromCreateNews').val(fromDate.getDate().padLeft(2) + "/" + (fromDate.getMonth() + 1).padLeft(2) + "/" + fromDate.getFullYear());
+            $('#tblBDSNew_ToCreateNews').val(toDate.getDate().padLeft(2) + "/" + (toDate.getMonth() + 1).padLeft(2) + "/" + toDate.getFullYear());
+            to.datepicker("option", "minDate", fromDate);
+            from.datepicker("option", "maxDate", toDate);
+        }
         var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
         var rDate = $('#tblBDSNew_FromCreateNews').val() + "-" + $('#tblBDSNew_ToCreateNews').val();
         if (id != null && id != "" && id != null && id != "" && $('#tblBDSNew_ToCreateNews').val() != "" && $('#tblBDSNew_FromCreateNews').val()!="") {
             $.getJSON("@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + encodeURIComponent( rDate), function(data) {
                 $('#hdMoneyInDay').val(data.PriceInDay);
                 $('#hdTotalMoney').val(data.TotalPrice);
-
                 $('.priceInDay').html(tien(data.PriceInDay));
                 $('.TotalMoney').html(tien(data.TotalPrice));
             });
         }
 
     };
-    $(document).on("change", 'a.radioType,#tblBDSNew_FromCreateNews,#tblBDSNew_ToCreateNews', function () {
+    $(document).on("change", 'input[name="tblBDSNew.IdTypeNews"] ,#tblBDSNew_FromCreateNews,#tblBDSNew_ToCreateNews', function () {
 
         var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
         var rDate = $('#tblBDSNew_FromCreateNews').val() + "-" + $('#tblBDSNew_ToCreateNews').val();
@@ -616,19 +728,20 @@
 
     }
 
-
+    var from;
+    var to;
 	$( function() {
-	    var dateFormat = "mm/dd/yy",
-			from = $("#tblBDSNew_FromCreateNews")
-				.datepicker({
-					defaultDate: "+0d",
-					changeMonth: true,
-					numberOfMonths: 1,
-					dateFormat: dateFormat
-				})
-				.on( "change", function() {
-					to.datepicker( "option", "minDate", getDate( this ) );
-				}),
+	    var dateFormat = "dd/mm/yy";
+	    from = $("#tblBDSNew_FromCreateNews")
+            .datepicker({
+                defaultDate: "+0d",
+                changeMonth: true,
+                numberOfMonths: 1,
+                dateFormat: dateFormat
+            })
+            .on("change", function () {
+                to.datepicker("option", "minDate", getDate(this));
+            });
 			to = $("#tblBDSNew_ToCreateNews").datepicker({
 				defaultDate: "+3d",
 				changeMonth: true,
@@ -658,6 +771,34 @@
 
 			return date;
 		}
+
+		var id = $('#IdTypeNews').val();
+		$('.fromdate-todate').show();
+		$('.post-date').hide();
+		if (id == 4) {
+		    $('.fromdate-todate').hide();
+		    $('.post-date').show();
+		    var dateArray = ($('#tblBDSNew_FromCreateNews').val() + ' - ' + $('#tblBDSNew_ToCreateNews').val()).split(' - ');
+		    var aarf = dateArray[0].split('/');
+		    var aart = dateArray[1].split('/');
+		    var dateF = new Date(parseInt(aarf[2]), parseInt(aarf[1]) - 1, parseInt(aarf[0]));
+		    var dateT = new Date(parseInt(aart[2]), parseInt(aart[1]) - 1, parseInt(aart[0]));
+		    var timeDiff = Math.abs(dateT.getTime() - dateF.getTime());
+		    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+		    //   alert(diffDays);
+		    $('.post-date input').each(function () {
+
+		        if ($(this).val() == diffDays) {
+		            $(this).prop('checked', true);		        
+		            return;
+		        }
+		    });
+		    //  $('input[name="PostDate"]').val(diffDays);
+		}
+		toastr.error(@(ViewBag.Message!=null?ViewBag.Message:""));
+		
+
+
 	} );
 
     $('.checkCarrie').click(function () {
@@ -686,216 +827,45 @@
     });
 
     $("#submitbutton").on('click', function (e) {
-        e.preventDefault();
+        if (!UploadImg())
+        {
+            e.stopPropagation();
+            return false;
+        }
 
-            $('#submitbutton').parents("form").submit();
+        e.preventDefault();
+         $('#submitbutton').parents("form").submit();
 
 
     });
 
-    function dropNew(ed) {
+   
+    
 
-        var console = window.console || { log: function () { } };
-        var $image = $(ed).parents(".dz-preview").find('#cusimg');
-        var $download = $('#download');
-        var $dataX = $(ed).parents(".dz-preview").find('#dataX');
-        var $dataY = $(ed).parents(".dz-preview").find('#dataY');
-        var $dataHeight = $(ed).parents(".dz-preview").find('#dataHeight');
-        var $dataWidth = $(ed).parents(".dz-preview").find('#dataWidth');
-        var $dataRotate = $(ed).parents(".dz-preview").find('#dataRotate');
-        var $dataScaleX = $(ed).parents(".dz-preview").find('#dataScaleX');
-        var $dataScaleY = $(ed).parents(".dz-preview").find('#dataScaleY');
-        var $putData = $(ed).parents(".dz-preview").find('#dataimg');
-
-
-        var options = {
-            aspectRatio: 16/9,
-            preview: '.img-preview',
-            crop: function (e) {
-                $dataX.val(Math.round(e.x));
-                $dataY.val(Math.round(e.y));
-                $dataHeight.val(Math.round(e.height));
-                $dataWidth.val(Math.round(e.width));
-                $dataRotate.val(e.rotate);
-                $dataScaleX.val(e.scaleX);
-                $dataScaleY.val(e.scaleY);
-            }
-        };
-
-
-        // Tooltip
-        $(ed).find('[data-toggle="tooltip"]').tooltip();
-
-
-        // Cropper
-        $image.on({
-            'build.cropper': function (e) {
-                // console.log(e.type);
-            },
-            'built.cropper': function (e) {
-                // console.log(e.type);
-            },
-            'cropstart.cropper': function (e) {
-                // console.log(e.type, e.action);
-            },
-            'cropmove.cropper': function (e) {
-                // console.log(e.type, e.action);
-            },
-            'cropend.cropper': function (e) {
-                //console.log(e.type, e.action);
-            },
-            'crop.cropper': function (e) {
-                //console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
-                //console.log(e.type);
-                //console.log(e.x);
-                //console.log(e.y);
-                //console.log(e.width);
-                //console.log(e.height);
-                //console.log(e.rotate);
-                //console.log(e.scaleX);
-                //console.log(e.scaleY);
-
-
-            },
-            'zoom.cropper': function (e) {
-                // console.log(e.type, e.ratio);
-            }
-        }).cropper(options);
-
-
-        //// Buttons
-        if (!$.isFunction(document.createElement('canvas').getContext)) {
-            $(ed).parents('.dz-preview').eq(0).find('button[data-method="getCroppedCanvas"]').prop('disabled', true);
-        }
-
-        if (typeof document.createElement('cropper').style.transition === 'undefined') {
-            $(ed).parents('.dz-preview').eq(0).find('button[data-method="rotate"]').prop('disabled', true);
-            $(ed).parents('.dz-preview').eq(0).find('button[data-method="scale"]').prop('disabled', true);
-        }
-
-
-        // Methods
-        $(ed).parents('.dz-preview').eq(0).find('.docs-buttons').on('click', '[data-method]', function () {
-            var $this = $(this);
-            var data = $this.data();
-            var $target;
-            var result;
-
-            if ($this.prop('disabled') || $this.hasClass('disabled')) {
-                return;
-            }
-
-            if ($image.data('cropper') && data.method) {
-                data = $.extend({}, data); // Clone a new one
-
-                if (typeof data.target !== 'undefined') {
-                    $target = $(data.target);
-
-                    if (typeof data.option === 'undefined') {
-                        try {
-                            data.option = JSON.parse($target.val());
-                        } catch (e) {
-                            console.log(e.message);
-                        }
-                    }
-                }
-
-                result = $image.cropper(data.method, data.option, data.secondOption);
-
-                switch (data.method) {
-                    case 'scaleX':
-                    case 'scaleY':
-                        $(this).data('option', -data.option);
-                        break;
-
-                    case 'getCroppedCanvas':
-                        console.log(result.toDataURL().length);
-                        var duongdancrop = result.toDataURL();
-                        $(ed).parents(".dz-preview").find('.cussimg').attr("src", duongdancrop);
-                        $(ed).parents(".dz-preview").find('.cropper-canvas img:first').attr("src", duongdancrop);
-                        $(ed).parents(".dz-preview").find('.cropper-view-box img:first').attr("src", duongdancrop);
-
-                        //hiden control drop
-                        $(ed).parent().parent().find('#imgmain').find("img:first").removeClass('cropper-hidden');
-                        $(ed).parent().parent().find('#imgmain').find("img:first").next().addClass('cropper-hidden');
-                        //hiden control drop end
-                        if (result) {
-
-
-                            if (isserver) {
-                                //save to sever
-
-                                $putData.text(result.toDataURL());
-
-                            } else {
-                                $putData.text(result.toDataURL());
-                            }
-
-                            // Bootstrap's Modal
-                            //$('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-
-                            //if (!$download.hasClass('disabled')) {
-                            //    $download.attr('href', result.toDataURL());
-
-
-                            //}
-                        }
-
-                        break;
-                }
-
-                if ($.isPlainObject(result) && $target) {
-                    try {
-                        $target.val(JSON.stringify(result));
-                    } catch (e) {
-                        console.log(e.message);
-                    }
-                }
-
-            }
-        });
-
-
-    }
-    var isserver = false;
-
-    function uploadtoserver() {
-        $.each($('.cbtn-info-ok'), function (i, o) {
-
-            if ($(o).parents('.dz-preview').find('.tools.final').hasClass('hidden')) {
-                isserver = true;
-
-                $(o).click();
-            }
-        }
-        );
-        return false;
-    }
-
-    function UploadImg(obj) {
+    function UploadImg() {
         var t = 0;
         if ($('#tblCaptCha_Captcha').val() == "") {
             toastr.error('Vui lòng nhập Mã an toàn!');
             t++;
         }
-        if (  $('#tblBDSNew_FromCreateNews').val()>$('#tblBDSNew_ToCreateNews').val()) {
-            toastr.error('Ngày bất đầu không được lớn hơn ngày kết thúc!');
-            t++;
-        }
+       // if (  $('#tblBDSNew_FromCreateNews').val()>$('#tblBDSNew_ToCreateNews').val()) {
+       //     toastr.error('Ngày bất đầu không được lớn hơn ngày kết thúc!');
+       //     t++;
+       // }
 
         if ($('#tblBDSNew_ToCreateNews').val() == "") {
             toastr.error('Vui lòng nhập Ngày kết thúc đăng tin!');
             t++;
         }
-if ($('#tblBDSNew_FromCreateNews').val() == "") {
+        if ($('#tblBDSNew_FromCreateNews').val() == "") {
             toastr.error('Vui lòng nhập Ngày bất đầu đăng tin!');
             t++;
         }
-        if ($('.dz-preview').size() == 0) {
+       // if ($('.dz-preview').size() == 0) {
 
-            toastr.error('Vui lòng chọn ít nhất một hình!');
-            t++;
-        }
+       //     toastr.error('Vui lòng chọn ít nhất một hình!');
+       //     t++;
+      //  }
 
 
 
@@ -925,7 +895,7 @@ if ($('#tblBDSNew_FromCreateNews').val() == "") {
             t++;
         }
 
-if ($('#tblBDSNew_Bonus').val() == "") {
+        if ($('#tblBDSNew_Bonus').val() == "") {
             toastr.error('Vui lòng nhập Thưởng/phụ cấp!');
             t++;
         }
@@ -948,54 +918,20 @@ if ($('#tblBDSNew_Bonus').val() == "") {
             toastr.error('Vui lòng nhập Tiêu đề!');
             t++;
         }
-        if (t==0) {
-            $('.cropper-container img').css({ "transform": "none" });
-            $('.btnAdd1').text('Đang xữ lý');
-            $('.btnAdd1').addClass('disabled');
-            uploadtoserver();
-            var totalitem = $('.dz-preview').size();
-            $.each($('.dz-preview'), function (i, o) {
-                $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
-                var image = $(o).find('#cusimg');
-                var valuerotate = $(o).find('#dataRotate').val();
-                var dataX = $(o).find('#dataX').val();
-                var dataY = $(o).find('#dataY').val();
-                var dataHeight = $(o).find('#dataHeight').val();
-                var dataWidth = $(o).find('#dataWidth').val();
-                var right = $(window).width() - dataX - image.width();
-                var bottom = $(window).height() - dataY - image.height();
-                var dataimg = $(o).find('#dataimg').text();
-                var dataname = $(o).find('.cusinput').val();
-                var idpic = $(o).find('#cusimg').attr('rel');
+        if (t == 0) {
+            var checkMoney = false;
+            var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
+            var rDate = $('#tblBDSNew_FromCreateNews').val() + "-" + $('#tblBDSNew_ToCreateNews').val();
+            if (id != null && id != "" && id != null && id != "" && $('#tblBDSNew_ToCreateNews').val() != "" && $('#tblBDSNew_FromCreateNews').val()!="") {
+                $.getJSON("@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + encodeURIComponent(rDate), function (data) {
 
-                document.getElementsByName('cfile')[0].value = dataimg;
-                document.getElementsByName('nameImg')[0].value = dataname;
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("SaveImg", "Adverts")",
-                    data: { idProducts:99999999, index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
-
-                success: function (data) {
-                    $(o).find('#cusimg').attr('rel', data.d);
-
-                    totalitem--;
-
-                    if (totalitem == 0) {
-                        $('.btnAdd1').text('Đăng Tin');
-                        $('.btnAdd1').removeClass('disabled');
-                        $('.btnAdd').click();
-                    }
-
-                },
-                error: function (e) {
-                    toastr.error('Vui lòng chọn lại hình ảnh');
-                }
-            });
-        });
-            return true;
+                    checkMoney = data.CheckMoney;
+                    toastr.error('Số tiền trong tài khoản không đủ!');
+                });
+            }
+            return checkMoney == true || checkMoney=="true"?true:false;
         }
-
-
+        return false;
 
     }
 

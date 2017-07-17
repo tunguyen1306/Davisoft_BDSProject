@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DataWebBDS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DataWebBDS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -309,6 +309,24 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedUser" Type="int" />
         </EntityType>
+        <EntityType Name="BDSMenus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Url" Type="text" />
+          <Property Name="Target" Type="nvarchar" MaxLength="50" />
+          <Property Name="KeySearch" Type="nvarchar(max)" />
+          <Property Name="Active" Type="int" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedUser" Type="int" />
+          <Property Name="MOrder" Type="int" />
+        </EntityType>
         <EntityType Name="BDSNews">
           <Key>
             <PropertyRef Name="ID" />
@@ -358,6 +376,8 @@
           <Property Name="CreateUser" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedUser" Type="int" />
+          <Property Name="IdNewsDates" Type="int" />
+          <Property Name="Reason" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="BDSNews_Career">
           <Key>
@@ -366,6 +386,26 @@
           </Key>
           <Property Name="ID_News" Type="int" Nullable="false" />
           <Property Name="ID_Career" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BDSNewsDates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="KeySearch" Type="nvarchar(max)" />
+          <Property Name="IdNews" Type="int" Nullable="false" />
+          <Property Name="IdTypeNews" Type="int" Nullable="false" />
+          <Property Name="FromCreateNews" Type="datetime" Nullable="false" />
+          <Property Name="ToCreateNews" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedUser" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="DIndex" Type="int" />
         </EntityType>
         <EntityType Name="BDSNewsTypePrices">
           <Key>
@@ -531,6 +571,7 @@
           <Property Name="CreateUser" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedUser" Type="int" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="BDSTransactions">
           <Key>
@@ -835,8 +876,10 @@
           <EntitySet Name="BDSExtNews" EntityType="Self.BDSExtNews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSLanguages" EntityType="Self.BDSLanguages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSMarriages" EntityType="Self.BDSMarriages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDSMenus" EntityType="Self.BDSMenus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSNews" EntityType="Self.BDSNews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSNews_Career" EntityType="Self.BDSNews_Career" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDSNewsDates" EntityType="Self.BDSNewsDates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSNewsTypePrices" EntityType="Self.BDSNewsTypePrices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSNewsTypes" EntityType="Self.BDSNewsTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSPersonalInformations" EntityType="Self.BDSPersonalInformations" Schema="dbo" store:Type="Tables" />
@@ -926,6 +969,8 @@
           <EntitySet Name="Users" EntityType="DataWebBDS.User" />
           <EntitySet Name="Users_Branches" EntityType="DataWebBDS.Users_Branches" />
           <EntitySet Name="Users_Roles" EntityType="DataWebBDS.Users_Roles" />
+          <EntitySet Name="BDSMenus" EntityType="DataWebBDS.BDSMenu" />
+          <EntitySet Name="BDSNewsDates" EntityType="DataWebBDS.BDSNewsDate" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -1280,6 +1325,8 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
+          <Property Name="IdNewsDates" Type="Int32" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BDSNews_Career">
           <Key>
@@ -1453,6 +1500,7 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
         </EntityType>
         <EntityType Name="BDSTransaction">
           <Key>
@@ -1738,6 +1786,44 @@
           </Key>
           <Property Name="User_Id" Type="Int32" Nullable="false" />
           <Property Name="Role_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BDSMenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUser" Type="Int32" />
+          <Property Name="MOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BDSNewsDate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdNews" Type="Int32" Nullable="false" />
+          <Property Name="IdTypeNews" Type="Int32" Nullable="false" />
+          <Property Name="FromCreateNews" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToCreateNews" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUser" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="DIndex" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2068,6 +2154,8 @@
           <EntitySetMapping Name="BDSNews">
             <EntityTypeMapping TypeName="DataWebBDS.BDSNew">
               <MappingFragment StoreEntitySet="BDSNews">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="IdNewsDates" ColumnName="IdNewsDates" />
                 <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
@@ -2281,6 +2369,7 @@
           <EntitySetMapping Name="BDSTransactionHistories">
             <EntityTypeMapping TypeName="DataWebBDS.BDSTransactionHistory">
               <MappingFragment StoreEntitySet="BDSTransactionHistories">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
@@ -2595,6 +2684,46 @@
               <MappingFragment StoreEntitySet="Users_Roles">
                 <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSMenus">
+            <EntityTypeMapping TypeName="DataWebBDS.BDSMenu">
+              <MappingFragment StoreEntitySet="BDSMenus">
+                <ScalarProperty Name="MOrder" ColumnName="MOrder" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSNewsDates">
+            <EntityTypeMapping TypeName="DataWebBDS.BDSNewsDate">
+              <MappingFragment StoreEntitySet="BDSNewsDates">
+                <ScalarProperty Name="DIndex" ColumnName="DIndex" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ToCreateNews" ColumnName="ToCreateNews" />
+                <ScalarProperty Name="FromCreateNews" ColumnName="FromCreateNews" />
+                <ScalarProperty Name="IdTypeNews" ColumnName="IdTypeNews" />
+                <ScalarProperty Name="IdNews" ColumnName="IdNews" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

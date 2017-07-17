@@ -38,7 +38,7 @@ namespace WebBDS_Project.Controllers
             var ListSalary=  db.BDSSalaries.ToList();
          
             CaptCha cap = new CaptCha();
-            BDSNew BDSNew = new BDSNew();
+            BDSNew BDSNew = new BDSNew { CreateUser = 1, Active = 0, CreateDate = DateTime.Now, DateReup = null, IdLanguage = 1, FromCreateNews = DateTime.Now, ToCreateNews = DateTime.Now.AddDays(3), FromDeadline = DateTime.Now, ToDeadline = null };
             var registerModel = new RegisterInformationModel
             {
                 ListBDSScopes = db.BDSScopes.ToList(),
@@ -54,7 +54,8 @@ namespace WebBDS_Project.Controllers
                 tblBDSNew= BDSNew,
                 ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
                 ListBdsAdcount = db.BDSAccounts.ToList(),
-                ListBDSEmper = db.BDSEmpers.ToList()
+                ListBDSEmper = db.BDSEmpers.ToList(),
+                
 
 
 
@@ -75,11 +76,12 @@ namespace WebBDS_Project.Controllers
             return null;
         }
         [HttpPost]
-        public ActionResult AdvertCompany(RegisterInformationModel create)
+        public ActionResult AdvertCompany(RegisterInformationModel create, HttpPostedFileBase[] files)
         {
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != create.tblCaptCha.Captcha)
             {
                 ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
+                ViewBag.Message = "Capcha không chính xác!";
                 var dataCity = (from data in db.States
                                 join datatext in db.StateTexts on data.name_id equals datatext.id
                                 where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
@@ -107,52 +109,91 @@ namespace WebBDS_Project.Controllers
                     ListBdsAdcount = db.BDSAccounts.ToList(),
                     ListBDSEmper = db.BDSEmpers.ToList()
 
-                };
-                var listPicture = db.BDSPictures.Where(x => x.advert_id == 99999999);
-                foreach (var item in listPicture)
-                {
-                    var pic = db.BDSPictures.Find(item.ID);
-                    db.BDSPictures.Remove(pic);
-                }
-                
-                db.SaveChanges();
-                var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
-                foreach (var item in listMap)
-                {
-                    db.Entry(item).State = EntityState.Deleted;
-
-                }
-                db.SaveChanges();
-                foreach (var item in create.tblBDSNew.Career.Split(','))
-                {
-                    if (!String.IsNullOrEmpty(item))
-                    {
-                        BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
-                        db.Entry(i).State = EntityState.Added;
-                    }
-                }
-                db.SaveChanges();
+                };        
                 return View(registerModel);
             }
             else
             {
+                var checkMoney = false;
+                if (Session["IdUser"] != null)
+                {
+                    int id = int.Parse(Session["IdUser"].ToString());
+                    var model = db.BDSAccounts.FirstOrDefault(T => T.ID == id);
+                    if (model != null)
+                    {
+                        if (model.Money >= pAll)
+                        {
+                            checkMoney = true;
+                        }
+                    }
+                }
+
+                if (!checkMoney)
+                {
+                    ViewBag.Message = "Số tiền trong tài khoản không đủ!";
+                    ModelState.AddModelError("TotalMoney", "Số tiền trong tài khoản không đủ!");
+                    var dataCity = (from data in db.States
+                                    join datatext in db.StateTexts on data.name_id equals datatext.id
+                                    where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                                    select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+                    dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                    dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+                    dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
+                    CaptCha cap = new CaptCha();
+                    BDSNew BDSNew = new BDSNew();
+                    var registerModel = new RegisterInformationModel
+                    {
+                        ListBDSScopes = db.BDSScopes.ToList(),
+                        ListMarriea = db.BDSMarriages.ToList(),
+                        ListSalary = db.BDSSalaries.ToList(),
+                        ListDucation = db.BDSEducations.ToList(),
+                        ListBDSCareer = db.BDSCareers.ToList(),
+                        ListTimework = db.BDSTimeWorks.ToList(),
+                        ListBDSLanguage = db.BDSLanguages.ToList(),
+                        ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+                        ListGeoModel = dataCity.ToList(),
+                        tblCaptCha = cap,
+                        tblBDSNew = BDSNew,
+                        ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                        ListBdsAdcount = db.BDSAccounts.ToList(),
+                        ListBDSEmper = db.BDSEmpers.ToList()
+
+                    };        
+                return View(registerModel);
+                }
                 create.tblBDSNew.IdAcount=int.Parse( Session["IdUser"].ToString());
-                create.tblBDSNew.FromDeadline = DateTime.Now;
-                create.tblBDSNew.FromCreateNews = DateTime.Now;
+                create.tblBDSNew.FromDeadline = DateTime.Now;          
                 create.tblBDSNew.CreateDate = DateTime.Now;
                 create.tblBDSNew.Active = 1;
                 create.tblBDSNew.Status = 0;
                 create.tblBDSNew.CountReup = 0;
                 create.tblBDSNew.MaxReup = 0;
                 create.tblBDSNew.CreateUser = 1;
-                create.tblBDSNew.IdTypeNewsCuurent = create.tblBDSNew.IdTypeNews;
-                var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
-                foreach (var item in listMap)
-                {
-                    db.Entry(item).State = EntityState.Deleted;
 
-                }
+                create.tblBDSNew.Career = create.tblBDSNew.Career.Substring(create.tblBDSNew.Career.Length - 1) == "," ? create.tblBDSNew.Career.Substring(0, create.tblBDSNew.Career.Length - 1) : create.tblBDSNew.Career;
+                create.tblBDSNew.IdTypeNewsCuurent = create.tblBDSNew.IdTypeNews;
+                db.Entry( create.tblBDSNew).State=EntityState.Added;
                 db.SaveChanges();
+                if (files!=null && files.Length>0)
+                {
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (files[i] != null)
+                        {
+                            byte[] binaryData;
+                            binaryData = new Byte[files[i].InputStream.Length];
+                            long bytesRead = files[i].InputStream.Read(binaryData, 0, (int)files[i].InputStream.Length);
+                            files[i].InputStream.Close();
+                            string base64String = System.Convert.ToBase64String(binaryData, 0, binaryData.Length);
+                            SaveImg(new NewsPicture { nameImg = files[i].FileName, idProducts = create.tblBDSNew.ID, isactive = 1, index = i, cfile = base64String });
+                        }
+                   }
+                }
+              
+            
+                     
+
                 foreach (var item in create.tblBDSNew.Career.Split(','))
                 {
                     if (!String.IsNullOrEmpty(item))
@@ -178,7 +219,8 @@ namespace WebBDS_Project.Controllers
                     TypeTran = 2,
                     PointTran = 0,
                     MoneyTran = create.tblBDSNew.TotalMoney.Value,
-                    DateTran = DateTime.Now
+                    DateTran = DateTime.Now,
+
                 };
 
                 db.BDSTransactionHistories.Add(tran);
@@ -281,7 +323,7 @@ namespace WebBDS_Project.Controllers
             }
             var picture = new NewsPicture
             {
-                tblPicture = new BDSPicture { advert_id = newPicture.idProducts, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck =true, type_id = 1, title = newPicture.nameImg, position = newPicture.isactive }
+                tblPicture = new BDSPicture { advert_id = newPicture.idProducts,Active=1, angleType = 0, cms_sql_id = 0, converted = DateTime.Now, tocheck =true, type_id = 1, title = newPicture.nameImg, position = newPicture.isactive }
             };
             if (newPicture.idpicture == 0)
             {
@@ -352,7 +394,7 @@ namespace WebBDS_Project.Controllers
             if (newPicture.idpicture > 0)
             {
 
-               BDSPicture tblpict = db.BDSPictures.Find(newPicture.idpicture);
+                 BDSPicture tblpict = db.BDSPictures.Find(newPicture.idpicture);
                 tblpict.title = newPicture.nameImg;
                 tblpict.position = newPicture.isactive;
                 db.Entry(tblpict).State = EntityState.Modified;
@@ -400,7 +442,7 @@ namespace WebBDS_Project.Controllers
             return View(registerModel);
         }
         [HttpPost,ActionName("EditNews")]
-        public ActionResult EditNews(RegisterInformationModel create)
+        public ActionResult EditNews(RegisterInformationModel create, HttpPostedFileBase[] files, int[] img_id)
         {
 
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != create.tblCaptCha.Captcha)
@@ -436,31 +478,7 @@ namespace WebBDS_Project.Controllers
 
 
                 };
-                var listPicture = db.BDSPictures.Where(x => x.advert_id == 99999999);
-                foreach (var item in listPicture)
-                {
-                    var pic = db.BDSPictures.Find(item.ID);
-                    db.BDSPictures.Remove(pic);
-                }
-
-                db.SaveChanges();
-                var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
-                foreach (var item in listMap)
-                {
-                    db.Entry(item).State = EntityState.Deleted;
-
-                }
-                db.SaveChanges();
-                foreach (var item in create.tblBDSNew.Career.Split(','))
-                {
-                    if (!String.IsNullOrEmpty(item))
-                    {
-                        BDSNews_Career i = new BDSNews_Career { ID_News = create.tblBDSNew.ID, ID_Career = int.Parse(item) };
-                        db.Entry(i).State = EntityState.Added;
-                    }
-                   
-                }
-                db.SaveChanges();
+               
                 return View(registerModel);
             }
             else
@@ -490,40 +508,41 @@ namespace WebBDS_Project.Controllers
                 tblNews.FromDeadline = create.tblBDSNew.FromDeadline;
                 tblNews.ToDeadline = create.tblBDSNew.ToDeadline;
                 tblNews.IdLanguage = create.tblBDSNew.IdLanguage;
-                tblNews.WebSiteCompany = create.tblBDSNew.WebSiteCompany;
-             //   tblNews.IdTypeNews = create.tblBDSNew.IdTypeNews;
-               // tblNews.FromCreateNews = create.tblBDSNew.FromCreateNews;
-               // tblNews.ToCreateNews = create.tblBDSNew.ToCreateNews;
-             //   tblNews.IdAcount = create.tblBDSNew.IdAcount;
-              //  tblNews.KeySearch = create.tblBDSNew.KeySearch;
-                //tblNews.MoneyInDay = create.tblBDSNew.MoneyInDay;
-              //  tblNews.TotalMoney = create.tblBDSNew.TotalMoney;
-                tblNews.UrlImage = create.tblBDSNew.UrlImage;
-            //    tblNews.IdTypeNewsCuurent = create.tblBDSNew.IdTypeNewsCuurent;
-           //     tblNews.DateReup = create.tblBDSNew.DateReup;
-            //    tblNews.CountReup = create.tblBDSNew.CountReup;
-              //  tblNews.Status = create.tblBDSNew.Status;
-            //    tblNews.RefTranHis = create.tblBDSNew.RefTranHis;
-           //     tblNews.Active = create.tblBDSNew.Active;
-           //     tblNews.CreateDate = create.tblBDSNew.CreateDate;
-              //  tblNews.CreateUser = create.tblBDSNew.CreateUser;
-             //   tblNews.ModifiedDate = create.tblBDSNew.ModifiedDate;
-              //  tblNews.ModifiedUser = create.tblBDSNew.ModifiedUser;
-             //   tblNews.MaxReup = create.tblBDSNew.MaxReup;
-                 db.Entry(tblNews).State = EntityState.Modified;
-                db.SaveChanges();
+                tblNews.WebSiteCompany = create.tblBDSNew.WebSiteCompany;        
+                tblNews.UrlImage = create.tblBDSNew.UrlImage;          
 
-                var tblpict = db.BDSPictures.Where(x => x.advert_id == 99999999);
-                foreach (var item in tblpict)
+                tblNews.Career = tblNews.Career.Substring(tblNews.Career.Length - 1) == "," ? tblNews.Career.Substring(0, tblNews.Career.Length - 1) : tblNews.Career;
+                db.Entry(tblNews).State = EntityState.Modified;
+                db.SaveChanges();
+                if (img_id != null && img_id.Length > 0)
                 {
-
-                    BDSPicture tblpic = db.BDSPictures.Find(item.ID);
-                    tblpic.advert_id = create.tblBDSNew.ID;
-                    db.Entry(tblpic).State = EntityState.Modified;
-
+                    var listPic = db.BDSPictures.Where(T => T.advert_id == tblNews.ID && !img_id.Contains(T.ID)).ToList();
+                    foreach (var pic in listPic)
+                    {
+                        db.Entry(pic).State = EntityState.Deleted;
+                    }
                 }
+                     
+                if (files != null && files.Length > 0)
+                {
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (files[i] != null)
+                        {
+                            byte[] binaryData;
+                            binaryData = new Byte[files[i].InputStream.Length];
+                            long bytesRead = files[i].InputStream.Read(binaryData, 0, (int)files[i].InputStream.Length);
+                            files[i].InputStream.Close();
+                            string base64String = System.Convert.ToBase64String(binaryData, 0, binaryData.Length);
+                            SaveImg(new NewsPicture { nameImg = files[i].FileName, idProducts = create.tblBDSNew.ID, isactive = 1, index = i, cfile = base64String });
+                        }
+                    }
+                }
+               
                 db.SaveChanges();
-                var listMap = db.BDSNews_Career.Where(T => T.ID_News == create.tblBDSNew.ID).ToList();
+
+
+                var listMap = db.BDSNews_Career.Where(T => T.ID_News == tblNews.ID).ToList();
                 foreach (var item in listMap)
                 {
                     db.Entry(item).State = EntityState.Deleted;
@@ -603,8 +622,8 @@ namespace WebBDS_Project.Controllers
 
                 var fromDate = rDate.Split('-')[0];
                 var toDate = rDate.Split('-')[1];
-                var FromDate = DateTime.Parse(DateTime.Parse( fromDate).ToString("dd/MM/yyyy").Trim(), MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
-                var ToDate = DateTime.Parse(DateTime.Parse(fromDate).ToString("dd/MM/yyyy").Trim(), MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
+                var FromDate = DateTime.Parse(fromDate, MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
+                var ToDate = DateTime.Parse(toDate, MvcApplication.CultureInfo, System.Globalization.DateTimeStyles.None);
                 var totalDay = ToDate.Subtract(FromDate).TotalDays;
                 if (totalDay < 1)
                 {
@@ -621,7 +640,21 @@ namespace WebBDS_Project.Controllers
                     pInDay = price.Price;
                     pAll = totalDay * pInDay;
                 }
-                return Json(new { PriceInDay = pInDay, TotalPrice = pAll, TotalDay = totalDay }, JsonRequestBehavior.AllowGet);
+                var checkMoney = false;
+                if (Session["IdUser"]!=null)
+                {
+                    int id = int.Parse( Session["IdUser"].ToString());
+                    var model= db.BDSAccounts.FirstOrDefault(T=>T.ID==id);
+                    if (model!=null)
+                    {
+                        if( model.Money>=pAll)
+                        {
+                            checkMoney = true;
+                        }
+                    }
+                }
+
+                return Json(new { PriceInDay = pInDay, TotalPrice = pAll, TotalDay = totalDay, CheckMoney = checkMoney }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
@@ -630,7 +663,27 @@ namespace WebBDS_Project.Controllers
             }
            
         }
+        [HttpPost]
+        public JsonResult Reup(int id)
+        {
+            try
+            {
+               var news=  db.BDSNews.Where(T => T.ID == id).FirstOrDefault();
+               if (news != null && news.CountReup < news.MaxReup && DateTime.Now <= news.ToCreateNews)
+                {
+                    news.CountReup += 1;
+                    news.DateReup = news.FromCreateNews >= DateTime.Now ? news.FromCreateNews : DateTime.Now;
+                    return Json(new { Status = 1 });
+                }
+              
+            }
+            catch (Exception e)
+            {
 
+                return Json(new { Status = 0,Error=e.Message });
+            }
+            return Json(new { Status = 0});
+        }
         public JsonResult EmployerInformation(int idAccount)
         {
             return Json(

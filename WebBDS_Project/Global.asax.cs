@@ -31,7 +31,7 @@ namespace WebBDS_Project
             {
 
 
-                return new System.Globalization.CultureInfo("vi-VN");
+                return new System.Globalization.CultureInfo("en-GB");
             }
         }
 

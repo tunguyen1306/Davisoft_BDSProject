@@ -56,6 +56,8 @@
         <EntityTypeShape EntityType="DataWebBDS.User" Width="1.5" PointX="10.75" PointY="20.75" />
         <EntityTypeShape EntityType="DataWebBDS.Users_Branches" Width="1.5" PointX="20.75" PointY="13.75" />
         <EntityTypeShape EntityType="DataWebBDS.Users_Roles" Width="1.5" PointX="20.75" PointY="16.75" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSMenu" Width="1.5" PointX="19.375" PointY="20.75" />
+        <EntityTypeShape EntityType="DataWebBDS.BDSNewsDate" Width="1.5" PointX="3.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

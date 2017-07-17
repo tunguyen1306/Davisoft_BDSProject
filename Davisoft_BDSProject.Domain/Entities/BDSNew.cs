@@ -44,6 +44,8 @@ namespace Davisoft_BDSProject.Domain.Entities
         public string KeySearch { get; set; }
         public double MoneyInDay { get; set; }
         public double TotalMoney { get; set; }
+        public int? IdNewsDates { get; set; }
+        public String Reason { get; set; }
         public string UrlImage { get; set; }
         [NotMapped]
         public string UrlImageFile { get; set; }
@@ -66,7 +68,8 @@ namespace Davisoft_BDSProject.Domain.Entities
 
         [ForeignKey("IdLanguage")]
         public virtual BDSLanguage BDSLanguage { get; set; }
-
+        [ForeignKey("IdNewsDates")]
+        public virtual BDSNewsDate BDSNewsDate { get; set; }
         [NotMapped]
         public virtual int IdPictrure { get; set; }
         public int IdTypeNewsCuurent { get; set; }

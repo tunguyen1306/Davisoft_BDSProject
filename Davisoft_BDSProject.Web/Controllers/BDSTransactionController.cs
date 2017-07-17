@@ -145,7 +145,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                 TypeTran = 1,
                 PointTran = model.Point,
                 MoneyTran = (model.Money + model.MoneyEventAdd),
-                DateTran = DateTime.Now
+                DateTran = DateTime.Now,
+                Status=1
             };
             _serviceTranHis.CreateItem(tran);
             model.RefTranHis = tran.ID;

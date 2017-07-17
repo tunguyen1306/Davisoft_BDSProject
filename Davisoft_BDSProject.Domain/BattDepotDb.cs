@@ -66,7 +66,7 @@ namespace Davisoft_BDSProject.Domain
         public DbSet<BDSExtNews> BDSExtNews { get; set; }
         public DbSet<BDSComment> BDSComments { get; set; }
         public DbSet<BDSBanner> BDSBanners { get; set; }
-
+        public DbSet<BDSNewsDate> BDSNewsDates { get; set; }
         public DbSet<BDSMenu> BDSMenus { get; set; }
         protected override void OnModelCreating(DbModelBuilder mb)
         {

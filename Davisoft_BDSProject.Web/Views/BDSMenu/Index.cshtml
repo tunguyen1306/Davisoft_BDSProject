@@ -25,6 +25,7 @@
                         <th>@Utilities.Resource("BDSMenu_Name", "Name")</th>
                         <th>@Utilities.Resource("BDSMenu_Url", "Url")</th>
                         <th>@Utilities.Resource("BDSMenu_Target", "Target")</th>
+                        <th>@Utilities.Resource("BDSMenu_Order", "Order")</th>
                         <th>@Utilities.Resource("BDSMenu_Description", "Description")</th>
                         <th></th>
                         <th></th>
@@ -60,6 +61,7 @@
                         <th>@Utilities.Resource("BDSMenu_Name", "Name")</th>
                         <th>@Utilities.Resource("BDSMenu_Url", "Url")</th>
                         <th>@Utilities.Resource("BDSMenu_Target", "Target")</th>
+                        <th>@Utilities.Resource("BDSMenu_Order", "Order")</th>
                         <th>@Utilities.Resource("BDSMenu_Description", "Description")</th>
                         <th></th>
                         <th></th>
@@ -113,7 +115,7 @@
 
                   return '<a href="/BDSMenu/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
               },
-              "targets": 5,
+              "targets": 6,
               'className': 'text-center'
           },
           {
@@ -123,7 +125,7 @@
 
 
               },
-              "targets": 6,
+              "targets":7,
               'className':'text-center'
           },
           {
@@ -142,6 +144,7 @@
                 { "data": "Name", "orderable": true },
                 { "data": "Url", "orderable": true },
                 { "data": "Target", "orderable": true },
+                 { "data": "MOrder", "orderable": true },
                 { "data": "Description", "orderable": true },
                 { "data": "ID", "orderable": false },
                 { "data": "ID", "orderable": false }
@@ -204,7 +207,7 @@
 
                   return '<a href="/BDSMenu/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
               },
-              "targets": 5,
+              "targets": 6,
               'className': 'text-center'
           },
           {
@@ -214,7 +217,7 @@
 
 
               },
-              "targets": 6,
+              "targets": 7,
               'className':'text-center'
           },
           {
@@ -233,6 +236,7 @@
                 { "data": "Name", "orderable": true },
                 { "data": "Url", "orderable": true },
                 { "data": "Target", "orderable": true },
+                 { "data": "MOrder", "orderable": true },
                 { "data": "Description", "orderable": true },
                 { "data": "ID", "orderable": false },
                 { "data": "ID", "orderable": false }

@@ -69,6 +69,14 @@
                 type: "GET"
             },
             "columnDefs": [
+                {
+                    "render": function (data, type, row) {
+                     
+                        return '<span  data-tooltip="' + data + '" data-tooltip-position="bottom">' + (data.length > 100 ?( data.substr(0, 100) + "... " ): data) + '</span>';
+                    },
+                    "targets": 7
+
+                },
             {
                 "render": function (data, type, row) {
 

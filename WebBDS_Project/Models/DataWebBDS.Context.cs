@@ -13,10 +13,10 @@ namespace WebBDS_Project.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class davisoft_bdsprojectEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public davisoft_bdsprojectEntities()
-            : base("name=davisoft_bdsprojectEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -76,5 +76,7 @@ namespace WebBDS_Project.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Users_Branches> Users_Branches { get; set; }
         public DbSet<Users_Roles> Users_Roles { get; set; }
+        public DbSet<BDSMenu> BDSMenus { get; set; }
+        public DbSet<BDSNewsDate> BDSNewsDates { get; set; }
     }
 }

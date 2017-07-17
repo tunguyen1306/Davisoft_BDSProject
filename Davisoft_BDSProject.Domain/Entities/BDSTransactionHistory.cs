@@ -16,5 +16,6 @@ namespace Davisoft_BDSProject.Domain.Entities
         public System.DateTime DateTran { get; set; }
         public int PointTran { get; set; }
         public double MoneyTran { get; set; }
+        public int Status { get; set; }
     }
 }

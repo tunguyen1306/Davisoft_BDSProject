@@ -656,7 +656,8 @@ namespace WebBDS_Project.Controllers
                     TypeTran = 3,
                     PointTran = (int)P,
                     MoneyTran = sotien,
-                    DateTran = DateTime.Now
+                    DateTran = DateTime.Now,
+                    Active=1
                 };
                 db.BDSTransactionHistories.Add(tran);
                 account.Money = account.Money - sotien;

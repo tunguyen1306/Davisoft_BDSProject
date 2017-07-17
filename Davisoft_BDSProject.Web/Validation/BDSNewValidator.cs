@@ -36,23 +36,23 @@ namespace Davisoft_BDSProject.Web.Validation
             RuleFor(m => m.ToAge).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
          
-            RuleFor(m => m.NameCompany).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+           // RuleFor(m => m.NameCompany).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
-            RuleFor(m => m.AddressApply).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
-
-
-            RuleFor(m => m.NamesContact).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
-
-            RuleFor(m => m.PhoneContact).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
-
-            RuleFor(m => m.Email).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+          //  RuleFor(m => m.AddressApply).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
 
-            RuleFor(m => m.ToDeadline).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+           // RuleFor(m => m.NamesContact).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
-            RuleFor(m => m.Email).Matches(new Regex(@"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")).WithMessage(Resource.TheEmailAddressEnteredIsInvalid);
+           // RuleFor(m => m.PhoneContact).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
-            RuleFor(m => m.IdLanguage).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+           // RuleFor(m => m.Email).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+
+
+           // RuleFor(m => m.ToDeadline).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
+
+           // RuleFor(m => m.Email).Matches(new Regex(@"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")).WithMessage(Resource.TheEmailAddressEnteredIsInvalid);
+
+          //  RuleFor(m => m.IdLanguage).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 
             RuleFor(m => m.IdTypeNews).NotEmpty().WithMessage(Resource.TheFieldShouldNotBeEmpty);
 

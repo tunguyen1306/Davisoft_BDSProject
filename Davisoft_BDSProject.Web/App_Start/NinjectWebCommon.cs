@@ -120,6 +120,10 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IBDSCommentService>().To<EFBDSComment>();
             kernel.Bind<IBDSBannerService>().To<EFBDSBanner>();
             kernel.Bind<IBDSMenuService>().To<EFBDSMenu>();
+            kernel.Bind<IBDSNewsDateService>().To<EFBDSNewsDate>();
+
+
+
 
             kernel.Bind<IValidator<User>>().To<UserValidator>();
             kernel.Bind<IValidator<Menu>>().To<MenuValidator>();

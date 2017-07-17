@@ -11,6 +11,8 @@ namespace WebBDS_Project.Controllers
 {
     public class DefaultController : Controller
     {
+        public static Dictionary<string, object> listStaticData = new Dictionary<string, object>();
+        
         //
         // GET: /Default/
         davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();

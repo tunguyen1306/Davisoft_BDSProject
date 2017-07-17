@@ -633,6 +633,7 @@
     <Content Include="Views\Management\PManaTinNoiBat.cshtml" />
     <Content Include="Views\Adverts\EditNews.cshtml" />
     <Content Include="Views\Default\_searchContentPer.cshtml" />
+    <Content Include="Views\Management\MoneyToPoint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

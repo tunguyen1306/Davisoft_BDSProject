@@ -40,6 +40,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         private readonly IBDSLanguageService _serviceLanguage;
         private readonly IBDSPictureService _servicePicture;
         private readonly IBDSTransactionHistoryService _serviceTransactionHistory;
+        private readonly IBDSNewsDateService _serviceNewsDate;
         public BDSNewController(IBDSNewService service,
             IBDSAccountService serviceAccount,
             IBDSEducationService serviceEducation,
@@ -50,7 +51,8 @@ namespace Davisoft_BDSProject.Web.Controllers
               IBDSLanguageService serviceLanguage,
             IBDSEmployerInformationService serviceEmployerInformation,
             IBDSPictureService servicePicture,
-            IBDSTransactionHistoryService serviceTransactionHistory
+            IBDSTransactionHistoryService serviceTransactionHistory,
+            IBDSNewsDateService serviceNewsDate
             )
         {
             _service = service;
@@ -64,6 +66,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             _serviceEmployerInformation = serviceEmployerInformation;
             _servicePicture = servicePicture;
             _serviceTransactionHistory = serviceTransactionHistory;
+            _serviceNewsDate = serviceNewsDate;
         }
 
         void LoadDataList()
@@ -152,15 +155,15 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
-            var tblNews = new BDSNew {CreateUser = 1,Active =0,CreateDate = DateTime.Now, DateReup = null, FromCreateNews = DateTime.Now, ToCreateNews = DateTime.Now.AddDays(3), FromDeadline = DateTime.Now, ToDeadline = null };
+            var tblNews = new BDSNew {CreateUser = 1,Active =0,CreateDate = DateTime.Now, DateReup = null,IdLanguage=1, FromCreateNews = DateTime.Now, ToCreateNews = DateTime.Now.AddDays(3), FromDeadline = DateTime.Now, ToDeadline = null };
             _service.CreateItem(tblNews);
             LoadDataList();
             ViewBag.MultiSelectCareer = new int[]{};
-            return View(new BDSNew { CreateDate = DateTime.Now, FromDateToDateString = DateTime.Now.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) + " - " + DateTime.Now.AddDays(3).ToString(MvcApplication.DateTimeFormat.ShortDatePattern), CreateUser = 1,Active = 1, ID = tblNews.ID, IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == tblNews.ID) });
+            return View(new BDSNew { CreateDate = DateTime.Now,IdLanguage=1,FromDateToDateString = DateTime.Now.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) + " - " + DateTime.Now.AddDays(3).ToString(MvcApplication.DateTimeFormat.ShortDatePattern), CreateUser = 1,Active = 1, ID = tblNews.ID, IdPictrure = _servicePicture.GetIQueryableItems().Count(x => x.advert_id == tblNews.ID) });
         }
 
         [HttpPost]
-        public ActionResult Create(BDSNew model)
+        public ActionResult Create(BDSNew model, HttpPostedFileBase[] files)
         {
 
 
@@ -195,7 +198,13 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.KeySearch = model.Title.NormalizeD() + " " + model.BDSAccount.Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
             _service.UpdateItem(model);
 
+
+
+
+
             var type = _serviceNewsType.GetItem(model.IdTypeNewsCuurent);
+
+
 
             String Fname = "Đăng tin '{A}' trong vòng '{B}' ngày tổng giá phải trả '{C}' VNĐ";
             string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(model.ToCreateNews.Value.Subtract(model.FromCreateNews.Value).TotalDays)) + "").Replace("{C}", model.TotalMoney.ToString("n2"));
@@ -210,7 +219,8 @@ namespace Davisoft_BDSProject.Web.Controllers
                 TypeTran = 2,
                 PointTran = 0,
                 MoneyTran =  model.TotalMoney,
-                DateTran = DateTime.Now
+                DateTran = DateTime.Now,
+                Status=0
             };
             _serviceTransactionHistory.CreateItem(tran);
             model.RefTranHis = tran.ID;
@@ -230,6 +240,26 @@ namespace Davisoft_BDSProject.Web.Controllers
                 db.Entry(i).State=EntityState.Added;
             }
             db.SaveChanges();
+
+            if (files!=null && files.Length>0)
+            {
+                for (int i = 0; i < files.Length; i++)
+                {
+                    if (files[i] != null)
+                    {
+                        byte[] binaryData;
+                        binaryData = new Byte[files[i].InputStream.Length];
+                        long bytesRead = files[i].InputStream.Read(binaryData, 0, (int)files[i].InputStream.Length);
+                        files[i].InputStream.Close();
+                        string base64String = System.Convert.ToBase64String(binaryData, 0, binaryData.Length);
+                        SaveImg(new NewsPictures { nameImg = files[i].FileName, idProducts = model.ID, isactive = 1, index = i, cfile = base64String });
+                    }
+                }
+            }
+            db.SaveChanges();
+            
+
+
             return RedirectToAction("Index");
         }
 
@@ -241,7 +271,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +
                                          model.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
-            model.CareerID = model.Career.Substring(0,model.Career.Length - 1).Split(',').Select(T => int.Parse(T)).ToArray();
+            model.CareerID = model.Career.Split(',').Select(T => int.Parse(T)).ToArray();
 
             var list = (List<SelectListItem>) ViewBag.Careers;
             List<SelectListItem> lst=new List<SelectListItem>();
@@ -259,7 +289,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Review(BDSNew model)
+        public ActionResult Review(BDSNew model,HttpPostedFileBase[] files, int[] img_id)
         {
             if (!ModelState.IsValid)
             {
@@ -288,15 +318,198 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.BDSAccount = _serviceAccount.GetItem(model.IdAcount);
             model.FromDeadline = DateTime.Now;
             model.KeySearch = model.Title.NormalizeD() + " " + model.BDSAccount.Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
+
+            if (model.Status==1)
+            {
+                model.DateReup = model.FromCreateNews >= DateTime.Now ? model.FromCreateNews : DateTime.Now;
+                model.MaxReup = 3;
+                if( model.RefTranHis.HasValue)
+                {
+                   var tranHis= _serviceTransactionHistory.GetItem(model.RefTranHis.Value);
+                   tranHis.Active = 1;
+                   _serviceTransactionHistory.UpdateItem(tranHis);
+                }
+                var totalDay = model.ToCreateNews.Value.Subtract(model.FromCreateNews.Value).TotalDays;
+                if (totalDay<1)
+                {
+                    totalDay = 1;
+                }
+                else
+                {
+                    totalDay = Math.Ceiling(totalDay);
+                }
+                 var listDate=_serviceNewsDate.GetIQueryableItems().Where(T => T.IdNews == model.ID && T.Active == 1).ToList();
+                 foreach (var item in listDate)
+                 {
+                     item.Active = 0;
+                     _serviceNewsDate.UpdateItem(item);
+                 }
+                if (model.IdTypeNews==1)
+                {
+                    BDSNewsDate d1 = new BDSNewsDate
+                    {
+                        Name = "TBT=" + totalDay,
+                        KeySearch = "",
+                        IdTypeNews = model.IdTypeNews,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        DIndex=1,
+                        FromCreateNews = model.FromCreateNews,
+                        ToCreateNews = model.ToCreateNews,
+                        Status = 1
+                    };
+                    _serviceNewsDate.CreateItem(d1);
+
+                    BDSNewsDate d2 = new BDSNewsDate
+                    {
+                        Name = "TFE=" + 90,
+                        KeySearch = "",
+                        IdTypeNews = 4,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        DIndex = 2,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        FromCreateNews = model.ToCreateNews.Value.AddDays(1),
+                        ToCreateNews =  model.ToCreateNews.Value.AddDays(90),
+                        Status = 1
+                    };
+                    _serviceNewsDate.CreateItem(d2);
+                    model.IdNewsDates = d1.ID;
+                }
+                if (model.IdTypeNews == 2)
+                {
+                     BDSNewsDate d1 = new BDSNewsDate
+                    {
+                        Name = "TVP=" + totalDay,
+                        KeySearch = "",
+                        IdTypeNews = model.IdTypeNews,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        DIndex = 1,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        FromCreateNews = model.FromCreateNews,
+                        ToCreateNews = model.ToCreateNews,
+                        Status = 1
+                    };
+                     _serviceNewsDate.CreateItem(d1);
+
+                    BDSNewsDate d2 = new BDSNewsDate
+                    {
+                        Name = "TBT=" + 60,
+                        KeySearch = "",
+                        IdTypeNews = 1,
+                        DIndex = 2,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        FromCreateNews = model.ToCreateNews.Value.AddDays(1),
+                        ToCreateNews = model.ToCreateNews.Value.AddDays(60),
+                        Status = 1
+                    };
+                    _serviceNewsDate.CreateItem(d2);
+
+                    BDSNewsDate d3 = new BDSNewsDate
+                    {
+                        Name = "TFE=" + 90,
+                        KeySearch = "",
+                        IdTypeNews = 4,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        DIndex = 3,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        FromCreateNews = model.ToCreateNews.Value.AddDays(61),
+                        ToCreateNews =  model.ToCreateNews.Value.AddDays(150),
+                        Status = 1
+                    };
+                    _serviceNewsDate.CreateItem(d3);
+                    model.IdNewsDates = d1.ID;
+                }
+                if (model.IdTypeNews == 3)
+                {
+                    BDSNewsDate d1 = new BDSNewsDate
+                    {
+                        Name = "TDB=" + totalDay,
+                        KeySearch = "",
+                        DIndex = 1,
+                        IdTypeNews = model.IdTypeNews,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        FromCreateNews = model.FromCreateNews,
+                        ToCreateNews = model.ToCreateNews,
+                        Status = 1
+                    };
+                    _serviceNewsDate.CreateItem(d1);
+
+                    BDSNewsDate d2 = new BDSNewsDate
+                    {
+                        Name = "TBT=" + 60,
+                        KeySearch = "",
+                        IdTypeNews = 1,
+                        DIndex = 2,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        FromCreateNews = model.ToCreateNews.Value.AddDays(1),
+                        ToCreateNews = model.ToCreateNews.Value.AddDays(60),
+                        Status = 1
+                    };
+                    _serviceNewsDate.CreateItem(d2);
+
+                    BDSNewsDate d3 = new BDSNewsDate
+                    {
+                        Name = "TFE=" + 90,
+                        KeySearch = "",
+                        IdTypeNews = 4,
+                        DIndex = 3,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        FromCreateNews = model.ToCreateNews.Value.AddDays(61),
+                        ToCreateNews = model.ToCreateNews.Value.AddDays(150),
+                        Status = 1
+                    };
+                    _serviceNewsDate.CreateItem(d3);
+                      model.IdNewsDates = d1.ID;
+                }
+                if (model.IdTypeNews == 4)
+                {
+                      BDSNewsDate d1 = new BDSNewsDate
+                    {
+                        Name = "TFE=" + totalDay,
+                        KeySearch = "",
+                        DIndex =1,
+                        IdTypeNews = model.IdTypeNews,
+                        IdNews = model.ID,
+                        CreateUser = 1,
+                        CreateDate = DateTime.Now,
+                        Description = "",
+                        FromCreateNews = model.FromCreateNews,
+                        ToCreateNews = model.ToCreateNews,
+                        Status = 1
+                    };
+                      _serviceNewsDate.CreateItem(d1);
+                      model.IdNewsDates = d1.ID;
+                }
+               
+            }   
+          
             _service.UpdateItem(model);
 
             if (model.RefTranHis.HasValue)
-
             {   
-                     var type = _serviceNewsType.GetItem(model.IdTypeNewsCuurent);
-
+                var type = _serviceNewsType.GetItem(model.IdTypeNewsCuurent);
                 String Fname = "Edit tin '{A}' trong vòng '{B}' ngày tổng giá phải trả '{C}' VNĐ";
-                 string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(model.ToCreateNews.Value.Subtract(model.FromCreateNews.Value).TotalDays)) + "").Replace("{C}", model.TotalMoney.ToString("n2"));
+                string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(model.ToCreateNews.Value.Subtract(model.FromCreateNews.Value).TotalDays)) + "").Replace("{C}", model.TotalMoney.ToString("n2"));
                 var tran = _serviceTransactionHistory.GetItem(model.RefTranHis.Value);
                 tran.Name += "-" + Fname;
                 var difMoney = model.TotalMoney - tran.MoneyTran;
@@ -310,9 +523,47 @@ namespace Davisoft_BDSProject.Web.Controllers
                 }
          
             }
-    
+            var listMap = db.BDSNews_Career.Where(T => T.ID_News == model.ID).ToList();
+            foreach (var item in listMap)
+            {
+                db.Entry(item).State = EntityState.Deleted;
 
+            }
+            db.SaveChanges();
+            foreach (var item in model.Career.Split(','))
+            {
+                BDSNews_Career i = new BDSNews_Career { ID_News = model.ID, ID_Career = int.Parse(item) };
+                db.Entry(i).State = EntityState.Added;
+            }
+            db.SaveChanges();
+            if (img_id != null && img_id.Length > 0)
+            {
+                var listPic = _servicePicture.GetIQueryableItems().Where(T => T.advert_id == model.ID && !img_id.Contains(T.ID)).ToList();
+                foreach (var pic in listPic)
+                {
+                    _servicePicture.DeleteItem(pic.ID);
+                }
+            }
+         
+            if (files != null && files.Length > 0)
+            {
+                for (int i = 0; i < files.Length; i++)
+                {
+                    if (files[i]!=null)
+                    {
+                        byte[] binaryData;
+                        binaryData = new Byte[files[i].InputStream.Length];
+                        long bytesRead = files[i].InputStream.Read(binaryData, 0, (int)files[i].InputStream.Length);
+                        files[i].InputStream.Close();
+                        string base64String = System.Convert.ToBase64String(binaryData, 0, binaryData.Length);
+                        SaveImg(new NewsPictures { nameImg = files[i].FileName, idProducts = model.ID, isactive = 1, index = i, cfile = base64String });
+                    }
+                 
+                }
+            }
+           
 
+       
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
             return    Redirect("/");;
@@ -327,7 +578,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromDateToDateString = model.FromCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern) +
                                          " - " +
                                          model.ToCreateNews.Value.ToString(MvcApplication.DateTimeFormat.ShortDatePattern);
-            model.CareerID = model.Career.Substring(0, model.Career.Length-1).Split(',').Select(T => int.Parse(T)).ToArray();
+            model.CareerID = model.Career.Split(',').Select(T => int.Parse(T)).ToArray();
             var list = (List<SelectListItem>)ViewBag.Careers;
             List<SelectListItem> lst = new List<SelectListItem>();
             foreach (var item in list)
@@ -345,7 +596,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(BDSNew model)
+        public ActionResult Edit(BDSNew model,HttpPostedFileBase[] files, int[] img_id)
         {
             if (!ModelState.IsValid)
             {
@@ -387,6 +638,37 @@ namespace Davisoft_BDSProject.Web.Controllers
                 db.Entry(i).State = EntityState.Added;
             }
             db.SaveChanges();
+            if (img_id != null && img_id.Length > 0)
+            {
+                var listPic = _servicePicture.GetIQueryableItems().Where(T => T.advert_id == model.ID && !img_id.Contains(T.ID)).ToList();
+                foreach (var pic in listPic)
+                {
+                    _servicePicture.DeleteItem(pic.ID);
+                }
+            }
+
+            if (files != null && files.Length > 0)
+            {
+                for (int i = 0; i < files.Length; i++)
+                {
+                    if (files[i] != null)
+                    {
+
+                        byte[] binaryData;
+                        binaryData = new Byte[files[i].InputStream.Length];
+                        long bytesRead = files[i].InputStream.Read(binaryData, 0, (int)files[i].InputStream.Length);
+                        files[i].InputStream.Close();
+                        string base64String = System.Convert.ToBase64String(binaryData, 0, binaryData.Length);
+                        SaveImg(new NewsPictures { nameImg = files[i].FileName, idProducts = model.ID, isactive = 1, index = i, cfile = base64String });
+                    }
+                }
+            }
+          
+
+
+            db.SaveChanges();
+
+
 
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

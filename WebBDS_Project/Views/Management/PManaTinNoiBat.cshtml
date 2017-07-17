@@ -30,6 +30,12 @@
         count = query.Count();
         foreach (var news in ListNews)
         {
+            if (news.DateReup.HasValue && news.DateReup.Value.ToString("dd/MM/yyyy") != DateTime.Now.ToString("dd/MM/yyyy"))
+            {
+                news.CountReup = 0;
+                db.Entry(news).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
+            }
                 var account = db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
             if (account != null)
             {
@@ -52,7 +58,13 @@
                     <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
                 </div>
                      <div>
-                         <p class="grid_11 omega size-text-15"><a class="btn btnManage" href="@Url.Action("EditNews","Adverts",new { id=news.ID})"><b class="fa fa-edit" aria-hidden="true"></b>Sửa</a>    <a class="btn btnManage" href="#"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin  </a><button type="button" class="btn btnManage" data-toggle="modal" data-target="#myModal_@news.ID"><b class="fa fa-remove" aria-hidden="true"></b>Xóa tin</button></p>
+                         <p class="grid_11 omega size-text-15">
+                         <a class="btn btnManage" href="@Url.Action("EditNews","Adverts",new { id=news.ID})"><b class="fa fa-edit" aria-hidden="true"></b>Sửa</a>   
+                             @if (news.MaxReup - news.CountReup > 0)
+                             {
+                                 <a class="btn btnManage" href="#reup" onclick="reup(this,@news.ID)"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin (@(news.MaxReup - news.CountReup)) </a>
+                             }
+                         <button type="button" class="btn btnManage" data-toggle="modal" data-target="#myModal_@news.ID"><b class="fa fa-remove" aria-hidden="true"></b>Xóa tin</button></p>
 
                      </div>
                      <!-- Modal -->
@@ -92,7 +104,7 @@
                 var p = Math.Ceiling((double)count / view);
                 for (int i = 1; i <= (int)p; i++)
                 {
-                    <a data-ref='@(page != i ? "" + Url.Action("TinNoiBat", "Default", new {tt=tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadNBPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
+                    <a data-ref='@(page != i ? "" + Url.Action("PManaTinNoiBat", "Management", new { tt = tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadNBPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
                 }
             }
             <a class="nextPage" onclick="loadNBPageFromNext(this);">Tiếp</a>
@@ -108,8 +120,29 @@
     }
 </style>
 <script>
+
+    function reup(el, id) {
+
+        var url = '@Url.Action("PManaTinNoiBat", "Management", new { from = 0, page = 0, view = view })';
+        if (url != "") {
+            $(el).parents('.group_work').find('.loading').show();
+            $(el).parents('.group_work').find('.loading_icon').show();
+            var urlPost = '@Url.Action("Reup", "Adverts")';
+            $.post(urlPost, { id: id }).done(function (dataPost) {
+                $.get(url, function (data) {
+                    var elP = $(el).parents('.group_work').eq(0).find('ul.list_work_2').eq(0);
+                    elP.html($(data).html());
+                    elP.parents('.group_work').find('.loading').eq(0).hide();
+                    elP.parents('.group_work').find('.loading_icon').eq(0).hide();
+
+                });
+            });
+
+
+        }
+    }
     function loadNBFilterPageFrom(el) {
-        var url = '@Url.Action("TinNoiBat", "Default", new { from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
+        var url = '@Url.Action("PManaTinNoiBat", "Management", new { from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
         if (url != "") {
             $(el).parents('.group_work').find('.loading').show();
             $(el).parents('.group_work').find('.loading_icon').show();
