@@ -1,0 +1,398 @@
+﻿.header_radius {
+    border-radius: 8px 8px 0 0;
+    border: 0px solid #dfdfdf;
+}
+.lblcheckEmail {
+        color: #5db7e4!important;
+            text-decoration: underline!important;
+}
+.required {
+    color: red;
+}
+.margin_row_ringht {
+    margin-left: 20px;
+    line-height: 16px;
+}
+.form-in-register {
+    border-bottom: 0!important;
+    box-shadow: 0 -1px 1px rgba(0,0,0,0.05)!important;
+    border-top: 0!important;
+    background-color: #f2f2f2;
+}
+.header-info {
+    border:0px solid #dfdfdf;
+    background: none!important;
+    border-top:0!important;
+     
+}
+.form-have-border-bottom {
+     border-bottom: 0px solid #dfdfdf!important;
+}
+.header-info-background {
+     background-color: #f2f2f2!important;
+}
+.form-horizontal-register  {
+	border: 0px solid #dfdfdf;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	clear:both;
+	display:inline-block;
+	width:100%;
+	box-sizing:border-box;
+	padding: 15px 20px;
+}
+.btnSubmit {
+    text-align: center;
+    background: #f79d25;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+}
+.btnUpload {
+    text-align: center;
+    background: #37a344;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+    width:60%;
+}
+.btnUploadImage {
+    text-align: center;
+    background-color: #de3039;
+    color: #fff!important;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+    width:25%;
+}
+.btnCancel {
+    text-align: center;
+    background-color: #016096;
+    color: #fff!important;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+    width:25%;
+}.btn-primary {
+    text-align: center;
+    background-color: #37a344;
+    color: #fff!important;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+    width:15%;
+}
+.btnUpdate {
+    text-align: center;
+    background: #de3039;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 3px;
+}
+.btnApply {
+    text-align: center;
+    background: #de3039;
+    color: #fff;
+    font-weight: bold;
+       padding: 11px 15px 7px;
+    
+}
+.btnApply1 {
+    padding: 10px;
+    
+}
+.border-bank {
+    border:1px solid #dfdfdf;
+    padding:10px;
+    text-align: center;
+        margin: 0 25px 5px 20px;
+         
+}
+.clable-radioBank {
+    width:100%!important;
+    padding:5px;
+   
+}
+.header-promotion {
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+.border-manager-work {
+border: 1px solid #9d9d9d;
+    background-color: #f6f6f6;
+   
+}
+.border-promotion {
+    border: 1px solid #de3039;
+    background-color: #ffeeee;
+    padding: 10px;
+}
+.btnSubmitReview {
+    padding:10px;
+    background-color:#37a344;
+    color:#ffffff;
+}
+.TextColorRed {
+    color:red;
+}
+.border-upload-img {
+     margin: 8px;
+    border: 1px solid #9d9d9d;
+    padding: 10px;
+    color: #038e20;font-size: 30px;
+   
+    float: left;
+ }
+.border-upload-img-detail {
+      margin: 0 8px 0 0;
+    border: 1px solid #9d9d9d;
+    padding: 10px;
+    color: #038e20;font-size: 30px;
+    width: 70px;
+    float: left;
+ }
+.padding-10px {
+    padding: 0 10px 0 10px;
+}
+.margin-0px {
+    margin:0!important;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.border-manager-recruitment {
+    border: 1px solid #de3039;
+    background-color: #ffffff;
+    padding: 10px;
+}
+.cusinput4 {
+	width:100% ;
+}
+.fa {
+    margin-right: 5px;
+}
+.table-responsive {
+ display: block;
+ width: 100%;
+ overflow-x: auto;
+}
+.cusLabel {
+        width: 75px;
+}
+.cusLabel-2 {
+        width: 90px;
+        margin-left: 10px;
+}
+
+
+.mgl15-1 {
+    margin-left:0px!important;
+}
+
+/*.styled-select {
+  
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+}*/
+.styled-select.slate {
+  
+   height: 34px;
+   width: 240px;
+}
+.cus-input2 {
+        width: 110px !important;
+            border: 1px solid #d2d2d2;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.uploadBox-1{
+    margin: 5px 2% 1% 0;
+    float: left;
+    display: block;
+    width:55%;
+   
+}.btn_search-1{
+        width: 15%;
+    text-align: center;
+    color: #fff;
+    border: none;
+    background: #de3039;
+    padding: 11px 0 7px;
+    font-weight: bold;
+    font-size: 13px;
+   
+}
+ .hidden {
+    display: none!important;
+    visibility: hidden!important;
+}
+  .radio label {
+     width: 180px;
+ }
+  .box-note{
+          background-color: #ffeeee;
+    padding-left: 20%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 10px 0 10px 0;
+  }
+  .size-text-15{font-size:15px!important;}
+  .cus-h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    background: #de3039;
+    text-align: center;
+    color: #fff;
+    padding: 5px 0 4px;
+    line-height: 24px;
+    width: 100%;
+    font-weight:bold;
+}
+  .btLogin{
+      background: #f39f18;
+    float: right;
+    color: #fff;
+    border: none;
+    padding: 8px 11px;
+    font-weight: bold;
+    margin-top: 6px;
+    line-height: 17px;
+    border-radius: 2px;
+  }
+  .cus-listnew-login li{
+      padding:30px;
+  }
+  .cus-a-login{
+          color: #09C;
+    padding: 0;
+    margin: 0;
+    line-height: 29px;
+  }
+  .cus-table-responsive {
+    /* display: none; */
+    width: 100%;
+    overflow-x: auto;
+}
+  .form-horizontal .idTabs-2 li {
+    width: 50%!important;
+    float: left;
+    margin-bottom: 6px;
+}.idTabs-2 label  {
+     width: 300px;
+}
+ .boder-payment{
+     border:1px solid #004991;
+     background-color:#055699;
+     font-weight:bold;
+     color:#ffffff;
+     padding:5px 10px 5px  10px;
+     border-radius:5px;
+
+ }
+ .cusfa{
+     padding-left:10px;
+ }
+ .TextColorBlue{
+     color:#055699;
+ } 
+ .TextColorGreen{
+     color:#2a8f07;
+ }
+ .result-info .filter {
+    background-color: #fff;
+    border: solid 1px #ccc;
+    display: inline-block;
+    float: none;
+    padding: 3px;
+     margin-top: 5px;
+}
+ .result-info{
+    
+ }
+ .cus-name-group{
+     margin: 0;
+    padding: 12px 15px;
+    border: 1px solid #dfdfdf;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    margin-top: -1px;
+    background: #f3f3f3;
+    overflow: hidden;
+ }
+ .grid_1-9-5 {
+    width: 9.5%;
+}
+ @media screen and (max-width: 480px)
+ {
+.grid_1-9-5 {
+    width: 100%;
+}
+ .grid_2-9px{
+     width: 100%;
+ }
+ }
+ .btnManage{
+    text-align: center;
+    background: #de3039;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 3px;
+        margin-right: 10px;
+        margin-top:3px;
+}
+ .grid_2-9px{
+     width: 75%!important;
+ }
+ .radio_3-1 label{
+     width: 116px;
+ }
+ .row .row-right1 {
+    float: left;
+}
+ textarea{
+     height:180px;
+ }
+ 
+#zendvn-real-estate-bn-l,#zendvn-real-estate-bn-r {
+	position: fixed;
+	top: 33%;
+	z-index: 99999;
+	display: none;
+}
+#zendvn-real-estate-bn-l{
+	left: 0px;
+}
+#zendvn-real-estate-bn-r{
+	right: 0px;
+}
+#zendvn-real-estate-bn-l a,#zendvn-real-estate-bn-r a{
+	display: block;
+	margin-bottom: 2px;
+}
+@media screen and (max-width: 1200px) {
+	#zendvn-real-estate-bn-l, 
+	#zendvn-real-estate-bn-r{
+		display: none !important;
+	}
+}
+.gachTop{
+    color:white;border-left:dotted 1px; margin-right:0px;margin-left:0px;padding-top: 7px; padding-bottom: 7px;
+}

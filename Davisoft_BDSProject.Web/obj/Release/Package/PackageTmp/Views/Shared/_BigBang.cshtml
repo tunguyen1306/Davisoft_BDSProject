@@ -1,0 +1,168 @@
+﻿@using Resources
+@using StackExchange.Profiling
+
+<!DOCTYPE html>
+<html lang="en" class="@ViewBag.PageClass">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+    <title>I-Office</title>
+    @RenderSection("css", required: false)
+    <!--[if lte IE 8]>
+    @Styles.Render("~/css/ie8")
+
+    <![endif]-->
+    <link href="~/Content/UploadVanGia/toastr.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    @Scripts.Render("~/js/ie9")
+    <![endif]-->
+    <script>
+        var HRGLOBAL = {};
+    </script>
+</head>
+<body class="sidebar_hidden" style="overflow: hidden">
+
+    @RenderBody()
+
+    @RenderSection("js", required: false)
+    @Html.RenderScripts()
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="http://www.decorplanit.com/plugin/autoNumeric-1.9.41.js"></script>
+    <script>
+
+        // Use $.getJSON instead of $.get if your server is not configured to return the
+        // right MIME type for .json files.
+        $.when(
+
+          $.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/supplemental/likelySubtags.json"),
+          $.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/main/en-GB/numbers.json"),
+          $.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/supplemental/numberingSystems.json"),
+          $.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/main/en-GB/ca-gregorian.json"),
+          $.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/main/en-GB/timeZoneNames.json"),
+
+          $.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/supplemental/timeData.json"),
+          $.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/supplemental/weekData.json")
+
+          //$.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/main/en-GB/scripts.json"),
+          //$.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/main/en-GB/territories.json"),
+          //$.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/main/en-GB/transformNames.json"),
+          //$.getJSON("/Display/js/cldrjs-0.4.4/dist/cldr/cldr-data/main/en-GB/variants.json")
+        ).then(function () {
+
+            // Normalize $.get results, we only need the JSON, not the request statuses.
+            return [].slice.apply(arguments, [0]).map(function (result) {
+                return result[0];
+            });
+
+        }).then(Globalize.load).then(function () {
+            Globalize.locale("en-GB");
+        });
+
+    </script>
+
+    <script>
+
+        var ucSelector = '.code';
+        $(document).on('blur', ucSelector, function () {
+            if (typeof (HRGLOBAL.AUTO_UPPERCASE) === 'undefined' || HRGLOBAL.AUTO_UPPERCASE == true)
+                $(this).val($(this).val().toUpperCase());
+        });
+        $(document).on('submit', 'form.uppercase', function (e) {
+            e.preventDefault();
+            $(this).find(ucSelector).each(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+            $(this).submit();
+        });
+        $("form:not([data-ajax])").submit(function (e) {
+            e.preventDefault();
+            $("#dvLoading").show();
+            if ($(this).valid())
+                this.submit();
+            else {
+                $("#dvLoading").hide();
+            }
+
+        });
+        $(function () {
+            $('.dataTables_filter input').attr("placeholder", "@Resource.ENTERSEARCHTEXT...");
+        });
+
+        $(document).ajaxStart(function () {
+            $("#dvLoading").fadeIn();
+        });
+
+        $(document).ajaxStop(function () {
+            $("#dvLoading").fadeOut();
+            ChangeUIListCheckBox();
+            //$('.date-picker, .datepicker').datepicker({
+            //    autoclose: true,
+            //    todayHighlight: true,
+            //    format: 'dd/mm/yyyy'
+            //});
+        });
+
+        $(document).ready(function () {
+            setTimeout(function() {
+                $('body').css('overflow', 'auto');
+            },200);
+            $(document).ajaxError(function (e, xhr, settings) {
+                if (xhr.status == 403) {
+                    window.location.href = e.currentTarget.URL;
+                }
+            });
+        });
+
+        $(function () {
+
+            function initFormatPrice() {
+                $('.format_money').priceFormat({
+                    prefix: '',
+                    suffix: '',
+                    centsLimit: @MoneyHelper.DefaultCurrency.Precision,
+                    clearPrefix: true,
+                    clearSuffix: true,
+                });
+            }
+            initFormatPrice();
+
+            $(document).on('click', '.simple-ajax-popup-align-top', function (e) {
+                e.preventDefault();
+                $(this).magnificPopup({
+                    type: 'ajax',
+                    callbacks: {
+                        ajaxContentAdded: function () {
+                            $('.mfp-container .date-picker,.mfp-container .datepicker').datepicker({
+                                autoclose: true,
+                                todayHighlight: true,
+                                format: 'dd/mm/yyyy'
+                            }).on('changeDate', function (ev) {
+                                $(this).datepicker('hide');
+                            });
+
+                            $(".mfp-container select[data-display=select2]").select2({
+                                placeholder: "@Resource.PleaseSelect",
+                                width: '100%',
+                                allowClear: true,
+                            });
+                            initFormatPrice();
+
+                            $("form").removeData("validator");
+                            $("form").removeData("unobtrusiveValidation");
+                            $.validator.unobtrusive.parse("form");
+                        },
+                        //parseAjax: function (mfpResponse) {
+                        //    mfpResponse.data = $.parseHTML(mfpResponse.data);
+                        //    console.log(mfpResponse.data);
+                        //}
+                    }
+                }).magnificPopup('open');
+            });
+        });
+    </script>
+    @MiniProfiler.RenderIncludes()
+</body>
+<div id="dvLoading" style="display: none;"></div>
+</html>

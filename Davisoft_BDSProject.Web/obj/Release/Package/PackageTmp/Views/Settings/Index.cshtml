@@ -1,0 +1,146 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Domain.Enum
+@using Resources
+@model IEnumerable<Setting>
+
+@{
+    ViewBag.Title = Resource.Settinglist;
+}
+
+@using (Html.BeginForm())
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <p>@Resource.Settings</p>
+        </div>
+        <div class="panel-body">
+            <div id="accordion" class="accordion">
+                @{
+    List<string> group = Model.Select(j => j.Module).Distinct().ToList();
+    foreach (string g in group)
+    {
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#set-@g">@g</a>
+            </div>
+            <div id="set-@g" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <table class="table" id="lines-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <b>@Html.DisplayNameFor(model => model.Name)</b>
+                                </th>
+                                <th>
+                                    <b>@Html.DisplayNameFor(model => model.Value)</b>
+                                </th>
+                                <th>
+                                    <b>@Html.DisplayNameFor(model => model.Description)</b>
+                                </th>
+                            </tr>
+                        </thead>
+                        @{
+        List<Setting> itemsGroup = Model.Where(j => j.Module == g).ToList();
+        foreach (Setting item in itemsGroup)
+        {
+            if (CurrentUser.HasSettingPermission(item.Module, item.Name))
+            {
+                <tr>
+                    <td>
+                        @Html.Hidden("Id", item.ID)
+                        @Html.DisplayFor(modelItem => item.Summary)
+                    </td>
+                    <td>
+                        @if (item.Type == "Dropdownlist")
+                        {
+                            <input type="text" id="input-sortable" name="@item.Name" class="input-sortable demo-default" value="@item.Value">
+                            @*@Html.Bootstrap().DropDownList(item.Name, selectList).OptionLabel("").HtmlAttributes(new { @multiple = "multiple" }).Size(InputSize.Large).Class("form-control").Id("dropdown-contractformat")*@
+                        }
+                        else if (item.Type == "Checkbox")
+                        {
+                            <div class="i-checks">
+                                <label>
+                                    @Html.Bootstrap().CheckBox(item.Name).IsChecked(item.Value.ToLower() == "true")
+                                    <i></i>
+                                </label>
+                            </div>
+                        }
+                        else if (item.Type == "Textbox")
+                        {
+
+                            var xxx = item.Name;
+                            
+                            @(item.MaxLenght > 0 ? Html.Bootstrap().TextBox(item.Name).Value(item.Value).HtmlAttributes(new { maxlength = item.MaxLenght, @class = "form-control nouc" }) : Html.Bootstrap().TextBox(item.Name).Value(item.Value).HtmlAttributes(new { @class = "form-control nouc" }))
+                            /*
+                                                if (! string.IsNullOrEmpty(item.TableToGetField))
+                                                {
+                                                    <span>&nbsp;</span>
+                                                    @Html.Bootstrap().Button().Id("add-btn").Text("Choose").Style(ButtonStyle.Warning).Size(ButtonSize.Small).PrependIcon(Icons.plus_sign, true)
+                                                }
+                                                 */
+                        }
+
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                </tr>
+            }
+        }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+                }
+            </div>
+
+        </div>
+    </div>
+
+
+    using (Html.Bootstrap().Begin(new FormActions()))
+    {
+        <div>
+            @Html.Bootstrap().SubmitButton().Id("submitbutton").Text("Save").Style(ButtonStyle.Success)
+        </div>
+    }
+}
+
+@Html.Script(
+    @<script>
+
+        $("#submitbutton").on('click', function (e) {
+            e.preventDefault();
+            bootbox.confirm("@Resource.ConfirmSave", function (isOK) {
+                if (isOK) {
+                    $('#submitbutton').parents("form").submit();
+                }
+            });
+        });
+
+        $("#accordion").collapse();
+
+        $linesTable = $('#lines-table');
+        $('#add-model-btn').click(function (e) {
+            e.preventDefault();
+            showAddModelDialog(null, function (line) {
+                $linesTable.find('tbody').append(parseModelToRow(line));
+
+                $linesTable.show();
+            });
+        });
+
+        $("#RoadTaxPeriod").selectize({
+            delimiter: ';',
+            persist: false,
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+        });
+    </script>)

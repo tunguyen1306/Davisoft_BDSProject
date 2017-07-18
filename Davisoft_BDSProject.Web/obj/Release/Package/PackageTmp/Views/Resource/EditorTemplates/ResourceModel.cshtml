@@ -1,0 +1,15 @@
+﻿@using Davisoft_BDSProject.Domain.Abstract
+@using Davisoft_BDSProject.Domain.Entities
+@using NS.Mvc
+@model Davisoft_BDSProject.Web.Models.ResourceModel
+@using (Html.BeginCollectionItem(false))
+{
+    <tr>
+        <td>@Model.Code</td>
+        @Html.CollectionEditorFor(m => m.Resources)
+        <td>
+            @Html.HiddenForCollectionItemIndex()
+            <a data-action="save" href='#' data-rescode="@Model.Code">@Resources.Resource.Save</a> 
+        </td>
+    </tr>
+}

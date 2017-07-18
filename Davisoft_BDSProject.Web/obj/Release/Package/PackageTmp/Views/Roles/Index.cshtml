@@ -1,0 +1,88 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@using Resources
+@model IEnumerable<Role>
+@{
+    ViewBag.Title = Resource.RolesManagement;
+}
+
+<section class="panel panel-default">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+    @if (CurrentUser.HasPermission("Roles", "Create"))
+    {
+        <div class="row wrapper dataTables_length table_basic">
+            <div class="col-sm-12">
+                @Html.Bootstrap().ActionLinkButton(Resource.AddNew, "Create").Style(ButtonStyle.None).Class("btn btn-primary-me")
+            </div>
+        </div>
+    }
+    <div class="panel-body">
+      
+        <div class="table-responsive">
+            <table class="table" id="roles-table">
+                <thead>
+                    <tr>
+                        <th>@Resource.Name</th>
+                        <th>@Resource.RoleLevel</th>
+                        <th>@Resource.Description</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(r.Name, "Edit", new { id = r.ID })
+                            </td>
+                            <td>@r.RoleLevel.DisplayName</td>
+                            <td>@r.Description</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = r.ID })"><i class="fa fa-pencil-square-o text-violet"></i></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" data-action="delete" data-id="@r.ID">
+                                    <i class="fa fa-times text-danger"></i>
+                                </a>
+                            </td>
+                            @*<td>
+                                <div class="btn-group">
+                                    @Html.Bootstrap().ActionLinkButton(Resource.Edit, "Edit").RouteValues(new { id = r.ID }).Style(ButtonStyle.Success).PrependIcon(Icons.pencil, true).Size(ButtonSize.Mini).HtmlAttributes(new { @class = "btn btn-flat" })
+                                    @Html.Bootstrap().Button().Size(ButtonSize.Mini).Style(ButtonStyle.Danger).PrependIcon(Icons.trash, true).Text(Resource.Delete).HtmlAttributes(new { data_action = "delete", data_id = r.ID, @class = "btn-flat" })
+                                </div>
+                            </td>*@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+@*@Html.Bootstrap().ActionLinkButton("Create Role", "Create").Style(ButtonStyle.Success)*@
+@Html.Script(
+    @<script>
+
+        var $roleTable = $('#roles-table').dataTable();
+
+        $(document).on('click', '[data-action="delete"]', function (e) {
+            e.preventDefault();
+            var self = $(this);
+            bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                if (isOK) {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "Roles")/' + self.data('id'),
+                        type: 'POST',
+                        success: function () {
+                            $roleTable.fnDeleteRow(self.closest('tr')[0]);
+                        },
+                        error: function () {
+                            bootbox.alert('@Resource.DeleteFailed');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+                  )

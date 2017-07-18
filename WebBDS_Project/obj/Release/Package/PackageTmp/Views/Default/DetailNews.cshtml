@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "DetailNews";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+@using System.Activities.Statements
+@using System.Configuration
+@using WebBDS_Project.Models
+@model WebBDS_Project.Models.BDSExtNew
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>@(Model.CatExtNews==1 ? "Tin tức bất động sản" :"Chia sẻ kinh nghiệm")</span></h3>
+            </div>
+            <form class="form-horizontal " data-validate="parsley" action="#">
+              <div class="row">
+                <b style="font-size: 25px">@Model.Name</b>
+                </div>
+                <div class="row">
+           
+                    <b>  @Html.Raw(Model.ShortDescription)</b>
+                </div>
+                <div class="row">
+
+                    <img width="100%"  src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@Model.UrlImage">
+                </div>
+                <div class="row">
+                
+             @Html.Raw(Model.Description)
+                   
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="grid_3 omega main_right" id="sideRightPushy">
+        @Html.Partial("_partialCompany")
+        @Html.Partial("_partialShareExpirence")
+        @Html.Partial("_partialComment")
+        @Html.Partial("_partialNews")
+
+
+    </div>
+
+</div>

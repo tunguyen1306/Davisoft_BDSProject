@@ -1,0 +1,50 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSNew
+@{
+    ViewBag.Title = Utilities.Resource("BDSNew_Add", "Add News");
+}
+<section class="panel panel-default">
+    <h3 class="tilte_l">
+        @ViewBag.Title
+    </h3>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            @using (Html.BeginForm())
+            {
+                @Html.Partial("_Input", Model)
+                using (Html.Bootstrap().Begin(new FormActions()))
+                {
+                    <div class="form-actions">
+                        <div class="form-group">
+                            <label class="col-sm-3"></label>
+                            <label class="col-sm-9">
+                             
+                                <a class="btn  btn-default" href="@Url.Action("Cancel", "BDSNew", new { id = Model.ID })"><i class="icon-arrow-left"></i> @Resource.ButtonBackToList</a>
+                                <button class="btn-success  btn btnAdd1" onclick="return UploadImg(this);" id="submitbutton" type="submit"><i class="icon-white icon-ok"></i> @Resource.Create</button>
+                            </label>
+                            
+                            
+
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+@Html.Script(
+    @<script>
+        @*$("#submitbutton").on('click', function (e) {
+            e.preventDefault();
+            bootbox.confirm("@Resource.ConfirmCreate", function (isOK) {
+                if (isOK) {
+                    $('#submitbutton').parents("form").submit();
+                }
+            });
+        });*@
+
+
+    </script>)

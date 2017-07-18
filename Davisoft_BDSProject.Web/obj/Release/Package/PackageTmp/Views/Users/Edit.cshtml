@@ -1,0 +1,244 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Domain.Enum
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model EditUserModel
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    using (Html.Bootstrap().Begin(new Alert().Style(AlertColor.Success).Closeable()))
+    {
+        <text>@ViewBag.Message</text>
+    }
+}
+
+@{
+    string saleRolesSelect = "";
+    string managerRolesSelect = "";
+    foreach (Role role in Model.Roles)
+    {
+        if (role.RoleLevel == RoleLevel.PersonalLevel)
+        {
+            if (saleRolesSelect != "")
+            {
+                saleRolesSelect += ", ";
+            }
+            saleRolesSelect += "input[type='checkbox'][value=" + role.ID + "]:checked";
+        }
+        else if (role.RoleLevel == RoleLevel.BranchLevel)
+        {
+            if (managerRolesSelect != "")
+            {
+                managerRolesSelect += ", ";
+            }
+            managerRolesSelect += "input[type='checkbox'][value=" + role.ID + "]:checked";
+        }
+    }
+}
+@Html.ValidationSummary()
+<section class="panel panel-default">
+    <header class="tilte_l">
+        @Resource.EditUser
+    </header>
+    <div class="panel-body">
+        <div class="form-horizontal">
+
+            @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Resource.ID <span class="required">*</span></label>
+                    <div class="col-sm-10">
+                        @Html.Bootstrap().TextBoxFor(m => m.ID).Class("form-control").HtmlAttributes(new { @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Resource.FullName</label>
+                    <div class="col-sm-10">
+                        @Html.Bootstrap().TextBoxFor(m => m.Username).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Resource.Password</label>
+                    <div class="col-sm-10">
+                        @Html.Bootstrap().PasswordFor(m => m.Password).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Resource.ConfirmPassword</label>
+                    <div class="col-sm-10">
+                        @Html.Bootstrap().PasswordFor(m => m.ConfirmPassword).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Resource.Email</label>
+                    <div class="col-sm-10">
+                        @Html.Bootstrap().TextBoxFor(m => m.Email).Class("form-control").ShowValidationMessage(true).Readonly()
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Resource.PhoneNumber</label>
+                    <div class="col-sm-10">
+                        @Html.Bootstrap().TextBoxFor(m => m.Phone).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Resource.MobileNumber</label>
+                    <div class="col-sm-10">
+                        @Html.Bootstrap().TextBoxFor(m => m.MobilePhone).Class("form-control").ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Resource.Picture</label>
+                    <div class="col-sm-10">
+                        <div id="profilePicture">
+                            @if (Model.UserPicture != null)
+                            {
+                                <img style="width: 120px; height:120px;" src="~/data/user_img/@(Model.UserPicture + "?" + Guid.NewGuid().ToString())" class="img-polaroid user-picture-preview" />
+                            }
+                            else
+                            {
+                                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        @Html.Bootstrap().FileFor(m => m.Picture).ShowValidationMessage(false)
+                    </div>
+                </div>
+                            bool first = true;
+                            foreach (var item in Model.Roles.Where(n => !n.Name.ToUpper().Contains("DEALER")))
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">@(first ? "Roles" : "")</label>
+                                    <div class="checkbox i-checks col-sm-10">
+                                        <label>
+                                            <input type="checkbox" @(Model.UserRoles.Select(m => m.ID).Contains(item.ID) ? "checked='checked'" : "") name="SelectedRoles" value="@item.ID">
+                                            <i></i>
+                                            @item.Name
+                                        </label>
+                                    </div>
+                                </div>
+                                first = false;
+                            }
+                            <div class="form-group SalesType">
+                                <label class="col-sm-2 control-label">@Resource.OldBranches</label>
+                                <div class="col-sm-10">
+                                    @Html.Bootstrap().TextArea("listbranches").Class("form-control").Value(string.Join(", ", Model.UserBranches.Select(m => m.Name))).Readonly()
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Resource.Branches<span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    @Html.Bootstrap().DropDownListFor(m => m.BranchID, Model.Branches.ToSelectList(m => m.ID, m => m.Code)).Class("form-control").ShowValidationMessage(true)
+                                </div>
+                            </div>
+                            <div id="ManagerType" class="hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">@Resource.GroupBranches</label>
+                                    <div class="col-sm-10">
+                                        @Html.Bootstrap().ListBox("SelectedBranches", Model.Branches.ToSelectList(m => m.ID, m => m.Code)).Class("form-control")
+                                    </div>
+                                </div>
+                            </div>
+                using (Html.Bootstrap().Begin(new FormActions()))
+                {
+                    <div class="form-group">
+                        <label class="col-sm-2"></label>
+                        <div class="col-sm-10">
+                            @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
+                            @Html.Bootstrap().SubmitButton().Id("submitbutton").Class("btn btn-primary-me").Text(Resource.Save).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+@Html.Script(
+    @<script>
+
+        $(document).on('change', 'input[type="File"]', function () {
+            var upload = $(this);
+
+            var indicator = upload.next('.selected');
+            if (indicator.length == 0) {
+                indicator = $('<span class="selected"></span>').insertAfter(upload);
+            }
+
+            if (upload.val() == '') {
+                indicator.html('');
+            } else if (window.FileReader) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    if (upload[0].files[0].size > 2000000) {
+                        $.sticky("@Resource.FileToLarge", { type: 'st-danger' });
+                        upload.replaceWith(upload = upload.clone(true));
+                    } else {
+                        $('#profilePicture').html("<img style='width: 120px; height:120px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
+                    }
+                };
+                reader.readAsDataURL(upload[0].files[0]);
+            } else {
+                indicator.html("Selected");
+            }
+        });
+
+        $("#submitbutton").on('click', function (e) {
+            e.preventDefault();
+            bootbox.confirm("@Resource.ConfirmSave", function (isOK) {
+                if (isOK) {
+                    $('#submitbutton').parents("form").submit();
+                }
+            });
+        });
+
+        var cbxs = $(".checkbox");
+        var ischeckSales = false;
+        var ischeckManager = false;
+        var roles = @Html.Serialize(Model.Roles);
+        function checkrole() {
+            var showSalesLevel = false;
+            var showBranchLevel = false;
+            for (var i = 0; i < roles.length; i++) {
+                if ($("input[type='checkbox'][value='" + roles[i].ID + "']:checked").length > 0) {
+
+                    if (roles[i].RoleLevel.Value == '@RoleLevel.PersonalLevel') {
+                        showSalesLevel = true;
+                    }
+                    if (roles[i].RoleLevel.Value == '@RoleLevel.BranchLevel') {
+                        showBranchLevel = true;
+                    }
+                }
+            }
+            if (showSalesLevel) {
+                $(".SalesType").removeClass('hide');
+            } else {
+                $(".SalesType").addClass('hide');
+            }
+
+            if (showSalesLevel || showBranchLevel) {
+                $("@Html.JquerySelectorFor(model => model.BranchID)").closest(".form-group").removeClass('hide');
+            } else {
+                $("@Html.JquerySelectorFor(model => model.BranchID)").closest(".form-group").addClass('hide');
+            }
+        }
+
+        $(function () {
+            cbxs.each(function (index, item) {
+                var input = $(item).find('input');
+                input.on('change', function () {
+                    checkrole();
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            checkrole();
+        });
+
+    </script>
+                        )

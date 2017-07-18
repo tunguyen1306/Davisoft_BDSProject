@@ -1,0 +1,89 @@
+﻿@using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical
+@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model IEnumerable<Menu>
+
+<section class="panel panel-default">
+    <div class="panel-heading">
+        @Resource.MenuManagement
+        <div class="pull-right">
+            <a href="#" id="update-menu-resource" class="btn btn-mini btn-info">@Resource.UpdateLanguageResources</a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="accordion" id="accordion">
+            @foreach (Menu menu in Model.OrderBy(m => m.Order))
+            {
+                <div class="accordion-group menu-parent">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse@(menu.ID)">
+                            <b>@menu.Title</b>
+                        </a>
+                    </div>
+                    <div id="collapse@(menu.ID)" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div style="background-color: #f5f5f5;color: #222;margin-top: -15px;margin-bottom: 2px;padding: 8px 15px;">
+                                @Html.ActionLink(Resource.AddChild, "Create", "Menus", new { parentId = menu.ID }, null) |
+                                @Html.ActionLink(Resource.Edit, "Edit", "Menus", new { id = menu.ID }, null) |
+                                @Html.ActionLink(Resource.Delete, "Delete", "Menus", new { id = menu.ID }, new { data_action = "delete", data_id = menu.ID })
+                            </div>
+                            @{
+                var menuModel = new MenuModel(menu);
+                foreach (var child in menuModel.Children.OrderBy(m => m.Order))
+                {
+                    <div class="accordion-group menu-child">
+                        <div class="accordion-heading">
+                            <div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion@(menu.ID)" href="#collapse@(child.ID)" style="background-image:none;">
+                                <a href="@child.Url" style="color: #222;"><b>@child.Title</b></a>
+                                <div class="adMenu">
+                                    @Html.ActionLink(Resource.Edit, "Edit", "Menus", new { id = child.ID }, null) |
+                                    @Html.ActionLink(Resource.Delete, "Delete", "Menus", new { id = child.ID }, new { data_action = "delete", data_id = child.ID })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+
+
+
+@Html.Bootstrap().ActionLinkButton(Resource.AddNew, "Create").Style(ButtonStyle.Success).PrependIcon(Icons.plus,true)
+@Html.Script(
+    @<script>
+    $(".collapseMenu").collapse();
+    $(".adMenu").on("click", "a", function () {
+        window.location = $(this).attr("href");
+        return false;
+    });
+    $(".adMenu").disableSelection();
+
+
+    $(document).on('click', '#update-menu-resource', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '@Url.Action("UpdateMenuResources", "Menus")',
+                type: 'POST',
+                success: function (data) {
+                    if (data == 1) {
+                        bootbox.alert('@Resource.Successful');
+                    } else {
+                        bootbox.alert('@Resource.Failed');
+                    }
+
+                },
+                error: function () {
+                    bootbox.alert('@Resource.Error');
+            }
+        });
+    });
+    </script>
+)

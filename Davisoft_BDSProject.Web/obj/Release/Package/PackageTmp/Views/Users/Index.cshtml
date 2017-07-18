@@ -1,0 +1,138 @@
+﻿@using NS.Entity
+@using NS.Mvc.Helpers
+@using Davisoft_BDSProject.Domain.Entities
+@using Resources
+@model IEnumerable<User>
+
+@*<h3 class="heading">Users</h3>*@
+@{
+    var roles = ViewBag.roles;
+    var count = 0;
+}
+<style>
+
+</style>
+<section class="panel panel-default">
+    <header class="tilte_l">
+        @Resource.Users
+    </header>
+    <div class="row wrapper dataTables_length table_basic">
+        <div class="col-sm-8">
+            @Html.Bootstrap().ActionLinkButton(Resource.AddNew, "Create", "Users").Style(ButtonStyle.None).Class("btn btn-primary-me btn-export")
+        </div>
+        <div class="col-sm-4">
+            @Html.Bootstrap().DropDownList(Resource.Role, new SelectList(roles, "ID", "Name")).Class("form-control").OptionLabel("SELECT ROLE").Id("role")
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table id="users-table" class="table">
+                <thead>
+                    <tr>
+                        <th>@Resource.SNo</th>
+                        <th>@Resource.Name</th>
+                        <th>@Resource.Email</th>
+                        <th>@Resource.PhoneNumber</th>
+                        <th>@Resource.Roles</th>
+                        <th class="text-center">@Resource.Active</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (User user in Model)
+                    {
+                        count++;
+                        <tr data-roles="@(string.Join(" ", user.Roles.Select(m => m.ID)))">
+                            <td class="text-center">@count</td>
+                            <td>
+                                @if (user.Picture != null)
+                                {
+                                    <img src="~/data/user_img/@(user.Picture + "?" + Guid.NewGuid().ToString())" class="img-rounded user-picture-small" style=" max-width: 50px; max-height: 50px;" />
+                                }
+                                @user.DisplayName
+                            </td>
+                            <td>@user.Email</td>
+                            <td>@user.Phone</td>
+                            <td>@Html.Raw(string.Join("<br/>", user.Roles.Select(m => m.Name).ToArray()))</td>
+                            <td class="text-center">
+                                <div class="i-checks">
+                                    <label>
+                                        @if (user.Status == EntityStatus.Normal)
+                                        {
+                                            @Html.Bootstrap().CheckBox("active").IsChecked(true).Disabled()
+                                        }
+                                        else
+                                        {
+                                            @Html.Bootstrap().CheckBox("active").IsChecked(false).Disabled()
+                                        }
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                @Html.Bootstrap().ActionLink(Resource.Logviewer, "Index", "Audit").RouteValues(new { Username = user.DisplayName })
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "Users", new { Id = user.ID })" class="active" data-toggle="class"><i class="fa fa-wrench text-violet text-active"></i></a>
+                            </td>
+                            <td>
+                                <a href="#" data-action="delete" data-id=@user.ID class="active" data-toggle="class"><i class="fa fa-times text-danger text-active"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@Html.Script(
+    @<script>
+
+        var $modelTable = $('#users-table').dataTable({
+            fixedHeader: true
+        });
+
+        $(document).on('click', '[data-action="delete"]', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                if (isOK) {
+                    var id = $self.data('id');
+                    var index = $self.closest('tbody').find('tr').index($self.closest('tr'));
+
+                    $.ajax({
+                        url: '@Url.Action("Delete_keeptrack", "Users")/' + id,
+                        type: 'POST',
+                        success: function () {
+                            //$modelTable.fnDeleteRow(index);
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+
+        });
+
+        $("#role").change(function () {
+            var roleID = $(this).val();
+            //if (roleID == '') {
+            //    $('tbody tr').removeClass('hide');
+            //} else {
+            //    $('tbody tr').addClass('hide');
+            //    $('tbody tr').each(function (index, value) {
+            //        if ($(this).attr('data-roles').indexOf(roleID) != -1) {
+
+            //            $(this).removeClass('hide');
+            //        }
+            //    });
+            //}
+            if (roleID == '')
+                roleID = 0;
+            location.href = "@Url.Action("Index", "Users")?role=" + roleID;
+        });
+
+    </script>
+                     )

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DataWebBDS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="davisoft_bdsprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -96,6 +96,26 @@
     <Property Name="CreateUser" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSBanners">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Position" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Page" Type="nvarchar(max)" />
+    <Property Name="Banner" Type="nvarchar(max)" />
+    <Property Name="BWidth" Type="int" />
+    <Property Name="BHeight" Type="int" />
   </EntityType>
   <EntityType Name="BDSBranches">
     <Key>
@@ -284,6 +304,24 @@
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedUser" Type="int" />
   </EntityType>
+  <EntityType Name="BDSMenus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Url" Type="text" />
+    <Property Name="Target" Type="nvarchar" MaxLength="50" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="MOrder" Type="int" />
+  </EntityType>
   <EntityType Name="BDSNews">
     <Key>
       <PropertyRef Name="ID" />
@@ -325,6 +363,7 @@
     <Property Name="IdTypeNewsCuurent" Type="int" />
     <Property Name="DateReup" Type="datetime" />
     <Property Name="CountReup" Type="int" />
+    <Property Name="MaxReup" Type="int" />
     <Property Name="Status" Type="int" />
     <Property Name="RefTranHis" Type="int" />
     <Property Name="Active" Type="int" />
@@ -332,6 +371,14 @@
     <Property Name="CreateUser" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSNews_Career">
+    <Key>
+      <PropertyRef Name="ID_News" />
+      <PropertyRef Name="ID_Career" />
+    </Key>
+    <Property Name="ID_News" Type="int" Nullable="false" />
+    <Property Name="ID_Career" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BDSNewsTypePrices">
     <Key>
@@ -396,6 +443,9 @@
     <Property Name="CreateUser" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedUser" Type="int" />
+    <Property Name="DateReup" Type="datetime" />
+    <Property Name="CountReup" Type="int" />
+    <Property Name="MaxReup" Type="int" />
   </EntityType>
   <EntityType Name="BDSPictures">
     <Key>
@@ -780,261 +830,14 @@
     <Property Name="User_Id" Type="int" Nullable="false" />
     <Property Name="Role_Id" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="counters$Counter_Branch">
-    <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
-    <End Role="Counters" Type="Self.Counters" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Branches">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Counters">
-        <PropertyRef Name="BranchID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_BDSBranches_dbo_BDSAreas_IdArea">
-    <End Role="BDSAreas" Type="Self.BDSAreas" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="BDSBranches" Type="Self.BDSBranches" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BDSAreas">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BDSBranches">
-        <PropertyRef Name="IdArea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_BDSPictures_dbo_BDSNews_advert_id">
-    <End Role="BDSNews" Type="Self.BDSNews" Multiplicity="0..1" />
-    <End Role="BDSPictures" Type="Self.BDSPictures" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BDSNews">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BDSPictures">
-        <PropertyRef Name="advert_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount">
-    <End Role="BDSAccounts" Type="Self.BDSAccounts" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="BDSTransactions" Type="Self.BDSTransactions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BDSAccounts">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BDSTransactions">
-        <PropertyRef Name="IdAccount" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank">
-    <End Role="BDSBanks" Type="Self.BDSBanks" Multiplicity="0..1" />
-    <End Role="BDSTransactions" Type="Self.BDSTransactions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BDSBanks">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BDSTransactions">
-        <PropertyRef Name="IdBank" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch">
-    <End Role="BDSBranches" Type="Self.BDSBranches" Multiplicity="0..1" />
-    <End Role="BDSTransactions" Type="Self.BDSTransactions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BDSBranches">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BDSTransactions">
-        <PropertyRef Name="IdBranch" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Counters_dbo_Branches_BranchID">
-    <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
-    <End Role="Counters" Type="Self.Counters" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Branches">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Counters">
-        <PropertyRef Name="BranchID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Menus_Roles_dbo_Menus_Menu_Id">
-    <End Role="Menus" Type="Self.Menus" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Menus_Roles" Type="Self.Menus_Roles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Menus">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Menus_Roles">
-        <PropertyRef Name="Menu_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Menus_Roles_dbo_Roles_Role_Id">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Menus_Roles" Type="Self.Menus_Roles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Menus_Roles">
-        <PropertyRef Name="Role_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Roles_Permissions_dbo_Permissions_Permission_Id">
-    <End Role="Permissions" Type="Self.Permissions" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Roles_Permissions" Type="Self.Roles_Permissions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Permissions">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Roles_Permissions">
-        <PropertyRef Name="Permission_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Roles_Permissions_dbo_Roles_Role_Id">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Roles_Permissions" Type="Self.Roles_Permissions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Roles_Permissions">
-        <PropertyRef Name="Role_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Users_Branches_dbo_Branches_Branch_Id">
-    <End Role="Branches" Type="Self.Branches" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Users_Branches" Type="Self.Users_Branches" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Branches">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users_Branches">
-        <PropertyRef Name="Branch_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Users_Branches_dbo_Users_User_Id">
-    <End Role="Users" Type="Self.Users" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Users_Branches" Type="Self.Users_Branches" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users_Branches">
-        <PropertyRef Name="User_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Users_dbo_Branches_BranchID">
-    <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Branches">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="BranchID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Users_dbo_Languages_LanguageID">
-    <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Languages">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="LanguageID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Users_Roles_dbo_Roles_Role_Id">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Users_Roles" Type="Self.Users_Roles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users_Roles">
-        <PropertyRef Name="Role_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Users_Roles_dbo_Users_User_Id">
-    <End Role="Users" Type="Self.Users" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Users_Roles" Type="Self.Users_Roles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users_Roles">
-        <PropertyRef Name="User_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="users$User_Branch">
-    <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Branches">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="BranchID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="users$User_Language">
-    <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Languages">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="LanguageID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="DataWebBDSStoreContainer">
+  <EntityContainer Name="davisoft_bdsprojectModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Audits" EntityType="Self.Audits" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSAccounts" EntityType="Self.BDSAccounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSApply" EntityType="Self.BDSApply" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSAreas" EntityType="Self.BDSAreas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSBanks" EntityType="Self.BDSBanks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSBanners" EntityType="Self.BDSBanners" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSBranches" EntityType="Self.BDSBranches" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSCareers" EntityType="Self.BDSCareers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSComments" EntityType="Self.BDSComments" Schema="dbo" store:Type="Tables" />
@@ -1045,7 +848,9 @@
     <EntitySet Name="BDSExtNews" EntityType="Self.BDSExtNews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSLanguages" EntityType="Self.BDSLanguages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSMarriages" EntityType="Self.BDSMarriages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSMenus" EntityType="Self.BDSMenus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSNews" EntityType="Self.BDSNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSNews_Career" EntityType="Self.BDSNews_Career" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSNewsTypePrices" EntityType="Self.BDSNewsTypePrices" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSNewsTypes" EntityType="Self.BDSNewsTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSPersonalInformations" EntityType="Self.BDSPersonalInformations" Schema="dbo" store:Type="Tables" />
@@ -1078,81 +883,5 @@
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users_Branches" EntityType="Self.Users_Branches" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users_Roles" EntityType="Self.Users_Roles" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="counters$Counter_Branch" Association="Self.counters$Counter_Branch">
-      <End Role="Branches" EntitySet="Branches" />
-      <End Role="Counters" EntitySet="Counters" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_BDSBranches_dbo_BDSAreas_IdArea" Association="Self.FK_dbo_BDSBranches_dbo_BDSAreas_IdArea">
-      <End Role="BDSAreas" EntitySet="BDSAreas" />
-      <End Role="BDSBranches" EntitySet="BDSBranches" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_BDSPictures_dbo_BDSNews_advert_id" Association="Self.FK_dbo_BDSPictures_dbo_BDSNews_advert_id">
-      <End Role="BDSNews" EntitySet="BDSNews" />
-      <End Role="BDSPictures" EntitySet="BDSPictures" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount" Association="Self.FK_dbo_BDSTransactions_dbo_BDSAccounts_IdAccount">
-      <End Role="BDSAccounts" EntitySet="BDSAccounts" />
-      <End Role="BDSTransactions" EntitySet="BDSTransactions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank" Association="Self.FK_dbo_BDSTransactions_dbo_BDSBanks_IdBank">
-      <End Role="BDSBanks" EntitySet="BDSBanks" />
-      <End Role="BDSTransactions" EntitySet="BDSTransactions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch" Association="Self.FK_dbo_BDSTransactions_dbo_BDSBranches_IdBranch">
-      <End Role="BDSBranches" EntitySet="BDSBranches" />
-      <End Role="BDSTransactions" EntitySet="BDSTransactions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Counters_dbo_Branches_BranchID" Association="Self.FK_dbo_Counters_dbo_Branches_BranchID">
-      <End Role="Branches" EntitySet="Branches" />
-      <End Role="Counters" EntitySet="Counters" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Menus_Roles_dbo_Menus_Menu_Id" Association="Self.FK_dbo_Menus_Roles_dbo_Menus_Menu_Id">
-      <End Role="Menus" EntitySet="Menus" />
-      <End Role="Menus_Roles" EntitySet="Menus_Roles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Menus_Roles_dbo_Roles_Role_Id" Association="Self.FK_dbo_Menus_Roles_dbo_Roles_Role_Id">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="Menus_Roles" EntitySet="Menus_Roles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Roles_Permissions_dbo_Permissions_Permission_Id" Association="Self.FK_dbo_Roles_Permissions_dbo_Permissions_Permission_Id">
-      <End Role="Permissions" EntitySet="Permissions" />
-      <End Role="Roles_Permissions" EntitySet="Roles_Permissions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Roles_Permissions_dbo_Roles_Role_Id" Association="Self.FK_dbo_Roles_Permissions_dbo_Roles_Role_Id">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="Roles_Permissions" EntitySet="Roles_Permissions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Users_Branches_dbo_Branches_Branch_Id" Association="Self.FK_dbo_Users_Branches_dbo_Branches_Branch_Id">
-      <End Role="Branches" EntitySet="Branches" />
-      <End Role="Users_Branches" EntitySet="Users_Branches" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Users_Branches_dbo_Users_User_Id" Association="Self.FK_dbo_Users_Branches_dbo_Users_User_Id">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Users_Branches" EntitySet="Users_Branches" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Users_dbo_Branches_BranchID" Association="Self.FK_dbo_Users_dbo_Branches_BranchID">
-      <End Role="Branches" EntitySet="Branches" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Users_dbo_Languages_LanguageID" Association="Self.FK_dbo_Users_dbo_Languages_LanguageID">
-      <End Role="Languages" EntitySet="Languages" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Users_Roles_dbo_Roles_Role_Id" Association="Self.FK_dbo_Users_Roles_dbo_Roles_Role_Id">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="Users_Roles" EntitySet="Users_Roles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Users_Roles_dbo_Users_User_Id" Association="Self.FK_dbo_Users_Roles_dbo_Users_User_Id">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Users_Roles" EntitySet="Users_Roles" />
-    </AssociationSet>
-    <AssociationSet Name="users$User_Branch" Association="Self.users$User_Branch">
-      <End Role="Branches" EntitySet="Branches" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="users$User_Language" Association="Self.users$User_Language">
-      <End Role="Languages" EntitySet="Languages" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -14,7 +14,7 @@ namespace WebBDS_Project.Controllers
     {
         //
         // GET: /Management/
-        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+        davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
          [ActionName("ManagementCompany")]
         public ActionResult ManagementCompany()
         {
@@ -656,8 +656,9 @@ namespace WebBDS_Project.Controllers
                     TypeTran = 3,
                     PointTran = (int)P,
                     MoneyTran = sotien,
-                    DateTran = DateTime.Now,
-                    Active=1
+                    DateTran = DateTime.Now,Status=1
+                   
+                   
                 };
                 db.BDSTransactionHistories.Add(tran);
                 account.Money = account.Money - sotien;

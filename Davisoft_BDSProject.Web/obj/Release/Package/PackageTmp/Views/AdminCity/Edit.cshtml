@@ -1,0 +1,63 @@
+﻿@model Davisoft_BDSProject.Web.Models.CityModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<section class="panel panel-default">
+    <div class="panel-heading">Edit</div>
+    <div class="panel-body">
+        
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form-horizontal">
+                @Html.HiddenFor(m => m.City.state_id)
+                 @Html.HiddenFor(m => m.City.name_id)
+                 @Html.HiddenFor(m => m.CityText.language_id)
+                 @Html.HiddenFor(m => m.CityText.id)
+                <div class="form-group">
+                    <label class="control-label col-md-3">City Name</label>
+                    <div class="col-md-8">
+                        @Html.Bootstrap().TextBoxFor(m => m.CityText.text).HtmlAttributes(new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CityText.text)
+                    
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">City Code</label>
+                    <div class="col-md-8">
+                        @Html.Bootstrap().TextBoxFor(m => m.City.stateCode).HtmlAttributes(new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.City.stateCode)
+                        
+                    </div>
+                </div>
+              
+             
+          
+                <div class="form-group">
+                    <label class="control-label col-md-3">Status</label>
+                    <div class="col-md-8">
+         
+                        @Html.DropDownListFor(model => model.City.Status,                
+                            new List<SelectListItem> { 
+                                new SelectListItem { Value = "0" , Text = "DeActive" },
+                                new SelectListItem { Value = "1" , Text = "Active" }
+                            },
+                            new { @class="myselect"})
+                       
+                    </div>
+                </div>
+               
+                
+              
+    
+                <div class="col-md-8 col-md-offset-3">
+                    @Html.Bootstrap().ActionLinkButton("Back to list", "Index").PrependIcon(Icons.arrow_left)
+                    @Html.Bootstrap().SubmitButton().Id("submitbutton").Text("Save").Style(ButtonStyle.Primary).PrependIcon(Icons.ok, true)
+                </div>
+            </div>
+        }
+    </div>
+
+</section>
+

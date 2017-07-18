@@ -1,0 +1,48 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSEvent
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSEvent_Name", "Name") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSEvent_FromDate", "From Date - To Date") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.FromDateToDate).Placeholder("dd/MM/yyyy - dd/MM/yyyy").HtmlAttributes(new { @class = "form-control datepicker-range" }).ShowValidationMessage(true)
+    </div>
+
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSEvent_DisPercent", "Discount Percent") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.DisPercent).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+
+
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSEvent_Description", "Description")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+@Html.Script(
+    @<script>
+        $('.date').datetimepicker({format:'dd/mm/yyyy'}).on('changeDate', function (ev) {
+            $(this).datetimepicker("hide");
+        });
+    </script>)

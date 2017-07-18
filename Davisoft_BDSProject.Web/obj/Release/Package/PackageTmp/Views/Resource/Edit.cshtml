@@ -1,0 +1,55 @@
+﻿@using Resources
+@model Davisoft_BDSProject.Domain.Entities.Language
+@{
+    ViewBag.Title = Resource.Modify;
+}
+
+
+<section class="panel panel-default">
+    <h3 class="tilte_l">
+        @ViewBag.Title
+    </h3>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(model => model.ID)
+                @Html.HiddenFor(model => model.Image)
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.Code</label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Value).Class("form-control nouc").Readonly().ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Resource.Name <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.DisplayName).Class("form-control nouc").ShowValidationMessage(true)
+                    </div>
+                </div>
+                using (Html.Bootstrap().Begin(new FormActions()))
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3"></label>
+                        <label class="col-sm-9">
+                            @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
+                            @Html.Bootstrap().SubmitButton().Id("submitbutton").Text(Resource.Save).PrependIcon(Icons.ok, true).Style(ButtonStyle.Success)
+                        </label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+@Html.Script(
+    @<script>
+        $("#submitbutton").on('click', function (e) {
+            e.preventDefault();
+            bootbox.confirm("@Resource.ConfirmSave", function (isOK) {
+                if (isOK) {
+                    $('#submitbutton').parents("form").submit();
+                }
+            });
+        });
+    </script>)

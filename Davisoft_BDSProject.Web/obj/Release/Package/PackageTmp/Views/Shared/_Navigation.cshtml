@@ -1,0 +1,40 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+
+<div id="jCrumbs" class="breadCrumb module">
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Home")"><i class="icon-home"></i></a>
+        </li>
+        @{
+            var strMenu = "";
+            var strSubMenu = "";
+            IEnumerable<Menu> menus = MenuHelper.GetAll();
+            foreach(var Menu in menus){
+                List<Menu> ChildMenus = MenuHelper.GetAll(Menu.ID).ToList();
+                foreach(var ChildMenu in ChildMenus){
+                    if (ChildMenu.Url != null &&
+                          (ChildMenu.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString() ||
+                          ChildMenu.Url.Remove(0, 1) == ViewContext.RouteData.Values["controller"].ToString() 
+                          + "/" + ViewContext.RouteData.Values["action"].ToString())){
+                        strMenu = Menu.Title;
+                        strSubMenu = ChildMenu.Title;
+                        break;
+                    }
+                    if(strMenu != ""){
+                        break;
+                    }
+                }
+            }
+        }
+        <li>
+            @strMenu
+        </li>
+        <li>
+            @*@ViewContext.RouteData.Values["controller"]*@
+            @strSubMenu
+        </li>
+        <li>
+            @Html.ActionLink(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["action"].ToString())
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="davisoft_bdsprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Audits">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="IPAddress" Type="nvarchar(max)" />
+    <Property Name="UrlAccessed" Type="nvarchar(max)" />
+    <Property Name="TimeAccessed" Type="datetime" Nullable="false" />
+    <Property Name="SessionId" Type="nvarchar(max)" />
+    <Property Name="Data" Type="nvarchar(max)" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="Controller" Type="nvarchar(max)" />
+    <Property Name="ActionId" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BDSAccounts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="PassWord" Type="nvarchar(max)" />
+    <Property Name="Token" Type="nvarchar(max)" />
+    <Property Name="Money" Type="float" />
+    <Property Name="Point" Type="int" />
+    <Property Name="MailActive" Type="int" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSApply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAccountEm" Type="int" Nullable="false" />
+    <Property Name="IdAccountPer" Type="int" Nullable="false" />
+    <Property Name="IdNews" Type="int" />
+    <Property Name="Point" Type="int" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="RefTranHis" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSAreas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSBanks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="UrlImage" Type="nvarchar(max)" />
+    <Property Name="AccountNumber" Type="nvarchar(max)" />
+    <Property Name="AccountName" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Branch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSBanners">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Position" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Page" Type="nvarchar(max)" />
+    <Property Name="Banner" Type="nvarchar(max)" />
+    <Property Name="BWidth" Type="int" />
+    <Property Name="BHeight" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSBranches">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Tel" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="IdArea" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSCareers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreateUser" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="IdAccount" Type="int" />
+    <Property Name="DateComment" Type="datetime2" Precision="7" />
+    <Property Name="TextComment" Type="nvarchar(max)" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ApproveUser" Type="int" />
+    <Property Name="NameComment" Type="nvarchar" MaxLength="200" />
+    <Property Name="DescriptionComment" Type="nvarchar" MaxLength="500" />
+    <Property Name="CompanyComment" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="BDSEducations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSEmpers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAccountEm" Type="int" Nullable="false" />
+    <Property Name="IdAccountPer" Type="int" Nullable="false" />
+    <Property Name="Point" Type="int" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="RefTranHis" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSEmployerInformations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAccount" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Scope" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="UrlImage" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="FullAddress" Type="nvarchar(max)" />
+    <Property Name="WebSite" Type="nvarchar(max)" />
+    <Property Name="City" Type="int" />
+    <Property Name="District" Type="int" />
+    <Property Name="Fax" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="NameContact" Type="nvarchar(max)" />
+    <Property Name="EmailContact" Type="nvarchar(max)" />
+    <Property Name="PhoneContact" Type="nvarchar(max)" />
+    <Property Name="AddressContact" Type="nvarchar(max)" />
+    <Property Name="CityContact" Type="int" />
+    <Property Name="DistrictContact" Type="int" />
+    <Property Name="TypeContact" Type="int" Nullable="false" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Featured" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSEvents">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="FromDate" Type="datetime" />
+    <Property Name="ToDate" Type="datetime" />
+    <Property Name="DisPercent" Type="float" Nullable="false" />
+    <Property Name="TypeApply" Type="int" Nullable="false" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSExtNews">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KeyUrl" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="ShortDescription" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="CatExtNews" Type="int" Nullable="false" />
+    <Property Name="IdAccount" Type="int" />
+    <Property Name="DateCreate" Type="datetime" Nullable="false" />
+    <Property Name="ApproveDate" Type="datetime" />
+    <Property Name="ApproveStatus" Type="int" Nullable="false" />
+    <Property Name="ApproveUser" Type="int" />
+    <Property Name="UrlImage" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSLanguages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSMarriages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSMenus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Url" Type="text" />
+    <Property Name="Target" Type="nvarchar" MaxLength="50" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="MOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSNews">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="AddressWork" Type="int" />
+    <Property Name="FromSalary" Type="int" />
+    <Property Name="ToSalary" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Bonus" Type="nvarchar(max)" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="IdTimeWork" Type="int" />
+    <Property Name="IdEducation" Type="int" />
+    <Property Name="Career" Type="nvarchar(max)" />
+    <Property Name="DesCompany" Type="nvarchar(max)" />
+    <Property Name="DesWork" Type="nvarchar(max)" />
+    <Property Name="Benefit" Type="nvarchar(max)" />
+    <Property Name="FromAge" Type="int" />
+    <Property Name="ToAge" Type="int" />
+    <Property Name="TimeProbationary" Type="int" />
+    <Property Name="NameCompany" Type="nvarchar(max)" />
+    <Property Name="AddressApply" Type="nvarchar(max)" />
+    <Property Name="NamesContact" Type="nvarchar(max)" />
+    <Property Name="PhoneContact" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="FromDeadline" Type="datetime" />
+    <Property Name="ToDeadline" Type="datetime" />
+    <Property Name="IdLanguage" Type="int" />
+    <Property Name="WebSiteCompany" Type="nvarchar(max)" />
+    <Property Name="IdTypeNews" Type="int" />
+    <Property Name="FromCreateNews" Type="datetime" />
+    <Property Name="ToCreateNews" Type="datetime" />
+    <Property Name="IdAcount" Type="int" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="MoneyInDay" Type="float" />
+    <Property Name="TotalMoney" Type="float" />
+    <Property Name="UrlImage" Type="nvarchar(max)" />
+    <Property Name="IdTypeNewsCuurent" Type="int" />
+    <Property Name="DateReup" Type="datetime" />
+    <Property Name="CountReup" Type="int" />
+    <Property Name="MaxReup" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="RefTranHis" Type="int" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="IdNewsDates" Type="int" />
+    <Property Name="Reason" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BDSNews_Career">
+    <Key>
+      <PropertyRef Name="ID_News" />
+      <PropertyRef Name="ID_Career" />
+    </Key>
+    <Property Name="ID_News" Type="int" Nullable="false" />
+    <Property Name="ID_Career" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BDSNewsDates">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="IdNews" Type="int" Nullable="false" />
+    <Property Name="IdTypeNews" Type="int" Nullable="false" />
+    <Property Name="FromCreateNews" Type="datetime" Nullable="false" />
+    <Property Name="ToCreateNews" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="DIndex" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSNewsTypePrices">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="IdNewsType" Type="int" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="ApplyPrice" Type="datetime" Nullable="false" />
+    <Property Name="Perfix" Type="int" Nullable="false" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSNewsTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="CodeNewsType" Type="nvarchar(max)" />
+    <Property Name="Order" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="UrlIcon" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSPersonalInformations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAccount" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="Sex" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="City" Type="int" Nullable="false" />
+    <Property Name="District" Type="int" Nullable="false" />
+    <Property Name="FullAddress" Type="nvarchar(max)" />
+    <Property Name="MaritalStatus" Type="int" Nullable="false" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+    <Property Name="Experience" Type="int" Nullable="false" />
+    <Property Name="ProfessionalExperience" Type="int" Nullable="false" />
+    <Property Name="Education" Type="int" Nullable="false" />
+    <Property Name="IdLoaiNghe" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="UrlImage" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="DateReup" Type="datetime" />
+    <Property Name="CountReup" Type="int" />
+    <Property Name="MaxReup" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSPictures">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="advert_id" Type="int" />
+    <Property Name="originalFilepath" Type="nvarchar(max)" />
+    <Property Name="position" Type="tinyint" />
+    <Property Name="converted" Type="datetime" />
+    <Property Name="convertedFilename" Type="nvarchar(max)" />
+    <Property Name="tocheck" Type="bit" />
+    <Property Name="isvalidated" Type="bit" />
+    <Property Name="convertedFilename90" Type="nvarchar(max)" />
+    <Property Name="convertedFilename180" Type="nvarchar(max)" />
+    <Property Name="convertedFilename270" Type="nvarchar(max)" />
+    <Property Name="angleType" Type="tinyint" />
+    <Property Name="type_id" Type="tinyint" />
+    <Property Name="title" Type="nvarchar(max)" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="cms_sql_id" Type="int" />
+    <Property Name="shortdescription" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSSalaries">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="FromSalary" Type="int" Nullable="false" />
+    <Property Name="ToSalary" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Perfix" Type="int" Nullable="false" />
+    <Property Name="Default" Type="int" Nullable="false" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSScopes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSTimeWorks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="FromTime" Type="int" Nullable="false" />
+    <Property Name="ToTime" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Perfix" Type="int" Nullable="false" />
+    <Property Name="Default" Type="int" Nullable="false" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="NameEX" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BDSTransactionHistories">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="TypeTran" Type="int" Nullable="false" />
+    <Property Name="DateTran" Type="datetime" Nullable="false" />
+    <Property Name="PointTran" Type="int" Nullable="false" />
+    <Property Name="MoneyTran" Type="float" Nullable="false" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSTransactions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="IdAccount" Type="int" Nullable="false" />
+    <Property Name="IdBank" Type="int" />
+    <Property Name="IdBranch" Type="int" />
+    <Property Name="Money" Type="float" Nullable="false" />
+    <Property Name="MoneyEventAdd" Type="float" Nullable="false" />
+    <Property Name="EventDisPercent" Type="float" Nullable="false" />
+    <Property Name="Point" Type="int" Nullable="false" />
+    <Property Name="TranDate" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="RefTranHis" Type="int" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSTypeContacts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+  </EntityType>
+  <EntityType Name="Branches">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Name2" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="AddressEnglish" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="FaxNumber" Type="nvarchar(max)" />
+    <Property Name="TaxNumber" Type="nvarchar(max)" />
+    <Property Name="CreatedTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedTime" Type="datetime" />
+    <Property Name="DeletedTime" Type="datetime" />
+    <Property Name="EntityStatus_Value" Type="nvarchar(max)" />
+    <Property Name="EntityStatus_DisplayName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Counters">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="BranchID" Type="int" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="countryCode" />
+    </Key>
+    <Property Name="countryCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="name_id" Type="int" Nullable="false" />
+    <Property Name="languages" Type="varchar" MaxLength="50" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CountryText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="language_id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Currencies">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Symbol" Type="nvarchar(max)" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="Precision" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="district_id" />
+    </Key>
+    <Property Name="district_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="state_id" Type="int" Nullable="false" />
+    <Property Name="name_id" Type="int" Nullable="false" />
+    <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="polygon" Type="nvarchar(max)" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DistrictText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="language_id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Holidays">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IsFullDay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Languages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="DisplayName" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="int" Nullable="false" />
+    <Property Name="countryCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="state_id" Type="int" Nullable="false" />
+    <Property Name="district_id" Type="int" />
+    <Property Name="name_id" Type="int" Nullable="false" />
+    <Property Name="zipCode" Type="varchar" MaxLength="12" />
+    <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="preferred" Type="bit" Nullable="false" />
+    <Property Name="polygon" Type="nvarchar(max)" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="language_id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Url" Type="nvarchar(max)" />
+    <Property Name="Icon" Type="nvarchar(max)" />
+    <Property Name="Order" Type="int" Nullable="false" />
+    <Property Name="ParentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menus_Roles">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Menu_Id" Type="int" Nullable="false" />
+    <Property Name="Role_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permissions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Target" Type="nvarchar(max)" />
+    <Property Name="Right" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="RoleLevel_Value" Type="nvarchar(max)" />
+    <Property Name="RoleLevel_DisplayName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Roles_Permissions">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+      <PropertyRef Name="Permission_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="int" Nullable="false" />
+    <Property Name="Permission_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Module" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="Type" Type="nvarchar(max)" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="Summary" Type="nvarchar(max)" />
+    <Property Name="TableToGetField" Type="nvarchar(max)" />
+    <Property Name="MaxLenght" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="state_id" />
+    </Key>
+    <Property Name="state_id" Type="int" Nullable="false" />
+    <Property Name="countryCode" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="name_id" Type="int" Nullable="false" />
+    <Property Name="stateCode" Type="nvarchar" MaxLength="4" />
+    <Property Name="latitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="longitude" Type="decimal" Precision="9" Scale="5" />
+    <Property Name="polygon" Type="varchar(max)" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StateText">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="language_id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="MobilePhone" Type="nvarchar(max)" />
+    <Property Name="Picture" Type="nvarchar(max)" />
+    <Property Name="LastAccess" Type="datetime" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="AddressEnglish" Type="nvarchar(max)" />
+    <Property Name="FaxNo" Type="nvarchar(max)" />
+    <Property Name="Website" Type="nvarchar(max)" />
+    <Property Name="Status_Value" Type="nvarchar(max)" />
+    <Property Name="Status_DisplayName" Type="nvarchar(max)" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="LanguageID" Type="int" />
+  </EntityType>
+  <EntityType Name="Users_Branches">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Branch_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Branch_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_Roles">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Role_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="davisoft_bdsprojectModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Audits" EntityType="Self.Audits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSAccounts" EntityType="Self.BDSAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSApply" EntityType="Self.BDSApply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSAreas" EntityType="Self.BDSAreas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSBanks" EntityType="Self.BDSBanks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSBanners" EntityType="Self.BDSBanners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSBranches" EntityType="Self.BDSBranches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSCareers" EntityType="Self.BDSCareers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSComments" EntityType="Self.BDSComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSEducations" EntityType="Self.BDSEducations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSEmpers" EntityType="Self.BDSEmpers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSEmployerInformations" EntityType="Self.BDSEmployerInformations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSEvents" EntityType="Self.BDSEvents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSExtNews" EntityType="Self.BDSExtNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSLanguages" EntityType="Self.BDSLanguages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSMarriages" EntityType="Self.BDSMarriages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSMenus" EntityType="Self.BDSMenus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSNews" EntityType="Self.BDSNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSNews_Career" EntityType="Self.BDSNews_Career" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSNewsDates" EntityType="Self.BDSNewsDates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSNewsTypePrices" EntityType="Self.BDSNewsTypePrices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSNewsTypes" EntityType="Self.BDSNewsTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSPersonalInformations" EntityType="Self.BDSPersonalInformations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSPictures" EntityType="Self.BDSPictures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSSalaries" EntityType="Self.BDSSalaries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSScopes" EntityType="Self.BDSScopes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSTimeWorks" EntityType="Self.BDSTimeWorks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSTransactionHistories" EntityType="Self.BDSTransactionHistories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSTransactions" EntityType="Self.BDSTransactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSTypeContacts" EntityType="Self.BDSTypeContacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Counters" EntityType="Self.Counters" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CountryText" EntityType="Self.CountryText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DistrictText" EntityType="Self.DistrictText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Holidays" EntityType="Self.Holidays" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationText" EntityType="Self.LocationText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menus_Roles" EntityType="Self.Menus_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles_Permissions" EntityType="Self.Roles_Permissions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateText" EntityType="Self.StateText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users_Branches" EntityType="Self.Users_Branches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users_Roles" EntityType="Self.Users_Roles" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

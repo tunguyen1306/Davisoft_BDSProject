@@ -1,0 +1,180 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSTransaction
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_Name", "Name") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).Readonly(true).ShowValidationMessage(true)
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_Account", "Employer") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.IdAccount, (List<SelectListItem>)ViewBag.EmployerInformations).HtmlAttributes(new { @class = "form-control bName" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_Type", "Type") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.Type, new List<SelectListItem> { new SelectListItem { Value = "1", Text = "Qua ngân hàng", Selected = false }, new SelectListItem { Value = "2", Text = "Trực tiếp", Selected = true } }).HtmlAttributes(new { @class = "form-control bName" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+<div class="form-group bds_bank" style="display: none">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_Bank", "Bank") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.IdBank, (List<SelectListItem>)ViewBag.Banks).HtmlAttributes(new { @class = "form-control bName" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+<div class="form-group bds_branch">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_Branch", "Branch") <span class="required">*</span></label>
+    <div class="col-md-8">
+        @Html.Bootstrap().DropDownListFor(m => m.IdBranch, (List<SelectListItem>)ViewBag.Branchs).HtmlAttributes(new { @class = "form-control bName" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_Money", "Money") <span class="required">*</span></label>
+    <div class="col-md-3"> 
+        @Html.Bootstrap().TextBoxFor(m => m.Money).HtmlAttributes(new { @class = "form-control bName" }).ShowValidationMessage(true)
+    </div>
+    <div class="col-md-1 loadingAjax" style="display: none">
+        <svg width='32px' height='32px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-default"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(0 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(30 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.08333333333333333s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(60 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.16666666666666666s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(90 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.25s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(120 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.3333333333333333s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(150 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.4166666666666667s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(180 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(210 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5833333333333334s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(240 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.6666666666666666s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(270 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.75s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(300 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.8333333333333334s' repeatCount='indefinite' /></rect><rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#535d61' transform='rotate(330 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.9166666666666666s' repeatCount='indefinite' /></rect></svg>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_MoneyEventAdd", "Money for Event") <span class="required">*</span></label>
+    <div class="col-md-3">
+        @Html.Bootstrap().TextBoxFor(m => m.MoneyEventAdd).HtmlAttributes(new { @class = "form-control" }).Readonly(true).ShowValidationMessage(true)
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_Point", "Point") <span class="required">*</span></label>
+    <div class="col-md-3">
+        @Html.Bootstrap().TextBoxFor(m => m.Point).HtmlAttributes(new { @class = "form-control" }).Readonly(true).ShowValidationMessage(true)
+    </div>
+
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">@Utilities.Resource("BDSTransaction_Description", "Description")</label>
+    <div class="col-md-8">
+        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control bName" }).ShowValidationMessage(true)
+    </div>
+</div>
+
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+@Html.HiddenFor(m => m.TranDate)
+@Html.HiddenFor(m => m.EventDisPercent)
+@Html.HiddenFor(m => m.RefTranHis)
+@Html.Script(
+    @<text>
+        <script>
+            $(document).ready(function() {
+                $('#Money').autoNumeric('init', { currencySymbol: 'VND' });
+                $('#MoneyEventAdd').autoNumeric('init', { currencySymbol: 'VND' });
+                $('.bds_bank').hide();
+                $('.bds_branch').hide();
+                if ($("#Type").val() == 1) {
+                    $('.bds_bank').show();
+                } else {
+                    $('.bds_branch').show();
+                }
+
+
+                var fm = "Khách hàng '{A}' nạp tiền {B} với số tiền '{C}' tại {D} '{E}'";
+                if ($('#Type').val() == 2) {
+                    fm = fm.replace("{B}", "trực tiếp");
+                    fm = fm.replace("{D}", "chi nhánh");
+                    if ($('#IdBranch').val() != null && $('#IdBranch').val() != "") {
+                        fm = fm.replace("{E}", $('#IdBranch').select2('data')[0].text);
+                    }
+
+                } else {
+                    fm = fm.replace("{B}", "qua ngân hàng");
+                    fm = fm.replace("{D}", "ngân hàng");
+                    if ($('#IdBank').val() != null && $('#IdBank').val() != "") {
+                        fm = fm.replace("{E}", $('#IdBank').select2('data')[0].text);
+                    }
+
+                }
+                if ($('#IdAccount').val() != null && $('#IdAccount').val() != "") {
+                    fm = fm.replace("{A}", $('#IdAccount').select2('data')[0].text);
+                }
+                if ($('#Money').val() != "") {
+                    fm = fm.replace("{C}", $('#Money').val());
+                }
+                $('#Name').val(fm);
+
+            });
+          
+            var timeOutTyping;
+            $(document).on("keyup", "#Money", function () {
+                clearTimeout(timeOutTyping);
+                timeOutTyping = setTimeout(function () {
+                    $('#MoneyEventAdd').val(0);
+                    $('#Point').val(0);
+                    if ($('#Money').val()!="") {
+                        $('.loadingAjax').show();
+                        $.getJSON("@Url.Action("CheckEventAjax")?money=" + $('#Money').val(), function (data) {
+                            $('#MoneyEventAdd').autoNumeric('set', data.ME);
+                            $('#Point').val(data.P);
+                            $('#EventDisPercent').val(data.DE);
+                            $('.loadingAjax').hide();
+                        });
+                    }
+                   
+                }, 600);
+            });
+            $(document).on("change", "#Type", function () {
+                $('.bds_bank').hide();
+                $('.bds_branch').hide();
+                if ($(this).val() == 1) {
+                    $('.bds_bank').show();
+                    $('#IdBank').select2('val', '');
+                } else {
+                    $('.bds_branch').show();
+                    $('#IdBranch').select2('val', '');
+                }
+
+            });
+            $(document).on("change", ".bName", function () {
+                var fm = "Khách hàng '{A}' nạp tiền {B} với số tiền '{C}' tại {D} '{E}'";
+                if ($('#Type').val() == 2) {
+                    fm = fm.replace("{B}", "trực tiếp");
+                    fm = fm.replace("{D}", "chi nhánh");
+                    if ($('#IdBranch').val() != null && $('#IdBranch').val() != "") {
+                        fm = fm.replace("{E}", $('#IdBranch').select2('data')[0].text);
+                    }
+                    
+                } else {
+                    fm = fm.replace("{B}", "qua ngân hàng");
+                    fm = fm.replace("{D}", "ngân hàng");
+                    if ($('#IdBank').val() != null && $('#IdBank').val() != "") {
+                        fm = fm.replace("{E}", $('#IdBank').select2('data')[0].text);
+                    }
+                  
+                }
+                if ($('#IdAccount').val() != null && $('#IdAccount').val() != "") {
+                    fm = fm.replace("{A}", $('#IdAccount').select2('data')[0].text);
+                }
+                if ($('#Money').val() != "") {
+                    fm = fm.replace("{C}", $('#Money').val());
+                }
+                $('#Name').val(fm);
+
+            });
+        </script>
+    </text>)

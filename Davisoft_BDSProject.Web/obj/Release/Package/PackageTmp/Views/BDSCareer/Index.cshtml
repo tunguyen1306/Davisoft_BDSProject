@@ -1,0 +1,109 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Web.Helpers
+@using Resources
+@model IEnumerable<BDSCareer>
+<section class="panel panel-default">
+    <div class="panel-heading">
+        @Utilities.Resource("BDSCareer", "List Career")
+    </div>
+    @if (CurrentUser.HasPermission("BDSCareer", "Create"))
+    {
+        <div class="row wrapper dataTables_length table_basic">
+            <div class="col-sm-12">
+                @Html.Bootstrap().ActionLinkButton(Resource.AddNew, "Create").Style(ButtonStyle.None).Class("btn btn-primary-me")
+            </div>
+        </div>
+    }
+    <div class="panel-body">
+
+        <div class="table-responsive">
+            <table class="table" id="table_data">
+                <thead>
+                    <tr>
+                        <th>@Utilities.Resource("BDSCareer_Name", "Name")</th>
+                        <th>@Utilities.Resource("BDSCareer_Description", "Description")</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+@Html.Script(
+    @<script>
+
+        var $modelTable = $('#table_data').dataTable({
+            fixedHeader: true,
+            processing: false,
+            serverSide: true,
+            searching: true,
+            ordering: true,
+            info: false,
+            stateSave: false,
+            lengthMenu: [[25, 50, -1], [25, 50, "All"]],
+            drawCallback: function (settings) {
+                $('.mt-action-dot').popover({ trigger: "hover" });
+            },
+            initComplete: function () {
+                $('#table_data_filter input').unbind();
+                var timeOutTyping;
+                $('#table_data_filter input').bind('keyup', function (e) {
+                    clearTimeout(timeOutTyping);
+                    timeOutTyping = setTimeout(function () {
+                        $modelTable.fnFilter($('#table_data_filter input').val());
+                    }, 600);
+                });
+            },
+            ajax: {
+                url: "/BDSCareer/IndexAjax",
+                type: "GET"
+            },
+            "columnDefs": [
+          {
+              "render": function (data, type, row) {
+
+                  return '<a href="/BDSCareer/Edit/' + row.ID + '"><i class="fa fa-pencil-square-o text-violet"></i></a>';
+              },
+              "targets": 2,
+              'className': 'text-center'
+          },
+          {
+              "render": function (data, type, row) {
+
+                  return '<a href="#" data-action="delete" data-id="' + row.ID + '"><i class="fa fa-times text-danger"></i></a>';
+
+
+              },
+              "targets": 3,
+              'className': 'text-center'
+          }
+            ],
+            columns: [
+                { "data": "Name", "orderable": true },
+                { "data": "Description", "orderable": true },
+                { "data": "ID", "orderable": false },
+                { "data": "ID", "orderable": false }
+
+            ],
+            order: [[0, "asc"]]
+        });
+
+        $(document).on('click', '[data-action="delete"]', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                if (isOK) {
+                    $.getJSON($self.attr('href'), function (data) {
+                    }).success(function () { $modelTable._fnAjaxUpdate(); })
+                        .error(function () { alert(decodeURIComponent('@Resource.DontHavePermission')); });
+
+                }
+            });
+
+        });
+
+
+    </script>
+                                                                         )

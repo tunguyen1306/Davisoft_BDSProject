@@ -15,7 +15,7 @@ namespace WebBDS_Project.Controllers
 {
     public class AdvertsController : Controller
     {
-        davisoft_bdsprojectEntities db = new davisoft_bdsprojectEntities();
+        davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
         //
         // GET: /Adverts/
 
@@ -121,7 +121,7 @@ namespace WebBDS_Project.Controllers
                     var model = db.BDSAccounts.FirstOrDefault(T => T.ID == id);
                     if (model != null)
                     {
-                        if (model.Money >= pAll)
+                        if (model.Money >= create.tblBDSNew.TotalMoney)
                         {
                             checkMoney = true;
                         }

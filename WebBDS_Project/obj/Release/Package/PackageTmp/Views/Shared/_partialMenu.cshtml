@@ -1,0 +1,36 @@
+﻿@model IEnumerable< WebBDS_Project.Models.BDSCareer>
+
+              <div class="nav_section">
+                    <div class="container clearfix">
+                        <!-- Nav -->
+                        <div class="grid_12 mg0">
+                            <nav class="nav">
+                                <ul class="nav-list grid_12">
+                                    <li>
+                                        <a href="@Url.Action("Index","Default")" class="active">Trang chủ</a>
+                                    </li>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Search", "Default", new { filterCareer = item.ID })">@item.Name</a>
+                                        </li>
+                                    }
+                                    <li class="spec" style="float: right">
+                                        <a href=""><i class="fa fa-file-text-o"></i>Bảng giá</a>
+                                    </li>
+                                    <li class="spec">
+                                        <a href="" class="dropdown1"><i class="fa fa-pencil" aria-hidden="true"></i>Đăng tin</a>
+                                        <div id="dropdown1" class="dropdown-menu">
+                                            <a href="@Url.Action("AdvertCompany","Adverts")">Đăng tuyển dụng</a>
+                                            <a href="@Url.Action("RegisterPersonal","Register")" class="omega">Đăng tìm việc</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                  <div class="side-right-pushy-button menu-btn"><i class="fa fa-filter" aria-hidden="true"></i> Filter</div>
+                               
+</nav>
+                            <!-- /Nav -->
+                        </div>
+                    </div>
+                </div>

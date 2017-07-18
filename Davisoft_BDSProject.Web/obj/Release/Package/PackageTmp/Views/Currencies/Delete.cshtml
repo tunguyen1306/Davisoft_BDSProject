@@ -1,0 +1,31 @@
+@using Davisoft_BDSProject.Domain.Entities
+@model Currency
+
+@{
+	ViewBag.Title = "Delete";
+}
+
+<fieldset>
+	<legend>Delete Currency</legend>
+	
+	<blockquote>Are you sure you want to delete this?</blockquote>
+	
+	<table class="table table-bordered">
+		<tr>
+			<td>Name</td>
+			<td>@Model.Name</td>
+		</tr>
+		<tr>
+			<td>BaseCurrency</td>
+			<td>@Model.IsDefault</td>
+		</tr>
+	</table>
+
+</fieldset>
+@using (Html.BeginForm())
+{
+	<div>
+		@Html.Bootstrap().SubmitButton().Text("Delete").Style(ButtonStyle.Success)
+		@Html.Bootstrap().ActionLink("Back to List", "Index")
+	</div>
+}

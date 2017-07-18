@@ -1,0 +1,70 @@
+﻿@using Davisoft_BDSProject.Domain.Entities
+@using Davisoft_BDSProject.Web.Models
+@using Resources
+@model MenuModel
+
+@*<td>
+        <span class="menu-name">@Model.Menu.Title</span>
+        (
+        @Html.ActionLink("Edit", "Edit", "Menus", new { id = Model.Menu.Id }, null) |
+        @Html.ActionLink("Delete", "Delete", "Menus", new { id = Model.Menu.Id }, new { data_action = "delete", data_id = Model.Menu.Id })
+        )
+        @if (Model.Menu.Url != null)
+        {
+            <span class="menu-url">@Model.Menu.Url</span>
+        }
+        @if (Model.Children.Count > 0)
+        {
+            <table class="table table-bordered">
+                @foreach (Menu child in Model.Children)
+                {
+                    <tr>
+                        @Html.Partial("_Menu", new MenuModel(child))
+                    </tr>
+                }
+            </table>
+            <br />
+        }
+        @Html.ActionLink("Add Child", "Create", "Menus", new { parentId = Model.Menu.Id }, null)
+    </td>*@
+<div class="accordion" id="accordion@(Model.Menu.ID)">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <div class="accordion-toggle" data-toggle="collapse" data-parent="#@Model.Menu.ID" href="#collapse@(Model.Menu.ID+""+Model.Menu.ID)">
+                @Model.Menu.Title
+                <div class="adMenu">
+                    @Html.ActionLink(Resource.AddChild, "Create", "Menus", new { parentId = Model.Menu.ID }, null) |
+                    @Html.ActionLink(Resource.Edit, "Edit", "Menus", new { id = Model.Menu.ID }, null) |
+                    @Html.ActionLink(Resource.Delete, "Delete", "Menus", new { id = Model.Menu.ID }, new { data_action = "delete", data_id = Model.Menu.ID })
+                </div>
+            </div>
+        </div>
+        <div id="collapse@(Model.Menu.ID+""+Model.Menu.ID)" class="accordion-body collapse">
+            @if (Model.Children.Count > 0 || Model.Menu.Url != null)
+            {
+                <div class="accordion-inner">
+                    @if (Model.Menu.Url != null)
+                    {
+                        <span class="menu-url">@Model.Menu.Url</span>
+                    }
+                    @if (Model.Children.Count > 0)
+                    {
+                        foreach (Menu child in Model.Children)
+                        {
+                            @Html.Partial("_Menu", new MenuModel(child))
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.Script(
+    @<script>
+        $(".collapseMenu").collapse();
+        $(".adMenu").on("click", "a", function () {
+            window.location = $(this).attr("href");
+            return false;
+        });
+        $(".adMenu").disableSelection();
+    </script>)

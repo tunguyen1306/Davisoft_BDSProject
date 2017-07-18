@@ -1,0 +1,1205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ButtonBackToList" xml:space="preserve">
+    <value>กลับสู่รายการ</value>
+    <comment>Back to List</comment>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="COMPANIES" xml:space="preserve">
+    <value>บริษัท</value>
+    <comment>COMPANIES</comment>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>ยืนยัน</value>
+    <comment>Confirm</comment>
+  </data>
+  <data name="ConfirmCreate" xml:space="preserve">
+    <value>ต้องการเพิ่ม itemนี้ใช่หรือไม่?</value>
+    <comment>Do you want to add this item?</comment>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>ยืนยันการลบ?</value>
+    <comment>Do you want to delete this item?</comment>
+  </data>
+  <data name="ConfirmSave" xml:space="preserve">
+    <value>ต้องการบันทึกการเปลี่ยนแปลง?</value>
+    <comment>Do you want to save changes?</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>ลบ</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>รายละเอียด</value>
+    <comment>Detail</comment>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>แก้ไข</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>ประกันภัย</value>
+    <comment>Insurance</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>บันทึก</value>
+    <comment>Save</comment>
+  </data>
+  <data name="SaveChange" xml:space="preserve">
+    <value>บันทึกการเปลี่ยนแปลง</value>
+    <comment>Save Change</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>ค้นหา</value>
+    <comment>Search</comment>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>to</value>
+    <comment>to</comment>
+  </data>
+  <data name="ConfirmGenerate" xml:space="preserve">
+    <value>ยืนยันการสร้าง?</value>
+    <comment>Confirm Generate</comment>
+  </data>
+  <data name="NoRecordFound" xml:space="preserve">
+    <value>ไม่พบข้อมูล</value>
+    <comment>No record found</comment>
+  </data>
+  <data name="ChassisNo" xml:space="preserve">
+    <value>หมายเลขตัวถัง (แชสซี)</value>
+    <comment>Chassis No</comment>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>สี</value>
+    <comment>Color</comment>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>สำเร็จ!</value>
+    <comment>Successful</comment>
+  </data>
+  <data name="ConfirmSubmit" xml:space="preserve">
+    <value>ยืนยันการส่ง?</value>
+    <comment>Are you sure you want to submit?</comment>
+  </data>
+  <data name="ArrivalDate" xml:space="preserve">
+    <value>วันที่มาถึง</value>
+    <comment>Arrival Date</comment>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>ประเทศ</value>
+    <comment>Country</comment>
+  </data>
+  <data name="RegistrationType" xml:space="preserve">
+    <value>ประเภทของการจดทะเบียน</value>
+    <comment>Registration Type</comment>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>หมายเหตุ</value>
+    <comment>Remarks</comment>
+  </data>
+  <data name="ConfirmAllocation" xml:space="preserve">
+    <value>ยืนยันการจัดสรร?</value>
+    <comment>Do you want to Allocate this item?</comment>
+  </data>
+  <data name="Allocate" xml:space="preserve">
+    <value>จัดสรร</value>
+    <comment>Allocate</comment>
+  </data>
+  <data name="Allocation" xml:space="preserve">
+    <value>การจัดสรรรถ</value>
+    <comment>Allocation</comment>
+  </data>
+  <data name="Cars" xml:space="preserve">
+    <value>รถ</value>
+    <comment>Cars</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>สถานะ</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>การชำระเงิน</value>
+    <comment>Payment</comment>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>จำนวนเงิน</value>
+    <comment>Amount</comment>
+  </data>
+  <data name="AuthorisedSignature" xml:space="preserve">
+    <value>ลายเซ็นต์ผู้มีอำนาจ</value>
+    <comment>Authorised Signature</comment>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>ธนาคาร</value>
+    <comment>Bank</comment>
+  </data>
+  <data name="ByCashChequeOthers" xml:space="preserve">
+    <value>โดย เงินสด/ เช็ค/ อื่นๆ</value>
+    <comment>By Cash / Cheque / Others</comment>
+  </data>
+  <data name="ChequeNo" xml:space="preserve">
+    <value>หมายเลขเช็ค</value>
+    <comment>Cheque No.</comment>
+  </data>
+  <data name="ChequeNumber" xml:space="preserve">
+    <value>หมายเลขเช็ค</value>
+    <comment>Cheque Number</comment>
+  </data>
+  <data name="ChooseStatus" xml:space="preserve">
+    <value>เลือกสถานะ ...</value>
+    <comment>Choose Status ...</comment>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>บริษัท</value>
+    <comment>Company</comment>
+  </data>
+  <data name="ConfirmPrintReceipt" xml:space="preserve">
+    <value>ต้องการพิมพ์ใบเสร็จ?</value>
+    <comment>Are you want Print Official Receipt?</comment>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>สัญญา</value>
+    <comment>Contract</comment>
+  </data>
+  <data name="ContractNo" xml:space="preserve">
+    <value>Contract No.</value>
+    <comment>Contract No.</comment>
+  </data>
+  <data name="CustomerCode" xml:space="preserve">
+    <value>หมายเลขของลูกค้า</value>
+    <comment>Customer Code</comment>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>ชื่อลูกค้า</value>
+    <comment>Customer Name</comment>
+  </data>
+  <data name="PaymentPayeeName" xml:space="preserve">
+    <value>ชื่อผู้รับเงิน</value>
+    <comment>Payee Name</comment>
+  </data>
+  <data name="DailyCollection" xml:space="preserve">
+    <value>Daily Collection</value>
+    <comment>Daily Collection</comment>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>วันที่</value>
+    <comment>Date</comment>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>วันที่(ตั้งแต่)</value>
+    <comment>Date(From)</comment>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>วันที่(ถึง)</value>
+    <comment>Date(To)</comment>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>ลบแล้ว</value>
+    <comment>Deleted</comment>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>ตัวกรอง</value>
+    <comment>Filter</comment>
+  </data>
+  <data name="PaymenthadbeenDeleted" xml:space="preserve">
+    <value>การชำระเงินถูกลบไปแล้ว</value>
+    <comment>Payment had been Deleted.</comment>
+  </data>
+  <data name="PaymentManagement" xml:space="preserve">
+    <value>จัดการการชำระเงิน</value>
+    <comment>Payment Management</comment>
+  </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>รูปแบบในการชำระเงิน</value>
+    <comment>Payment Type</comment>
+  </data>
+  <data name="CreditCardNo" xml:space="preserve">
+    <value>หมายเลขเครดิตการ์ด</value>
+    <comment>Credit Card No.</comment>
+  </data>
+  <data name="BookingDate" xml:space="preserve">
+    <value>วันที่จอง</value>
+    <comment>Booking Date</comment>
+  </data>
+  <data name="BookingType" xml:space="preserve">
+    <value>รูปแบบการจอง</value>
+    <comment>Booking Type</comment>
+  </data>
+  <data name="Branch" xml:space="preserve">
+    <value>สาขา</value>
+    <comment>Branch</comment>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>ลูกค้า</value>
+    <comment>Customer</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>รายละเอียด</value>
+    <comment>Description</comment>
+  </data>
+  <data name="Salesman" xml:space="preserve">
+    <value>พนักงานขาย</value>
+    <comment>Salesman</comment>
+  </data>
+  <data name="SellingPrice" xml:space="preserve">
+    <value>ราคาขาย</value>
+    <comment>Selling Price</comment>
+  </data>
+  <data name="SaveSuccessful" xml:space="preserve">
+    <value>บันทึกเรียบร้อย</value>
+    <comment>Saved Successfully!</comment>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>ซัพพลายเออร์</value>
+    <comment>Supplier</comment>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>อัตราแลกเปลี่ยน</value>
+    <comment>Currency</comment>
+  </data>
+  <data name="ConfirmDate" xml:space="preserve">
+    <value>ยืนยันวันที่</value>
+    <comment>Confirm Date</comment>
+  </data>
+  <data name="SupplierID" xml:space="preserve">
+    <value>ซัพพลายเออร์</value>
+    <comment>Supplier</comment>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>ค่าจดทะเบียน</value>
+    <comment>Registration</comment>
+  </data>
+  <data name="AllocatedDate" xml:space="preserve">
+    <value>วันที่จัดสรร</value>
+    <comment>Allocated Date</comment>
+  </data>
+  <data name="ContractDetails" xml:space="preserve">
+    <value>รายละเอียดสัญญา</value>
+    <comment>Contract Details</comment>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>ที่อยู่ตามบัตรประชาชน</value>
+    <comment>Address</comment>
+  </data>
+  <data name="CurrentVehicleNo" xml:space="preserve">
+    <value>หมายเลขรถยนต์ที่ใช้งานปัจจุบัน</value>
+    <comment>Current Vehicle No.</comment>
+  </data>
+  <data name="CustomerDetails" xml:space="preserve">
+    <value>รายละเอียดลูกค้า</value>
+    <comment>Customer Details</comment>
+  </data>
+  <data name="CustomerType" xml:space="preserve">
+    <value>ประเภทของลูกค้า</value>
+    <comment>Customer Type</comment>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>วันเกิด</value>
+    <comment>Date Of Birth</comment>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>อีเมล์</value>
+    <comment>Email</comment>
+  </data>
+  <data name="FaxNumber" xml:space="preserve">
+    <value>หมายเลขแฟกซ์</value>
+    <comment>Fax Number</comment>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>เพศ</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="MainUserOfCar" xml:space="preserve">
+    <value>ผู้ใช้รถยนต์เป็นหลัก</value>
+    <comment>Main User Of Car</comment>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>สถานะภาพ</value>
+    <comment>Marital Status</comment>
+  </data>
+  <data name="ModelCode" xml:space="preserve">
+    <value>รหัสโมเดล</value>
+    <comment>ModelCode</comment>
+  </data>
+  <data name="ModelDescription" xml:space="preserve">
+    <value>รายละเอียดโมเดล</value>
+    <comment>Model Description</comment>
+  </data>
+  <data name="ModelYear" xml:space="preserve">
+    <value>Model Year</value>
+    <comment>Model Year</comment>
+  </data>
+  <data name="Occupation" xml:space="preserve">
+    <value>อาชีพ</value>
+    <comment>Occupation</comment>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>รหัสไปรษณีย์</value>
+    <comment>Postal Code</comment>
+  </data>
+  <data name="TypeOfIndustry" xml:space="preserve">
+    <value>ประเภทของอุตสาหกรรม</value>
+    <comment>Type Of Industry</comment>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>รายละเอียด</value>
+    <comment>Details</comment>
+  </data>
+  <data name="IdentifyNumber" xml:space="preserve">
+    <value>หมายเลขบัตรประจำตัวประชาชน</value>
+    <comment>Identify Number</comment>
+  </data>
+  <data name="TotalPayment" xml:space="preserve">
+    <value>จำนวนเงินทั้งหมดที่ต้องชำระ</value>
+    <comment>Total Payment</comment>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>จันทร์</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>อังคาร</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>พุธ</value>
+  </data>
+  <data name="AccessoriesDiscount" xml:space="preserve">
+    <value>ส่วนลด Accessories</value>
+  </data>
+  <data name="AccessoryType" xml:space="preserve">
+    <value>ประเภท Accessory </value>
+  </data>
+  <data name="LicencePlateCost" xml:space="preserve">
+    <value>ค่ามัดจำป้ายแดง</value>
+  </data>
+  <data name="NameInEnglish" xml:space="preserve">
+    <value>ชื่อลูกค้า ภาษาอังกฤษ</value>
+  </data>
+  <data name="MonthlyPersonalIncomeLevel" xml:space="preserve">
+    <value>รายได้ต่อเดือน</value>
+  </data>
+  <data name="PresentAddress" xml:space="preserve">
+    <value>ที่อยู่ปัจจุบัน</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="MiddleName" xml:space="preserve">
+    <value>ชื่อรอง</value>
+  </data>
+  <data name="TaxNumber" xml:space="preserve">
+    <value>เลขประจำตัวผู้เสียภาษี</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>รายละเอียดผู้ติดต่อ</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>บ้าน</value>
+  </data>
+  <data name="Office" xml:space="preserve">
+    <value>ที่ทำงาน</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>มือถือ</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>แฟกซ์</value>
+  </data>
+  <data name="DateOfBirthCoRegnDate" xml:space="preserve">
+    <value>วันเดือนปีเกิด / วันที่บริษัทจัดทะเบียน</value>
+  </data>
+  <data name="CurrentVehicle" xml:space="preserve">
+    <value>รถยนต์ที่ใช้งานปัจจุบัน</value>
+  </data>
+  <data name="VehicleNo" xml:space="preserve">
+    <value>ทะเบียนรถยนต์</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>ชื่อบริษัท</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>ชื่อผู้ติดต่อ</value>
+  </data>
+  <data name="RoadTax" xml:space="preserve">
+    <value>พ.ร.บ</value>
+  </data>
+  <data name="CancelAllocation" xml:space="preserve">
+    <value>ยกเลิกการจัดสรร</value>
+  </data>
+  <data name="CancelFailed" xml:space="preserve">
+    <value>ไม่สามารถยกเลิกได้!</value>
+  </data>
+  <data name="CancelFailedBookingAlready" xml:space="preserve">
+    <value>ไม่สามารถยกเลิกได้! ทำการจองแล้ว</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>ยกเลิกแล้ว</value>
+  </data>
+  <data name="Branches" xml:space="preserve">
+    <value>สาขา</value>
+  </data>
+  <data name="AmountAfterGST" xml:space="preserve">
+    <value>จำนวนเงินหลังหักภาษี</value>
+  </data>
+  <data name="AmountBeforeGST" xml:space="preserve">
+    <value>จำนวนเงินก่อนหักภาษี</value>
+  </data>
+  <data name="and" xml:space="preserve">
+    <value>และ</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>การอนุมัติ</value>
+  </data>
+  <data name="ApprovalInformation" xml:space="preserve">
+    <value>ข้อมูลการอนุมัติ</value>
+  </data>
+  <data name="AllStatus" xml:space="preserve">
+    <value>สถานะทั้งหมด</value>
+  </data>
+  <data name="AlreadyExist" xml:space="preserve">
+    <value>มีแล้ว!</value>
+  </data>
+  <data name="ApprovalNoAndApprovalDateMustBeNotEmpty" xml:space="preserve">
+    <value>ต้องกรอกหมายเลขอนุมัติและวันที่อนุมัติ</value>
+  </data>
+  <data name="ApproveNo" xml:space="preserve">
+    <value>หมายเลขอนุมัติ</value>
+  </data>
+  <data name="AttachItem" xml:space="preserve">
+    <value>แนบ item</value>
+  </data>
+  <data name="AttachFile" xml:space="preserve">
+    <value>แนบไฟล์</value>
+  </data>
+  <data name="BankCode" xml:space="preserve">
+    <value>รหัสธนาคาร</value>
+  </data>
+  <data name="BankConfirmationNoAndBankConfirmationDateMustBeNotEmpty" xml:space="preserve">
+    <value>ต้องกรอกวันที่ธนาคารรับรองและหมายเลขรับรอง</value>
+  </data>
+  <data name="BankConfirmationNo" xml:space="preserve">
+    <value>หมายเลขรับรอง</value>
+  </data>
+  <data name="BankConfirmationDate" xml:space="preserve">
+    <value>วันที่ธนาคารรับรอง</value>
+  </data>
+  <data name="BookFailed" xml:space="preserve">
+    <value>การจองล้มเหลว!</value>
+  </data>
+  <data name="Booking" xml:space="preserve">
+    <value>จองรถ</value>
+  </data>
+  <data name="BookingCannotChange" xml:space="preserve">
+    <value>การจองไม่สามารถเปลี่ยนได้!</value>
+  </data>
+  <data name="BookingAllocation" xml:space="preserve">
+    <value>จัดสรรการจอง</value>
+  </data>
+  <data name="BookingConfirm" xml:space="preserve">
+    <value>ยืนยันการจอง</value>
+  </data>
+  <data name="BookingInformation" xml:space="preserve">
+    <value>รายละเอียดการจอง</value>
+  </data>
+  <data name="BookingPaymentStillNotCompleted" xml:space="preserve">
+    <value>การชำระเงินจองยังไม่สมบูรณ์</value>
+  </data>
+  <data name="BookingReport" xml:space="preserve">
+    <value>รายงานการจอง</value>
+  </data>
+  <data name="BookingPercentByBranches" xml:space="preserve">
+    <value>เปอร์เซ็นต์การจองตามสาขา</value>
+  </data>
+  <data name="BookStatus" xml:space="preserve">
+    <value>สถานะการจอง</value>
+  </data>
+  <data name="BookType" xml:space="preserve">
+    <value>Book Type</value>
+  </data>
+  <data name="BookingsManagement" xml:space="preserve">
+    <value>จัดการการจอง</value>
+  </data>
+  <data name="BranchTo" xml:space="preserve">
+    <value>สาขาถึง</value>
+  </data>
+  <data name="BranchManagement" xml:space="preserve">
+    <value>จัดการสาขา</value>
+  </data>
+  <data name="CancelReason" xml:space="preserve">
+    <value>สาเหตุในการยกเลิก</value>
+  </data>
+  <data name="CannotAddItem" xml:space="preserve">
+    <value>ไม่สามารถเพิ่ม itemนี้ได้ ตรวจสอบข้อมูลอีกครั้ง</value>
+  </data>
+  <data name="CannotDelete" xml:space="preserve">
+    <value>ไม่สามารถลบได้</value>
+  </data>
+  <data name="CannotDeleteItem" xml:space="preserve">
+    <value>ไม่สามารถลบ item นี้ได้ โปรดลองอีกครั้ง</value>
+  </data>
+  <data name="CannotEditBookingHasAllocated" xml:space="preserve">
+    <value>ไม่สามารถแก้ไขได้! การจองได้รับการจัดสรรแล้ว</value>
+  </data>
+  <data name="CannotSaveItem" xml:space="preserve">
+    <value>ไม่สามารถบันทึก item นี้ได้! ตรวจสอบข้อมูลอีกครั้ง</value>
+  </data>
+  <data name="CarColor" xml:space="preserve">
+    <value>สีรถ</value>
+  </data>
+  <data name="CanOnlyDeleteTodayDebitNote" xml:space="preserve">
+    <value>สามารถลบ Debit Note ของวันนี้ได้เท่านั้น</value>
+  </data>
+  <data name="CanOnlyDeleteTodayCreditNote" xml:space="preserve">
+    <value>สามารถลบ Credit Note ของวันนี้ได้เท่านั้น</value>
+  </data>
+  <data name="CarPlate" xml:space="preserve">
+    <value>ป้ายทะเบียน</value>
+  </data>
+  <data name="ChangeSuccessful" xml:space="preserve">
+    <value>เปลี่ยนแปลงสำเร็จ</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>เปลี่ยนแปลง</value>
+  </data>
+  <data name="ChequeNoAlreadyExist" xml:space="preserve">
+    <value>มีหมายเลขเช็คนี้แล้ว</value>
+  </data>
+  <data name="Cheque" xml:space="preserve">
+    <value>เช็ค</value>
+  </data>
+  <data name="ColorDescription" xml:space="preserve">
+    <value>รายละเอียดสี</value>
+  </data>
+  <data name="ColorsManagement" xml:space="preserve">
+    <value>จัดการสี</value>
+  </data>
+  <data name="ColorCodeExists" xml:space="preserve">
+    <value>มีรหัสสีนี้แล้ว</value>
+  </data>
+  <data name="ColorChartManagement" xml:space="preserve">
+    <value>จัดการแผงสี</value>
+  </data>
+  <data name="ContactNo" xml:space="preserve">
+    <value>เบอร์ติดต่อ</value>
+  </data>
+  <data name="ConfirmUpload" xml:space="preserve">
+    <value>คุณแน่ใจว่าต้องการ upload?</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>สร้าง</value>
+  </data>
+  <data name="AlreadyCancelAllocationSuccessful" xml:space="preserve">
+    <value>การยกเลิกการจัดสรรสำเร็จ</value>
+  </data>
+  <data name="AddressEnglish" xml:space="preserve">
+    <value>ที่อยู่ (ภาษาอังกฤษ)</value>
+  </data>
+  <data name="AddSuccessful" xml:space="preserve">
+    <value>การเพิ่มสำเร็จ!</value>
+  </data>
+  <data name="AddToSystem" xml:space="preserve">
+    <value>เพิ่มเข้าในระบบ</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="AllocateSuccesful" xml:space="preserve">
+    <value>การจัดสรรเสร็จสมบูรณ์</value>
+  </data>
+  <data name="AllocationDetails" xml:space="preserve">
+    <value>รายละเอียดการจัดสรร</value>
+  </data>
+  <data name="Attachment" xml:space="preserve">
+    <value>ไฟล์แนบ</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>กลับ</value>
+  </data>
+  <data name="BackToModelList" xml:space="preserve">
+    <value>กลับสู่รายการโมเดล</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>จอง</value>
+  </data>
+  <data name="BookingTime" xml:space="preserve">
+    <value>เวลาจอง</value>
+  </data>
+  <data name="BranchOrSalesman" xml:space="preserve">
+    <value>สาขา/ผู้ขาย</value>
+  </data>
+  <data name="CancelledWithReason" xml:space="preserve">
+    <value>ยกเลิก (มีเหตุผลในการยกเลิก)</value>
+  </data>
+  <data name="CarModel" xml:space="preserve">
+    <value>โมเดลรถ</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>เงินสด</value>
+  </data>
+  <data name="CarType" xml:space="preserve">
+    <value>รูปแบบรถ</value>
+  </data>
+  <data name="Colour" xml:space="preserve">
+    <value>สี</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>ความคิดเห็น</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>คอมมิชชัน</value>
+  </data>
+  <data name="CommentDetails" xml:space="preserve">
+    <value>รายละเอียดความคิดเห็น</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>เสร็จ</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>เสร็จสมบูรณ์</value>
+  </data>
+  <data name="ConfirmCancel" xml:space="preserve">
+    <value>ยืนยันการยกเลิก?</value>
+  </data>
+  <data name="ConfirmApprove" xml:space="preserve">
+    <value>ยืนยันการอนุมัติ?</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>ยืนยัน password ใหม่</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>ยืนยัน Password</value>
+  </data>
+  <data name="ConfirmPasswordAndPasswordDoNotMatch" xml:space="preserve">
+    <value>'ยืนยัน Password' และ 'Password' ไม่ตรง.</value>
+  </data>
+  <data name="ConfirmSubmitCommentSendEmailToManager" xml:space="preserve">
+    <value>ยืนยันส่งความคิดเห็น และส่งอีเมล์ถึงผู้จัดการ?</value>
+  </data>
+  <data name="ConfirmSubmitCommentSendEmail" xml:space="preserve">
+    <value>ยืนยันส่งความคิดเห็น และส่งอีเมล์ถึงผู้ขาย?</value>
+  </data>
+  <data name="CustomerAddress" xml:space="preserve">
+    <value>ที่อยู่ลูกค้า</value>
+  </data>
+  <data name="CustomerContact" xml:space="preserve">
+    <value>ข้อมูลติดต่อลูกค้า</value>
+  </data>
+  <data name="CustomerCodeExists" xml:space="preserve">
+    <value>มีรหัสลูกค้านี้แล้ว</value>
+  </data>
+  <data name="CustomerTypeManagement" xml:space="preserve">
+    <value>จัดการประเภทของลูกค้า</value>
+  </data>
+  <data name="DealerCode" xml:space="preserve">
+    <value>รหัส Dealer</value>
+  </data>
+  <data name="DealerCodeExists" xml:space="preserve">
+    <value>มีรหัส Dealer นี้แล้ว</value>
+  </data>
+  <data name="DealerManagement" xml:space="preserve">
+    <value>จัดการ Dealer</value>
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value>วันที่จัดส่ง</value>
+  </data>
+  <data name="DeliverFromPDITo" xml:space="preserve">
+    <value>จัดส่งจาก PDI ไป</value>
+  </data>
+  <data name="DeliverFromBranchTo" xml:space="preserve">
+    <value>จัดส่งจากสาขาไป</value>
+  </data>
+  <data name="DeliveryLocation" xml:space="preserve">
+    <value>สถานที่จัดส่งรถ</value>
+  </data>
+  <data name="DescriptionInEnglish" xml:space="preserve">
+    <value>รายละเอียด (ภาษาอังกฤษ)</value>
+  </data>
+  <data name="DiscountPromo" xml:space="preserve">
+    <value>ส่วนลด/โปรโมชัน</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>ส่วนลด</value>
+  </data>
+  <data name="DiscountIsInvalid" xml:space="preserve">
+    <value>ส่วนลดไม่สามารถใช้งานได้</value>
+  </data>
+  <data name="DiscountManagement" xml:space="preserve">
+    <value>จัดการส่วนลด</value>
+  </data>
+  <data name="DoesnotExist" xml:space="preserve">
+    <value>ไม่มี</value>
+  </data>
+  <data name="AutoAllocation" xml:space="preserve">
+    <value>จัดสรรอัตโนมัติ</value>
+  </data>
+  <data name="ActualFinishDate" xml:space="preserve">
+    <value>วันที่เตรียมรถเสร็จจริง</value>
+  </data>
+  <data name="ActualFinishTime" xml:space="preserve">
+    <value>เวลาเตรียมรถเสร็จจริง</value>
+  </data>
+  <data name="ActualDeliveryDate" xml:space="preserve">
+    <value>วันที่จัดส่งรถจริง</value>
+  </data>
+  <data name="SearchForChassisNo" xml:space="preserve">
+    <value>ค้นหาหมายเลขตัวถัง (แชสซี)</value>
+  </data>
+  <data name="Passenger" xml:space="preserve">
+    <value>บุคคล</value>
+  </data>
+  <data name="Commercial" xml:space="preserve">
+    <value>รถยนต์เพื่อการพาณิชย์</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>เพิ่ม</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="ColorDetails" xml:space="preserve">
+    <value>รายละเอียดสี</value>
+  </data>
+  <data name="CompanyCodeExists" xml:space="preserve">
+    <value>มีรหัสบริษัทนี้แล้ว</value>
+  </data>
+  <data name="AddNewModel" xml:space="preserve">
+    <value>เพิ่มโมเดลใหม่</value>
+  </data>
+  <data name="NewModels" xml:space="preserve">
+    <value>โมเดลใหม้</value>
+  </data>
+  <data name="CreateNewModelPriceSchedule" xml:space="preserve">
+    <value>สร้างตารางราคาโมเดลใหม่</value>
+  </data>
+  <data name="ModelPriceByYear" xml:space="preserve">
+    <value>ราคาโมเดลในแต่ละปี</value>
+  </data>
+  <data name="ModelYearFormatMustBe4Numbers" xml:space="preserve">
+    <value>ปีของโมเดลต้องเป็นตัวเลข 4 ตัว</value>
+  </data>
+  <data name="PreviousComments" xml:space="preserve">
+    <value>ความคิดเห็นก่อนหน้า</value>
+  </data>
+  <data name="PreviousCommentsUpto5comments" xml:space="preserve">
+    <value>ความคิดเห็นก่อนหน้า (ไม่เกิน 5 ความเห็น)</value>
+  </data>
+  <data name="AddNewCustomer" xml:space="preserve">
+    <value>เพิ่มลูกค้ารายใหม่</value>
+  </data>
+  <data name="AddNewCustomerType" xml:space="preserve">
+    <value>เพิ่มประเภทของลูกค้ารายใหม่</value>
+  </data>
+  <data name="Pricing" xml:space="preserve">
+    <value>ราคา</value>
+  </data>
+  <data name="PriceScheduleManagement" xml:space="preserve">
+    <value>จัดการตารางราคา</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>สร้าง</value>
+  </data>
+  <data name="CreateNewCountry" xml:space="preserve">
+    <value>สร้างประเทศใหม่</value>
+  </data>
+  <data name="CreateNewDelear" xml:space="preserve">
+    <value>สร้าง Dealer ใหม่</value>
+  </data>
+  <data name="ENTERSEARCHTEXT" xml:space="preserve">
+    <value>ใส่คำค้นหา</value>
+  </data>
+  <data name="EnterReasonDeleteHere" xml:space="preserve">
+    <value>ใส่เหตุผลที่ต้องการลบที่นี่</value>
+  </data>
+  <data name="EnterReasonCancelHere" xml:space="preserve">
+    <value>ใส่เหตุผลที่ต้องการยกเลิกที่นี่</value>
+  </data>
+  <data name="ENTERCOMMENTTEXTHERE" xml:space="preserve">
+    <value>กรอกความคิดเห็นที่นี่</value>
+  </data>
+  <data name="EnterReasonRejectHere" xml:space="preserve">
+    <value>ใส่เหตุผลที่ไม่อนุมัติที่นี่</value>
+  </data>
+  <data name="PleaseEnterComment" xml:space="preserve">
+    <value>กรุณาใส่ความคิดเห็น</value>
+  </data>
+  <data name="TheEmailAddressEnteredIsInvalid" xml:space="preserve">
+    <value>ไม่สามารถใช้งาน EmailAddress นี้ได้</value>
+  </data>
+  <data name="LastUpdatedBy" xml:space="preserve">
+    <value>ปรับปรุงครั้งสุดท้ายโดย</value>
+  </data>
+  <data name="UpdatedTime" xml:space="preserve">
+    <value>เวลาที่ปรับปรุง</value>
+  </data>
+  <data name="AddNewPaymentType" xml:space="preserve">
+    <value>เพิ่มรูปแบบการชำระเงิน</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>นำเข้า</value>
+  </data>
+  <data name="ImportError" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดในการนำเข้า!</value>
+  </data>
+  <data name="FileImport" xml:space="preserve">
+    <value>นำเข้าไฟล์</value>
+  </data>
+  <data name="ImportAccessoriesFromExcel" xml:space="preserve">
+    <value>นำเข้า Accessories จาก Excel</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>ใช้งานได้</value>
+  </data>
+  <data name="VehicleModel" xml:space="preserve">
+    <value>โมเดลรถ</value>
+  </data>
+  <data name="EditSupplier" xml:space="preserve">
+    <value>แก้ไขซัพพลายเออร์</value>
+  </data>
+  <data name="SupplierCodeNotExist" xml:space="preserve">
+    <value>ไม่มีรหัสซัพพลายเออร์นี้</value>
+  </data>
+  <data name="SupplierCodeIsInvalid" xml:space="preserve">
+    <value>รหัสซัพพลายเออร์ไม่สามารถใช้งานได้</value>
+  </data>
+  <data name="AddNewSupplier" xml:space="preserve">
+    <value>เพิ่มซัพพลายเออร์ใหม่</value>
+  </data>
+  <data name="DeleteNewSupplier" xml:space="preserve">
+    <value>ลบซัพพลายเออร์ใหม่</value>
+  </data>
+  <data name="SupplierName" xml:space="preserve">
+    <value>ชื่อซัพพลายเออร์</value>
+  </data>
+  <data name="SuppliersManagement" xml:space="preserve">
+    <value>จัดการซัพพลายเออร์</value>
+  </data>
+  <data name="AccessoriesManagement" xml:space="preserve">
+    <value>จัดการ Accessories</value>
+  </data>
+  <data name="AccessoryDiscount" xml:space="preserve">
+    <value>ส่วนลด Accessory</value>
+  </data>
+  <data name="ModelPrice" xml:space="preserve">
+    <value>ราคาโมเดล</value>
+  </data>
+  <data name="PriceList" xml:space="preserve">
+    <value>รายการราคา</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>ราคา</value>
+  </data>
+  <data name="PriceByYear" xml:space="preserve">
+    <value>ราคาในแต่ละปี</value>
+  </data>
+  <data name="PriceIsInvalid" xml:space="preserve">
+    <value>ราคานี้ไม่สามารถใช้งานได้</value>
+  </data>
+  <data name="VehiclePrice" xml:space="preserve">
+    <value>ราคารถยนต์</value>
+  </data>
+  <data name="EditModelPricing" xml:space="preserve">
+    <value>แก้ไขราคาโมเดล</value>
+  </data>
+  <data name="PaymentHasBeenApproved" xml:space="preserve">
+    <value>การชำระเงินได้รับการอนุมัติแล้ว</value>
+  </data>
+  <data name="PaymentHasBeenRejected" xml:space="preserve">
+    <value>การชำระเงินไม่ผ่านการอนุมัติ</value>
+  </data>
+  <data name="PaymentHasBeenVerified" xml:space="preserve">
+    <value>การชำระเงินได้รับการตรวจสอบแล้ว</value>
+  </data>
+  <data name="WhyDoYouRejectThisPayment" xml:space="preserve">
+    <value>สาเหตุที่ไม่อนุมัติการชำระเงินนี้</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>ราคาซื้อ</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>ตรวจสอบ</value>
+  </data>
+  <data name="SearchForCustomer" xml:space="preserve">
+    <value>ค้นหาลูกค้า</value>
+  </data>
+  <data name="SaveFailed" xml:space="preserve">
+    <value>ไม่สามารถบันทึกได้</value>
+  </data>
+  <data name="SalesmanName" xml:space="preserve">
+    <value>ชื่อพนักงานขาย</value>
+  </data>
+  <data name="SaveDraft" xml:space="preserve">
+    <value>บันทึกร่าง</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>เสาร์</value>
+  </data>
+  <data name="Thu" xml:space="preserve">
+    <value>พฤหัส</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>็ศุกร์</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>อาทิตย์</value>
+  </data>
+  <data name="TestDrive" xml:space="preserve">
+    <value>ทดลองขับ</value>
+  </data>
+  <data name="TestDriveHistory" xml:space="preserve">
+    <value>ประวัติการทดลองขับ</value>
+  </data>
+  <data name="TestDriveVehicle" xml:space="preserve">
+    <value>รถทดลองขับ</value>
+  </data>
+  <data name="SorryPageNotFound" xml:space="preserve">
+    <value>ขออภัย ไม่พบหน้าที่ค้นหา</value>
+  </data>
+  <data name="SelectedDate" xml:space="preserve">
+    <value>เลือกวันที่</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>การบันทึกเกิดข้อผิดพลาด</value>
+  </data>
+  <data name="SaveDraftSuccessful" xml:space="preserve">
+    <value>บันทึกร่างเรียบร้อย</value>
+  </data>
+  <data name="SearchForBooking" xml:space="preserve">
+    <value>ค้นหาการจอง</value>
+  </data>
+  <data name="SalesmanDetails" xml:space="preserve">
+    <value>รายละเอียดพนักงานขาย</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>ลบ</value>
+  </data>
+  <data name="Rememberme" xml:space="preserve">
+    <value>จำฉัน?</value>
+  </data>
+  <data name="Attach" xml:space="preserve">
+    <value>แนบ</value>
+  </data>
+  <data name="BranchCodeExists" xml:space="preserve">
+    <value>มีรหัสสาขานี้แล้ว</value>
+  </data>
+  <data name="CreditCard" xml:space="preserve">
+    <value>เครดิตการ์ด</value>
+  </data>
+  <data name="DeleteSuccessful" xml:space="preserve">
+    <value>ลบเรียบร้อย</value>
+  </data>
+  <data name="EditCurrency" xml:space="preserve">
+    <value>แก้ไขอัตราแลกเปลี่ยน</value>
+  </data>
+  <data name="EditCountry" xml:space="preserve">
+    <value>แก้ไขประเทศ</value>
+  </data>
+  <data name="EditColor" xml:space="preserve">
+    <value>แก้ไขสี</value>
+  </data>
+  <data name="EditBranch" xml:space="preserve">
+    <value>แก้ไขสาขา</value>
+  </data>
+  <data name="EditCustomer" xml:space="preserve">
+    <value>แก้ไขลูกค้า</value>
+  </data>
+  <data name="EditCustomerType" xml:space="preserve">
+    <value>แก้ไขประเภทลูกค้า</value>
+  </data>
+  <data name="EditDealer" xml:space="preserve">
+    <value>แก้ไข Dealer</value>
+  </data>
+  <data name="EditDiscount" xml:space="preserve">
+    <value>แก้ไขส่วนลด</value>
+  </data>
+  <data name="EditLocation" xml:space="preserve">
+    <value>แก้ไขสถานที่</value>
+  </data>
+  <data name="EditMenu" xml:space="preserve">
+    <value>แก้ไขเมนู</value>
+  </data>
+  <data name="EditInsuranceCompany" xml:space="preserve">
+    <value>แก้ไขบริษัทประกันภัย</value>
+  </data>
+  <data name="EditModelDetails" xml:space="preserve">
+    <value>แก้ไขรายละเอียดโมเดล</value>
+  </data>
+  <data name="EditReservation" xml:space="preserve">
+    <value>แก้ไขการจอง</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>แก้ไขผู้ใช้</value>
+  </data>
+  <data name="EditTypeOfIndustry" xml:space="preserve">
+    <value>แก้ไขประเภทอุุตสาหกรรม</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>หมดอายุ</value>
+  </data>
+  <data name="ExpiryDate" xml:space="preserve">
+    <value>วันหมดอายุ</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="FindbyCustomer" xml:space="preserve">
+    <value>ค้นหาตามชื่อลูกค้า</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>ชื่อ-สกุล</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>ชั่วโมง</value>
+  </data>
+  <data name="InsuranceCompany" xml:space="preserve">
+    <value>บริษัทประกันภัย</value>
+  </data>
+  <data name="Inspection" xml:space="preserve">
+    <value>การตรวจสอบ</value>
+  </data>
+  <data name="Interest" xml:space="preserve">
+    <value>ดอกเบี้ย</value>
+  </data>
+  <data name="InterestedRate" xml:space="preserve">
+    <value>อัตราดอกเบี้ย</value>
+  </data>
+  <data name="Bookings" xml:space="preserve">
+    <value>ยอดจอง</value>
+  </data>
+  <data name="Invoicing" xml:space="preserve">
+    <value>ใบแจ้งหนี้</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="InvoiceNo" xml:space="preserve">
+    <value>หมายเลขใบแจ้งหนี้</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="InvoiceDate" xml:space="preserve">
+    <value>วันที่ใบแจ้งหนี้</value>
+    <comment>
+    </comment>
+  </data>
+</root>

@@ -1,0 +1,68 @@
+﻿@using Davisoft_BDSProject.Web.Helpers
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSNew
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    using (Html.Bootstrap().Begin(new Alert().Style(AlertColor.Success).Closeable()))
+    {
+        <text>@ViewBag.Message</text>
+    }
+}
+@{
+    ViewBag.Title = Utilities.Resource("BDSNew_Edit", "Edit Area");
+}
+<section class="panel panel-default">
+    <h3 class="tilte_l">
+        @ViewBag.Title
+    </h3>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            @using (Html.BeginForm())
+            {
+                @Html.Partial("_Input", Model)
+                <div class="form-actions">
+                    <div class="form-group">
+                        <label class="col-sm-3"></label>
+                        <label class="col-sm-9">
+                            
+                            
+                            <a class="btn  btn-default" href="@Url.Action("Index", "BDSNew")"><i class="icon-arrow-left"></i> @Resource.ButtonBackToList</a>
+                            <button class="btn-success  btn btnAdd1" onclick="return UploadImg(this);" id="submitbutton" type="submit"><i class="icon-white icon-ok"></i> @Resource.Save</button>
+
+                          
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@Html.Script(
+    @<script>
+       
+    function DeleteImg(obj) {
+        $.each($('.dz-preview'), function (i, o) {
+            $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
+        });
+        var idpic = $(obj).parents(".dz-preview").find('#cusimg').attr('rel');
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("DeleteImg", "BDSNew")",
+
+
+            data: { idpicture: idpic },
+
+
+            success: function (data) {
+
+            },
+            error: function (e) {
+
+            }
+        });
+        return false;
+    }
+
+    </script>)

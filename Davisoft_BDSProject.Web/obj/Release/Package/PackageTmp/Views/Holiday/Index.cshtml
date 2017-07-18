@@ -1,0 +1,222 @@
+﻿@using System.Web.Script.Serialization
+@using Resources
+@model Davisoft_BDSProject.Web.Models.HolidayModelView
+@{
+    ViewBag.Title = Resource.HolidayManagement;
+    var serializer = new JavaScriptSerializer();
+}
+<link href="~/Content/css/mdp.css" rel="stylesheet" />
+<link href="~/Content/css/prettify.css" rel="stylesheet" />
+<style>
+    .mfp-content .ui-widget-content {
+        border: 0;
+        background: transparent;
+        color: #1f1f1f;
+    }
+</style>
+<section class="panel panel-default">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+    <div class="panel-body table-responsive">
+        <center>
+            <div id="full-year" class="boxdate"></div>
+        </center>
+    </div>
+    <div style="display: none;">
+        <div id="dialog" class="simple-popup-align-top">
+            <section style="background: white; margin: auto; max-width: 700px; padding: 50px 50px 35px 50px; position: relative;">
+                <header class="title-dialog">
+                    @Resource.HolidayDescription
+                </header>
+                <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                <div class="form-horizontal">
+                    @using (Ajax.BeginForm("Submit", "Holiday", new AjaxOptions { OnFailure = "onError", OnSuccess = "onSuccess" }))
+                    {
+                        @Html.HiddenFor(m => m.HolidayModel.Year)
+                        @Html.HiddenFor(m => m.HolidayModel.Month)
+                        @Html.HiddenFor(m => m.HolidayModel.Day)
+                        @Html.HiddenFor(m => m.HolidayModel.ID)
+                        @Html.Hidden("typesubmit", new { @id = "typesubmit" })
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@Resource.SelectedDate</label>
+                            <div class="col-sm-8">
+                                @Html.Bootstrap().TextBoxFor(m => m.HolidayModel.DateSelected).Class("form-control").Readonly()
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">@Resource.Description<span class="required">*</span></label>
+                            <div class="col-sm-8">
+                                @Html.Bootstrap().TextAreaFor(m => m.HolidayModel.Description).Class("form-control").ShowValidationMessage(true)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="i-checks">
+                                    <label>
+                                        @Html.Bootstrap().CheckBoxFor(m => m.HolidayModel.IsFullDay).IsChecked(true)
+                                        <i></i>
+                                        @Resource.FullDay
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"></label>
+                            <div class="col-sm-8">
+                                <span class="errormeg control-label" style="color: #C02424;"></span>
+                                <span class="successmeg control-label" style="color: #468847;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"></label>
+                            <div class="col-sm-8">
+                                <button id="save-dialog" type="submit" class="btn btn-primary-me btn-export">@Resource.Save</button>
+                                <button id="delete-dialog" type="submit" class="btn btn-danger">@Resource.Delete</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
+
+</section>
+
+@Html.Script(
+    @<text>
+        <script src="~/Scripts/jquery-ui-timepicker/jquery.ui.core.js"></script>
+        <script src="~/Scripts/jquery-ui-timepicker/jquery.ui.datepicker.js"></script>
+        <script src="~/Scripts/jquery-ui-timepicker/jquery-ui.multidatespicker.js"></script>
+        <script id="4">
+            var holidays = @Html.Raw(serializer.Serialize(Model.Holidays));
+            var holidaySelect = @Html.Raw(serializer.Serialize(Model.Holidays.Select(m => m.Date.ToString("dd/MM/yyyy"))));
+            var today = new Date(),
+                $fullYear = $("#full-year"),
+                $successmsg = $(".successmeg"),
+                $errormsg = $(".errormeg");
+            var y = today.getFullYear();
+            $fullYear.multiDatesPicker({
+                dateFormat: "dd/mm/yy",
+                numberOfMonths: [3, 4],
+                minDate: new Date(y, 1 - 1, 1),
+                //maxDate: new Date(y, 12 - 1, 31),
+                addDates: holidaySelect,
+                onSelect: function (dateSelected,data) {
+                    LoadDialog(data.selectedDay, data.selectedMonth + 1, data.selectedYear);
+                    $.magnificPopup.open({
+                        items: {
+                            src: '#dialog',
+                            type: 'inline'
+                        }
+                    });
+                    $fullYear.multiDatesPicker('resetDates');
+                    $fullYear.multiDatesPicker('addDates', holidaySelect);
+                }
+            });
+            var $holidayid = $("@Html.JquerySelectorFor(m=>m.HolidayModel.ID)"),
+                $description = $("@Html.JquerySelectorFor(m=>m.HolidayModel.Description)"),
+                $selectedDay = $("@Html.JquerySelectorFor(m=>m.HolidayModel.Day)"),
+                $selectedMonth = $("@Html.JquerySelectorFor(m=>m.HolidayModel.Month)"),
+                $selectedYear = $("@Html.JquerySelectorFor(m=>m.HolidayModel.Year)"),
+                $selectdate = $("@Html.JquerySelectorFor(m=>m.HolidayModel.DateSelected)"),
+                $fullday = $("@Html.JquerySelectorFor(m=>m.HolidayModel.IsFullDay)"),
+                $typesubmit = $("#typesubmit");
+            function LoadDialog(selectDay,selectMonth, selectYear) {
+                $errormsg.text('');
+                $successmsg.text('');
+
+                $selectedYear.val(selectYear);
+                $selectedMonth.val(selectMonth);
+                $selectedDay.val(selectDay);
+                $selectdate.val(((selectDay) > 9 ? (selectDay) : "0" + (selectDay)) + "/" + ((selectMonth) > 9 ? (selectMonth) : "0" + (selectMonth)) + "/" + selectYear);
+                $holidayid.val(0);
+                $description.val('');
+                $fullday.val(true);
+                if (holidays != null) {
+                    for (var i = 0; i < holidays.length; i++) {
+                        if (holidays[i].Year==selectYear && holidays[i].Month==selectMonth && holidays[i].Day==selectDay) {
+                            $holidayid.val(holidays[i].ID);
+                            $description.val(holidays[i].Description);
+                            $fullday.val(holidays[i].IsFullDay);
+                            return;
+                        }
+                    }
+                }
+            }
+            $("#save-dialog").on('click', function (e) {
+                e.preventDefault();
+                $typesubCPO.val("save");
+                bootbox.confirm("@Resource.ConfirmSave", function (isOK) {
+                    if (isOK) {
+                        $("#save-dialog").parents("form").submit();
+                    }
+                });
+            });
+            $("#delete-dialog").on('click', function (e) {
+                e.preventDefault();
+                $typesubCPO.val("delete");
+                bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                    if (isOK) {
+                        $("#delete-dialog").parents("form").submit();
+                    }
+                });
+            });
+
+            function onError(e) {
+                $successmsg.text('');
+                $errormsg.text(e.statusText);
+            }
+            function onSuccess(data) {
+                $errormsg.text('');
+                if (data.Status == 1) {
+                    if (data.TypeSubmit == "create") {
+                        $successmsg.text('@Resource.Successful');
+                        holidays.push(data.Holiday);
+                        holidaySelect.push(data.Holiday.DateSelected);
+                    } else if (data.TypeSubmit == "update") {
+                        $successmsg.text('@Resource.SaveSuccessful');
+                        if (holidays != null) {
+                            for (var i = 0; i < holidays.length; i++) {
+                                if (holidays[i].Year==data.Holiday.Year && holidays[i].Month==data.Holiday.Month && holidays[i].Day==data.Holiday.Day) {
+                                    holidays[i].ID=data.Holiday.ID;
+                                    holidays[i].IsFullDay=data.Holiday.IsFullDay;
+                                    holidays[i].Description=data.Holiday.Description;
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        $successmsg.text('@Resource.DeleteSuccessful');
+                        if (holidaySelect != null) {
+                            for (var i = 0; i < holidaySelect.length; i++) {
+                                if (holidaySelect[i]===data.Holiday.DateSelected) {
+                                    holidaySelect.splice(i,1);
+                                    break;
+                                }
+                            }
+                        }
+                        if (holidays != null) {
+                            for (var j = 0; j < holidays.length; j++) {
+                                if (holidays[j].Year==data.Holiday.Year && holidays[j].Month==data.Holiday.Month && holidays[j].Day==data.Holiday.Day) {
+                                    holidays.splice(j,1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    $errormsg.text('@Resource.Failed');
+                }
+                if(holidaySelect.length == 0)
+                    holidaySelect.push("01/01/0001");
+                $fullYear.multiDatesPicker('resetDates');
+                $fullYear.multiDatesPicker('addDates', holidaySelect);
+            }
+
+        </script>
+    </text>
+
+                                                                                                                                                         )

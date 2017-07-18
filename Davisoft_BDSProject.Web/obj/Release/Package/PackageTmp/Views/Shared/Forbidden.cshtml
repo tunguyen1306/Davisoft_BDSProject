@@ -1,0 +1,17 @@
+﻿@using Resources
+@{
+	Layout = "~/Views/Shared/_BigBang.cshtml";
+	ViewBag.PageClass = "error_page";
+}
+
+@section css {
+	@Styles.Render("~/display/css/min")
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Jockey+One" />
+}
+<div class="error_page">
+    <div class="error_box">
+        <h1>403</h1>
+        <p>@Resource.DontHavePermission</p>
+        <p>Return @Html.ActionLink(Resource.Home, "Index", "Home", new { area = "" }, null) or @Html.ActionLink("Login", "Login", "Account", new { area = "", returnUrl = Request.RawUrl }, null) using another account.</p>
+    </div>
+</div>

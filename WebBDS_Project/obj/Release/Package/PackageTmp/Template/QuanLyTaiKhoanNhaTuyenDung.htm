@@ -1,0 +1,448 @@
+﻿<!DOCTYPE HTML>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7">
+   <![endif]-->
+<!--[if IE 7]>
+   <html class="no-js lt-ie9 lt-ie8">
+      <![endif]-->
+<!--[if IE 8]>
+      <html class="no-js lt-ie9">
+         <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+    <title>BDS</title>
+    <link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/reponsive.css" type="text/css" media="screen">
+    <link href="css/CusWeb.css" rel="stylesheet" />
+
+
+    <!-- <link rel="stylesheet" href="css/style.min.css" type="text/css" media="screen"> -->
+    <!--[if IE]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/flaunt.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/jquery.easydropdown.min.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script>
+        $(document).ready(function () {
+            //default
+            $('.small-button').dropdown();
+
+            // full dropdown width and custom class
+            $('.full-width').dropdown({
+                dropdownWidth: true, //true or false
+                customClass: 'custom-class',
+                dropdownTopAuto: true, //true or false
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div id="warrper">
+        <div id="content">
+            <div class="menu">
+                <div class="soc_icons">
+                    <div class="container clearfix">
+                        <p>Website tuyển dụng nhân viên bất động sản hàng đầu Việt Nam</p>
+                        <div class="login">
+                            <a href="#" class="dropdown1"><i class="fa fa-pencil-square-o"></i>Đăng ký</a>
+                            <div id="dropdown1" class="dropdown-menu">
+
+                                <a href="DangKyTuyenDung.html">Nhà tuyển dụng</a>
+                                <a href="DangKyTimViec.html" class="omega">Người tìm việc</a>
+                            </div>
+                            <div class="dp-wrap small-button">
+                                <a href="#" class="dropdown1"><i class="fa fa-user"></i>Đăng nhập</a>
+                                <div id="dropdown2" class="dropdown-menu">
+                                    <p>
+                                        <input placeholder="Email" type="text"></p>
+                                    <p>
+                                        <input placeholder="Mật khẩu" type="password">
+                                        <button type="button">Đăng nhập</button>
+                                    </p>
+                                    <p class="box_remember">
+                                        <a href="#">Quên mật khẩu</a><br>
+                                        Đăng nhập bằng
+                                          <a href="#"><i class="fa fa-facebook-official"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus-square"></i></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container clearfix">
+                    <div class="top">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="images/logo.png" alt="logo">Tìm việc làm bất động sản nhanh chóng</a>
+                        </div>
+                        <div class="banner">
+                            <img src="images/banner.jpg" alt="logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav_section">
+                    <div class="container clearfix">
+                        <!-- Nav -->
+                        <div class="grid_12 mg0">
+                            <nav class="nav">
+                                <ul class="nav-list">
+                                    <li>
+                                        <a href="" class="active">Trang chủ</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Nhân viên kinh doanh</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Quản lý</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Văn phòng</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Thẩm định</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Marketing</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="">Pháp lý</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Tele Sales</a>
+                                    </li>
+                                    <li class="spec">
+                                        <a href=""><i class="fa fa-file-text-o"></i>Bảng giá</a>
+                                    </li>
+                                    <li class="spec">
+                                        <a href=""><i class="fa fa-volume-control-phone"></i>08) 39393939</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- /Nav -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="container">
+                    <div class="grid_9 main_left">
+                        <div class="group_work">
+                            <div class="header_text">
+                                <h3><span><i class="fa fa-list-ul"></i>Quản lý tài khoản nhà tuyển dụng</span></h3>
+                            </div>
+                            <form class="form-horizontal " data-validate="parsley" action="#">
+
+                                <div class="row">
+                                    <div class="border-manager-recruitment">
+                                        Kể từ ngày 01/01/2017 tuyennhanvienbds.com áp dụng chương trình khuyến mãi tặng <b class="TextColorRed">20%</b>  giá trị nạp tiền vào tài khoản cho nhà tuyển dụng.
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h4>Thông tin đăng nhập</h4>
+                                    <label class="grid_2">Email</label>
+                                    <div class="row-right grid_9">
+                                        <input placeholder="Email" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h4>Thông tin công ty</h4>
+                                    <label class="grid_2">Tên công ty</label>
+                                    <div class="row-right grid_9">
+                                        Công ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <label class="grid_2">Địa chỉ<span class="required"> *</span></label>
+                                    <div class="grid_9 row-right">
+
+                                        <input  placeholder="Nhập địa chỉ liên hệ" type="text">
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <label class="grid_2">Điện thoại<span class="required"> *</span></label>
+                                    <div class="grid_9 row-right">
+
+                                        <input  placeholder="Nhập số điện thoại" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="grid_2">Tỉnh thành phố<span class="required"> *</span></label>
+                                    <div class=" grid_9 row-right">
+                                        <select class="dropdown" tabindex="7">
+                                            <option value="1">Chọn số nhân viên</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                               
+                                <div class="row">
+                                    <label class="grid_2">Quy mô công ty<span class="required"> *</span></label>
+                                    <div class="grid_9 row-right">
+                                        <select class="dropdown" tabindex="7">
+                                            <option value="1">Chọn số nhân viên</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <label class="grid_2">Sơ lược về công ty<span>*</span></label>
+                                    <div class="grid_9 row-right">
+                                        <textarea class="" rows="4"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <label class="grid_2">Logo Công Ty</label>
+                                    <div class="logo_jobs">
+                                        <img src="images/imgUpload.png" />
+                                    </div>
+
+                                    <div class="text_jobs">
+
+                                        <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <label class="grid_2">Fax<span class="required">*</span></label>
+                                    <div class="grid_9 row-right">
+                                        <input  placeholder="Nhập số fax" type="text">
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <label class="grid_2">WebSite<span class="required">*</span></label>
+                                    <div class="grid_9 row-right">
+                                        <input  placeholder="Nhập Website" type="text">
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <h4>Thông tin liên hệ</h4>
+                                    <label class="grid_2">Tên người liên hệ<span class="required">*</span></label>
+                                    <div class="grid_9 row-right">
+                                        <input  placeholder="Nhập tên người liên hệ" type="text">
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    
+                                    <label class="grid_2">Email liên hệ<span class="required">*</span></label>
+                                    <div class="grid_9 row-right">
+                                        <input  placeholder="Nhập tên email người liên hệ" type="text">
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    
+                                    <label class="grid_2">Địa chỉ liên hệ<span class="required">*</span></label>
+                                    <div class="grid_9 row-right">
+                                        <input  placeholder="Nhập tên địa chỉ người liên hệ" type="text">
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    
+                                    <label class="grid_2">Điện thoại liên hệ<span class="required">*</span></label>
+                                    <div class="grid_9 row-right">
+                                        <input  placeholder="Nhập tên điển thoại người liên hệ" type="text">
+                                    </div>
+
+                                </div>
+                                 <div class="row">
+                                    <label class="grid_2">Hinh thức liên hệ<span class="required"> *</span></label>
+                                    <div class="grid_9 row-right">
+                                        <select class="dropdown" tabindex="7">
+                                            <option value="1">Chọn hình thức</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                              
+                                <div class="row">
+                                    <label></label>
+                                    <a class="grid_2 btnUpdate" href="#">Cập nhật</a>
+
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="grid_3 omega main_right" id="sideRightPushy">
+
+                        <div class="right_col">
+                            <h3>Trung tâm quản lý</h3>
+                            <div class="box_info">
+                                <div><strong>Công Ty Cổ Phần Đầu Tư Kinh Doanh Dịch Vụ 589</strong></div>
+                                <div class="logo_image">
+                                    <img src="images/tl.png" alt="image">
+                                </div>
+                                <p>
+                                    <em>Mã Khách Hàng</em>: <span class="color3"><strong>TD00291</strong></span>
+                                    <br>
+                                    -  Số tiền TK: <span class="color4">3.250.000</span> VNĐ
+                                    <br>
+                                    -  Điểm tích luỹ: <span class="color4">100</span> Điểm
+                                    <br>
+                                    -  Bạn có thể xem : <span class="color4">33</span> Hồ sơ
+
+                                </p>
+                                <p>
+                                    <a class="grid_6" href="">Nộp tiền</a>
+                                    <a class="grid_6 omega blue" href="">Mua điểm</a>
+                                </p>
+                                <ul>
+                                    <li><a href=""><i class="fa fa-search" aria-hidden="true"></i>Tìm hồ sơ ứng viên</a></li>
+                                    <li><a href=""><i class="fa fa-user" aria-hidden="true"></i>Taì khoản</a></li>
+                                    <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i>Đăng tin tuyển dụng</a></li>
+                                    <li><a href=""><i class="fa fa-edit" aria-hidden="true"></i>Quản lý tuyển dụng</a></li>
+                                    <li><a href=""><i class="fa fa-download" aria-hidden="true"></i>Hồ sơ đã lưu</a></li>
+                                    <li><a href=""><i class="fa fa-users" aria-hidden="true"></i>Ứng viên gửi hồ sơ</a></li>
+                                    <li style="margin-top: 20px;"><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+    </div>
+    <!--footer-->
+    <div id="footer">
+        <div class="container clearfix">
+            <div class="top_footer">
+                <ul>
+                    <li><a href="#">Nhà bán</a></li>
+                    <li><a href="#">Đất nền</a></li>
+                    <li><a href="#">Căn hộ</a></li>
+                    <li><a href="#">Nhà cho thuê</a></li>
+                    <li><a href="#">Quy định</a></li>
+                    <li><a href="#">Điều khoản thỏa thuận</a></li>
+                </ul>
+            </div>
+            <div class="main_footer">
+                <div class="grid_4 grid_4_1">
+                    <h1>NHABAN.NET.VN</h1>
+                    <p>Đăng tin <strong>MIỄN PHÍ</strong> - Mua bán <strong>TỨC THÌ</strong></p>
+                    <p>Website Đăng tin bất động sản thế hệ mới dành cho cá nhân và Doanh nghiệp mua bán thuê nhà đất online.</p>
+                </div>
+                <div class="grid_3 grid_3_1">
+                    <h1>QUY ĐỊNH/ĐĂNG TIN</h1>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa fa-caret-right"></i>Quy chế trên Nhaban.net.vn</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-caret-right"></i>Chính sách bảo mật</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-caret-right"></i>Giải quyết tranh chấp</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-caret-right"></i>Qui định đăng tin</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="grid_3 grid_3_1">
+                    <h1>SẢN PHẨM / DỊCH VỤ</h1>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Đăng tin miễn phí</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Bán nhà</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Căn hộ bán</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Đất nền bán</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Cho thuê nhà đất</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Định giá nhà đất</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Ký gởi nhà đất</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Vay Thế Chấp</a></li>
+                    </ul>
+                </div>
+                <div class="grid_3 grid_3_1 omega">
+                    <h1>LIÊN HỆ QUẢNG CÁO</h1>
+                    <ul>
+                        <li><a href="tel:0901338589"><i class="fa fa-phone"></i>(0901)-338-589 Mr.Chỉnh</a></li>
+                        <li><a href="mailto:admin@nhaban.net.vn"><i class="fa fa-envelope"></i>admin@nhaban.net.vn</a></li>
+                        <li><a href="#"><i class="fa fa-table"></i>Bảng giá banner Quảng Cáo</a></li>
+                        <li><a href="#"><i class="fa fa-table"></i>Bảng giá tin đăng</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Căn Hộ Vincity</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Saigon Peninsula</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sub_footer">
+                <i>
+                    <b>
+                        <div class="note">
+                            <a href="#" target="_blank">
+                                <img src="images/dangkybo.png" alt="#" border="0"></a>
+                        </div>
+                        Website được sở hữu và quản lý bởi: 
+                    </b>
+                </i>
+                <br>
+                <b>CÔNG TY CỔ PHẦN ĐẦU TƯ KINH DOANH DỊCH VỤ 589</b><br>
+                <b>Địa chỉ:</b> Số 50 Đường số 1, Khu dân cư 6B Intresco, ấp 5, Xã Bình Hưng, huyện Bình Chánh; TP.Hồ Chí Minh<br>
+                <b>Giấy phép đăng ký kinh doanh số: </b>0313023573 do Sở Kế Hoạch &amp; Đầu Tư TP Hồ Chí Minh cấp ngày 22/11/2014<br>
+                <b>Điện thoại:</b> 0901338589 - Mr.Chỉnh &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>Email:</b> admin@nhaban.net.vn
+            </div>
+            <div class="footer_bottom">
+                <div>
+                    <a href="#">Email: admin@nhaban.net.vn</a>
+                    | <a href="#">Skype: cskh.nhaban</a>
+                    | <a href="tel:0901338589">Admin Web: 0901-338-589</a>
+                </div>
+                <div>Địa chỉ VPĐD: Số 13A - Hồ Hảo Hớn - P.Cô Giang - Quận 1.</div>
+            </div>
+        </div>
+    </div>
+    <div class="soc_icons mg20 fixed">
+        <div class="container clearfix">
+            <div class="register_footer">
+                <a href="#" target="_blank"><i class="fa fa-pencil-square-o"></i>
+                    Đăng tuyển dụng</a>
+                <a href="#" target="_blank"><i class="fa fa-pencil-square-o"></i>
+                    Đăng tìm việc</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

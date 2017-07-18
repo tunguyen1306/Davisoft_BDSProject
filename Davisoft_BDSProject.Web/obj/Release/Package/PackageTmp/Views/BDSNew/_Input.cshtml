@@ -1,0 +1,880 @@
+﻿@using System.Configuration
+@using Davisoft_BDSProject.Web.Helpers
+@using Davisoft_BDSProject.Web.Models
+@using OfficeOpenXml.FormulaParsing.Excel.Functions.Math
+@using Resources
+@model Davisoft_BDSProject.Domain.Entities.BDSNew
+
+
+
+
+<div class="form-group">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">Thông tin cơ bản
+            </h3>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Account", "Employer") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdAcount, (List<SelectListItem>)ViewBag.EmployerInformations).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Name", "Title") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Title).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_WorkingPlace", "Working Place") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.AddressWork, (List<SelectListItem>)ViewBag.Cities).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSNew_Quantity", "Quantity") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.Quantity, new List<SelectListItem>
+                        {
+                              new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "1 người",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2 người",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3 người",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 người",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 người",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 người",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 người",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 người",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 người",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 người",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 người",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 người",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 người",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 người",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 người",Value = "15",Selected = false}
+                        
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Salary", "Salary") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.FromSalary, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "3 triệu",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 triệu",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 triệu",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 triệu",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 triệu",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 triệu",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 triệu",Value = "10",Selected = false}
+                        
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSNew_ToSalary", "To") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.ToSalary, new List<SelectListItem>
+                        {
+                       
+                           new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "5 triệu",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 triệu",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 triệu",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 triệu",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 triệu",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 triệu",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 triệu",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 triệu",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 triệu",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 triệu",Value = "15",Selected = false},
+                            new SelectListItem{Text = "16 triệu",Value = "16",Selected = false},
+                            new SelectListItem{Text = "17 triệu",Value = "17",Selected = false},
+                            new SelectListItem{Text = "18 triệu",Value = "18",Selected = false},
+                            new SelectListItem{Text = "19 triệu",Value = "19",Selected = false},
+                            new SelectListItem{Text = "20 triệu",Value = "20",Selected = false},
+                        
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Bonus", "Bonus") </label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.Bonus).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSNew_Sex", "Sex") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.Sex, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Male",Value = "1",Selected = true},
+                            new SelectListItem{Text = "Female",Value = "2",Selected = false},
+                        
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TimeWork", "Experience") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdTimeWork, (List<SelectListItem>)ViewBag.TimeWorks).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-2">@Utilities.Resource("BDSNew_Education", "Education") <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdEducation, (List<SelectListItem>)ViewBag.Educations).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Career", "Career") <span class="required">*</span></label>
+                    <div class="col-md-9">
+
+                        @Html.Bootstrap().DropDownListFor(m => m.Career, (List<SelectListItem>)ViewBag.Careers).HtmlAttributes(new { @class = "form-control", @multiple = "multiple" }).ShowValidationMessage(true)
+                        <script>
+                            setTimeout(function() {
+                                $('#Career').val('@(Model.Career)'.split(','));
+                                $('#Career').select2();
+                            },0);
+                        </script>
+                    
+                    
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">Nội dung
+            </h3>
+            <div class="panel-body">
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_DesCompany", "Description Company") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextAreaFor(m => m.DesCompany).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+
+
+
+
+
+
+               
+
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_DesWork", "Description Work") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextAreaFor(m => m.DesWork).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Benefit", "Benefit") </label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextAreaFor(m => m.Benefit).HtmlAttributes(new { @class = "form-control" }).Rows(5).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TimeProbationary", "Time Probationary") <span class="required">*</span></label>
+                    <div class="col-md-2">
+                        @Html.Bootstrap().DropDownListFor(m => m.TimeProbationary, new List<SelectListItem>
+                        {
+                             new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "1 tuần",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2 tuần",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3 tuần",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 tuần",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 tuần",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 tuần",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 tuần",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 tuần",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 tuần",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 tuần",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 tuần",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 tuần",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 tuần",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 tuần",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 tuần",Value = "15",Selected = false}
+                     
+
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_FromAge", "From Age") <span class="required">*</span></label>
+                    <div class="col-md-2">
+                        @Html.Bootstrap().DropDownListFor(m => m.FromAge, new List<SelectListItem>
+                        {
+                             new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "18 tuổi",Value = "18",Selected = false},
+                            new SelectListItem{Text = "19 tuổi",Value = "19",Selected = false},
+                            new SelectListItem{Text = "20 tuổi",Value = "20",Selected = false},
+                            new SelectListItem{Text = "21 tuổi",Value = "21",Selected = false},
+                            new SelectListItem{Text = "22 tuổi",Value = "22",Selected = false},
+                            new SelectListItem{Text = "23 tuổi",Value = "23",Selected = false},
+                            new SelectListItem{Text = "24 tuổi",Value = "24",Selected = false},
+                            new SelectListItem{Text = "25 tuổi",Value = "25",Selected = false},
+                            new SelectListItem{Text = "26 tuổi",Value = "26",Selected = false},
+                            new SelectListItem{Text = "27 tuổi",Value = "27",Selected = false},
+                            new SelectListItem{Text = "28 tuổi",Value = "28",Selected = false},
+                            new SelectListItem{Text = "29 tuổi",Value = "29",Selected = false},
+                            new SelectListItem{Text = "30 tuổi",Value = "30",Selected = false},
+                           
+
+
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                    <label class="control-label col-md-1">@Utilities.Resource("BDSNew_ToAge", "To") <span class="required">*</span></label>
+                    <div class="col-md-2">
+                        @Html.Bootstrap().DropDownListFor(m => m.ToAge, new List<SelectListItem>
+                        {
+                             new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "25 tuổi",Value = "25",Selected = false},
+                            new SelectListItem{Text = "26 tuổi",Value = "26",Selected = false},
+                            new SelectListItem{Text = "27 tuổi",Value = "27",Selected = false},
+                            new SelectListItem{Text = "28 tuổi",Value = "28",Selected = false},
+                            new SelectListItem{Text = "29 tuổi",Value = "29",Selected = false},
+                            new SelectListItem{Text = "30 tuổi",Value = "30",Selected = false},
+                            new SelectListItem{Text = "31 tuổi",Value = "31",Selected = false},
+                            new SelectListItem{Text = "32 tuổi",Value = "32",Selected = false},
+                            new SelectListItem{Text = "33 tuổi",Value = "33",Selected = false},
+                            new SelectListItem{Text = "34 tuổi",Value = "34",Selected = false},
+                            new SelectListItem{Text = "35 tuổi",Value = "35",Selected = false},
+                       
+
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                @if (Model.IdPictrure > 0)
+                {
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Home/Blank">
+
+                                <div class="dz-default dz-message cusbuttonmes " style="display: block;">
+                                    <span class="btn btn-action">
+                                        <label style="margin-left: 5px;" class="btn btn-danger">Lựa chọn hình ảnh Edit</label>
+                                    </span>
+
+                                </div>
+
+
+
+
+
+
+                                @foreach (var item in Model.BDSPictures)
+                                {
+                                    <div class="dz-preview dz-processing dz-image-preview dz-success dz-complete">
+                                        <div class="tools final">
+                                            <div class="btn cusbtn cbtn-edit hidden" title="Edit" onclick=" Edit(this) "><i class="glyphicon glyphicon-pencil"></i></div>
+                                            <div class="btn cusbtn cusbtn-del" title="Delete" onclick=" DeleteUpload(this) ">
+                                                <svg xml:space="preserve" enable-background="new 0 0 15.809 20" viewBox="0 0 15.809 20" height="13px" width="13px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Layer_1" version="1.1">
+                                                    <g>
+                                                        <path d="M14.444,2.354h-2.67V0.62c0-0.35-0.281-0.62-0.631-0.62c-0.034,0-0.057,0.012-0.067,0.022C11.064,0.012,11.042,0,11.03,0H4.664c-0.349,0-0.62,0.27-0.62,0.62v1.735H1.364C0.597,2.354,0,2.952,0,3.718V5.95h1.183v12.698C1.183,19.414,1.769,20,2.535,20h10.738c0.767,0,1.362-0.586,1.362-1.353V5.95h1.173V3.718C15.809,2.952,15.211,2.354,14.444,2.354L14.444,2.354z M5.284,1.239h5.239v1.115H5.284V1.239z M13.386,18.647c0,0.079-0.034,0.113-0.112,0.113H2.535c-0.079,0-0.113-0.034-0.113-0.113V5.95h10.963V18.647z M14.558,4.71H1.251V3.718c0-0.079,0.033-0.125,0.113-0.125h13.081c0.079,0,0.113,0.046,0.113,0.125V4.71z M14.558,4.71" fill="#FFFFFF" />
+                                                        <rect height="10.254" width="1.25" fill="#FFFFFF" y="7.402" x="10.175" />
+                                                        <rect height="10.254" width="1.251" fill="#FFFFFF" y="7.402" x="7.29" />
+                                                        <rect height="10.254" width="1.25" fill="#FFFFFF" y="7.402" x="4.406" />
+                                                    </g></svg>
+                                            </div>
+                                        </div>
+                                        <div class="containerUpload cusdefault">
+                                            <input type="radio" data-defalut-enabled="false" class="reset-data cusradio" name="groupimg" checked="checked">Chọn ảnh này làm đại diện
+                                        </div>
+                                        <div id="imgmain" class="dz-image containerUpload">
+                                            <img data-dz-thumbnail="" class="ghost cussimg" rel="@item.ID" id="cusimg" alt="" src="@ConfigurationManager.AppSettings["UrlImage"]@item.originalFilepath.ToString().Split('_')[0]/@item.originalFilepath" />
+                                        </div>
+                                        <div class="dz-filename cusfilename">
+                                            <span data-dz-name="">
+                                                <input type="text" placeholder="Tiêu đề hình ảnh" class="col-xs-12 form-control valid cusinput" id="txtImage" value="@item.title" name=""></span>
+                                        </div>
+                                        <div class="dz-progress"><span data-dz-uploadprogress="" class="dz-upload" style="width: 100%;"></span></div>
+                                        <div class="dz-error-message"><span data-dz-errormessage=""></span></div>
+                                        <div class="dz-success-mark" id="cussucess">
+                                            <svg xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 54 54" height="54px" width="54px">
+                                                <title>Check</title>
+                                                <defs />
+                                                <g sketch:type="MSPage" fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="Page-1">
+                                                    <path sketch:type="MSShapeGroup" fill="#FFFFFF" fill-opacity="0.816519475" stroke="#747474" stroke-opacity="0.198794158" id="Oval-2" d="M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" />
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div class="dz-error-mark">
+                                            <svg xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 54 54" height="54px" width="54px">
+                                                <title>Error</title>
+                                                <defs />
+                                                <g sketch:type="MSPage" fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="Page-1">
+                                                    <g fill-opacity="0.816519475" fill="#FFFFFF" stroke-opacity="0.198794158" stroke="#747474" sketch:type="MSLayerGroup" id="Check-+-Oval-2">
+                                                        <path sketch:type="MSShapeGroup" id="Oval-2" d="M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" />
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                            "
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            <div id="demo-upload" class="dropzone needsclick dz-clickable dz-started cusdropzone" method="POST" style="width: auto;" action="/Home/Blank">
+                                <div class="dz-default dz-message cusbuttonmes " style="display: block;">
+                                    <span class="btn btn-action">
+                                        <label class="btn btn-danger">Lựa chọn hình ảnh </label>
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+<div class="form-group">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">Thông tin liên hệ nhà tuyển dụng
+            </h3>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_NameCompany", "Name Company") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.NameCompany).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_AddressApply", "Address Apply") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.AddressApply).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_NameContact", "Name Contact") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.NamesContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_PhoneContact", "Phone Contact") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.PhoneContact).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Email", "Email") <span class="required">*</span></label>
+                    <div class="col-md-9">
+                        @Html.Bootstrap().TextBoxFor(m => m.Email).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Deadline", "Dead Line") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.DatePickerFor(m => m.ToDeadline, new { @class = "form-control date" })
+                        @Html.ValidationMessageFor(m => m.ToDeadline)
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Language", "Language") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdLanguage, (List<SelectListItem>)ViewBag.Languages).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Website", "Website") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.WebSiteCompany).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <section class="panel panel-default">
+            <h3 class="tilte_l">Loại tin đăng và lịch đăng
+            </h3>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TypeNews", "Type News") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.IdTypeNews, (List<SelectListItem>)ViewBag.NewsTypes).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_FromCreateNewsToCreateNews", "From Date - To Date") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.FromDateToDateString).HtmlAttributes(new { @class = "form-control datepicker-range" }).ShowValidationMessage(true)
+
+
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_MoneyInDay", "Price") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.MoneyInDay).HtmlAttributes(new { @class = "form-control" }).Readonly(true).ShowValidationMessage(true)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TotalMoney", "Total Price") <span class="required">*</span></label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().TextBoxFor(m => m.TotalMoney).HtmlAttributes(new { @class = "form-control" }).Readonly(true).ShowValidationMessage(true)
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+<input type="hidden" name="cfile" />
+<input type="hidden" name="ID" class="idProduct_" value="@Model.ID" />
+<input type="hidden" name="nameImg" />
+@Html.HiddenFor(m => m.Active)
+@Html.HiddenFor(m => m.ModifiedDate)
+@Html.HiddenFor(m => m.CreateDate)
+@Html.HiddenFor(m => m.CreateUser)
+@Html.HiddenFor(m => m.ModifiedUser)
+@Html.HiddenFor(m => m.FromDeadline)
+@Html.HiddenFor(m => m.IdTypeNewsCuurent)
+@Html.HiddenFor(m => m.Status)
+@Html.HiddenFor(m => m.DateReup)
+@Html.HiddenFor(m => m.CountReup)
+@Html.HiddenFor(m => m.RefTranHis)
+@Html.HiddenFor(m => m.Career)
+@Html.HiddenFor(m => m.MaxReup)
+@Html.Script(
+    @<text>
+<link href="/Content/UploadVanGia/main.css" rel="stylesheet" />
+<link href="/Content/UploadVanGia/dropzone.css" rel="stylesheet" />
+<link href="/Content/UploadVanGia/cropper.min.css" rel="stylesheet" />
+<link href="/Content/UploadVanGia/cussupload.css" rel="stylesheet" />
+<script src="~/Scripts/UploadImg/cropperVG.js"></script>
+<script src="~/Scripts/UploadImg/cusjsVG.js"></script>
+<script src="~/Scripts/UploadImg/dropzoneVG.js"></script>
+<script>
+    $(document).on('click', '#UrlImage', function () {
+        $('input[type="File"]').click();
+    });
+
+    $(document).on('change', 'input[type="File"]', function () {
+        var upload = $(this);
+
+        var indicator = upload.next('.selected');
+        if (indicator.length == 0) {
+            indicator = $('<span class="selected"></span>').insertAfter(upload);
+        }
+
+        if (upload.val() == '') {
+            indicator.html('');
+        } else if (window.FileReader) {
+
+            for (var i = 0; i < upload[0].files.length; i++) {
+                upload[0].files[i]
+                $('#UrlImage').val(upload.val());
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    if (upload[0].files[0].size > 2000000) {
+                        $.sticky("@Resource.FileToLarge", { type: 'st-danger' });
+                        upload.replaceWith(upload = upload.clone(true));
+                    } else {
+                        $('#picture').html("<img style='width: 120px; height:120px;' src='" + e.target.result + "' class='img-polaroid user-picture-preview'/>");
+                    }
+                };
+            }
+
+            reader.readAsDataURL(upload[0].files[0]);
+        } else {
+            indicator.html("Selected");
+        }
+    });
+
+    $(document).on("change", "#FromSalary", function () {
+        $('#ToSalary').val('');
+        $("#ToSalary").select2("val", "");
+        if ($('#FromSalary').val() != "") {
+            var val = $('#ToSalary').val();
+           
+            $('#ToSalary').empty();
+            $('#ToSalary').append('<optiop value="">Please Select</option>');
+            for (var i = ($('#FromSalary').val() < 5 ? 5 : $('#FromSalary').val()) ; i <= 20; i++) {
+
+                $('#ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' million</option>');
+                if (i > val) {
+                    $('#ToSalary').val("");
+                    $("#ToSalary").select2("val", "");
+                } else {
+                    if (i >= val) {
+
+
+
+                    }
+
+                }
+
+            }
+        }
+
+    });
+    $(document).on("change", "#FromAge", function () {
+        var val = $('#ToAge').val();
+        $('#ToAge').val('');
+        $("#ToAge").select2("val", "");
+        if ($('#FromAge').val() != "") {
+         
+       
+            $('#ToAge').empty();
+            $('#ToAge').append('<optiop value="">Please Select</option>');
+            for (var i = ($('#FromAge').val() < 25 ? 25 : $('#FromAge').val()) ; i <= 35; i++) {
+
+                $('#ToAge').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' age</option>');
+                if (i > val) {
+                    $('#ToAge').val("");
+                    $("#ToAge").select2("val", "");
+                } else {
+                    if (i >= val) {
+                     
+
+                       
+                    }
+                  
+                }
+            }
+        }
+
+    });
+
+    $(document).on("change", "#IdTypeNews,#FromDateToDateString", function () {
+
+        var id = $('#IdTypeNews').val();
+        var rDate = $('#FromDateToDateString').val();
+        if (id != null && id != "" && id != null && id != "") {
+            $.getJSON("@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + rDate, function(data) {
+                $('#MoneyInDay').val(data.PriceInDay);
+                $('#TotalMoney').val(data.TotalPrice);
+            });
+        }
+
+    });
+   
+    $(document).on("change", "#IdAcount", function () {
+
+        var id = $('#IdAcount').val();
+      
+        if (id != null && id != "") {
+            $.getJSON("@Url.Action("EmployerInformation")?idAccount=" + id, function (data) {
+                $('#NameCompany').val(data.Name);
+                $('#AddressApply').val(data.AddressContact);
+                $('#NamesContact').val(data.NameContact);
+                $('#PhoneContact').val(data.PhoneContact);
+                $('#Email').val(data.EmailContact);
+                $('#WebSiteCompany').val(data.WebSite);
+            });
+        }
+
+    });
+    function dropNew(ed) {
+
+        var console = window.console || { log: function () { } };
+        var $image = $(ed).parents(".dz-preview").find('#cusimg');
+        var $download = $('#download');
+        var $dataX = $(ed).parents(".dz-preview").find('#dataX');
+        var $dataY = $(ed).parents(".dz-preview").find('#dataY');
+        var $dataHeight = $(ed).parents(".dz-preview").find('#dataHeight');
+        var $dataWidth = $(ed).parents(".dz-preview").find('#dataWidth');
+        var $dataRotate = $(ed).parents(".dz-preview").find('#dataRotate');
+        var $dataScaleX = $(ed).parents(".dz-preview").find('#dataScaleX');
+        var $dataScaleY = $(ed).parents(".dz-preview").find('#dataScaleY');
+        var $putData = $(ed).parents(".dz-preview").find('#dataimg');
+
+
+        var options = {
+            aspectRatio: 16 /9,
+            preview: '.img-preview',
+            crop: function (e) {
+                $dataX.val(Math.round(e.x));
+                $dataY.val(Math.round(e.y));
+                $dataHeight.val(Math.round(e.height));
+                $dataWidth.val(Math.round(e.width));
+                $dataRotate.val(e.rotate);
+                $dataScaleX.val(e.scaleX);
+                $dataScaleY.val(e.scaleY);
+            }
+        };
+
+
+        // Tooltip
+        $(ed).find('[data-toggle="tooltip"]').tooltip();
+
+
+        // Cropper
+        $image.on({
+            'build.cropper': function (e) {
+                // console.log(e.type);
+            },
+            'built.cropper': function (e) {
+                // console.log(e.type);
+            },
+            'cropstart.cropper': function (e) {
+                // console.log(e.type, e.action);
+            },
+            'cropmove.cropper': function (e) {
+                // console.log(e.type, e.action);
+            },
+            'cropend.cropper': function (e) {
+                //console.log(e.type, e.action);
+            },
+            'crop.cropper': function (e) {
+                //console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
+                //console.log(e.type);
+                //console.log(e.x);
+                //console.log(e.y);
+                //console.log(e.width);
+                //console.log(e.height);
+                //console.log(e.rotate);
+                //console.log(e.scaleX);
+                //console.log(e.scaleY);
+
+
+            },
+            'zoom.cropper': function (e) {
+                // console.log(e.type, e.ratio);
+            }
+        }).cropper(options);
+
+
+        //// Buttons
+        if (!$.isFunction(document.createElement('canvas').getContext)) {
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="getCroppedCanvas"]').prop('disabled', true);
+        }
+
+        if (typeof document.createElement('cropper').style.transition === 'undefined') {
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="rotate"]').prop('disabled', true);
+            $(ed).parents('.dz-preview').eq(0).find('button[data-method="scale"]').prop('disabled', true);
+        }
+
+
+        // Methods
+        $(ed).parents('.dz-preview').eq(0).find('.docs-buttons').on('click', '[data-method]', function () {
+            var $this = $(this);
+            var data = $this.data();
+            var $target;
+            var result;
+
+            if ($this.prop('disabled') || $this.hasClass('disabled')) {
+                return;
+            }
+
+            if ($image.data('cropper') && data.method) {
+                data = $.extend({}, data); // Clone a new one
+
+                if (typeof data.target !== 'undefined') {
+                    $target = $(data.target);
+
+                    if (typeof data.option === 'undefined') {
+                        try {
+                            data.option = JSON.parse($target.val());
+                        } catch (e) {
+                            console.log(e.message);
+                        }
+                    }
+                }
+
+                result = $image.cropper(data.method, data.option, data.secondOption);
+
+                switch (data.method) {
+                case 'scaleX':
+                case 'scaleY':
+                    $(this).data('option', -data.option);
+                    break;
+
+                case 'getCroppedCanvas':
+                    console.log(result.toDataURL().length);
+                    var duongdancrop = result.toDataURL();
+                    $(ed).parents(".dz-preview").find('.cussimg').attr("src", duongdancrop);
+                    $(ed).parents(".dz-preview").find('.cropper-canvas img:first').attr("src", duongdancrop);
+                    $(ed).parents(".dz-preview").find('.cropper-view-box img:first').attr("src", duongdancrop);
+
+                    //hiden control drop
+                    $(ed).parent().parent().find('#imgmain').find("img:first").removeClass('cropper-hidden');
+                    $(ed).parent().parent().find('#imgmain').find("img:first").next().addClass('cropper-hidden');
+                    //hiden control drop end
+                    if (result) {
+
+
+                        if (isserver) {
+                            //save to sever
+
+                            $putData.text(result.toDataURL());
+
+                        } else {
+                            $putData.text(result.toDataURL());
+                        }
+
+                        // Bootstrap's Modal
+                        //$('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+
+                        //if (!$download.hasClass('disabled')) {
+                        //    $download.attr('href', result.toDataURL());
+
+
+                        //}
+                    }
+
+                    break;
+                }
+
+                if ($.isPlainObject(result) && $target) {
+                    try {
+                        $target.val(JSON.stringify(result));
+                    } catch (e) {
+                        console.log(e.message);
+                    }
+                }
+
+            }
+        });
+
+
+    }
+    var isserver = false;
+
+    function uploadtoserver() {
+        $.each($('.cbtn-info-ok'), function (i, o) {
+
+                if ($(o).parents('.dz-preview').find('.tools.final').hasClass('hidden')) {
+                    isserver = true;
+
+                    $(o).click();
+                }
+            }
+        );
+        return false;
+    }
+
+    function UploadImg(obj) {
+
+        $('#Career').val($('#CareerID').val().join(','));
+        if (!$(document.forms[0]).valid()) {
+            return false;
+        }
+        $('.cropper-container img').css({ "transform": "none" });
+        // $('.btnAdd1').text('Đang xữ lý');
+        $('.btnAdd1').addClass('disabled');
+        uploadtoserver();
+        var totalitem = $('.dz-preview').size();
+        $.each($('.dz-preview'), function (i, o) {
+            $(o).find("input:radio[name=groupimg][disabled=false]:first").attr('checked', true);
+            var image = $(o).find('#cusimg');
+            var valuerotate = $(o).find('#dataRotate').val();
+            var dataX = $(o).find('#dataX').val();
+            var dataY = $(o).find('#dataY').val();
+            var dataHeight = $(o).find('#dataHeight').val();
+            var dataWidth = $(o).find('#dataWidth').val();
+            var right = $(window).width() - dataX - image.width();
+            var bottom = $(window).height() - dataY - image.height();
+            var dataimg = $(o).find('#dataimg').text();
+            var dataname = $(o).find('.cusinput').val();
+            var idpic = $(o).find('#cusimg').attr('rel');
+
+            document.getElementsByName('cfile')[0].value = dataimg;
+            document.getElementsByName('nameImg')[0].value = dataname;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SaveImg", "BDSNew")",
+                data: { idProducts: $('.idProduct_').val(), index: i, nameImg: dataname, cfile: (dataimg == null ? "" : dataimg), isactive: $(o).find('input:checked').size(), idpicture: idpic },
+
+                success: function (data) {
+                    $(o).find('#cusimg').attr('rel', data.d);
+
+                    totalitem--;
+
+                    if (totalitem == 0) {
+                        //    $('.btnAdd1').text('Thêm');
+                        $('.btnAdd1').removeClass('disabled');
+                        $('.btnAdd').click();
+                    }
+
+                },
+                error: function (e) {
+                    toastr.error('Vui lòng chọn lại hình ảnh');
+                }
+            });
+        });
+
+
+        return true;
+    }
+
+</script>
+</text>)
