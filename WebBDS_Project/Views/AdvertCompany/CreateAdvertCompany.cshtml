@@ -3,3 +3,53 @@
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
 
+@using (Html.BeginForm("AdvertCompany", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container">
+        <div class="grid_9 main_left">
+            <div class="group_work">
+                <div class="header_text">
+                    <h3><span><i class="fa fa-list-ul"></i>Tạo hồ sơ tìm việc</span></h3>
+                </div>
+              
+                    <span class="TitleAdvertComany">Tải hồ sơ có sẵn: </span>Nếu bạn có sẵn file mềm hồ sơ xin việc, bản CV tìm việc hãy tải lên và nộp cho nhà tuyển dụng.
+                    <div class="row">
+                        <label>Tải file:</label>
+                        <div class="row-right">
+                          <input type="file" />
+                            Hỗ trợ định dạng .doc, .docx, .pdf nhỏ hơn 3MB.
+
+                        </div>
+                    </div>
+                    <h4>Thông tin hồ sơ cá nhân</h4>
+                    <div class="form-horizontal cus-form-horizonta" style="padding-left:10px;padding-top:10px; padding-bottom:5px; padding-right:10px;">
+                        <div class="row">
+                            <label>Email đăng nhập:</label>
+                            <div class="row-right">
+                                Nguyễn Tấn Tú
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Giới thiệu công ty<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.TextAreaFor(m => m.tblBDSNew.DesCompany, new { @class = "input3", @row = "5" })
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+        </div>
+        <div class="grid_3 omega main_right" id="sideRightPushy">
+
+            @Html.Partial("_partialManagerCenter")
+
+        </div>
+    </div>
+   
+
+}
+

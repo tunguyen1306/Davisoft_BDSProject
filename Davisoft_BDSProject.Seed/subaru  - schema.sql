@@ -414,7 +414,7 @@ CREATE TABLE `bookings` (
   CONSTRAINT `Booking_BookUser` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Booking_Country` FOREIGN KEY (`CountryID`) REFERENCES `countries` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Booking_Customer` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `Booking_FileUpload` FOREIGN KEY (`UploadID`) REFERENCES `fileuploads` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Booking_UploadImg` FOREIGN KEY (`UploadID`) REFERENCES `UploadImgs` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Booking_FinanceCompany` FOREIGN KEY (`FinanceCompanyID`) REFERENCES `financecompanies` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Booking_IndentLine` FOREIGN KEY (`IndentLineID`) REFERENCES `indentlines` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Booking_InsuranceCompany` FOREIGN KEY (`InsuranceCompanyID`) REFERENCES `insurancecompanies` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -1269,10 +1269,10 @@ CREATE TABLE `fcinvoices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Definition of table `fileuploads`
+-- Definition of table `UploadImgs`
 -- Info of file that has been upload to the system
 --
-CREATE TABLE `fileuploads` (
+CREATE TABLE `UploadImgs` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ModelName` longtext,
   `EntryID` longtext,
@@ -1289,8 +1289,8 @@ CREATE TABLE `fileuploads` (
   UNIQUE KEY `ID` (`ID`),
   KEY `DocumentTypeID` (`DocumentTypeID`),
   KEY `EditIndentDocument_ID` (`EditIndentDocument_ID`),
-  CONSTRAINT `EditIndentDocument_FileUploads` FOREIGN KEY (`EditIndentDocument_ID`) REFERENCES `editindentdocuments` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FileUpload_DocumentType` FOREIGN KEY (`DocumentTypeID`) REFERENCES `documenttypes` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT `EditIndentDocument_UploadImgs` FOREIGN KEY (`EditIndentDocument_ID`) REFERENCES `editindentdocuments` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `UploadImg_DocumentType` FOREIGN KEY (`DocumentTypeID`) REFERENCES `documenttypes` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
@@ -1424,7 +1424,7 @@ CREATE TABLE `indentcosts` (
   `Pricing` decimal(18,2) NOT NULL,
   `IndentID` int(11) NOT NULL,
   `ExchangeID` int(11) NOT NULL,
-  `FileUpload` longtext,
+  `UploadImg` longtext,
   `IndentHistory_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`),
@@ -2336,7 +2336,7 @@ CREATE TABLE `quotations` (
   CONSTRAINT `Quotation_BookUser` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Quotation_Country` FOREIGN KEY (`CountryID`) REFERENCES `countries` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `Quotation_Customer` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `Quotation_FileUpload` FOREIGN KEY (`UploadID`) REFERENCES `fileuploads` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Quotation_UploadImg` FOREIGN KEY (`UploadID`) REFERENCES `UploadImgs` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Quotation_FinanceCompany` FOREIGN KEY (`FinanceCompanyID`) REFERENCES `financecompanies` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Quotation_IndentLine` FOREIGN KEY (`IndentLineID`) REFERENCES `indentlines` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Quotation_InsuranceCompany` FOREIGN KEY (`InsuranceCompanyID`) REFERENCES `insurancecompanies` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,

@@ -396,3 +396,14 @@ tr:nth-child(even) {
 .gachTop{
     color:white;border-left:dotted 1px; margin-right:0px;margin-left:0px;padding-top: 7px; padding-bottom: 7px;
 }
+.TitleAdvertComany{
+    font-weight: bold;
+    color: #008475;
+    font-size: 14px;
+    margin: 5px 0;
+}
+.cus-form-horizonta{
+    background: #f2f2f2;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dfdfdf;
+}

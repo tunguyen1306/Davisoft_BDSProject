@@ -712,13 +712,13 @@ namespace Davisoft_BDSProject.Web.Controllers
                 //string uploadFolder = picture.DirectoryPhysical;
 
                 string path = "";
-                if (Server.MapPath("~/fileUpload/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
+                if (Server.MapPath("~/UploadImg/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
                 {
-                    path = Server.MapPath("~/fileUpload/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]) + DateTime.Now.Day + DateTime.Now.Month + "/";
+                    path = Server.MapPath("~/UploadImg/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]) + DateTime.Now.Day + DateTime.Now.Month + "/";
                 }
                 else
                 {
-                    path = Server.MapPath("~/fileUpload/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                    path = Server.MapPath("~/UploadImg/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project") + DateTime.Now.Day + DateTime.Now.Month + "/";
                 }
                 // check for directory
                 if (!Directory.Exists(path))
@@ -837,7 +837,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             if (picture == null)
                 return;
             var fo = picture.Substring(0, 3);
-            string dir = Server.MapPath("~/fileUpload/" + fo + "/" + picture);
+            string dir = Server.MapPath("~/UploadImg/" + fo + "/" + picture);
 
             System.IO.File.Delete(dir);
 

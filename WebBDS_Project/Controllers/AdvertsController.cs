@@ -333,7 +333,7 @@ namespace WebBDS_Project.Controllers
 
                 //string uploadFolder = picture.DirectoryPhysical;
 
-                string path = Server.MapPath("~/fileUpload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                string path = Server.MapPath("~/UploadImg/") + DateTime.Now.Day + DateTime.Now.Month + "/";
                 // check for directory
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
@@ -595,7 +595,7 @@ namespace WebBDS_Project.Controllers
             if (picture == null)
                 return;
             var fo = picture.Substring(0, 3);
-            string dir = Server.MapPath("~/fileUpload/" + fo + "/" + picture);
+            string dir = Server.MapPath("~/UploadImg/" + fo + "/" + picture);
 
             System.IO.File.Delete(dir);
 

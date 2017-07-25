@@ -43,7 +43,7 @@ namespace Davisoft_BDSProject.Web.Models
         }
         public string DirectoryPhysical
         {
-            get { return "~/fileUpload"; }
+            get { return "~/UploadImg"; }
         }
         public string FileName(PictureSize size)
         {

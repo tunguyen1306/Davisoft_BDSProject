@@ -41,7 +41,7 @@ namespace WebBDS_Project.Models
         }
         public string DirectoryPhysical
         {
-            get { return "~/fileUpload"; }
+            get { return "~/UploadImg"; }
         }
         public string FileName(PictureSize size)
         {
