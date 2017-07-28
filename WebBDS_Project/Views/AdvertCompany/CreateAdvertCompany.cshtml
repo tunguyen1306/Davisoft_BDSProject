@@ -2,7 +2,7 @@
     ViewBag.Title = "CreateAdvertCompany";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
-
+@model WebBDS_Project.Models.RegisterInformationModel
 @using (Html.BeginForm("AdvertCompany", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="container">
@@ -11,38 +11,519 @@
                 <div class="header_text">
                     <h3><span><i class="fa fa-list-ul"></i>Tạo hồ sơ tìm việc</span></h3>
                 </div>
-              
-                    <span class="TitleAdvertComany">Tải hồ sơ có sẵn: </span>Nếu bạn có sẵn file mềm hồ sơ xin việc, bản CV tìm việc hãy tải lên và nộp cho nhà tuyển dụng.
-                    <div class="row">
-                        <label>Tải file:</label>
-                        <div class="row-right">
-                          <input type="file" />
-                            Hỗ trợ định dạng .doc, .docx, .pdf nhỏ hơn 3MB.
 
-                        </div>
-                    </div>
-                    <h4>Thông tin hồ sơ cá nhân</h4>
-                    <div class="form-horizontal cus-form-horizonta" style="padding-left:10px;padding-top:10px; padding-bottom:5px; padding-right:10px;">
-                        <div class="row">
-                            <label>Email đăng nhập:</label>
-                            <div class="row-right">
-                                Nguyễn Tấn Tú
+                <span class="TitleAdvertComany">Tải hồ sơ có sẵn: </span>Nếu bạn có sẵn file mềm hồ sơ xin việc, bản CV tìm việc hãy tải lên và nộp cho nhà tuyển dụng.
+                <div class="row">
+                    <label>Tải file:</label>
+                    <div class="row-right">
+                        <input type="file" />
+                        Hỗ trợ định dạng .doc, .docx, .pdf nhỏ hơn 3MB.
 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label>Giới thiệu công ty<span class="required">*</span></label>
-                            <div class="row-right">
-
-                                @Html.TextAreaFor(m => m.tblBDSNew.DesCompany, new { @class = "input3", @row = "5" })
-
-
-                            </div>
-                        </div>
                     </div>
                 </div>
-           
-        </div>
+                <h4>Thông tin hồ sơ cá nhân</h4>
+                <div class="form-horizontal cus-form-horizonta" style="padding-left:10px;padding-top:10px; padding-bottom:5px; padding-right:10px;">
+                    <div class="row">
+                        <label>Email đăng nhập:</label>
+                        <div class="row-right">
+                            @Html.TextBoxFor(m => m.TblBdsAdcount.Email, new { @class = "input1" })
+
+                        </div>
+                        <label class="child">Giới tính <span class="required">*</span></label>
+                        <div class="row-right">
+                            @Html.DropDownListFor(m => m.tblBDSNew.Sex, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Không yêu cầu",Value = "0",Selected = true},
+                            new SelectListItem{Text = "Nam",Value = "1",Selected = false},
+                            new SelectListItem{Text = "Nữ",Value = "2",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Họ và tên:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Số điện thoại:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Quê quán:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Ngày sinh:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Địa chỉ thường trú:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label>Địa chỉ tạm trú:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <label>Hình cá nhân:</label>
+                        <div class="logo_jobs">
+                            <div class="grid_5 uploadBox">
+                                <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+
+                                <input type="hidden" value="" name="TblBDSPersonalInformation.UrlImage" id="UrlImage" />
+                            </div>
+                            <div class="uploadBox-1">
+                                <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                    + UpLoad Image
+                                </a>
+                                <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
+                            </div>
+                        </div>
+
+                        <div class="text_jobs">
+
+                            <span>(Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label></label>
+                        <div class="row-right">
+
+                            <input type="checkbox" />
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label></label>
+                        <div class="row-right">
+
+                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                Cập nhật
+                            </a>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+                <h4>Thông tin chung của hồ sơ</h4>
+                <div class="form-horizontal cus-form-horizonta" style="padding-left:10px;padding-top:10px; padding-bottom:5px; padding-right:10px;">
+                    <div class="row">
+                        <label>Tiêu đề hồ sơ:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Ngành nghề :<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Khu vực làm việc:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Mức lương mong muốn:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Trình độ:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Kinh nghiệm:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Ngoại ngữ:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Cấp bậc mong muốn:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Mục tiêu nghề nghiệp:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label></label>
+                        <div class="row-right">
+
+                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                Cập nhật
+                            </a>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+               
+                <span class="TitleAdvertComany">Trình độ, kỹ năng: </span>Liệt kê đầy đủ các thông tin bằng cấp/chứng chỉ mà bạn có (kể cả bằng cấp/chứng chỉ ngắ hạng).
+                <div class="form-horizontal cus-form-horizonta" style="padding-left:10px;padding-top:10px; padding-bottom:5px; padding-right:10px;">
+                    <div class="row">
+                        <label>Trình độ:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Thời gian đào tạo: <span class="required">*</span></label>
+                        <div class="row-right">
+                            <div class="pncon">
+                                <b>Từ</b>
+
+                                @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "1 năm",Value = "3",Selected = false},
+                            new SelectListItem{Text = "2 năm",Value = "4",Selected = false},
+                            new SelectListItem{Text = "3 năm",Value = "5",Selected = false},
+                            new SelectListItem{Text = "4 năm",Value = "6",Selected = false},
+                            new SelectListItem{Text = "5 năm",Value = "7",Selected = false},
+                           
+
+                        }, new { @class = "dropdown" })
+                            </div>
+                            <div class="pncon">
+                                <b style="margin-left: 11px;">Đến</b>
+                              
+                                @Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
+                        {
+
+                           new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "5 năm",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 năm",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 năm",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 năm",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 năm",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 năm",Value = "10",Selected = false},
+   
+
+                        }, new { @class = "dropdown" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Đơn vị đào tạo:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Chuyên Ngành:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Bằng tốt nghiệp loại:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Ảnh bằng cấp:</label>
+                        <div class="row-right">
+                            <input type="file" />
+                           Khuyến cáo: cơ hội việc làm sẽ tăng gắp 2 lần nếu nhà tuyển dụng thấy hình ảnh bằng cấp của bạn
+
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <label>Ngoại ngữ:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Bằng ngoại ngữ:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <label>Ngoại ngữ:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Phần mềm khác:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <label>Kỷ năng:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                        <label class="child">Sở thích:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label></label>
+                        <div class="row-right">
+
+                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                Cập nhật
+                            </a>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <span class="TitleAdvertComany">Kinh nghiệm làm  việc: </span>Hãy liệt kê những công việc,nhiệm vụ mà bạn đã từng đảm nhận và thực hiện.Chú ý liệt kinh nghiệm làm việc từ thời gian gần đây nhất trở về trước.
+                <div class="form-horizontal cus-form-horizonta" style="padding-left:10px;padding-top:10px; padding-bottom:5px; padding-right:10px;">
+                    <div class="row">
+                        <label>Tên công ty:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
+
+
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="row">
+                        <label>Cấp bậc:<span class="required">*</span></label>
+                        <div class="row-right">
+                            @Html.DropDownListFor(m => m.tblBDSNew.Sex, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Không yêu cầu",Value = "0",Selected = true},
+                            new SelectListItem{Text = "Nam",Value = "1",Selected = false},
+                            new SelectListItem{Text = "Nữ",Value = "2",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
+
+                        </div>
+                        <label class="child">Mức lương:<span class="required">*</span></label>
+                        <div class="row-right">
+
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Thời gian làm việc:<span class="required">*</span></label>
+                        <div class="row-right">
+                            <div class="pncon">
+                                <b>Từ</b>
+
+                                @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "1 năm",Value = "3",Selected = false},
+                            new SelectListItem{Text = "2 năm",Value = "4",Selected = false},
+                            new SelectListItem{Text = "3 năm",Value = "5",Selected = false},
+                            new SelectListItem{Text = "4 năm",Value = "6",Selected = false},
+                            new SelectListItem{Text = "5 năm",Value = "7",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
+                            </div>
+                            <div class="pncon">
+                               
+
+                                @Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
+                        {
+
+                           new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "5 năm",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 năm",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 năm",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 năm",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 năm",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 năm",Value = "10",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
+                            </div>
+                        </div>
+                        <label class="child">Đến:<span class="required">*</span></label>
+                        <div class="row-right">
+                            <div class="pncon">
+                                @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "1 năm",Value = "3",Selected = false},
+                            new SelectListItem{Text = "2 năm",Value = "4",Selected = false},
+                            new SelectListItem{Text = "3 năm",Value = "5",Selected = false},
+                            new SelectListItem{Text = "4 năm",Value = "6",Selected = false},
+                            new SelectListItem{Text = "5 năm",Value = "7",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
+                            </div>
+                            <div class="pncon">
+                               
+
+                                @Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
+                        {
+
+                           new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                            new SelectListItem{Text = "5 năm",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 năm",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 năm",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 năm",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 năm",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 năm",Value = "10",Selected = false},
+
+
+                        }, new { @class = "dropdown" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <label>Mô tả công việc và thành tích đạt được</label>
+                        <div class="row-right">
+
+                            @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label></label>
+                        <div class="row-right">
+
+                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                                Cập nhật
+                            </a>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+            
+            
+            
+            
+            </div>
         <div class="grid_3 omega main_right" id="sideRightPushy">
 
             @Html.Partial("_partialManagerCenter")
@@ -50,6 +531,35 @@
         </div>
     </div>
    
-
+        </div>
 }
 
+<script>
+    $(".btnUpload").click(function () {
+        $(this).next().trigger('click');
+    });
+
+    $("#uploadFile").change(function () {
+        var data = new FormData();
+        var files = $("#uploadFile").get(0).files;
+        if (files.length > 0) {
+            data.append("HelpSectionImages", files[0]);
+        }
+        $.ajax({
+            url: '@Url.Action("UploadImg", "Register")',
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: data,
+            success: function (response) {
+                $('#imgLogoCompany').attr('src', response.fullurl);
+                $('#UrlImage').val(response.imgName);
+
+            },
+            error: function (er) {
+
+            }
+
+        });
+    });
+</script>

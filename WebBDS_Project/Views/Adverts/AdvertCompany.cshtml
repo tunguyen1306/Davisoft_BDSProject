@@ -15,7 +15,7 @@
                 <div class="header_text">
                     <h3><span><i class="fa fa-list-ul"></i>Đăng tin tuyển dụng nhân viên</span></h3>
                 </div>
-                <div class="form-horizontal" style=" padding-left: 10px; padding-bottom: 5px; padding-right: 10px;">
+                <div class="form-horizontal" style="padding-left: 10px; padding-bottom: 5px; padding-right: 10px;">
                     <h4>Thông tin cơ bản</h4>
                     <div class="row">
                         <label>Tiêu đề đăng tin<span class="required">*</span></label>
@@ -34,15 +34,7 @@
                         <div class="row-right">
                             <div class="pncon">
                                 <b>Từ</b>
-                                @*<select class="dropdown" id="DropFromSalary" tabindex="7" name="tblBDSNew.FromSalary">
-                                        <option value="0">Chọn</option>
-                                        @for (int i = 3; i < 20; i++)
-                                        {
-                                            <option value="@i">@i@(".000.000")</option>
-                                        }
-
-
-                                    </select>*@
+                              
                                 @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
                         {
                             new SelectListItem{Text = "Chọn",Value = "",Selected = true},
@@ -641,14 +633,34 @@
     <input type="hidden" id="hdMoneyInDay" name="tblBDSNew.MoneyInDay" />
     <input type="hidden" id="hdTotalMoney" name="tblBDSNew.TotalMoney" />
 
-}
+    <a class="popup-modal" href="#test-modal">Open modal</a>
+
+    <div id="test-modal" class="mfp-hide white-popup-block box_info">
+        <h1>Đăng tin thành công</h1>
+        <p>
+            <i class="fa fa-exclamation-triangle fa-3x" style="color:#37a344;" aria-hidden="true"></i><span class=""> Bạn đã đăng tin thành công.</span>
+            <span class="cusTextWarning">
+                -Bạn vừa thao tác đăng tin thành công.
+            </span>
+            <span class="cusTextWarning">    -Thời gian duyệt tin đăng có thể kéo dài 24h.Vui lòng đợi sự chờ duyệt của chúng tôi.</span>
+
+        </p>
+        <p>
+
+            <a href="@Url.Action("AdvertCompany","Adverts")" id="uploadIcon" class="grid_6">        Đăng tin thêm  </a>
+            <a href="@Url.Action("Index","Default")" id="uploadIcon" class="grid_6">
+                Về trang chủ
+            </a>
+        </p>
+        <a class="popup-modal-dismiss" href="#">×</a>
+    </div>                           }
 <style>
-    a.btnCheck:hover
-    {
-        color:white;
-        opacity:0.8;
+    a.btnCheck:hover {
+        color: white;
+        opacity: 0.8;
     }
 </style>
+
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/cropper.min.css" rel="stylesheet" />
@@ -794,8 +806,12 @@
 		        }
 		    });
 		    //  $('input[name="PostDate"]').val(diffDays);
-		}
-		toastr.error(@(ViewBag.Message!=null?ViewBag.Message:""));
+		} 
+		var mess = '@(ViewBag.Message!=null?ViewBag.Message:"")';
+	    if (mess.length>0) {
+	        toastr.error(@(ViewBag.Message!=null?ViewBag.Message:""));
+	    }
+	
 		
 
 

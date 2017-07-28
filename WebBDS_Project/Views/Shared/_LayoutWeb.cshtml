@@ -52,6 +52,7 @@
     <script src="~/Template/js/jquery.selectric.js"></script>
     <script src="~/Template/js/jssor.slider-22.2.16.min.js"></script>
     <script src="~/Template/select2/js/select2.js"></script>
+   
 </head>
 <body>
     <div id="warrper">
@@ -365,7 +366,7 @@
         </div>
     </div>
     <script src="~/Template/js/pushy.js"></script>
-   
+    <script src="~/Template/js/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
         $('.select2').select2();
@@ -380,6 +381,18 @@
     };
 
     $("#sideRightPushy").Pushy(optionSideRight);
+    $(function () {
+        $('.popup-modal').magnificPopup({
+            type: 'inline',
+            preloader: false,
+            focus: '#username',
+            modal: true
+        });
+        $(document).on('click', '.popup-modal-dismiss', function (e) {
+            e.preventDefault();
+            $.magnificPopup.close();
+        });
+    });
     </script>
 </body>
 </html>
