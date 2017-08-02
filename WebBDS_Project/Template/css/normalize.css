@@ -100,19 +100,19 @@ body {
  * Addresses outline displayed oddly in Chrome
  */
 
-a:focus {
+/*a:focus {
     outline: thin dotted;
-}
+}*/
 
 /*
  * Improves readability when focused and also mouse hovered in all browsers
  * people.opera.com/patrickl/experiments/keyboard/test
  */
 
-a:hover,
+/*a:hover,
 a:active {
     outline: 0;
-}
+}*/
 
 
 /* =============================================================================

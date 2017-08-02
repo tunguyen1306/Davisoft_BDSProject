@@ -518,7 +518,7 @@
 
                     </div>
                     <div class="post-date" style="display:none">
-                        <ul class="idRadio">
+                        <ul class="idRadio radio idTabs idTabs-1 ">
                             <li>
                                 <a href="#7d" class="radioType" onclick="setTimeout(function () { calcMoney(); }, 100);">
                                     <input type="radio" value="7" class="radioIdType" checked name="post-date">
@@ -633,27 +633,35 @@
     <input type="hidden" id="hdMoneyInDay" name="tblBDSNew.MoneyInDay" />
     <input type="hidden" id="hdTotalMoney" name="tblBDSNew.TotalMoney" />
 
-    <a class="popup-modal" href="#test-modal">Open modal</a>
+   
 
     <div id="test-modal" class="mfp-hide white-popup-block box_info">
+    <div>
         <h1>Đăng tin thành công</h1>
-        <p>
-            <i class="fa fa-exclamation-triangle fa-3x" style="color:#37a344;" aria-hidden="true"></i><span class=""> Bạn đã đăng tin thành công.</span>
-            <span class="cusTextWarning">
-                -Bạn vừa thao tác đăng tin thành công.
-            </span>
-            <span class="cusTextWarning">    -Thời gian duyệt tin đăng có thể kéo dài 24h.Vui lòng đợi sự chờ duyệt của chúng tôi.</span>
+    </div>
+      <div>
+          <p>
+              <i class="fa fa-exclamation-triangle fa-3x" style="color:#37a344;" aria-hidden="true"></i><span class=""> Bạn đã đăng tin thành công.</span>
+              <span class="cusTextWarning">
+                  -Bạn vừa thao tác đăng tin thành công.
+              </span>
+              <span class="cusTextWarning">    -Thời gian duyệt tin đăng có thể kéo dài 24h.Vui lòng đợi sự chờ duyệt của chúng tôi.</span>
 
-        </p>
-        <p>
+          </p>
+          <p>
 
-            <a href="@Url.Action("AdvertCompany","Adverts")" id="uploadIcon" class="grid_6">        Đăng tin thêm  </a>
-            <a href="@Url.Action("Index","Default")" id="uploadIcon" class="grid_6">
-                Về trang chủ
-            </a>
-        </p>
+              <a href="@Url.Action("AdvertCompany","Adverts")" id="uploadIcon" class="grid_6" style="margin: 0 1% 1% 0!important;">        Đăng tin thêm  </a>
+              <a href="@Url.Action("Index","Default")" id="uploadIcon" class="grid_6" style="margin: 0 1% 1% 0!important;">
+                  Về trang chủ
+              </a>
+          </p>
+      </div>
+      
         <a class="popup-modal-dismiss" href="#">×</a>
-    </div>                           }
+    </div>
+    <a class="popup-modal" href="#test-modal">Open modal</a>
+
+                                        }
 <style>
     a.btnCheck:hover {
         color: white;

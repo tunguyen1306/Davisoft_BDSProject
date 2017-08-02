@@ -27,7 +27,7 @@ a {
 	text-decoration: none;
 }
 a:hover {
-	color: #019281;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -855,6 +855,7 @@ color: #ea8a00;
 }
 .btn_search:hover {
 	background: #019281;
+        opacity: 0.8;
 }
 
 .btn_search i {
@@ -1258,6 +1259,10 @@ font-weight: normal;
 	margin: 0;
 	padding: 0;
 
+}
+.cusRowWithRadio .radio li {
+	width: calc(100%/6)!important;
+	
 }
 .form-horizontal  .radio li {
 	width: calc(100%/4);

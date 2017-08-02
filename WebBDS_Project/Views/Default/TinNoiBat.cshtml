@@ -33,6 +33,13 @@
             if (account != null)
             {
                  <li>
+                     <div class="grid_12 titile-mobile">
+                         
+                         <div class="name">
+                             <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 50 ? news.Title.Substring(0, 50) : news.Title ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 50 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 50) : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
+                            
+                         </div>
+                     </div>
                 <div class="grid_9">
                     <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})" class="image_2">
                         <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] +"/"+ account.UrlImage):"img.png"))" alt="2">

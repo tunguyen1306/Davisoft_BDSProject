@@ -56,25 +56,27 @@
                         var idAcount = int.Parse(Session["IdUser"].ToString());
                         if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
                         {
-                            if (db.BDSApplies.Select(x => x.IdAccountPer).ToList().Contains(idAcount))
+                           
+                            var check = db.BDSApplies.Where(x => x.IdNews== Model.tblBDSNew.ID && x.IdAccountPer == idAcount).ToList();
+                            if (check.Count>0)
                             {
-  <a style="cursor: pointer"  class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>ĐÃ NỘP HỒ SƠ</a>
+                                <a style="cursor: pointer" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>ĐÃ NỘP HỒ SƠ</a>
                             }
                             else
                             {
-  <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=Model.tblBDSNew.ID})" class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
-                            }
-                            
+                                <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=Model.tblBDSNew.ID})" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
+                    }
+
                         }
                         else
                         {
-                            <a style="cursor: pointer"  class="btn_search btnApply1" ><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
+                            <a style="cursor: pointer" class="btn_search btnApply1"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
                         }
-                       
+
                     }
                     else
                     {
-                        <a style="cursor: pointer"  href="@Url.Action("Apply","Management",new{id=0})" class="btn_search btnApply" ><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
+                        <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=0})" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
                     }
                    
                 </div>
@@ -368,6 +370,34 @@
             }
         </div>
     </div>
+
+
+    <div id="test-modal" class="mfp-hide white-popup-block box_info">
+        <div>
+            <h1>Nộp hồ sơ thành công</h1>
+        </div>
+        <div>
+            <p>
+                <i class="fa fa-exclamation-triangle fa-3x" style="color:#37a344;" aria-hidden="true"></i><span class=""> Bạn đã nộp hồ sơ thành công.</span>
+                <span class="cusTextWarning">
+                    -Bạn vừa nộp hồ sơ thành công cho nhà tuyển dụng,theo dõi trong quản lý thông tin để theo dõi.
+                </span>
+               
+
+            </p>
+            <p>
+
+                <a href="/" id="uploadIcon" class="grid_6" style="margin: 0 1% 1% 0!important;">       Đồng ý  </a>
+                <a href="@Url.Action("Index","Default")" id="uploadIcon" class="grid_6" style="margin: 0 1% 1% 0!important;">
+                    Về trang quản lý
+                </a>
+            </p>
+        </div>
+
+        <a class="popup-modal-dismiss" href="#">×</a>
+    </div>
+    <a class="popup-modal" href="#test-modal">Open modal</a>
+
 </div>
 <script>
     $('.btnApply1').click(function() {

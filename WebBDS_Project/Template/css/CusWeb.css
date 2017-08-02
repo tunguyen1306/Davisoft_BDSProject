@@ -51,7 +51,7 @@
 }
 .btnUpload {
     text-align: center;
-    background: #37a344;
+    background: #008475;
     color: #fff;
     font-weight: bold;
     padding: 7px;
@@ -94,7 +94,7 @@
 }
 .btnApply {
     text-align: center;
-    background: #de3039;
+    background: #008475;
     color: #fff;
     font-weight: bold;
        padding: 11px 15px 7px;
@@ -406,6 +406,11 @@ tr:nth-child(even) {
     background: #f2f2f2;
     border-radius: 5px 5px 5px 5px;
     border: 1px solid #dfdfdf;
+    padding-left:20px;
+    padding-top:10px;
+     padding-bottom:5px;
+      padding-right:20px;
+      margin: 10px 0px 10px 0px;
 }
 .white-popup-block {
     background: #FFF;
@@ -427,21 +432,19 @@ tr:nth-child(even) {
 
 }*/
 .popup-modal-dismiss {
-width: 44px;
-height: 44px;
-line-height: 44px;
-position: absolute;
-right: -10px;
-top: -40px;
-text-decoration: none;
-text-align: center;
-padding: 0 0 18px 10px;
-color: #fff;
-font-style: normal;
-font-size: 28px;
-font-family: Arial,Baskerville,monospace;
-
-
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    text-decoration: none;
+    text-align: center;
+    padding: 0 0 18px 10px;
+    color: #282828;
+    font-style: normal;
+    font-size: 31px;
+    font-family: Arial,Baskerville,monospace;
 }
 
 /* Magnific Popup CSS */
@@ -799,5 +802,10 @@ img.mfp-img {
     width:100%;
     float:left;
 }
+.cus-row-no-margin-top{
+    margin-top:0!important;
+}
 
-
+.cus-color-a{
+        color: #008475;
+}
