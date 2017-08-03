@@ -642,6 +642,7 @@
     <Content Include="Views\Management\MoneyToPoint.cshtml" />
     <Content Include="Views\AdvertCompany\SaveJob.cshtml" />
     <Content Include="Views\AdvertCompany\JobApply.cshtml" />
+    <Content Include="Views\AdvertCompany\ChangePassPer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
