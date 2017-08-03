@@ -39,7 +39,7 @@
                     <tbody>
                         @foreach (var item in Model.ListBDSApply.Where(x=>x.IdAccountEm== IdAccount))
                         {
-                            foreach (var itemPer in db.BDSPersonalInformations)
+                            foreach (var itemPer in db.BDSPersonalInformations.Where(x=>x.IdAccount== item.IdAccountPer))
                             {
                                 <tr>
                             <td>@itemPer.CreateDate</td>

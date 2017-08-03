@@ -172,8 +172,10 @@
 	}
 	.search_location {
 		position: static;
-		float: right;
-		margin-right: 5px;
+    float: right;
+    margin-right: 5px;
+        margin-bottom: 5px;
+    margin-top: 10px;
 	}
 	.list_work li div p.time {
 		width:100%;
@@ -207,7 +209,8 @@
 	}
 	.list_work_2 li .grid_9 .image_2 {
 	width:20%;
-	margin-right:10px
+	margin-right:10px;
+     position: relative;
 }
 .list_work_2 .name {
 	width: 76%;

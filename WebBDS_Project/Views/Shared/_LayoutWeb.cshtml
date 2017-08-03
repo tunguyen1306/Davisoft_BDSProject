@@ -38,7 +38,7 @@
     <link href="~/Template/css/customoptions.css" rel="stylesheet" />
     <link href="~/Template/select2/css/select2.css" rel="stylesheet" />
     <link href="~/Template/css/select2.css" rel="stylesheet" />
-
+    <link href="~/Template/css/datatables.min.css" rel="stylesheet" />
     <script src="~/Template/js/jquery-1.12.4.js"></script>
 
     <script src="~/Scripts/CusWeb.js"></script>
@@ -52,7 +52,8 @@
     <script src="~/Template/js/jquery.selectric.js"></script>
     <script src="~/Template/js/jssor.slider-22.2.16.min.js"></script>
     <script src="~/Template/select2/js/select2.js"></script>
-   
+
+    <script src="~/Template/js/datatables.min.js"></script>
 </head>
 <body>
     <div id="warrper">
@@ -392,6 +393,9 @@
             e.preventDefault();
             $.magnificPopup.close();
         });
+    });
+    $(document).ready(function () {
+        $('.dataTable').DataTable();
     });
     </script>
 </body>

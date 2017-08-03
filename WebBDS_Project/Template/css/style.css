@@ -293,6 +293,7 @@ border-bottom: none;
     display: inline-block;
     float: left;
     width: 100%;
+        margin-bottom: 10px;
 }
 .group_work h3 {
 	color: #282828;
@@ -338,7 +339,7 @@ padding-bottom: 8px;
 
 .search_location {
 	position: absolute;
-	right: 5px;
+	right: 0;
 	top: -2px;
 	font-size:13px;
 }
@@ -514,6 +515,7 @@ padding-bottom: 8px;
 .list_work_2 li .grid_9 a {
 	float:left;
 	margin-right: 20px;
+    position: relative
 }
 
 .list_work_2 li .grid_9 a.image {
@@ -568,19 +570,19 @@ font-size: 13px;
 	margin:0
 }
 .list_work_2 .grid_9 .vip span {
-position: absolute;
-font-size: 8px;
-color: #fff;
-left: 9px;
-top: 1px;
+    position: absolute;
+    font-size: 8px;
+    color: #fff;
+    left: 0px;
+    top: -10px;
 }
 .list_work_2 .grid_9 .vip i {
 position: absolute;
-left: 4px;
-top: 13px;
-margin-top: -12px;
-font-size: 24px;
-color: #ea8a00;
+    left: -5px;
+    top: 0px;
+    margin-top: -12px;
+    font-size: 24px;
+    color: #ea8a00;
 }
 .list_work_2 .page {
 	padding: 10px;

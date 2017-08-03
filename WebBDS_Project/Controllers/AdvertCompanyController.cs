@@ -45,6 +45,7 @@ namespace WebBDS_Project.Controllers
             };
             return View(registerModel);
         }
+
         public PartialViewResult BaseProfile(int? id)
         {
             return PartialView();
@@ -65,5 +66,20 @@ namespace WebBDS_Project.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult SaveJob()
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+           
+            return View();
+        }
+        public ActionResult JobApply()
+        {
+            return View();
+        }
+
     }
 }

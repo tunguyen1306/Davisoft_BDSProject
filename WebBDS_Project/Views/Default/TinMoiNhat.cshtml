@@ -24,53 +24,53 @@
     var typeVip = db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.CodeNewsType == "TBT");
 }
 <ul class="list_work_2 green">
-   @{
-     /*  var query = (from a in db.BDSNews
-                    join b in db.BDSNewsTypes on a.IdTypeNewsCuurent equals b.Id
-                    where a.Active == 1 && a.Status == 1 && (tt == 0 || a.AddressWork == tt)
-           orderby b.Order ascending, a.FromCreateNews descending
-                    select a);*/
-       var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.ID && (tt == 0 || A.AddressWork == tt));  
-       var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
-       count = query.Count();
-       foreach (var news in ListNews)
-       {
-             var account = db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
-           if (account != null)
-           {
+    @{
+        /*  var query = (from a in db.BDSNews
+                       join b in db.BDSNewsTypes on a.IdTypeNewsCuurent equals b.Id
+                       where a.Active == 1 && a.Status == 1 && (tt == 0 || a.AddressWork == tt)
+              orderby b.Order ascending, a.FromCreateNews descending
+                       select a);*/
+        var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.ID && (tt == 0 || A.AddressWork == tt));
+        var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
+        count = query.Count();
+        foreach (var news in ListNews)
+        {
+            var account = db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
+            if (account != null)
+            {
                 <li>
                     <div class="grid_12 title-mobile">
-                        
+
                         <div class="name">
-                            <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 50 ? news.Title.Substring(0, 50) : news.Title ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 50 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 50) : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
-                          
+                            <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41) : news.Title + "..." ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 41)+"..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
+
                         </div>
-                    </div>       
-            <div class="grid_9">
-                <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})" class="image_2">
-                    <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] +"/"+ account.UrlImage):"img.png"))" alt="2">
-                    <p class="vip">
-                        <i class="fa fa-star"></i>
-                        <span>VIP</span>
-                    </p>
-                </a>
-                <div class="name">
-                    <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 50 ? news.Title.Substring(0, 50) : news.Title ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 50 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 50) : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
-                    <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
-                    <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
-                </div>
-            </div>
-            <div class="grid_3 omega">
-                <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
-            </div>
-        </li>
-           }
-          
-           
-       }
-   }
-        
-    
+                    </div>
+                    <div class="grid_9">
+                        <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})" class="image_2">
+                            <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] +"/"+ account.UrlImage):"img.png"))" alt="2">
+                            <p class="vip">
+                                <i class="fa fa-star"></i>
+                                <span>VIP</span>
+                            </p>
+                        </a>
+                        <div class="name">
+                            <h2 class="h2-tilte-mobile"><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41) : news.Title + "..." ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 41) + "..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
+                            <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
+                            <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
+                        </div>
+                    </div>
+                    <div class="grid_3 omega">
+                        <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
+                    </div>
+                </li>
+            }
+
+
+        }
+    }
+
+
     <li class="page">
         <div class="page_links">
             <span>Trang</span>
@@ -97,7 +97,7 @@
     }
 </style>
 <script>
-    
+
     function loadMNFilterPageFrom(el) {
         var url = '@Url.Action("TinMoiNhat", "Default", new { from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
         if (url != "") {
