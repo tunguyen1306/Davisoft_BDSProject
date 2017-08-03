@@ -33,10 +33,10 @@
             if (account != null)
             {
                  <li>
-                     <div class="grid_12 titile-mobile">
+                     <div class="grid_12 title-mobile">
                          
-                         <div class="name">
-                             <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 50 ? news.Title.Substring(0, 50) : news.Title ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 50 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 50) : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
+                         <div class="name" style="width: 100%">
+                             <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41) : news.Title+"..." ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 41)+"..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
                             
                          </div>
                      </div>
@@ -49,7 +49,7 @@
                         </p>
                     </a>
                     <div class="name">
-                        <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 50 ? news.Title.Substring(0, 50) : news.Title ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 50 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 50) : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
+                        <h2 class="h2-tilte-mobile"><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41)+"..." : news.Title ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 41)+"..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
                         <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                         <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
                     </div>

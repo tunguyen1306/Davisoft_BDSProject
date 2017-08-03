@@ -109,13 +109,14 @@
                             </div>
                         </li>
 
-                  
+
                 }
-            } if (db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.ID == news.IdTypeNewsCuurent).CodeNewsType == "TFE")
+            }
+            if (db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.ID == news.IdTypeNewsCuurent).CodeNewsType == "TFE")
             {
                 if (account != null)
                 {
-                   
+
                         <li>
                             <a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })">@news.Title</a>
                         </li>

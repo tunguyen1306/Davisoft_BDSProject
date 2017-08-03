@@ -423,6 +423,8 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\css\bfFur.css" />
+    <Content Include="Template\css\datatables.min.css" />
+    <Content Include="Template\js\datatables.min.js" />
     <Content Include="Template\css\pushy.css" />
     <Content Include="Template\images\bg_footer.jpg" />
     <Content Include="Template\images\logo_footer.png" />
@@ -502,6 +504,7 @@
     <Content Include="Template\js\jquery-1.12.4.js" />
     <Content Include="Template\js\jquery-ui.js" />
     <Content Include="Template\js\jquery.easydropdown.min.js" />
+    <Content Include="Template\js\jquery.magnific-popup.min.js" />
     <Content Include="Template\js\jquery.selectric.js" />
     <Content Include="Template\js\jssor.slider-22.2.16.min.js" />
     <Content Include="Template\js\pushy.js" />
@@ -637,6 +640,8 @@
     <Content Include="Views\Adverts\EditNews.cshtml" />
     <Content Include="Views\Default\_searchContentPer.cshtml" />
     <Content Include="Views\Management\MoneyToPoint.cshtml" />
+    <Content Include="Views\AdvertCompany\SaveJob.cshtml" />
+    <Content Include="Views\AdvertCompany\JobApply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

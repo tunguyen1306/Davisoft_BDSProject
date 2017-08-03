@@ -41,5 +41,9 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> DateReup { get; set; }
         public Nullable<int> CountReup { get; set; }
         public Nullable<int> MaxReup { get; set; }
+        public Nullable<int> UrlImageCheck { get; set; }
+        public string PermanentAddress { get; set; }
+        public string TemporaryAddress { get; set; }
+        public Nullable<int> Province { get; set; }
     }
 }

@@ -171,7 +171,8 @@ namespace WebBDS_Project.Controllers
                     ModifiedDate = DateTime.Now,
                     CreateUser = 1,
                     ModifiedUser = 1,
-                    IdNews = id
+                    IdNews = id,
+                    TypeProfile=1,
                 };
                 db.BDSApplies.Add(tblApply);
                 db.SaveChanges();

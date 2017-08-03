@@ -45,6 +45,19 @@ namespace WebBDS_Project.Controllers
             };
             return View(registerModel);
         }
+        public ActionResult SaveJob()
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+           
+            return View();
+        }
+        public ActionResult JobApply()
+        {
+            return View();
+        }
 
     }
 }
