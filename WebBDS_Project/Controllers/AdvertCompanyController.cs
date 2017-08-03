@@ -45,6 +45,25 @@ namespace WebBDS_Project.Controllers
             };
             return View(registerModel);
         }
-
+        public PartialViewResult BaseProfile(int? id)
+        {
+            return PartialView();
+        }
+        public PartialViewResult Degrees(int? id)
+        {
+            return PartialView();
+        }
+        public PartialViewResult Experiences(int? id)
+        {
+            return PartialView();
+        }
+        public PartialViewResult LangDegrees(int? id)
+        {
+            return PartialView();
+        }
+        public PartialViewResult References(int? id)
+        {
+            return PartialView();
+        }
     }
 }
