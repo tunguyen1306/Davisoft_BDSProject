@@ -24,8 +24,8 @@
 <ul class="list_work">
     @if (typeVip != null)
     {
-        var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.ID && (tt==0 || A.AddressWork==tt));      
-        var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
+        var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.ID && (tt == 0 || A.AddressWork == tt));
+        var ListNews = query.OrderByDescending(T => T.DateReup).Skip(from).Take(view).ToList();
         count = query.Count();
         foreach (var news in ListNews)
         {

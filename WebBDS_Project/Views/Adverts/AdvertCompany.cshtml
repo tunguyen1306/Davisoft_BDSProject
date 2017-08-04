@@ -301,7 +301,7 @@
 
                         <label>Hạn nộp hồ sơ</label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.tblBDSNew.ToDeadline, new { @class = "input1", @placeholder = "MM/dd/yyyy" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.ToDeadline,"{0:dd/MM/yyyy}", new { @class = "input1", @placeholder = "dd/MM/yyyy" })
                         </div>
                     </div>
                     <div class="row">
@@ -505,7 +505,7 @@
                                 <div id="@typeNews.CodeNewsType">
                                     <ul class="last_list">
                                         <li style="border-top: 1px solid #dfdfdf;">
-                                            <a href="#">Xử nhóm đàn em Năm Cam truy sát người tại bệnh viện</a>
+                                            <a href="#">Tuyển dụng nhân viên kinh doanh</a>
                                         </li>
 
 
@@ -610,7 +610,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" id="actionBtn">
                         <label></label>
                         <a class="btnApply btnCheck" onclick="$('#submitbutton').click();" style="padding: 10px 50px; cursor: pointer;">Đăng tin</a>
                         <button type="submit" style="width: 100px" id="submitbutton"  class="btnSubmit hidden">Đăng ký</button>    
@@ -650,8 +650,8 @@
           </p>
           <p>
 
-              <a href="@Url.Action("AdvertCompany","Adverts")" id="uploadIcon" class="grid_6" style="margin: 0 1% 1% 0!important;">        Đăng tin thêm  </a>
-              <a href="@Url.Action("Index","Default")" id="uploadIcon" class="grid_6" style="margin: 0 1% 1% 0!important;">
+              <a href="@Url.Action("AdvertCompany","Adverts")" class="grid_6" style="margin: 0 1% 1% 0!important;">        Đăng tin thêm  </a>
+              <a href="@Url.Action("Index","Default")" class="grid_6" style="margin: 0 1% 1% 0!important;">
                   Về trang chủ
               </a>
           </p>
@@ -659,7 +659,7 @@
       
         <a class="popup-modal-dismiss" href="#">×</a>
     </div>
-    <a class="popup-modal" href="#test-modal">Open modal</a>
+    <a class="popup-modal" style="display: none" href="#test-modal">Open modal</a>
 
                                         }
 <style>
@@ -748,6 +748,33 @@
 
     }
 
+    $(document).on('submit', 'form', function () {
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+
+                if (data.Status) {
+                    toastr.success(data.Msg);
+                    $('#actionBtn').hide();
+                    $('a.popup-modal').click();
+                } else {
+                    toastr.error(data.Msg);
+                }
+                console.log(data);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+        return false;
+
+    });
     var from;
     var to;
 	$( function() {
@@ -884,15 +911,7 @@
         if ($('#tblBDSNew_FromCreateNews').val() == "") {
             toastr.error('Vui lòng nhập Ngày bất đầu đăng tin!');
             t++;
-        }
-       // if ($('.dz-preview').size() == 0) {
-
-       //     toastr.error('Vui lòng chọn ít nhất một hình!');
-       //     t++;
-      //  }
-
-
-
+        } 
          if ($('#tblBDSNew_Benefit').val() == "") {
             toastr.error('Vui lòng nhập Quyền lợi được hưởng!');
             t++;
@@ -947,11 +966,25 @@
             var id = document.forms[0]['tblBDSNew.IdTypeNews'].value;
             var rDate = $('#tblBDSNew_FromCreateNews').val() + "-" + $('#tblBDSNew_ToCreateNews').val();
             if (id != null && id != "" && id != null && id != "" && $('#tblBDSNew_ToCreateNews').val() != "" && $('#tblBDSNew_FromCreateNews').val()!="") {
-                $.getJSON("@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + encodeURIComponent(rDate), function (data) {
 
-                    checkMoney = data.CheckMoney;
+                var jsonData = (function () {
+                    var result;
+                    $.ajax({
+                        type: 'GET',
+                        url: "@Url.Action("CalcuMoney")?idType=" + id + "&rDate=" + encodeURIComponent(rDate),
+                        dataType: 'json',
+                        async: false,
+                        success: function (data) {
+                            result = data;
+                        }
+                    });
+                    return result;
+                })();
+                checkMoney = jsonData.CheckMoney;
+                if (!checkMoney) {
                     toastr.error('Số tiền trong tài khoản không đủ!');
-                });
+                }
+              
             }
             return checkMoney == true || checkMoney=="true"?true:false;
         }

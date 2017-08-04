@@ -25,7 +25,7 @@
        /* var query = from a in db.BDSNews join b in db.BDSEmployerInformations on a.IdAcount equals b.IdAccount where a.Active == 1 && b.Active == 1 && a.Status == 1 && b.Featured == 1 && (tt == 0 || a.AddressWork == tt) select a;*/
         var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.ID && (tt == 0 || A.AddressWork == tt));
      
-        var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
+        var ListNews = query.OrderByDescending(T => T.DateReup).Skip(from).Take(view).ToList();
         count = query.Count();
         foreach (var news in ListNews)
         {

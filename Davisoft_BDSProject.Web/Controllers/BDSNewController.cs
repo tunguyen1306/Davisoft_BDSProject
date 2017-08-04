@@ -323,6 +323,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
                 model.DateReup = model.FromCreateNews >= DateTime.Now ? model.FromCreateNews : DateTime.Now;
                 model.MaxReup = 3;
+                model.CountReup = 0;
                 if( model.RefTranHis.HasValue)
                 {
                    var tranHis= _serviceTransactionHistory.GetItem(model.RefTranHis.Value);

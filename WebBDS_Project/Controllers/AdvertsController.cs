@@ -25,7 +25,7 @@ namespace WebBDS_Project.Controllers
             {
                 return RedirectToAction("LoginForm", "Login");
             }
-
+            int idAccount = (int)Session["IdUser"];
 
             var dataCity = (from data in db.States
                             join datatext in db.StateTexts on data.name_id equals datatext.id
@@ -35,30 +35,41 @@ namespace WebBDS_Project.Controllers
             dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố"});
             dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
             dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
-            var ListSalary=  db.BDSSalaries.ToList();
-         
+
+            var TblBDSEmployerInformation = db.BDSEmployerInformations.First(T => T.IdAccount == idAccount);
             CaptCha cap = new CaptCha();
-            BDSNew BDSNew = new BDSNew { CreateUser = 1, Active = 0, CreateDate = DateTime.Now, DateReup = null, IdLanguage = 1, FromCreateNews = DateTime.Now, ToCreateNews = DateTime.Now.AddDays(3), FromDeadline = DateTime.Now, ToDeadline = null };
+            BDSNew BDSNew = new BDSNew { 
+                CreateUser = 1, 
+                Active = 1,
+                CreateDate = DateTime.Now,
+                DateReup = null,
+                IdLanguage = 1,
+                FromCreateNews = DateTime.Now, 
+                ToCreateNews =DateTime.Now.AddDays(3), 
+                FromDeadline = DateTime.Now,
+                ToDeadline = DateTime.Now.AddDays(30),
+                NameCompany = TblBDSEmployerInformation.Name,
+                AddressApply = TblBDSEmployerInformation.AddressContact,
+                NamesContact = TblBDSEmployerInformation.NameContact,
+                Email = TblBDSEmployerInformation.EmailContact,
+                WebSiteCompany = TblBDSEmployerInformation.WebSite
+                
+                
+            };
             var registerModel = new RegisterInformationModel
             {
-                ListBDSScopes = db.BDSScopes.ToList(),
-                ListMarriea = db.BDSMarriages.ToList(),
-                ListSalary = ListSalary,
-                ListDucation = db.BDSEducations.ToList(),
-                ListBDSCareer = db.BDSCareers.ToList(),
-                ListTimework = db.BDSTimeWorks.ToList(),
-                ListBDSLanguage = db.BDSLanguages.ToList(),
-                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+                ListBDSScopes = db.BDSScopes.Where(T=>T.Active==1).ToList(),
+                ListMarriea = db.BDSMarriages.Where(T => T.Active == 1).ToList(),
+                ListSalary = db.BDSSalaries.Where(T => T.Active == 1).ToList(),
+                ListDucation = db.BDSEducations.Where(T => T.Active == 1).ToList(),
+                ListBDSCareer = db.BDSCareers.Where(T => T.Active == 1).ToList(),
+                ListTimework = db.BDSTimeWorks.Where(T => T.Active == 1).ToList(),
+                ListBDSLanguage = db.BDSLanguages.Where(T => T.Active == 1).ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity.ToList(),
                 tblCaptCha = cap,
                 tblBDSNew= BDSNew,
-                ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
-                ListBdsAdcount = db.BDSAccounts.ToList(),
-                ListBDSEmper = db.BDSEmpers.ToList(),
-                
-
-
-
+                TblBDSEmployerInformation =TblBDSEmployerInformation
             };
             return View(registerModel);
         }
@@ -78,10 +89,11 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public ActionResult AdvertCompany(RegisterInformationModel create, HttpPostedFileBase[] files)
         {
+            create.Status = false;
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != create.tblCaptCha.Captcha)
             {
                 ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
-                ViewBag.Message = "Capcha không chính xác!";
+                create.Msg = "Capcha không chính xác!";
                 var dataCity = (from data in db.States
                                 join datatext in db.StateTexts on data.name_id equals datatext.id
                                 where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
@@ -91,26 +103,23 @@ namespace WebBDS_Project.Controllers
                 dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
                 dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
                 CaptCha cap = new CaptCha();
-                BDSNew BDSNew = new BDSNew();
                 var registerModel = new RegisterInformationModel
                 {
-                    ListBDSScopes = db.BDSScopes.ToList(),
-                    ListMarriea = db.BDSMarriages.ToList(),
-                    ListSalary = db.BDSSalaries.ToList(),
-                    ListDucation = db.BDSEducations.ToList(),
-                    ListBDSCareer = db.BDSCareers.ToList(),
-                    ListTimework = db.BDSTimeWorks.ToList(),
-                    ListBDSLanguage = db.BDSLanguages.ToList(),
-                    ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+                    ListBDSScopes = db.BDSScopes.Where(T => T.Active == 1).ToList(),
+                    ListMarriea = db.BDSMarriages.Where(T => T.Active == 1).ToList(),
+                    ListSalary = db.BDSSalaries.Where(T => T.Active == 1).ToList(),
+                    ListDucation = db.BDSEducations.Where(T => T.Active == 1).ToList(),
+                    ListBDSCareer = db.BDSCareers.Where(T => T.Active == 1).ToList(),
+                    ListTimework = db.BDSTimeWorks.Where(T => T.Active == 1).ToList(),
+                    ListBDSLanguage = db.BDSLanguages.Where(T => T.Active == 1).ToList(),
+                    ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
                     ListGeoModel = dataCity.ToList(),
                     tblCaptCha = cap,
-                    tblBDSNew = BDSNew,
-                    ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
-                    ListBdsAdcount = db.BDSAccounts.ToList(),
-                    ListBDSEmper = db.BDSEmpers.ToList()
+                
+                   
 
                 };        
-                return View(registerModel);
+                return Json(registerModel);
             }
             else
             {
@@ -130,7 +139,7 @@ namespace WebBDS_Project.Controllers
 
                 if (!checkMoney)
                 {
-                    ViewBag.Message = "Số tiền trong tài khoản không đủ!";
+                    create.Msg = "Số tiền trong tài khoản không đủ!";
                     ModelState.AddModelError("TotalMoney", "Số tiền trong tài khoản không đủ!");
                     var dataCity = (from data in db.States
                                     join datatext in db.StateTexts on data.name_id equals datatext.id
@@ -141,26 +150,25 @@ namespace WebBDS_Project.Controllers
                     dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
                     dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
                     CaptCha cap = new CaptCha();
-                    BDSNew BDSNew = new BDSNew();
+                 
                     var registerModel = new RegisterInformationModel
                     {
-                        ListBDSScopes = db.BDSScopes.ToList(),
-                        ListMarriea = db.BDSMarriages.ToList(),
-                        ListSalary = db.BDSSalaries.ToList(),
-                        ListDucation = db.BDSEducations.ToList(),
-                        ListBDSCareer = db.BDSCareers.ToList(),
-                        ListTimework = db.BDSTimeWorks.ToList(),
-                        ListBDSLanguage = db.BDSLanguages.ToList(),
-                        ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+                        ListBDSScopes = db.BDSScopes.Where(T => T.Active == 1).ToList(),
+                        ListMarriea = db.BDSMarriages.Where(T => T.Active == 1).ToList(),
+                        ListSalary = db.BDSSalaries.Where(T => T.Active == 1).ToList(),
+                        ListDucation = db.BDSEducations.Where(T => T.Active == 1).ToList(),
+                        ListBDSCareer = db.BDSCareers.Where(T => T.Active == 1).ToList(),
+                        ListTimework = db.BDSTimeWorks.Where(T => T.Active == 1).ToList(),
+                        ListBDSLanguage = db.BDSLanguages.Where(T => T.Active == 1).ToList(),
+                        ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
                         ListGeoModel = dataCity.ToList(),
                         tblCaptCha = cap,
-                        tblBDSNew = BDSNew,
-                        ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
-                        ListBdsAdcount = db.BDSAccounts.ToList(),
-                        ListBDSEmper = db.BDSEmpers.ToList()
+                     
+                      
+                       
 
-                    };        
-                return View(registerModel);
+                    };
+                    return Json(registerModel);
                 }
                 create.tblBDSNew.IdAcount=int.Parse( Session["IdUser"].ToString());
                 create.tblBDSNew.FromDeadline = DateTime.Now;          
@@ -205,7 +213,7 @@ namespace WebBDS_Project.Controllers
                 }
                 db.SaveChanges();
 
-                var type = db.BDSNewsTypes.FirstOrDefault(T=>T.ID==create.tblBDSNew.IdTypeNewsCuurent.Value);
+                var type = db.BDSNewsTypes.First(T => T.ID == create.tblBDSNew.IdTypeNewsCuurent.Value);
                 String Fname = "Đăng tin '{A}' trong vòng '{B}' ngày tổng giá phải trả '{C}' VNĐ";
                 string name = Fname.Replace("{A}", type.Name).Replace("{B}", ((int)Math.Ceiling(create.tblBDSNew.ToCreateNews.Value.Subtract(create.tblBDSNew.FromCreateNews.Value).TotalDays)) + "").Replace("{C}", create.tblBDSNew.TotalMoney.Value.ToString("n2"));
                 BDSTransactionHistory tran = new BDSTransactionHistory()
@@ -222,33 +230,22 @@ namespace WebBDS_Project.Controllers
                     DateTran = DateTime.Now,
 
                 };
-
+                create.tblBDSNew = db.BDSNews.First(T => T.ID == create.tblBDSNew.ID);
                 db.BDSTransactionHistories.Add(tran);
                 db.SaveChanges();
                 create.tblBDSNew.RefTranHis = tran.ID;
-                db.BDSNews.Add(create.tblBDSNew);
+                db.Entry(create.tblBDSNew).State=EntityState.Modified;
                 db.SaveChanges();
-                var account = db.BDSAccounts.FirstOrDefault(T => T.ID == create.tblBDSNew.IdAcount);
+                var account = db.BDSAccounts.First(T => T.ID == create.tblBDSNew.IdAcount);
                 account.Money -= create.tblBDSNew.TotalMoney;
                 db.Entry(account).State = EntityState.Modified;              
                 db.SaveChanges();
 
-                var tblpict = db.BDSPictures.Where(x => x.advert_id == 99999999);
-                foreach (var item in tblpict)
-                {
-
-                    BDSPicture tblpic = db.BDSPictures.Find(item.ID);
-                    tblpic.advert_id = create.tblBDSNew.ID;
-                    db.Entry(tblpic).State = EntityState.Modified;
-                   
-                }
-                db.SaveChanges();
-             
-
-
-
-
-                return RedirectToAction("ThanksApply", "Management");
+               
+               
+                create.Msg = "Đăng tin thành công!";
+                create.Status = true;
+                return Json(create);
             }
             return null;
         }
@@ -579,16 +576,7 @@ namespace WebBDS_Project.Controllers
 
             return Json(new { idData = data });
         }
-        [HttpPost]
-        public ActionResult DeleteImg(int idpicture)
-        {
-            BDSPicture tblPic = db.BDSPictures.Find(idpicture);
-            NewsPicture proPic = new NewsPicture();
-            db.BDSPictures.Remove(tblPic);
-            db.SaveChanges();
-            DeleteIMG(proPic.tblPicture.originalFilepath);
-            return View(tblPic);
-        }
+       
         public void DeleteIMG(string picture)
         {
             NewsPicture vgp = new NewsPicture();
@@ -673,6 +661,8 @@ namespace WebBDS_Project.Controllers
                 {
                     news.CountReup += 1;
                     news.DateReup = news.FromCreateNews >= DateTime.Now ? news.FromCreateNews : DateTime.Now;
+                    db.Entry(news).State = EntityState.Modified;
+                    db.SaveChanges();
                     return Json(new { Status = 1 });
                 }
               

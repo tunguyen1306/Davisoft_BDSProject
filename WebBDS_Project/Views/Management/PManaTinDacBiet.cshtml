@@ -61,7 +61,7 @@
                     <div>
                         <p class="grid_11 omega size-text-15">
                         <a class="btn btnManage" href="@Url.Action("EditNews","Adverts",new { id=news.ID})"><b class="fa fa-edit" aria-hidden="true"></b>Sửa</a>   
-                        @if(news.MaxReup-news.CountReup>0)
+                        @if (news.MaxReup - news.CountReup > 0 && news.ToCreateNews >= DateTime.Now)
                         {
                              <a class="btn btnManage" href="#reup" onclick="reup(this,@news.ID)"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin (@(news.MaxReup-news.CountReup)) </a>
                         }
@@ -128,16 +128,17 @@
     }
 </style>
 <script>
-    function reup(el,id)
-    {
-
-        var url = '@Url.Action("PManaTinDacBiet", "Management", new { from = 0, page = 0, view = view })';
+    function reup(el,id) {
+    
+        var url = '@Url.Action("PManaTinDacBiet", "Management", new { from = from, page = page, view = view, tt = tt })';
         if (url != "") {
             $(el).parents('.group_work').find('.loading').show();
             $(el).parents('.group_work').find('.loading_icon').show();
             var urlPost = '@Url.Action("Reup", "Adverts")';
             $.post(urlPost, { id: id }).done(function (dataPost) {
+              
                 $.get(url, function (data) {
+                   
                     var elP = $(el).parents('.group_work').eq(0).find('ul.list_work').eq(0);
                     elP.html($(data).html());
                     elP.parents('.group_work').find('.loading').eq(0).hide();

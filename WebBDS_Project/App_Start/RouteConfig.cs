@@ -29,8 +29,8 @@ namespace WebBDS_Project
 
             //Management
             routes.MapRoute(
-             name: "quan-li-tin-dang",
-             url: "tai-khoan/quan-li-tin-dang",
+             name: "quan-ly-tin-dang",
+             url: "tai-khoan/quan-ly-tin-dang",
              defaults: new { controller = "Management", action = "ListNewOfUser" }
          );
             

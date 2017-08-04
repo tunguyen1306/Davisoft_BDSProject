@@ -765,7 +765,7 @@ namespace WebBDS_Project.Controllers
             
             return View();
         }
-        public PartialViewResult PManaTinDacBiet(string tt, int from = 0, int view = 12, int page = 1)
+        public PartialViewResult PManaTinDacBiet(string tt="", int from = 0, int view = 12, int page = 1)
         {
             ViewBag.from = from;
             ViewBag.view = view;
@@ -774,7 +774,7 @@ namespace WebBDS_Project.Controllers
 
             return PartialView();
         }
-        public PartialViewResult PManaTinNoiBat(string tt, int from = 0, int view = 6, int page = 1)
+        public PartialViewResult PManaTinNoiBat(string tt = "", int from = 0, int view = 6, int page = 1)
         {
             ViewBag.from = from;
             ViewBag.view = view;
@@ -784,7 +784,7 @@ namespace WebBDS_Project.Controllers
             return PartialView();
         }
 
-        public PartialViewResult PManaTinMoiNhat(string tt, int from = 0, int view = 5, int page = 1)
+        public PartialViewResult PManaTinMoiNhat(string tt = "", int from = 0, int view = 5, int page = 1)
         {
             ViewBag.from = from;
             ViewBag.view = view;
@@ -793,7 +793,7 @@ namespace WebBDS_Project.Controllers
 
             return PartialView();
         }
-        public PartialViewResult PManaTinNhaTuyenDung(string tt, int from = 0, int view = 5, int page = 1)
+        public PartialViewResult PManaTinNhaTuyenDung(string tt = "", int from = 0, int view = 5, int page = 1)
         {
             ViewBag.from = from;
             ViewBag.view = view;

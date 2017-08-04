@@ -44,10 +44,10 @@
                     <div>
                         <p class="grid_11 omega size-text-15">
                         <a class="btn btnManage" href="@Url.Action("EditNews","Adverts",new { id=news.ID})"><b class="fa fa-edit" aria-hidden="true"></b>Sửa</a>   
-                            @if (news.MaxReup - news.CountReup > 0)
-                            {
-                                <a class="btn btnManage" href="#reup" onclick="reup(this,@news.ID)"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin (@(news.MaxReup - news.CountReup)) </a>
-                            }
+                            @if (news.MaxReup - news.CountReup > 0 && news.ToCreateNews >= DateTime.Now)
+{
+    <a class="btn btnManage" href="#reup" onclick="reupNTD(this,@news.ID)"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin (@(news.MaxReup - news.CountReup)) </a>
+}
                         <button type="button" class="btn btnManage" data-toggle="modal" data-target="#myModal_@news.ID"><b class="fa fa-remove" aria-hidden="true"></b>Xóa tin</button></p>
 
                     </div>
@@ -105,9 +105,9 @@
     }
 </style>
 <script>
-    function reup(el, id) {
+    function reupNTD(el, id) {
 
-        var url = '@Url.Action("PManaTinNhaTuyenDung", "Management", new { from = 0, page = 0, view = view })';
+        var url = '@Url.Action("PManaTinNhaTuyenDung", "Management", new { from = from, page = page, view = view, tt = tt })';
         if (url != "") {
             $(el).parents('.group_work').find('.loading').show();
             $(el).parents('.group_work').find('.loading_icon').show();
