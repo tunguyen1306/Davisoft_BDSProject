@@ -1,19 +1,213 @@
 ﻿@using System.Configuration
 @using System.Web.UI.WebControls
 @using WebBDS_Project.Models
-@{
+@model WebBDS_Project.Models.RegisterInformationModel
+@for (int i = 0; i < Model.ListPerNewLangDegrees.Count; i++)
+{
+    <div id="LangDegree_@(i)_" style="@(Model.ListPerNewLangDegrees[i].Active == 0 ? "display:none;" : "")">
+        <hr class="space space_@(i)_" />
+        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].ID, new { @class = "LangDegreeID" })
+        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].ID_BDSPerNews, new { @class = "RefID" })
+        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].Active)
+        <div class="row">
+            <label>Ngoại ngữ:<span class="required">*</span></label>
+            <div class="row-right">
 
-    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
-    int from = ViewBag.from;
-    int page = ViewBag.page;
-    int view = ViewBag.view;
-    int tt = ViewBag.tt == "" ? 0 : int.Parse(ViewBag.tt);
-    int count = 0;
-    var States = (from a in db.States
-                  join b in db.StateTexts on a.state_id equals b.id
-                  where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
-                  select new { Id = a.state_id, Name = b.text }).ToList();
+                @Html.DropDownListFor(m => m.ListPerNewLangDegrees[i].Language, new SelectList(Model.ListBDSLanguage.Where(T => T.Name != "Tiếng Việt"), "Id", "Name"), new { @class = "dropdown validate" })
 
-    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
-    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+
+            </div>
+            <label class="child">Bằng ngoại ngữ:<span class="required">*</span></label>
+            <div class="row-right">
+
+                @Html.TextBoxFor(m => m.ListPerNewLangDegrees[i].Name, new { @class = "input1 validate", @placeholder = "Nhập tên bằng" })
+
+
+            </div>
+        </div>
+
+
+        <div class="row cus-row-no-margin-top">
+            <label>Kỹ năng:</label>
+            <div class="cusRowWithRadio">
+
+                <ul class="radio">
+                    <li>
+                        <label>
+                            Yếu
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            Trung bình
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            Khá
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            Tốt
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            Giỏi
+                        </label>
+                    </li>
+                </ul>
+
+
+            </div>
+
+
+        </div>
+        <div class="row cus-row-no-margin-top">
+            <label>Nghe:</label>
+
+            <div class="cusRowWithRadio">
+
+                <ul class="radio">
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Listening" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Listening == 1 ? " checked='checked' " : "") value="1">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Listening" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Listening == 2 ? " checked='checked' " : "") value="2">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Listening" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Listening == 3 ? " checked='checked' " : "") value="3">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Listening" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Listening == 4 ? " checked='checked' " : "") value="4">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Listening" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Listening == 5 ? " checked='checked' " : "") value="5">
+                        </label>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </div>
+        <div class="row cus-row-no-margin-top">
+            <label>Nói:</label>
+            <div class="cusRowWithRadio">
+
+                <ul class="radio">
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Speaking" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Speaking == 1 ? " checked='checked' " : "") value="1">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Speaking" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Speaking == 2 ? " checked='checked' " : "") value="2">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Speaking" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Speaking == 3 ? " checked='checked' " : "") value="3">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Speaking" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Speaking == 4 ? " checked='checked' " : "") value="4">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Speaking" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Speaking == 5 ? " checked='checked' " : "") value="5">
+                        </label>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </div>
+        <div class="row cus-row-no-margin-top">
+            <label>Đọc:</label>
+            <div class="cusRowWithRadio">
+
+                <ul class="radio">
+                    <li>
+                        <label>
+                            <input type="radio" name="ListPerNewLangDegrees[@i].Reading" class="checkCarrie" @(Model.ListPerNewLangDegrees[i].Reading == 1 ? " checked='checked' " : "") value="1">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Reading" @(Model.ListPerNewLangDegrees[i].Reading == 2 ? " checked='checked' " : "") value="2">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Reading" @(Model.ListPerNewLangDegrees[i].Reading == 3 ? " checked='checked' " : "") value="3">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Reading" @(Model.ListPerNewLangDegrees[i].Reading == 4 ? " checked='checked' " : "") value="4">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Reading" @(Model.ListPerNewLangDegrees[i].Reading == 5 ? " checked='checked' " : "") value="5">
+                        </label>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </div>
+        <div class="row cus-row-no-margin-top">
+            <label>Viết:</label>
+            <div class="cusRowWithRadio">
+
+                <ul class="radio">
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Writing" @(Model.ListPerNewLangDegrees[i].Writing == 1 ? " checked='checked' " : "") value="1">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Writing" @(Model.ListPerNewLangDegrees[i].Writing == 2 ? " checked='checked' " : "") value="2">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Writing" @(Model.ListPerNewLangDegrees[i].Writing == 3 ? " checked='checked' " : "") value="3">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Writing" @(Model.ListPerNewLangDegrees[i].Writing == 4 ? " checked='checked' " : "") value="4">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" class="checkCarrie" name="ListPerNewLangDegrees[@i].Writing" @(Model.ListPerNewLangDegrees[i].Writing == 5 ? " checked='checked' " : "") value="5">
+                        </label>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </div>
 }

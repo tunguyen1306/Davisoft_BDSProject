@@ -1,19 +1,123 @@
 ﻿@using System.Configuration
 @using System.Web.UI.WebControls
 @using WebBDS_Project.Models
+@model WebBDS_Project.Models.RegisterInformationModel
 @{
 
-    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
-    int from = ViewBag.from;
-    int page = ViewBag.page;
-    int view = ViewBag.view;
-    int tt = ViewBag.tt == "" ? 0 : int.Parse(ViewBag.tt);
-    int count = 0;
-    var States = (from a in db.States
-                  join b in db.StateTexts on a.state_id equals b.id
-                  where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
-                  select new { Id = a.state_id, Name = b.text }).ToList();
 
-    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
-    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
 }
+
+
+<div class="row">
+    @Html.HiddenFor(m=>m.TblBDSPersonalInformation.ID)
+    <label>Email đăng nhập:</label>
+    <div class="row-right">
+        @Html.TextBoxFor(m => m.TblBdsAdcount.Email, new {@class = "input1", @readonly = "readonly"})
+
+    </div>
+    <label class="child">Giới tính <span class="required">*</span></label>
+    <div class="row-right">
+        @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Sex, new List<SelectListItem>
+        {
+            new SelectListItem {Text = "Không yêu cầu", Value = "0", Selected = true},
+            new SelectListItem {Text = "Nam", Value = "1", Selected = false},
+            new SelectListItem {Text = "Nữ", Value = "2", Selected = false},
+
+
+        }, new {@class = "dropdown validate"})
+
+    </div>
+</div>
+    <div class="row">
+        <label>Họ và tên:<span class="required">*</span></label>
+        <div class="row-right">
+
+            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1 validate" })
+
+
+        </div>
+        <label class="child">Số điện thoại:<span class="required">*</span></label>
+        <div class="row-right">
+
+            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Phone, new { @class = "input1 validate" })
+
+
+        </div>
+    </div>
+    <div class="row">
+        <label>Quê quán:<span class="required">*</span></label>
+        <div class="row-right">
+            @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Province, new SelectList(Model.ListGeoModel, "CityId", "CityName", "Chọn tỉnh thành"), new { @class = "select2 validate" })
+
+
+
+        </div>
+        <label style="width: 116px" class="child">Ngày sinh:<span class="required">*</span></label>
+        <div class="row-right">
+
+            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Birthday, "{0:dd/MM/yyyy}", new { @class = "input1 validate" })
+
+
+        </div>
+    </div>
+    <div class="row">
+        <label>ĐC thường trú:<span class="required">*</span></label>
+        <div class="row-right">
+
+            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.PermanentAddress, new { @class = "input3 validate" })
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <label>ĐC tạm trú:<span class="required">*</span></label>
+        <div class="row-right">
+
+            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.TemporaryAddress, new { @class = "input3 validate" })
+
+
+        </div>
+    </div>
+    <div class="row">
+
+        <label>Hình cá nhân:</label>
+        <div class="uploadBox">
+            <div style="float:left;margin-right:10px;" class="viewFile">
+                <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+            </div>
+            <input type="hidden" value="" name="TblBDSPersonalInformation.UrlImage" id="UrlImage" />
+            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                + UpLoad Image
+            </a>
+            <input type="file" style="visibility: hidden;" value="upload" class="uploadFile" name="TblBDSPersonalInformation.File" />
+          
+            <div style="margin:10px;">
+                (Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)
+            </div>
+            @Html.HiddenFor(m => m.TblBDSPersonalInformation.UrlImage)
+
+        </div>
+
+
+    </div>
+    <div class="row ">
+        <label style="opacity: 0">aa</label>
+        <div class="row-right radio">
+
+            <input type="checkbox" name="TblBDSPersonalInformation.UrlImageCheck" @(Model.TblBDSPersonalInformation.UrlImageCheck !=null && Model.TblBDSPersonalInformation.UrlImageCheck.HasValue && Model.TblBDSPersonalInformation.UrlImageCheck == 1 ? "checked='checked'" : "")  class="checkCarrie" value="1" style="margin-right:10px;"><span style="font-weight:bold;">Cho phép hiển thị hình trong mục tin đăng và tìm kiếm hồ sơ hoặc tích vào ô để bỏ chọn</span>
+        </div>
+    </div>
+    <div class="row">
+        <label style="opacity: 0">aa</label>
+        <div class="row-right">
+
+            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload" onclick="submitType(this, 1)">
+                Cập nhật
+            </a>
+            
+            
+
+        </div>
+    </div>
+

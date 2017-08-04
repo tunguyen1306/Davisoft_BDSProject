@@ -1,19 +1,136 @@
 ﻿@using System.Configuration
 @using System.Web.UI.WebControls
 @using WebBDS_Project.Models
-@{
+@model WebBDS_Project.Models.RegisterInformationModel
 
-    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
-    int from = ViewBag.from;
-    int page = ViewBag.page;
-    int view = ViewBag.view;
-    int tt = ViewBag.tt == "" ? 0 : int.Parse(ViewBag.tt);
-    int count = 0;
-    var States = (from a in db.States
-                  join b in db.StateTexts on a.state_id equals b.id
-                  where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
-                  select new { Id = a.state_id, Name = b.text }).ToList();
+@for (int i = 0; i < Model.ListPerNewDegrees.Count; i++)
+{
+    var itrmsss = Model.ListPerNewDegrees[i];
+    <div id="degree_@(i + "")_" style="@(Model.ListPerNewDegrees[i].Active==0?"display:none;":"")">
+        <hr class="space space_@(i)_"/>
+        @Html.HiddenFor(m => m.ListPerNewDegrees[i].ID, new {@class = "DegreeID"})
+        @Html.HiddenFor(m => m.ListPerNewDegrees[i].ID_BDSPerNews, new { @class = "RefID" })
+        @Html.HiddenFor(m => m.ListPerNewDegrees[i].Active)
+        <div class="row">
+            <label>Trình độ:<span class="required">*</span></label>
+            <div class="row-right">
 
-    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
-    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+                @Html.DropDownListFor(m => m.ListPerNewDegrees[i].Level, new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "Chọn trình độ", Value = "",Selected = true},
+                    new SelectListItem {Text = "Level 2", Value = "2"},
+                    new SelectListItem {Text = "Level 3", Value = "3"},
+                    new SelectListItem {Text = "Level 4", Value = "4"},
+                    new SelectListItem {Text = "Level 5", Value = "5"},
+                    new SelectListItem {Text = "Level 6", Value = "6"},
+
+
+                }, new {@class = "dropdown validate"})
+                <script>
+                    document.getElementById('ListPerNewDegrees_@(i)__Level').value = '@Model.ListPerNewDegrees[i].Level';
+                </script>
+               
+            </div>
+            <label class="child">Thời gian ĐT: <span class="required">*</span></label>
+            <div class="row-right validate" ref-type="RANGER">
+                <div class="pncon">
+                    <b>Từ</b>
+
+                    @Html.DropDownListFor(m => m.ListPerNewDegrees[i].FromYear, new List<SelectListItem>
+                    {
+                        new SelectListItem {Text = "Chọn", Value = "",Selected = true},
+                        new SelectListItem {Text = "1 năm", Value = "3"},
+                        new SelectListItem {Text = "2 năm", Value = "4"},
+                        new SelectListItem {Text = "3 năm", Value = "5"},
+                        new SelectListItem {Text = "4 năm", Value = "6"},
+                        new SelectListItem {Text = "5 năm", Value = "7"},
+
+
+                    }, new { @class = "dropdown" })
+                    <script>
+                        document.getElementById('ListPerNewDegrees_@(i)__FromYear').value = '@Model.ListPerNewDegrees[i].FromYear';
+                    </script>
+                </div>
+                <div class="pncon">
+                    <b style="margin-left: 11px;">Đến</b>
+
+                    @Html.DropDownListFor(m => m.ListPerNewDegrees[i].ToYear, new List<SelectListItem>
+                    {
+
+                        new SelectListItem {Text = "Chọn", Value = "",Selected = true},
+                        new SelectListItem {Text = "1 năm", Value = "3"},
+                        new SelectListItem {Text = "2 năm", Value = "4"},
+                        new SelectListItem {Text = "3 năm", Value = "5"},
+                        new SelectListItem {Text = "4 năm", Value = "6"},
+                        new SelectListItem {Text = "5 năm", Value = "5"},
+                        new SelectListItem {Text = "6 năm", Value = "6"},
+                        new SelectListItem {Text = "7 năm", Value = "7"},
+                        new SelectListItem {Text = "8 năm", Value = "8"},
+                        new SelectListItem {Text = "9 năm", Value = "9"},
+                        new SelectListItem {Text = "10 năm", Value = "10"},
+
+
+                    }, new { @class = "dropdown" })
+                    <script>
+                        document.getElementById('ListPerNewDegrees_@(i)__ToYear').value = '@Model.ListPerNewDegrees[i].ToYear';
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label>Đơn vị đào tạo:<span class="required">*</span></label>
+            <div class="row-right">
+
+                @Html.TextBoxFor(m => m.ListPerNewDegrees[i].Name, new {@class = "input3 validate"})
+
+
+            </div>
+        </div>
+        <div class="row">
+            <label>Chuyên Ngành:<span class="required">*</span></label>
+            <div class="row-right">
+
+                @Html.TextBoxFor(m => m.ListPerNewDegrees[i].Career, new {@class = "input1 validate"})
+
+
+            </div>
+            <label class="child">Loại bằng:<span class="required">*</span></label>
+            <div class="row-right">
+
+                @Html.DropDownListFor(m => m.ListPerNewDegrees[i].Rating, new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "Chọn loại bằng", Value = "",Selected = true},
+                    new SelectListItem {Text = "Giỏi", Value = "4"},
+                    new SelectListItem {Text = "Khá", Value = "3"},
+                    new SelectListItem {Text = "Trung bình", Value = "2"},
+                    new SelectListItem {Text = "Yếu", Value = "1"},
+
+                }, new {@class = "dropdown validate"})
+                <script>
+                    document.getElementById('ListPerNewDegrees_@(i)__Rating').value = '@Model.ListPerNewDegrees[i].Rating';
+                </script>
+
+            </div>
+        </div>
+        <div class="row">
+
+            <label>Ảnh bằng cấp:</label>
+            <div class="uploadBox">
+
+                <a href="javascript:void(0)" class="btn btnUpload">
+                    + UpLoad ảnh
+                </a>
+                <input type="file" style="display: none" name="ListPerNewDegrees[@i].File" accept="image/*" value="upload" class="uploadFile"/>
+                <div class="viewFile">
+                    
+                </div>
+                Khuyến cáo: cơ hội việc làm sẽ tăng gắp 2 lần nếu nhà tuyển dụng thấy hình ảnh bằng cấp của bạn
+
+
+            </div>
+
+            @Html.HiddenFor(m => m.ListPerNewDegrees[i].ImageUrl, new {@class = "input1"})
+        </div>
+    </div>
 }
+

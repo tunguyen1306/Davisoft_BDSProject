@@ -216,6 +216,21 @@
     <Compile Include="Models\BDSNews_Career.cs">
       <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BDSPerNew.cs">
+      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSPerNews_Degrees.cs">
+      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSPerNews_Experiences.cs">
+      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSPerNews_LangDegrees.cs">
+      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSPerNews_References.cs">
+      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BDSPersonalInformation.cs">
       <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
     </Compile>
@@ -642,6 +657,13 @@
     <Content Include="Views\Management\MoneyToPoint.cshtml" />
     <Content Include="Views\AdvertCompany\SaveJob.cshtml" />
     <Content Include="Views\AdvertCompany\JobApply.cshtml" />
+    <Content Include="Views\AdvertCompany\BaseProfile.cshtml" />
+    <Content Include="Views\AdvertCompany\Degrees.cshtml" />
+    <Content Include="Views\AdvertCompany\Experiences.cshtml" />
+    <Content Include="Views\AdvertCompany\LangDegrees.cshtml" />
+    <Content Include="Views\AdvertCompany\References.cshtml" />
+    <Content Include="Views\AdvertCompany\_baseOfficeInfoSkill.cshtml" />
+    <Content Include="Views\Shared\_partialManagerCenterEmp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

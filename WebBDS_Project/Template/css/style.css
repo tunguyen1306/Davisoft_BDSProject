@@ -1245,10 +1245,17 @@ line-height: 32px;
 	width: 235px !important;
 }
 .row-right .pncon .dropdown {
-	width:81px;
+	width:81px!important;
 	float: left;
 }
 
+.new .row-right .pncon .dropdown,.row-right .pncon .select2 {
+	width:120px!important;
+	float: left;
+}
+.new .row-right .pncon .select2-selection__arrow > b:before {
+    margin-top: -17px;
+}
 .row-right .pncon b {
 padding: 0;
 margin: 0;

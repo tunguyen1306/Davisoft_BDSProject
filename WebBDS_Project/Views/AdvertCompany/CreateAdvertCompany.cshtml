@@ -2,959 +2,572 @@
     ViewBag.Title = "CreateAdvertCompany";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
+@using System.Configuration
+@using System.Web.UI.WebControls
+@using WebBDS_Project.Models
 @model WebBDS_Project.Models.RegisterInformationModel
-@using (Html.BeginForm("AdvertCompany", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@{
+
+
+
+}
+
+
+@using (Html.BeginForm("CreateAdvertCompany", "AdvertCompany", FormMethod.Post, new { enctype = "multipart/form-data", @id = "formN" }))
 {
+    <input type="hidden" name="type" value="0" id="type"/>
     <div class="container">
         <div class="grid_9 main_left">
             <div class="group_work">
                 <div class="header_text">
                     <h3><span><i class="fa fa-list-ul"></i>Tạo hồ sơ tìm việc</span></h3>
                 </div>
-
                 <span class="TitleAdvertComany">Tải hồ sơ có sẵn: </span>Nếu bạn có sẵn file mềm hồ sơ xin việc, bản CV tìm việc hãy tải lên và nộp cho nhà tuyển dụng.
-               
-                <div class="row">
-
-                    <label>Tải file:</label>
-                    <div class="uploadBox">
-                       
-                       
-                        <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                            + UpLoad Image
-                        </a>
-                        Hỗ trợ định dạng .doc, .docx, .pdf nhỏ hơn 3MB.
-                        <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
-                        
-
-
-                    </div>
-
-
-                </div>
-                <h4>Thông tin hồ sơ cá nhân</h4>
-                <div class="form-horizontal cus-form-horizonta">
-                    <div class="row">
-                        <label>Email đăng nhập:</label>
-                        <div class="row-right">
-                            @Html.TextBoxFor(m => m.TblBdsAdcount.Email, new { @class = "input1" })
-
-                        </div>
-                        <label class="child">Giới tính <span class="required">*</span></label>
-                        <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.Sex, new List<SelectListItem>
-                        {
-                            new SelectListItem{Text = "Không yêu cầu",Value = "0",Selected = true},
-                            new SelectListItem{Text = "Nam",Value = "1",Selected = false},
-                            new SelectListItem{Text = "Nữ",Value = "2",Selected = false},
-
-
-                        }, new { @class = "dropdown" })
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Họ và tên:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                        <label class="child">Số điện thoại:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Quê quán:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                        <label class="child">Ngày sinh:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Địa chỉ thường trú:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
-
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label>Địa chỉ tạm trú:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <label>Hình cá nhân:</label>
+                <div class="form-horizontal cus-form-horizonta fromValidate">
+                    <div class="row fromValidate">
+                        @Html.HiddenFor(m => m.tblBDSPerNew.ID, new { @class = "ID" })
+                        @Html.HiddenFor(m => m.tblBDSPerNew.FileUrl)
+                        <label>Tải file:</label>
                         <div class="uploadBox">
-                            <div style="float:left;margin-right:10px;">
-                                <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
-                            </div>
-                            <input type="hidden" value="" name="TblBDSPersonalInformation.UrlImage" id="UrlImage" />
                             <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
                                 + UpLoad Image
                             </a>
-                            <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
-                            <div style="margin:10px;">
-                                (Khuyến cáo:Quý công ty nên tải hình ảnh logo hoặc hình ảnh hoạt động của Công Ty,sẽ tăng gấp 2 lần khả năng tiếp cận ứng viên)
-                            </div>
-
-
+                            Hỗ trợ định dạng .doc, .docx, .pdf nhỏ hơn 3MB.
+                            <input type="file" style="display: none" value="upload" name="tblBDSPerNew.File" accept="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="uploadFile" />
+                            <div class="viewFile" style="padding-top: 5px"></div>
                         </div>
 
 
-                    </div>
-                    <div class="row ">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right radio">
-
-                            <input type="checkbox" class="checkCarrie" value="1" style="margin-right:10px;"><span style="font-weight:bold;">Cho phép hiển thị hình trong mục tin đăng và tìm kiếm hồ sơ hoặc tích vào ô để bỏ chọn</span>
-                        </div>
                     </div>
                     <div class="row">
                         <label style="opacity: 0">aa</label>
                         <div class="row-right">
 
-                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                            <a href="javascript:void(0)" class="btn btnUpload" onclick=" submitType(this, 6) ">
                                 Cập nhật
                             </a>
 
 
                         </div>
                     </div>
+                </div>
+                    <h4>Thông tin hồ sơ cá nhân</h4>
+
+                    <div class="form-horizontal cus-form-horizonta fromValidate">
+                        @Html.Partial("BaseProfile", Model)
+                    </div>
+                    <h4>Thông tin chung của hồ sơ</h4>
+
+                    <div class="form-horizontal cus-form-horizonta fromValidate">
+                        <div class="row">
+                            <label>Tiêu đề hồ sơ:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.TextBoxFor(m => m.tblBDSPerNew.TitleProfile, new { @class = "input3" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Ngành nghề :<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.CareerProfile, new SelectList(Model.ListBDSCareer, "Id", "Name", "Chọn ngành nghề"), new { @class = "select2" })
+
+
+                            </div>
+                            <label class="child">Khu vực làm việc:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.ProvinceProfile, new SelectList(Model.ListGeoModel, "CityId", "CityName", "Chọn khu vực làm việc"), new { @class = "select2" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Mức lương:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.SalaryProfile, new SelectList(Model.ListSalary, "Id", "Name", "Chọn mức lương"), new { @class = "select2" })
+
+
+                            </div>
+                            <label class="child">Trình độ:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.EducationProfile, new SelectList(Model.ListDucation, "Id", "Name", "Chọn trình độ"), new { @class = "select2" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Kinh nghiệm:<span class="required">*</span></label>
+                            <div class="row-right">
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.ExperienceProfile, new SelectList(Model.ListTimework, "Id", "Name", "Chọn kinh nghiệm"), new { @class = "dropdown" })
+
+                            </div>
+                            <label style="width: 111px;" class="child">Ngoại ngữ:<span class="required">*</span></label>
+                            <div class="row-right">
+
+
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.LanguageProfile, new SelectList(Model.ListBDSLanguage, "Id", "Name", "Chọn ngoại ngữ"), new { @class = "dropdown" })
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Cấp bậc:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.LevelProfile,
+
+         new List<SelectListItem>
+                        {
+                                new SelectListItem{Text = "Không yêu cầu",Value = "0",Selected = true},
+                            new SelectListItem{Text = "Nhân viên",Value = "1",Selected = false},
+                            new SelectListItem{Text = "Trưởng Nhóm",Value = "2",Selected = false},
+                            new SelectListItem{Text = "Trưởng Phòng",Value = "3",Selected = false},
+                             new SelectListItem{Text = "Giám đốc",Value = "4",Selected = false},
+
+                        }
+
+         , new { @class = "dropdown" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Mục tiêu nghề nghiệp:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.TextAreaFor(m => m.tblBDSPerNew.CareerGoalProfile, new { @class = "input3" })
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label style="opacity: 0">aa</label>
+                            <div class="row-right">
+
+                                <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload" onclick="submitType(this,2)">
+                                    Cập nhật
+                                </a>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <span class="TitleAdvertComany">Trình độ, kỹ năng: </span>Liệt kê đầy đủ các thông tin bằng cấp/chứng chỉ mà bạn có (kể cả bằng cấp/chứng chỉ ngắ hạng).
+                    <div class="form-horizontal cus-form-horizonta fromValidate">
+                        <div id="loadDegrees">
+                            @Html.Partial("Degrees", Model)
+
+                        </div>
+
+
+                        <div class="row">
+                            <label style="opacity: 0">aa</label>
+                            <div class="row-right">
+                                <a class="cus-color-a" onclick="addNewDegree()"> <i class="fa fa-plus-circle fa-2x" style="position: relative; top: 4px;" aria-hidden="true"></i>Thêm bằng cấp</a>
+                            </div>
+
+                        </div>
+                        <script>
+                            function addNewDegree() {
+                                var nextDg = $('#loadDegrees .space').length;
+                                var validate = 0;
+                                $('#loadDegrees .validate').each(function (index, item) {
+                                    if (item.tagName != "DIV" && $(item).val() == "") {
+                                        var title = $(item).parents('.row-right').eq(0).prev().text();
+                                        var tag = item.tagName;
+                                        if (tag == "SELECT") {
+                                            toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                                            validate++;
+                                        } else {
+                                            toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                                            validate++;
+                                        }
+                                    } else {
+
+                                        var tag = $(item).attr('ref-type');
+                                        if (tag == "RANGER") {
+                                            var countR = 0;
+                                            $(item).find('select').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            $(item).find('input').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            if (countR > 0) {
+                                                validate++;
+                                                toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
+                                            }
+                                        }
+                                        if (tag == "S-RANGER") {
+                                            var countR = 0;
+                                            $(item).find('select').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            $(item).find('input').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            if (countR > 0) {
+                                                validate++;
+                                                toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
+                                            }
+                                        }
+
+                                    }
+
+                                });
+                                if (validate == 0) {
+                                    $.get('/AdvertCompany/Degrees', function (data) {
+                                        var dataEX = data.replace(/\[0\]/g, '[' + nextDg + ']').replace(/_0_/g, '_' + nextDg + '_');
+                                        $('#loadDegrees').append(dataEX);
+                                        $('#loadDegrees').find('select.dropdown').each(function () {
+                                            $(this).easyDropDown();
+                                        });
+                                        $('#loadDegrees .select2').select2();
+                                        $('#loadDegrees .RefID').val($('.ID').val());
+
+                                    });
+                                }
+                            }
+                        </script>
+                        <hr />
+                        <div id="loadLangDegrees">
+
+                            @Html.Partial("LangDegrees", Model)
+                        </div>
+
+                        <script>
+                            function addNewLangDegree() {
+                                var nextDg = $('#loadLangDegrees  .space').length;
+                                var validate = 0;
+                                $('#loadLangDegrees .validate').each(function (index, item) {
+                                    if (item.tagName != "DIV" && $(item).val() == "") {
+                                        var title = $(item).parents('.row-right').eq(0).prev().text();
+                                        var tag = item.tagName;
+                                        if (tag == "SELECT") {
+                                            toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                                            validate++;
+                                        } else {
+                                            toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                                            validate++;
+                                        }
+                                    } else {
+
+                                        var tag = $(item).attr('ref-type');
+                                        if (tag == "RANGER") {
+                                            var countR = 0;
+                                            $(item).find('select').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            $(item).find('input').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            if (countR > 0) {
+                                                validate++;
+                                                toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
+                                            }
+                                        }
+                                        if (tag == "S-RANGER") {
+                                            var countR = 0;
+                                            $(item).find('select').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            $(item).find('input').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            if (countR > 0) {
+                                                validate++;
+                                                toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
+                                            }
+                                        }
+
+                                    }
+                                });
+                                if (validate == 0) {
+                                    $.get('/AdvertCompany/LangDegrees', function (data) {
+                                        var dataEX = data.replace(/\[0\]/g, '[' + nextDg + ']').replace(/_0_/g, '_' + nextDg + '_');
+                                        $('#loadLangDegrees').append(dataEX);
+                                        $('#loadLangDegrees').find('select.dropdown').each(function () {
+                                            console.log(this);
+                                            $(this).easyDropDown();
+                                        });
+                                        $('#loadLangDegrees .select2').select2();
+                                        $('#loadLangDegrees .RefID').val($('.ID').val());
+                                    });
+                                }
+                            }
+                        </script>
+
+                        <div class="row">
+                            <label style="opacity: 0">aa</label>
+                            <div class="row-right">
+                                <a class="cus-color-a" onclick="addNewLangDegree()"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true" style="position: relative; top: 4px;"></i>Thêm ngoại ngữ</a>
+                            </div>
+
+                        </div>
+                        <hr />
+
+                        @Html.Partial("_baseOfficeInfoSkill", Model)
+
+
+                        <div class="row">
+                            <label style="opacity: 0">aa</label>
+                            <div class="row-right">
+
+                                <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload" onclick="submitType(this, 3)">
+                                    Cập nhật
+                                </a>
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <span class="TitleAdvertComany">Kinh nghiệm làm  việc: </span>Hãy liệt kê những công việc,nhiệm vụ mà bạn đã từng đảm nhận và thực hiện.Chú ý liệt kinh nghiệm làm việc từ thời gian gần đây nhất trở về trước.
+                    <div class="form-horizontal cus-form-horizonta fromValidate">
+
+                        <div id="loadExperiences">
+                            @Html.Partial("Experiences", Model)
+                        </div>
+                        <script>
+                            function addNewExperience() {
+                                var nextDg = $(' #loadExperiences .space').length;
+                                var validate = 0;
+                                $('#loadExperiences .validate').each(function (index, item) {
+                                    if (item.tagName != "DIV" && $(item).val() == "") {
+                                        var title = $(item).parents('.row-right').eq(0).prev().text();
+                                        var tag = item.tagName;
+                                        if (tag == "SELECT") {
+                                            toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                                            validate++;
+                                        } else {
+                                            toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                                            validate++;
+                                        }
+                                    } else {
+
+                                        var tag = $(item).attr('ref-type');
+                                        if (tag == "RANGER") {
+                                            var countR = 0;
+                                            $(item).find('select').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            $(item).find('input').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            if (countR > 0) {
+                                                validate++;
+                                                toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
+                                            }
+                                        }
+                                        if (tag == "S-RANGER") {
+
+                                            var countR = 0;
+                                            $(item).find('select').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            $(item).find('input').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            if (countR > 0) {
+                                                validate++;
+                                                toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
+                                            }
+                                        }
+
+                                    }
+                                });
+                                if (validate == 0) {
+                                    $.get('/AdvertCompany/Experiences', function (data) {
+                                        var dataEX = data.replace(/\[0\]/g, '[' + nextDg + ']').replace(/_0_/g, '_' + nextDg + '_');
+                                        $('#loadExperiences').append(dataEX);
+                                        $('#loadExperiences').find('select.dropdown').each(function () {
+                                            $(this).easyDropDown();
+                                        });
+                                        $('#loadExperiences .select2').select2();
+                                        $('#loadExperiences .RefID').val($('.ID').val());
+
+                                    });
+                                }
+                            }
+                        </script>
+                        <div class="row">
+                            <label style="opacity: 0">aa</label>
+                            <div class="row-right">
+                                <a class="cus-color-a" onclick="addNewExperience()"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true" style="position: relative; top: 4px;"></i>Thêm kinh nghiệm làm việc</a>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <label style="opacity: 0">aa</label>
+                            <div class="row-right">
+
+                                <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload" onclick="submitType(this,4)">
+                                    Cập nhật
+                                </a>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <span class="TitleAdvertComany">Người tham khảo : </span>Không bất buộc.
+
+                    <div class="form-horizontal cus-form-horizonta fromValidate">
+
+                        <div id="loadReferences" class="loadPartial">
+                            @Html.Partial("References", Model)
+                        </div>
+                        <script>
+                            function addNewReference() {
+                                var nextDg = $('#loadReferences .space').length;
+                                var validate = 0;
+                                $('#loadReferences .validate').each(function (index, item) {
+                                    if (item.tagName != "DIV" && $(item).val() == "") {
+                                        var title = $(item).parents('.row-right').eq(0).prev().text();
+                                        var tag = item.tagName;
+                                        if (tag == "SELECT") {
+                                            toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                                            validate++;
+                                        } else {
+                                            toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                                            validate++;
+                                        }
+                                    } else {
+
+                                        var tag = $(item).attr('ref-type');
+                                        if (tag == "RANGER") {
+                                            var countR = 0;
+                                            $(item).find('select').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            $(item).find('input').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            if (countR > 0) {
+                                                validate++;
+                                                toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
+                                            }
+                                        }
+                                        if (tag == "S-RANGER") {
+                                            var countR = 0;
+                                            $(item).find('select').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            $(item).find('input').each(function (i, itemc) {
+                                                if ($(itemc).val() == "") {
+                                                    countR++;
+                                                }
+                                            });
+                                            if (countR > 0) {
+                                                validate++;
+                                                toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
+                                            }
+                                        }
+
+                                    }
+                                });
+                                if (validate == 0) {
+                                    $.get('/AdvertCompany/References', function (data) {
+                                        var dataEX = data.replace(/\[0\]/g, '[' + nextDg + ']').replace(/_0_/g, '_' + nextDg + '_');
+                                        $('#loadReferences').append(dataEX);
+                                        $('#loadReferences').find('select.dropdown').each(function () {
+                                            $(this).easyDropDown();
+                                        });
+                                        $('#loadReferences .select2').select2();
+                                        $('#loadReferences .RefID').val($('.ID').val());
+                                    });
+                                }
+                            }
+                        </script>
+                        <style>
+                            hr {
+                                margin-bottom: 10px;
+                            }
+
+                            .space {
+                                margin-bottom: 6px;
+                            }
+
+                            .space_0_ {
+                                display: none;
+                            }
+
+                            .thumb {
+                                max-height: 80px;
+                            }
+
+                            .viewFile {
+                                padding-top: 6px;
+                            }
+                        </style>
+                        <div class="row">
+                            <label style="opacity: 0">aa</label>
+                            <div class="row-right">
+                                <a class="cus-color-a" onclick="addNewReference()"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true" style="position: relative; top: 4px;"></i>Thêm kinh nghiệm làm việc</a>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <label style="opacity: 0">aa</label>
+                            <div class="row-right">
+
+                                <a href="javascript:void(0)" class="btn btnUpload" onclick=" submitType(this, 5) ">
+                                    Cập nhật
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <button type="submit" style="display: none" id="sbForm"></button>
+                    </div>
 
                 </div>
-                <h4>Thông tin chung của hồ sơ</h4>
-                <div class="form-horizontal cus-form-horizonta">
-                    <div class="row">
-                        <label>Tiêu đề hồ sơ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Ngành nghề :<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSNew.Career, new SelectList(Model.ListBDSCareer, "Id", "Name"), new { @class = "select2" })
-
-
-                        </div>
-                        <label class="child">Khu vực làm việc:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Mức lương mong muốn:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
-
-
-                        </div>
-                        <label class="child">Trình độ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name"), new { @class = "select2" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Kinh nghiệm:<span class="required">*</span></label>
-                        <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"), new { @class = "select2" })
-
-                        </div>
-                        <label class="child">Ngoại ngữ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Cấp bậc mong muốn:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Mục tiêu nghề nghiệp:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-
-                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                                Cập nhật
-                            </a>
-
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <span class="TitleAdvertComany">Trình độ, kỹ năng: </span>Liệt kê đầy đủ các thông tin bằng cấp/chứng chỉ mà bạn có (kể cả bằng cấp/chứng chỉ ngắ hạng).
-                <div class="form-horizontal cus-form-horizonta">
-                    <div class="row">
-                        <label>Trình độ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name"), new { @class = "select2" })
-
-
-                        </div>
-                        <label class="child">Thời gian đào tạo: <span class="required">*</span></label>
-                        <div class="row-right">
-                            <div class="pncon">
-                                <b>Từ</b>
-
-                                @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
-                        {
-                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "1 năm",Value = "3",Selected = false},
-                            new SelectListItem{Text = "2 năm",Value = "4",Selected = false},
-                            new SelectListItem{Text = "3 năm",Value = "5",Selected = false},
-                            new SelectListItem{Text = "4 năm",Value = "6",Selected = false},
-                            new SelectListItem{Text = "5 năm",Value = "7",Selected = false},
-
-
-                        }, new { @class = "dropdown" })
-                            </div>
-                            <div class="pncon">
-                                <b style="margin-left: 11px;">Đến</b>
-
-                                @Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
-                        {
-
-                           new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "5 năm",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6 năm",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7 năm",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8 năm",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9 năm",Value = "9",Selected = false},
-                            new SelectListItem{Text = "10 năm",Value = "10",Selected = false},
-
-
-                        }, new { @class = "dropdown" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Đơn vị đào tạo:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Chuyên Ngành:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                        <label class="child">Bằng tốt nghiệp loại:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <label>Ảnh bằng cấp:</label>
-                        <div class="uploadBox">
-
-                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                                + UpLoad ảnh
-                            </a>
-                         
-                            Khuyến cáo: cơ hội việc làm sẽ tăng gắp 2 lần nếu nhà tuyển dụng thấy hình ảnh bằng cấp của bạn
-
-
-                        </div>
-                        <input type="file" style="visibility: hidden;" value="upload" id="uploadFile" class="uploadFile" />
-
-                    </div>
-
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-                            <a class="cus-color-a"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>Thêm bằng cấp</a>
-                        </div>
-
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <label>Ngoại ngữ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
-
-
-                        </div>
-                        <label class="child">Bằng ngoại ngữ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1", @placeholder = "Nhập tên bằng" })
-
-
-                        </div>
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>Kỹ năng:</label>
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        yếu
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        Trung bình
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        Khá
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        Tốt
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        Giỏi
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>Nghe:</label>
-
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="1">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="2">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="3">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>Nói:</label>
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="1">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="2">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="3">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>Đọc:</label>
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="1">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="2">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="3">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>Viết:</label>
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="1">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="2">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="3">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-                            <a class="cus-color-a"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>Thêm ngoại ngữ</a>
-                        </div>
-
-                    </div>
-                    <hr />
-                    <div class="row cus-row-no-margin-top">
-                        <label>Tin học văn phòng:</label>
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        yếu
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        Trung bình
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        Khá
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        Tốt
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        Giỏi
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>MS Word:</label>
-
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="1">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="2">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="3">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>MS Excel:</label>
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="1">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="2">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="3">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>MS Power point:</label>
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="1">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="2">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="3">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-                    </div>
-                    <div class="row cus-row-no-margin-top">
-                        <label>MS Outlook:</label>
-                        <div class="cusRowWithRadio">
-
-                            <ul class="radio">
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="1">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="2">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="3">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox" class="checkCarrie" value="4">
-                                    </label>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
-                    </div>
-
-                    <hr />
-                    <div class="row">
-                        <label>Kỷ năng:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                        <label class="child">Sở thích:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-
-                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                                Cập nhật
-                            </a>
-
-
-                        </div>
-                    </div>
-
-
-
-
-
-                </div>
-                <span class="TitleAdvertComany">Kinh nghiệm làm  việc: </span>Hãy liệt kê những công việc,nhiệm vụ mà bạn đã từng đảm nhận và thực hiện.Chú ý liệt kinh nghiệm làm việc từ thời gian gần đây nhất trở về trước.
-                <div class="form-horizontal cus-form-horizonta">
-                    <div class="row">
-                        <label>Tên công ty:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
-
-
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <label>Cấp bậc:<span class="required">*</span></label>
-                        <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.AddressWork, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
-
-                        </div>
-                        <label class="child">Mức lương:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Thời gian làm việc:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            <div class="pncon">
-                                <b>Từ</b>
-
-                                @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
-                        {
-                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "1 năm",Value = "3",Selected = false},
-                            new SelectListItem{Text = "2 năm",Value = "4",Selected = false},
-                            new SelectListItem{Text = "3 năm",Value = "5",Selected = false},
-                            new SelectListItem{Text = "4 năm",Value = "6",Selected = false},
-                            new SelectListItem{Text = "5 năm",Value = "7",Selected = false},
-
-
-                        }, new { @class = "dropdown" })
-                            </div>
-                            <div class="pncon">
-                                <b style="margin-left: 11px;"></b>
-
-                                @Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
-                        {
-
-                           new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "5 năm",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6 năm",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7 năm",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8 năm",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9 năm",Value = "9",Selected = false},
-                            new SelectListItem{Text = "10 năm",Value = "10",Selected = false},
-
-
-                        }, new { @class = "dropdown" })
-                            </div>
-
-
-                        </div>
-                        <label class="child">Từ: <span class="required">*</span></label>
-                        <div class="row-right">
-                            <div class="pncon">
-                                <b></b>
-
-                                @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
-                        {
-                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "1 năm",Value = "3",Selected = false},
-                            new SelectListItem{Text = "2 năm",Value = "4",Selected = false},
-                            new SelectListItem{Text = "3 năm",Value = "5",Selected = false},
-                            new SelectListItem{Text = "4 năm",Value = "6",Selected = false},
-                            new SelectListItem{Text = "5 năm",Value = "7",Selected = false},
-
-
-                        }, new { @class = "dropdown" })
-                            </div>
-                            <div class="pncon">
-                                <b style="margin-left: 11px;"></b>
-
-                                @Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
-                        {
-
-                           new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "5 năm",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6 năm",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7 năm",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8 năm",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9 năm",Value = "9",Selected = false},
-                            new SelectListItem{Text = "10 năm",Value = "10",Selected = false},
-
-
-                        }, new { @class = "dropdown" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Mô tả công việc và thành tích đạt được</label>
-                        <div class="row-right">
-
-                            @Html.TextAreaFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-
-                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                                Cập nhật
-                            </a>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-                            <a class="cus-color-a"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>Thêm kinh nghiệm làm việc</a>
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-                <span class="TitleAdvertComany">Người tham khảo : </span>Không bất buộc.
-                <div class="form-horizontal cus-form-horizonta">
-                    <div class="row">
-                        <label>Tên công ty:</label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input3" })
-
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="row">
-                        <label>Tên người tham khảo</label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-                        </div>
-                        <label class="child">Số điện thoại:</label>
-                        <div class="row-right">
-
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Name, new { @class = "input1" })
-
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-
-                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                                Cập nhật
-                            </a>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-                            <a class="cus-color-a"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>Thêm kinh nghiệm làm việc</a>
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-            </div>
             <div class="grid_3 omega main_right" id="sideRightPushy">
-
                 @Html.Partial("_partialManagerCenter")
 
             </div>
@@ -964,31 +577,166 @@
 }
 
 <script>
-    $(".btnUpload").click(function () {
-        $(this).next().trigger('click');
-    });
+    $(document).on('click', '.btnUpload', function () { $(this).next().trigger('click'); });
 
-    $("#uploadFile").change(function () {
-        var data = new FormData();
-        var files = $("#uploadFile").get(0).files;
-        if (files.length > 0) {
-            data.append("HelpSectionImages", files[0]);
-        }
-        $.ajax({
-            url: '@Url.Action("UploadImg", "Register")',
-            type: "POST",
-            processData: false,
-            contentType: false,
-            data: data,
-            success: function (response) {
-                $('#imgLogoCompany').attr('src', response.fullurl);
-                $('#UrlImage').val(response.imgName);
 
-            },
-            error: function (er) {
+    function submitType(el,type) {
+      
+        var validate = 0;
+        $(el ).parents('.fromValidate').eq(0).find('.validate').each(function (index, item) {
+            if (item.tagName != "DIV" && $(item).val() == "") {
+                var title = $(item).parents('.row-right').eq(0).prev().text();
+                var tag = item.tagName;
+                if (tag == "SELECT") {
+                    toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                    validate++;
+                } else {
+                    toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                    validate++;
+                }
+            } else {
+
+                var tag = $(item).attr('ref-type');
+                if (tag == "RANGER") {
+                    var countR = 0;
+                    $(item).find('select').each(function (i, itemc) {
+                        if ($(itemc).val() == "") {
+                            countR++;
+                        }
+                    });
+                    $(item).find('input').each(function (i, itemc) {
+                        if ($(itemc).val() == "") {
+                            countR++;
+                        }
+                    });
+                    if (countR > 0) {
+                        validate++;
+                        toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
+                    }
+                }
+                if (tag == "S-RANGER") {
+
+                    var countR = 0;
+                    $(item).find('select').each(function (i, itemc) {
+                        if ($(itemc).val() == "") {
+                            countR++;
+                        }
+                    });
+                    $(item).find('input').each(function (i, itemc) {
+                        if ($(itemc).val() == "") {
+                            countR++;
+                        }
+                    });
+                    if (countR > 0) {
+                        validate++;
+                        toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
+                    }
+                }
 
             }
-
         });
+        
+        if (validate == 0) {
+
+            if (type == 4) {
+                $('#loadExperiences .space').each(function (index) {
+                 
+                    $('#ListPerNewExperiences_' + index + '__FromDate').val('01/' + $('#FromDate_' + index + '_Month').val() + "/" + $('#FromDate_' + index + '_Year').val());
+                    $('#ListPerNewExperiences_' + index + '__ToDate').val('01/' + $('#ToDate_' + index + '_Month').val() + "/" + $('#ToDate_' + index + '_Year').val());
+                });
+                debugger;
+            }
+            $('#type').val(type);
+            $('#sbForm').click();
+        }
+    }
+
+    $(document).on('submit', '#formN', function () {
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+              
+                if (data.Status) {
+                    toastr.success(data.Msg);
+                   
+                    var type = $('#type').val();
+                    if (type==3) {
+                        for (var i=0;i<data.ListPerNewDegrees.length;i++) {
+                            $('#ListPerNewDegrees_' + i + '__ID').val(data.ListPerNewDegrees[i].ID);
+                        }
+                        for (var i = 0; i < data.ListPerNewLangDegrees.length; i++) {
+                            $('#ListPerNewLangDegrees_' + i + '__ID').val(data.ListPerNewLangDegrees[i].ID);
+                        }
+                    }
+                    if (type == 4) {
+                        for (var i = 0; i < data.ListPerNewExperiences.length; i++) {
+                            $('#ListPerNewExperiences_' + i + '__ID').val(data.ListPerNewExperiences[i].ID);
+                        }
+                    }
+                    if (type == 5) {
+                        debugger;
+                        for (var i = 0; i < data.ListPerNewReferences.length; i++) {
+                            $('#ListPerNewReferences_' + i + '__ID').val(data.ListPerNewReferences[i].ID);
+                        }
+                    }
+                } else {
+                    toastr.error(data.Msg);
+                }
+                console.log(data);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        return false;
     });
+
+    $(document).on('change', '.uploadFile', function () {
+        var sef = this;
+        var view = $(sef).parents('.uploadBox').eq(0).find('.viewFile').eq(0);
+        var fName = $(this)[0].files[0].name;
+        var f = $(this)[0].files[0];
+        if ($(this)[0].files[0].type.match('image.*')) {
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    // Render thumbnail.
+                   
+                    view.html( ['<img class="thumb" src="', e.target.result,
+                                      '" title="', escape(fName), '"/>'].join('') );
+                 
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        } else {
+            var span = document.createElement('span');
+            view.html('<span>' + fName + '</span>');
+        }
+
+    });
+    
 </script>
+<style>
+    .group_work h4 {
+       
+        margin: 0px 0 0px;
+    }
+    .cus-color-a {
+        cursor: pointer
+    }
+        .cus-color-a:hover {
+            opacity: 0.8;
+            color: #008475;
+        }
+    input[readonly] {
+        background: #EBEBE4;
+    }
+</style>
