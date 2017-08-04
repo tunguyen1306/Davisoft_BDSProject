@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="davisoft_bdsprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="davisoft_bdsprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -68,6 +68,7 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="KeySearch" Type="nvarchar(max)" />
           <Property Name="RefTranHis" Type="int" />
+          <Property Name="TypeProfile" Type="int" />
         </EntityType>
         <EntityType Name="BDSAreas">
           <Key>
@@ -464,6 +465,7 @@
           <Property Name="IdLoaiNghe" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="UrlImage" Type="nvarchar(max)" />
+          <Property Name="UrlImageCheck" Type="int" />
           <Property Name="KeySearch" Type="nvarchar(max)" />
           <Property Name="Active" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" />
@@ -473,6 +475,9 @@
           <Property Name="DateReup" Type="datetime" />
           <Property Name="CountReup" Type="int" />
           <Property Name="MaxReup" Type="int" />
+          <Property Name="PermanentAddress" Type="nvarchar(max)" />
+          <Property Name="TemporaryAddress" Type="nvarchar(max)" />
+          <Property Name="Province" Type="int" />
         </EntityType>
         <EntityType Name="BDSPictures">
           <Key>
@@ -913,8 +918,7 @@
           <EntitySet Name="Users_Branches" EntityType="Self.Users_Branches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users_Roles" EntityType="Self.Users_Roles" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="davisoft_bdsprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -981,6 +985,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RefTranHis" Type="Int32" />
+          <Property Name="TypeProfile" Type="Int32" />
         </EntityType>
         <EntityType Name="BDSArea">
           <Key>
@@ -1386,6 +1391,10 @@
           <Property Name="DateReup" Type="DateTime" Precision="3" />
           <Property Name="CountReup" Type="Int32" />
           <Property Name="MaxReup" Type="Int32" />
+          <Property Name="UrlImageCheck" Type="Int32" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="Int32" />
         </EntityType>
         <EntityType Name="BDSPicture">
           <Key>
@@ -1882,6 +1891,7 @@
           <EntitySetMapping Name="BDSApplies">
             <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSApply">
               <MappingFragment StoreEntitySet="BDSApply">
+                <ScalarProperty Name="TypeProfile" ColumnName="TypeProfile" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdAccountEm" ColumnName="IdAccountEm" />
                 <ScalarProperty Name="IdAccountPer" ColumnName="IdAccountPer" />
@@ -2293,6 +2303,10 @@
           <EntitySetMapping Name="BDSPersonalInformations">
             <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPersonalInformation">
               <MappingFragment StoreEntitySet="BDSPersonalInformations">
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="UrlImageCheck" ColumnName="UrlImageCheck" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
