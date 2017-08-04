@@ -78,5 +78,10 @@ namespace WebBDS_Project.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Users_Branches> Users_Branches { get; set; }
         public DbSet<Users_Roles> Users_Roles { get; set; }
+        public DbSet<BDSPerNew> BDSPerNews { get; set; }
+        public DbSet<BDSPerNews_Degrees> BDSPerNews_Degrees { get; set; }
+        public DbSet<BDSPerNews_Experiences> BDSPerNews_Experiences { get; set; }
+        public DbSet<BDSPerNews_LangDegrees> BDSPerNews_LangDegrees { get; set; }
+        public DbSet<BDSPerNews_References> BDSPerNews_References { get; set; }
     }
 }

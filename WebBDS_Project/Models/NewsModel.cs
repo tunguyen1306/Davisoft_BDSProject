@@ -11,7 +11,7 @@ namespace WebBDS_Project.Models
         public BDSPicture tblPicture { get; set; }
         public BDSNew tblBDSNew { get; set; }
         public List<BDSNew> ListNew { get; set; }
-                public BDSEmployerInformation tblBDSEmployerInformation { get; set; }
+        public BDSEmployerInformation tblBDSEmployerInformation { get; set; }
         public List<BDSEmployerInformation> ListBDSEmployerInformation { get; set; }
         public BDSPersonalInformation tblBDSPersonalInformation { get; set; }
         public List<BDSPersonalInformation> ListBDSPersonalInformation { get; set; }
@@ -42,20 +42,22 @@ namespace WebBDS_Project.Models
 
         public BDSNewsType tblBDSNewsType { get; set; }
         public List<BDSNewsType> ListBDSNewsType { get; set; }
-
         public BDSLanguage tblBDSLanguage { get; set; }
         public List<BDSLanguage> ListBDSLanguage { get; set; }
-
         public BDSNewsTypePrice tblBDSNewsTypePrice { get; set; }
         public CaptCha tblCaptCha { get; set; }
-
         public List<ListCityNew> ListCityText { get; set; }
         public List<ListCityNew> ListDisText { get; set; }
-
         public BDSSalary tblBDSSalary { get; set; }
         public List<BDSSalary> ListBDSSalary { get; set; }
 
 
+        public BDSPerNew tblBDSPerNew { get; set; }
+        public List<BDSPerNew> ListPerNew { get; set; }
+        public List<BDSPerNews_Degrees> ListPerNewDegrees { get; set; }
+        public List<BDSPerNews_Experiences> ListPerNewExperiences { get; set; }
+        public List<BDSPerNews_LangDegrees> ListPerNewLangDegrees { get; set; }
+        public List<BDSPerNews_References> ListPerNewReferences { get; set; }
     }
 
     public class ListCityNew

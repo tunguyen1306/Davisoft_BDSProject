@@ -1,19 +1,121 @@
 ﻿@using System.Configuration
 @using System.Web.UI.WebControls
 @using WebBDS_Project.Models
-@{
+@model WebBDS_Project.Models.RegisterInformationModel
+@for (int i = 0; i < Model.ListPerNewExperiences.Count; i++)
+{
 
-    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
-    int from = ViewBag.from;
-    int page = ViewBag.page;
-    int view = ViewBag.view;
-    int tt = ViewBag.tt == "" ? 0 : int.Parse(ViewBag.tt);
-    int count = 0;
-    var States = (from a in db.States
-                  join b in db.StateTexts on a.state_id equals b.id
-                  where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
-                  select new { Id = a.state_id, Name = b.text }).ToList();
+    <div id="Experience_@(i)_" style="@(Model.ListPerNewExperiences[i].Active == 0 ? "display:none;" : "")">
+        <hr class="space space_@(i)_" />
+        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ID, new { @class = "ExperienceID" })
+        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ID_BDSPerNews, new { @class = "RefID" })
+        @Html.HiddenFor(m => m.ListPerNewExperiences[i].Active)
+        <div class="row">
+            <label>Tên công ty:<span class="required">*</span></label>
+            <div class="row-right">
 
-    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
-    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+                @Html.TextBoxFor(m => m.ListPerNewExperiences[i].Name, new { @class = "input3 validate" })
+
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            <label>Cấp bậc:<span class="required">*</span></label>
+            <div class="row-right">
+                @Html.DropDownListFor(m => m.ListPerNewExperiences[i].Level,
+
+                    new List<SelectListItem>
+                    {
+                        new SelectListItem {Text = "Chọn cấp bậc", Value = "", Selected = true},
+                        new SelectListItem {Text = "Nhân viên", Value = "1", Selected = false},
+                        new SelectListItem {Text = "Trưởng Nhóm", Value = "2", Selected = false},
+                        new SelectListItem {Text = "Trưởng Phòng", Value = "3", Selected = false},
+                        new SelectListItem {Text = "Giám đốc", Value = "4", Selected = false},
+
+                    }
+
+                    , new { @class = "dropdown validate" })
+                <script>
+                    document.getElementById('ListPerNewExperiences_@(i)__Level').value = '@Model.ListPerNewExperiences[i].Level';
+                </script>
+            </div>
+            <label class="child">Mức lương:<span class="required">*</span></label>
+            <div class="row-right">
+
+                @Html.TextBoxFor(m => m.ListPerNewExperiences[i].Salary, new { @class = "input1 validate" })
+
+
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.ListPerNewExperiences[i].FromDate, "{0:dd/MM/yyyy}")
+        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ToDate, "{0:dd/MM/yyyy}")
+        <div class="row new validate" ref-type="S-RANGER">
+            <label style="width: 125px">Thời gian làm việc:<span class="required">*</span></label>
+            <div class="row-right">
+
+                <div class="pncon">
+                    <b>Từ</b>
+
+                    <select class="dropdown" id="FromDate_@(i)_Month">
+                        <option selected="selected" value="">Chọn</option>
+                        @for (int j = 1; j < 13; j++)
+                        {
+                            <option @( Model.ListPerNewExperiences[i].FromDate.HasValue && Model.ListPerNewExperiences[i].FromDate.Value.Month == j ? "selected='selected'" : "") value="@j">@j tháng</option>
+                        }
+
+
+                    </select>
+                </div>
+                <div class="pncon">
+                    <b style="margin-left: 11px;"></b>
+
+                    <select class="select2" id="FromDate_@(i)_Year">
+                        <option selected="selected" value="">Chọn</option>
+                        @for (int j = 1980; j < DateTime.Now.Year + 1; j++)
+                        {
+                            <option @( Model.ListPerNewExperiences[i].FromDate.HasValue && Model.ListPerNewExperiences[i].FromDate.Value.Year == j ? "selected='selected'" : "") value="@j">@j năm</option>
+                        }
+                    </select>
+                </div>
+
+
+            </div>
+
+            <div class="row-right">
+                <div class="pncon">
+                    <b>Đến</b>
+
+                    <select class="dropdown" id="ToDate_@(i)_Month">
+                        <option selected="selected" value="">Chọn</option>
+                        @for (int j = 1; j < 13; j++)
+                        {
+                            <option @( Model.ListPerNewExperiences[i].ToDate.HasValue && Model.ListPerNewExperiences[i].ToDate.Value.Month == j ? "selected='selected'" : "") value="@j">@j tháng</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="pncon">
+                    <b style="margin-left: 11px;"></b>
+                    <select class="select2" id="ToDate_@(i)_Year">
+                        <option selected="selected" value="">Chọn</option>
+                        @for (int j = 1980; j < DateTime.Now.Year + 1; j++)
+                        {
+                            <option @( Model.ListPerNewExperiences[i].ToDate.HasValue && Model.ListPerNewExperiences[i].ToDate.Value.Year == j ? "selected='selected'" : "") value="@j">@j năm</option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <label>Mô tả công việc và thành tích đạt được</label>
+            <div class="row-right">
+
+                @Html.TextAreaFor(m => m.ListPerNewExperiences[i].Decription, new { @class = "input3" })
+
+            </div>
+        </div>
+    </div>
 }

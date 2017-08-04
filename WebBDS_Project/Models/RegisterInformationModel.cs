@@ -5,6 +5,7 @@ using System.Web;
 
 namespace WebBDS_Project.Models
 {
+    [Serializable]
     public class RegisterInformationModel
     {
         public BDSPersonalInformation TblBDSPersonalInformation { get; set; }
@@ -54,7 +55,14 @@ namespace WebBDS_Project.Models
         public List<BDSApply> ListBDSApply { get; set; }
         public BDSPicture tblBDSPicture { get; set; }
         public List<BDSPicture> ListBDSPicture { get; set; }
+        public BDSPerNew tblBDSPerNew { get; set; }
+        public List<BDSPerNews_Degrees> ListPerNewDegrees { get; set; }
+        public List<BDSPerNews_Experiences> ListPerNewExperiences { get; set; }
+        public List<BDSPerNews_LangDegrees> ListPerNewLangDegrees { get; set; }
+        public List<BDSPerNews_References> ListPerNewReferences { get; set; }
 
+        public string Msg { get; set; }
+        public bool Status { get; set; }
     }
 
     public class ListCity

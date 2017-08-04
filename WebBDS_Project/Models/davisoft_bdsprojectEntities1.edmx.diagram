@@ -58,6 +58,11 @@
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.User" Width="1.5" PointX="6.75" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.Users_Branches" Width="1.5" PointX="8.75" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="davisoft_bdsprojectModel.Users_Roles" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectModel.BDSPerNew" Width="1.5" PointX="0.75" PointY="22.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectModel.BDSPerNews_Degrees" Width="1.5" PointX="11.75" PointY="22.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectModel.BDSPerNews_Experiences" Width="1.5" PointX="13.75" PointY="22.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectModel.BDSPerNews_LangDegrees" Width="1.5" PointX="15.75" PointY="22.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectModel.BDSPerNews_References" Width="1.5" PointX="17.75" PointY="22.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

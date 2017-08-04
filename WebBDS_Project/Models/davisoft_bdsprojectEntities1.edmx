@@ -4,7 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
+
     <Schema Namespace="davisoft_bdsprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -438,6 +440,116 @@
           <Property Name="KeySearch" Type="nvarchar(max)" />
           <Property Name="UrlIcon" Type="nvarchar(max)" />
           <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="BDSPerNews">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitleProfile" Type="nvarchar(max)" />
+          <Property Name="CareerProfile" Type="int" />
+          <Property Name="ProvinceProfile" Type="int" />
+          <Property Name="SalaryProfile" Type="int" />
+          <Property Name="EducationProfile" Type="int" />
+          <Property Name="ExperienceProfile" Type="int" />
+          <Property Name="LanguageProfile" Type="int" />
+          <Property Name="LevelProfile" Type="int" />
+          <Property Name="CareerGoalProfile" Type="nvarchar(max)" />
+          <Property Name="MSWordOffice" Type="int" />
+          <Property Name="MSExcelOffice" Type="int" />
+          <Property Name="MSPowerPointOffice" Type="int" />
+          <Property Name="OutlookOffice" Type="int" />
+          <Property Name="OrderOffice" Type="nvarchar(max)" />
+          <Property Name="Skills" Type="nvarchar(max)" />
+          <Property Name="Hobby" Type="nvarchar(max)" />
+          <Property Name="SearchCheck" Type="int" />
+          <Property Name="SearchEmCheck" Type="int" />
+          <Property Name="KeySearch" Type="nvarchar(max)" />
+          <Property Name="Active" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedUser" Type="int" />
+          <Property Name="PerId" Type="int" />
+          <Property Name="FileUrl" Type="text" />
+        </EntityType>
+        <EntityType Name="BDSPerNews_Degrees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BDSPerNews" Type="int" />
+          <Property Name="Level" Type="int" />
+          <Property Name="FromYear" Type="int" />
+          <Property Name="ToYear" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Career" Type="nvarchar" MaxLength="200" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="Decription" Type="nvarchar(max)" />
+          <Property Name="KeySearch" Type="nvarchar(max)" />
+          <Property Name="Active" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="BDSPerNews_Experiences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BDSPerNews" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Level" Type="int" />
+          <Property Name="Salary" Type="float" />
+          <Property Name="Perfix" Type="int" />
+          <Property Name="FromDate" Type="datetime" />
+          <Property Name="ToDate" Type="datetime" />
+          <Property Name="Decription" Type="nvarchar(max)" />
+          <Property Name="KeySearch" Type="nvarchar(max)" />
+          <Property Name="Active" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="BDSPerNews_LangDegrees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BDSPerNews" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Language" Type="int" />
+          <Property Name="Listening" Type="int" />
+          <Property Name="Speaking" Type="int" />
+          <Property Name="Reading" Type="int" />
+          <Property Name="Writing" Type="int" />
+          <Property Name="Decription" Type="nvarchar(max)" />
+          <Property Name="KeySearch" Type="nvarchar(max)" />
+          <Property Name="Active" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedUser" Type="int" />
+        </EntityType>
+        <EntityType Name="BDSPerNews_References">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BDSPerNews" Type="int" />
+          <Property Name="NameCompany" Type="nvarchar" MaxLength="200" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Decription" Type="nvarchar(max)" />
+          <Property Name="KeySearch" Type="nvarchar(max)" />
+          <Property Name="Active" Type="int" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateUser" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
@@ -887,6 +999,11 @@
           <EntitySet Name="BDSNewsDates" EntityType="Self.BDSNewsDates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSNewsTypePrices" EntityType="Self.BDSNewsTypePrices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSNewsTypes" EntityType="Self.BDSNewsTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDSPerNews" EntityType="Self.BDSPerNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDSPerNews_Degrees" EntityType="Self.BDSPerNews_Degrees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDSPerNews_Experiences" EntityType="Self.BDSPerNews_Experiences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDSPerNews_LangDegrees" EntityType="Self.BDSPerNews_LangDegrees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BDSPerNews_References" EntityType="Self.BDSPerNews_References" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSPersonalInformations" EntityType="Self.BDSPersonalInformations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSPictures" EntityType="Self.BDSPictures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BDSSalaries" EntityType="Self.BDSSalaries" Schema="dbo" store:Type="Tables" />
@@ -1834,7 +1951,122 @@
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Users_Branches" EntityType="Self.Users_Branches" />
           <EntitySet Name="Users_Roles" EntityType="Self.Users_Roles" />
+          <EntitySet Name="BDSPerNews" EntityType="davisoft_bdsprojectModel.BDSPerNew" />
+          <EntitySet Name="BDSPerNews_Degrees" EntityType="davisoft_bdsprojectModel.BDSPerNews_Degrees" />
+          <EntitySet Name="BDSPerNews_Experiences" EntityType="davisoft_bdsprojectModel.BDSPerNews_Experiences" />
+          <EntitySet Name="BDSPerNews_LangDegrees" EntityType="davisoft_bdsprojectModel.BDSPerNews_LangDegrees" />
+          <EntitySet Name="BDSPerNews_References" EntityType="davisoft_bdsprojectModel.BDSPerNews_References" />
         </EntityContainer>
+        <EntityType Name="BDSPerNew">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleProfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CareerProfile" Type="Int32" />
+          <Property Name="ProvinceProfile" Type="Int32" />
+          <Property Name="SalaryProfile" Type="Int32" />
+          <Property Name="EducationProfile" Type="Int32" />
+          <Property Name="ExperienceProfile" Type="Int32" />
+          <Property Name="LanguageProfile" Type="Int32" />
+          <Property Name="LevelProfile" Type="Int32" />
+          <Property Name="CareerGoalProfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MSWordOffice" Type="Int32" />
+          <Property Name="MSExcelOffice" Type="Int32" />
+          <Property Name="MSPowerPointOffice" Type="Int32" />
+          <Property Name="OutlookOffice" Type="Int32" />
+          <Property Name="OrderOffice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hobby" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SearchCheck" Type="Int32" />
+          <Property Name="SearchEmCheck" Type="Int32" />
+          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUser" Type="Int32" />
+          <Property Name="PerId" Type="Int32" />
+          <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BDSPerNews_Degrees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BDSPerNews" Type="Int32" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="FromYear" Type="Int32" />
+          <Property Name="ToYear" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Career" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BDSPerNews_Experiences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BDSPerNews" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="Salary" Type="Double" />
+          <Property Name="Perfix" Type="Int32" />
+          <Property Name="FromDate" Type="DateTime" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Precision="3" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BDSPerNews_LangDegrees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BDSPerNews" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="Int32" />
+          <Property Name="Listening" Type="Int32" />
+          <Property Name="Speaking" Type="Int32" />
+          <Property Name="Reading" Type="Int32" />
+          <Property Name="Writing" Type="Int32" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BDSPerNews_References">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BDSPerNews" Type="Int32" />
+          <Property Name="NameCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUser" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2739,6 +2971,121 @@
               <MappingFragment StoreEntitySet="Users_Roles">
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSPerNews">
+            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPerNew">
+              <MappingFragment StoreEntitySet="BDSPerNews">
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="PerId" ColumnName="PerId" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="SearchEmCheck" ColumnName="SearchEmCheck" />
+                <ScalarProperty Name="SearchCheck" ColumnName="SearchCheck" />
+                <ScalarProperty Name="Hobby" ColumnName="Hobby" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="OrderOffice" ColumnName="OrderOffice" />
+                <ScalarProperty Name="OutlookOffice" ColumnName="OutlookOffice" />
+                <ScalarProperty Name="MSPowerPointOffice" ColumnName="MSPowerPointOffice" />
+                <ScalarProperty Name="MSExcelOffice" ColumnName="MSExcelOffice" />
+                <ScalarProperty Name="MSWordOffice" ColumnName="MSWordOffice" />
+                <ScalarProperty Name="CareerGoalProfile" ColumnName="CareerGoalProfile" />
+                <ScalarProperty Name="LevelProfile" ColumnName="LevelProfile" />
+                <ScalarProperty Name="LanguageProfile" ColumnName="LanguageProfile" />
+                <ScalarProperty Name="ExperienceProfile" ColumnName="ExperienceProfile" />
+                <ScalarProperty Name="EducationProfile" ColumnName="EducationProfile" />
+                <ScalarProperty Name="SalaryProfile" ColumnName="SalaryProfile" />
+                <ScalarProperty Name="ProvinceProfile" ColumnName="ProvinceProfile" />
+                <ScalarProperty Name="CareerProfile" ColumnName="CareerProfile" />
+                <ScalarProperty Name="TitleProfile" ColumnName="TitleProfile" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSPerNews_Degrees">
+            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPerNews_Degrees">
+              <MappingFragment StoreEntitySet="BDSPerNews_Degrees">
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Career" ColumnName="Career" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ToYear" ColumnName="ToYear" />
+                <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="ID_BDSPerNews" ColumnName="ID_BDSPerNews" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSPerNews_Experiences">
+            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPerNews_Experiences">
+              <MappingFragment StoreEntitySet="BDSPerNews_Experiences">
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="Perfix" ColumnName="Perfix" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_BDSPerNews" ColumnName="ID_BDSPerNews" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSPerNews_LangDegrees">
+            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPerNews_LangDegrees">
+              <MappingFragment StoreEntitySet="BDSPerNews_LangDegrees">
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="Writing" ColumnName="Writing" />
+                <ScalarProperty Name="Reading" ColumnName="Reading" />
+                <ScalarProperty Name="Speaking" ColumnName="Speaking" />
+                <ScalarProperty Name="Listening" ColumnName="Listening" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_BDSPerNews" ColumnName="ID_BDSPerNews" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSPerNews_References">
+            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPerNews_References">
+              <MappingFragment StoreEntitySet="BDSPerNews_References">
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
+                <ScalarProperty Name="ID_BDSPerNews" ColumnName="ID_BDSPerNews" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

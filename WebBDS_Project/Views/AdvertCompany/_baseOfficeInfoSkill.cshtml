@@ -1,0 +1,215 @@
+﻿@using System.Configuration
+@using System.Web.UI.WebControls
+@using WebBDS_Project.Models
+@model WebBDS_Project.Models.RegisterInformationModel
+
+<div class="row cus-row-no-margin-top">
+    <label>Tin học văn phòng:</label>
+    <div class="cusRowWithRadio">
+
+        <ul class="radio">
+            <li>
+                <label>
+                    Yếu
+                </label>
+            </li>
+            <li>
+                <label>
+                    Trung bình
+                </label>
+            </li>
+            <li>
+                <label>
+                    Khá
+                </label>
+            </li>
+            <li>
+                <label>
+                    Tốt
+                </label>
+            </li>
+            <li>
+                <label>
+                    Giỏi
+                </label>
+            </li>
+        </ul>
+
+
+    </div>
+
+
+</div>
+
+<div class="row cus-row-no-margin-top">
+    <label>MS Word:</label>
+
+    <div class="cusRowWithRadio">
+
+        <ul class="radio">
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSWordOffice" @(Model.tblBDSPerNew.MSWordOffice == 1 ? " checked='checked' " : "") value="1">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSWordOffice" @(Model.tblBDSPerNew.MSWordOffice == 2 ? " checked='checked' " : "") value="2">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSWordOffice" @(Model.tblBDSPerNew.MSWordOffice == 3 ? " checked='checked' " : "") value="3">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSWordOffice" @(Model.tblBDSPerNew.MSWordOffice == 4 ? " checked='checked' " : "") value="4">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSWordOffice" @(Model.tblBDSPerNew.MSWordOffice == 5 ? " checked='checked' " : "") value="5">
+                </label>
+            </li>
+        </ul>
+
+
+    </div>
+
+</div>
+<div class="row cus-row-no-margin-top">
+    <label>MS Excel:</label>
+    <div class="cusRowWithRadio">
+
+        <ul class="radio">
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSExcelOffice" @(Model.tblBDSPerNew.MSExcelOffice == 1 ? " checked='checked' " : "") value="1">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSExcelOffice" @(Model.tblBDSPerNew.MSExcelOffice == 2 ? " checked='checked' " : "") value="2">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSExcelOffice" @(Model.tblBDSPerNew.MSExcelOffice == 3 ? " checked='checked' " : "") value="3">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSExcelOffice" @(Model.tblBDSPerNew.MSExcelOffice == 4 ? " checked='checked' " : "") value="4">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSExcelOffice" @(Model.tblBDSPerNew.MSExcelOffice == 5 ? " checked='checked' " : "") value="5">
+                </label>
+            </li>
+        </ul>
+
+
+    </div>
+
+</div>
+<div class="row cus-row-no-margin-top">
+    <label>MS Power point:</label>
+    <div class="cusRowWithRadio">
+
+        <ul class="radio">
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSPowerPointOffice" @(Model.tblBDSPerNew.MSPowerPointOffice == 1 ? " checked='checked' " : "") value="1">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSPowerPointOffice" @(Model.tblBDSPerNew.MSPowerPointOffice == 2 ? " checked='checked' " : "") value="2">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSPowerPointOffice" @(Model.tblBDSPerNew.MSPowerPointOffice == 3 ? " checked='checked' " : "") value="3">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSPowerPointOffice" @(Model.tblBDSPerNew.MSPowerPointOffice == 4 ? " checked='checked' " : "") value="4">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.MSPowerPointOffice" @(Model.tblBDSPerNew.MSPowerPointOffice == 5 ? " checked='checked' " : "") value="5">
+                </label>
+            </li>
+        </ul>
+
+
+    </div>
+
+</div>
+<div class="row cus-row-no-margin-top">
+    <label>MS Outlook:</label>
+    <div class="cusRowWithRadio">
+
+        <ul class="radio">
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.OutlookOffice" @(Model.tblBDSPerNew.OutlookOffice == 1 ? " checked='checked' " : "") value="1">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.OutlookOffice" @(Model.tblBDSPerNew.OutlookOffice == 2 ? " checked='checked' " : "") value="2">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.OutlookOffice" @(Model.tblBDSPerNew.OutlookOffice == 3 ? " checked='checked' " : "") value="3">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.OutlookOffice" @(Model.tblBDSPerNew.OutlookOffice == 4 ? " checked='checked' " : "") value="4">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" class="checkCarrie" name="tblBDSPerNew.OutlookOffice" @(Model.tblBDSPerNew.OutlookOffice == 5 ? " checked='checked' " : "") value="5">
+                </label>
+            </li>
+        </ul>
+
+
+    </div>
+
+</div>
+<div class="row">
+    <label>Phần mềm khác:</label>
+    <div class="row-right">
+        @Html.TextBoxFor(m => m.tblBDSPerNew.OrderOffice,  new { @class = "input3" })
+      
+
+
+    </div>
+</div>
+<hr />
+<div class="row">
+    <label>Kỷ năng:<span class="required">*</span></label>
+    <div class="row-right">
+
+        @Html.TextAreaFor(m => m.tblBDSPerNew.Skills, new { @class = "input1" })
+
+
+    </div>
+    <label class="child">Sở thích:<span class="required">*</span></label>
+    <div class="row-right">
+
+        @Html.TextAreaFor(m =>m.tblBDSPerNew.Hobby, new { @class = "input1" })
+
+
+    </div>
+</div>
+
