@@ -657,6 +657,7 @@
     <Content Include="Views\Management\MoneyToPoint.cshtml" />
     <Content Include="Views\AdvertCompany\SaveJob.cshtml" />
     <Content Include="Views\AdvertCompany\JobApply.cshtml" />
+
     <Content Include="Views\AdvertCompany\BaseProfile.cshtml" />
     <Content Include="Views\AdvertCompany\Degrees.cshtml" />
     <Content Include="Views\AdvertCompany\Experiences.cshtml" />
@@ -664,6 +665,9 @@
     <Content Include="Views\AdvertCompany\References.cshtml" />
     <Content Include="Views\AdvertCompany\_baseOfficeInfoSkill.cshtml" />
     <Content Include="Views\Shared\_partialManagerCenterEmp.cshtml" />
+
+    <Content Include="Views\AdvertCompany\ChangePassPer.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

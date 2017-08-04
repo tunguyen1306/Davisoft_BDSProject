@@ -445,6 +445,10 @@ namespace WebBDS_Project.Controllers
         {
             return View();
         }
-
+        public ActionResult ChangePassPer()
+        {
+            return View();
+        }
+       
     }
 }

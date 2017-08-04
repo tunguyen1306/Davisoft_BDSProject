@@ -1,0 +1,114 @@
+﻿@using WebBDS_Project.Models
+@{
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
+
+    var IdAccount = Session["IdUser"] != null ? int.Parse(Session["IdUser"].ToString()) : 0;
+    var tblAccount = db.BDSAccounts.FirstOrDefault(x => x.ID == IdAccount);
+   
+}
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Đổi mật khẩu</span></h3>
+            </div>
+            <div class="grid_12">
+                <form class="form-horizontal " data-validate="parsley" action="#">
+
+                    <div class="row">
+                        <h4>Thông tin đăng nhập</h4>
+                        <label class="grid_2">Email</label>
+                        <div class="row-right1 grid_9">
+
+                            <input type="text" disabled="disabled" class="form-control txtEmail" value="@tblAccount.Email"/>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <label class="grid_2">Mật khẩu cũ</label>
+                        <div class="row-right1 grid_9">
+                            <input placeholder="Nhập mật khẩu cũ" class="oldPass" type="password">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <label class="grid_2">Mật khẩu Mới</label>
+                        <div class="row-right1 grid_9">
+                            <input placeholder="Nhập mật khẩu mới" class="newPass" type="password">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <label class="grid_2">Nhập lại mật khẩu</label>
+                        <div class="row-right1 grid_9">
+                            <input placeholder="Nhập lại mật khẩu mới" class="newPass1" type="password">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <label class="grid_2"></label>
+                        <div class="row-right1 grid_9">
+                            <a class="grid_3  btnApply btnChangePass">Đổi mật khẩu</a>
+                        </div>
+                    </div>
+                  
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="grid_3 omega main_right" id="sideRightPushy">
+
+        @Html.Partial("_partialManagerCenter")
+
+    </div>
+</div>
+<script>
+
+    $('.btnChangePass').click(function() {
+        ChangePass();
+    });
+    function ChangePass() {
+        var t = 0;
+   
+        if ($('.oldPass').val() == "") {
+            toastr.error('Vui lòng nhập mật khẩu hiện tại');
+            t++;
+        }
+        if ($('.newPass').val() == "") {
+            toastr.error('Vui lòng nhập mật khẩu mới');
+            t++;
+        }
+        if ($('.newPass1').val() != $('.newPass').val()) {
+            toastr.error('Email không trùng khớp');
+            t++;
+        }
+        if (t == 0) {
+            var obj = {};
+            obj.Email = $('.txtEmail').val();
+            obj.oldPass = $('.oldPass').val();
+            obj.newpass = $('.newPass1').val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ChangePass", "Management")',
+                data: JSON.stringify(obj),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data.result == 1) {
+                        $('.showFormPass').addClass('hidden');
+                        toastr.success('Thay đổi mật khẩu thành công!');
+                    }
+                    if (data.result == 0) {
+                        toastr.error('Mật khẩu cũ không đúng!');
+                    }
+
+                }
+            });
+        }
+
+    }
+</script>
