@@ -54,9 +54,11 @@
                         <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
                     </div>
                 </div>
-                <div class="grid_3 omega">
-                    <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
-                </div>
+                     <div class="grid_3 omega">
+                         <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu
+                         </p>
+                     </div>
+                     <div><a class="btnSave" href="javascript:void(0)" rel="@news.ID"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</a></div>
             </li>
             }
            

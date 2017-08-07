@@ -2,6 +2,7 @@
     ViewBag.Title = "CreateAdvertCompany";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
+
 @using System.Configuration
 @using System.Web.UI.WebControls
 @using WebBDS_Project.Models
@@ -30,7 +31,7 @@
                         <label>Tải file:</label>
                         <div class="uploadBox">
                             <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                                + UpLoad Image
+                                + UpLoad File
                             </a>
                             Hỗ trợ định dạng .doc, .docx, .pdf nhỏ hơn 3MB.
                             <input type="file" style="display: none" value="upload" name="tblBDSPerNew.File" accept="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="uploadFile" />
@@ -556,7 +557,7 @@
                             <label style="opacity: 0">aa</label>
                             <div class="row-right">
 
-                                <a href="javascript:void(0)" class="btn btnUpload" onclick=" submitType(this, 5) ">
+                                <a href="javascript:void(0)" class="btn btnUpload" onclick="submitType(this, 5)">
                                     Cập nhật
                                 </a>
 
@@ -565,14 +566,40 @@
                         </div>
                         <button type="submit" style="display: none" id="sbForm"></button>
                     </div>
+            <div class="form-horizontal">
+                <div class="row ">
+                    <label style="opacity: 0">aa</label>
+                    <div class="row-right radio">
 
+                        <input type="checkbox" name="" class="checkCarrie" value="1" style="margin-right: 10px;"><span>Cho phép nhà tuyển dụng tìm kiềm hồ sơ và liên hệ với bạn</span>
+                        <p>
+                            <input type="checkbox" name="" class="checkCarrie" value="1" style="margin-right:10px;"><span>Không cho phép nhà tuyển dụng tìm kiếm.Hồ sơ  này chỉ dùng để ứng tuyển.</span>
+                        </p>
+                    </div>
                 </div>
-            <div class="grid_3 omega main_right" id="sideRightPushy">
-                @Html.Partial("_partialManagerCenter")
+              
 
+                <div class="row">
+                    <label style="opacity: 0">aa</label>
+                    <div class="row-right">
+
+                        <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                            Lưu & công khai
+                        </a>
+                        <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                            Xem trước
+                        </a>
+
+                    </div>
+                </div>
             </div>
+            </div>
+            
         </div>
+        <div class="grid_3 omega main_right" id="sideRightPushy">
+            @Html.Partial("_partialManagerCenter")
 
+        </div>
     </div>
 }
 

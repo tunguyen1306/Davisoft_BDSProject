@@ -27,7 +27,7 @@ a {
 	text-decoration: none;
 }
 a:hover {
-	color: #fff;
+	color: #019281;
 	text-decoration: none;
 }
 
@@ -609,7 +609,8 @@ position: absolute;
 	padding: 10px 15px;
 }
 .last_list li a{
-	color: #055699
+    color: #008475;
+    text-decoration: none;
 }
 .last_list li a:before {
 	font-size: 5px;
@@ -627,7 +628,7 @@ position: absolute;
    color:#717171
 }
 .last_list .page a.active, .last_list li a:hover {
-   color:#008475
+   color:#05ceb7
 }
 .last_list .page a:before {
 	display:none;

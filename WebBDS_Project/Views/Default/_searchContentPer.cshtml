@@ -56,7 +56,7 @@
                                     }
                                     else
                                     {
-                                        if (per.BDSEmpers.Where(T => T.Active == 1 && T.IdAccountEm ==em.ID).Count()>0)
+                                        if (db.BDSEmpers.Any(T => T.Active == 1 && T.IdAccountEm ==em.ID))
                                         {
                                             @Html.Raw("<a href='' ><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Hồ sơ đã lưu</i></a>");
                                         }

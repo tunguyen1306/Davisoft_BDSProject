@@ -46,14 +46,20 @@
                         </p>
                     </a> 
                 </div>
-                <div class="grid_9 omega">
-                    <h2 class="h2-tilte-mobile"><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length>41 ? news.Title.Substring(0, 41) : news.Title + "..." ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length>41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0,41)+"..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a></h2>
-                    <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
-                    <div>
-                        <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
-                        <p class="grid_6 omega time">Mã tin: <span class="color2">P@(news.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i> @(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
-                    </div>
-                </div>
+      <div class="grid_9 omega">
+          <h2 class="h2-tilte-mobile"><a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41) : news.Title + "..." ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 41) + "..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a>
+          </h2>
+          <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)
+          </p>
+          <div>
+              <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu
+              </p>
+              <p class="grid_6 omega time">Mã tin: <span class="color2">P@(news.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i> @(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))
+              </p>
+          </div>
+          <div><a class="btnSave" href="javascript:void(0)" rel="@news.ID"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</a></div>
+      </div>
+      
             </li>
             }
            

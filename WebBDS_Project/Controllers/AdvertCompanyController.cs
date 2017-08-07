@@ -19,7 +19,7 @@ namespace WebBDS_Project.Controllers
 
         public ActionResult CreateAdvertCompany()
         {
-            int id = 26;
+            var id = int.Parse(Session["IdUser"].ToString()) ;
             var tblAccount = db.BDSAccounts.FirstOrDefault(T => T.ID == id);
             var tblPer = db.BDSPersonalInformations.FirstOrDefault(T => T.IdAccount == tblAccount.ID);
             var cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.PerId == tblPer.ID && T.Active==1);
@@ -449,6 +449,125 @@ namespace WebBDS_Project.Controllers
         {
             return View();
         }
-       
+
+        public ActionResult DetailAdvertCompany(int idNew)
+        {
+
+            var id = int.Parse(Session["IdUser"].ToString());
+            var tblAccount = db.BDSAccounts.FirstOrDefault(T => T.ID == id);
+            var tblPer = db.BDSPersonalInformations.FirstOrDefault(T => T.IdAccount == tblAccount.ID);
+            var cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.PerId == tblPer.ID && T.Active == 1);
+            List<BDSPerNews_Degrees> ListPerNewDegrees = new List<BDSPerNews_Degrees>();
+            List<BDSPerNews_Experiences> ListPerNewExperiences = new List<BDSPerNews_Experiences>();
+            List<BDSPerNews_LangDegrees> ListPerNewLangDegrees = new List<BDSPerNews_LangDegrees>();
+            List<BDSPerNews_References> ListPerNewReferences = new List<BDSPerNews_References>();
+            if (cuurentINews == null)
+            {
+                cuurentINews = new BDSPerNew { Active = 1, CreateDate = DateTime.Now, CreateUser = 1, PerId = tblPer.ID };
+                db.Entry(cuurentINews).State = EntityState.Added;
+                db.SaveChanges();
+                ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID });
+                ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID });
+                ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID });
+                ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID });
+            }
+            else
+            {
+                ListPerNewDegrees = db.BDSPerNews_Degrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
+                ListPerNewExperiences = db.BDSPerNews_Experiences.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
+                ListPerNewLangDegrees = db.BDSPerNews_LangDegrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
+                ListPerNewReferences = db.BDSPerNews_References.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
+                if (ListPerNewDegrees.Count == 0)
+                {
+                    ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID });
+                }
+                if (ListPerNewExperiences.Count == 0)
+                {
+                    ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID });
+                }
+                if (ListPerNewLangDegrees.Count == 0)
+                {
+                    ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID });
+                }
+                if (ListPerNewReferences.Count == 0)
+                {
+                    ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID });
+                }
+            }
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
+
+
+
+            var registerModel = new RegisterInformationModel
+            {
+                ListBDSScopes = db.BDSScopes.Where(T => T.Active == 1).ToList(),
+                ListMarriea = db.BDSMarriages.Where(T => T.Active == 1).ToList(),
+                ListSalary = db.BDSSalaries.Where(T => T.Active == 1).ToList(),
+                ListDucation = db.BDSEducations.Where(T => T.Active == 1).ToList(),
+                ListBDSCareer = db.BDSCareers.Where(T => T.Active == 1).ToList(),
+                ListTimework = db.BDSTimeWorks.Where(T => T.Active == 1).ToList(),
+                ListBDSLanguage = db.BDSLanguages.Where(T => T.Active == 1).ToList(),
+                ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
+                ListGeoModel = dataCity,
+
+                ListBdsAdcount = db.BDSAccounts.Where(T => T.Active == 1).ToList(),
+                ListBDSEmper = db.BDSEmpers.Where(T => T.Active == 1).ToList(),
+                ListPerNewDegrees = ListPerNewDegrees,
+                ListPerNewExperiences = ListPerNewExperiences,
+                ListPerNewLangDegrees = ListPerNewLangDegrees,
+                ListPerNewReferences = ListPerNewReferences,
+                tblBDSPerNew = cuurentINews,
+                TblBDSPersonalInformation = tblPer,
+                TblBdsAdcount = tblAccount
+            };
+            return View(registerModel);
+           
+        }
+        public ActionResult CheckAccountSaveNews(int idNew, int idAccount)
+        {
+            var result = 0;
+            if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(idAccount))
+            {
+                if (db.BDSApplies.Any(x => x.IdNews == idNew && x.IdAccountPer== idAccount && x.TypeProfile == 2))
+                {
+                    result = 0;
+                }
+                else
+                {
+                  
+                   
+                        var tblApply = new BDSApply
+                        {
+                            IdAccountEm = 0,
+                            IdAccountPer = idAccount,
+                            Active = 1,
+                            CreateDate = DateTime.Now,
+                            ModifiedDate = DateTime.Now,
+                            CreateUser = 1,
+                            ModifiedUser = 1,
+                            IdNews = idNew,
+                            TypeProfile = 2,
+                        };
+                    db.BDSApplies.Add(tblApply);
+                    db.SaveChanges();
+                    result = 1;
+                }
+            }
+            else
+            {
+                result = 2;
+            }
+            
+            
+
+            return Json(new {result=result});
+        }
     }
 }

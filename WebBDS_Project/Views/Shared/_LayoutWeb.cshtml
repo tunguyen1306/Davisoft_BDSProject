@@ -23,6 +23,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+    <link rel="icon" href="~/Template/images/fa.jpg" sizes="32x32" />
+    <meta name="msapplication-TileImage" content="~/Template/images/fa.jpg" />
+
+    
      @RenderSection("share_fb", false)
     <title>BDS</title>
     <link rel="stylesheet" href="~/Template/css/normalize.css" type="text/css" media="screen">
@@ -54,6 +58,16 @@
     <script src="~/Template/select2/js/select2.js"></script>
 
     <script src="~/Template/js/datatables.min.js"></script>
+    <script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-54994996-10', 'auto');
+ ga('send', 'pageview');
+
+    </script>
 </head>
 <body>
     <div id="warrper">
@@ -317,8 +331,7 @@
                         <li><a href="#"><i class="fa fa-table"></i>Bảng giá tin đăng</a></li>
                         <li class="ads"><a href="#"><i class="fa fa-table"></i>Khuyến mãi <img src="~/Template/images/new.gif" alt="img"></a></li>
                     </ul>
-                    </ul>
-                    </ul>
+                   
                 </div>
             </div>
             <div class="sub_footer">
@@ -369,9 +382,46 @@
     <script src="~/Template/js/pushy.js"></script>
     <script src="~/Template/js/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('.select2').select2();
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+        $('.btnSave').each(function() {
+            $(this).click(function() {
+                var UserId = @(Session["IdUser"] ?? 0);
+        
+            CheckSave($(this).attr('rel'), UserId);
+        });
     });
+    function SaveNew(idNew,idAccount) {
+        
+    }
+    function CheckSave(idNew, idAccount) {
+
+        var obj = {};
+        obj.idNew = idNew;
+        obj.idAccount = idAccount;
+
+        $.ajax
+       ({
+           type: "POST",
+           url: '@Url.Action("CheckAccountSaveNews", "AdvertCompany")',
+           data: JSON.stringify(obj),
+           dataType: "json",
+           contentType: "application/json;charset=utf-8",
+           success: function (data) {
+               if (data.result === 0) {
+                   toastr.error("Việc làm đã được lưu trước đây");
+               }
+               if (data.result === 1) {
+                   toastr.success("bạn đã lưu thành công");
+               }
+               if (data.result === 2) {
+               
+                   toastr.error("Tài khoản người tìm việc mới có thể lưu");
+               }
+           }
+       });
+    }
     var optionSideRight = {
         button: "side-right-pushy-button",
         container: "container",
