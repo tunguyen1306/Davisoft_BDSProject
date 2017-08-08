@@ -104,83 +104,103 @@
                         <div class="row-right">
 
 
-                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Address, new { @placeholder = "Nhập địa chỉ liên hệ" ,@class="input1" })
-
-                        </div>
-                        <label class="child" >Tỉnh/Thành phố</label>
-                        <div class="row-right1  grid_2">
-
-                            @Html.DropDownListFor(m => m.TblBDSPersonalInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2", @style = "width:100%;" })
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.PermanentAddress, new {@placeholder = "Nhập địa chỉ thường trú", @class = "input4"})
 
                         </div>
 
-                        <div class="row-right1  grid_3">
 
 
-                            @Html.DropDownListFor(m => m.TblBDSPersonalInformation.District, new SelectList(Model.ListGeoDisModel, "DistId", "DistName"), new { @class = "select2", @style = "width:100%;" })
-                        </div>
 
 
                     </div>
                     <div class="row">
-                        <div class="width4">
-                            <label>Tình trạng hôn nhân<span class="required"> *</span></label>
-                            <div class="row-right">
+
+                        <label>Địa chỉ liên hệ<span class="required"> *</span></label>
+                        <div class="row-right">
 
 
-                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"),"Chọn tình trạng hôn nhân", new { @class = "dropdown" })
+                            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.TemporaryAddress, new { @placeholder = "Nhập địa chỉ liên hệ", @class = "input4" })
 
-
-
-
-                            </div>
                         </div>
-                        <div class="row-right width3">
 
-                            <label class="child">Mức lương mong muốn <span class="required">*</span></label>
-                            <div class="pncon">
-                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"),"Chọn mức lương", new { @class = "dropdown" })
-                            </div>
-                        </div>
+
 
 
 
                     </div>
                     <div class="row">
                         <div class="width4">
-                            <label>Số năm kinh nghiệm<span class="required"> *</span></label>
+                            <label>Hôn nhân<span class="required"> *</span></label>
                             <div class="row-right">
 
-                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"),"Chọn kinh nghiệm", new { @class = "dropdown" })
+
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), "Chọn tình trạng hôn nhân", new {@class = "dropdown"})
+
+
 
 
                             </div>
                         </div>
-                        <div class="row-right width3">
+                        <div class="row-right width4">
+
+                            <label class="child">Nơi làm việc <span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Province, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
+
+                            </div>
+                        </div>
+                       
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="width4">
+                            <label>Kinh nghiệm<span class="required"> *</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.ExperienceProfile, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn kinh nghiệm", new {@class = "dropdown"})
+
+
+                            </div>
+                        </div>
+                        <div class="row-right width4">
+
+                            <label class="child">Mức lương <span class="required">*</span></label>
+                            <div class="row-right">
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.SalaryProfile, new SelectList(Model.ListSalary, "Id", "Name"), "Chọn mức lương", new { @class = "dropdown" })
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <label>Công việc <span class="required">*</span></label>
+                        <div class="row-right">
+                            @Html.DropDownListFor(m => m.tblBDSPerNew.CareerProfile, new SelectList(Model.ListBDSCareer, "Id", "Name"), "Chọn ngành nghề", new { @class = "dropdown" })
+
+
+                        </div>
+                      
+
+
+                        <div class="row-right width4">
 
                             <label class="child">Học vấn <span class="required">*</span></label>
-                            <div class="pncon">
+                            <div class="row-right">
 
-                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Education, new SelectList(Model.ListDucation, "Id", "Name"),"Chọn học vấn", new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.EducationProfile, new SelectList(Model.ListDucation, "Id", "Name"), "Chọn học vấn", new { @class = "dropdown" })
 
                             </div>
                         </div>
 
 
-
                     </div>
-
                     <div class="row">
-                        <label>Công việc mong muốn<span class="required">*</span></label>
-                        <div class="row-right">
-                            @Html.DropDownListFor(m => m.TblBDSPersonalInformation.IdLoaiNghe, new SelectList(Model.ListBDSCareer, "Id", "Name"),"Chọn ngành nghề", new { @class = "dropdown" })
-
-
-                        </div>
-
-
-                        <label class="child">Kinh nghiệm trong ngành bất động sản<span class="required">*</span></label>
-
+                        <label style="width: 360px;">Kinh nghiệm trong ngành bất động sản<span class="required">*</span></label>
                         <div class="pncon radio_3">
                             <label><input name="TblBDSPersonalInformation.ProfessionalExperience" value="0" checked="checked" type="radio">Không</label>
                             <label><input name="TblBDSPersonalInformation.ProfessionalExperience" value="1" type="radio">Đã có kinh nghiệm</label>

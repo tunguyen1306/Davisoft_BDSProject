@@ -135,6 +135,7 @@ namespace WebBDS_Project.Controllers
                         tblPer.PermanentAddress = model.TblBDSPersonalInformation.PermanentAddress;
                         tblPer.UrlImageCheck = model.TblBDSPersonalInformation.UrlImageCheck;
                         tblPer.UrlImage = model.TblBDSPersonalInformation.UrlImage;
+                      
                         db.Entry(tblPer).State = EntityState.Modified;
                         db.SaveChanges();
                         model.TblBDSPersonalInformation = tblPer;
@@ -152,7 +153,11 @@ namespace WebBDS_Project.Controllers
                         cuurentINews.ModifiedDate = DateTime.Now;
                         cuurentINews.ModifiedUser = 1;
                         db.Entry(cuurentINews).State = EntityState.Modified;
+
+                       
+
                         db.SaveChanges();
+
                         model.tblBDSPerNew = cuurentINews;
                         break;
                     case 3:
@@ -330,12 +335,8 @@ namespace WebBDS_Project.Controllers
                         break;
                     case 7:
                         cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.ID == model.tblBDSPerNew.ID);
-                        path = SaveFile(Request.Files["tblBDSPerNew.File"]);
-                        if (path != "")
-                        {
-                            model.tblBDSPerNew.FileUrl = path;
-                        }
-                        cuurentINews.FileUrl = model.tblBDSPerNew.FileUrl;
+                        cuurentINews.Status = model.tblBDSPerNew.Status == 0 ? 1 : model.tblBDSPerNew.Status;
+                        cuurentINews.SearchCheck = model.tblBDSPerNew.SearchCheck;
                         cuurentINews.ModifiedDate = DateTime.Now;
                         cuurentINews.ModifiedUser = 1;
                         db.Entry(cuurentINews).State = EntityState.Modified;
@@ -623,46 +624,6 @@ namespace WebBDS_Project.Controllers
             }
             var tblPer = db.BDSPersonalInformations.FirstOrDefault(T => T.IdAccount == tblAccount.ID);
 
-            var cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.PerId == tblPer.ID && T.Active == 1);
-            List<BDSPerNews_Degrees> ListPerNewDegrees = new List<BDSPerNews_Degrees>();
-            List<BDSPerNews_Experiences> ListPerNewExperiences = new List<BDSPerNews_Experiences>();
-            List<BDSPerNews_LangDegrees> ListPerNewLangDegrees = new List<BDSPerNews_LangDegrees>();
-            List<BDSPerNews_References> ListPerNewReferences = new List<BDSPerNews_References>();
-            if (cuurentINews == null)
-            {
-                cuurentINews = new BDSPerNew { Active = 1, CreateDate = DateTime.Now, CreateUser = 1, PerId = tblPer.ID };
-                db.Entry(cuurentINews).State = EntityState.Added;
-                db.SaveChanges();
-                ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID });
-            }
-            else
-            {
-                ListPerNewDegrees = db.BDSPerNews_Degrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
-                ListPerNewExperiences =
-                    db.BDSPerNews_Experiences.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
-                ListPerNewLangDegrees =
-                    db.BDSPerNews_LangDegrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
-                ListPerNewReferences = db.BDSPerNews_References.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
-                if (ListPerNewDegrees.Count == 0)
-                {
-                    ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID });
-                }
-                if (ListPerNewExperiences.Count == 0)
-                {
-                    ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID });
-                }
-                if (ListPerNewLangDegrees.Count == 0)
-                {
-                    ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID });
-                }
-                if (ListPerNewReferences.Count == 0)
-                {
-                    ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID });
-                }
-            }
             var dataCity = (from data in db.States
                             join datatext in db.StateTexts on data.name_id equals datatext.id
                             where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
@@ -683,14 +644,8 @@ namespace WebBDS_Project.Controllers
                 ListBDSLanguage = db.BDSLanguages.Where(T => T.Active == 1).ToList(),
                 ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
                 ListGeoModel = dataCity,
-
                 ListBdsAdcount = db.BDSAccounts.Where(T => T.Active == 1).ToList(),
                 ListBDSEmper = db.BDSEmpers.Where(T => T.Active == 1).ToList(),
-                ListPerNewDegrees = ListPerNewDegrees,
-                ListPerNewExperiences = ListPerNewExperiences,
-                ListPerNewLangDegrees = ListPerNewLangDegrees,
-                ListPerNewReferences = ListPerNewReferences,
-                tblBDSPerNew = cuurentINews,
                 TblBDSPersonalInformation = tblPer,
                 TblBdsAdcount = tblAccount
             };

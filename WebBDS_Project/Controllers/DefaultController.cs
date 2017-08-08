@@ -174,24 +174,24 @@ namespace WebBDS_Project.Controllers
 
            
 
-            var q = (from a in db.BDSPersonalInformations
-                     where a.Active == 1
-                     join b in db.BDSEducations on a.Education equals b.ID
-                     orderby a.CreateDate ascending 
-                     select a);
+            var q = (from a in db.BDSPersonalInformations join b in db.BDSPerNews on a.ID equals b.PerId
+                     join c in db.BDSEducations on b.EducationProfile equals c.ID
+                     where  a.Active==1 && b.Status==1 && b.SearchCheck==1
+                     orderby a.DateReup ascending 
+                     select b);
             if (filterWorkingPlace != null && filterWorkingPlace.Length > 0)
             {
 
-                q = q.Where(T => filterWorkingPlace.Contains(T.City));
+                q = q.Where(T => filterWorkingPlace.Contains(T.ProvinceProfile.Value));
             }
             if (filterTimeWorking.HasValue)
             {
-                q = q.Where(a => a.Experience == filterTimeWorking);
+                q = q.Where(a => a.ExperienceProfile == filterTimeWorking);
             }
             if (filterCareer!=null && filterCareer.Length > 0)
             {
 
-                q = q.Where(a => filterCareer.Contains(a.IdLoaiNghe));
+                q = q.Where(a => filterCareer.Contains(a.CareerProfile.Value));
             }
             var total = q.Count();
             var data = q.Skip(page * view - view).Take(view).ToList();

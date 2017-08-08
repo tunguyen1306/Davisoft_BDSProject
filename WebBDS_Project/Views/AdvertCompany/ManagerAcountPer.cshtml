@@ -5,18 +5,21 @@
 @using System.Web.UI.WebControls
 @using WebBDS_Project.Models
 @model WebBDS_Project.Models.RegisterInformationModel
-<div class="container">
+@using (Html.BeginForm("CreateAdvertCompany", "AdvertCompany", FormMethod.Post, new { enctype = "multipart/form-data", @id = "formN" }))
+{
+     <input type="hidden" name="type" value="0" id="type"/>
+    <div class="container">
     <div class="grid_9 main_left">
         <div class="group_work">
-           
-            
-          
+
+
+
             <h4>Thông tin hồ sơ cá nhân</h4>
 
             <div class="form-horizontal cus-form-horizonta fromValidate">
                 @Html.Partial("BaseProfile", Model)
             </div>
-       
+            <button type="submit" style="display: none" id="sbForm"></button>
         </div>
 
     </div>
@@ -25,3 +28,146 @@
 
     </div>
 </div>
+}|
+
+<style>
+    hr {
+        margin-bottom: 10px;
+    }
+
+    .space {
+        margin-bottom: 6px;
+    }
+
+    .space_0_ {
+        display: none;
+    }
+
+    .thumb {
+        max-height: 80px;
+    }
+
+    .viewFile {
+        padding-top: 6px;
+    }
+</style>
+
+<script>
+    $(document).on('click', '.btnUpload', function () { $(this).next().trigger('click'); });
+
+
+    function submitType(el, type) {
+
+        var validate = 0;
+        $(el).parents('.fromValidate').eq(0).find('.validate').each(function (index, item) {
+            if (item.tagName != "DIV" && $(item).val() == "") {
+                var title = $(item).parents('.row-right').eq(0).prev().text();
+                var tag = item.tagName;
+                if (tag == "SELECT") {
+                    toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                    validate++;
+                } else {
+                    toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                    validate++;
+                }
+            } else {
+
+                var tag = $(item).attr('ref-type');
+                if (tag == "RANGER") {
+                    var countR = 0;
+                    $(item).find('select').each(function (i, itemc) {
+                        if ($(itemc).val() == "") {
+                            countR++;
+                        }
+                    });
+                    $(item).find('input').each(function (i, itemc) {
+                        if ($(itemc).val() == "") {
+                            countR++;
+                        }
+                    });
+                    if (countR > 0) {
+                        validate++;
+                        toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
+                    }
+                }
+                if (tag == "S-RANGER") {
+
+                    var countR = 0;
+                    $(item).find('select').each(function (i, itemc) {
+                        if ($(itemc).val() == "") {
+                            countR++;
+                        }
+                    });
+                    $(item).find('input').each(function (i, itemc) {
+                        if ($(itemc).val() == "") {
+                            countR++;
+                        }
+                    });
+                    if (countR > 0) {
+                        validate++;
+                        toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
+                    }
+                }
+
+            }
+        });
+
+        if (validate == 0) {
+           
+            $('#type').val(type);
+            $('#sbForm').click();
+        }
+    }
+
+    $(document).on('submit', '#formN', function () {
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+                if (data.Status) {
+                    toastr.success(data.Msg);
+                    
+                } else {
+                    toastr.error(data.Msg);
+                }
+
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        return false;
+    });
+
+    $(document).on('change', '.uploadFile', function () {
+        var sef = this;
+        var view = $(sef).parents('.uploadBox').eq(0).find('.viewFile').eq(0);
+        var fName = $(this)[0].files[0].name;
+        var f = $(this)[0].files[0];
+        if ($(this)[0].files[0].type.match('image.*')) {
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    // Render thumbnail.
+
+                    view.html(['<img class="thumb" src="', e.target.result,
+                                      '" title="', escape(fName), '"/>'].join(''));
+
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        } else {
+            var span = document.createElement('span');
+            view.html('<span>' + fName + '</span>');
+        }
+
+    });
+
+</script>

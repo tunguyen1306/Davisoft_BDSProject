@@ -5,8 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
 
-    <Schema Namespace="davisoft_bdsprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-
+    <Schema Namespace="davisoft_bdsprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -467,7 +466,6 @@
           <Property Name="Skills" Type="nvarchar(max)" />
           <Property Name="Hobby" Type="nvarchar(max)" />
           <Property Name="SearchCheck" Type="int" />
-          <Property Name="SearchEmCheck" Type="int" />
           <Property Name="KeySearch" Type="nvarchar(max)" />
           <Property Name="Active" Type="int" />
           <Property Name="CreateDate" Type="datetime" />
@@ -476,6 +474,7 @@
           <Property Name="ModifiedUser" Type="int" />
           <Property Name="PerId" Type="int" />
           <Property Name="FileUrl" Type="text" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="BDSPerNews_Degrees">
           <Key>
@@ -563,18 +562,12 @@
           <Property Name="IdAccount" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Phone" Type="nvarchar(max)" />
-          <Property Name="Birthday" Type="datetime" Nullable="false" />
           <Property Name="Sex" Type="int" Nullable="false" />
-          <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="City" Type="int" Nullable="false" />
-          <Property Name="District" Type="int" Nullable="false" />
-          <Property Name="FullAddress" Type="nvarchar(max)" />
           <Property Name="MaritalStatus" Type="int" Nullable="false" />
-          <Property Name="Salary" Type="int" Nullable="false" />
-          <Property Name="Experience" Type="int" Nullable="false" />
-          <Property Name="ProfessionalExperience" Type="int" Nullable="false" />
-          <Property Name="Education" Type="int" Nullable="false" />
-          <Property Name="IdLoaiNghe" Type="int" Nullable="false" />
+          <Property Name="Birthday" Type="datetime" Nullable="false" />
+          <Property Name="Province" Type="int" />
+          <Property Name="PermanentAddress" Type="nvarchar(max)" />
+          <Property Name="TemporaryAddress" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="UrlImage" Type="nvarchar(max)" />
           <Property Name="UrlImageCheck" Type="int" />
@@ -587,9 +580,6 @@
           <Property Name="DateReup" Type="datetime" />
           <Property Name="CountReup" Type="int" />
           <Property Name="MaxReup" Type="int" />
-          <Property Name="PermanentAddress" Type="nvarchar(max)" />
-          <Property Name="TemporaryAddress" Type="nvarchar(max)" />
-          <Property Name="Province" Type="int" />
         </EntityType>
         <EntityType Name="BDSPictures">
           <Key>
@@ -1477,42 +1467,6 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
         </EntityType>
-        <EntityType Name="BDSPersonalInformation">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdAccount" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Sex" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="Int32" Nullable="false" />
-          <Property Name="District" Type="Int32" Nullable="false" />
-          <Property Name="FullAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MaritalStatus" Type="Int32" Nullable="false" />
-          <Property Name="Salary" Type="Int32" Nullable="false" />
-          <Property Name="Experience" Type="Int32" Nullable="false" />
-          <Property Name="ProfessionalExperience" Type="Int32" Nullable="false" />
-          <Property Name="Education" Type="Int32" Nullable="false" />
-          <Property Name="IdLoaiNghe" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UrlImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Active" Type="Int32" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedUser" Type="Int32" />
-          <Property Name="DateReup" Type="DateTime" Precision="3" />
-          <Property Name="CountReup" Type="Int32" />
-          <Property Name="MaxReup" Type="Int32" />
-          <Property Name="UrlImageCheck" Type="Int32" />
-          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Province" Type="Int32" />
-        </EntityType>
         <EntityType Name="BDSPicture">
           <Key>
             <PropertyRef Name="ID" />
@@ -1921,7 +1875,6 @@
           <EntitySet Name="BDSNewsDates" EntityType="Self.BDSNewsDate" />
           <EntitySet Name="BDSNewsTypePrices" EntityType="Self.BDSNewsTypePrice" />
           <EntitySet Name="BDSNewsTypes" EntityType="Self.BDSNewsType" />
-          <EntitySet Name="BDSPersonalInformations" EntityType="Self.BDSPersonalInformation" />
           <EntitySet Name="BDSPictures" EntityType="Self.BDSPicture" />
           <EntitySet Name="BDSSalaries" EntityType="Self.BDSSalary" />
           <EntitySet Name="BDSScopes" EntityType="Self.BDSScope" />
@@ -1956,6 +1909,7 @@
           <EntitySet Name="BDSPerNews_Experiences" EntityType="davisoft_bdsprojectModel.BDSPerNews_Experiences" />
           <EntitySet Name="BDSPerNews_LangDegrees" EntityType="davisoft_bdsprojectModel.BDSPerNews_LangDegrees" />
           <EntitySet Name="BDSPerNews_References" EntityType="davisoft_bdsprojectModel.BDSPerNews_References" />
+          <EntitySet Name="BDSPersonalInformations" EntityType="davisoft_bdsprojectModel.BDSPersonalInformation" />
         </EntityContainer>
         <EntityType Name="BDSPerNew">
           <Key>
@@ -1979,7 +1933,6 @@
           <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Hobby" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SearchCheck" Type="Int32" />
-          <Property Name="SearchEmCheck" Type="Int32" />
           <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Int32" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
@@ -1988,6 +1941,7 @@
           <Property Name="ModifiedUser" Type="Int32" />
           <Property Name="PerId" Type="Int32" />
           <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
         </EntityType>
         <EntityType Name="BDSPerNews_Degrees">
           <Key>
@@ -2066,6 +2020,33 @@
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BDSPersonalInformation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAccount" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="Int32" Nullable="false" />
+          <Property Name="MaritalStatus" Type="Int32" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Province" Type="Int32" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrlImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrlImageCheck" Type="Int32" />
+          <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUser" Type="Int32" />
+          <Property Name="DateReup" Type="DateTime" Precision="3" />
+          <Property Name="CountReup" Type="Int32" />
+          <Property Name="MaxReup" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2532,43 +2513,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BDSPersonalInformations">
-            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPersonalInformation">
-              <MappingFragment StoreEntitySet="BDSPersonalInformations">
-                <ScalarProperty Name="Province" ColumnName="Province" />
-                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
-                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
-                <ScalarProperty Name="UrlImageCheck" ColumnName="UrlImageCheck" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="Experience" ColumnName="Experience" />
-                <ScalarProperty Name="ProfessionalExperience" ColumnName="ProfessionalExperience" />
-                <ScalarProperty Name="Education" ColumnName="Education" />
-                <ScalarProperty Name="IdLoaiNghe" ColumnName="IdLoaiNghe" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
-                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
-                <ScalarProperty Name="DateReup" ColumnName="DateReup" />
-                <ScalarProperty Name="CountReup" ColumnName="CountReup" />
-                <ScalarProperty Name="MaxReup" ColumnName="MaxReup" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BDSPictures">
             <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPicture">
               <MappingFragment StoreEntitySet="BDSPictures">
@@ -2977,6 +2921,7 @@
           <EntitySetMapping Name="BDSPerNews">
             <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPerNew">
               <MappingFragment StoreEntitySet="BDSPerNews">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
                 <ScalarProperty Name="PerId" ColumnName="PerId" />
                 <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
@@ -2985,7 +2930,6 @@
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
-                <ScalarProperty Name="SearchEmCheck" ColumnName="SearchEmCheck" />
                 <ScalarProperty Name="SearchCheck" ColumnName="SearchCheck" />
                 <ScalarProperty Name="Hobby" ColumnName="Hobby" />
                 <ScalarProperty Name="Skills" ColumnName="Skills" />
@@ -3085,6 +3029,34 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
                 <ScalarProperty Name="ID_BDSPerNews" ColumnName="ID_BDSPerNews" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDSPersonalInformations">
+            <EntityTypeMapping TypeName="davisoft_bdsprojectModel.BDSPersonalInformation">
+              <MappingFragment StoreEntitySet="BDSPersonalInformations">
+                <ScalarProperty Name="MaxReup" ColumnName="MaxReup" />
+                <ScalarProperty Name="CountReup" ColumnName="CountReup" />
+                <ScalarProperty Name="DateReup" ColumnName="DateReup" />
+                <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+                <ScalarProperty Name="UrlImageCheck" ColumnName="UrlImageCheck" />
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -323,21 +323,23 @@ namespace WebBDS_Project.Controllers
                 {
                     BDSPersonalInformation BDSPersonalInformation = db.BDSPersonalInformations.Find(idEmployee.ID);
                     BDSPersonalInformation.Name = register.TblBDSPersonalInformation.Name;
-                    BDSPersonalInformation.Address = register.TblBDSPersonalInformation.Address;
+                    BDSPersonalInformation.TemporaryAddress = register.TblBDSPersonalInformation.TemporaryAddress;
+                    BDSPersonalInformation.Province = register.TblBDSPersonalInformation.Province;
+                    BDSPersonalInformation.PermanentAddress = register.TblBDSPersonalInformation.PermanentAddress;
                     BDSPersonalInformation.Phone = register.TblBDSPersonalInformation.Phone;
-                    BDSPersonalInformation.City = register.TblBDSPersonalInformation.City;
+                   // BDSPersonalInformation.City = register.TblBDSPersonalInformation.City;
                     BDSPersonalInformation.Description = register.TblBDSPersonalInformation.Description;
                     BDSPersonalInformation.UrlImage = register.TblBDSPersonalInformation.UrlImage;
                     BDSPersonalInformation.Birthday = register.TblBDSPersonalInformation.Birthday;
                     BDSPersonalInformation.Sex = register.TblBDSPersonalInformation.Sex;
-                    BDSPersonalInformation.City= register.TblBDSPersonalInformation.City;
-                    BDSPersonalInformation.District = register.TblBDSPersonalInformation.District;
+                  //  BDSPersonalInformation.City= register.TblBDSPersonalInformation.City;
+                 //   BDSPersonalInformation.District = register.TblBDSPersonalInformation.District;
                     BDSPersonalInformation.MaritalStatus = register.TblBDSPersonalInformation.MaritalStatus;
-                    BDSPersonalInformation.Salary = register.TblBDSPersonalInformation.Salary;
-                    BDSPersonalInformation.Experience = register.TblBDSPersonalInformation.Experience;
-                    BDSPersonalInformation.Education = register.TblBDSPersonalInformation.Education;
-                    BDSPersonalInformation.IdLoaiNghe = register.TblBDSPersonalInformation.IdLoaiNghe;
-                    BDSPersonalInformation.ProfessionalExperience = register.TblBDSPersonalInformation.ProfessionalExperience;
+                  //  BDSPersonalInformation.Salary = register.TblBDSPersonalInformation.Salary;
+                  //  BDSPersonalInformation.Experience = register.TblBDSPersonalInformation.Experience;
+                  //  BDSPersonalInformation.Education = register.TblBDSPersonalInformation.Education;
+                  //  BDSPersonalInformation.IdLoaiNghe = register.TblBDSPersonalInformation.IdLoaiNghe;
+                  //  BDSPersonalInformation.ProfessionalExperience = register.TblBDSPersonalInformation.ProfessionalExperience;
                     db.Entry(BDSPersonalInformation).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -400,9 +402,11 @@ namespace WebBDS_Project.Controllers
             {
                 BDSPersonalInformation BDSPersonalInformation = db.BDSPersonalInformations.Find(idEmployee.ID);
                 BDSPersonalInformation.Name = register.TblBDSPersonalInformation.Name;
-                BDSPersonalInformation.Address = register.TblBDSPersonalInformation.Address;
+                BDSPersonalInformation.TemporaryAddress = register.TblBDSPersonalInformation.TemporaryAddress;
+                BDSPersonalInformation.Province = register.TblBDSPersonalInformation.Province;
+                BDSPersonalInformation.PermanentAddress = register.TblBDSPersonalInformation.PermanentAddress;
                 BDSPersonalInformation.Phone = register.TblBDSPersonalInformation.Phone;
-                BDSPersonalInformation.City = register.TblBDSPersonalInformation.City;
+              //  BDSPersonalInformation.City = register.TblBDSPersonalInformation.City;
                 BDSPersonalInformation.Description = register.TblBDSPersonalInformation.Description;
                 BDSPersonalInformation.UrlImage = register.TblBDSPersonalInformation.UrlImage;
                 db.Entry(BDSPersonalInformation).State = EntityState.Modified;

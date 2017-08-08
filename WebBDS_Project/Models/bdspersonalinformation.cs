@@ -18,20 +18,15 @@ namespace WebBDS_Project.Models
         public int IdAccount { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        public System.DateTime Birthday { get; set; }
         public int Sex { get; set; }
-        public string Address { get; set; }
-        public int City { get; set; }
-        public int District { get; set; }
-        public string FullAddress { get; set; }
         public int MaritalStatus { get; set; }
-        public int Salary { get; set; }
-        public int Experience { get; set; }
-        public int ProfessionalExperience { get; set; }
-        public int Education { get; set; }
-        public int IdLoaiNghe { get; set; }
+        public System.DateTime Birthday { get; set; }
+        public Nullable<int> Province { get; set; }
+        public string PermanentAddress { get; set; }
+        public string TemporaryAddress { get; set; }
         public string Description { get; set; }
         public string UrlImage { get; set; }
+        public Nullable<int> UrlImageCheck { get; set; }
         public string KeySearch { get; set; }
         public int Active { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
@@ -41,9 +36,5 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> DateReup { get; set; }
         public Nullable<int> CountReup { get; set; }
         public Nullable<int> MaxReup { get; set; }
-        public Nullable<int> UrlImageCheck { get; set; }
-        public string PermanentAddress { get; set; }
-        public string TemporaryAddress { get; set; }
-        public Nullable<int> Province { get; set; }
     }
 }

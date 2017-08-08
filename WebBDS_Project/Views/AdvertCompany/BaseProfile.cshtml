@@ -55,7 +55,7 @@
         <label style="width: 116px" class="child">Ngày sinh:<span class="required">*</span></label>
         <div class="row-right">
 
-            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Birthday, "{0:dd/MM/yyyy}", new { @class = "input1 validate" })
+            @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Birthday, "{0:dd/MM/yyyy}", new { @class = "input1 validate datepicker" })
 
 
         </div>
@@ -129,3 +129,12 @@
         </div>
     </div>
 
+<script>
+    $(function() {
+        
+        $(".datepicker").datepicker({
+            dateFormat: 'dd/mm/yy' 
+        });
+    });
+  
+</script>

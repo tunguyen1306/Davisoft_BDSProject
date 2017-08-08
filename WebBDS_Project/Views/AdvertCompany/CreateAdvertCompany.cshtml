@@ -35,7 +35,12 @@
                             </a>
                             Hỗ trợ định dạng .doc, .docx, .pdf nhỏ hơn 3MB.
                             <input type="file" style="display: none" value="upload" name="tblBDSPerNew.File" accept="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="uploadFile" />
-                            <div class="viewFile" style="padding-top: 5px"></div>
+                            <div class="viewFile" style="padding-top: 5px">
+                                @if (!String.IsNullOrWhiteSpace(Model.tblBDSPerNew.FileUrl))
+                                {
+                                    <a href="">Tải file CV (@(Model.tblBDSPerNew.FileUrl))</a>
+                                }
+                            </div>
                         </div>
 
 
@@ -566,33 +571,34 @@
                         </div>
                         <button type="submit" style="display: none" id="sbForm"></button>
                     </div>
-            <div class="form-horizontal">
-                <div class="row ">
-                    <label style="opacity: 0">aa</label>
-                    <div class="row-right radio">
+                <div class="form-horizontal fromValidate">
+                    <div class="row ">
+                        <label style="opacity: 0">aa</label>
+                        <div class="row-right radio">
 
-                        <input type="checkbox" name="" class="checkCarrie" value="1" style="margin-right: 10px;"><span>Cho phép nhà tuyển dụng tìm kiềm hồ sơ và liên hệ với bạn</span>
-                        <p>
-                            <input type="checkbox" name="" class="checkCarrie" value="1" style="margin-right:10px;"><span>Không cho phép nhà tuyển dụng tìm kiếm.Hồ sơ  này chỉ dùng để ứng tuyển.</span>
-                        </p>
+                            <input type="radio" name="tblBDSPerNew.SearchCheck" class="checkCarrie" @(Model.tblBDSPerNew.SearchCheck.HasValue && Model.tblBDSPerNew.SearchCheck == 1 ? "checked='checked'" : "") value="1" style="margin-right: 10px;"><span>Cho phép nhà tuyển dụng tìm kiềm hồ sơ và liên hệ với bạn</span>
+                            <p>
+                                <input type="radio" name="tblBDSPerNew.SearchCheck" class="checkCarrie" @(Model.tblBDSPerNew.SearchCheck.HasValue && Model.tblBDSPerNew.SearchCheck == 0 ? "checked='checked'" : "") value="0" style="margin-right:10px;"><span>Không cho phép nhà tuyển dụng tìm kiếm.Hồ sơ  này chỉ dùng để ứng tuyển.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(m => m.tblBDSPerNew.Status,new { @class="Status"})
+                    <div class="row">
+                        <label style="opacity: 0">aa</label>
+                        <div class="row-right">
+
+                            <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload" onclick="submitType(this, 7)">
+                                @(Model.tblBDSPerNew.Status.HasValue && Model.tblBDSPerNew.Status == 1 ? "Cập nhập" : "Lưu & công khai")
+
+                            </a>
+                            <a href="javascript:void(0)"  class="btn btnUpload">
+                                Xem trước
+                            </a>
+
+                        </div>
                     </div>
                 </div>
-              
-
-                <div class="row">
-                    <label style="opacity: 0">aa</label>
-                    <div class="row-right">
-
-                        <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                            Lưu & công khai
-                        </a>
-                        <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
-                            Xem trước
-                        </a>
-
-                    </div>
-                </div>
-            </div>
             </div>
             
         </div>
@@ -671,8 +677,9 @@
                     $('#ListPerNewExperiences_' + index + '__FromDate').val('01/' + $('#FromDate_' + index + '_Month').val() + "/" + $('#FromDate_' + index + '_Year').val());
                     $('#ListPerNewExperiences_' + index + '__ToDate').val('01/' + $('#ToDate_' + index + '_Month').val() + "/" + $('#ToDate_' + index + '_Year').val());
                 });
-                debugger;
+              
             }
+           
             $('#type').val(type);
             $('#sbForm').click();
         }
@@ -714,7 +721,7 @@
                 } else {
                     toastr.error(data.Msg);
                 }
-                console.log(data);
+          
             },
             cache: false,
             contentType: false,

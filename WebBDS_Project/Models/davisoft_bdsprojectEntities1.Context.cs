@@ -48,7 +48,6 @@ namespace WebBDS_Project.Models
         public DbSet<BDSNewsDate> BDSNewsDates { get; set; }
         public DbSet<BDSNewsTypePrice> BDSNewsTypePrices { get; set; }
         public DbSet<BDSNewsType> BDSNewsTypes { get; set; }
-        public DbSet<BDSPersonalInformation> BDSPersonalInformations { get; set; }
         public DbSet<BDSPicture> BDSPictures { get; set; }
         public DbSet<BDSSalary> BDSSalaries { get; set; }
         public DbSet<BDSScope> BDSScopes { get; set; }
@@ -83,5 +82,6 @@ namespace WebBDS_Project.Models
         public DbSet<BDSPerNews_Experiences> BDSPerNews_Experiences { get; set; }
         public DbSet<BDSPerNews_LangDegrees> BDSPerNews_LangDegrees { get; set; }
         public DbSet<BDSPerNews_References> BDSPerNews_References { get; set; }
+        public DbSet<BDSPersonalInformation> BDSPersonalInformations { get; set; }
     }
 }

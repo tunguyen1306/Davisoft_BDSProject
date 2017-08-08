@@ -170,7 +170,7 @@ namespace WebBDS_Project.Controllers
                             join datatext in db.DistrictTexts on data.name_id equals datatext.id
                             where datatext.language_id == "vi"
                             select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
-            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+          
             dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
             var registerModel = new RegisterInformationModel
             {
@@ -270,7 +270,7 @@ namespace WebBDS_Project.Controllers
                 bdsInformationModel.TblBDSPersonalInformation.ModifiedDate = DateTime.Now;
                 bdsInformationModel.TblBDSPersonalInformation.CreateUser = 1;
                 bdsInformationModel.TblBDSPersonalInformation.ModifiedUser = 1;
-                bdsInformationModel.TblBDSPersonalInformation.FullAddress = bdsInformationModel.TblBDSPersonalInformation.Address + "," + dataCity.FirstOrDefault(x => x.CityId == bdsInformationModel.TblBDSPersonalInformation.City).CityName;
+               // bdsInformationModel.TblBDSPersonalInformation.FullAddress = bdsInformationModel.TblBDSPersonalInformation.Address + "," + dataCity.FirstOrDefault(x => x.CityId == bdsInformationModel.TblBDSPersonalInformation.City).CityName;
                 //bdsInformationModel.TblBDSPersonalInformation.BDSEmpers=new Collection<BDSEmper>();
                 db.BDSPersonalInformations.Add(bdsInformationModel.TblBDSPersonalInformation);
                 db.SaveChanges();

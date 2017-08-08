@@ -144,6 +144,7 @@ namespace Davisoft_BDSProject.Web
             kernel.Bind<IValidator<BDSTimeWork>>().To<BDSTimeWorkValidator>();
             kernel.Bind<IValidator<BDSAccount>>().To<BDSAccountValidator>();
             kernel.Bind<IValidator<BDSEmployerInformation>>().To<BDSEmployerInformationValidator>();
+            kernel.Bind<IValidator<BDSPersonalInformation>>().To<BDSPersonalInfomationValidator>();
             kernel.Bind<IValidator<BDSNew>>().To<BDSNewValidator>();
             kernel.Bind<IValidator<BDSBranch>>().To<BDSBranchValidator>();
             kernel.Bind<IValidator<BDSTransaction>>().To<BDSTransactionValidator>();

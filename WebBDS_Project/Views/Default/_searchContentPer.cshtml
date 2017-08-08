@@ -1,6 +1,6 @@
 ﻿@using System.Configuration
 @using WebBDS_Project.Models
-@model IEnumerable<BDSPersonalInformation>
+@model IEnumerable<BDSPerNew>
 @{
     davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
     var States = (from a in db.States
@@ -23,12 +23,13 @@
 <ul class="list_work">
 
       
-        @foreach (var per in Model)
+        @foreach (var news in Model)
         {
+            var per = db.BDSPersonalInformations.FirstOrDefault(T => T.ID == news.PerId);
             var account = db.BDSAccounts.FirstOrDefault(T => T.ID == per.IdAccount);
-            var carrer = db.BDSCareers.FirstOrDefault(T => T.ID == per.IdLoaiNghe);
-            var education = db.BDSEducations.FirstOrDefault(T => T.ID == per.Education);
-            var salary = db.BDSSalaries.FirstOrDefault(T => T.ID == per.Salary);
+            var carrer = db.BDSCareers.FirstOrDefault(T => T.ID == news.CareerProfile);
+            var education = db.BDSEducations.FirstOrDefault(T => T.ID == news.EducationProfile);
+            var salary = db.BDSSalaries.FirstOrDefault(T => T.ID == news.SalaryProfile);
                <li style="margin-bottom: 0">
 
                         <div class="grid_12">

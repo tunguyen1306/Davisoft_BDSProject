@@ -32,7 +32,6 @@ namespace WebBDS_Project.Models
         public string Skills { get; set; }
         public string Hobby { get; set; }
         public Nullable<int> SearchCheck { get; set; }
-        public Nullable<int> SearchEmCheck { get; set; }
         public string KeySearch { get; set; }
         public Nullable<int> Active { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
@@ -41,5 +40,6 @@ namespace WebBDS_Project.Models
         public Nullable<int> ModifiedUser { get; set; }
         public Nullable<int> PerId { get; set; }
         public string FileUrl { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

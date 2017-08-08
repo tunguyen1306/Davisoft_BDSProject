@@ -102,18 +102,14 @@ namespace Davisoft_BDSProject.Web.Controllers
             Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
 
-            var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+           
             var Marriages = _serviceMarriage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            var Salaries = _serviceSalary.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            var TimeWorks = _serviceTimeWork.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+         
             
 
-            Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+   
             Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-            Salaries.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-            TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-            Careers.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+        
 
 
 
@@ -122,11 +118,9 @@ namespace Davisoft_BDSProject.Web.Controllers
 
 
 
-            ViewBag.Educations = Educations;
+        
             ViewBag.Marriages = Marriages;
-            ViewBag.Salaries = Salaries;
-            ViewBag.TimeWorks = TimeWorks;
-            ViewBag.Careers = Careers;
+         
             ViewBag.Cities = Cities;
             ViewBag.Districts = new List<SelectListItem>();
             return View(new BDSPersonalInformation { CreateUser = 1, ID = 0,Active = 1, BDSAccount = new BDSAccount { CreateDate = DateTime.Now, Money = 0, Point = 0, Token = Guid.NewGuid().ToString(), MailActive = 1, Active = 1, PassWord = "", CreateUser = 1, ID = 0 } });
@@ -149,18 +143,12 @@ namespace Davisoft_BDSProject.Web.Controllers
             {
 
 
-                var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+             
                 var Marriages = _serviceMarriage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-                var Salaries = _serviceSalary.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-                var TimeWorks = _serviceTimeWork.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-                var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-
-
-                Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+            
+            
                 Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-                Salaries.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-                TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-                Careers.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+           
 
 
 
@@ -168,12 +156,9 @@ namespace Davisoft_BDSProject.Web.Controllers
 
 
 
-
-                ViewBag.Educations = Educations;
+        
                 ViewBag.Marriages = Marriages;
-                ViewBag.Salaries = Salaries;
-                ViewBag.TimeWorks = TimeWorks;
-                ViewBag.Careers = Careers;
+         
                 ViewBag.Cities = Cities;;
                 ViewBag.Districts = Districts;
                 return View(model);
@@ -185,14 +170,10 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.BDSAccount= _serviceAccount.CreateItem(model.BDSAccount);
 
             model.IdAccount = model.BDSAccount.ID;
-            model.BDSCareer = _serviceCareer.GetItem(model.IdLoaiNghe);
-            model.BDSEducation = _serviceEducation.GetItem(model.Education);
+         
             model.BDSMarriage = _serviceMarriage.GetItem(model.MaritalStatus);
-            model.BDSSalary = _serviceSalary.GetItem(model.Salary);
-            model.BDSTimeWork = _serviceTimeWork.GetItem(model.Experience);
-            model.FullAddress = model.Address.NormalizeD() + ", " + Districts.Where(T => T.Value == model.District.ToString()).FirstOrDefault().Text.NormalizeD() +
-            ", " + Cities.Where(T => T.Value == model.City.ToString()).FirstOrDefault().Text.NormalizeD();
-            model.KeySearch = model.Name.NormalizeD() + " " + model.Birthday.ToString("dd/MM/yyyy").NormalizeD() + " " + model.Phone.NormalizeD() + " " + (model.Sex == 1 ? "Nam" : "Nữ") + " " + model.FullAddress + " " + model.BDSMarriage.Name.NormalizeD() + " " + model.BDSSalary.Name.NormalizeD() + " " + model.BDSCareer.Name.NormalizeD() + " " + model.BDSTimeWork.Name.NormalizeD() + " " + (model.ProfessionalExperience == 1 ? "Có kinh nghiệm bất động sản".NormalizeD() : "Không có kinh nghiệm bất động sản".NormalizeD()) + " " + model.Description.NormalizeD();
+       
+            model.KeySearch = model.Name.NormalizeD() + " " + model.Birthday.ToString("dd/MM/yyyy").NormalizeD() + " " + model.Phone.NormalizeD() + " " + (model.Sex == 1 ? "Nam" : "Nữ") + " " + model.TemporaryAddress + " " + model.BDSMarriage.Name.NormalizeD() ;
             var path = string.Empty;
             var path1 = string.Empty;
             var NewPath = string.Empty;
@@ -245,18 +226,13 @@ namespace Davisoft_BDSProject.Web.Controllers
                              select new { ID = a.state_id, Name = b.text }).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
             Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-            var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+          
             var Marriages = _serviceMarriage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            var Salaries = _serviceSalary.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            var TimeWorks = _serviceTimeWork.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-            var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+          
 
-
-            Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+        
             Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-            Salaries.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-            TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-            Careers.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+      
 
 
 
@@ -265,11 +241,9 @@ namespace Davisoft_BDSProject.Web.Controllers
 
 
 
-            ViewBag.Educations = Educations;
+        
             ViewBag.Marriages = Marriages;
-            ViewBag.Salaries = Salaries;
-            ViewBag.TimeWorks = TimeWorks;
-            ViewBag.Careers = Careers;
+          
             ViewBag.Cities = Cities;
             ViewBag.Districts = Districts;
             return View(model);
@@ -292,18 +266,11 @@ namespace Davisoft_BDSProject.Web.Controllers
                
                 Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
                 Districts.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-                var Educations = _serviceEducation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
+                
                 var Marriages = _serviceMarriage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-                var Salaries = _serviceSalary.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-                var TimeWorks = _serviceTimeWork.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-                var Careers = _serviceCareer.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-
-
-                Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+               
                 Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-                Salaries.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-                TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-                Careers.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+              
 
 
 
@@ -312,11 +279,9 @@ namespace Davisoft_BDSProject.Web.Controllers
 
 
 
-                ViewBag.Educations = Educations;
+             
                 ViewBag.Marriages = Marriages;
-                ViewBag.Salaries = Salaries;
-                ViewBag.TimeWorks = TimeWorks;
-                ViewBag.Careers = Careers;
+            
                 ViewBag.Cities = Cities;
                 ViewBag.Districts = Districts;
                 ViewBag.Success = false;
@@ -365,14 +330,10 @@ namespace Davisoft_BDSProject.Web.Controllers
                             model.BDSAccount.Point.Value.ToString("n2");
             _serviceAccount.UpdateItem(model.BDSAccount);
 
-            model.BDSCareer = _serviceCareer.GetItem(model.IdLoaiNghe);
-            model.BDSEducation = _serviceEducation.GetItem(model.Education);
+       
             model.BDSMarriage = _serviceMarriage.GetItem(model.MaritalStatus);
-            model.BDSSalary = _serviceSalary.GetItem(model.Salary);
-            model.BDSTimeWork = _serviceTimeWork.GetItem(model.Experience);
-            model.FullAddress = model.Address.NormalizeD() + ", " + Districts.Where(T => T.Value == model.District.ToString()).FirstOrDefault().Text.NormalizeD() +
-            ", " + Cities.Where(T => T.Value == model.City.ToString()).FirstOrDefault().Text.NormalizeD();
-            model.KeySearch = model.Name.NormalizeD() + " " + model.Birthday.ToString("dd/MM/yyyy").NormalizeD() + " " + model.Phone.NormalizeD() + " " + (model.Sex == 1 ? "Nam" : "Nữ") + " " + model.FullAddress + " " + model.BDSMarriage.Name.NormalizeD() + " " + model.BDSSalary.Name.NormalizeD() + " " + model.BDSCareer.Name.NormalizeD() + " " + model.BDSTimeWork.Name.NormalizeD() + " " + (model.ProfessionalExperience == 1 ? "Có kinh nghiệm bất động sản".NormalizeD() : "Không có kinh nghiệm bất động sản".NormalizeD()) + " " + model.Description.NormalizeD();
+        
+            model.KeySearch = model.Name.NormalizeD() + " " + model.Birthday.ToString("dd/MM/yyyy").NormalizeD() + " " + model.Phone.NormalizeD() + " " + (model.Sex == 1 ? "Nam" : "Nữ") + " " + model.TemporaryAddress + " " + model.BDSMarriage.Name.NormalizeD() + " " + model.Description.NormalizeD();
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;
