@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+<div class="container">
+    <div class="grid_12 ">
+        <div class="group_work" style="margin-top: 25px">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Đăng nhập - Đăng ký</span></h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="grid_6">
+                    <div class="right_col">
+
+                        <div class="cus-h3">Thông báo</div>
+                        <ul class="list_news cus-listnew-login">
+                            <li>
+                                Tài khoản của qúy khách không phải là tài khoản nhà tuyển dụng.
+                                Vui lòng đăng nhập hoặc đăng kí tài khoản nhà tuyển dụng.
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid_6 omega">
+                    <div class="right_col">
+                        <div class="cus-h3">Đăng ký</div>
+                        <ul class="list_news">
+                            <li>
+                                <b class="TextColorRed">Nếu bạn không có tài khoản </b><br />
+                                <a class="cus-a-login" href="@Url.Action("RegisterCompany","Register")">Đăng Ký nhà tuyển dụng</a>
+                                <a class="cus-a-login" style="color: black"> | </a>
+                                <a class="cus-a-login" href="@Url.Action("RegisterPersonal","Register")">Đăng Ký người tìm việc</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .btLogin {
+        background: #f39f18;
+        float: right;
+        color: #fff;
+        border: none;
+        padding: 8px 11px;
+        font-weight: bold;
+        margin-top: 13px;
+        line-height: 22px;
+        border-radius: 2px;
+    }
+</style>
+
+
+

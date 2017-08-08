@@ -3,7 +3,7 @@
 @{
     davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
     var modelMenu = db.BDSCareers.Take(4);
- 
+  
 
 }
 <!DOCTYPE HTML>
@@ -78,13 +78,21 @@
                         <p>Website tuyển dụng nhân viên bất động sản hàng đầu Việt Nam</p>
                         @if (Session["IdUser"] != null)
                         {
-                           
-                                <div class="login">
-                                    <a style="padding: 0 0px!important;" href="@Url.Action("ManagementAcountEmployee","Management")"> @Session["EmailUser"]</a>
-                                    <span class="gachTop"></span>
-                                    <a style="padding: 0 0px!important;" href="@Url.Action("LogOut","Login")">Thoát</a>
-                                  
-                                </div>
+                            var id = int.Parse(Session["IdUser"].ToString());
+                            <div class="login">
+                                @if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(id))
+                                {
+                                    <a style="padding: 0 0px !important;" href="@Url.Action("ManagerAcountPer", "AdvertCompany")"> @Session["EmailUser"]</a>
+                                }
+                                else
+                                {
+                                    <a style="padding: 0 0px !important;" href="@Url.Action("ManagementAcountEmployee", "Management")"> @Session["EmailUser"]</a>
+                                }
+                              
+                                <span class="gachTop"></span>
+                                <a style="padding: 0 0px !important;" href="@Url.Action("LogOut", "Login")">Thoát</a>
+
+                            </div>
                         }
                         else
                         {
@@ -374,7 +382,7 @@
                 <a href="@Url.Action("AdvertCompany","Adverts")" ><i class="fa fa-pencil-square-o"></i>
                     Đăng tuyển dụng</a>
 
-                <a href="@Url.Action("CreateAdvertCompany", "AdvertCompany")" target="_blank"><i class="fa fa-pencil-square-o"></i>
+                <a href="@Url.Action("CreateAdvertCompany", "AdvertCompany")"><i class="fa fa-pencil-square-o"></i>
                     Đăng tìm việc</a>
             </div>
         </div>

@@ -21,7 +21,7 @@ namespace WebBDS_Project.Controllers
             Session["IdTypeUser"] = null;
             Session["FullName"] = null;
           
-            var data = db.BDSAccounts.Where(x => x.Email.ToLower() == acountModel.tblBDSAccount.Email.ToLower().Trim() && x.PassWord == acountModel.tblBDSAccount.PassWord.Trim() && x.Active == 1).FirstOrDefault();
+            var data = db.BDSAccounts.FirstOrDefault(x => x.Email.ToLower() == acountModel.tblBDSAccount.Email.ToLower().Trim() && x.PassWord == acountModel.tblBDSAccount.PassWord.Trim() && x.Active == 1);
             if (data != null)
             {
                 FormsAuthentication.SetAuthCookie(data.Email, false);
@@ -75,7 +75,7 @@ namespace WebBDS_Project.Controllers
                 }
 
             }
-            return RedirectToAction("Index", "Default", acountModel);
+            return RedirectToAction("LoginForm", "Login", acountModel);
 
         }
         public ActionResult LoginForm()

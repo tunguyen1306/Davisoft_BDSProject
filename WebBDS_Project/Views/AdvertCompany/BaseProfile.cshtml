@@ -83,8 +83,16 @@
 
         <label>Hình cá nhân:</label>
         <div class="uploadBox">
-            <div style="float:left;margin-right:10px;" class="viewFile">
-                <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+            <div style="float: left; margin-right: 10px;" class="viewFile">
+                @if (Model.TblBDSPersonalInformation.UrlImage != null)
+                {
+                    <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.TblBDSPersonalInformation.UrlImage.ToString().Split('_')[0]/@Model.TblBDSPersonalInformation.UrlImage" />
+                }
+                else
+                {
+                    <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                }
+               
             </div>
             <input type="hidden" value="" name="TblBDSPersonalInformation.UrlImage" id="UrlImage" />
             <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">

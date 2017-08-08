@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+@using System.Configuration
+@using System.Web.UI.WebControls
+@using WebBDS_Project.Models
+@model WebBDS_Project.Models.RegisterInformationModel
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+           
+            
+          
+            <h4>Thông tin hồ sơ cá nhân</h4>
+
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+                @Html.Partial("BaseProfile", Model)
+            </div>
+       
+        </div>
+
+    </div>
+    <div class="grid_3 omega main_right" id="sideRightPushy">
+        @Html.Partial("_partialManagerCenter")
+
+    </div>
+</div>

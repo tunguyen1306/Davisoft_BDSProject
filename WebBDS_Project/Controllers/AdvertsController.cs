@@ -35,6 +35,10 @@ namespace WebBDS_Project.Controllers
             dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố"});
             dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
             dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
+            if (!db.BDSEmployerInformations.Select(x => x.IdAccount).ToList().Contains(idAccount))
+            {
+                return RedirectToAction("Warning", "Adverts");
+            }
 
             var TblBDSEmployerInformation = db.BDSEmployerInformations.First(T => T.IdAccount == idAccount);
             CaptCha cap = new CaptCha();
@@ -697,6 +701,9 @@ namespace WebBDS_Project.Controllers
                  }).FirstOrDefault(),
                  JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult Warning()
+        {
+            return View();
+        }
     }
 }
