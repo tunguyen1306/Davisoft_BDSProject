@@ -667,6 +667,9 @@
     <Content Include="Views\Shared\_partialManagerCenterEmp.cshtml" />
     <Content Include="Views\AdvertCompany\ChangePassPer.cshtml" />
     <Content Include="Views\AdvertCompany\DetailAdvertCompany.cshtml" />
+    <Content Include="Views\AdvertCompany\Warning.cshtml" />
+    <Content Include="Views\Adverts\Warning.cshtml" />
+    <Content Include="Views\AdvertCompany\ManagerAcountPer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

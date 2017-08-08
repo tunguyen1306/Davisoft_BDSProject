@@ -480,9 +480,11 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailAdvertCompany(string idNew)
         {
             var id_ = int.Parse(idNew.Split('-').Last());
-           
 
 
+            var id = int.Parse(Session["IdUser"].ToString());
+            var tblAccount = db.BDSAccounts.FirstOrDefault(T => T.ID == id);
+            var tblPer = db.BDSPersonalInformations.FirstOrDefault(T => T.IdAccount == tblAccount.ID);
             var cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.ID== id_ && T.Active == 1);
             var IdPersonalByIdNewPer = cuurentINews.PerId;
             List<BDSPerNews_Degrees> ListPerNewDegrees = new List<BDSPerNews_Degrees>();
