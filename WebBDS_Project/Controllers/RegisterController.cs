@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Data;
 using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -270,11 +271,17 @@ namespace WebBDS_Project.Controllers
                 bdsInformationModel.TblBDSPersonalInformation.ModifiedDate = DateTime.Now;
                 bdsInformationModel.TblBDSPersonalInformation.CreateUser = 1;
                 bdsInformationModel.TblBDSPersonalInformation.ModifiedUser = 1;
-               // bdsInformationModel.TblBDSPersonalInformation.FullAddress = bdsInformationModel.TblBDSPersonalInformation.Address + "," + dataCity.FirstOrDefault(x => x.CityId == bdsInformationModel.TblBDSPersonalInformation.City).CityName;
-                //bdsInformationModel.TblBDSPersonalInformation.BDSEmpers=new Collection<BDSEmper>();
-                db.BDSPersonalInformations.Add(bdsInformationModel.TblBDSPersonalInformation);
+                db.Entry(bdsInformationModel.TblBDSPersonalInformation).State=EntityState.Added;
+              
+                       
                 db.SaveChanges();
-
+                bdsInformationModel.tblBDSPerNew.Active = 1;
+                bdsInformationModel.tblBDSPerNew.CreateDate = DateTime.Now;
+                bdsInformationModel.tblBDSPerNew. CreateUser = 1;
+                bdsInformationModel.tblBDSPerNew. CreateUser = 1;
+                bdsInformationModel.tblBDSPerNew.PerId = bdsInformationModel.TblBDSPersonalInformation.ID;
+                db.Entry(bdsInformationModel.tblBDSPerNew).State = EntityState.Added;
+                db.SaveChanges();
             }
             return RedirectToAction("Index", "Default");
         }
