@@ -216,12 +216,7 @@ namespace WebBDS_Project.Controllers
                 dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
                 dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
                 dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
-                var dataDist = (from data in db.Districts
-                                join datatext in db.DistrictTexts on data.name_id equals datatext.id
-                                where datatext.language_id == "vi"
-                                select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
-                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
-                dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
+             
                 var registerModel = new RegisterInformationModel
                 {
                     ListBDSScopes = db.BDSScopes.ToList(),
@@ -233,7 +228,7 @@ namespace WebBDS_Project.Controllers
                     ListBDSLanguage = db.BDSLanguages.ToList(),
                     ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
                     ListGeoModel = dataCity.ToList(),
-                    ListGeoDisModel = dataCity.ToList(),
+                
                     tblCaptCha = cap,
                     tblBDSNew = BDSNew,
                     ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
@@ -245,14 +240,7 @@ namespace WebBDS_Project.Controllers
             }
             else
             {
-                var dataCity = (from data in db.States
-                                join datatext in db.StateTexts on data.name_id equals datatext.id
-                                where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
-                                select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
-
-                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
-                dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
-                dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
+               
                 bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
                 bdsInformationModel.TblBdsAdcount.CreateUser = 1;
                 bdsInformationModel.TblBdsAdcount.Active = 1;
