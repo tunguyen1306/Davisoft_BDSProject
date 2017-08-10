@@ -18,9 +18,9 @@ namespace WebBDS_Project.Models
         public int IdAccount { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
+        public System.DateTime Birthday { get; set; }
         public int Sex { get; set; }
         public int MaritalStatus { get; set; }
-        public System.DateTime Birthday { get; set; }
         public Nullable<int> Province { get; set; }
         public string PermanentAddress { get; set; }
         public string TemporaryAddress { get; set; }

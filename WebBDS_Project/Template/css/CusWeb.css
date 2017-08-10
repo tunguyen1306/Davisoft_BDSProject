@@ -813,7 +813,9 @@ img.mfp-img {
 .title-mobile{
     display: none
 }
-
+.lblValue{
+    width: 180px!important;
+}
 @media screen and (max-width: 660px) {
     .title-mobile{
     margin-bottom: 10px;

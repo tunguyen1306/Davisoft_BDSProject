@@ -1,235 +1,610 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
     davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
+    var InforPer = db.BDSPersonalInformations.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.PerId);
+
 }
 
 @using System.Configuration
 @using System.Web.UI.WebControls
 @using WebBDS_Project.Models
 @model WebBDS_Project.Models.RegisterInformationModel
-@{
 
 
 
-}
-
-
-
-    <input type="hidden" name="type" value="0" id="type" />
-    <div class="container">
-        <div class="grid_9 main_left">
-            <div class="group_work">
-                <div class="header_text">
-                    <h3><span><i class="fa fa-list-ul"></i>Tạo hồ sơ tìm việc</span></h3>
-                </div>
-                <span class="TitleAdvertComany">Tải hồ sơ có sẵn: </span>Nếu bạn có sẵn file mềm hồ sơ xin việc, bản CV tìm việc hãy tải lên và nộp cho nhà tuyển dụng.
-                <div class="form-horizontal cus-form-horizonta fromValidate">
-                    <div class="row fromValidate">
-                        @Html.HiddenFor(m => m.tblBDSPerNew.ID, new { @class = "ID" })
-                        @Html.HiddenFor(m => m.tblBDSPerNew.FileUrl)
-                        <label>File CV:</label>
-                        
-
-                    </div>
-                   
-                </div>
-                <h4>Thông tin hồ sơ cá nhân</h4>
-
-                <div class="form-horizontal cus-form-horizonta fromValidate">
-                   
-                </div>
-                <h4>Thông tin chung của hồ sơ</h4>
-
-                <div class="form-horizontal cus-form-horizonta fromValidate">
-                    <div class="row">
-                        <label>Tiêu đề hồ sơ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.LabelFor(m => m.tblBDSPerNew.TitleProfile, new { @class = "input3" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Ngành nghề :<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSPerNew.CareerProfile, new SelectList(Model.ListBDSCareer, "Id", "Name", "Chọn ngành nghề"), new { @class = "select2" })
-
-
-                        </div>
-                        <label class="child">Khu vực làm việc:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSPerNew.ProvinceProfile, new SelectList(Model.ListGeoModel, "CityId", "CityName", "Chọn khu vực làm việc"), new { @class = "select2" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Mức lương:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSPerNew.SalaryProfile, new SelectList(Model.ListSalary, "Id", "Name", "Chọn mức lương"), new { @class = "select2" })
-
-
-                        </div>
-                        <label class="child">Trình độ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSPerNew.EducationProfile, new SelectList(Model.ListDucation, "Id", "Name", "Chọn trình độ"), new { @class = "select2" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Kinh nghiệm:<span class="required">*</span></label>
-                        <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSPerNew.ExperienceProfile, new SelectList(Model.ListTimework, "Id", "Name", "Chọn kinh nghiệm"), new { @class = "dropdown" })
-
-                        </div>
-                        <label style="width: 111px;" class="child">Ngoại ngữ:<span class="required">*</span></label>
-                        <div class="row-right">
-
-
-                            @Html.DropDownListFor(m => m.tblBDSPerNew.LanguageProfile, new SelectList(Model.ListBDSLanguage, "Id", "Name", "Chọn ngoại ngữ"), new { @class = "dropdown" })
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Cấp bậc:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.DropDownListFor(m => m.tblBDSPerNew.LevelProfile,
-
-         new List<SelectListItem>
-                        {
-                                new SelectListItem{Text = "Không yêu cầu",Value = "0",Selected = true},
-                            new SelectListItem{Text = "Nhân viên",Value = "1",Selected = false},
-                            new SelectListItem{Text = "Trưởng Nhóm",Value = "2",Selected = false},
-                            new SelectListItem{Text = "Trưởng Phòng",Value = "3",Selected = false},
-                             new SelectListItem{Text = "Giám đốc",Value = "4",Selected = false},
-
-                        }
-
-         , new { @class = "dropdown" })
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label>Mục tiêu nghề nghiệp:<span class="required">*</span></label>
-                        <div class="row-right">
-
-                            @Html.LabelFor(m => m.tblBDSPerNew.CareerGoalProfile, new { @class = "input3",@tyle="white-pace:pre-line;" })
-
-
-                        </div>
-                    </div>
-                   
-                </div>
-
-                <span class="TitleAdvertComany">Trình độ, kỹ năng: </span>Liệt kê đầy đủ các thông tin bằng cấp/chứng chỉ mà bạn có (kể cả bằng cấp/chứng chỉ ngắ hạng).
-                <div class="form-horizontal cus-form-horizonta fromValidate">
-                   
-                 
-                </div>
-
-                <span class="TitleAdvertComany">Kinh nghiệm làm  việc: </span>Hãy liệt kê những công việc,nhiệm vụ mà bạn đã từng đảm nhận và thực hiện.Chú ý liệt kinh nghiệm làm việc từ thời gian gần đây nhất trở về trước.
-                <div class="form-horizontal cus-form-horizonta fromValidate">
-
-                    <div id="loadExperiences">
-                        @Html.Partial("Experiences", Model)
-                    </div>
-                  
-                    <div class="row">
-                        <label style="opacity: 0">aa</label>
-                        <div class="row-right">
-                            <a class="cus-color-a" onclick="addNewExperience()"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true" style="position: relative; top: 4px;"></i>Thêm kinh nghiệm làm việc</a>
-                        </div>
-
-                    </div>
-
-                  
+<input type="hidden" name="type" value="0" id="type" />
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Tạo hồ sơ tìm việc</span></h3>
+            </div>
+            <span class="TitleAdvertComany">Tải hồ sơ có sẵn: </span>Nếu bạn có sẵn file mềm hồ sơ xin việc, bản CV tìm việc hãy tải lên và nộp cho nhà tuyển dụng.
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+                <div class="row fromValidate">
+                    @Html.HiddenFor(m => m.tblBDSPerNew.ID, new { @class = "ID" })
+                    @Html.HiddenFor(m => m.tblBDSPerNew.FileUrl)
+                    <label>File CV:</label>
 
 
                 </div>
 
-                <span class="TitleAdvertComany">Người tham khảo : </span>Không bất buộc.
+            </div>
+            <h4>Thông tin hồ sơ cá nhân</h4>
 
-                <div class="form-horizontal cus-form-horizonta fromValidate">
 
-                   
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+
+                <div class="row">
+
+                    <label>Email đăng nhập:</label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @(db.BDSAccounts.FirstOrDefault(x => x.ID == InforPer.IdAccount).Email)
+
+
+                        </label>
+
+                    </div>
+                    <label class="child">Giới tính <span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if (InforPer.Sex == 1)
+                            {
+                                @("Nam")
+                            }
+                            @if (InforPer.Sex == 2)
+                            {
+                                @("Nữ")
+                            }
+                        </label>
+                    </div>
                 </div>
-              
+                <div class="row">
+                    <label>Họ và tên:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @InforPer.Name
+                        </label>
+
+                    </div>
+                    <label class="child">Số điện thoại:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @InforPer.Phone
+                        </label>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Quê quán:<span class="required">*</span></label>
+                    <div class="row-right">
+                        <label class="lblValue">
+                            @(Model.ListGeoModel.FirstOrDefault(x => x.CityId == InforPer.Province).CityName)
+                        </label>
+
+                    </div>
+                    <label style="width: 116px" class="child">Ngày sinh:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @InforPer.Birthday.ToShortDateString()
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>ĐC thường trú:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @InforPer.PermanentAddress
+                        </label>
+
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label>ĐC tạm trú:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @InforPer.TemporaryAddress
+                        </label>
+
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <label>Hình cá nhân:</label>
+                    <div class="uploadBox">
+                        <div style="float: left; margin-right: 10px;" class="viewFile">
+                            @if (InforPer.UrlImage != null)
+                            {
+                                <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@InforPer.UrlImage.ToString().Split('_')[0]/@InforPer.UrlImage" />
+                            }
+                            else
+                            {
+                                <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                            }
+
+                        </div>
+                        <input type="hidden" value="" name="TblBDSPersonalInformation.UrlImage" id="UrlImage" />
+
+                        <input type="file" style="visibility: hidden;" value="upload" class="uploadFile" name="TblBDSPersonalInformation.File" />
+
+
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <h4>Thông tin chung của hồ sơ</h4>
+
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+                <div class="row">
+                    <label>Tiêu đề hồ sơ:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.TitleProfile
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Ngành nghề :<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @if (Model.ListBDSCareer.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.CareerProfile).ID == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListBDSCareer.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.CareerProfile).Name;
+                            }
+                        </label>
+
+
+
+                    </div>
+                    <label class="child">Khu vực làm việc:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Mức lương:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if ((Model.ListSalary != null ? Model.ListSalary.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.SalaryProfile).ID : 0) == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListSalary.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.SalaryProfile).Name;
+                            }
+                        </label>
+
+                    </div>
+                    <label class="child">Trình độ:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if (Model.ListDucation.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.EducationProfile).ID == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListDucation.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.EducationProfile).Name;
+                            }
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Kinh nghiệm:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if (Model.ListTimework.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.ExperienceProfile).ID == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListTimework.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.ExperienceProfile).Name;
+                            }
+                        </label>
+                    </div>
+                    <label style="width: 111px;" class="child">Ngoại ngữ:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+
+                        <label class="lblValue">
+                            @if (Model.ListBDSLanguage.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.LanguageProfile).ID == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListBDSLanguage.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.LanguageProfile).Name;
+                            }
+                        </label>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Cấp bậc:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if (Model.tblBDSPerNew.LevelProfile == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                if (Model.tblBDSPerNew.LevelProfile == 1)
+                                {
+                                    @("Nhân viên")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 2)
+                                {
+                                    @("Trưởng Nhóm")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 3)
+                                {
+                                    @("Trưởng Phòng")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 4)
+                                {
+                                    @("Giám đốc")
+                                }
+                            }
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Mục tiêu nghề nghiệp:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.CareerGoalProfile
+                        </label>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <span class="TitleAdvertComany">Trình độ, kỹ năng: </span>Liệt kê đầy đủ các thông tin bằng cấp/chứng chỉ mà bạn có (kể cả bằng cấp/chứng chỉ ngắ hạng).
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+                @for (int i = 0; i < Model.ListPerNewDegrees.Count; i++)
+                {
+                    var itrmsss = Model.ListPerNewDegrees[i];
+                    <div id="degree_@(i + "")_" style="@(Model.ListPerNewDegrees[i].Active==0?"display:none;":"")">
+                        <hr class="space space_@(i)_" />
+                        @Html.HiddenFor(m => m.ListPerNewDegrees[i].ID, new { @class = "DegreeID" })
+                        @Html.HiddenFor(m => m.ListPerNewDegrees[i].ID_BDSPerNews, new { @class = "RefID" })
+                        @Html.HiddenFor(m => m.ListPerNewDegrees[i].Active)
+                        <div class="row">
+                            <label>Trình độ:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.ListPerNewDegrees[i].Level, new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "Chọn trình độ", Value = "",Selected = true},
+                    new SelectListItem {Text = "Level 2", Value = "2"},
+                    new SelectListItem {Text = "Level 3", Value = "3"},
+                    new SelectListItem {Text = "Level 4", Value = "4"},
+                    new SelectListItem {Text = "Level 5", Value = "5"},
+                    new SelectListItem {Text = "Level 6", Value = "6"},
+
+
+                }, new { @class = "dropdown validate" })
+                                <script>
+                    document.getElementById('ListPerNewDegrees_@(i)__Level').value = '@Model.ListPerNewDegrees[i].Level';
+                                </script>
+
+                            </div>
+                            <label class="child">Thời gian ĐT: <span class="required">*</span></label>
+                            <div class="row-right validate" ref-type="RANGER">
+                                <div class="pncon">
+                                    <b>Từ</b>
+
+                                    @Html.DropDownListFor(m => m.ListPerNewDegrees[i].FromYear, new List<SelectListItem>
+                    {
+                        new SelectListItem {Text = "Chọn", Value = "",Selected = true},
+                        new SelectListItem {Text = "1 năm", Value = "3"},
+                        new SelectListItem {Text = "2 năm", Value = "4"},
+                        new SelectListItem {Text = "3 năm", Value = "5"},
+                        new SelectListItem {Text = "4 năm", Value = "6"},
+                        new SelectListItem {Text = "5 năm", Value = "7"},
+
+
+                    }, new { @class = "dropdown" })
+                                    <script>
+                        document.getElementById('ListPerNewDegrees_@(i)__FromYear').value = '@Model.ListPerNewDegrees[i].FromYear';
+                                    </script>
+                                </div>
+                                <div class="pncon">
+                                    <b style="margin-left: 11px;">Đến</b>
+
+                                    @Html.DropDownListFor(m => m.ListPerNewDegrees[i].ToYear, new List<SelectListItem>
+                    {
+
+                        new SelectListItem {Text = "Chọn", Value = "",Selected = true},
+                        new SelectListItem {Text = "1 năm", Value = "3"},
+                        new SelectListItem {Text = "2 năm", Value = "4"},
+                        new SelectListItem {Text = "3 năm", Value = "5"},
+                        new SelectListItem {Text = "4 năm", Value = "6"},
+                        new SelectListItem {Text = "5 năm", Value = "5"},
+                        new SelectListItem {Text = "6 năm", Value = "6"},
+                        new SelectListItem {Text = "7 năm", Value = "7"},
+                        new SelectListItem {Text = "8 năm", Value = "8"},
+                        new SelectListItem {Text = "9 năm", Value = "9"},
+                        new SelectListItem {Text = "10 năm", Value = "10"},
+
+
+                    }, new { @class = "dropdown" })
+                                    <script>
+                        document.getElementById('ListPerNewDegrees_@(i)__ToYear').value = '@Model.ListPerNewDegrees[i].ToYear';
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Đơn vị đào tạo:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @Model.ListPerNewDegrees[i].Name
+                                </label>
+                            
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Chuyên Ngành:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                              
+                                <label class="lblValue">
+                                    @Model.ListPerNewDegrees[i].Career
+                                </label>
+
+                            </div>
+                            <label class="child">Loại bằng:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.ListPerNewDegrees[i].Rating, new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "Chọn loại bằng", Value = "",Selected = true},
+                    new SelectListItem {Text = "Giỏi", Value = "4"},
+                    new SelectListItem {Text = "Khá", Value = "3"},
+                    new SelectListItem {Text = "Trung bình", Value = "2"},
+                    new SelectListItem {Text = "Yếu", Value = "1"},
+
+                }, new { @class = "dropdown validate" })
+                                <script>
+                    document.getElementById('ListPerNewDegrees_@(i)__Rating').value = '@Model.ListPerNewDegrees[i].Rating';
+                                </script>
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <label>Ảnh bằng cấp:</label>
+                            <div class="uploadBox">
+                                <div style="float: left; margin-right: 10px;" class="viewFile">
+                                    @if (Model.ListPerNewDegrees[i].ImageUrl != null)
+                                    {
+                                        <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.ListPerNewDegrees[i].ImageUrl.ToString().Split('_')[0]/@Model.ListPerNewDegrees[i].ImageUrl" />
+                                    }
+                                    else
+                                    {
+                                        <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                                    }
+
+                                </div>
+       
+                            </div>
+
+                            @Html.HiddenFor(m => m.ListPerNewDegrees[i].ImageUrl, new { @class = "input1" })
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+
+            <span class="TitleAdvertComany">Kinh nghiệm làm  việc: </span>Hãy liệt kê những công việc,nhiệm vụ mà bạn đã từng đảm nhận và thực hiện.Chú ý liệt kinh nghiệm làm việc từ thời gian gần đây nhất trở về trước.
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+
+                <div class="row">
+                    <label>Tên công ty:<span class="required">*</span></label>
+                    <div class="row-right">
+                        <label class="lblValue">
+                            @(db.BDSPerNews_Experiences.FirstOrDefault(x => x.ID_BDSPerNews == Model.tblBDSPerNew.ID).Name)
+                        </label>
+
+
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <label>Cấp bậc:<span class="required">*</span></label>
+                    <div class="row-right">
+                        <label class="lblValue">
+                            @if (Model.tblBDSPerNew.LevelProfile == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                if (Model.tblBDSPerNew.LevelProfile == 1)
+                                {
+                                    @("Nhân viên")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 2)
+                                {
+                                    @("Trưởng Nhóm")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 3)
+                                {
+                                    @("Trưởng Phòng")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 4)
+                                {
+                                    @("Giám đốc")
+                                }
+                            }
+                        </label>
+                    </div>
+                    <label class="child">Mức lương:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @(db.BDSPerNews_Experiences.FirstOrDefault(x => x.ID_BDSPerNews == Model.tblBDSPerNew.ID).Salary)
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="row new validate" ref-type="S-RANGER">
+                    <label style="width: 125px">Thời gian làm việc:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+
+
+                    </div>
+
+                    <div class="row-right">
+
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Mô tả công việc và thành tích đạt được</label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @(db.BDSPerNews_Experiences.FirstOrDefault(x => x.ID_BDSPerNews == Model.tblBDSPerNew.ID).Decription)
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <span class="TitleAdvertComany">Người tham khảo : </span>Không bất buộc.
+
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+
+
             </div>
 
         </div>
-        <div class="grid_3 omega main_right" id="sideRightPushy">
-            <div class="banner_right">
 
-                @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight1"))
+    </div>
+    <div class="grid_3 omega main_right" id="sideRightPushy">
+        <div class="banner_right">
+
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight1"))
+            {
+                if (item.Type == 1)
                 {
-                    if (item.Type == 1)
-                    {
-                        <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
-                    }
-                    else
-                    {
-                        <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
-                    }
-
-
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
                 }
-                @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight2"))
+                else
                 {
-                    if (item.Type == 1)
-                    {
-                        <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" style="margin: 0" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
-                    }
-                    else
-                    {
-                        <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
-                    }
-
-
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
                 }
-            </div>
-            @Html.Partial("_partialCareers")
-            @Html.Partial("_partialCompany")
-            @Html.Partial("_partialShareExpirence")
-            @Html.Partial("_partialComment")
-            @Html.Partial("_partialNews")
-            <div class="banner_right">
-                @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight1"))
+
+
+            }
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight2"))
+            {
+                if (item.Type == 1)
                 {
-                    if (item.Type == 1)
-                    {
-                        <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
-                    }
-                    else
-                    {
-                        <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
-                    }
-
-
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" style="margin: 0" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
                 }
-                @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight2"))
+                else
                 {
-                    if (item.Type == 1)
-                    {
-                        <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
-                    }
-                    else
-                    {
-                        <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
-                    }
-
-
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
                 }
-            </div>
+
+
+            }
+        </div>
+        @Html.Partial("_partialCareers")
+        @Html.Partial("_partialCompany")
+        @Html.Partial("_partialShareExpirence")
+        @Html.Partial("_partialComment")
+        @Html.Partial("_partialNews")
+        <div class="banner_right">
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight1"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight2"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
         </div>
     </div>
+</div>
 
 <style>
     hr {
