@@ -63,8 +63,10 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public ActionResult RegisterCompany(RegisterInformationModel bdsInformationModel)
         {
+            bdsInformationModel.Status = false;
             try
             {
+                bdsInformationModel.Status = false;
                 if (Session["Captcha"] == null || Session["Captcha"].ToString() != bdsInformationModel.tblCaptCha.Captcha)
                 {
                     CaptCha cap = new CaptCha();
@@ -81,7 +83,7 @@ namespace WebBDS_Project.Controllers
                                     join datatext in db.DistrictTexts on data.name_id equals datatext.id
                                     where datatext.language_id == "vi"
                                     select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
-                    dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                
                     dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
                     var registerModel = new RegisterInformationModel
                     {
@@ -100,9 +102,11 @@ namespace WebBDS_Project.Controllers
                         ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
                         ListBDSPersonalInformation = db.BDSPersonalInformations.ToList(),
                         ListBdsAdcount = db.BDSAccounts.ToList(),
-                        ListBDSEmper = db.BDSEmpers.ToList()
+                        ListBDSEmper = db.BDSEmpers.ToList(),
+                        Status = false,
+                        Msg = "Mã an toàn không đúng. Vui lòng nhập lại !"
                     };
-                    return View(registerModel);
+                
                 }
                 else
                 {
@@ -111,7 +115,7 @@ namespace WebBDS_Project.Controllers
                     bdsInformationModel.TblBdsAdcount.Active = 1;
                     bdsInformationModel.TblBdsAdcount.Money = 0;
                     bdsInformationModel.TblBdsAdcount.Point = 0;
-                    bdsInformationModel.TblBdsAdcount.MailActive = 1;
+                    bdsInformationModel.TblBdsAdcount.MailActive = 0;
                     bdsInformationModel.TblBdsAdcount.Token = Guid.NewGuid().ToString();
                  
                     db.BDSAccounts.Add(bdsInformationModel.TblBdsAdcount);
@@ -135,8 +139,11 @@ namespace WebBDS_Project.Controllers
                
                     db.BDSEmployerInformations.Add(bdsInformationModel.TblBDSEmployerInformation);
                     db.SaveChanges();
+              
+
                     bdsInformationModel.Status = true;
-                    return Json(bdsInformationModel);
+                    bdsInformationModel.Msg = "Tạo tài khoản thành công!";
+                   
                 }
             }
             catch (DbEntityValidationException e)
@@ -151,10 +158,11 @@ namespace WebBDS_Project.Controllers
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                throw;
+                bdsInformationModel.Status = false;
+                bdsInformationModel.Msg = "Tạo tài khoản thất bại!";
             }
 
-            return null;
+            return Json(bdsInformationModel);
         }
         public ActionResult RegisterPersonal()
         {
@@ -244,7 +252,7 @@ namespace WebBDS_Project.Controllers
                         Msg = "Mã an toàn không đúng. Vui lòng nhập lại !"
 
                     };
-                    return Json(registerModel);
+                
                 }
                 else
                 {
@@ -283,7 +291,7 @@ namespace WebBDS_Project.Controllers
 
                     bdsInformationModel.Status = true;
                     bdsInformationModel.Msg = "Tạo tài khoản thành công!";
-                    return Json(bdsInformationModel);
+                   
                 }
             }
             catch (Exception)

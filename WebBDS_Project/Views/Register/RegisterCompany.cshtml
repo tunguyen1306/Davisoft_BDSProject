@@ -162,7 +162,7 @@
                         </div>
                         <div class="row-right">
                             <div class="pncon">
-                                <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                                <img alt="Captcha" id="capcha" src="@Url.Action("CaptchaImage")" style="" />
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,34 @@
 
 <script>
 
+    $(document).on('submit', 'form', function () {
 
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+
+                if (data.Status) {
+                    toastr.success(data.Msg);
+                    $('#submitbutton').hide();
+                    $('a.popup-modal').click();
+                } else {
+                    toastr.error(data.Msg);
+                    $('#capcha').attr('src', $('#capcha').attr('src') + '?r=' + new Date().getTime());
+                }
+                console.log(data);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+        return false;
+
+    });
     $("#submitbutton").on('click', function (e) {
         e.preventDefault();
         var t = 0;
