@@ -1,0 +1,163 @@
+﻿@using System.Configuration
+@using System.Web.UI.WebControls
+@using WebBDS_Project.Models
+@{
+
+    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
+    int from = ViewBag.from;
+    int page = ViewBag.page;
+    int view = ViewBag.view;
+    int tt = ViewBag.tt == "" ? 0 : int.Parse(ViewBag.tt);
+    int count = 0;
+    var States = (from a in db.States
+                  join b in db.StateTexts on a.state_id equals b.id
+                  where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
+                  select new { Id = a.state_id, Name = b.text }).ToList();
+
+    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
+    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+    BDSEmployerInformation em = null;
+    if (Session["IdUser"] != null)
+    {
+        int idAc = (int) Session["IdUser"];
+        em = db.BDSEmployerInformations.FirstOrDefault(T => T.Active == 1 && T.IdAccount == idAc);
+    }
+}
+
+@{
+    var typeVip = db.BDSNewsTypes.FirstOrDefault(T => T.Active == 1 && T.CodeNewsType == "TDB");
+}
+<ul class="list_work">
+    @{
+          var q = (from a in db.BDSPersonalInformations join b in db.BDSPerNews on a.ID equals b.PerId
+                     join c in db.BDSEducations on b.EducationProfile equals c.ID
+                     where  a.Active==1 && b.Status==1 && b.SearchCheck==1
+                     orderby a.DateReup ascending 
+                     select b);
+        if (tt>0)
+        {
+            q = q.Where(T => T.ProvinceProfile == tt);
+        }
+        var data = q.Skip(page*view - view).Take(view).ToList();
+    }
+    @foreach (var news in data)
+        {
+            var per = db.BDSPersonalInformations.FirstOrDefault(T => T.ID == news.PerId);
+            var account = db.BDSAccounts.FirstOrDefault(T => T.ID == per.IdAccount);
+            var carrer = db.BDSCareers.FirstOrDefault(T => T.ID == news.CareerProfile);
+            var education = db.BDSEducations.FirstOrDefault(T => T.ID == news.EducationProfile);
+            var salary = db.BDSSalaries.FirstOrDefault(T => T.ID == news.SalaryProfile);
+    <li style="margin-bottom: 0">
+
+        <div class="grid_12">
+
+
+            <h2><a href="#">@carrer.Name <span>@per.Name</span></a></h2>
+            <p class="grid_6"><i class="fa fa-map-marker"></i>Đại chỉ:@per.TemporaryAddress</p>
+            <p class="grid_6 omega time"><i class="fa fa-mortar-board" aria-hidden="true"></i> Học vấn: <span class="color2">@education.Name</span> </p>
+
+
+
+            <div>
+                <p class="grid_6"><i class="fa fa-usd"></i>Lương: @salary.Name@*Từ <span>5 - 10</span> triêu*@ </p>
+                <p class="grid_6 omega time"><i class="fa fa-clock-o"></i> Ngày cập nhật: @per.CreateDate.Value.ToString("dd/MM/yyyy")</p>
+            </div>
+            <div>
+                @per.Description
+            </div>
+            <div>
+                <div class="grid_4"></div>
+                <div class="grid_8 omega time" style="text-align: right">
+                    @if (Session["IdUser"] == null || em==null)
+                                    {
+                                    @Html.Raw("<a href='' style='cursor: pointer;' onclick=\"saveDocument(" + per.ID + ")\"><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Lưu hồ sơ </i></a>");
+                                    }
+                                    else
+                                    {
+                                        if (db.BDSEmpers.Any(T => T.Active == 1 && T.IdAccountEm ==em.ID))
+                                        {
+                                    @Html.Raw("<a href='' ><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Hồ sơ đã lưu</i></a>");
+                                        }
+                                        else
+                                        {
+                                    @Html.Raw("<a href='' style='cursor: pointer;' onclick=\"saveDocument(" + per.ID + ")\" ><i class=\"perIcon fa fa-user-plus\" aria-hidden=\"true\" >Lưu hồ sơ </i></a>");
+                                        }
+                                    }
+
+
+                    @*<i class="fa fa-search-plus" aria-hidden="true"></i>Tìm hồ sơ tương tự*@@*<i class="fa fa-remove" aria-hidden="true"></i> Ẩn hồ sơ *@
+                </div>
+
+            </div>
+        </div>
+    </li>
+
+        }
+
+    <li class="page">
+        <div class="page_links">
+            <span>Trang</span>
+            @if (count > 0)
+{
+    var p = Math.Ceiling((double)count / view);
+    for (int i = 1; i <= (int)p; i++)
+    {
+        <a data-ref='@(page != i ? "" + Url.Action("Employee", "Default", new { tt=tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
+    }
+}
+            <a class="nextPage" onclick="loadPageEMFromNext(this);">Tiếp</a>
+        </div>
+        <div class="more">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="#">Xem thêm</a>
+        </div>
+    </li>
+</ul>
+<style>
+    a.active {
+        cursor: auto;
+    }
+</style>
+<script>
+    function loadFilterEMPageFrom(el) {
+        var url = '@Url.Action("Employee", "Default", new {  from = 0, page = 0, view = view })' + "&tt=" + $(el).val();
+        if (url != "") {
+            $(el).parents('.group_work').find('.loading').show();
+            $(el).parents('.group_work').find('.loading_icon').show();
+            $.get(url, function (data) {
+               
+                var elP =$(el).parents('.group_work').eq(0).find('ul.list_work').eq(0);
+                elP.html($(data).html());
+                elP.parents('.group_work').find('.loading').eq(0).hide();
+                elP.parents('.group_work').find('.loading_icon').eq(0).hide();
+
+            });
+        }
+
+    }
+    function loadPageEMFrom(el) {
+        var url = $(el).attr('data-ref');
+        if (url != "") {
+            $(el).parents('.group_work').find('.loading').show();
+            $(el).parents('.group_work').find('.loading_icon').show();
+            $.get(url, function (data) {
+                var elP = $(el).parents('ul.list_work').eq(0);
+                elP.html($(data).html());
+              
+                elP.parents('.group_work').find('.loading').eq(0).hide();
+                elP.parents('.group_work').find('.loading_icon').eq(0).hide();
+
+            });
+        }
+        
+    }
+    function loadPageEMFromNext(el) {
+     
+        var elNext = $(el).parents('.page_links').eq(0).find('a.active').next();
+        if (!$(elNext).hasClass('nextPage')) {
+            $(elNext).click();
+        }
+
+    }
+
+
+</script>

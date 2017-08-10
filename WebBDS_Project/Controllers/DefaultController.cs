@@ -23,7 +23,16 @@ namespace WebBDS_Project.Controllers
           
         }
 
-        public PartialViewResult TinDacBiet(string tt,int from=0,int view=12,int page=1)
+        public PartialViewResult Employee(string tt, int from = 0, int view = 12, int page = 1)
+        {
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+
+            return PartialView();
+        }
+        public PartialViewResult TinDacBiet(string tt, int from = 0, int view = 12, int page = 1)
         {
             ViewBag.from = from;
             ViewBag.view = view;
