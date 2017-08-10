@@ -159,7 +159,7 @@
                 <div class="search_location">
                     Tìm theo khu vực
 
-                    <select class="select2" onchange=" loadFilterPageFrom(this) " tabindex="7">
+                    <select class="select2" onchange="loadFilterPageFrom(this) " tabindex="7">
                         <option value="">Toàn Quốc</option>
                         @{
                             foreach (var item in States)
@@ -197,9 +197,10 @@
             <div class="loading" style="left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; background-color: gray; opacity: 0.5; z-index: 10; display: none"></div>
 
             <div class="header_text">
-                <h3><span><i class="fa fa-list-ul"></i>Hồ sơ tìm việc</span></h3>
+                <h3><span><i class="fa fa-list-ul"></i>Kênh nhà tuyển dụng</span></h3>
                 <div class="search_location">
                     Tìm theo khu vực
+
                     <select class="select2" onchange="loadFilterEMPageFrom(this) " tabindex="7">
                         <option value="">Toàn Quốc</option>
                         @{
@@ -211,7 +212,6 @@
 
 
                     </select>
-                  
                 </div>
             </div>
             @Html.Action("Employee", new { tt = "", from = 0, view = 25, page = 1 })
