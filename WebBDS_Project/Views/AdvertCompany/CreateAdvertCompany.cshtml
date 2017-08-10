@@ -37,9 +37,9 @@
                             <input type="file" style="display: none" value="upload" name="tblBDSPerNew.File" accept="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="uploadFile" />
                             <div class="viewFile" style="padding-top: 5px">
                                 @if (!String.IsNullOrWhiteSpace(Model.tblBDSPerNew.FileUrl))
-                                {
-                                    <a href="">Tải file CV (@(Model.tblBDSPerNew.FileUrl))</a>
-                                }
+                                    {
+                                        <a target="_blank" href="@ConfigurationManager.AppSettings["UrlImage"]@Model.tblBDSPerNew.FileUrl.ToString().Split('_')[0]/@Model.tblBDSPerNew.FileUrl">Tải file CV (@(Model.tblBDSPerNew.FileUrl))</a>
+                                    }
                             </div>
                         </div>
 
@@ -713,7 +713,7 @@
                         }
                     }
                     if (type == 5) {
-                        debugger;
+                      
                         for (var i = 0; i < data.ListPerNewReferences.length; i++) {
                             $('#ListPerNewReferences_' + i + '__ID').val(data.ListPerNewReferences[i].ID);
                         }

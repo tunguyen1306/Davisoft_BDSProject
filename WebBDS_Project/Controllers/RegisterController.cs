@@ -206,78 +206,94 @@ namespace WebBDS_Project.Controllers
         [HttpPost]
         public ActionResult RegisterPersonal(RegisterInformationModel bdsInformationModel)
         {
-            if (Session["Captcha"] == null || Session["Captcha"].ToString() != bdsInformationModel.tblCaptCha.Captcha)
+            bdsInformationModel.Status=false;
+            try
             {
-                CaptCha cap = new CaptCha();
-                BDSNew BDSNew = new BDSNew();
-                var dataCity = (from data in db.States
-                                join datatext in db.StateTexts on data.name_id equals datatext.id
-                                where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
-                                select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
-
-                dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
-                dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
-                dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
-             
-                var registerModel = new RegisterInformationModel
+                if (Session["Captcha"] == null || Session["Captcha"].ToString() != bdsInformationModel.tblCaptCha.Captcha)
                 {
-                    ListBDSScopes = db.BDSScopes.ToList(),
-                    ListMarriea = db.BDSMarriages.ToList(),
-                    ListSalary = db.BDSSalaries.ToList(),
-                    ListDucation = db.BDSEducations.ToList(),
-                    ListBDSCareer = db.BDSCareers.ToList(),
-                    ListTimework = db.BDSTimeWorks.ToList(),
-                    ListBDSLanguage = db.BDSLanguages.ToList(),
-                    ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
-                    ListGeoModel = dataCity.ToList(),
-                
-                    tblCaptCha = cap,
-                    tblBDSNew = BDSNew,
-                    ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
-                    ListBDSPersonalInformation = db.BDSPersonalInformations.ToList(),
-                    ListBdsAdcount = db.BDSAccounts.ToList(),
-                    ListBDSEmper = db.BDSEmpers.ToList(),
-                    Status = false
-                    
-                };
-                return View(registerModel);
+                    CaptCha cap = new CaptCha();
+                    BDSNew BDSNew = new BDSNew();
+                    var dataCity = (from data in db.States
+                                    join datatext in db.StateTexts on data.name_id equals datatext.id
+                                    where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                                    select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+                    dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+                    dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+                    dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
+
+                    var registerModel = new RegisterInformationModel
+                    {
+                        ListBDSScopes = db.BDSScopes.ToList(),
+                        ListMarriea = db.BDSMarriages.ToList(),
+                        ListSalary = db.BDSSalaries.ToList(),
+                        ListDucation = db.BDSEducations.ToList(),
+                        ListBDSCareer = db.BDSCareers.ToList(),
+                        ListTimework = db.BDSTimeWorks.ToList(),
+                        ListBDSLanguage = db.BDSLanguages.ToList(),
+                        ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+                        ListGeoModel = dataCity.ToList(),
+
+                        tblCaptCha = cap,
+                        tblBDSNew = BDSNew,
+                        ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
+                        ListBDSPersonalInformation = db.BDSPersonalInformations.ToList(),
+                        ListBdsAdcount = db.BDSAccounts.ToList(),
+                        ListBDSEmper = db.BDSEmpers.ToList(),
+                        Status = false,
+                        Msg = "Mã an toàn không đúng. Vui lòng nhập lại !"
+
+                    };
+                    return Json(registerModel);
+                }
+                else
+                {
+
+                    bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
+                    bdsInformationModel.TblBdsAdcount.CreateUser = 1;
+                    bdsInformationModel.TblBdsAdcount.Active = 1;
+                    bdsInformationModel.TblBdsAdcount.Money = 0;
+                    bdsInformationModel.TblBdsAdcount.Point = 0;
+                    bdsInformationModel.TblBdsAdcount.MailActive = 0;
+                    bdsInformationModel.TblBdsAdcount.Token = Guid.NewGuid().ToString();
+
+
+                    db.Entry(bdsInformationModel.TblBdsAdcount).State = EntityState.Added;
+                    db.SaveChanges();
+
+                    bdsInformationModel.TblBDSPersonalInformation.IdAccount = bdsInformationModel.TblBdsAdcount.ID;
+                    bdsInformationModel.TblBDSPersonalInformation.Active = 1;
+                    bdsInformationModel.TblBDSPersonalInformation.CreateDate = DateTime.Now;
+                    bdsInformationModel.TblBDSPersonalInformation.ModifiedDate = DateTime.Now;
+                    bdsInformationModel.TblBDSPersonalInformation.CreateUser = 1;
+                    bdsInformationModel.TblBDSPersonalInformation.ModifiedUser = 1;
+
+                    db.Entry(bdsInformationModel.TblBDSPersonalInformation).State = EntityState.Added;
+                    db.SaveChanges();
+
+                    bdsInformationModel.tblBDSPerNew.Active = 1;
+                    bdsInformationModel.tblBDSPerNew.CreateDate = DateTime.Now;
+                    bdsInformationModel.tblBDSPerNew.CreateUser = 1;
+                    bdsInformationModel.tblBDSPerNew.CreateUser = 1;
+                    bdsInformationModel.tblBDSPerNew.PerId = bdsInformationModel.TblBDSPersonalInformation.ID;
+                    bdsInformationModel.tblBDSPerNew.ProvinceProfile =
+                        bdsInformationModel.TblBDSPersonalInformation.Province;
+                    db.Entry(bdsInformationModel.tblBDSPerNew).State = EntityState.Added;
+                    db.SaveChanges();
+
+                    bdsInformationModel.Status = true;
+                    bdsInformationModel.Msg = "Tạo tài khoản thành công!";
+                    return Json(bdsInformationModel);
+                }
             }
-            else
+            catch (Exception)
             {
+                bdsInformationModel.Status = false;
+                bdsInformationModel.Msg = "Tạo tài khoản thất bại!";
                
-                bdsInformationModel.TblBdsAdcount.CreateDate = DateTime.Now;
-                bdsInformationModel.TblBdsAdcount.CreateUser = 1;
-                bdsInformationModel.TblBdsAdcount.Active = 1;
-                bdsInformationModel.TblBdsAdcount.Money = 0;
-                bdsInformationModel.TblBdsAdcount.Point = 0;
-                bdsInformationModel.TblBdsAdcount.MailActive = 1;
-                bdsInformationModel.TblBdsAdcount.Token = Guid.NewGuid().ToString();
-                 
-
-                db.BDSAccounts.Add(bdsInformationModel.TblBdsAdcount);
-                db.SaveChanges();
-
-                bdsInformationModel.TblBDSPersonalInformation.IdAccount = bdsInformationModel.TblBdsAdcount.ID;
-                bdsInformationModel.TblBDSPersonalInformation.Active = 1;
-                bdsInformationModel.TblBDSPersonalInformation.CreateDate = DateTime.Now;
-                bdsInformationModel.TblBDSPersonalInformation.ModifiedDate = DateTime.Now;
-                bdsInformationModel.TblBDSPersonalInformation.CreateUser = 1;
-                bdsInformationModel.TblBDSPersonalInformation.ModifiedUser = 1;
-                db.Entry(bdsInformationModel.TblBDSPersonalInformation).State=EntityState.Added;
-              
-                       
-                db.SaveChanges();
-                bdsInformationModel.tblBDSPerNew.Active = 1;
-                bdsInformationModel.tblBDSPerNew.CreateDate = DateTime.Now;
-                bdsInformationModel.tblBDSPerNew. CreateUser = 1;
-                bdsInformationModel.tblBDSPerNew. CreateUser = 1;
-                bdsInformationModel.tblBDSPerNew.PerId = bdsInformationModel.TblBDSPersonalInformation.ID;
-                db.Entry(bdsInformationModel.tblBDSPerNew).State = EntityState.Added;
-                db.SaveChanges();
-                bdsInformationModel.Status = true;
-                return Json(bdsInformationModel);
             }
-            return null;
+            
+            return Json(bdsInformationModel);
         }
         [HttpPost]
         public ActionResult GetCity()
@@ -320,7 +336,7 @@ namespace WebBDS_Project.Controllers
 
                     NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
                     fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
-                    path = Server.MapPath("~/UploadImg/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                    path = Server.MapPath("~/fileupload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
                     path1 = Path.Combine(path, fileNameFull);

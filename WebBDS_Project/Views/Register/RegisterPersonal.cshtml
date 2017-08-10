@@ -74,7 +74,7 @@
 
                         <div class="pncon">
                             <input class="cus-input2 mg0_0 " id="year" placeholder="YYYY" type="text">
-                            <input class="cus-input2 mg0_0 datepicker" name="TblBDSPersonalInformation.Birthday" style="display:none;" value="" id="hdValuesDate" placeholder="YYYY" type="text">
+                            <input class="cus-input2 mg0_0 datepicker" name="TblBDSPersonalInformation.Birthday" style="display:none;" value="" id="hdValuesDate" type="text">
                         </div>
                     </div>
 
@@ -248,7 +248,7 @@
                         </div>
                         <div class="row-right">
                             <div class="pncon">
-                                <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                                <img alt="Captcha"id="capcha" src="@Url.Action("CaptchaImage")" style="" />
                             </div>
                         </div>
                     </div>
@@ -271,36 +271,90 @@
             </div>
         </div>
 
+    </div> <div id="test-modal" class="mfp-hide white-popup-block box_info">
+    <div>
+        <h1>Đăng tin thành công</h1>
     </div>
+      <div>
+          <p>
+              <i class="fa fa-exclamation-triangle fa-3x" style="color:#37a344;" aria-hidden="true"></i><span class=""> Bạn đã tạo tài khoản thành công.</span>
+              <span class="cusTextWarning">
+                  -Bạn vừa thao tác tạo tài khoản thành công.
+              </span>
+              <span class="cusTextWarning">    -Vui lòng kich hoạt email để sử dụng.</span>
+
+          </p>
+          <p>
+
+           
+              <a href="@Url.Action("Index","Default")" class="grid_6" style="margin: 0 1% 1% 0!important;">
+                  Về trang chủ
+              </a>
+          </p>
+      </div>
+      
+        <a class="popup-modal-dismiss" href="#">×</a>
+    </div>
+   
 }
 <script>
+    
+    $(document).on('submit', 'form', function () {
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+
+                if (data.Status) {
+                    toastr.success(data.Msg);
+                    $('#submitbutton').hide();
+                    $('a.popup-modal').click();
+                } else {
+                    toastr.error(data.Msg);
+                    $('#capcha').attr('src', $('#capcha').attr('src') + '?r=' + new Date().getTime());
+                }
+                console.log(data);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+        return false;
+
+    });
     $(function () {
         $(".datepicker").datepicker({
             showOn: "button",
+            dateFormat: 'dd/mm/yy' ,
             buttonImage: "/Template/images/calendar.gif",
             buttonImageOnly: true,
             buttonText: "Select date"
         });
         $('#hdValuesDate').change(function () {
             var birthday = $('#hdValuesDate').val().split('/');
-            $('#day').val(birthday[1]);
-            $('#month').val(birthday[0]);
+            $('#day').val(birthday[0]);
+            $('#month').val(birthday[1]);
             $('#year').val(birthday[2]);
 
         });
         $("#year").change(function () {
 
-            var datet = $('#month').val() + "/" +  $('#day').val() + "/" + $('#year').val();
+            var datet = $('#day').val() + "/" +  $('#month').val() + "/" + $('#year').val();
             $('#hdValuesDate').val(datet);
         });
         $("#day").change(function () {
 
-            var datet = $('#month').val() + "/" +  $('#day').val() + "/" + $('#year').val();
+            var datet = $('#day').val() + "/" + $('#month').val() + "/" + $('#year').val();
             $('#hdValuesDate').val(datet);
         });
         $("#month").change(function () {
 
-            var datet = $('#month').val() + "/" +  $('#day').val() + "/" + $('#year').val();
+            var datet = $('#day').val() + "/" + $('#month').val() + "/" + $('#year').val();
             $('#hdValuesDate').val(datet);
         });
     });
@@ -416,17 +470,12 @@
             }
 
         }
-
-
-       
-
-
-     
         if (t == 0) {
             $('#submitbutton').parents("form").submit();
         }
 
     });
+
     $("#TblBDSPersonalInformation_Phone").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
@@ -485,29 +534,29 @@
         obj.id = _id;
         $('#TblBDSPersonalInformation_District').html('');
         $.ajax
-       ({
-           type: "POST",
-           url: url,
-           data: JSON.stringify(obj),
-           dataType: "json",
-           contentType: "application/json;charset=utf-8",
-           success: function (data) {
+        ({
+            type: "POST",
+            url: url,
+            data: JSON.stringify(obj),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
 
-               $.each(data, function (i, o) {
+                $.each(data, function (i, o) {
 
-                   stringCity += "<option value=" + o.DistId + ">" + o.DistName + "</option>";
+                    stringCity += "<option value=" + o.DistId + ">" + o.DistName + "</option>";
 
-               });
+                });
 
-               $('#TblBDSPersonalInformation_District').html(stringCity);
-               $('#TblBDSPersonalInformation_District').change(function () {
+                $('#TblBDSPersonalInformation_District').html(stringCity);
+                $('#TblBDSPersonalInformation_District').change(function () {
 
-                   var idDistric = $("#TblBDSPersonalInformation_District option:selected").val();
+                    var idDistric = $("#TblBDSPersonalInformation_District option:selected").val();
 
-               });
+                });
 
-           }
-       });
+            }
+        });
     }
 </script>
 <style>

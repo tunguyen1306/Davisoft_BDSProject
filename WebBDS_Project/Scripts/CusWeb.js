@@ -90,6 +90,7 @@ function CheckEmail() {
    ({
        type: "POST",
        url: url,
+       async: false,
        data: JSON.stringify({ Email: valEmail }),
        dataType: "json",
        contentType: "application/json;charset=utf-8",
