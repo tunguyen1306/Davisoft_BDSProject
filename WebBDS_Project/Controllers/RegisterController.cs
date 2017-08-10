@@ -135,6 +135,8 @@ namespace WebBDS_Project.Controllers
                
                     db.BDSEmployerInformations.Add(bdsInformationModel.TblBDSEmployerInformation);
                     db.SaveChanges();
+                    bdsInformationModel.Status = true;
+                    return Json(bdsInformationModel);
                 }
             }
             catch (DbEntityValidationException e)
@@ -152,7 +154,7 @@ namespace WebBDS_Project.Controllers
                 throw;
             }
 
-            return RedirectToAction("Thanks", "Register");
+            return null;
         }
         public ActionResult RegisterPersonal()
         {
@@ -234,7 +236,9 @@ namespace WebBDS_Project.Controllers
                     ListBDSEmployerInformation = db.BDSEmployerInformations.ToList(),
                     ListBDSPersonalInformation = db.BDSPersonalInformations.ToList(),
                     ListBdsAdcount = db.BDSAccounts.ToList(),
-                    ListBDSEmper = db.BDSEmpers.ToList()
+                    ListBDSEmper = db.BDSEmpers.ToList(),
+                    Status = false
+                    
                 };
                 return View(registerModel);
             }
@@ -270,8 +274,10 @@ namespace WebBDS_Project.Controllers
                 bdsInformationModel.tblBDSPerNew.PerId = bdsInformationModel.TblBDSPersonalInformation.ID;
                 db.Entry(bdsInformationModel.tblBDSPerNew).State = EntityState.Added;
                 db.SaveChanges();
+                bdsInformationModel.Status = true;
+                return Json(bdsInformationModel);
             }
-            return RedirectToAction("Index", "Default");
+            return null;
         }
         [HttpPost]
         public ActionResult GetCity()

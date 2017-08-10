@@ -122,12 +122,40 @@
                 </a>
                 <input type="file" style="display: none" name="ListPerNewDegrees[@i].File" accept="image/*" value="upload" class="uploadFile"/>
                 <div class="viewFile">
-                    
+                    @if (Model.ListPerNewDegrees[i].ImageUrl != null)
+                {
+                        <img width="80" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.ListPerNewDegrees[i].ImageUrl.ToString().Split('_')[0]/@Model.ListPerNewDegrees[i].ImageUrl" />
+                    }
+                    else
+                    {
+                        <img width="80" src="~/Template/images/avatar-default.png" />
+                    }
                 </div>
                 Khuyến cáo: cơ hội việc làm sẽ tăng gắp 2 lần nếu nhà tuyển dụng thấy hình ảnh bằng cấp của bạn
 
 
             </div>
+            @*<div class="uploadBox">
+                <div style="float: left; margin-right: 10px;" class="viewFile">
+                    @if (Model.ListPerNewDegrees[i].ImageUrl != null)
+                {
+                        <img width="80"  src="@ConfigurationManager.AppSettings["UrlImage"]@Model.ListPerNewDegrees[i].ImageUrl.ToString().Split('_')[0]/@Model.ListPerNewDegrees[i].ImageUrl" />
+                    }
+                    else
+                    {
+                        <img width="80"  src="~/Template/images/avatar-default.png" />
+                    }
+
+                </div>
+                <input type="hidden" value="" name="ListPerNewDegrees[@i].File" />
+                <a href="javascript:void(0)" id="uploadIcon" class="btn btnUpload">
+                    + UpLoad Image
+                </a>
+                <input type="file" style="visibility: hidden;" value="upload" class="uploadFile" name="ListPerNewDegrees[@i].File" />
+
+           
+
+            </div>*@
 
             @Html.HiddenFor(m => m.ListPerNewDegrees[i].ImageUrl, new {@class = "input1"})
         </div>

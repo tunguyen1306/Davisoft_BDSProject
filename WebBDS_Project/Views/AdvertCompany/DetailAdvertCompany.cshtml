@@ -320,67 +320,43 @@
                         <div class="row">
                             <label>Trình độ:<span class="required">*</span></label>
                             <div class="row-right">
+                                <label class="lblValue">
+                                    @if (Model.ListPerNewDegrees[i].Rating == null)
+                                    {
+                                        @("")
+                                    }
 
-                                @Html.DropDownListFor(m => m.ListPerNewDegrees[i].Level, new List<SelectListItem>
-                {
-                    new SelectListItem {Text = "Chọn trình độ", Value = "",Selected = true},
-                    new SelectListItem {Text = "Level 2", Value = "2"},
-                    new SelectListItem {Text = "Level 3", Value = "3"},
-                    new SelectListItem {Text = "Level 4", Value = "4"},
-                    new SelectListItem {Text = "Level 5", Value = "5"},
-                    new SelectListItem {Text = "Level 6", Value = "6"},
+                                    @if (Model.ListPerNewDegrees[i].Rating == 2)
+                                    {
+                                        @("Level 2")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 3)
+                                    {
+                                        @("Level 3")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 4)
+                                    {
+                                        @("Level 4")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 5)
+                                    {
+                                        @("Level 5")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 6)
+                                    {
+                                        @("Level 6")
+                                    }
+                                </label>
 
-
-                }, new { @class = "dropdown validate" })
-                                <script>
-                    document.getElementById('ListPerNewDegrees_@(i)__Level').value = '@Model.ListPerNewDegrees[i].Level';
-                                </script>
 
                             </div>
                             <label class="child">Thời gian ĐT: <span class="required">*</span></label>
                             <div class="row-right validate" ref-type="RANGER">
-                                <div class="pncon">
-                                    <b>Từ</b>
+                                <label class="lblValue">
+                                    @(Model.ListPerNewDegrees[i].FromYear + "-" + Model.ListPerNewDegrees[i].FromYear)
 
-                                    @Html.DropDownListFor(m => m.ListPerNewDegrees[i].FromYear, new List<SelectListItem>
-                    {
-                        new SelectListItem {Text = "Chọn", Value = "",Selected = true},
-                        new SelectListItem {Text = "1 năm", Value = "3"},
-                        new SelectListItem {Text = "2 năm", Value = "4"},
-                        new SelectListItem {Text = "3 năm", Value = "5"},
-                        new SelectListItem {Text = "4 năm", Value = "6"},
-                        new SelectListItem {Text = "5 năm", Value = "7"},
+                                </label>
 
-
-                    }, new { @class = "dropdown" })
-                                    <script>
-                        document.getElementById('ListPerNewDegrees_@(i)__FromYear').value = '@Model.ListPerNewDegrees[i].FromYear';
-                                    </script>
-                                </div>
-                                <div class="pncon">
-                                    <b style="margin-left: 11px;">Đến</b>
-
-                                    @Html.DropDownListFor(m => m.ListPerNewDegrees[i].ToYear, new List<SelectListItem>
-                    {
-
-                        new SelectListItem {Text = "Chọn", Value = "",Selected = true},
-                        new SelectListItem {Text = "1 năm", Value = "3"},
-                        new SelectListItem {Text = "2 năm", Value = "4"},
-                        new SelectListItem {Text = "3 năm", Value = "5"},
-                        new SelectListItem {Text = "4 năm", Value = "6"},
-                        new SelectListItem {Text = "5 năm", Value = "5"},
-                        new SelectListItem {Text = "6 năm", Value = "6"},
-                        new SelectListItem {Text = "7 năm", Value = "7"},
-                        new SelectListItem {Text = "8 năm", Value = "8"},
-                        new SelectListItem {Text = "9 năm", Value = "9"},
-                        new SelectListItem {Text = "10 năm", Value = "10"},
-
-
-                    }, new { @class = "dropdown" })
-                                    <script>
-                        document.getElementById('ListPerNewDegrees_@(i)__ToYear').value = '@Model.ListPerNewDegrees[i].ToYear';
-                                    </script>
-                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -389,7 +365,7 @@
                                 <label class="lblValue">
                                     @Model.ListPerNewDegrees[i].Name
                                 </label>
-                            
+
 
                             </div>
                         </div>
@@ -397,7 +373,7 @@
                             <label>Chuyên Ngành:<span class="required">*</span></label>
                             <div class="row-right">
 
-                              
+
                                 <label class="lblValue">
                                     @Model.ListPerNewDegrees[i].Career
                                 </label>
@@ -405,19 +381,28 @@
                             </div>
                             <label class="child">Loại bằng:<span class="required">*</span></label>
                             <div class="row-right">
-
-                                @Html.DropDownListFor(m => m.ListPerNewDegrees[i].Rating, new List<SelectListItem>
-                {
-                    new SelectListItem {Text = "Chọn loại bằng", Value = "",Selected = true},
-                    new SelectListItem {Text = "Giỏi", Value = "4"},
-                    new SelectListItem {Text = "Khá", Value = "3"},
-                    new SelectListItem {Text = "Trung bình", Value = "2"},
-                    new SelectListItem {Text = "Yếu", Value = "1"},
-
-                }, new { @class = "dropdown validate" })
-                                <script>
-                    document.getElementById('ListPerNewDegrees_@(i)__Rating').value = '@Model.ListPerNewDegrees[i].Rating';
-                                </script>
+                                <label class="lblValue">
+                                    @if (Model.ListPerNewDegrees[i].Rating == null)
+                                    {
+                                        @("")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 1)
+                                    {
+                                        @("Yếu")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 2)
+                                    {
+                                        @("Trung bình")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 3)
+                                    {
+                                        @("Khá")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 4)
+                                    {
+                                        @("Giỏi")
+                                    }
+                                </label>
 
                             </div>
                         </div>
@@ -436,97 +421,427 @@
                                     }
 
                                 </div>
-       
+
                             </div>
 
                             @Html.HiddenFor(m => m.ListPerNewDegrees[i].ImageUrl, new { @class = "input1" })
                         </div>
                     </div>
                 }
+                @*Languge*@
+                @for (int i = 0; i < Model.ListPerNewLangDegrees.Count; i++)
+                {
+                    <div id="LangDegree_@(i)_" style="@(Model.ListPerNewLangDegrees[i].Active == 0 ? "display:none;" : "")">
+                        <hr class="space space_@(i)_" />
+                        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].ID, new { @class = "LangDegreeID" })
+                        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].ID_BDSPerNews, new { @class = "RefID" })
+                        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].Active)
+                        <div class="row">
+                            <label>Ngoại ngữ:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.DropDownListFor(m => m.ListPerNewLangDegrees[i].Language, new SelectList(Model.ListBDSLanguage.Where(T => T.Name != "Tiếng Việt"), "Id", "Name"), new { @class = "dropdown validate" })
+
+
+                            </div>
+                            <label class="child">Bằng ngoại ngữ:<span class="required">*</span></label>
+                            <div class="row-right">
+
+                                @Html.TextBoxFor(m => m.ListPerNewLangDegrees[i].Name, new { @class = "input1 validate", @placeholder = "Nhập tên bằng" })
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="row cus-row-no-margin-top">
+                            <label>Kỹ năng:</label>
+                            <div class="cusRowWithRadio">
+
+
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="row cus-row-no-margin-top">
+                            <label>Nghe:</label>
+
+                            <div class="cusRowWithRadio">
+
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 1)
+                                {
+                                    @("Yếu")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 2)
+                                {
+                                    @("Trung bình")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 3)
+                                {
+                                    @("Khá")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 4)
+                                {
+                                    @("Tốt")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 5)
+                                {
+                                    @("Giỏi")
+                                }
+
+
+                            </div>
+
+                        </div>
+                        <div class="row cus-row-no-margin-top">
+                            <label>Nói:</label>
+                            <div class="cusRowWithRadio">
+
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 1)
+                                {
+                                    @("Yếu")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 2)
+                                {
+                                    @("Trung bình")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 3)
+                                {
+                                    @("Khá")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 4)
+                                {
+                                    @("Tốt")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 5)
+                                {
+                                    @("Giỏi")
+                                }
+
+
+                            </div>
+
+                        </div>
+                        <div class="row cus-row-no-margin-top">
+                            <label>Đọc:</label>
+                            <div class="cusRowWithRadio">
+
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 1)
+                                {
+                                    @("Yếu")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 2)
+                                {
+                                    @("Trung bình")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 3)
+                                {
+                                    @("Khá")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 4)
+                                {
+                                    @("Tốt")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 5)
+                                {
+                                    @("Giỏi")
+                                }
+
+
+                            </div>
+
+                        </div>
+                        <div class="row cus-row-no-margin-top">
+                            <label>Viết:</label>
+                            <div class="cusRowWithRadio">
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 1)
+                                {
+                                    @("Yếu")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 2)
+                                {
+                                    @("Trung bình")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 3)
+                                {
+                                    @("Khá")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 4)
+                                {
+                                    @("Tốt")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 5)
+                                {
+                                    @("Giỏi")
+                                }
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+                @*Office*@
+                <div class="row cus-row-no-margin-top">
+                    <label>Tin học văn phòng:</label>
+                    <div class="cusRowWithRadio">
+
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="row cus-row-no-margin-top">
+                    <label>MS Word:</label>
+
+                    <div class="cusRowWithRadio">
+
+
+                        @if (Model.tblBDSPerNew.MSWordOffice == 1)
+                        {
+                            @("Yếu")
+                        }
+                        @if (Model.tblBDSPerNew.MSWordOffice == 2)
+                        {
+                            @("Trung bình")
+                        }
+                        @if (Model.tblBDSPerNew.MSWordOffice == 3)
+                        {
+                            @("Khá")
+                        }
+                        @if (Model.tblBDSPerNew.MSWordOffice == 4)
+                        {
+                            @("Tốt")
+                        }
+                        @if (Model.tblBDSPerNew.MSWordOffice == 5)
+                        {
+                            @("Giỏi")
+                        }
+
+                    </div>
+
+                </div>
+                <div class="row cus-row-no-margin-top">
+                    <label>MS Excel:</label>
+                    <div class="cusRowWithRadio">
+
+
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 1)
+                        {
+                            @("Yếu")
+                        }
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 2)
+                        {
+                            @("Trung bình")
+                        }
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 3)
+                        {
+                            @("Khá")
+                        }
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 4)
+                        {
+                            @("Tốt")
+                        }
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 5)
+                        {
+                            @("Giỏi")
+                        }
+                    </div>
+
+                </div>
+                <div class="row cus-row-no-margin-top">
+                    <label>MS Power point:</label>
+                    <div class="cusRowWithRadio">
+
+
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 1)
+                        {
+                            @("Yếu")
+                        }
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 2)
+                        {
+                            @("Trung bình")
+                        }
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 3)
+                        {
+                            @("Khá")
+                        }
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 4)
+                        {
+                            @("Tốt")
+                        }
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 5)
+                        {
+                            @("Giỏi")
+                        }
+
+
+                    </div>
+
+                </div>
+                <div class="row cus-row-no-margin-top">
+                    <label>MS Outlook:</label>
+                    <div class="cusRowWithRadio">
+
+
+                        @if (Model.tblBDSPerNew.OutlookOffice == 1)
+                        {
+                            @("Yếu")
+                        }
+                        @if (Model.tblBDSPerNew.OutlookOffice == 2)
+                        {
+                            @("Trung bình")
+                        }
+                        @if (Model.tblBDSPerNew.OutlookOffice == 3)
+                        {
+                            @("Khá")
+                        }
+                        @if (Model.tblBDSPerNew.OutlookOffice == 4)
+                        {
+                            @("Tốt")
+                        }
+                        @if (Model.tblBDSPerNew.OutlookOffice == 5)
+                        {
+                            @("Giỏi")
+                        }
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label>Phần mềm khác:</label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.OrderOffice
+                        </label>
+
+
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <label>Kỷ năng:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.Skills
+                        </label>
+
+
+                    </div>
+                    <label class="child">Sở thích:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.Hobby
+                        </label>
+
+
+                    </div>
+                </div>
+
 
 
             </div>
 
             <span class="TitleAdvertComany">Kinh nghiệm làm  việc: </span>Hãy liệt kê những công việc,nhiệm vụ mà bạn đã từng đảm nhận và thực hiện.Chú ý liệt kinh nghiệm làm việc từ thời gian gần đây nhất trở về trước.
             <div class="form-horizontal cus-form-horizonta fromValidate">
+                @for (int i = 0; i < Model.ListPerNewExperiences.Count; i++)
+                {
 
-                <div class="row">
-                    <label>Tên công ty:<span class="required">*</span></label>
-                    <div class="row-right">
-                        <label class="lblValue">
-                            @(db.BDSPerNews_Experiences.FirstOrDefault(x => x.ID_BDSPerNews == Model.tblBDSPerNew.ID).Name)
-                        </label>
+                    <div id="Experience_@(i)_" style="@(Model.ListPerNewExperiences[i].Active == 0 ? "display:none;" : "")">
+                        <hr class="space space_@(i)_" />
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ID, new { @class = "ExperienceID" })
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ID_BDSPerNews, new { @class = "RefID" })
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].Active)
+                        <div class="row">
+                            <label>Tên công ty:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @Model.ListPerNewExperiences[i].Name
+                                </label>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <label>Cấp bậc:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @if (Model.tblBDSPerNew.LevelProfile == 0)
+                                    {
+                                        <div style="opacity: 0">d</div>
+                                    }
+                                    else
+                                    {
+                                        if (Model.tblBDSPerNew.LevelProfile == 1)
+                                        {
+                                            @("Nhân viên")
+                                        }
+                                        if (Model.tblBDSPerNew.LevelProfile == 2)
+                                        {
+                                            @("Trưởng Nhóm")
+                                        }
+                                        if (Model.tblBDSPerNew.LevelProfile == 3)
+                                        {
+                                            @("Trưởng Phòng")
+                                        }
+                                        if (Model.tblBDSPerNew.LevelProfile == 4)
+                                        {
+                                            @("Giám đốc")
+                                        }
+                                    }
+                                </label>
+                            </div>
+                            <label class="child">Mức lương:<span class="required">*</span></label>
+                            <div class="row-right">
+
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewExperiences[i].Salary
+                                </label>
+
+                            </div>
+                        </div>
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].FromDate, "{0:dd/MM/yyyy}")
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ToDate, "{0:dd/MM/yyyy}")
+                        <div class="row new validate" ref-type="S-RANGER">
+                            <label style="width: 125px">Thời gian làm việc:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @(Model.ListPerNewExperiences[i].FromDate.Value.Month + "/" + Model.ListPerNewExperiences[i].FromDate.Value.Year + " - " + Model.ListPerNewExperiences[i].ToDate.Value.Month + "/" + Model.ListPerNewExperiences[i].ToDate.Value.Year)
+                                </label>
 
 
 
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <label>Mô tả công việc và thành tích đạt được</label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @Model.ListPerNewExperiences[i].Decription
+                                </label>
+
+                            </div>
+
+                        </div>
                     </div>
 
-
-                </div>
-                <div class="row">
-                    <label>Cấp bậc:<span class="required">*</span></label>
-                    <div class="row-right">
-                        <label class="lblValue">
-                            @if (Model.tblBDSPerNew.LevelProfile == 0)
-                            {
-                                <div style="opacity: 0">d</div>
-                            }
-                            else
-                            {
-                                if (Model.tblBDSPerNew.LevelProfile == 1)
-                                {
-                                    @("Nhân viên")
-                                }
-                                if (Model.tblBDSPerNew.LevelProfile == 2)
-                                {
-                                    @("Trưởng Nhóm")
-                                }
-                                if (Model.tblBDSPerNew.LevelProfile == 3)
-                                {
-                                    @("Trưởng Phòng")
-                                }
-                                if (Model.tblBDSPerNew.LevelProfile == 4)
-                                {
-                                    @("Giám đốc")
-                                }
-                            }
-                        </label>
-                    </div>
-                    <label class="child">Mức lương:<span class="required">*</span></label>
-                    <div class="row-right">
-
-                        <label class="lblValue">
-                            @(db.BDSPerNews_Experiences.FirstOrDefault(x => x.ID_BDSPerNews == Model.tblBDSPerNew.ID).Salary)
-                        </label>
-
-                    </div>
-                </div>
-
-                <div class="row new validate" ref-type="S-RANGER">
-                    <label style="width: 125px">Thời gian làm việc:<span class="required">*</span></label>
-                    <div class="row-right">
+                }
 
 
-
-
-                    </div>
-
-                    <div class="row-right">
-
-
-
-                    </div>
-                </div>
-                <div class="row">
-                    <label>Mô tả công việc và thành tích đạt được</label>
-                    <div class="row-right">
-
-
-                        <label class="lblValue">
-                            @(db.BDSPerNews_Experiences.FirstOrDefault(x => x.ID_BDSPerNews == Model.tblBDSPerNew.ID).Decription)
-                        </label>
-                    </div>
-                </div>
 
             </div>
 
@@ -534,7 +849,49 @@
 
             <div class="form-horizontal cus-form-horizonta fromValidate">
 
+                @for (int i = 0; i < Model.ListPerNewReferences.Count; i++)
+                {
+                    <div id="Reference_@(i)_" style="@(Model.ListPerNewReferences[i].Active == 0 ? "display:none;" : "")">
+                        <hr class="space space_@(i)_" />
+                        @Html.HiddenFor(T => T.ListPerNewReferences[i].ID, new { @class = "ReferenceID" })
+                        @Html.HiddenFor(m => m.ListPerNewReferences[i].ID_BDSPerNews, new { @class = "RefID" })
+                        @Html.HiddenFor(m => m.ListPerNewReferences[i].Active)
+                        <div class="row">
+                            <label>Tên công ty:</label>
+                            <div class="row-right">
 
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewReferences[i].NameCompany
+                                </label>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row">
+                            <label>Người tham khảo:</label>
+                            <div class="row-right">
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewReferences[i].Name
+                                </label>
+
+                            </div>
+                            <label class="child">Số điện thoại:</label>
+                            <div class="row-right">
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewReferences[i].Phone
+                                </label>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
             </div>
 
         </div>
