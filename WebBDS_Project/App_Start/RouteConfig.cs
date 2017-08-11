@@ -25,7 +25,11 @@ namespace WebBDS_Project
            url: "tim-kiem-ung-vien",
            defaults: new { controller = "Default", action = "SearchForEmployee" }
        );
-
+  routes.MapRoute(
+           name: "chi-tiet-ho-so",
+           url: "chi-tiet-ho-so",
+           defaults: new { controller = "AdvertCompany", action = "DetailAdvertCompany" }
+       );
 
             //Management
             routes.MapRoute(

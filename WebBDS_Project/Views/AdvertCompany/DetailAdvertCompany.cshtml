@@ -26,7 +26,11 @@
                     @Html.HiddenFor(m => m.tblBDSPerNew.FileUrl)
                     <label>File CV:</label>
 
+                    <label class="lblValue">
 
+                        <a href="@(ConfigurationManager.AppSettings["UrlImage"]+Model.tblBDSPerNew.FileUrl.ToString().Split('_')[0]+ "/" + Model.tblBDSPerNew.FileUrl)">@Model.tblBDSPerNew.FileUrl</a>
+
+                    </label>
                 </div>
 
             </div>
