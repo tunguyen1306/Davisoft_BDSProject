@@ -20,21 +20,28 @@
     <div class="grid_12 ">
         <div class="group_work" style="margin-top: 25px">
             <div class="header_text">
-                <h3><span><i class="fa fa-list-ul"></i>Kích hoạt tài khoản</span></h3>
+                <h3><span><i class="fa fa-list-ul"></i>Gửi lại mật khẩu</span></h3>
             </div>
             <div class="form-horizontal">
                 <div class="grid_6">
                     <div class="right_col">
 
-                        <div class="cus-h3">Kích hoạt tài khoản</div>
+                        <div class="cus-h3">Tạo mật khẩu mới</div>
                         <ul class="list_news cus-listnew-login">
-                            <li style="font-weight: bold; font-size: 20px; color: #0099d6;">
-                               @(Model.Status ? Model.TblBdsAdcount.Email+ " Đã kích hoạt tài khoản" : "Mã kích hoạt không đúng")
-                            </li>
                             <li >
-                              
-                                <a href="@Url.Action("LoginForm","Login")" class="btn btLogin">Đăng nhập </a>
+                                <p>
+                                   Mật khẩu mới
+                                    <input placeholder="Mật khẩu" id="txtPass" type="password">
+                                </p>
+                                <p>
+                                    Nhập lại Mật khẩu mới
+                                    <input placeholder="Mật khẩu" id="txtPass1" type="password">
+     
+                                </p>
+                                <a href="javascript:void(0)" class="btn btLogin">Đồng ý </a>
+
                             </li>
+                          
                         </ul>
                     </div>
                 </div>
@@ -71,3 +78,47 @@
         border-radius: 2px;
     }
 </style>
+<script>
+    $('.btLogin').click(function () {
+        var t = 0;
+        if ($('#txtPass').val() == '') {
+            toastr.error("Mật khẩu mới không được rỗng");
+            t++;
+        }
+        if ($('#txtPass1').val() == '') {
+            toastr.error("Nhập lại mật khẩu mới không được rỗng");
+            t++;
+        }
+        if ($('#txtPass').val() != $('#txtPass1').val()) {
+            toastr.error("Mật khẩu mới không giống nhau");
+            t++;
+        }
+        if (t == 0) {
+            var token = window.location.href;
+            var obj = {};
+            obj.pass = $('#txtPass1').val();
+            obj.token = token.split('=')[1];
+            $.ajax
+           ({
+               type: "POST",
+               url: '@Url.Action("ChangePass", "Register")',
+               data: JSON.stringify(obj),
+               dataType: "json",
+               contentType: "application/json;charset=utf-8",
+               success: function (data) {
+                   if (data.result == 1) {
+                       toastr.success("Đổi mật khẩu thành công");
+                       window.location.href = "@Url.Action("LoginForm","Login")";
+               
+                   } else {
+                       toastr.error("Đổi mật khẩu không thành công.Vui lòng thử lại sau!");
+                   }
+
+               }
+           });
+        }
+    });
+    function ChangePass() {
+        
+    }
+</script>

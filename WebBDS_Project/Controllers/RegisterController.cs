@@ -151,7 +151,7 @@ namespace WebBDS_Project.Controllers
 
                     bdsInformationModel.Status = true;
                     bdsInformationModel.Msg = "Tạo tài khoản thành công.Vui lòng kiểm tra email để kích hoạt tài khoản!";
-                    SendTemplateEmail(bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Token,"Email kích hoạt tài khoản");
+                    SendTemplateEmail(bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Token,"Email kích hoạt tài khoản",1);
                 }
             }
             catch (DbEntityValidationException e)
@@ -299,7 +299,7 @@ namespace WebBDS_Project.Controllers
 
                     bdsInformationModel.Status = true;
                     bdsInformationModel.Msg = "Tạo tài khoản thành công.Vui lòng kiểm tra email để kích hoạt tài khoản!";
-                    SendTemplateEmail(bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Token, "Email kích hoạt tài khoản");
+                    SendTemplateEmail(bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Token, "Email kích hoạt tài khoản",1);
                 }
             }
             catch (Exception)
@@ -432,18 +432,31 @@ namespace WebBDS_Project.Controllers
             return img;
         }
 
-        public ActionResult SendTemplateEmail(string recepientEmail, string username,string key,string Subject)
+        public ActionResult SendTemplateEmail(string recepientEmail, string username,string key,string Subject,int type)
         {
+            //Type =1 Active Email
+            //Type =2 ForgetPass
             string body = string.Empty;
-            var activelink = "/Register/Active/" + key;
-            using (StreamReader reader = new StreamReader(Server.MapPath("~/Template/Email/Activation.html")))
+            var activelink = "";
+            if (type==1)
             {
-                body = reader.ReadToEnd();
+                 activelink = "http://localhost:30031//Register/Active/?token=" + key;
+                body = ViewRenderer.RenderPartialView("~/Views/Register/_Active.cshtml");
+                body = body.Replace("##name##", username);
+                body = body.Replace("##activatelink##", activelink);
             }
-            body = body.Replace("##name##", username);
-            body = body.Replace("##activatelink##", activelink);
-            SendEmail("donotreply@example.com", recepientEmail, Subject, body);
+            if (type==2)
+            {
+                 activelink = "http://localhost:30031//Register/ForgerPass/?token=" + key;
+                body = ViewRenderer.RenderPartialView("~/Views/Register/_ResetPass.cshtml");
+                body = body.Replace("##email##", username);
+                body = body.Replace("##resetlink##", activelink);
 
+            }
+           
+             
+          
+            SendEmail("donotreply@example.com", recepientEmail, Subject, body);
             return Json("");
         }
         public static bool SendEmail(string from, string to, string subject, string body)
@@ -478,20 +491,90 @@ namespace WebBDS_Project.Controllers
         }
         public ActionResult Active(string token)
         {
-            var result = 0;
+           
             var data = db.BDSAccounts.Where(x => x.Token == token).ToList();
             if (data.Count>0)
             {
-                result = 1;
+                var UserId = data.FirstOrDefault().ID;
+                var Account_ = db.BDSAccounts.Find(UserId);
+                Account_.MailActive = 1;
+                db.Entry(Account_).State=EntityState.Modified;
+                db.SaveChanges();
 
+                var dataView=db.BDSAccounts.FirstOrDefault(x => x.Token == token);
+                var ShowData = new RegisterInformationModel
+                {
+                    TblBdsAdcount = dataView,Status = true
+                };
+                return View(ShowData);
             }
             else
             {
-                result = 0;
+                var ShowData = new RegisterInformationModel
+                {
+                    
+                    Status = false
+                };
+                return View(ShowData);
+            }
+           
+
+        }
+        public ActionResult ForgerPass(string token)
+        {
+           
+            var data = db.BDSAccounts.Where(x => x.Token == token).ToList();
+            if (data.Count>0)
+            {
+                var UserId = data.FirstOrDefault().ID;
+                var Account_ = db.BDSAccounts.Find(UserId);
+                Account_.MailActive = 1;
+                db.Entry(Account_).State=EntityState.Modified;
+                db.SaveChanges();
+
+                var dataView=db.BDSAccounts.FirstOrDefault(x => x.Token == token);
+                var ShowData = new RegisterInformationModel
+                {
+                    TblBdsAdcount = dataView,Status = true
+                };
+                return View(ShowData);
+            }
+            else
+            {
+                var ShowData = new RegisterInformationModel
+                {
+                    
+                    Status = false
+                };
+                return View(ShowData);
+            }
+           
+
+        }
+        [HttpPost]
+        public ActionResult ChangePass(string token,string pass)
+        {
+
+            var data = db.BDSAccounts.Where(x => x.Token == token).ToList();
+            if (data.Count > 0)
+            {
+                var UserId = data.FirstOrDefault().ID;
+                var Account_ = db.BDSAccounts.Find(UserId);
+                Account_.PassWord = pass;
+                db.Entry(Account_).State = EntityState.Modified;
+                db.SaveChanges();
+
+                var dataView = db.BDSAccounts.FirstOrDefault(x => x.Token == token);
+               
+                return Json(new {result=1});
+            }
+            else
+            {
+
+                return Json(new { result = 0 });
             }
 
-            return Json(new { result= result });
-        }
 
+        }
     }
 }

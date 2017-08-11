@@ -19,7 +19,7 @@
                                     </p>
                                     <p>
                                         
-                                        <a class="btLogin btnForgetPass" >Lấy lại mật khẩu</a>
+                                        <a href="javascript:void(0)" class="btLogin btnForgetPass" >Lấy lại mật khẩu</a>
                                     </p>
                                     
                             </li>
@@ -64,7 +64,12 @@
 </div>
 <script>
     $('.btnForgetPass').click(function () {
-        ForGetPass();
+        if ($('#email').val()=='') {
+            toastr.error("Vui lòng nhập email!");
+        } else {
+            ForGetPass();
+        }
+      
     });
     function ForGetPass()
     {
@@ -79,7 +84,13 @@
            dataType: "json",
            contentType: "application/json;charset=utf-8",
            success: function (data) {
-
+               if (data.result == 1) {
+                   toastr.success("Vui lòng kiểm tra email để lấy lại mật khẩu!");
+                   windom.location.href = "@Url.Action("LoginForm","Login")";
+               
+               } else {
+                   toastr.error("Email không tồn tại!");
+               }
 
            }
        });

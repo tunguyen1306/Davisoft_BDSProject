@@ -344,6 +344,7 @@
     <Compile Include="Models\Users_Roles.cs">
       <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -674,6 +675,9 @@
     <Content Include="Views\AdvertCompany\ManagerAcountPer.cshtml" />
     <Content Include="Views\Default\Employee.cshtml" />
     <Content Include="Views\Register\Active.cshtml" />
+    <Content Include="Views\Register\ForgerPass.cshtml" />
+    <Content Include="Views\Register\_Active.cshtml" />
+    <Content Include="Views\Register\_ResetPass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

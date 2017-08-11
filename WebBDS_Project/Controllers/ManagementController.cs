@@ -15,6 +15,7 @@ namespace WebBDS_Project.Controllers
         //
         // GET: /Management/
         davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
+        RegisterController registerController=new RegisterController();
          [ActionName("ManagementCompany")]
         public ActionResult ManagementCompany()
         {
@@ -557,33 +558,12 @@ namespace WebBDS_Project.Controllers
         [HttpPost, ActionName("ForgetPass1")]
         public ActionResult ForgetPass1(string email)
         {
-            var augen = Guid.NewGuid();
-            var newpass = augen.ToString().Substring(0, 8);
+           
             var idAcount = db.BDSAccounts.FirstOrDefault(x=>x.Email==email);
             if (idAcount!=null)
             {
-                var tblAcount = db.BDSAccounts.Find(idAcount.ID);
-                tblAcount.PassWord = newpass;
-                db.Entry(tblAcount).State = EntityState.Modified;
-                db.SaveChanges();
-                var smtp = new SmtpClient();
-
-                var message = new MailMessage()
-                {
-                    BodyEncoding = new UTF8Encoding(),
-                    Subject = "Mail nhận mật khẩu mới",
-                    IsBodyHtml = true
-                };
-                smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
-                smtp.Credentials = new System.Net.NetworkCredential("tien131091@gmail.com", "Doilanhuthe1");
-
-                message.Body = newpass;
-                message.To.Add(email);
-
-                smtp.Send(message);
-
-
-
+               
+                registerController.SendTemplateEmail(email, idAcount.Email, idAcount.Token,"Láy lại mật khẩu",2);
                 return Json(new { result=1});
             }
             else
