@@ -670,6 +670,7 @@
     <Content Include="Views\AdvertCompany\Warning.cshtml" />
     <Content Include="Views\Adverts\Warning.cshtml" />
     <Content Include="Views\AdvertCompany\ManagerAcountPer.cshtml" />
+    <Content Include="Views\Default\Employee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
