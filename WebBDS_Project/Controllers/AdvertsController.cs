@@ -119,7 +119,8 @@ namespace WebBDS_Project.Controllers
                     ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
                     ListGeoModel = dataCity.ToList(),
                     tblCaptCha = cap,
-                
+                    Msg= "Capcha không chính xác!",
+                    Status = false
                    
 
                 };        
@@ -167,11 +168,11 @@ namespace WebBDS_Project.Controllers
                         ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
                         ListGeoModel = dataCity.ToList(),
                         tblCaptCha = cap,
-                     
-                      
-                       
 
-                    };
+                    
+
+
+                };
                     return Json(registerModel);
                 }
                 create.tblBDSNew.IdAcount=int.Parse( Session["IdUser"].ToString());

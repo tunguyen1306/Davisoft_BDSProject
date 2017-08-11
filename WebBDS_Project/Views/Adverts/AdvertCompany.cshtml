@@ -226,17 +226,17 @@
                                 @Html.DropDownListFor(m => m.tblBDSNew.ToAge, new List<SelectListItem>
                         {
                             new SelectListItem{Text = "Chọn tuổi",Value = "0",Selected = true},
-                            new SelectListItem{Text = "25",Value = "25",Selected = false},
-                            new SelectListItem{Text = "26",Value = "26",Selected = false},
-                            new SelectListItem{Text = "27",Value = "27",Selected = false},
-                            new SelectListItem{Text = "28",Value = "28",Selected = false},
-                            new SelectListItem{Text = "29",Value = "29",Selected = false},
-                            new SelectListItem{Text = "30",Value = "30",Selected = false},
-                            new SelectListItem{Text = "31",Value = "31",Selected = false},
-                            new SelectListItem{Text = "32",Value = "32",Selected = false},
-                            new SelectListItem{Text = "33",Value = "33",Selected = false},
-                            new SelectListItem{Text = "34",Value = "34",Selected = false},
-                            new SelectListItem{Text = "35",Value = "35",Selected = false},
+                            new SelectListItem{Text = "25 tuổi",Value = "25",Selected = false},
+                            new SelectListItem{Text = "26 tuổi",Value = "26",Selected = false},
+                            new SelectListItem{Text = "27 tuổi",Value = "27",Selected = false},
+                            new SelectListItem{Text = "28 tuổi",Value = "28",Selected = false},
+                            new SelectListItem{Text = "29 tuổi",Value = "29",Selected = false},
+                            new SelectListItem{Text = "30 tuổi",Value = "30",Selected = false},
+                            new SelectListItem{Text = "31 tuổi",Value = "31",Selected = false},
+                            new SelectListItem{Text = "32 tuổi",Value = "32",Selected = false},
+                            new SelectListItem{Text = "33 tuổi",Value = "33",Selected = false},
+                            new SelectListItem{Text = "34 tuổi",Value = "34",Selected = false},
+                            new SelectListItem{Text = "35 tuổi",Value = "35",Selected = false},
 
 
                         }, new { @class = "dropdown" })
@@ -249,21 +249,13 @@
                            @Html.DropDownListFor(m => m.tblBDSNew.TimeProbationary, new List<SelectListItem>
                         {
                             new SelectListItem{Text = "Chọn thời gian",Value = "0",Selected = true},
-                            new SelectListItem{Text = "1",Value = "1",Selected = true},
-                            new SelectListItem{Text = "2",Value = "2",Selected = false},
-                            new SelectListItem{Text = "3",Value = "3",Selected = false},
-                            new SelectListItem{Text = "4",Value = "4",Selected = false},
-                            new SelectListItem{Text = "5",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9",Value = "9",Selected = false},
-                            new SelectListItem{Text = "10",Value = "10",Selected = false},
-                            new SelectListItem{Text = "11",Value = "11",Selected = false},
-                            new SelectListItem{Text = "12",Value = "12",Selected = false},
-                            new SelectListItem{Text = "13",Value = "13",Selected = false},
-                            new SelectListItem{Text = "14",Value = "14",Selected = false},
-                            new SelectListItem{Text = "15",Value = "15",Selected = false}
+                            new SelectListItem{Text = "1 Tháng",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2 Tháng",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3 Tháng",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 Tháng",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 Tháng",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 Tháng",Value = "6",Selected = false},
+                         
 
 
                         }, new { @class = "dropdown" })
@@ -329,7 +321,7 @@
                                 }
                             </style>
                            
-                            <input type="file" id="files" name="files" multiple accept="image/*" />
+                            <input type="file" class="form-control" id="files" name="files" multiple accept="image/*" />
                           
 
                             <script>
@@ -659,8 +651,8 @@
       
         <a class="popup-modal-dismiss" href="#">×</a>
     </div>
-   
 
+    <a class="popup-modal hidden" href="#test-modal">Open modal</a>
                                         }
 <style>
     a.btnCheck:hover {
