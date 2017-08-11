@@ -344,7 +344,7 @@ namespace WebBDS_Project.Controllers
 
                     NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
                     fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
-                    path = Server.MapPath("~/fileupload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                    path = Server.MapPath("~/UploadImg/") + DateTime.Now.Day + DateTime.Now.Month + "/";
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
                     path1 = Path.Combine(path, fileNameFull);
@@ -361,7 +361,7 @@ namespace WebBDS_Project.Controllers
             return Json(new
             {
                 fullurl = _fullUrl,
-                shorurl = "/fileUpload/" + DateTime.Now.Day + DateTime.Now.Month + "/" + fileNameFull,
+                shorurl = "/UploadImg/" + DateTime.Now.Day + DateTime.Now.Month + "/" + fileNameFull,
                 imgName = fileNameFull
             });
 
