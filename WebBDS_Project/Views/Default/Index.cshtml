@@ -218,10 +218,15 @@
         </div>
     </div>
 
+<style>
+   .search_location .select2-container {
+        width: 140px !important;
+    }
+</style>
 
 
 
-    <div class="banner_bottom">
+<div class="banner_bottom">
         @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentCenter"))
         {
             if (item.Type == 1)

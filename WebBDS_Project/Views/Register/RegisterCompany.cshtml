@@ -194,19 +194,22 @@
         <div>
             <h1>Đăng tin thành công</h1>
         </div>
-        <div>
+        <div style="display: inline-block">
             <p>
-                <i class="fa fa-exclamation-triangle fa-3x" style="color:#37a344;" aria-hidden="true"></i><span class=""> Bạn đã đăng tin thành công.</span>
+                <i class="fa fa-exclamation-triangle fa-3x" style="color: #37a344;" aria-hidden="true"></i><span class=""> Bạn đã đăng ký thành công.</span>
                 <span class="cusTextWarning">
                     -Bạn vừa đăng kí thành công.
                 </span>
                 <span class="cusTextWarning">    -Vui lòng kiểm tra email để kích hoạt tài khoản.</span>
 
             </p>
-            <p>
+            
+        </div>
+        <div style="display: inline-block; width: 100%; margin-top: 10px;">
+            <p style="text-align: center; padding: 0px; margin: 0px;">
 
-             
-                <a href="@Url.Action("Index","Default")" class="grid_12" style="margin: 0 1% 1% 0!important;">
+
+                <a href="@Url.Action("Index", "Default")" class="btn btnUpload">
                     Về trang chủ
                 </a>
             </p>
@@ -218,7 +221,11 @@
 
     <a class="popup-modal hidden" href="#test-modal">Open modal</a>
 }
-
+<style>
+    #test-modal h1 {
+        margin: 0px;
+    }
+</style>
 <script>
 
     $(document).on('submit', 'form', function () {
