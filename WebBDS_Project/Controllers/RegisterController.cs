@@ -42,7 +42,7 @@ namespace WebBDS_Project.Controllers
                             join datatext in db.DistrictTexts on data.name_id equals datatext.id
                             where datatext.language_id == "vi"
                             select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
-            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+          
             dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
             var registerModel = new RegisterInformationModel
             {
@@ -90,7 +90,7 @@ namespace WebBDS_Project.Controllers
                                     select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
                 
                     dataDist.Insert(0, new GeoModel { DistId = 0, DistName = "Chọn quận/huyện" });
-                    var registerModel = new RegisterInformationModel
+                    bdsInformationModel = new RegisterInformationModel
                     {
                         ListBDSScopes = db.BDSScopes.ToList(),
                         ListMarriea = db.BDSMarriages.ToList(),
@@ -122,9 +122,12 @@ namespace WebBDS_Project.Controllers
                     bdsInformationModel.TblBdsAdcount.Point = 0;
                     bdsInformationModel.TblBdsAdcount.MailActive = 0;
                     bdsInformationModel.TblBdsAdcount.Token = Guid.NewGuid().ToString();
-                 
-                    db.BDSAccounts.Add(bdsInformationModel.TblBdsAdcount);
+
+
+                    db.Entry(bdsInformationModel.TblBdsAdcount).State = EntityState.Added;
                     db.SaveChanges();
+
+
                     BDSEmployerInformation tblemployee = new BDSEmployerInformation();
                     bdsInformationModel.TblBDSEmployerInformation.IdAccount = bdsInformationModel.TblBdsAdcount.ID;
 
@@ -141,8 +144,8 @@ namespace WebBDS_Project.Controllers
                     bdsInformationModel.TblBDSEmployerInformation.EmailContact = bdsInformationModel.TblBdsAdcount.Email;
                     bdsInformationModel.TblBDSEmployerInformation.TypeContact = 1;
                     bdsInformationModel.TblBDSEmployerInformation.IdAccount = bdsInformationModel.TblBdsAdcount.ID;
-               
-                    db.BDSEmployerInformations.Add(bdsInformationModel.TblBDSEmployerInformation);
+
+                    db.Entry(bdsInformationModel.TblBDSEmployerInformation).State=EntityState.Added;
                     db.SaveChanges();
               
 
@@ -235,7 +238,7 @@ namespace WebBDS_Project.Controllers
                     dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
                     dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
 
-                    var registerModel = new RegisterInformationModel
+                    bdsInformationModel = new RegisterInformationModel
                     {
                         ListBDSScopes = db.BDSScopes.ToList(),
                         ListMarriea = db.BDSMarriages.ToList(),
@@ -349,7 +352,7 @@ namespace WebBDS_Project.Controllers
 
                     NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
                     fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
-                    path = Server.MapPath("~/fileupload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                    path = Server.MapPath("~/UploadImg/") + DateTime.Now.Day + DateTime.Now.Month + "/";
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
                     path1 = Path.Combine(path, fileNameFull);
@@ -366,7 +369,7 @@ namespace WebBDS_Project.Controllers
             return Json(new
             {
                 fullurl = _fullUrl,
-                shorurl = "/fileUpload/" + DateTime.Now.Day + DateTime.Now.Month + "/" + fileNameFull,
+                shorurl = "/UploadImg/" + DateTime.Now.Day + DateTime.Now.Month + "/" + fileNameFull,
                 imgName = fileNameFull
             });
 

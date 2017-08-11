@@ -21,14 +21,11 @@ namespace WebBDS_Project.Controllers
             Session["IdTypeUser"] = null;
             Session["FullName"] = null;
           
-            var data = db.BDSAccounts.FirstOrDefault(x => x.Email.ToLower() == acountModel.tblBDSAccount.Email.ToLower().Trim() && x.PassWord == acountModel.tblBDSAccount.PassWord.Trim() && x.Active == 1);
+            var data = db.BDSAccounts.FirstOrDefault(x => x.Email.ToLower() == acountModel.tblBDSAccount.Email.ToLower().Trim() && x.PassWord == acountModel.tblBDSAccount.PassWord.Trim() && x.Active == 1 );
             if (data != null)
             {
                 FormsAuthentication.SetAuthCookie(data.Email, false);
                 String returnUrl = Request.Params["ReturnUrl"];
-
-
-              
                 var dataEmployee = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == data.ID && x.Active == 1);
                 var dataPer= db.BDSPersonalInformations.FirstOrDefault(x => x.IdAccount == data.ID && x.Active == 1);
                 if (dataEmployee != null)
@@ -54,10 +51,9 @@ namespace WebBDS_Project.Controllers
                         Session.Remove("IdUser");
                         Session.Remove("EmailUser");
                         Session.Remove("IdUserEmployee");
-                       
                         Session["IdUser"] = data.ID;
-                            Session["EmailUser"] = data.Email;
-                            Session["FullName"] = dataPer.Name;
+                        Session["EmailUser"] = data.Email;
+                        Session["FullName"] = dataPer.Name;
                         Session["IdUserPer"] = dataPer.ID;
                     }
                     else

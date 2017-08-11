@@ -368,7 +368,7 @@ namespace WebBDS_Project.Controllers
                 var fortmatName = Path.GetExtension(fileName);
                 var NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
                 fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
-                var path = Server.MapPath("~/fileupload/") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                var path = Server.MapPath("~/UploadImg/") + DateTime.Now.Day + DateTime.Now.Month + "/";
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 var path1 = Path.Combine(path, fileNameFull);
