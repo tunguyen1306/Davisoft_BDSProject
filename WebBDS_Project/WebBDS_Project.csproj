@@ -439,6 +439,8 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\css\bfFur.css" />
     <Content Include="Template\css\datatables.min.css" />
+    <Content Include="Template\Email\Activation.html" />
+    <Content Include="Template\Email\ResetPassword.html" />
     <Content Include="Template\images\fa.jpg" />
     <Content Include="Template\js\datatables.min.js" />
     <Content Include="Template\css\pushy.css" />
@@ -671,6 +673,7 @@
     <Content Include="Views\Adverts\Warning.cshtml" />
     <Content Include="Views\AdvertCompany\ManagerAcountPer.cshtml" />
     <Content Include="Views\Default\Employee.cshtml" />
+    <Content Include="Views\Register\Active.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

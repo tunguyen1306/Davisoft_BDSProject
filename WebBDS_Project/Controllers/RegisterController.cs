@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -9,8 +10,12 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Net.Configuration;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Antlr.Runtime;
 using WebBDS_Project.Models;
 
 namespace WebBDS_Project.Controllers
@@ -142,8 +147,8 @@ namespace WebBDS_Project.Controllers
               
 
                     bdsInformationModel.Status = true;
-                    bdsInformationModel.Msg = "Tạo tài khoản thành công!";
-                   
+                    bdsInformationModel.Msg = "Tạo tài khoản thành công.Vui lòng kiểm tra email để kích hoạt tài khoản!";
+                    SendTemplateEmail(bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Token,"Email kích hoạt tài khoản");
                 }
             }
             catch (DbEntityValidationException e)
@@ -290,8 +295,8 @@ namespace WebBDS_Project.Controllers
                     db.SaveChanges();
 
                     bdsInformationModel.Status = true;
-                    bdsInformationModel.Msg = "Tạo tài khoản thành công!";
-                   
+                    bdsInformationModel.Msg = "Tạo tài khoản thành công.Vui lòng kiểm tra email để kích hoạt tài khoản!";
+                    SendTemplateEmail(bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Email, bdsInformationModel.TblBdsAdcount.Token, "Email kích hoạt tài khoản");
                 }
             }
             catch (Exception)
@@ -423,6 +428,67 @@ namespace WebBDS_Project.Controllers
 
             return img;
         }
-        
+
+        public ActionResult SendTemplateEmail(string recepientEmail, string username,string key,string Subject)
+        {
+            string body = string.Empty;
+            var activelink = "/Register/Active/" + key;
+            using (StreamReader reader = new StreamReader(Server.MapPath("~/Template/Email/Activation.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("##name##", username);
+            body = body.Replace("##activatelink##", activelink);
+            SendEmail("donotreply@example.com", recepientEmail, Subject, body);
+
+            return Json("");
+        }
+        public static bool SendEmail(string from, string to, string subject, string body)
+        {
+            //var emailUsername = Settings.GetSetting("EmailConfig", "Username", typeof(string));
+            //var emailPassword = Settings.GetSetting("EmailConfig", "Password", typeof(string));
+            try
+            {
+                var section = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+                var message = new MailMessage("donotreply@example.com", to, subject, body) { IsBodyHtml = true };
+                message.From = new MailAddress("donotreply@example.com", "", Encoding.UTF8);// Settings.GetSetting("Report", "CompanyName", typeof(string))
+                message.ReplyToList.Add(from);
+                var client = new SmtpClient();
+                client.Port = section.Network.Port;//Settings.GetSetting("EmailConfig", "Port", typeof(int));
+                client.Host = section.Network.Host;//Settings.GetSetting("EmailConfig", "Host", typeof(string));
+                client.EnableSsl = section.Network.EnableSsl;//true;
+                // setup up the host, increase the timeout to 60 minutes
+                client.Timeout = (60 * 60 * 1000);
+                client.DeliveryMethod = section.DeliveryMethod;//SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential(section.Network.UserName, section.Network.Password);
+                //
+                client.Send(message);
+
+            }
+            catch (Exception e)
+            {
+                //   Tools.Logger(e.ToString(),"sendmailerr","SendMail");
+                return false;
+            }
+            return true;
+        }
+        public ActionResult Active(string token)
+        {
+            var result = 0;
+            var data = db.BDSAccounts.Where(x => x.Token == token).ToList();
+            if (data.Count>0)
+            {
+                result = 1;
+
+            }
+            else
+            {
+                result = 0;
+            }
+
+            return Json(new { result= result });
+        }
+
     }
 }
