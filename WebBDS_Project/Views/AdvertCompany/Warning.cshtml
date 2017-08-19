@@ -1,6 +1,1135 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
+@{
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
+    var InforPer = db.BDSPersonalInformations.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.PerId);
+
+}
+
+@using System.Configuration
+@using System.Web.UI.WebControls
+@using WebBDS_Project.Models
+@model WebBDS_Project.Models.RegisterInformationModel
+
+
+
+<input type="hidden" name="type" value="0" id="type" />
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Tạo hồ sơ tìm việc</span></h3>
+            </div>
+            <span class="TitleAdvertComany">Tải hồ sơ có sẵn: </span>Nếu bạn có sẵn file mềm hồ sơ xin việc, bản CV tìm việc hãy tải lên và nộp cho nhà tuyển dụng.
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+                <div class="row fromValidate">
+                    @Html.HiddenFor(m => m.tblBDSPerNew.ID, new { @class = "ID" })
+
+                    <label>File CV:</label>
+
+                    <label class="lblValue">
+                        @if (Model.tblBDSPerNew.FileUrl != null)
+                        {
+                            <a href="@(ConfigurationManager.AppSettings["UrlImage"]+Model.tblBDSPerNew.FileUrl.ToString().Split('_')[0]+ "/" + Model.tblBDSPerNew.FileUrl)">@Model.tblBDSPerNew.FileUrl</a>
+
+                        }
+
+                    </label>
+                </div>
+
+            </div>
+            <h4>Thông tin hồ sơ cá nhân</h4>
+
+
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+
+                <div class="row">
+
+                    <label>Email đăng nhập:</label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @*@(db.BDSAccounts.FirstOrDefault(x => x.ID == InforPer.IdAccount).Email)*@
+                            @InforPer.IdAccount
+
+                        </label>
+
+                    </div>
+                    <label class="child">Giới tính <span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if (InforPer.Sex == 1)
+                            {
+                                @("Nam")
+                            }
+                            @if (InforPer.Sex == 2)
+                            {
+                                @("Nữ")
+                            }
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Họ và tên:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @InforPer.Name
+                        </label>
+
+                    </div>
+                    <label class="child">Số điện thoại:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @InforPer.Phone
+                        </label>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Quê quán:<span class="required">*</span></label>
+                    <div class="row-right">
+                        <label class="lblValue">
+                            @(Model.ListGeoModel.FirstOrDefault(x => x.CityId == InforPer.Province).CityName)
+                        </label>
+
+                    </div>
+                    <label style="width: 116px" class="child">Ngày sinh:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @InforPer.Birthday.ToShortDateString()
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>ĐC thường trú:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @InforPer.PermanentAddress
+                        </label>
+
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label>ĐC tạm trú:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @InforPer.TemporaryAddress
+                        </label>
+
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <label>Hình cá nhân:</label>
+                    <div class="uploadBox">
+                        <div style="float: left; margin-right: 10px;" class="viewFile">
+                            @if (InforPer.UrlImage != null)
+                            {
+                                <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@InforPer.UrlImage.ToString().Split('_')[0]/@InforPer.UrlImage" />
+                            }
+                            else
+                            {
+                                <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                            }
+
+                        </div>
+                        <input type="hidden" value="" name="TblBDSPersonalInformation.UrlImage" id="UrlImage" />
+
+                        <input type="file" style="visibility: hidden;" value="upload" class="uploadFile" name="TblBDSPersonalInformation.File" />
+
+
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <h4>Thông tin chung của hồ sơ</h4>
+
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+                <div class="row">
+                    <label>Tiêu đề hồ sơ:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.TitleProfile
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Ngành nghề :<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @if (Model.ListBDSCareer.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.CareerProfile).ID == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListBDSCareer.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.CareerProfile).Name;
+                            }
+                        </label>
+
+
+
+                    </div>
+                    <label class="child">Khu vực làm việc:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Mức lương:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if ((Model.ListSalary != null ? Model.ListSalary.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.SalaryProfile).ID : 0) == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListSalary.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.SalaryProfile).Name;
+                            }
+                        </label>
+
+                    </div>
+                    <label class="child">Trình độ:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if (Model.ListDucation.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.EducationProfile).ID == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListDucation.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.EducationProfile).Name;
+                            }
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Kinh nghiệm:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if (Model.ListTimework.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.ExperienceProfile).ID == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListTimework.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.ExperienceProfile).Name;
+                            }
+                        </label>
+                    </div>
+                    <label style="width: 111px;" class="child">Ngoại ngữ:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+
+                        <label class="lblValue">
+                            @if (Model.ListBDSLanguage.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.LanguageProfile).ID == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                @Model.ListBDSLanguage.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.LanguageProfile).Name;
+                            }
+                        </label>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Cấp bậc:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @if (Model.tblBDSPerNew.LevelProfile == 0)
+                            {
+                                <div style="opacity: 0">d</div>
+                            }
+                            else
+                            {
+                                if (Model.tblBDSPerNew.LevelProfile == 1)
+                                {
+                                    @("Nhân viên")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 2)
+                                {
+                                    @("Trưởng Nhóm")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 3)
+                                {
+                                    @("Trưởng Phòng")
+                                }
+                                if (Model.tblBDSPerNew.LevelProfile == 4)
+                                {
+                                    @("Giám đốc")
+                                }
+                            }
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Mục tiêu nghề nghiệp:<span class="required">*</span></label>
+                    <div class="row-right">
+
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.CareerGoalProfile
+                        </label>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <span class="TitleAdvertComany">Trình độ, kỹ năng: </span>Liệt kê đầy đủ các thông tin bằng cấp/chứng chỉ mà bạn có (kể cả bằng cấp/chứng chỉ ngắ hạng).
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+                @for (int i = 0; i < Model.ListPerNewDegrees.Count; i++)
+                {
+                    var itrmsss = Model.ListPerNewDegrees[i];
+                    <div id="degree_@(i + "")_" style="@(Model.ListPerNewDegrees[i].Active==0?"display:none;":"")">
+                        <hr class="space space_@(i)_" />
+                        @Html.HiddenFor(m => m.ListPerNewDegrees[i].ID, new { @class = "DegreeID" })
+                        @Html.HiddenFor(m => m.ListPerNewDegrees[i].ID_BDSPerNews, new { @class = "RefID" })
+                        @Html.HiddenFor(m => m.ListPerNewDegrees[i].Active)
+                        <div class="row">
+                            <label>Trình độ:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @if (Model.ListPerNewDegrees[i].Rating == null)
+                                    {
+                                        @("")
+                                    }
+
+                                    @if (Model.ListPerNewDegrees[i].Rating == 2)
+                                    {
+                                        @("Level 2")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 3)
+                                    {
+                                        @("Level 3")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 4)
+                                    {
+                                        @("Level 4")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 5)
+                                    {
+                                        @("Level 5")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 6)
+                                    {
+                                        @("Level 6")
+                                    }
+                                </label>
+
+
+                            </div>
+                            <label class="child">Thời gian ĐT: <span class="required">*</span></label>
+                            <div class="row-right validate" ref-type="RANGER">
+                                <label class="lblValue">
+                                    @(Model.ListPerNewDegrees[i].FromYear + "-" + Model.ListPerNewDegrees[i].FromYear)
+
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Đơn vị đào tạo:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @Model.ListPerNewDegrees[i].Name
+                                </label>
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Chuyên Ngành:<span class="required">*</span></label>
+                            <div class="row-right">
+
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewDegrees[i].Career
+                                </label>
+
+                            </div>
+                            <label class="child">Loại bằng:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @if (Model.ListPerNewDegrees[i].Rating == null)
+                                    {
+                                        @("")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 1)
+                                    {
+                                        @("Yếu")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 2)
+                                    {
+                                        @("Trung bình")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 3)
+                                    {
+                                        @("Khá")
+                                    }
+                                    @if (Model.ListPerNewDegrees[i].Rating == 4)
+                                    {
+                                        @("Giỏi")
+                                    }
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <label>Ảnh bằng cấp:</label>
+                            <div class="uploadBox">
+                                <div style="float: left; margin-right: 10px;" class="viewFile">
+                                    @if (Model.ListPerNewDegrees[i].ImageUrl != null)
+                                    {
+                                        <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.ListPerNewDegrees[i].ImageUrl.ToString().Split('_')[0]/@Model.ListPerNewDegrees[i].ImageUrl" />
+                                    }
+                                    else
+                                    {
+                                        <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                                    }
+
+                                </div>
+
+                            </div>
+
+                            @Html.HiddenFor(m => m.ListPerNewDegrees[i].ImageUrl, new { @class = "input1" })
+                        </div>
+                    </div>
+                }
+                @*Languge*@
+                @for (int i = 0; i < Model.ListPerNewLangDegrees.Count; i++)
+                {
+                    <div id="LangDegree_@(i)_" style="@(Model.ListPerNewLangDegrees[i].Active == 0 ? "display:none;" : "")">
+                        <hr class="space space_@(i)_" />
+                        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].ID, new { @class = "LangDegreeID" })
+                        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].ID_BDSPerNews, new { @class = "RefID" })
+                        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].Active)
+                        <div class="row">
+                            <label>Ngoại ngữ:<span class="required">*</span></label>
+                            <div class="row-right">
+
+
+                                <label class="lblValue">
+                                    @if (Model.ListBDSLanguage.FirstOrDefault(x => x.ID == Model.ListPerNewLangDegrees[i].Language).ID == 0)
+                                    {
+                                        <div style="opacity: 0">d</div>
+                                    }
+                                    else
+                                    {
+                                        @Model.ListBDSLanguage.FirstOrDefault(x => x.ID == Model.ListPerNewLangDegrees[i].Language).Name;
+                                    }
+                                </label>
+
+                            </div>
+                            <label class="child">Bằng ngoại ngữ:<span class="required">*</span></label>
+                            <div class="row-right">
+
+
+                                <label class="lblValue">
+                                    @(Model.ListPerNewLangDegrees[i].Name)
+
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row cus-row-no-margin-top">
+                            <label>Kỹ năng:</label>
+                            <div class="cusRowWithRadio">
+
+
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="row cus-row-no-margin-top">
+                            <label>Nghe:</label>
+
+                            <div class="cusRowWithRadio">
+
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 1)
+                                {
+                                    @("Yếu")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 2)
+                                {
+                                    @("Trung bình")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 3)
+                                {
+                                    @("Khá")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 4)
+                                {
+                                    @("Tốt")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Listening == 5)
+                                {
+                                    @("Giỏi")
+                                }
+
+
+                            </div>
+
+                        </div>
+                        <div class="row cus-row-no-margin-top">
+                            <label>Nói:</label>
+                            <div class="cusRowWithRadio">
+
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 1)
+                                {
+                                    @("Yếu")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 2)
+                                {
+                                    @("Trung bình")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 3)
+                                {
+                                    @("Khá")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 4)
+                                {
+                                    @("Tốt")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Speaking == 5)
+                                {
+                                    @("Giỏi")
+                                }
+
+
+                            </div>
+
+                        </div>
+                        <div class="row cus-row-no-margin-top">
+                            <label>Đọc:</label>
+                            <div class="cusRowWithRadio">
+
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 1)
+                                {
+                                    @("Yếu")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 2)
+                                {
+                                    @("Trung bình")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 3)
+                                {
+                                    @("Khá")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 4)
+                                {
+                                    @("Tốt")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Reading == 5)
+                                {
+                                    @("Giỏi")
+                                }
+
+
+                            </div>
+
+                        </div>
+                        <div class="row cus-row-no-margin-top">
+                            <label>Viết:</label>
+                            <div class="cusRowWithRadio">
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 1)
+                                {
+                                    @("Yếu")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 2)
+                                {
+                                    @("Trung bình")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 3)
+                                {
+                                    @("Khá")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 4)
+                                {
+                                    @("Tốt")
+                                }
+                                @if (Model.ListPerNewLangDegrees[i].Writing == 5)
+                                {
+                                    @("Giỏi")
+                                }
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+                @*Office*@
+                <div class="row cus-row-no-margin-top">
+                    <label>Tin học văn phòng:</label>
+                    <div class="cusRowWithRadio">
+
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="row cus-row-no-margin-top">
+                    <label>MS Word:</label>
+
+                    <div class="cusRowWithRadio">
+
+
+                        @if (Model.tblBDSPerNew.MSWordOffice == 1)
+                        {
+                            @("Yếu")
+                        }
+                        @if (Model.tblBDSPerNew.MSWordOffice == 2)
+                        {
+                            @("Trung bình")
+                        }
+                        @if (Model.tblBDSPerNew.MSWordOffice == 3)
+                        {
+                            @("Khá")
+                        }
+                        @if (Model.tblBDSPerNew.MSWordOffice == 4)
+                        {
+                            @("Tốt")
+                        }
+                        @if (Model.tblBDSPerNew.MSWordOffice == 5)
+                        {
+                            @("Giỏi")
+                        }
+
+                    </div>
+
+                </div>
+                <div class="row cus-row-no-margin-top">
+                    <label>MS Excel:</label>
+                    <div class="cusRowWithRadio">
+
+
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 1)
+                        {
+                            @("Yếu")
+                        }
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 2)
+                        {
+                            @("Trung bình")
+                        }
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 3)
+                        {
+                            @("Khá")
+                        }
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 4)
+                        {
+                            @("Tốt")
+                        }
+                        @if (Model.tblBDSPerNew.MSExcelOffice == 5)
+                        {
+                            @("Giỏi")
+                        }
+                    </div>
+
+                </div>
+                <div class="row cus-row-no-margin-top">
+                    <label>MS Power point:</label>
+                    <div class="cusRowWithRadio">
+
+
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 1)
+                        {
+                            @("Yếu")
+                        }
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 2)
+                        {
+                            @("Trung bình")
+                        }
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 3)
+                        {
+                            @("Khá")
+                        }
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 4)
+                        {
+                            @("Tốt")
+                        }
+                        @if (Model.tblBDSPerNew.MSPowerPointOffice == 5)
+                        {
+                            @("Giỏi")
+                        }
+
+
+                    </div>
+
+                </div>
+                <div class="row cus-row-no-margin-top">
+                    <label>MS Outlook:</label>
+                    <div class="cusRowWithRadio">
+
+
+                        @if (Model.tblBDSPerNew.OutlookOffice == 1)
+                        {
+                            @("Yếu")
+                        }
+                        @if (Model.tblBDSPerNew.OutlookOffice == 2)
+                        {
+                            @("Trung bình")
+                        }
+                        @if (Model.tblBDSPerNew.OutlookOffice == 3)
+                        {
+                            @("Khá")
+                        }
+                        @if (Model.tblBDSPerNew.OutlookOffice == 4)
+                        {
+                            @("Tốt")
+                        }
+                        @if (Model.tblBDSPerNew.OutlookOffice == 5)
+                        {
+                            @("Giỏi")
+                        }
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label>Phần mềm khác:</label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.OrderOffice
+                        </label>
+
+
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <label>Kỷ năng:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.Skills
+                        </label>
+
+
+                    </div>
+                    <label class="child">Sở thích:<span class="required">*</span></label>
+                    <div class="row-right">
+
+                        <label class="lblValue">
+                            @Model.tblBDSPerNew.Hobby
+                        </label>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <span class="TitleAdvertComany">Kinh nghiệm làm  việc: </span>Hãy liệt kê những công việc,nhiệm vụ mà bạn đã từng đảm nhận và thực hiện.Chú ý liệt kinh nghiệm làm việc từ thời gian gần đây nhất trở về trước.
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+                @for (int i = 0; i < Model.ListPerNewExperiences.Count; i++)
+                {
+
+                    <div id="Experience_@(i)_" style="@(Model.ListPerNewExperiences[i].Active == 0 ? "display:none;" : "")">
+                        <hr class="space space_@(i)_" />
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ID, new { @class = "ExperienceID" })
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ID_BDSPerNews, new { @class = "RefID" })
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].Active)
+                        <div class="row">
+                            <label>Tên công ty:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                
+                                        @Model.ListPerNewExperiences[i].Name
+                               
+                                 </label>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <label>Cấp bậc:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @if (Model.tblBDSPerNew.LevelProfile == 0)
+                                    {
+                                        <div style="opacity: 0">d</div>
+                                    }
+                                    else
+                                    {
+                                        if (Model.tblBDSPerNew.LevelProfile == 1)
+                                        {
+                                            @("Nhân viên")
+                                        }
+                                        if (Model.tblBDSPerNew.LevelProfile == 2)
+                                        {
+                                            @("Trưởng Nhóm")
+                                        }
+                                        if (Model.tblBDSPerNew.LevelProfile == 3)
+                                        {
+                                            @("Trưởng Phòng")
+                                        }
+                                        if (Model.tblBDSPerNew.LevelProfile == 4)
+                                        {
+                                            @("Giám đốc")
+                                        }
+                                    }
+                                </label>
+                            </div>
+                            <label class="child">Mức lương:<span class="required">*</span></label>
+                            <div class="row-right">
+
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewExperiences[i].Salary
+                                </label>
+
+                            </div>
+                        </div>
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].FromDate, "{0:dd/MM/yyyy}")
+                        @Html.HiddenFor(m => m.ListPerNewExperiences[i].ToDate, "{0:dd/MM/yyyy}")
+                        <div class="row new validate" ref-type="S-RANGER">
+                            <label style="width: 125px">Thời gian làm việc:<span class="required">*</span></label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @(Model.ListPerNewExperiences[i].FromDate.Value.Month + "/" + Model.ListPerNewExperiences[i].FromDate.Value.Year + " - " + Model.ListPerNewExperiences[i].ToDate.Value.Month + "/" + Model.ListPerNewExperiences[i].ToDate.Value.Year)
+                                </label>
+
+
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <label>Mô tả công việc và thành tích đạt được</label>
+                            <div class="row-right">
+                                <label class="lblValue">
+                                    @Model.ListPerNewExperiences[i].Decription
+                                </label>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+
+
+
+            </div>
+
+            <span class="TitleAdvertComany">Người tham khảo : </span>Không bất buộc.
+
+            <div class="form-horizontal cus-form-horizonta fromValidate">
+
+                @for (int i = 0; i < Model.ListPerNewReferences.Count; i++)
+                {
+                    <div id="Reference_@(i)_" style="@(Model.ListPerNewReferences[i].Active == 0 ? "display:none;" : "")">
+                        <hr class="space space_@(i)_" />
+                        @Html.HiddenFor(T => T.ListPerNewReferences[i].ID, new { @class = "ReferenceID" })
+                        @Html.HiddenFor(m => m.ListPerNewReferences[i].ID_BDSPerNews, new { @class = "RefID" })
+                        @Html.HiddenFor(m => m.ListPerNewReferences[i].Active)
+                        <div class="row">
+                            <label>Tên công ty:</label>
+                            <div class="row-right">
+
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewReferences[i].NameCompany
+                                </label>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row">
+                            <label>Người tham khảo:</label>
+                            <div class="row-right">
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewReferences[i].Name
+                                </label>
+
+                            </div>
+                            <label class="child">Số điện thoại:</label>
+                            <div class="row-right">
+
+                                <label class="lblValue">
+                                    @Model.ListPerNewReferences[i].Phone
+                                </label>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+
+    </div>
+    <div class="grid_3 omega main_right" id="sideRightPushy">
+        <div class="banner_right">
+
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight1"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight2"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" style="margin: 0" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+        </div>
+        @Html.Partial("_partialCareers")
+        @Html.Partial("_partialCompany")
+        @Html.Partial("_partialShareExpirence")
+        @Html.Partial("_partialComment")
+        @Html.Partial("_partialNews")
+        <div class="banner_right">
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight1"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight2"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    hr {
+        margin-bottom: 10px;
+    }
+
+    .space {
+        margin-bottom: 6px;
+    }
+
+    .space_0_ {
+        display: none;
+    }
+
+    .thumb {
+        max-height: 80px;
+    }
+
+    .viewFile {
+        padding-top: 6px;
+    }
+</style>
+
+<style>
+    .group_work h4 {
+        margin: 0px 0 0px;
+    }
+
+    .cus-color-a {
+        cursor: pointer;
+    }
+
+        .cus-color-a:hover {
+            opacity: 0.8;
+            color: #008475;
+        }
+
+    input[readonly] {
+        background: #EBEBE4;
+    }
+</style>
+
+<div class="container">
+    <div class="grid_9 main_left">
+
+        <div class="grid_12 title_detail">
+            <div class="logo_detail">
+
+                @if (InforPer.UrlImage != null)
+                {
+                    <img width="80" id="imgLogoCompany" src="@ConfigurationManager.AppSettings["UrlImage"]@InforPer.UrlImage.ToString().Split('_')[0]/@InforPer.UrlImage" />
+                }
+                else
+                {
+                    <img width="80" id="imgLogoCompany" src="~/Template/images/avatar-default.png" />
+                }
+            </div>
+            <div class="name_detail">
+                <h2>@InforPer.Name</h2>
+
+                <p><strong>@Model.tblBDSPerNew.TitleProfile</strong></p>
+
+                <p><i class="fa fa-map-marker"></i>Nơi sinh: </p>
+                <p><i class="fa fa-user"></i>Ngày sinh: </p>
+                <p><i class="fa fa-usd"></i>Số điện thoại: @InforPer.Phone </p>
+                <p><i class="fa fa-usd"></i>Email:  @InforPer.Phone</p>
+            </div>
+
+        </div>
+
+
+
+        <div class="row">
+
+
+        </div>
+    </div>
+    <div class="grid_3 omega main_right" id="sideRightPushy">
+        <div class="banner_right">
+
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight1"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight2"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" style="margin: 0" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+        </div>
+        @Html.Partial("_partialCareers")
+        @Html.Partial("_partialCompany")
+        @Html.Partial("_partialShareExpirence")
+        @Html.Partial("_partialComment")
+        @Html.Partial("_partialNews")
+        <div class="banner_right">
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight1"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+            @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight2"))
+            {
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
+
+
+            }
+        </div>
+    </div>
+
+</div>
+
 
 
 <div class="container">

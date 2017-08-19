@@ -86,7 +86,7 @@
            success: function (data) {
                if (data.result == 1) {
                    toastr.success("Vui lòng kiểm tra email để lấy lại mật khẩu!");
-                   windom.location.href = "@Url.Action("LoginForm","Login")";
+                   window.location.href = "@Url.Action("LoginForm","Login")";
                
                } else {
                    toastr.error("Email không tồn tại!");

@@ -592,7 +592,7 @@
                                 @(Model.tblBDSPerNew.Status.HasValue && Model.tblBDSPerNew.Status == 1 ? "Cập nhập" : "Lưu & công khai")
 
                             </a>
-                            <a href="javascript:void(0)"  class="btn btnUpload">
+                            <a target="blank" href="@Url.Action("DetailAdvertCompany","AdvertCompany",new  {idNew=Model.tblBDSPerNew.TitleProfile.UrlFrendly()+"-" +Model.tblBDSPerNew.ID})"  class="btn btnUpload">
                                 Xem trước
                             </a>
 

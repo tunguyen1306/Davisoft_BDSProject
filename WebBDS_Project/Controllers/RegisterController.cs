@@ -286,7 +286,7 @@ namespace WebBDS_Project.Controllers
 
                     db.Entry(bdsInformationModel.TblBDSPersonalInformation).State = EntityState.Added;
                     db.SaveChanges();
-
+                    bdsInformationModel.tblBDSPerNew.Status = 0;
                     bdsInformationModel.tblBDSPerNew.Active = 1;
                     bdsInformationModel.tblBDSPerNew.CreateDate = DateTime.Now;
                     bdsInformationModel.tblBDSPerNew.CreateUser = 1;
@@ -440,14 +440,14 @@ namespace WebBDS_Project.Controllers
             var activelink = "";
             if (type==1)
             {
-                 activelink = "http://localhost:30031//Register/Active/?token=" + key;
+                 activelink = ConfigurationManager.AppSettings["UrlWeb"]+"/Register/Active/?token=" + key;
                 body = ViewRenderer.RenderPartialView("~/Views/Register/_Active.cshtml");
                 body = body.Replace("##name##", username);
                 body = body.Replace("##activatelink##", activelink);
             }
             if (type==2)
             {
-                 activelink = "http://localhost:30031//Register/ForgerPass/?token=" + key;
+                 activelink = ConfigurationManager.AppSettings["UrlWeb"]+"/Register/ForgerPass/?token=" + key;
                 body = ViewRenderer.RenderPartialView("~/Views/Register/_ResetPass.cshtml");
                 body = body.Replace("##email##", username);
                 body = body.Replace("##resetlink##", activelink);

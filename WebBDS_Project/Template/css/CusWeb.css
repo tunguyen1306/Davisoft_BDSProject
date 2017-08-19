@@ -101,6 +101,12 @@
        padding: 11px 15px 7px;
     
 }
+.btnApply:hover {
+    
+    color: #fff;
+   
+    
+}
 .btnApply1 {
     padding: 10px;
     
@@ -824,4 +830,14 @@ img.mfp-img {
     .h2-tilte-mobile{
     display: none;
 }
+}
+.cssbtnSave {
+    position: absolute;
+    right: 0;
+    top: 0;
+        font-size: 12px;
+    color: #656464!important;
+}
+.last_list .btnSave li a:before {
+    display: none;
 }

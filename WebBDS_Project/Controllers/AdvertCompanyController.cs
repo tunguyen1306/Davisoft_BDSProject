@@ -335,7 +335,7 @@ namespace WebBDS_Project.Controllers
                         break;
                     case 7:
                         cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.ID == model.tblBDSPerNew.ID);
-                        cuurentINews.Status = model.tblBDSPerNew.Status == 0 ? 1 : model.tblBDSPerNew.Status;
+                        cuurentINews.Status = 1;
                         cuurentINews.SearchCheck = model.tblBDSPerNew.SearchCheck;
                         cuurentINews.ModifiedDate = DateTime.Now;
                         cuurentINews.ModifiedUser = 1;
