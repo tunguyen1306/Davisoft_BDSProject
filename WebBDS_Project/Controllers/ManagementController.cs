@@ -627,7 +627,7 @@ namespace WebBDS_Project.Controllers
                 }
                 else
                 {
-                    P =   Math.Ceiling( sotien/10000 * double.Parse(setting.Value));
+                    P =   Math.Ceiling( sotien/1000 * double.Parse(setting.Value));
                 }
               
                 String Fname = "Đổi '{A}' VND thành '{B}' điểm";
@@ -675,7 +675,7 @@ namespace WebBDS_Project.Controllers
             }
             else
             {
-                P =   Math.Ceiling( money.Value/10000 * double.Parse(setting.Value));
+                P =   Math.Ceiling( money.Value/1000 * double.Parse(setting.Value));
             }
             return Json(new { M = M, P = P, ME = ME }, JsonRequestBehavior.AllowGet);
         }

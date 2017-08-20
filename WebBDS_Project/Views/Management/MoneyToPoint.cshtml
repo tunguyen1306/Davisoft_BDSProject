@@ -18,7 +18,7 @@
                         <h4>Kiểm tra tỉ lệ đổi tiền thành điểm</h4>
                         <div class="border-promotion">
                             Đổi 10,000 VND thành <b class="TextColorRed">
-                                @db.Settings.FirstOrDefault(T => T.Name == "MoneyToPoint").Value điểm
+                                @(Double.Parse(db.Settings.FirstOrDefault(T => T.Name == "MoneyToPoint").Value)*10) điểm
                             </b>.
                         </div>
                         <div class="row">
