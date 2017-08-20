@@ -114,7 +114,7 @@ namespace WebBDS_Project.Controllers
                     ListSalary = db.BDSSalaries.Where(T => T.Active == 1).ToList(),
                     ListDucation = db.BDSEducations.Where(T => T.Active == 1).ToList(),
                     ListBDSCareer = db.BDSCareers.Where(T => T.Active == 1).ToList(),
-                    ListTimework = db.BDSTimeWorks.Where(T => T.Active == 1).ToList(),
+                    ListTimework = db.BDSTimeWorks.Where(T => T.Active == 1).OrderBy(x=>x.Type).ToList(),
                     ListBDSLanguage = db.BDSLanguages.Where(T => T.Active == 1).ToList(),
                     ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
                     ListGeoModel = dataCity.ToList(),
@@ -163,7 +163,7 @@ namespace WebBDS_Project.Controllers
                         ListSalary = db.BDSSalaries.Where(T => T.Active == 1).ToList(),
                         ListDucation = db.BDSEducations.Where(T => T.Active == 1).ToList(),
                         ListBDSCareer = db.BDSCareers.Where(T => T.Active == 1).ToList(),
-                        ListTimework = db.BDSTimeWorks.Where(T => T.Active == 1).ToList(),
+                        ListTimework = db.BDSTimeWorks.Where(T => T.Active == 1).OrderBy(x => x.Type).ToList(),
                         ListBDSLanguage = db.BDSLanguages.Where(T => T.Active == 1).ToList(),
                         ListBDSNewsType = db.BDSNewsTypes.Where(T => T.Active == 1).OrderBy(x => x.Order).ToList(),
                         ListGeoModel = dataCity.ToList(),
@@ -233,6 +233,7 @@ namespace WebBDS_Project.Controllers
                     PointTran = 0,
                     MoneyTran = create.tblBDSNew.TotalMoney.Value,
                     DateTran = DateTime.Now,
+                    Status = 0
 
                 };
                 create.tblBDSNew = db.BDSNews.First(T => T.ID == create.tblBDSNew.ID);

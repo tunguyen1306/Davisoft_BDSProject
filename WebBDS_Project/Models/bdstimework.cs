@@ -19,11 +19,11 @@ namespace WebBDS_Project.Models
         public string Description { get; set; }
         public string KeySearch { get; set; }
         public int FromTime { get; set; }
-        public int ToTime { get; set; }
-        public int Type { get; set; }
-        public int Perfix { get; set; }
-        public int Default { get; set; }
-        public int Active { get; set; }
+        public Nullable<int> ToTime { get; set; }
+        public Nullable<int> Type { get; set; }
+        public Nullable<int> Perfix { get; set; }
+        public Nullable<int> Default { get; set; }
+        public Nullable<int> Active { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> CreateUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }

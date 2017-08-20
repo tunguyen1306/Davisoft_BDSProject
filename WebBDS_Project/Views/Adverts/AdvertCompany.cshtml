@@ -42,7 +42,8 @@
                         <div class="row-right fixSelect2">
                             <div class="pncon" >
                                 <b>Từ</b>
-                                @*<select class="sel"></select>*@
+                             
+
                                 <select class="select2" style="width: 85px!important" id="DropFromSalary" tabindex="7" name="tblBDSNew.FromSalary">
                                     <option value="0">Chọn</option>
                                     @for (int i = 1; i < 100; i++)
@@ -51,19 +52,6 @@
                                     }
                                 </select>
 
-                                @*@Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
-                        {
-                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "3 triệu",Value = "3",Selected = false},
-                            new SelectListItem{Text = "4 triệu",Value = "4",Selected = false},
-                            new SelectListItem{Text = "5 triệu",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6 triệu",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7 triệu",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8 triệu",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
-                            new SelectListItem{Text = "10 triệu",Value = "10",Selected = false}
-
-                        }, new { @class = "dropdown" })*@
                             </div>
                             <div class="pncon" >
                                 <b style="margin-left: 11px;">Đến</b>
@@ -74,29 +62,7 @@
                                             <option value="@i">@i@(".000.000")</option>
                                         }
                                     </select>
-                                @*@Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
-                        {
-
-                           new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "5 triệu",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6 triệu",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7 triệu",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8 triệu",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
-                            new SelectListItem{Text = "10 triệu",Value = "10",Selected = false},
-                            new SelectListItem{Text = "11 triệu",Value = "11",Selected = false},
-                            new SelectListItem{Text = "12 triệu",Value = "12",Selected = false},
-                            new SelectListItem{Text = "13 triệu",Value = "13",Selected = false},
-                            new SelectListItem{Text = "14 triệu",Value = "14",Selected = false},
-                            new SelectListItem{Text = "15 triệu",Value = "15",Selected = false},
-                            new SelectListItem{Text = "16 triệu",Value = "16",Selected = false},
-                            new SelectListItem{Text = "17 triệu",Value = "17",Selected = false},
-                            new SelectListItem{Text = "18 triệu",Value = "18",Selected = false},
-                            new SelectListItem{Text = "19 triệu",Value = "19",Selected = false},
-                            new SelectListItem{Text = "20 triệu",Value = "20",Selected = false},
-
-
-                        }, new { @class = "dropdown" })*@
+                               
                             </div>
                         </div>
                     </div>
