@@ -4,11 +4,11 @@
 @model WebBDS_Project.Models.RegisterInformationModel
 @for (int i = 0; i < Model.ListPerNewReferences.Count; i++)
 {
-    <div id="Reference_@(i)_" style="@(Model.ListPerNewReferences[i].Active == 0 ? "display:none;" : "")">
+    <div id="Reference_@(i)_" style="@(Model.ListPerNewReferences[i].Active == 0 ? "display:none;" : "")" class="item_check">
         <hr class="space space_@(i)_" />
         @Html.HiddenFor(T => T.ListPerNewReferences[i].ID, new { @class = "ReferenceID" })
         @Html.HiddenFor(m => m.ListPerNewReferences[i].ID_BDSPerNews, new { @class = "RefID" })
-        @Html.HiddenFor(m => m.ListPerNewReferences[i].Active)
+        @Html.HiddenFor(m => m.ListPerNewReferences[i].Active, new { @class = "Active" })
         <div class="row">
             <label>Tên công ty:</label>
             <div class="row-right">
@@ -33,6 +33,18 @@
             <div class="row-right">
 
                 @Html.TextBoxFor(m => m.ListPerNewReferences[i].Phone, new { @class = "input1" })
+
+
+            </div>
+        </div>
+        <div class="row">
+            <label style="opacity: 0">aa</label>
+            <div style="float: right">
+
+                <a href="javascript:void(0)" class="btn btnUpload btnXoa" onclick="xoa('Reference_@(i)_')">
+                    Xóa
+                </a>
+
 
 
             </div>

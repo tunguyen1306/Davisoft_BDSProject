@@ -31,7 +31,15 @@
 
                         </div>
                         <label class="child">Mức lương <span class="required">*</span></label>
-                        <div class="row-right">
+                        <style>
+                            .select2-dropdown {
+                                min-width: 150px;
+                            }
+                            .fixSelect2 .select2-selection__arrow > b:before {
+                                margin-top: -17px;
+                            }
+                        </style>
+                        <div class="row-right fixSelect2">
                             <div class="pncon" >
                                 <b>Từ</b>
                                 @*<select class="sel"></select>*@
@@ -140,7 +148,7 @@
                         </div>
                         <label class="child">Kinh nghiệm <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn", new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework.OrderBy(T=>T.ID).ToList(), "Id", "Name"), "Chọn", new { @class = "dropdown" })
 
 
                         </div>
@@ -638,13 +646,15 @@
 
 
 
+
+
     <div id="test-modal" class="mfp-hide white-popup-block box_info">
         <div>
             <h1>Đăng tin thành công</h1>
         </div>
         <div style="display: inline-block">
             <p>
-                <i class="fa fa-exclamation-triangle fa-3x" style="color: #37a344;" aria-hidden="true"></i><span class=""> Bạn đã đăng ký thành công.</span>
+                <i class="fa fa-exclamation-triangle fa-3x" style="color: #37a344;" aria-hidden="true"></i><span class=""> Bạn đã đăng tin thành công.</span>
                 <span class="cusTextWarning">
                     -Bạn vừa thao tác đăng tin thành công.
                 </span>
@@ -653,20 +663,22 @@
             </p>
 
         </div>
-        <div style="display: inline-block; width: 100%; margin-top: 10px;">
-            <p style="text-align: center; padding: 0px; margin: 0px;">
+        <div style="display: inline-block; width: 100%; margin-top: 10px;text-align: center">
+            
 
-                <a href="@Url.Action("AdvertCompany", "Adverts")" class="btn btnUpload">
+            <a style="width: 120px;" href="@Url.Action("AdvertCompany", "Adverts")" class="btn btnUpload">
                 Đăng tin thêm
-                </a>
-                <a href="@Url.Action("Index", "Default")" class="btn btnUpload">
-                    Về trang chủ
-                </a>
-            </p>
+            </a>
+            <a style="width: 120px;" href="@Url.Action("Index", "Default")" class="btn btnUpload">
+                Về trang chủ
+            </a>
+            
         </div>
 
 
     </div>
+    
+    
     
     
     
@@ -678,7 +690,11 @@
         opacity: 0.8;
     }
 </style>
-
+<style>
+    #test-modal h1 {
+        margin: 0px;
+    }
+</style>
 <link href="~/Template/css/UploadVanGia/main.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/dropzone.css" rel="stylesheet" />
 <link href="~/Template/css/UploadVanGia/cropper.min.css" rel="stylesheet" />
@@ -686,7 +702,7 @@
 
 <style>
     a.radioType.selected {
-       /* color: red;*/
+        /* color: red;*/
     }
 </style>
 <script>

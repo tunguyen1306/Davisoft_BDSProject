@@ -4,11 +4,11 @@
 @model WebBDS_Project.Models.RegisterInformationModel
 @for (int i = 0; i < Model.ListPerNewLangDegrees.Count; i++)
 {
-    <div id="LangDegree_@(i)_" style="@(Model.ListPerNewLangDegrees[i].Active == 0 ? "display:none;" : "")">
+    <div id="LangDegree_@(i)_" style="@(Model.ListPerNewLangDegrees[i].Active == 0 ? "display:none;" : "")" class="item_check">
         <hr class="space space_@(i)_" />
         @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].ID, new { @class = "LangDegreeID" })
         @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].ID_BDSPerNews, new { @class = "RefID" })
-        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].Active)
+        @Html.HiddenFor(m => m.ListPerNewLangDegrees[i].Active, new { @class = "Active" })
         <div class="row">
             <label>Ngoại ngữ:<span class="required">*</span></label>
             <div class="row-right">
@@ -208,6 +208,18 @@
 
             </div>
 
+        </div>
+        <div class="row">
+            <label style="opacity: 0">aa</label>
+            <div style="float: right">
+
+                <a href="javascript:void(0)" class="btn btnUpload btnXoa" onclick="xoa('LangDegree_@(i)_')">
+                    Xóa
+                </a>
+
+
+
+            </div>
         </div>
     </div>
 }

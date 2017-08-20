@@ -6,11 +6,11 @@
 @for (int i = 0; i < Model.ListPerNewDegrees.Count; i++)
 {
     var itrmsss = Model.ListPerNewDegrees[i];
-    <div id="degree_@(i + "")_" style="@(Model.ListPerNewDegrees[i].Active==0?"display:none;":"")">
+    <div id="degree_@(i + "")_" style="@(Model.ListPerNewDegrees[i].Active==0?"display:none;":"")" class="item_check">
         <hr class="space space_@(i)_"/>
         @Html.HiddenFor(m => m.ListPerNewDegrees[i].ID, new {@class = "DegreeID"})
         @Html.HiddenFor(m => m.ListPerNewDegrees[i].ID_BDSPerNews, new { @class = "RefID" })
-        @Html.HiddenFor(m => m.ListPerNewDegrees[i].Active)
+        @Html.HiddenFor(m => m.ListPerNewDegrees[i].Active, new { @class = "Active" })
         <div class="row">
             <label>Trình độ:<span class="required">*</span></label>
             <div class="row-right">
@@ -123,12 +123,12 @@
                 <input type="file" style="display: none" name="ListPerNewDegrees[@i].File" accept="image/*" value="upload" class="uploadFile"/>
                 <div class="viewFile">
                     @if (Model.ListPerNewDegrees[i].ImageUrl != null)
-                {
-                        <img width="80" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.ListPerNewDegrees[i].ImageUrl.ToString().Split('_')[0]/@Model.ListPerNewDegrees[i].ImageUrl" />
+                    {
+                        <img width="80" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.ListPerNewDegrees[i].ImageUrl.ToString().Split('_')[0]/@Model.ListPerNewDegrees[i].ImageUrl"/>
                     }
                     else
                     {
-                        <img width="80" src="~/Template/images/avatar-default.png" />
+                        <img width="80" src="~/Template/images/avatar-default.png"/>
                     }
                 </div>
                 Khuyến cáo: cơ hội việc làm sẽ tăng gắp 2 lần nếu nhà tuyển dụng thấy hình ảnh bằng cấp của bạn
@@ -158,6 +158,18 @@
             </div>*@
 
             @Html.HiddenFor(m => m.ListPerNewDegrees[i].ImageUrl, new {@class = "input1"})
+        </div>
+        <div class="row">
+            <label style="opacity: 0">aa</label>
+            <div style="float: right">
+
+                <a href="javascript:void(0)" class="btn btnUpload btnXoa" onclick="xoa('degree_@(i)_')">
+                    Xóa
+                </a>
+
+
+
+            </div>
         </div>
     </div>
 }

@@ -65,6 +65,8 @@
                         @Html.Bootstrap().DropDownListFor(m => m.FromSalary, new List<SelectListItem>
                         {
                             new SelectListItem{Text = "Chọn",Value = "",Selected = true},
+                              new SelectListItem{Text = "1 triệu",Value = "1",Selected = false},
+                                new SelectListItem{Text = "2 triệu",Value = "2",Selected = false},
                             new SelectListItem{Text = "3 triệu",Value = "3",Selected = false},
                             new SelectListItem{Text = "4 triệu",Value = "4",Selected = false},
                             new SelectListItem{Text = "5 triệu",Value = "5",Selected = false},
@@ -204,21 +206,21 @@
                         @Html.Bootstrap().DropDownListFor(m => m.TimeProbationary, new List<SelectListItem>
                         {
                              new SelectListItem{Text = "Chọn",Value = "",Selected = true},
-                            new SelectListItem{Text = "1 tuần",Value = "1",Selected = true},
-                            new SelectListItem{Text = "2 tuần",Value = "2",Selected = false},
-                            new SelectListItem{Text = "3 tuần",Value = "3",Selected = false},
-                            new SelectListItem{Text = "4 tuần",Value = "4",Selected = false},
-                            new SelectListItem{Text = "5 tuần",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6 tuần",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7 tuần",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8 tuần",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9 tuần",Value = "9",Selected = false},
-                            new SelectListItem{Text = "10 tuần",Value = "10",Selected = false},
-                            new SelectListItem{Text = "11 tuần",Value = "11",Selected = false},
-                            new SelectListItem{Text = "12 tuần",Value = "12",Selected = false},
-                            new SelectListItem{Text = "13 tuần",Value = "13",Selected = false},
-                            new SelectListItem{Text = "14 tuần",Value = "14",Selected = false},
-                            new SelectListItem{Text = "15 tuần",Value = "15",Selected = false}
+                            new SelectListItem{Text = "1 tháng",Value = "1",Selected = true},
+                            new SelectListItem{Text = "2 tháng",Value = "2",Selected = false},
+                            new SelectListItem{Text = "3 tháng",Value = "3",Selected = false},
+                            new SelectListItem{Text = "4 tháng",Value = "4",Selected = false},
+                            new SelectListItem{Text = "5 tháng",Value = "5",Selected = false},
+                            new SelectListItem{Text = "6 tháng",Value = "6",Selected = false},
+                            new SelectListItem{Text = "7 tháng",Value = "7",Selected = false},
+                            new SelectListItem{Text = "8 tháng",Value = "8",Selected = false},
+                            new SelectListItem{Text = "9 tháng",Value = "9",Selected = false},
+                            new SelectListItem{Text = "10 tháng",Value = "10",Selected = false},
+                            new SelectListItem{Text = "11 tháng",Value = "11",Selected = false},
+                            new SelectListItem{Text = "12 tháng",Value = "12",Selected = false},
+                            new SelectListItem{Text = "13 tháng",Value = "13",Selected = false},
+                            new SelectListItem{Text = "14 tháng",Value = "14",Selected = false},
+                            new SelectListItem{Text = "15 tháng",Value = "15",Selected = false}
                      
 
 
@@ -576,7 +578,7 @@
             $('#ToSalary').append('<optiop value="">Please Select</option>');
             for (var i = ($('#FromSalary').val() < 5 ? 5 : $('#FromSalary').val()) ; i <= 20; i++) {
 
-                $('#ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' million</option>');
+                $('#ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' triệu</option>');
                 if (i > val) {
                     $('#ToSalary').val("");
                     $("#ToSalary").select2("val", "");

@@ -185,55 +185,59 @@
                                 var nextDg = $('#loadDegrees .space').length;
                                 var validate = 0;
                                 $('#loadDegrees .validate').each(function (index, item) {
-                                    if (item.tagName != "DIV" && $(item).val() == "") {
-                                        var title = $(item).parents('.row-right').eq(0).prev().text();
-                                        var tag = item.tagName;
-                                        if (tag == "SELECT") {
-                                            toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
-                                            validate++;
+
+                                    if ($(item).parents('.item_check').eq(0).css('display')!='none') {
+                                        if (item.tagName != "DIV" && $(item).val() == "") {
+                                            var title = $(item).parents('.row-right').eq(0).prev().text();
+                                            var tag = item.tagName;
+                                            if (tag == "SELECT") {
+                                                toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                                                validate++;
+                                            } else {
+                                                toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                                                validate++;
+                                            }
                                         } else {
-                                            toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
-                                            validate++;
-                                        }
-                                    } else {
 
-                                        var tag = $(item).attr('ref-type');
-                                        if (tag == "RANGER") {
-                                            var countR = 0;
-                                            $(item).find('select').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
+                                            var tag = $(item).attr('ref-type');
+                                            if (tag == "RANGER") {
+                                                var countR = 0;
+                                                $(item).find('select').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                $(item).find('input').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                if (countR > 0) {
+                                                    validate++;
+                                                    toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
                                                 }
-                                            });
-                                            $(item).find('input').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
-                                                }
-                                            });
-                                            if (countR > 0) {
-                                                validate++;
-                                                toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
                                             }
-                                        }
-                                        if (tag == "S-RANGER") {
-                                            var countR = 0;
-                                            $(item).find('select').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
+                                            if (tag == "S-RANGER") {
+                                                var countR = 0;
+                                                $(item).find('select').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                $(item).find('input').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                if (countR > 0) {
+                                                    validate++;
+                                                    toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
                                                 }
-                                            });
-                                            $(item).find('input').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
-                                                }
-                                            });
-                                            if (countR > 0) {
-                                                validate++;
-                                                toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
                                             }
-                                        }
 
+                                        }
                                     }
+                                    
 
                                 });
                                 if (validate == 0) {
@@ -245,6 +249,7 @@
                                         });
                                         $('#loadDegrees .select2').select2();
                                         $('#loadDegrees .RefID').val($('.ID').val());
+                                        spaceRefesh();
 
                                     });
                                 }
@@ -261,55 +266,58 @@
                                 var nextDg = $('#loadLangDegrees  .space').length;
                                 var validate = 0;
                                 $('#loadLangDegrees .validate').each(function (index, item) {
-                                    if (item.tagName != "DIV" && $(item).val() == "") {
-                                        var title = $(item).parents('.row-right').eq(0).prev().text();
-                                        var tag = item.tagName;
-                                        if (tag == "SELECT") {
-                                            toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
-                                            validate++;
+                                    if ($(item).parents('.item_check').eq(0).css('display') != 'none') {
+                                        if (item.tagName != "DIV" && $(item).val() == "") {
+                                            var title = $(item).parents('.row-right').eq(0).prev().text();
+                                            var tag = item.tagName;
+                                            if (tag == "SELECT") {
+                                                toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                                                validate++;
+                                            } else {
+                                                toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                                                validate++;
+                                            }
                                         } else {
-                                            toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
-                                            validate++;
-                                        }
-                                    } else {
 
-                                        var tag = $(item).attr('ref-type');
-                                        if (tag == "RANGER") {
-                                            var countR = 0;
-                                            $(item).find('select').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
+                                            var tag = $(item).attr('ref-type');
+                                            if (tag == "RANGER") {
+                                                var countR = 0;
+                                                $(item).find('select').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                $(item).find('input').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                if (countR > 0) {
+                                                    validate++;
+                                                    toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
                                                 }
-                                            });
-                                            $(item).find('input').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
-                                                }
-                                            });
-                                            if (countR > 0) {
-                                                validate++;
-                                                toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
                                             }
-                                        }
-                                        if (tag == "S-RANGER") {
-                                            var countR = 0;
-                                            $(item).find('select').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
+                                            if (tag == "S-RANGER") {
+                                                var countR = 0;
+                                                $(item).find('select').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                $(item).find('input').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                if (countR > 0) {
+                                                    validate++;
+                                                    toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
                                                 }
-                                            });
-                                            $(item).find('input').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
-                                                }
-                                            });
-                                            if (countR > 0) {
-                                                validate++;
-                                                toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
                                             }
-                                        }
 
+                                        }
                                     }
+                                    
                                 });
                                 if (validate == 0) {
                                     $.get('/AdvertCompany/LangDegrees', function (data) {
@@ -321,6 +329,7 @@
                                         });
                                         $('#loadLangDegrees .select2').select2();
                                         $('#loadLangDegrees .RefID').val($('.ID').val());
+                                        spaceRefesh();
                                     });
                                 }
                             }
@@ -367,56 +376,58 @@
                                 var nextDg = $(' #loadExperiences .space').length;
                                 var validate = 0;
                                 $('#loadExperiences .validate').each(function (index, item) {
-                                    if (item.tagName != "DIV" && $(item).val() == "") {
-                                        var title = $(item).parents('.row-right').eq(0).prev().text();
-                                        var tag = item.tagName;
-                                        if (tag == "SELECT") {
-                                            toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
-                                            validate++;
+                                    if ($(item).parents('.item_check').eq(0).css('display') != 'none') {
+                                        if (item.tagName != "DIV" && $(item).val() == "") {
+                                            var title = $(item).parents('.row-right').eq(0).prev().text();
+                                            var tag = item.tagName;
+                                            if (tag == "SELECT") {
+                                                toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                                                validate++;
+                                            } else {
+                                                toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                                                validate++;
+                                            }
                                         } else {
-                                            toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
-                                            validate++;
-                                        }
-                                    } else {
 
-                                        var tag = $(item).attr('ref-type');
-                                        if (tag == "RANGER") {
-                                            var countR = 0;
-                                            $(item).find('select').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
+                                            var tag = $(item).attr('ref-type');
+                                            if (tag == "RANGER") {
+                                                var countR = 0;
+                                                $(item).find('select').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                $(item).find('input').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                if (countR > 0) {
+                                                    validate++;
+                                                    toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
                                                 }
-                                            });
-                                            $(item).find('input').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
-                                                }
-                                            });
-                                            if (countR > 0) {
-                                                validate++;
-                                                toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
                                             }
-                                        }
-                                        if (tag == "S-RANGER") {
-
-                                            var countR = 0;
-                                            $(item).find('select').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
+                                            if (tag == "S-RANGER") {
+                                                var countR = 0;
+                                                $(item).find('select').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                $(item).find('input').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                if (countR > 0) {
+                                                    validate++;
+                                                    toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
                                                 }
-                                            });
-                                            $(item).find('input').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
-                                                }
-                                            });
-                                            if (countR > 0) {
-                                                validate++;
-                                                toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
                                             }
-                                        }
 
+                                        }
                                     }
+
                                 });
                                 if (validate == 0) {
                                     $.get('/AdvertCompany/Experiences', function (data) {
@@ -427,7 +438,7 @@
                                         });
                                         $('#loadExperiences .select2').select2();
                                         $('#loadExperiences .RefID').val($('.ID').val());
-
+                                        spaceRefesh();
                                     });
                                 }
                             }
@@ -467,55 +478,58 @@
                                 var nextDg = $('#loadReferences .space').length;
                                 var validate = 0;
                                 $('#loadReferences .validate').each(function (index, item) {
-                                    if (item.tagName != "DIV" && $(item).val() == "") {
-                                        var title = $(item).parents('.row-right').eq(0).prev().text();
-                                        var tag = item.tagName;
-                                        if (tag == "SELECT") {
-                                            toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
-                                            validate++;
+                                    if ($(item).parents('.item_check').eq(0).css('display') != 'none') {
+                                        if (item.tagName != "DIV" && $(item).val() == "") {
+                                            var title = $(item).parents('.row-right').eq(0).prev().text();
+                                            var tag = item.tagName;
+                                            if (tag == "SELECT") {
+                                                toastr.error("Vui lòng chọn '" + title.replace(': *', '').replace(':*', '') + "'");
+                                                validate++;
+                                            } else {
+                                                toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
+                                                validate++;
+                                            }
                                         } else {
-                                            toastr.error("Vui lòng nhập '" + title.replace(': *', '').replace(':*', '') + "'");
-                                            validate++;
-                                        }
-                                    } else {
 
-                                        var tag = $(item).attr('ref-type');
-                                        if (tag == "RANGER") {
-                                            var countR = 0;
-                                            $(item).find('select').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
+                                            var tag = $(item).attr('ref-type');
+                                            if (tag == "RANGER") {
+                                                var countR = 0;
+                                                $(item).find('select').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                $(item).find('input').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                if (countR > 0) {
+                                                    validate++;
+                                                    toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
                                                 }
-                                            });
-                                            $(item).find('input').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
-                                                }
-                                            });
-                                            if (countR > 0) {
-                                                validate++;
-                                                toastr.error("Vui lòng nhập '" + $(item).prev().text().replace(': *', '').replace(':*', '') + "'");
                                             }
-                                        }
-                                        if (tag == "S-RANGER") {
-                                            var countR = 0;
-                                            $(item).find('select').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
+                                            if (tag == "S-RANGER") {
+                                                var countR = 0;
+                                                $(item).find('select').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                $(item).find('input').each(function (i, itemc) {
+                                                    if ($(itemc).val() == "") {
+                                                        countR++;
+                                                    }
+                                                });
+                                                if (countR > 0) {
+                                                    validate++;
+                                                    toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
                                                 }
-                                            });
-                                            $(item).find('input').each(function (i, itemc) {
-                                                if ($(itemc).val() == "") {
-                                                    countR++;
-                                                }
-                                            });
-                                            if (countR > 0) {
-                                                validate++;
-                                                toastr.error("Vui lòng nhập '" + $(item).find('label').eq(0).text().replace(': *', '').replace(':*', '') + "'");
                                             }
-                                        }
 
+                                        }
                                     }
+
                                 });
                                 if (validate == 0) {
                                     $.get('/AdvertCompany/References', function (data) {
@@ -526,6 +540,7 @@
                                         });
                                         $('#loadReferences .select2').select2();
                                         $('#loadReferences .RefID').val($('.ID').val());
+                                        spaceRefesh();
                                     });
                                 }
                             }
@@ -608,8 +623,23 @@
         </div>
     </div>
 }
-
+<style>
+    .select2-dropdown {
+        min-width: 150px;
+    }
+</style>
 <script>
+    function spaceRefesh() {
+        $('.loadPartial').each(function(i, item) {
+
+            $(item).find('.item_check:visible').eq(0).find('hr.space').hide();
+        });
+    }
+    function xoa(id) {
+        $('#' + id).hide();
+        $('#' + id + " .Active").eq(0).val(0);
+        spaceRefesh();
+    }
     $(document).on('click', '.btnUpload', function () { $(this).next().trigger('click'); });
 
 
@@ -745,7 +775,7 @@
                     // Render thumbnail.
                    
                     view.html( ['<img class="thumb" src="', e.target.result,
-                                      '" title="', escape(fName), '"/>'].join('') );
+                        '" title="', escape(fName), '"/>'].join('') );
                  
                 };
             })(f);
@@ -756,7 +786,7 @@
         }
 
     });
-    
+
 </script>
 <style>
     .group_work h4 {
@@ -766,11 +796,16 @@
     .cus-color-a {
         cursor: pointer
     }
-        .cus-color-a:hover {
-            opacity: 0.8;
-            color: #008475;
-        }
+    .cus-color-a:hover {
+        opacity: 0.8;
+        color: #008475;
+    }
     input[readonly] {
         background: #EBEBE4;
+    }
+    .btnXoa {
+        background-color: red;
+        padding: 7px 20px;
+        margin-right: 0px;
     }
 </style>

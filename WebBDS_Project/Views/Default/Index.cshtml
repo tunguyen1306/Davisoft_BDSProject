@@ -27,12 +27,15 @@
             <h4><i class="fa fa-users"></i>Các công việc về bất động sản thường tìm kiếm</h4>
             <ul class="name_group">
                 @{
-                    foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList().Take(12))
-                    {
-                        var countCarre = db.BDSNews.FirstOrDefault().Career;
+                   
+                        foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList().Take(12))
+                        {
+                            var countCarre = (from a in db.BDSNews_Career  join b in db.BDSNews on a.ID_News equals b.ID where b.Active==1 && b.Status==1 && a.ID_Career==item.ID select a.ID_Career).Count();
 
-                        <li><a href="@Url.Action("Search", "Default", new {filterCareer = item.ID})">@item.Name <span style="color: #808080; font-style: italic;font-size: 11px">@("(" + countCarre + ")")</span> </a></li>
-                    }
+                            <li><a href="@Url.Action("Search", "Default", new {filterCareer = item.ID})">@item.Name <span style="color: #808080; font-style: italic; font-size: 11px">@("(" + countCarre + ")")</span> </a></li>
+                        }
+                   
+                   
                 }
             </ul>
         </div>

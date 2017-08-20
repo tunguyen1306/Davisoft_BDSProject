@@ -5,11 +5,11 @@
 @for (int i = 0; i < Model.ListPerNewExperiences.Count; i++)
 {
 
-    <div id="Experience_@(i)_" style="@(Model.ListPerNewExperiences[i].Active == 0 ? "display:none;" : "")">
+    <div id="Experience_@(i)_" style="@(Model.ListPerNewExperiences[i].Active == 0 ? "display:none;" : "")" class="item_check">
         <hr class="space space_@(i)_" />
         @Html.HiddenFor(m => m.ListPerNewExperiences[i].ID, new { @class = "ExperienceID" })
         @Html.HiddenFor(m => m.ListPerNewExperiences[i].ID_BDSPerNews, new { @class = "RefID" })
-        @Html.HiddenFor(m => m.ListPerNewExperiences[i].Active)
+        @Html.HiddenFor(m => m.ListPerNewExperiences[i].Active, new { @class = "Active" })
         <div class="row">
             <label>Tên công ty:<span class="required">*</span></label>
             <div class="row-right">
@@ -62,7 +62,7 @@
                         <option selected="selected" value="">Chọn</option>
                         @for (int j = 1; j < 13; j++)
                         {
-                            <option @( Model.ListPerNewExperiences[i].FromDate.HasValue && Model.ListPerNewExperiences[i].FromDate.Value.Month == j ? "selected='selected'" : "") value="@j">@j tháng</option>
+                            <option @( Model.ListPerNewExperiences[i].FromDate.HasValue && Model.ListPerNewExperiences[i].FromDate.Value.Month == j ? "selected='selected'" : "") value="@j">tháng @j</option>
                         }
 
 
@@ -75,7 +75,7 @@
                         <option selected="selected" value="">Chọn</option>
                         @for (int j = 1980; j < DateTime.Now.Year + 1; j++)
                         {
-                            <option @( Model.ListPerNewExperiences[i].FromDate.HasValue && Model.ListPerNewExperiences[i].FromDate.Value.Year == j ? "selected='selected'" : "") value="@j">@j năm</option>
+                            <option @( Model.ListPerNewExperiences[i].FromDate.HasValue && Model.ListPerNewExperiences[i].FromDate.Value.Year == j ? "selected='selected'" : "") value="@j">năm @j</option>
                         }
                     </select>
                 </div>
@@ -91,7 +91,7 @@
                         <option selected="selected" value="">Chọn</option>
                         @for (int j = 1; j < 13; j++)
                         {
-                            <option @( Model.ListPerNewExperiences[i].ToDate.HasValue && Model.ListPerNewExperiences[i].ToDate.Value.Month == j ? "selected='selected'" : "") value="@j">@j tháng</option>
+                            <option @( Model.ListPerNewExperiences[i].ToDate.HasValue && Model.ListPerNewExperiences[i].ToDate.Value.Month == j ? "selected='selected'" : "") value="@j">tháng @j</option>
                         }
 
                     </select>
@@ -102,7 +102,7 @@
                         <option selected="selected" value="">Chọn</option>
                         @for (int j = 1980; j < DateTime.Now.Year + 1; j++)
                         {
-                            <option @( Model.ListPerNewExperiences[i].ToDate.HasValue && Model.ListPerNewExperiences[i].ToDate.Value.Year == j ? "selected='selected'" : "") value="@j">@j năm</option>
+                            <option @( Model.ListPerNewExperiences[i].ToDate.HasValue && Model.ListPerNewExperiences[i].ToDate.Value.Year == j ? "selected='selected'" : "") value="@j">năm @j</option>
                         }
                     </select>
                 </div>
@@ -114,6 +114,18 @@
             <div class="row-right">
 
                 @Html.TextAreaFor(m => m.ListPerNewExperiences[i].Decription, new { @class = "input3" })
+
+            </div>
+        </div>
+        <div class="row">
+            <label style="opacity: 0">aa</label>
+            <div style="float: right">
+
+                <a href="javascript:void(0)" class="btn btnUpload btnXoa" onclick="xoa('Experience_@(i)_')">
+                    Xóa
+                </a>
+
+
 
             </div>
         </div>

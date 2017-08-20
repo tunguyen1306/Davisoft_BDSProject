@@ -185,10 +185,14 @@ namespace WebBDS_Project.Controllers
                             var ccItem = db.BDSPerNews_Degrees.FirstOrDefault(T => T.ID == itemD.ID);
                             if (ccItem == null)
                             {
-                                ccItem = new BDSPerNews_Degrees { Active = 1, CreateDate = DateTime.Now, CreateUser = 1, Name = itemD.Name, ID_BDSPerNews = cuurentINews.ID, Career = itemD.Career, FromYear = itemD.FromYear, ToYear = itemD.ToYear, ImageUrl = itemD.ImageUrl, Level = itemD.Level, Rating = itemD.Level };
-                                db.Entry(ccItem).State = EntityState.Added;
-                                db.SaveChanges();
-                                model.ListPerNewDegrees[i].ID = ccItem.ID;
+                                if (itemD.Active!=0)
+                                {
+                                    ccItem = new BDSPerNews_Degrees { Active = itemD.Active, CreateDate = DateTime.Now, CreateUser = 1, Name = itemD.Name, ID_BDSPerNews = cuurentINews.ID, Career = itemD.Career, FromYear = itemD.FromYear, ToYear = itemD.ToYear, ImageUrl = itemD.ImageUrl, Level = itemD.Level, Rating = itemD.Level };
+                                    db.Entry(ccItem).State = EntityState.Added;
+                                    db.SaveChanges();
+                                    model.ListPerNewDegrees[i].ID = ccItem.ID;
+                                }
+                               
                             }
                             else
                             {
@@ -212,10 +216,14 @@ namespace WebBDS_Project.Controllers
                             var ccItem = db.BDSPerNews_LangDegrees.FirstOrDefault(T => T.ID == itemD.ID);
                             if (ccItem == null)
                             {
-                                ccItem = new BDSPerNews_LangDegrees { Active = 1, CreateUser = 1, CreateDate = DateTime.Now, ID_BDSPerNews = cuurentINews.ID, Language = itemD.Language, Name = itemD.Name, Listening = itemD.Listening, Reading = itemD.Reading, Speaking = itemD.Speaking, Writing = itemD.Writing, Decription = itemD.Decription };
-                                db.Entry(ccItem).State = EntityState.Added;
-                                db.SaveChanges();
-                                model.ListPerNewLangDegrees[i].ID = ccItem.ID;
+                                if (itemD.Active!=0)
+                                {
+                                    ccItem = new BDSPerNews_LangDegrees { Active = itemD.Active, CreateUser = 1, CreateDate = DateTime.Now, ID_BDSPerNews = cuurentINews.ID, Language = itemD.Language, Name = itemD.Name, Listening = itemD.Listening, Reading = itemD.Reading, Speaking = itemD.Speaking, Writing = itemD.Writing, Decription = itemD.Decription };
+                                    db.Entry(ccItem).State = EntityState.Added;
+                                    db.SaveChanges();
+                                    model.ListPerNewLangDegrees[i].ID = ccItem.ID;
+                                }
+                               
                             }
                             else
                             {
@@ -243,24 +251,28 @@ namespace WebBDS_Project.Controllers
                             var ccItem = db.BDSPerNews_Experiences.FirstOrDefault(T => T.ID == itemD.ID);
                             if (ccItem == null)
                             {
-                                ccItem = new BDSPerNews_Experiences
+                                if (itemD.Active != 0)
                                 {
-                                    Active = 1,
-                                    CreateUser = 1,
-                                    CreateDate = DateTime.Now,
-                                    ID_BDSPerNews = model.tblBDSPerNew.ID,
-                                    Name = itemD.Name,
-                                    Level = itemD.Level,
-                                    Decription = itemD.Decription,
-                                    Perfix = itemD.Perfix,
-                                    Salary = itemD.Salary,
-                                    FromDate = itemD.FromDate,
-                                    ToDate = itemD.ToDate,
+                                    ccItem = new BDSPerNews_Experiences
+                                    {
+                                        Active = itemD.Active,
+                                        CreateUser = 1,
+                                        CreateDate = DateTime.Now,
+                                        ID_BDSPerNews = model.tblBDSPerNew.ID,
+                                        Name = itemD.Name,
+                                        Level = itemD.Level,
+                                        Decription = itemD.Decription,
+                                        Perfix = itemD.Perfix,
+                                        Salary = itemD.Salary,
+                                        FromDate = itemD.FromDate,
+                                        ToDate = itemD.ToDate,
 
-                                };
-                                db.Entry(ccItem).State = EntityState.Added;
-                                db.SaveChanges();
-                                model.ListPerNewExperiences[i].ID = ccItem.ID;
+                                    };
+                                    db.Entry(ccItem).State = EntityState.Added;
+                                    db.SaveChanges();
+                                    model.ListPerNewExperiences[i].ID = ccItem.ID;
+                                }
+                               
                             }
                             else
                             {
@@ -288,22 +300,26 @@ namespace WebBDS_Project.Controllers
                             var ccItem = db.BDSPerNews_References.FirstOrDefault(T => T.ID == itemD.ID);
                             if (ccItem == null)
                             {
-                                ccItem = new BDSPerNews_References
+                                if (itemD.Active!=0)
                                 {
-                                    Active = 1,
-                                    CreateUser = 1,
-                                    CreateDate = DateTime.Now,
-                                    ID_BDSPerNews = model.tblBDSPerNew.ID,
-                                    Name = itemD.Name,
-                                    NameCompany = itemD.NameCompany,
-                                    Decription = itemD.Decription,
-                                    Phone = itemD.Phone,
+                                    ccItem = new BDSPerNews_References
+                                    {
+                                        Active = itemD.Active,
+                                        CreateUser = 1,
+                                        CreateDate = DateTime.Now,
+                                        ID_BDSPerNews = model.tblBDSPerNew.ID,
+                                        Name = itemD.Name,
+                                        NameCompany = itemD.NameCompany,
+                                        Decription = itemD.Decription,
+                                        Phone = itemD.Phone,
 
 
-                                };
-                                db.Entry(ccItem).State = EntityState.Added;
-                                db.SaveChanges();
-                                model.ListPerNewReferences[i].ID = ccItem.ID;
+                                    };
+                                    db.Entry(ccItem).State = EntityState.Added;
+                                    db.SaveChanges();
+                                    model.ListPerNewReferences[i].ID = ccItem.ID;
+                                }
+                                
                             }
                             else
                             {
@@ -387,7 +403,7 @@ namespace WebBDS_Project.Controllers
 
 
             var ListPerNewDegrees = new List<BDSPerNews_Degrees>();
-            ListPerNewDegrees.Add(new BDSPerNews_Degrees());
+            ListPerNewDegrees.Add(new BDSPerNews_Degrees{Active =1});
             var registerModel = new RegisterInformationModel
             {
 
@@ -406,7 +422,7 @@ namespace WebBDS_Project.Controllers
         {
             List<BDSPerNews_Experiences> ListPerNewExperiences = new List<BDSPerNews_Experiences>();
 
-            ListPerNewExperiences.Add(new BDSPerNews_Experiences());
+            ListPerNewExperiences.Add(new BDSPerNews_Experiences { Active = 1 });
             var registerModel = new RegisterInformationModel
             {
 
@@ -424,7 +440,7 @@ namespace WebBDS_Project.Controllers
         {
             List<BDSPerNews_LangDegrees> ListPerNewLangDegrees = new List<BDSPerNews_LangDegrees>();
 
-            ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees());
+            ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { Active = 1 });
             var registerModel = new RegisterInformationModel
             {
 
@@ -443,7 +459,7 @@ namespace WebBDS_Project.Controllers
         {
 
             List<BDSPerNews_References> ListPerNewReferences = new List<BDSPerNews_References>();
-            ListPerNewReferences.Add(new BDSPerNews_References());
+            ListPerNewReferences.Add(new BDSPerNews_References { Active = 1 });
             var registerModel = new RegisterInformationModel
             {
 
@@ -503,12 +519,10 @@ namespace WebBDS_Project.Controllers
             }
             else
             {
-                ListPerNewDegrees = db.BDSPerNews_Degrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
-                ListPerNewExperiences =
-                    db.BDSPerNews_Experiences.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
-                ListPerNewLangDegrees =
-                    db.BDSPerNews_LangDegrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
-                ListPerNewReferences = db.BDSPerNews_References.Where(T => T.ID_BDSPerNews == cuurentINews.ID).ToList();
+                ListPerNewDegrees = db.BDSPerNews_Degrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active==1).ToList();
+                ListPerNewExperiences =db.BDSPerNews_Experiences.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
+                ListPerNewLangDegrees =db.BDSPerNews_LangDegrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
+                ListPerNewReferences = db.BDSPerNews_References.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
                 if (ListPerNewDegrees.Count == 0)
                 {
                     ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID });
