@@ -498,7 +498,9 @@ namespace WebBDS_Project.Controllers
                 TypeTran = 2,
                 PointTran = em.Point.Value,
                 MoneyTran =0,
-                DateTran = DateTime.Now
+                DateTran = DateTime.Now,
+                Status = 0
+                
             };
             db.Entry(tranhist).State = EntityState.Added;
 
@@ -625,7 +627,7 @@ namespace WebBDS_Project.Controllers
                 }
                 else
                 {
-                    P =   Math.Ceiling( sotien * double.Parse(setting.Value));
+                    P =   Math.Ceiling( sotien/10000 * double.Parse(setting.Value));
                 }
               
                 String Fname = "Đổi '{A}' VND thành '{B}' điểm";
@@ -641,7 +643,9 @@ namespace WebBDS_Project.Controllers
                     TypeTran = 3,
                     PointTran = (int)P,
                     MoneyTran = sotien,
-                    DateTran = DateTime.Now,Status=1
+                    DateTran = DateTime.Now,
+                    Status =1
+
                    
                    
                 };
@@ -671,7 +675,7 @@ namespace WebBDS_Project.Controllers
             }
             else
             {
-                P =   Math.Ceiling( money.Value * double.Parse(setting.Value));
+                P =   Math.Ceiling( money.Value/10000 * double.Parse(setting.Value));
             }
             return Json(new { M = M, P = P, ME = ME }, JsonRequestBehavior.AllowGet);
         }

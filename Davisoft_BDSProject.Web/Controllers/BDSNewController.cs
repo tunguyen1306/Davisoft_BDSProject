@@ -71,6 +71,16 @@ namespace Davisoft_BDSProject.Web.Controllers
 
         void LoadDataList()
         {
+            List< ShowDrop> listSalary=new List<ShowDrop>();
+            for (int i = 0; i <= 100; i++)
+            {
+                var valueshow = new ShowDrop
+                {
+                    Value = i,
+                    Text = i + " Triệu"
+                };
+                listSalary.Add(valueshow);
+            }
             var Cities = (from a in db.States
                           join b in db.StateTexts on a.name_id equals b.id
                           where b.language_id == "vi" && a.Status == 1
@@ -86,6 +96,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             var EmployerInformations = _serviceEmployerInformation.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.BDSAccount.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
         
             Cities.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
+          
             Educations.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             NewsTypes.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
             TimeWorks.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
@@ -99,6 +110,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             ViewBag.TimeWorks = TimeWorks;
             ViewBag.Careers = Careers;
             ViewBag.Languages = Languages;
+            ViewBag.ListSalary = listSalary.ToList().Select(T=> new SelectListItem { Value = T.Value.ToString(), Text = T.Text.ToString(), Selected = false }).ToList();
             ViewBag.EmployerInformations = EmployerInformations;
         }
        
@@ -908,5 +920,12 @@ namespace Davisoft_BDSProject.Web.Controllers
             _service.UpdateItem(model);
             return Json(new { Status = true }, JsonRequestBehavior.AllowGet);
         }
+    }
+   
+
+    class ShowDrop
+    {
+         public int Value { get; set; }
+         public string Text { get; set; }
     }
 }

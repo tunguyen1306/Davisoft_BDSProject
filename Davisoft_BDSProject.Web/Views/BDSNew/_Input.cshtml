@@ -62,8 +62,10 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSNew_Salary", "Salary") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().DropDownListFor(m => m.FromSalary, new List<SelectListItem>
+                        @Html.Bootstrap().DropDownListFor(m => m.FromSalary, (List<SelectListItem>)ViewBag.ListSalary).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @*@Html.Bootstrap().DropDownListFor(m => m.FromSalary, new List<SelectListItem>
                         {
+                       
                             new SelectListItem{Text = "Chọn",Value = "",Selected = true},
                             new SelectListItem{Text = "3 triệu",Value = "3",Selected = false},
                             new SelectListItem{Text = "4 triệu",Value = "4",Selected = false},
@@ -74,11 +76,12 @@
                             new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
                             new SelectListItem{Text = "10 triệu",Value = "10",Selected = false}
                         
-                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)*@
                     </div>
                     <label class="control-label col-md-2">@Utilities.Resource("BDSNew_ToSalary", "To") <span class="required">*</span></label>
                     <div class="col-md-3">
-                        @Html.Bootstrap().DropDownListFor(m => m.ToSalary, new List<SelectListItem>
+                        @Html.Bootstrap().DropDownListFor(m => m.ToSalary, (List<SelectListItem>)ViewBag.ListSalary).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @*@Html.Bootstrap().DropDownListFor(m => m.ToSalary, new List<SelectListItem>
                         {
                        
                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
@@ -100,7 +103,7 @@
                             new SelectListItem{Text = "20 triệu",Value = "20",Selected = false},
                         
 
-                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)*@
                     </div>
                 </div>
 
@@ -574,9 +577,9 @@
            
             $('#ToSalary').empty();
             $('#ToSalary').append('<optiop value="">Please Select</option>');
-            for (var i = ($('#FromSalary').val() < 5 ? 5 : $('#FromSalary').val()) ; i <= 20; i++) {
+            for (var i = ($('#FromSalary').val() < 1 ? 1 : $('#FromSalary').val()) ; i <= 100; i++) {
 
-                $('#ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' million</option>');
+                $('#ToSalary').append('<option ' + (i == val ? 'selected="selected"' : '') + ' value="' + i + '">' + i + ' Triệu</option>');
                 if (i > val) {
                     $('#ToSalary').val("");
                     $("#ToSalary").select2("val", "");
