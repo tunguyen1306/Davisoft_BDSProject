@@ -1,4 +1,5 @@
 ﻿@using System.Configuration
+@using System.Globalization
 @using WebBDS_Project.Models
 @{
     davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
@@ -35,9 +36,15 @@
             <p>
                 <em>Mã Khách Hàng</em>: <span class="color3"><strong>KH@(tblEmployee.ID.ToString("000000"))</strong></span>
                 <br>
-                -  Số tiền TK: <span class="color4">@(tblAccount != null ? tblAccount.Money : 0)</span> VNĐ
+                - Số tiền TK: <span class="color4">
+@(String.Format("{0:N}", (tblAccount != null ? tblAccount.Money : 0)))
+                
+</span> VNĐ
                 <br>
-                -  Điểm tích luỹ: <span class="color4">@(tblAccount != null ? tblAccount.Point : 0)</span> Điểm
+                - Điểm tích luỹ: <span class="color4">
+                                     @(String.Format("{0:N}",( tblAccount != null ? tblAccount.Point : 0)))
+
+                </span> Điểm
                 <br>
                 -  Bạn có thể xem : <span class="color4">@CountApply</span> Hồ sơ
 
@@ -50,7 +57,7 @@
                 <a class="grid_6 omega blue" href="@Url.Action("MoneyToPoint","Management")">Mua điểm</a>
             </p>
             <ul>
-                <li><a href=""><i class="fa fa-search" aria-hidden="true"></i>Tìm hồ sơ ứng viên</a></li>
+                <li><a href="@Url.Action("Index","Default")"><i class="fa fa-search" aria-hidden="true"></i>Tìm hồ sơ ứng viên</a></li>
                 <li><a href="@Url.Action("ManagementAcountEmployee", "Management")"><i class="fa fa-user" aria-hidden="true"></i>Taì khoản</a></li>
                 <li><a href="@Url.Action("AdvertCompany", "Adverts")"><i class="fa fa-pencil" aria-hidden="true"></i>Đăng tin tuyển dụng</a></li>
                 <li><a href="@Url.Action("ManagementCompany", "Management")"><i class="fa fa-edit" aria-hidden="true"></i>Quản lý tuyển dụng</a></li>
@@ -108,5 +115,20 @@
 }
 
 
+<script>
+    function tien(val) {
 
+        if (val != null) {
+
+            while (/(\d+)(\d{3})/.test(val.toString())) {
+                val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            }
+            return val + '';
+        }
+        else {
+            return '';
+        }
+
+    }
+</script>
 

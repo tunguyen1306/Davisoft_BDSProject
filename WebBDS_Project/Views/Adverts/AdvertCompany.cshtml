@@ -32,10 +32,18 @@
                         </div>
                         <label class="child">Mức lương <span class="required">*</span></label>
                         <div class="row-right">
-                            <div class="pncon">
+                            <div class="pncon" >
                                 <b>Từ</b>
-                              
-                                @Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
+                                @*<select class="sel"></select>*@
+                                <select class="select2" style="width: 85px!important" id="DropFromSalary" tabindex="7" name="tblBDSNew.FromSalary">
+                                    <option value="0">Chọn</option>
+                                    @for (int i = 1; i < 100; i++)
+                                    {
+                                        <option value="@i">@i@(".000.000")</option>
+                                    }
+                                </select>
+
+                                @*@Html.DropDownListFor(m => m.tblBDSNew.FromSalary, new List<SelectListItem>
                         {
                             new SelectListItem{Text = "Chọn",Value = "",Selected = true},
                             new SelectListItem{Text = "3 triệu",Value = "3",Selected = false},
@@ -47,18 +55,18 @@
                             new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
                             new SelectListItem{Text = "10 triệu",Value = "10",Selected = false}
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "dropdown" })*@
                             </div>
-                            <div class="pncon">
+                            <div class="pncon" >
                                 <b style="margin-left: 11px;">Đến</b>
-                                @*<select class="dropdown" id="DropToSalary" tabindex="7" name="tblBDSNew.ToSalary">
+                                <select class="select2" id="DropToSalary" style="width: 85px!important" tabindex="7" name="tblBDSNew.ToSalary">
                                          <option value="0">Chọn</option>
-                                        @for (int i = 3; i < 20; i++)
+                                        @for (int i = 3; i < 100; i++)
                                         {
                                             <option value="@i">@i@(".000.000")</option>
                                         }
-                                    </select>*@
-                                @Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
+                                    </select>
+                                @*@Html.DropDownListFor(m => m.tblBDSNew.ToSalary, new List<SelectListItem>
                         {
 
                            new SelectListItem{Text = "Chọn",Value = "",Selected = true},
@@ -80,7 +88,7 @@
                             new SelectListItem{Text = "20 triệu",Value = "20",Selected = false},
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "dropdown" })*@
                             </div>
                         </div>
                     </div>
@@ -95,16 +103,16 @@
                             new SelectListItem{Text = "3",Value = "3",Selected = false},
                             new SelectListItem{Text = "4",Value = "4",Selected = false},
                             new SelectListItem{Text = "5",Value = "5",Selected = false},
-                            new SelectListItem{Text = "6",Value = "6",Selected = false},
-                            new SelectListItem{Text = "7",Value = "7",Selected = false},
-                            new SelectListItem{Text = "8",Value = "8",Selected = false},
-                            new SelectListItem{Text = "9",Value = "9",Selected = false},
+                           
                             new SelectListItem{Text = "10",Value = "10",Selected = false},
-                            new SelectListItem{Text = "11",Value = "11",Selected = false},
-                            new SelectListItem{Text = "12",Value = "12",Selected = false},
-                            new SelectListItem{Text = "13",Value = "13",Selected = false},
-                            new SelectListItem{Text = "14",Value = "14",Selected = false},
-                            new SelectListItem{Text = "15",Value = "15",Selected = false}
+                            new SelectListItem{Text = "15",Value = "15",Selected = false},
+                            new SelectListItem{Text = "20",Value = "20",Selected = false},
+                            new SelectListItem{Text = "25",Value = "25",Selected = false},
+                            new SelectListItem{Text = "30",Value = "30",Selected = false},
+                            new SelectListItem{Text = "50",Value = "50",Selected = false},
+                            new SelectListItem{Text = "100",Value = "100",Selected = false},
+                            new SelectListItem{Text = "Trên 100",Value = "101",Selected = false}
+                            
 
 
                         }, new { @class = "dropdown" })
@@ -440,7 +448,7 @@
                                                     <img src="~/Template/images/2.jpg" alt="2">
                                                     <p class="vip">
                                                         <i class="fa fa-star"></i>
-                                                        <span>VIP</span>
+                                                        <span></span>
                                                     </p>
                                                 </a>
                                                 <div class="name">
@@ -470,7 +478,7 @@
                                                     <img src="~/Template/images/2.jpg" alt="2">
                                                     <p class="vip">
                                                         <i class="fa fa-star"></i>
-                                                        <span>VIP</span>
+                                                        <span></span>
                                                     </p>
                                                 </a>
                                                 <div class="name">
@@ -792,7 +800,7 @@
                 to.datepicker("option", "minDate", getDate(this));
             });
 			to = $("#tblBDSNew_ToCreateNews").datepicker({
-				defaultDate: "+3d",
+				defaultDate: "+7d",
 				changeMonth: true,
 				numberOfMonths: 1,
 				dateFormat: dateFormat

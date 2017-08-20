@@ -23,13 +23,13 @@
                                 <th data-field="name">HỌ VÀ TÊN</th>
                                 <th data-field="name">GIỚI TÍNH</th>
                                 <th data-field="name">NĂM SINH</th>
-                                <th data-field="name">KINH NGHIỆM</th>
+                                @*<th data-field="name">KINH NGHIỆM</th>
 
 
                                 <th data-field="name">VỊ TRÍ MONG MUỐN</th>
                                 <th data-field="name">TỈNH / THÀNH PHỐ</th>
                                 <th data-field="name">QUẬN HUYỆN</th>
-                                <th data-field="name">HỌC VẤN</th>
+                                <th data-field="name">HỌC VẤN</th>*@
                                 <th data-field="name">CHI TIẾT</th>
                             </tr>
                         </thead>
@@ -43,11 +43,11 @@
                                     <td>@item.Name</td>
                                     <td>@item.Sex</td>
                                     <td>@item.Birthday</td>
-                                    <td>@item.Experience</td>
+                                    @*<td>@item.Experience</td>
                                     <td>@item.IdLoaiNghe</td>
                                     <td>@item.City</td>
                                     <td>@item.District</td>
-                                    <td>@item.Education</td>
+                                    <td>@item.Education</td>*@
                                     <td><a style="cursor: pointer" href="@Url.Action("DetailPer", "Management", new { id = item.Name.UrlFrendly() + "-" + item.ID })">xem</a></td>
                                 </tr>
                             }

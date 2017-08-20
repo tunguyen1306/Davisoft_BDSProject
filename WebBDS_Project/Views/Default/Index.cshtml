@@ -27,9 +27,11 @@
             <h4><i class="fa fa-users"></i>Các công việc về bất động sản thường tìm kiếm</h4>
             <ul class="name_group">
                 @{
-                    foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
+                    foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList().Take(12))
                     {
-                        <li><a href="@Url.Action("Search", "Default", new {filterCareer = item.ID})">@item.Name</a></li>
+                        var countCarre = db.BDSNews.FirstOrDefault().Career;
+
+                        <li><a href="@Url.Action("Search", "Default", new {filterCareer = item.ID})">@item.Name <span style="color: #808080; font-style: italic;font-size: 11px">@("(" + countCarre + ")")</span> </a></li>
                     }
                 }
             </ul>
@@ -182,7 +184,7 @@
             <h4><i class="fa fa-users"></i>Các công việc về bất động sản thường tìm kiếm</h4>
             <ul class="name_group">
                 @{
-                    foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
+                    foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList().Take(12))
                     {
                         <li><a href="@Url.Action("SearchForEmployee", "Default", new {filterCareer = item.ID})">@item.Name</a></li>
                     }

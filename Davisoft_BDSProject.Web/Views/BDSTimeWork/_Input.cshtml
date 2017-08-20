@@ -14,20 +14,28 @@
 <div class="form-group">
     <label class="control-label col-md-3">@Utilities.Resource("BDSTimeWork_TimeWork", "TimeWork") <span class="required">*</span></label>
     <div class="col-md-2">
-        @Html.Bootstrap().DropDownListFor(m => m.Type, new List<SelectListItem>
+        @Html.Bootstrap().DropDownListFor(m => m.FromTime, new List<SelectListItem>
                                     {
-                                        new SelectListItem{Text="Less Than",Value="1"},
-                                        new SelectListItem{Text="Between",Value="2"},
-                                        new SelectListItem{Text="Greater Than",Value="3" ,Selected = true},
-                                        new SelectListItem{Text="Custom",Value="4"}
+                             new SelectListItem{Text="Không có kinh nghiệm",Value="0"},
+                                        new SelectListItem{Text="1 Năm",Value="1"},
+                                        new SelectListItem{Text="2 Năm",Value="2"},
+                                        new SelectListItem{Text="3 Năm",Value="3" ,Selected = true},
+                                        new SelectListItem{Text="4 Năm",Value="4"},
+                                        new SelectListItem{Text="5 Năm",Value="5"},
+                                        new SelectListItem{Text="6 Năm",Value="6"},
+                                        new SelectListItem{Text="7 Năm",Value="7"},
+                                        new SelectListItem{Text="8 Năm",Value="8"},
+                                        new SelectListItem{Text="9 Năm",Value="9"},
+                                        new SelectListItem{Text="10 Năm",Value="10"},
+                                         new SelectListItem{Text="Trên 10 Năm",Value="11"},
 
-                                    }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
+                                    }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(false)
     </div>
         <div class="col-md-2 from">
-            @Html.Bootstrap().TextBoxFor(m => m.FromTime).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+            @Html.Bootstrap().TextBoxFor(m => m.Type).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
         </div>
 
-        <div class="col-md-2 to">
+        @*<div class="col-md-2 to">
             @Html.Bootstrap().TextBoxFor(m => m.ToTime).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
         </div>
 
@@ -38,7 +46,7 @@
                                         new SelectListItem{Text="Tháng",Value="2"}
 
                                     }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
-        </div>
+        </div>*@
     </div>
 
 
@@ -57,62 +65,85 @@
 @Html.Script(
     @<text>
         <script>
-            $(document).ready(function() {
-                var type = $('#Type').val();
-                $('.perfix').show();
-                $('.from').show();
-                if (type == 1) {
-                    $('.to').hide();
-                }
-                if (type == 2) {
-                    $('.to').show();
+            //$(document).ready(function() {
+            //    var type = $('#Type').val();
+            //    $('.perfix').show();
+            //    $('.from').show();
+            //    if (type == 1) {
+            //        $('.to').hide();
+            //    }
+            //    if (type == 2) {
+            //        $('.to').show();
 
-                }
-                if (type == 3) {
-                    $('.to').hide();
-                }
-                if (type == 4) {
-                    $('.to').hide();
-                    $('.from').hide();
-                    $('.perfix').hide();
-                }
-            });
-            $(document).on('change', '#Type', function () {
-                $('.perfix').show();
-                $('.from').show();
-                if (this.value == 1) {
-                    $('.to').hide();
-                }
-                if (this.value ==2) {
-                    $('.to').show();
+            //    }
+            //    if (type == 3) {
+            //        $('.to').hide();
+            //    }
+            //    if (type == 4) {
+            //        $('.to').hide();
+            //        $('.from').hide();
+            //        $('.perfix').hide();
+            //    }
+            //});
+            //$(document).on('change', '#Type', function () {
+            //    $('.perfix').show();
+            //    $('.from').show();
+            //    if (this.value == 1) {
+            //        $('.to').hide();
+            //    }
+            //    if (this.value ==2) {
+            //        $('.to').show();
                    
-                }
-                if (this.value == 3) {
-                    $('.to').hide();
-                }
-                if (this.value == 4) {
-                    $('.to').hide();
-                    $('.from').hide();
-                    $('.perfix').hide();
-                }
-            });
+            //    }
+            //    if (this.value == 3) {
+            //        $('.to').hide();
+            //    }
+            //    if (this.value == 4) {
+            //        $('.to').hide();
+            //        $('.from').hide();
+            //        $('.perfix').hide();
+            //    }
+            //});
             var format = "";
             $(document).on('change', '.form-control', function () {
-                if ($('#Type').val() == 1) {
-                    format = "Dưới A P";
+                if ($('#FromTime').val() == 0) {
+                    format = "Không có kinh nghiệm";
                 }
-                if ($('#Type').val() == 2) {
-                    format = "Từ A đến B P";
+                if ($('#FromTime').val() == 1) {
+                    format = "1 Năm";
+                }
+                if ($('#FromTime').val() == 2) {
+                    format = "2 Năm";
 
                 }
-                if ($('#Type').val() == 3) {
-                    format = "Trên A P";
+                if ($('#FromTime').val() == 3) {
+                    format = "3 Năm";
                 }
-                if ($('#Type').val() == 4) {
-                    format = "Chưa có kinh nghiệm";
+                if ($('#FromTime').val() == 4) {
+                    format = "4 Năm";
                 }
-                format = format.replace('A', $('#FromTime').val()).replace('P', $('#Perfix').val()==1?"Năm":"Tháng");
-                format = format.replace('B', $('#ToTime').val());
+                if ($('#FromTime').val() == 5) {
+                    format = "5 Năm";
+                }
+                if ($('#FromTime').val() == 6) {
+                    format = "6 Năm";
+                }
+                if ($('#FromTime').val() == 7) {
+                    format = "7 Năm";
+                }
+                if ($('#FromTime').val() == 8) {
+                    format = "8 Năm";
+                }
+                if ($('#FromTime').val() == 9) {
+                    format = "9 Năm";
+                }
+                if ($('#FromTime').val() == 10) {
+                    format = "10 Năm";
+                }
+                if ($('#FromTime').val() == 11) {
+                    format = "Trên 10 Năm";
+                }
+                format = format.replace('A', $('#FromTime').val());
                 $('#Name').val(format);
             });
         </script>

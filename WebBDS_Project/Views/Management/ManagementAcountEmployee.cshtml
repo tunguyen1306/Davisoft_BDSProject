@@ -21,7 +21,10 @@
 
                         <div class="row">
                             <div class="border-manager-recruitment">
-                                tài khoản của bạn đang có <b class="TextColorRed">@Model.TblBdsAdcount.Money</b>VNĐ số điểm tích lũy của bạn hiện tại là <b class="TextColorRed">@Model.TblBdsAdcount.Point</b> điểm
+                                tài khoản của bạn đang có <b class="TextColorRed">
+                                                              @(String.Format("{0:N}", (Model.TblBdsAdcount.Money)))
+                                    
+                                </b>VNĐ số điểm tích lũy của bạn hiện tại là <b class="TextColorRed">@Model.TblBdsAdcount.Point</b> điểm
                                 <div class="box-note">
                                     <b>Chú ý:</b>Hãy kiểm tra hồ sơ ứng viên gửi thông tin cho bạn hằng ngày
                                 </div>
@@ -377,20 +380,20 @@
                                 <div class="row-right1 grid_3">
 
 
-                                    @Html.TextBoxFor(m => m.TblBDSPersonalInformation.Address, new { @placeholder = "Nhập địa chỉ liên hệ" })
+                                    @Html.TextBoxFor(m => m.TblBDSEmployerInformation.Address, new { @placeholder = "Nhập địa chỉ liên hệ" })
 
                                 </div>
                                 <label class="grid_1">Tỉnh</label>
                                 <div class="row-right1  grid_2">
 
-                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2", @style = "width:100%;" })
+                                    @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2", @style = "width:100%;" })
 
                                 </div>
 
                                 <div class="row-right1  grid_2">
 
 
-                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.District, new SelectList(Model.ListGeoDisModel, "DistId", "DistName"), new { @class = "select2", @style = "width:100%;" })
+                                    @Html.DropDownListFor(m => m.TblBDSEmployerInformation.District, new SelectList(Model.ListGeoDisModel, "DistId", "DistName"), new { @class = "select2", @style = "width:100%;" })
                                 </div>
 
 
@@ -403,10 +406,10 @@
                                     @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), "Chọn tình trạng hôn nhân", new { @class = "select2", @style = "width:100%;" })
 
                                 </div>
-                                <label class="grid_2">Mức lương mong muốn <span class="required">*</span></label>
+                                @*<label class="grid_2">Mức lương mong muốn <span class="required">*</span></label>
                                 <div class="row-right1 grid_4">
-                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"), "Chọn mức lương", new { @class = "select2", @style = "width:100%;" })
-                                </div>
+                                    @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Salary, new SelectList(Model.ListSalary, "Id", "Name"), "Chọn mức lương", new { @class = "select2", @style = "width:100%;" })
+                                </div>*@
 
 
 
@@ -414,12 +417,12 @@
                             </div>
 
                           
-                            <div class="row">
+                            @*<div class="row">
                                 <label class="grid_2">Số năm kinh nghiệm<span class="required"> *</span></label>
                                 <div class="row-right1 grid_3 ">
 
 
-                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn kinh nghiệm", new { @class = "select2", @style = "width:100%;" })
+                                    @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Experience, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn kinh nghiệm", new { @class = "select2", @style = "width:100%;" })
 
 
 
@@ -428,7 +431,7 @@
                                 <label class="grid_2">Học vấn <span class="required">*</span></label>
                                 <div class="row-right1 grid_4">
 
-                                    @Html.DropDownListFor(m => m.TblBDSPersonalInformation.Education, new SelectList(Model.ListDucation, "Id", "Name"), "Chọn học vấn", new { @class = "select2", @style = "width:100%;" })
+                                    @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Education, new SelectList(Model.ListDucation, "Id", "Name"), "Chọn học vấn", new { @class = "select2", @style = "width:100%;" })
 
 
                                 </div>
@@ -436,10 +439,10 @@
 
 
 
-                            </div>
+                            </div>*@
 
 
-                            <div class="row">
+                            @*<div class="row">
                                 <label class="grid_2">Công việc mong muốn<span class="required">*</span></label>
                                 <div class="row-right1 grid_3">
                                     @Html.DropDownListFor(m => m.TblBDSPersonalInformation.IdLoaiNghe, new SelectList(Model.ListBDSCareer, "Id", "Name"), "Chọn ngành nghề", new { @class = "select2", @style = "width:100%;" })
@@ -457,7 +460,7 @@
 
 
 
-                            </div>
+                            </div>*@
 
                             <div class="row">
                                 <label class="grid_2">Giới thiệu sơ lược</label>

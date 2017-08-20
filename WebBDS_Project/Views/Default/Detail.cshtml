@@ -151,34 +151,41 @@
                 </table>
 
                 <h3>Giới thiệu công ty</h3>
-                <p>@Model.tblBDSNew.DesCompany</p>
-                <div id="jssor_3" style="position: relative; margin: 10px auto; border: 1px solid #fefefe; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+            <p>@Model.tblBDSNew.DesCompany</p>
+@if (Model.ListPicture.Count > 0)
+{
+    <div id="jssor_3" style="position: relative; margin: 10px auto; border: 1px solid #fefefe; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
 
-                    <div data-u="loading" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0,0,0,0.7);">
-                        <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                        <div style="position: absolute; display: block; background: url('/Template/img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                    </div>
-                    <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
-                        @foreach (var itemPicture in Model.ListPicture)
-                        {
-                            <div>
-                                <img data-u="image" src="@ConfigurationManager.AppSettings["UrlImage"]@itemPicture.originalFilepath.ToString().Split('_')[0]/@itemPicture.originalFilepath" />
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0, 0, 0, 0.7);">
+            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+            <div style="position: absolute; display: block; background: url('/Template/img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+        </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
 
-                            </div>
-                        }
-                        
-                      
+            @foreach (var itemPicture in Model.ListPicture)
+            {
+                <div>
+                    <img data-u="image" src="@ConfigurationManager.AppSettings["UrlImage"]@itemPicture.originalFilepath.ToString().Split('_')[0]/@itemPicture.originalFilepath"/>
 
-                    </div>
-                    <!-- Bullet Navigator -->
-                    @*<div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
+                </div>
+            }
+
+
+
+
+
+        </div>
+        <!-- Bullet Navigator -->
+        @*<div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
                         <div data-u="prototype" style="width: 12px; height: 12px;"></div>
                     </div>*@
-                    <!-- Arrow Navigator -->
-                    <span data-u="arrowleft" class="jssora02l" style="top: 0px; left: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
-                    <span data-u="arrowright" class="jssora02r" style="top: 0px; right: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
-                </div>
-                <h3>Mô tả công việc: </h3>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora02l" style="top: 0px; left: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora02r" style="top: 0px; right: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
+    </div>
+
+}
+            <h3>Mô tả công việc: </h3>
                 <ul class="info">
                     <li>
                         @Model.tblBDSNew.DesWork
