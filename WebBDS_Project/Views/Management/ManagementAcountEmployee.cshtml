@@ -106,7 +106,7 @@
                         <div class="row">
                             <label class="grid_2">Tỉnh thành phố<span class="required"> *</span></label>
                             <div class=" grid_9 row-right">
-                                @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBDSEmployerInformation.City, new SelectList(Model.ListGeoModel, "CityId", "CityName"), new { @class = "select2" })
                             </div>
 
 
@@ -115,7 +115,7 @@
                         <div class="row">
                             <label class="grid_2">Quy mô công ty<span class="required"> *</span></label>
                             <div class="grid_9 row-right">
-                                @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Scope, new SelectList(Model.ListBDSScopes, "Id", "Name"), new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Scope, new SelectList(Model.ListBDSScopes, "Id", "Name"), new { @class = "select2" })
                             </div>
 
 
@@ -225,7 +225,7 @@
                                 new SelectListItem { Value = "1" , Text = "Gọi điện thoại" },
                                 new SelectListItem { Value = "2" , Text = "Đến trực tiếp công ty" }
          },
-         new { @class = "dropdown" })
+         new { @class = "select2" })
                             </div>
 
 

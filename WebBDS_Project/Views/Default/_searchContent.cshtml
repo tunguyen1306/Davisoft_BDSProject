@@ -15,36 +15,53 @@
 }
 <ul class="list_work">
 
-      
-        @foreach (var news in Model)
-        {
-            var account = db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
-            var type = db.BDSNewsTypes.Where(T => T.ID == news.IdTypeNewsCuurent).FirstOrDefault();
-            if (account != null)
-            {
-                <li>
-                    <div class="grid_3">
-                        <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">
-                            <img width="100" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] +"/"+ account.UrlImage):"img.png"))" alt="1">
-                            <p class="vip @(type.CodeNewsType)">
-                                <i class="fa fa-star"></i>
-                                <span>@type.Name</span>
-                            </p>
-                        </a>
-                    </div>
-                    <div class="grid_9 omega">
-                        <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
-                        <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
-                        <div>
-                            <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
-                            <p class="grid_6 omega time">Mã tin: <span class="color2">P@(news.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i> @(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
-                        </div>
-                    </div>
-                </li>
-            }
 
+    @foreach (var news in Model)
+    {
+        var account = db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
+        var type = db.BDSNewsTypes.Where(T => T.ID == news.IdTypeNewsCuurent).FirstOrDefault();
+        if (account != null)
+        {
+            <li>
+                <div class="grid_3">
+                    <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">
+                        @if (db.BDSPictures.Any(x => x.advert_id == news.ID))
+                        {
+                            <img width="100" height="100" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
+
+                        }
+                        else
+                        {
+                            <img width="100" height="100" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+
+                        }
+                        
+                        <p class="vip @(type.CodeNewsType)">
+                            <i class="fa fa-star"></i>
+                            <span>Vip</span>
+                        </p>
+                    </a>
+                </div>
+                <div class="grid_9 omega">
+                    <h2>
+                        <a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">
+                            @( news.Title) <span>
+                            @*@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)*@
+                            @news.NameCompany
+                        </span>
+                    </a>
+                </h2>
+                <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
+                <div>
+                    <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
+                    <p class="grid_6 omega time">Mã tin: <span class="color2">P@(news.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i> @(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
+                </div>
+            </div>
+        </li>
         }
-    
+
+    }
+
 
 
     <li class="page">
@@ -52,33 +69,33 @@
             <span>Trang</span>
             @if ((int)ViewBag.Total > 0)
             {
-                 if (currentPage != 1)
+                if (currentPage != 1)
                 {
                     <a class="nextPage" onclick="prevPage()">Trước</a>
                 }
 
-                 if (currentPage - 3 > 2)
-                 {
+                if (currentPage - 3 > 2)
+                {
                     <a data-ref='' onclick="goPage(1);" style="cursor: pointer">1</a>
-                   <a data-ref='' style="cursor: pointer">....</a>
-                 }
-                 for (int i = currentPage - 3 > 2 ? currentPage - 3 : 1; i <= ((int)p - currentPage > 3 ? currentPage + 3 : (int)p); i++)
-                 {
-                    <a data-ref='' style="cursor: pointer" onclick="goPage(@p)" @(currentPage == i ? " class=active" : "")>@i</a>
-                 }
-                 if ((int)p - currentPage > 3)
-                 {
                     <a data-ref='' style="cursor: pointer">....</a>
-    <a data-ref='' onclick="goPage(@p)" style="cursor: pointer">@p</a>
+                }
+                for (int i = currentPage - 3 > 2 ? currentPage - 3 : 1; i <= ((int)p - currentPage > 3 ? currentPage + 3 : (int)p); i++)
+                {
+                    <a data-ref='' style="cursor: pointer" onclick="goPage(@p)" @(currentPage == i ? " class=active" : "")>@i</a>
+                }
+                if ((int)p - currentPage > 3)
+                {
+                    <a data-ref='' style="cursor: pointer">....</a>
+                    <a data-ref='' onclick="goPage(@p)" style="cursor: pointer">@p</a>
                 }
             }
-            @if (currentPage != (int) p)
+            @if (currentPage != (int)p)
             {
                 <a class="nextPage" onclick="nextPage()">Tiếp</a>
             }
-            
+
         </div>
-        
+
     </li>
 </ul>
 <style>

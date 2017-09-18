@@ -142,25 +142,29 @@
                         <tr>
                             <td>
                                 <label>Mức lương: </label>
-                                @if ((Model.ListSalary != null ? Model.ListSalary.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.SalaryProfile).ID : 0) == 0)
-                                {
+                              @{
+                                  var salary = Model.ListSalary;
+                              }
+                                  @if (salary.Any(x => x.Active == 1 && x.ID == Model.tblBDSPerNew.SalaryProfile))
+                                  {
+                                     @(salary.FirstOrDefault().Name)
+                                  }
+                                  else
+                                  {
+                                    @("0")
+                                  }
 
-                                }
-                                else
-                                {
-                            @Model.ListSalary.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.SalaryProfile).Name;
-                                }
                             </td>
                             <td>
                                 <label>Trình độ: </label>
-                                @if (Model.ListDucation.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.EducationProfile).ID == 0)
-                                {
+                               @{
+                                   var education = Model.ListDucation;
+                                }
 
-                                }
-                                else
-                                {
-                                @Model.ListDucation.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.EducationProfile).Name;
-                                }
+                                @(education.Any(x => x.Active == 1 && x.ID == Model.tblBDSPerNew.EducationProfile) ? education.FirstOrDefault().Name : "0")
+
+
+
 
                             </td>
 
@@ -168,25 +172,24 @@
                         <tr>
                             <td>
                                 <label>Kinh nghiệm: </label>
-                                @if (Model.ListTimework.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.ExperienceProfile).ID == 0)
-                                {
+                                @{
+                                    var Timework = Model.ListTimework;
+                                }
 
-                                }
-                                else
-                                {
-                                @Model.ListTimework.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.ExperienceProfile).Name;
-                                }
+                                @(Timework.Any(x => x.Active == 1 && x.ID == Model.tblBDSPerNew.ExperienceProfile) ? Timework.FirstOrDefault().Name : "Chưa có kinh nghiệm")
+
+
+
                             </td>
                             <td>
                                 <label>Ngoại ngữ: </label>
-                                @if (Model.ListBDSLanguage.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.LanguageProfile).ID == 0)
-                              {
+                                @{
+                                    var Language = Model.ListBDSLanguage;
+                                }
 
-                              }
-                              else
-                              {
-                                @Model.ListBDSLanguage.FirstOrDefault(x => x.ID == Model.tblBDSPerNew.LanguageProfile).Name;
-                              }
+                                @(Language.Any(x => x.Active == 1 && x.ID == Model.tblBDSPerNew.LanguageProfile) ? Language.FirstOrDefault().Name : "Không")
+
+
                             </td>
 
                         </tr>

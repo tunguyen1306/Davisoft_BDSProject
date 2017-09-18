@@ -28,5 +28,6 @@ namespace WebBDS_Project.Models
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
         public Nullable<int> Status { get; set; }
+        public Nullable<int> IdAccount { get; set; }
     }
 }

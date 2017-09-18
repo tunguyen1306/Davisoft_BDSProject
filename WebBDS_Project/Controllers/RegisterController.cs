@@ -576,5 +576,15 @@ namespace WebBDS_Project.Controllers
 
 
         }
+        public ActionResult History()
+        {
+           
+
+
+
+            return View();
+
+
+        }
     }
 }

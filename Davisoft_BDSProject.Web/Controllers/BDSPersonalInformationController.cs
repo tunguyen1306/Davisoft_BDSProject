@@ -104,21 +104,7 @@ namespace Davisoft_BDSProject.Web.Controllers
 
            
             var Marriages = _serviceMarriage.GetIQueryableItems().Where(T => T.Active == 1).ToList().Select(T => new SelectListItem { Value = T.ID.ToString(), Text = T.Name.ToString(), Selected = false }).ToList();
-         
-            
-
-   
             Marriages.Insert(0, new SelectListItem { Value = "", Text = "Chọn", Selected = true });
-        
-
-
-
-
-
-
-
-
-        
             ViewBag.Marriages = Marriages;
          
             ViewBag.Cities = Cities;
@@ -165,6 +151,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             }
         
             model.BDSAccount.PassWord = model.BDSAccount.PassWord;
+            model.BDSAccount.MailActive = model.BDSAccount.MailActive;
             model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                               model.BDSAccount.Point.Value.ToString("n2");
             model.BDSAccount= _serviceAccount.CreateItem(model.BDSAccount);
@@ -299,7 +286,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             var fortmatName = string.Empty;
             var fileNameFull = string.Empty;
 
-
+            model.BDSAccount.MailActive = model.BDSAccount.MailActive;
 
 
             var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];

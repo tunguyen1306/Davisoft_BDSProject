@@ -15,45 +15,54 @@
             <div class="grid_12">
                 @if (Session["IdUserEmployee"] != null)
                 {
-                    <table class="table-responsive" style="margin-top: 10px;">
-                        <thead>
-                            <tr>
-                                <th data-field="id">NGÀY TÌM VIỆC</th>
-                                <th data-field="name">HÌNH ẢNH</th>
-                                <th data-field="name">HỌ VÀ TÊN</th>
-                                <th data-field="name">GIỚI TÍNH</th>
-                                <th data-field="name">NĂM SINH</th>
-                                @*<th data-field="name">KINH NGHIỆM</th>
-
-
-                                <th data-field="name">VỊ TRÍ MONG MUỐN</th>
-                                <th data-field="name">TỈNH / THÀNH PHỐ</th>
-                                <th data-field="name">QUẬN HUYỆN</th>
-                                <th data-field="name">HỌC VẤN</th>*@
-                                <th data-field="name">CHI TIẾT</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach (var item in Model.ListBDSPersonalInformation)
-                            {
+                    if (Model.ListBDSPersonalInformation.Count > 0)
+                    {
+                        <table class="table table-bordered table-striped grid-table" style="margin-top: 10px;">
+                            <thead>
                                 <tr>
-                                    <td>@item.CreateDate</td>
-                                    <td><img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" /></td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Sex</td>
-                                    <td>@item.Birthday</td>
-                                    @*<td>@item.Experience</td>
-                                    <td>@item.IdLoaiNghe</td>
-                                    <td>@item.City</td>
-                                    <td>@item.District</td>
-                                    <td>@item.Education</td>*@
-                                    <td><a style="cursor: pointer" href="@Url.Action("DetailPer", "Management", new { id = item.Name.UrlFrendly() + "-" + item.ID })">xem</a></td>
-                                </tr>
-                            }
+                                    <th data-field="id">NGÀY TÌM VIỆC</th>
+                                    <th data-field="name">HÌNH ẢNH</th>
+                                    <th data-field="name">HỌ VÀ TÊN</th>
+                                    <th data-field="name">GIỚI TÍNH</th>
+                                    <th data-field="name">NĂM SINH</th>
+                                    @*<th data-field="name">KINH NGHIỆM</th>
 
-                        </tbody>
-                    </table>
+
+                                        <th data-field="name">VỊ TRÍ MONG MUỐN</th>
+                                        <th data-field="name">TỈNH / THÀNH PHỐ</th>
+                                        <th data-field="name">QUẬN HUYỆN</th>
+                                        <th data-field="name">HỌC VẤN</th>*@
+                                    <th data-field="name">CHI TIẾT</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.ListBDSPersonalInformation)
+                                {
+                                    <tr>
+                                        <td>@item.CreateDate</td>
+                                        <td><img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" /></td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Sex</td>
+                                        <td>@item.Birthday</td>
+                                        @*<td>@item.Experience</td>
+                                            <td>@item.IdLoaiNghe</td>
+                                            <td>@item.City</td>
+                                            <td>@item.District</td>
+                                            <td>@item.Education</td>*@
+
+                                        <td><a style="cursor: pointer" href="@Url.Action("DetailAdvertCompany", "AdvertCompany", new { idNew = item.Name.UrlFrendly() + "-" + item.ID })">xem</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                            <div>Chưa có hồ sơ nào được lưu</div>
+                    }
+
                 }
 
                 @*@if (Session["IdUserPer"] != null)

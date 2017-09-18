@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Hồ sơ đã lưu</span></h3>
+            </div>
+            <div class="grid_12">
+                @if (Session["IdUserEmployee"] != null)
+                {
+                    if (Model.ListBDSPersonalInformation.Count > 0)
+                    {
+                        <table class="table table-bordered table-striped grid-table" style="margin-top: 10px;">
+                            <thead>
+                                <tr>
+                                    <th data-field="id">NGÀY TÌM VIỆC</th>
+                                    <th data-field="name">HÌNH ẢNH</th>
+                                    <th data-field="name">HỌ VÀ TÊN</th>
+                                    <th data-field="name">GIỚI TÍNH</th>
+                                    <th data-field="name">NĂM SINH</th>
+                                   
+                                    <th data-field="name">CHI TIẾT</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.ListBDSPersonalInformation)
+                                {
+                                    <tr>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div>Chưa có hồ sơ nào được lưu</div>
+                    }
+
+                }
+
+                @*@if (Session["IdUserPer"] != null)
+                    {
+                        <table class="table-responsive" style="margin-top: 10px;">
+                            <thead>
+                                <tr>
+
+
+                                    <th data-field="name">HỌ VÀ TÊN</th>
+
+                                    <th data-field="name">CHI TIẾT</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.ListBDSEmployerInformation)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+
+                                        <td><a style="cursor: pointer" href="@Url.Action("Detail", "Default", new { id = item.Name.UrlFrendly() + "-" + item.ID })">xem</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    }*@
+            </div>
+
+        </div>
+    </div>
+    <div class="grid_3 omega main_right" id="sideRightPushy">
+
+        @Html.Partial("_partialManagerCenter")
+
+    </div>
+</div>
+
+

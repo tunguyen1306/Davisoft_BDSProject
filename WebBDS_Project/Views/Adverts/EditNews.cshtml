@@ -54,7 +54,7 @@
                             new SelectListItem{Text = "9 triệu",Value = "9",Selected = false},
                             new SelectListItem{Text = "10 triệu",Value = "10",Selected = false}
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                             </div>
                             <div class="pncon">
                                 <b style="margin-left: 11px;">Đến</b>
@@ -87,7 +87,7 @@
                             new SelectListItem{Text = "20 triệu",Value = "20",Selected = false},
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                             new SelectListItem{Text = "15",Value = "15",Selected = false}
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                         </div>
                         <label class="child">Thưởng/Phụ cấp <span class="required">*</span></label>
                         <div class="row-right">
@@ -135,11 +135,11 @@
                             new SelectListItem{Text = "Nữ",Value = "2",Selected = false},
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                         </div>
                         <label class="child">Kinh nghiệm <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn", new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn", new { @class = "select2" })
 
 
                         </div>
@@ -147,7 +147,7 @@
                     <div class="row">
                         <label>Trình độ</label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name", "Chọn trình độ"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name", "Chọn trình độ"), new { @class = "select2" })
 
 
                         </div>
@@ -219,7 +219,7 @@
                                 new SelectListItem{Text = "30",Value = "30",Selected = false},
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
 
 
 
@@ -246,7 +246,7 @@
                             new SelectListItem{Text = "35",Value = "35",Selected = false},
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                             </div>
                         </div>
                     </div>
@@ -273,7 +273,7 @@
                             new SelectListItem{Text = "15 Tuần",Value = "15",Selected = false}
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                         </div>
                     </div>
                     <h4>Thông tin liên hệ nhà tuyển dụng</h4>
@@ -314,7 +314,7 @@
                     <div class="row">
                         <label>Ngôn ngữ hồ sơ</label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdLanguage, new SelectList(Model.ListBDSLanguage, "Id", "Name"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdLanguage, new SelectList(Model.ListBDSLanguage, "Id", "Name"), new { @class = "select2" })
                         </div>
                     </div><div class="row">
 

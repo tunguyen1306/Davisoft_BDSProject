@@ -183,6 +183,7 @@ namespace WebBDS_Project.Controllers
                 create.tblBDSNew.CountReup = 0;
                 create.tblBDSNew.MaxReup = 0;
                 create.tblBDSNew.CreateUser = 1;
+                create.tblBDSNew.ShowEmail = 0;
 
                 create.tblBDSNew.Career = create.tblBDSNew.Career.Substring(create.tblBDSNew.Career.Length - 1) == "," ? create.tblBDSNew.Career.Substring(0, create.tblBDSNew.Career.Length - 1) : create.tblBDSNew.Career;
                 create.tblBDSNew.IdTypeNewsCuurent = create.tblBDSNew.IdTypeNews;
@@ -233,9 +234,10 @@ namespace WebBDS_Project.Controllers
                     PointTran = 0,
                     MoneyTran = create.tblBDSNew.TotalMoney.Value,
                     DateTran = DateTime.Now,
-                    Status = 0
+                    Status = 0,
+                    IdAccount = int.Parse(Session["IdUser"].ToString())
 
-                };
+            };
                 create.tblBDSNew = db.BDSNews.First(T => T.ID == create.tblBDSNew.ID);
                 db.BDSTransactionHistories.Add(tran);
                 db.SaveChanges();

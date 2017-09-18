@@ -87,6 +87,27 @@ namespace WebBDS_Project.Controllers
 
             return RedirectToAction("Index","Default");
         }
+        [HttpPost]
+        public ActionResult Checkuser(int id)
+        {
+            var result = 0;
+            if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(id))
+            {
+                result = 1;
+            }
 
+            return Json(new { result = result });
+        }
+[HttpPost]
+        public ActionResult CheckuserEm(int id)
+        {
+            var result = 0;
+            if (db.BDSEmployerInformations.Select(x => x.IdAccount).ToList().Contains(id))
+            {
+                result = 1;
+            }
+
+            return Json(new { result = result });
+        }
     }
 }

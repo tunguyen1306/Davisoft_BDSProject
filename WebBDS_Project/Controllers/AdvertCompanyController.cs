@@ -44,10 +44,10 @@ namespace WebBDS_Project.Controllers
                 cuurentINews = new BDSPerNew { Active = 1, CreateDate = DateTime.Now, CreateUser = 1, PerId = tblPer.ID };
                 db.Entry(cuurentINews).State = EntityState.Added;
                 db.SaveChanges();
-                ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID });
+                ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
+                ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
+                ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
+                ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
             }
             else
             {
@@ -497,16 +497,13 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailAdvertCompany(string idNew)
         {
             var id_ = int.Parse(idNew.Split('-').Last());
-
-
-           
-            
             var cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.ID== id_ && T.Active == 1);
             var IdPersonalByIdNewPer = cuurentINews.PerId;
             List<BDSPerNews_Degrees> ListPerNewDegrees = new List<BDSPerNews_Degrees>();
             List<BDSPerNews_Experiences> ListPerNewExperiences = new List<BDSPerNews_Experiences>();
             List<BDSPerNews_LangDegrees> ListPerNewLangDegrees = new List<BDSPerNews_LangDegrees>();
             List<BDSPerNews_References> ListPerNewReferences = new List<BDSPerNews_References>();
+            List<BDSSalary> ListSalary = new List<BDSSalary>();
             if (cuurentINews == null)
             {
                 cuurentINews = new BDSPerNew { Active = 1, CreateDate = DateTime.Now, CreateUser = 1, PerId = IdPersonalByIdNewPer };
@@ -516,6 +513,7 @@ namespace WebBDS_Project.Controllers
                 ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID });
                 ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID });
                 ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID });
+              
             }
             else
             {
@@ -523,22 +521,23 @@ namespace WebBDS_Project.Controllers
                 ListPerNewExperiences =db.BDSPerNews_Experiences.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
                 ListPerNewLangDegrees =db.BDSPerNews_LangDegrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
                 ListPerNewReferences = db.BDSPerNews_References.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
-                if (ListPerNewDegrees.Count == 0)
-                {
-                    ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID });
-                }
-                if (ListPerNewExperiences.Count == 0)
-                {
-                    ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID });
-                }
-                if (ListPerNewLangDegrees.Count == 0)
-                {
-                    ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID });
-                }
-                if (ListPerNewReferences.Count == 0)
-                {
-                    ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID });
-                }
+                ListSalary = db.BDSSalaries.Where(T => T.Active == 1).ToList();
+                //if (ListPerNewDegrees.Count == 0)
+                //{
+                //    ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID,Active = 1});
+                //}
+                //if (ListPerNewExperiences.Count == 0)
+                //{
+                //    ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
+                //}
+                //if (ListPerNewLangDegrees.Count == 0)
+                //{
+                //    ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
+                //}
+                //if (ListPerNewReferences.Count == 0)
+                //{
+                //    ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
+                //}
             }
             var dataCity = (from data in db.States
                             join datatext in db.StateTexts on data.name_id equals datatext.id

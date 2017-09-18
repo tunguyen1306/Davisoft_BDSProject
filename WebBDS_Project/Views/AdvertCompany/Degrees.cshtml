@@ -25,7 +25,7 @@
                     new SelectListItem {Text = "Level 6", Value = "6"},
 
 
-                }, new {@class = "dropdown validate"})
+                }, new {@class = "select2 validate"})
                 <script>
                     document.getElementById('ListPerNewDegrees_@(i)__Level').value = '@Model.ListPerNewDegrees[i].Level';
                 </script>
@@ -46,7 +46,7 @@
                         new SelectListItem {Text = "5 năm", Value = "7"},
 
 
-                    }, new { @class = "dropdown" })
+                    }, new { @class = "select2" })
                     <script>
                         document.getElementById('ListPerNewDegrees_@(i)__FromYear').value = '@Model.ListPerNewDegrees[i].FromYear';
                     </script>
@@ -70,7 +70,7 @@
                         new SelectListItem {Text = "10 năm", Value = "10"},
 
 
-                    }, new { @class = "dropdown" })
+                    }, new { @class = "select2" })
                     <script>
                         document.getElementById('ListPerNewDegrees_@(i)__ToYear').value = '@Model.ListPerNewDegrees[i].ToYear';
                     </script>
@@ -105,7 +105,7 @@
                     new SelectListItem {Text = "Trung bình", Value = "2"},
                     new SelectListItem {Text = "Yếu", Value = "1"},
 
-                }, new {@class = "dropdown validate"})
+                }, new {@class = "select2 validate"})
                 <script>
                     document.getElementById('ListPerNewDegrees_@(i)__Rating').value = '@Model.ListPerNewDegrees[i].Rating';
                 </script>

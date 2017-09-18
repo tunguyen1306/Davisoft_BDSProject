@@ -89,7 +89,7 @@
                             
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                         </div>
                         <label class="child">Thưởng/Phụ cấp <span class="required">*</span></label>
                         <div class="row-right">
@@ -110,11 +110,11 @@
                             new SelectListItem{Text = "Nữ",Value = "2",Selected = false},
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                         </div>
                         <label class="child">Kinh nghiệm <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework.OrderBy(T=>T.ID).ToList(), "Id", "Name"), "Chọn", new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdTimeWork, new SelectList(Model.ListTimework.OrderBy(T=>T.ID).ToList(), "Id", "Name"), "Chọn", new { @class = "select2" })
 
 
                         </div>
@@ -122,7 +122,7 @@
                     <div class="row">
                         <label>Trình độ</label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name", "Chọn trình độ"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdEducation, new SelectList(Model.ListDucation, "Id", "Name", "Chọn trình độ"), new { @class = "select2" })
 
 
                         </div>
@@ -194,7 +194,7 @@
                                 new SelectListItem{Text = "30",Value = "30",Selected = false},
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
 
 
                                
@@ -221,7 +221,7 @@
                             new SelectListItem{Text = "35 tuổi",Value = "35",Selected = false},
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                             </div>
                         </div>
                     </div>
@@ -240,7 +240,7 @@
                          
 
 
-                        }, new { @class = "dropdown" })
+                        }, new { @class = "select2" })
                         </div>
                     </div>
                     <h4>Thông tin liên hệ nhà tuyển dụng</h4>
@@ -259,10 +259,16 @@
                             @Html.TextBoxFor(m => m.tblBDSNew.AddressApply, new { @class = "input3", @placeholder = "Nhập địa chỉ nộp hồ sơ" })
                         </div>
                     </div>
+                <div class="row">
+                    <label>Người liên hệ</label>
+                    <div class="row-right">
+                        @Html.TextBoxFor(m => m.tblBDSNew.NamesContact, new {@class = "input3", @placeholder = "Nhập người liên hệ"})
+                    </div>
+                </div>
                     <div class="row">
-                        <label>Người liên hệ</label>
+                        <label>Số điện thoại</label>
                         <div class="row-right">
-                            @Html.TextBoxFor(m => m.tblBDSNew.NamesContact, new { @class = "input3", @placeholder = "Nhập người liên hệ" })
+                            @Html.TextBoxFor(m => m.tblBDSNew.PhoneContact, new { @class = "input3", @placeholder = "Nhập người số điện thoại" })
                         </div>
                     </div>
                     <div class="row">
@@ -281,7 +287,7 @@
                     <div class="row">
                         <label>Ngôn ngữ hồ sơ</label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSNew.IdLanguage, new SelectList(Model.ListBDSLanguage, "Id", "Name"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSNew.IdLanguage, new SelectList(Model.ListBDSLanguage, "Id", "Name"), new { @class = "select2" })
                         </div>
                     </div><div class="row">
 

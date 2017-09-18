@@ -33,7 +33,7 @@
             if (account != null)
             {
                  <li>
-                     <a style="position: relative;" href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">@(news.Title.Length > 41 ? news.Title.Substring(0, 41) : news.Title + "...")</a>
+                     <a style="position: relative;" href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">@(news.Title.Length > 41 ? news.Title.Substring(0, 41) +"......" : news.Title)</a>
                      <a class="btnSave" style="position: absolute;right: 10px" href="javascript:void(0)" rel="@news.ID"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</a>
                                 </li>
             }

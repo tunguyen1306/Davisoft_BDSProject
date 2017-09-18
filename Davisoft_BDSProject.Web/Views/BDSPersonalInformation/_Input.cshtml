@@ -122,17 +122,18 @@
                     <div class="col-md-8" style="position: relative;">
                         <div id="picture">
                             @if (Model.UrlImage != null)
-{
-    <img style="width: 120px; height:120px;" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@(Model.UrlImage)" class="img-polaroid user-picture-preview" />
-}
-else
-{
-                                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview" />
+                            {
+                                <img style="width: 120px; height: 120px;" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@(Model.UrlImage)" class="img-polaroid user-picture-preview"/>
                             }
-                            
+                            else
+                            {
+                                <img style="max-width: 120px; max-height: 120px;" src="~/Display/img/profile.png" class="img-polaroid user-picture-preview"/>
+                            }
+
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
                     <div class="col-md-9">
@@ -144,7 +145,15 @@ else
                         </script>
                      </div>
                 </div>
-               
+                <div class="form-group">
+                   
+                    <label class="control-label col-md-2">Active <span class="required">*</span></label>
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.BDSAccount.MailActive, new List<SelectListItem> { new SelectListItem { Text = "Active", Value = "1", Selected = true }, new SelectListItem { Text = "NoActive", Value = "0" } }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+
+                    </div>
+
+                </div>
                
             </div>
         </section>

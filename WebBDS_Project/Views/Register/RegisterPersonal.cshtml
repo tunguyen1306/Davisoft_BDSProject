@@ -134,7 +134,7 @@
                             <div class="row-right">
 
 
-                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), "Chọn tình trạng hôn nhân", new {@class = "dropdown"})
+                                @Html.DropDownListFor(m => m.TblBDSPersonalInformation.MaritalStatus, new SelectList(Model.ListMarriea, "Id", "Name"), "Chọn tình trạng hôn nhân", new {@class = "select2"})
 
 
 
@@ -160,7 +160,7 @@
                             <label>Kinh nghiệm<span class="required"> *</span></label>
                             <div class="row-right">
 
-                                @Html.DropDownListFor(m => m.tblBDSPerNew.ExperienceProfile, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn kinh nghiệm", new {@class = "dropdown"})
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.ExperienceProfile, new SelectList(Model.ListTimework, "Id", "Name"), "Chọn kinh nghiệm", new {@class = "select2"})
 
 
                             </div>
@@ -169,7 +169,7 @@
 
                             <label class="child">Mức lương <span class="required">*</span></label>
                             <div class="row-right">
-                                @Html.DropDownListFor(m => m.tblBDSPerNew.SalaryProfile, new SelectList(Model.ListSalary, "Id", "Name"), "Chọn mức lương", new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.SalaryProfile, new SelectList(Model.ListSalary, "Id", "Name"), "Chọn mức lương", new { @class = "select2" })
                             </div>
                         </div>
 
@@ -180,7 +180,7 @@
                     <div class="row">
                         <label>Công việc <span class="required">*</span></label>
                         <div class="row-right">
-                            @Html.DropDownListFor(m => m.tblBDSPerNew.CareerProfile, new SelectList(Model.ListBDSCareer, "Id", "Name"), "Chọn ngành nghề", new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.tblBDSPerNew.CareerProfile, new SelectList(Model.ListBDSCareer, "Id", "Name"), "Chọn ngành nghề", new { @class = "select2" })
 
 
                         </div>
@@ -192,7 +192,7 @@
                             <label class="child">Học vấn <span class="required">*</span></label>
                             <div class="row-right">
 
-                                @Html.DropDownListFor(m => m.tblBDSPerNew.EducationProfile, new SelectList(Model.ListDucation, "Id", "Name"), "Chọn học vấn", new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.EducationProfile, new SelectList(Model.ListDucation, "Id", "Name"), "Chọn học vấn", new { @class = "select2" })
 
                             </div>
                         </div>

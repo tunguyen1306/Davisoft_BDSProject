@@ -25,7 +25,7 @@
                 <table class="table-responsive dataTable" style="margin-top: 10px;">
                     <thead>
                         <tr>
-                            <th data-field="id"></th>
+                            
                             <th data-field="name">Ngày gửi</th>
                             <th data-field="name">Tiêu đề</th>
 
@@ -40,7 +40,7 @@
                             foreach (var news in db.BDSNews.Where(x => x.ID == item.IdNews))
                             {
                                 <tr>
-                                    <td></td>
+                                   
                                     <td>@item.CreateDate</td>
                                     <td>
                                         <ul class="list_work">
@@ -55,7 +55,17 @@
                                                         <li style="margin-bottom: 0">
                                                             <div class="grid_3">
                                                                 <a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })">
-                                                                    <img width="120" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="1">
+                                                                    @if (db.BDSPictures.Any(x => x.advert_id == news.ID))
+                                                                    {
+                                                                        <img width="120" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img width="120" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+
+                                                                    }
+                                                                    
                                                                     <p class="vip">
                                                                         <i class="fa fa-star"></i>
                                                                         <span>VIP</span>
@@ -63,7 +73,11 @@
                                                                 </a>
                                                             </div>
                                                             <div class="grid_9 omega">
-                                                                <h2><a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })">@( news.Title) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                                                                <h2><a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">@( news.Title)
+                                                                    <span>
+@*@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)*@
+                                                                        @news.NameCompany
+</span></a></h2>
                                                                 <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                                                                 <div>
                                                                     <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
@@ -84,14 +98,27 @@
                                                         <li>
                                                             <div class="grid_9">
                                                                 <a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })" class="image_2">
-                                                                    <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+                                                                    @if (db.BDSPictures.Any(x => x.advert_id == news.ID))
+                                                                    {
+                                                                        <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+
+                                                                    }
                                                                     <p class="vip">
                                                                         <i class="fa fa-star"></i>
                                                                         <span>VIP</span>
                                                                     </p>
                                                                 </a>
                                                                 <div class="name">
-                                                                    <h2><a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })">@( news.Title)  <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                                                                    <h2><a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">@( news.Title)
+                                                                        <span>
+@*@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)*@
+                                                                            @news.NameCompany
+</span></a></h2>
                                                                     <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                                                                     <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
                                                                 </div>
@@ -112,14 +139,27 @@
                                                         <li>
                                                             <div class="grid_9">
                                                                 <a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })" class="image_2">
-                                                                    <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+                                                                    @if (db.BDSPictures.Any(x => x.advert_id == news.ID))
+                                                                    {
+                                                                        <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+
+                                                                    }
                                                                     <p class="vip">
                                                                         <i class="fa fa-star"></i>
                                                                         <span>VIP</span>
                                                                     </p>
                                                                 </a>
                                                                 <div class="name">
-                                                                    <h2><a href="@Url.Action("Detail", "Default", new { id = news.Title.UrlFrendly() + "-" + news.ID })">@( news.Title)  <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                                                                    <h2><a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">@( news.Title)
+                                                                        <span>
+@*@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)*@
+                                                                            @news.NameCompany
+</span></a></h2>
                                                                     <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                                                                     <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
                                                                 </div>

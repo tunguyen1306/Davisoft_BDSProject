@@ -160,7 +160,7 @@ namespace WebBDS_Project.Controllers
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var IdAccByNewId = db.BDSNews.Find(id).IdAcount;
-
+            var IdPerNew = db.BDSPerNews.Count(x => x.PerId == idAcount);
             if (IdAccByNewId != null)
             {
                 var tblApply = new BDSApply
@@ -499,8 +499,9 @@ namespace WebBDS_Project.Controllers
                 PointTran = em.Point.Value,
                 MoneyTran =0,
                 DateTran = DateTime.Now,
-                Status = 0
-                
+                Status = 0,
+                 IdAccount = int.Parse(Session["IdUser"].ToString())
+
             };
             db.Entry(tranhist).State = EntityState.Added;
 
@@ -644,10 +645,11 @@ namespace WebBDS_Project.Controllers
                     PointTran = (int)P,
                     MoneyTran = sotien,
                     DateTran = DateTime.Now,
-                    Status =1
+                    Status =1,
+                    IdAccount = int.Parse(Session["IdUser"].ToString())
 
-                   
-                   
+
+
                 };
                 db.BDSTransactionHistories.Add(tran);
                 account.Money = account.Money - sotien;
@@ -789,6 +791,11 @@ namespace WebBDS_Project.Controllers
             ViewBag.tt = tt;
 
             return PartialView();
+        }
+        public ActionResult History()
+        {
+           
+            return View();
         }
     }
 }

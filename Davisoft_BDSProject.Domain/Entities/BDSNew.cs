@@ -15,6 +15,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public int Quantity { get; set; }
         public string Bonus { get; set; }
         public int Sex { get; set; }
+        public int ShowEmail { get; set; }
         public int IdTimeWork { get; set; }
         public int IdEducation { get; set; }
         public string Career { get; set; }

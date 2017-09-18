@@ -1,6 +1,12 @@
 ﻿@{
     ViewBag.Title = "DetailNews";
     Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
+    var qyeryDate = (from dtPost in db.BDSExtNews
+                     where dtPost.Active==1 
+                     select dtPost).ToList();
+    var dataMiniPost = qyeryDate.OrderByDescending(x => Guid.NewGuid()).Take(5);
+
 }
 
 @using System.Activities.Statements
@@ -11,26 +17,61 @@
     <div class="grid_9 main_left">
         <div class="group_work">
             <div class="header_text">
-                <h3><span><i class="fa fa-list-ul"></i>@(Model.CatExtNews==1 ? "Tin tức bất động sản" :"Chia sẻ kinh nghiệm")</span></h3>
+                <h3><span><i class="fa fa-list-ul"></i>@(Model.CatExtNews == 1 ? "Tin tức bất động sản" : "Chia sẻ kinh nghiệm")</span></h3>
             </div>
             <form class="form-horizontal " data-validate="parsley" action="#">
-              <div class="row">
-                <b style="font-size: 25px">@Model.Name</b>
-                </div>
                 <div class="row">
-           
-                    <b>  @Html.Raw(Model.ShortDescription)</b>
+                    <b style="font-size: 25px">@Model.Name</b>
                 </div>
                 <div class="row">
 
-                    <img width="100%"  src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@Model.UrlImage">
+                    <b> @Html.Raw(Model.ShortDescription)</b>
                 </div>
                 <div class="row">
-                
-             @Html.Raw(Model.Description)
-                   
+
+                    <img width="100%" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.UrlImage.ToString().Split('_')[0]/@Model.UrlImage">
+                </div>
+                <div class="row">
+
+                    @Html.Raw(Model.Description)
+
                 </div>
             </form>
+        </div>
+        <div class="group_work">
+            <div class="header_text">
+                <h3>Xem thêm</h3>
+            </div>
+            <ul class="last_list">
+                @foreach (var item in dataMiniPost.Where(x=>x.ID != Model.ID))
+                {
+                    <li class="none-boder-li">
+                        <a href="@Url.Action("DetailNews","Default",new { id=item.Name.UrlFrendly()+"-"+item.ID})">@item.Name</a>
+
+                    </li>
+                }
+
+            </ul>
+
+            <style>
+                a.active {
+                    cursor: auto;
+                }
+                .none-boder-li {
+                    border: 0px solid #dfdfdf !important;
+                line-height: 7px!important;
+                padding: 10px 0px!important;
+                }
+                .none-boder-li a:before {
+                    font-size: 5px;
+                    font-family: 'inherit' !important;
+                    color: #319c00;
+                    content: '\f0c8 ';
+                    margin-right: 6px;
+                    position: relative;
+                    top: -2px;
+                }
+            </style>
         </div>
     </div>
     <div class="grid_3 omega main_right" id="sideRightPushy">

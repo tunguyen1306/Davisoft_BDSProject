@@ -23,6 +23,8 @@ namespace WebBDS_Project.Models
         public List<GeoModel> ListGeoModel { get; set; }
         public List<GeoModel> ListGeoDisModel { get; set; }
         public List<BDSMarriage> ListMarriea{ get; set; }
+        public List<BDSTransactionHistory> ListBdsTransactionHistory { get; set; }
+        public BDSTransactionHistory TblBdsTransactionHistory { get; set; }
         public BDSMarriage tblMarriea { get; set; }
 
         public List<BDSSalary> ListSalary { get; set; }

@@ -150,201 +150,201 @@
     </Compile>
     <Compile Include="Helpers\UrlFriendly.cs" />
     <Compile Include="Models\Audit.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSAccount.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BdsAcountModel.cs" />
     <Compile Include="Models\BDSApply.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSArea.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSBank.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSBanner.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSBranch.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSCareer.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSComment.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSEducation.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSEmper.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSEmployerInformation.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSEvent.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSExtNew.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSLanguage.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSMarriage.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSMenu.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSNew.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSNewsDate.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSNewsType.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSNewsTypePrice.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSNews_Career.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSPerNew.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSPerNews_Degrees.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSPerNews_Experiences.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSPerNews_LangDegrees.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSPerNews_References.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSPersonalInformation.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSPicture.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSSalary.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSScope.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSTimeWork.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSTransaction.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSTransactionHistory.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BDSTypeContact.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Branch.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CaptCha.cs" />
     <Compile Include="Models\Counter.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Country.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CountryText.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Currency.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\davisoft_bdsprojectEntities1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>davisoft_bdsprojectEntities1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\davisoft_bdsprojectEntities1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\davisoft_bdsprojectEntities1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>davisoft_bdsprojectEntities1.edmx</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\District.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DistrictText.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GeoModel.cs" />
     <Compile Include="Models\Holiday.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Language.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Location.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LocationText.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Menu.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Menus_Roles.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\NewsPicture.cs" />
     <Compile Include="Models\Permission.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RegisterInformationModel.cs" />
     <Compile Include="Models\Role.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles_Permissions.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Setting.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\State.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StateText.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users_Branches.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users_Roles.cs">
-      <DependentUpon>davisoft_bdsprojectEntities1.tt</DependentUpon>
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewRenderer.cs" />
+    <Compile Include="Models\WebBds.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBds.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebBds.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBds.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebBds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBds.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -404,24 +404,24 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="Models\davisoft_bdsprojectEntities1.edmx">
+    <EntityDeploy Include="Models\WebBds.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>davisoft_bdsprojectEntities1.Designer.cs</LastGenOutput>
+      <LastGenOutput>WebBds.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\davisoft_bdsprojectEntities1.edmx.diagram">
-      <DependentUpon>davisoft_bdsprojectEntities1.edmx</DependentUpon>
+    <Content Include="Models\WebBds.edmx.diagram">
+      <DependentUpon>WebBds.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Models\davisoft_bdsprojectEntities1.Context.tt">
+    <Content Include="Models\WebBds.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>davisoft_bdsprojectEntities1.edmx</DependentUpon>
-      <LastGenOutput>davisoft_bdsprojectEntities1.Context.cs</LastGenOutput>
+      <DependentUpon>WebBds.edmx</DependentUpon>
+      <LastGenOutput>WebBds.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\davisoft_bdsprojectEntities1.tt">
+    <Content Include="Models\WebBds.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>davisoft_bdsprojectEntities1.edmx</DependentUpon>
-      <LastGenOutput>davisoft_bdsprojectEntities1.cs</LastGenOutput>
+      <DependentUpon>WebBds.edmx</DependentUpon>
+      <LastGenOutput>WebBds.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\CusWeb.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -677,6 +677,8 @@
     <Content Include="Views\Register\ForgerPass.cshtml" />
     <Content Include="Views\Register\_Active.cshtml" />
     <Content Include="Views\Register\_ResetPass.cshtml" />
+    <Content Include="Views\Management\History.cshtml" />
+    <Content Include="Views\Register\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

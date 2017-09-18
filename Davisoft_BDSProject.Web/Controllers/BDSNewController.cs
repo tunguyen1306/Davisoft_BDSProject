@@ -167,7 +167,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
-            var tblNews = new BDSNew {CreateUser = 1,Active =0,CreateDate = DateTime.Now, DateReup = null,IdLanguage=1, FromCreateNews = DateTime.Now, ToCreateNews = DateTime.Now.AddDays(3), FromDeadline = DateTime.Now, ToDeadline = null };
+            var tblNews = new BDSNew {ShowEmail = 0,CreateUser = 1,Active =0,CreateDate = DateTime.Now, DateReup = null,IdLanguage=1, FromCreateNews = DateTime.Now, ToCreateNews = DateTime.Now.AddDays(3), FromDeadline = DateTime.Now, ToDeadline = null };
             _service.CreateItem(tblNews);
             LoadDataList();
             ViewBag.MultiSelectCareer = new int[]{};
@@ -206,6 +206,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.FromDeadline = DateTime.Now;
             model.IdTypeNewsCuurent = model.IdTypeNews;
+            model.ShowEmail = model.ShowEmail;
             model.BDSAccount = _serviceAccount.GetItem(model.IdAcount);
             model.KeySearch = model.Title.NormalizeD() + " " + model.BDSAccount.Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
             _service.UpdateItem(model);
@@ -329,6 +330,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.BDSAccount = _serviceAccount.GetItem(model.IdAcount);
             model.FromDeadline = DateTime.Now;
+            model.ShowEmail = model.ShowEmail;
             model.KeySearch = model.Title.NormalizeD() + " " + model.BDSAccount.Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
 
             if (model.Status==1)
@@ -636,6 +638,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.FromCreateNews = DateTime.Parse(fromDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.ToCreateNews = DateTime.Parse(toDate.Trim(), MvcApplication.CultureInfo, DateTimeStyles.None);
             model.FromDeadline = DateTime.Now;
+            model.ShowEmail = model.ShowEmail;
             model.KeySearch = model.Title.NormalizeD() + " " + _serviceAccount.GetItem(model.IdAcount).Email + " " + _serviceNewsType.GetItem(model.IdTypeNews).Name.NormalizeD() + " " + _serviceEmployerInformation.GetIQueryableItems().Where(T => T.IdAccount == model.IdAcount).FirstOrDefault().Name + " " + model.DesCompany.NormalizeD();
             _service.UpdateItem(model);
             var listMap = db.BDSNews_Career.Where(T => T.ID_News == model.ID).ToList();

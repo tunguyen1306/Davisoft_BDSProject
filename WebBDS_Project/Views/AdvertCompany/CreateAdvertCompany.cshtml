@@ -109,14 +109,14 @@
                         <div class="row">
                             <label>Kinh nghiệm:<span class="required">*</span></label>
                             <div class="row-right">
-                                @Html.DropDownListFor(m => m.tblBDSPerNew.ExperienceProfile, new SelectList(Model.ListTimework, "Id", "Name", "Chọn kinh nghiệm"), new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.ExperienceProfile, new SelectList(Model.ListTimework, "Id", "Name", "Chọn kinh nghiệm"), new { @class = "select2" })
 
                             </div>
                             <label style="width: 111px;" class="child">Ngoại ngữ:<span class="required">*</span></label>
                             <div class="row-right">
 
 
-                                @Html.DropDownListFor(m => m.tblBDSPerNew.LanguageProfile, new SelectList(Model.ListBDSLanguage, "Id", "Name", "Chọn ngoại ngữ"), new { @class = "dropdown" })
+                                @Html.DropDownListFor(m => m.tblBDSPerNew.LanguageProfile, new SelectList(Model.ListBDSLanguage, "Id", "Name", "Chọn ngoại ngữ"), new { @class = "select2" })
 
                             </div>
                         </div>
@@ -136,7 +136,7 @@
 
                         }
 
-         , new { @class = "dropdown" })
+         , new { @class = "select2" })
 
 
                             </div>

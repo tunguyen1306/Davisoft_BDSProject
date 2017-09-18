@@ -126,6 +126,7 @@
                         }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
                 </div>
+                
 
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSNew_TimeWork", "Experience") <span class="required">*</span></label>
@@ -424,7 +425,19 @@
                         @Html.Bootstrap().TextBoxFor(m => m.WebSiteCompany).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">ShowEmail </label>
 
+                    <div class="col-md-3">
+                        @Html.Bootstrap().DropDownListFor(m => m.ShowEmail, new List<SelectListItem>
+                        {
+                            new SelectListItem{Text = "NotShow",Value = "0",Selected = true},
+                            new SelectListItem{Text = "Show",Value = "1",Selected = false},
+
+
+                        }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                    </div>
+                </div>
 
             </div>
         </section>

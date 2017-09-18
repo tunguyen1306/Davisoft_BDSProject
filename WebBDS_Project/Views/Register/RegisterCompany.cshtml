@@ -68,7 +68,7 @@
                         <label>Quy mô công ty<span class="required"> *</span></label>
                         <div class="row-right">
 
-                            @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Scope, new SelectList(Model.ListBDSScopes, "Id", "Name"), new { @class = "dropdown" })
+                            @Html.DropDownListFor(m => m.TblBDSEmployerInformation.Scope, new SelectList(Model.ListBDSScopes, "Id", "Name"), new { @class = "select2" })
                       
                           </div>
 

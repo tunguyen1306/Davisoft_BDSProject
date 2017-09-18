@@ -61,5 +61,6 @@ namespace WebBDS_Project.Models
         public Nullable<int> ModifiedUser { get; set; }
         public Nullable<int> IdNewsDates { get; set; }
         public string Reason { get; set; }
+        public Nullable<int> ShowEmail { get; set; }
     }
 }

@@ -94,8 +94,8 @@ namespace WebBDS_Project.Controllers
                 ListCityText = dataCity.ToList(),
                 ListDucation = db.BDSEducations.ToList(),
                 ListTimework = db.BDSTimeWorks.ToList(),
-                ListBDSLanguage = db.BDSLanguages.ToList()
-
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList()
 
             };
 

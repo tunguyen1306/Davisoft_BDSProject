@@ -133,7 +133,7 @@ namespace Davisoft_BDSProject.Web.Controllers
             model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                               model.BDSAccount.Point.Value.ToString("n2");
             model.BDSAccount= _serviceAccount.CreateItem(model.BDSAccount);
-
+            model.BDSAccount.MailActive = model.BDSAccount.MailActive;
             model.IdAccount = model.BDSAccount.ID;
             model.BDSScope = _serviceScope.GetItem(model.Scope);
             model.FullAddress = model.Address.NormalizeD() + ", " + Districts.Where(T => T.Value == model.District.ToString()).FirstOrDefault().Text.NormalizeD() +
@@ -266,6 +266,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                 path1 = Path.Combine(path, fileNameFull);
                 file.SaveAs(path1);
             }
+            model.BDSAccount.MailActive = model.BDSAccount.MailActive;
             model.UrlImage = fileNameFull;
             model.BDSAccount.KeySearch = model.BDSAccount.Email.NormalizeD() + " " + model.BDSAccount.Money.Value.ToString("n2") + " " +
                             model.BDSAccount.Point.Value.ToString("n2");

@@ -17,49 +17,45 @@
                 <h3><span><i class="fa fa-list-ul"></i>Danh sách ứng viên</span></h3>
             </div>
             <div class="grid_12">
-                <table class="table-responsive" style="margin-top: 10px;">
-                    <thead>
-                        <tr>
-                            <th data-field="id">NGÀY TÌM VIỆC</th>
-                            <th data-field="name">HÌNH ẢNH</th>
-                            <th data-field="name">HỌ VÀ TÊN</th>
-                            <th data-field="name">GIỚI TÍNH</th>
-                            <th data-field="name">NĂM SINH</th>
-                            @*<th data-field="name">KINH NGHIỆM</th>
-                   
-                  
-                            <th data-field="name">VỊ TRÍ MONG MUỐN</th>
-                            <th data-field="name">TỈNH / THÀNH PHỐ</th>
-                            <th data-field="name">QUẬN HUYỆN</th>
-                            <th data-field="name">HỌC VẤN</th>*@
-                            <th data-field="name">CHI TIẾT</th>
-                        </tr>
-                    </thead>
+                @if (Model.ListBDSApply.Count > 0)
+                {
+                    <table class="table table-bordered table-striped grid-table" style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th data-field="id">NGÀY TÌM VIỆC</th>
+                                <th data-field="name">HÌNH ẢNH</th>
+                                <th data-field="name">HỌ VÀ TÊN</th>
+                                <th data-field="name">GIỚI TÍNH</th>
+                                <th data-field="name">NĂM SINH</th>
+                                <th data-field="name">CHI TIẾT</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        @foreach (var item in Model.ListBDSApply.Where(x=>x.IdAccountEm== IdAccount))
-                        {
-                            foreach (var itemPer in db.BDSPersonalInformations.Where(x=>x.IdAccount== item.IdAccountPer))
+                        <tbody>
+                            @foreach (var item in Model.ListBDSApply.Where(x => x.IdAccountEm == IdAccount))
                             {
-                                <tr>
-                            <td>@itemPer.CreateDate</td>
-                            <td><img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@itemPer.UrlImage.ToString().Split('_')[0]/@itemPer.UrlImage" /></td>
-                            <td>@itemPer.Name</td>
-                            <td>@itemPer.Sex</td>
-                            <td>@itemPer.Birthday</td>
-                            @*<td>@itemPer.Experience</td>
-                            <td>@itemPer.IdLoaiNghe</td>
-                            <td>@itemPer.City</td>
-                            <td>@itemPer.District</td>
-                            <td>@itemPer.Education</td>*@
-                            <td><a style="cursor: pointer" href="@Url.Action("DetailPer","Management",new {id=itemPer.Name.UrlFrendly() +"-"+itemPer.ID})">xem</a></td>
-                        </tr> 
+                                foreach (var itemPer in db.BDSPersonalInformations.Where(x => x.IdAccount == item.IdAccountPer))
+                                {
+                                    <tr>
+                                        <td>@itemPer.CreateDate</td>
+                                        <td><img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@itemPer.UrlImage.ToString().Split('_')[0]/@itemPer.UrlImage" /></td>
+                                        <td>@itemPer.Name</td>
+                                        <td>@itemPer.Sex</td>
+                                        <td>@itemPer.Birthday</td>
+                                        <td><a style="cursor: pointer" href="@Url.Action("DetailAdvertCompany", "AdvertCompany", new { idNew = itemPer.Name.UrlFrendly() + "-" + item.IdPerNew })">xem</a></td>
+                                    </tr>
+                                }
+
                             }
-                            
-                        }
-                        
-                    </tbody>
-                </table>
+
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div>Chưa có hồ sơ nào được lưu</div>
+                }
+              
             </div>
 
         </div>

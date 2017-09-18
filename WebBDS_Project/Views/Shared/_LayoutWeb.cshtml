@@ -3,7 +3,7 @@
 @{
     davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
     var modelMenu = db.BDSCareers.Take(4);
-  
+
 
 }
 <!DOCTYPE HTML>
@@ -26,9 +26,9 @@
     <link rel="icon" href="~/Template/images/fa.jpg" sizes="32x32" />
     <meta name="msapplication-TileImage" content="~/Template/images/fa.jpg" />
 
-    
-     @RenderSection("share_fb", false)
-    <title>BDS</title>
+
+    @RenderSection("share_fb", false)
+
     <link rel="stylesheet" href="~/Template/css/normalize.css" type="text/css" media="screen">
     <link rel="stylesheet" href="~/Template/css/grid.css" type="text/css" media="screen">
     <link rel="stylesheet" href="~/Template/css/style.css" type="text/css" media="screen">
@@ -59,13 +59,13 @@
 
     <script src="~/Template/js/datatables.min.js"></script>
     <script>
- (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
- (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
- m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
- })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
- ga('create', 'UA-54994996-10', 'auto');
- ga('send', 'pageview');
+        ga('create', 'UA-54994996-10', 'auto');
+        ga('send', 'pageview');
 
     </script>
 </head>
@@ -82,15 +82,46 @@
                             <div class="login">
                                 @if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(id))
                                 {
+
                                     <a style="padding: 0 0px !important;" href="@Url.Action("ManagerAcountPer", "AdvertCompany")"> @Session["EmailUser"]</a>
                                 }
                                 else
                                 {
-                                    <a style="padding: 0 0px !important;" href="@Url.Action("ManagementAcountEmployee", "Management")"> @Session["EmailUser"]</a>
+                                    <a href="@Url.Action("ApplyArchive", "Management")">
+                                        <i class="fa fa-bell" style="font-size: 22px" aria-hidden="true"><span class="textnotify">
+    @(db.BDSApplies.Count(x => x.IdAccountEm == id))
+
+</span></i>
+                                        @*<div class="notify"></div>*@
+                                        
+                                    </a>
+                                        <a style="padding: 0 0px !important;" href="@Url.Action("ManagementAcountEmployee", "Management")"> @Session["EmailUser"]</a>
+                                        <style>
+                                            .notify {
+                                                color: #ffffff;
+                                                background: red;
+                                                width: 16px;
+                                                height: 17px;
+                                                border-radius: 8px 8px 8px 8px;
+                                                position: absolute;
+                                                top: 0px;
+                                                left: 30px;
+                                            }
+                                            .textnotify {
+                                                 position: absolute;
+    top: 5px;
+    left: 30px;
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    font-family: sans-serif;
+                                            }
+                                        </style>
                                 }
-                              
+
                                 <span class="gachTop"></span>
-                                <a style="padding: 0 0px !important;" href="@Url.Action("LogOut", "Login")">Thoát</a>
+                                <a style="padding: 0 7px !important;" href="@Url.Action("LogOut", "Login")"><i class="fa fa-times-circle" aria-hidden="true"></i>Thoát</a>
 
                             </div>
                         }
@@ -129,14 +160,17 @@
                                 </div>
                             </div>
                         }
-                      
+
                     </div>
                 </div>
                 <div class="container clearfix">
                     <div class="top">
-                      
-                        <div class="logo"><a href="/">
-                            <img src="~/Template/images/logo.png" alt="logo">Tìm việc làm bất động sản nhanh chóng</a> </div>
+
+                        <div class="logo">
+                            <a href="/">
+                                <img src="~/Template/images/logo.png" alt="logo">Tìm việc làm bất động sản nhanh chóng
+                            </a>
+                        </div>
                         <div class="banner">
                             @foreach (var item in db.BDSBanners.Where(x => x.Position == "Top"))
                             {
@@ -146,28 +180,26 @@
                                 }
                                 else
                                 {
-                                      <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
                                 }
 
 
                             }
                         </div>
-                           
+
                     </div>
                 </div>
 
                 <!--Menu-->
                 @Html.Partial("_partialMenu", modelMenu)
-              
+
                 <!--End Menu-->
-
-
                 <!-- Content -->
-                
-                
-                
-                
-                
+
+
+
+
+
 
                 @RenderBody()
                 <!--End  Content -->
@@ -176,106 +208,106 @@
         <!--end-->
     </div>
     @*<div id="zendvn-real-estate-bn-l" class="zendvn-real-estate-bn-l" style="position: fixed; top: 40px; left: 333.5px; display: block;">
-    <a href="http://nhaban.net.vn/ky-gui-nha-dat/" target="_blank" class="zendvn-real-bn-l1">
-        <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/bannerkyguinew.gif">
-        </a>
-    <a href="http://nhaban.net.vn/dang-tin-bat-dong-san/" target="_blank" class="zendvn-real-bn-l2">
-        <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/dang-tin.gif">
-        </a>
-    </div>
-    <div id="zendvn-real-estate-bn-r" class="zendvn-real-estate-bn-r" style="position: fixed; top: 40px; right: 333.5px; display: block;">
-    <a href="http://www.canhograndquan4.com/" target="_blank" class="zendvn-real-bn-r1">
-        <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/grandq4.gif"></a>
-    <a href="http://nhaban.net.vn/dang-tin-bat-dong-san/" target="_blank" class="zendvn-real-bn-r2">
-        <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/dang-tin.gif"></a>
-    </div>*@
-     <!--footer-->
-    @*<div id="footer">
-        <div class="container clearfix">
-            <div class="top_footer">
-                <ul>
-                    <li><a href="#">Nhà bán</a></li>
-                    <li><a href="#">Đất nền</a></li>
-                    <li><a href="#">Căn hộ</a></li>
-                    <li><a href="#">Nhà cho thuê</a></li>
-                    <li><a href="#">Quy định</a></li>
-                    <li><a href="#">Điều khoản thỏa thuận</a></li>
-                </ul>
-            </div>
-            <div class="main_footer">
-                <div class="grid_4 grid_4_1">
-                    <h1>NHABAN.NET.VN</h1>
-                    <p>Đăng tin <strong>MIỄN PHÍ</strong> - Mua bán <strong>TỨC THÌ</strong></p>
-                    <p>Website Đăng tin bất động sản thế hệ mới dành cho cá nhân và Doanh nghiệp mua bán thuê nhà đất online.</p>
-                </div>
-                <div class="grid_3 grid_3_1">
-                    <h1>QUY ĐỊNH/ĐĂNG TIN</h1>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="fa fa-caret-right"></i>Quy chế trên Nhaban.net.vn</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-caret-right"></i>Chính sách bảo mật</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-caret-right"></i>Giải quyết tranh chấp</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-caret-right"></i>Qui định đăng tin</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="grid_3 grid_3_1">
-                    <h1>SẢN PHẨM / DỊCH VỤ</h1>
-                    <ul>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Đăng tin miễn phí</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Bán nhà</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Căn hộ bán</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Đất nền bán</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Cho thuê nhà đất</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Định giá nhà đất</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Ký gởi nhà đất</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Vay Thế Chấp</a></li>
-                    </ul>
-                </div>
-                <div class="grid_3 grid_3_1 omega">
-                    <h1>LIÊN HỆ QUẢNG CÁO</h1>
-                    <ul>
-                        <li><a href="tel:0901338589"><i class="fa fa-phone"></i>(0901)-338-589 Mr.Chỉnh</a></li>
-                        <li><a href="mailto:admin@nhaban.net.vn"><i class="fa fa-envelope"></i>admin@nhaban.net.vn</a></li>
-                        <li><a href="#"><i class="fa fa-table"></i>Bảng giá banner Quảng Cáo</a></li>
-                        <li><a href="#"><i class="fa fa-table"></i>Bảng giá tin đăng</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Căn Hộ Vincity</a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i>Saigon Peninsula</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="sub_footer">
-                <i>
-                    <b>
-                        <div class="note">
-                            <a href="#" target="_blank">
-                                <img src="~/Template/images/dangkybo.png" alt="#" border="0"></a>
-                        </div>
-                        Website được sở hữu và quản lý bởi: 
-                    </b>
-                </i>
-                <br>
-                <b>CÔNG TY CỔ PHẦN ĐẦU TƯ KINH DOANH DỊCH VỤ 589</b><br>
-                <b>Địa chỉ:</b> Số 50 Đường số 1, Khu dân cư 6B Intresco, ấp 5, Xã Bình Hưng, huyện Bình Chánh; TP.Hồ Chí Minh<br>
-                <b>Giấy phép đăng ký kinh doanh số: </b>0313023573 do Sở Kế Hoạch &amp; Đầu Tư TP Hồ Chí Minh cấp ngày 22/11/2014<br>
-                <b>Điện thoại:</b> 0901338589 - Mr.Chỉnh &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>Email:</b> admin@nhaban.net.vn</td>
-            </div>
-            <div class="footer_bottom">
-                <div>
-                    <a href="#">Email: admin@nhaban.net.vn</a>
-                    | <a href="#">Skype: cskh.nhaban</a>
-                    | <a href="tel:0901338589">Admin Web: 0901-338-589</a>
-                </div>
-                <div>Địa chỉ VPĐD: Số 13A - Hồ Hảo Hớn - P.Cô Giang - Quận 1.</div>
-            </div>
+        <a href="http://nhaban.net.vn/ky-gui-nha-dat/" target="_blank" class="zendvn-real-bn-l1">
+            <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/bannerkyguinew.gif">
+            </a>
+        <a href="http://nhaban.net.vn/dang-tin-bat-dong-san/" target="_blank" class="zendvn-real-bn-l2">
+            <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/dang-tin.gif">
+            </a>
         </div>
-    </div>*@
+        <div id="zendvn-real-estate-bn-r" class="zendvn-real-estate-bn-r" style="position: fixed; top: 40px; right: 333.5px; display: block;">
+        <a href="http://www.canhograndquan4.com/" target="_blank" class="zendvn-real-bn-r1">
+            <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/grandq4.gif"></a>
+        <a href="http://nhaban.net.vn/dang-tin-bat-dong-san/" target="_blank" class="zendvn-real-bn-r2">
+            <img src="http://nhaban.net.vn/wp-content/uploads/2015/10/dang-tin.gif"></a>
+        </div>*@
+    <!--footer-->
+    @*<div id="footer">
+            <div class="container clearfix">
+                <div class="top_footer">
+                    <ul>
+                        <li><a href="#">Nhà bán</a></li>
+                        <li><a href="#">Đất nền</a></li>
+                        <li><a href="#">Căn hộ</a></li>
+                        <li><a href="#">Nhà cho thuê</a></li>
+                        <li><a href="#">Quy định</a></li>
+                        <li><a href="#">Điều khoản thỏa thuận</a></li>
+                    </ul>
+                </div>
+                <div class="main_footer">
+                    <div class="grid_4 grid_4_1">
+                        <h1>NHABAN.NET.VN</h1>
+                        <p>Đăng tin <strong>MIỄN PHÍ</strong> - Mua bán <strong>TỨC THÌ</strong></p>
+                        <p>Website Đăng tin bất động sản thế hệ mới dành cho cá nhân và Doanh nghiệp mua bán thuê nhà đất online.</p>
+                    </div>
+                    <div class="grid_3 grid_3_1">
+                        <h1>QUY ĐỊNH/ĐĂNG TIN</h1>
+                        <ul>
+                            <li>
+                                <a href="#"><i class="fa fa-caret-right"></i>Quy chế trên Nhaban.net.vn</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-caret-right"></i>Chính sách bảo mật</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-caret-right"></i>Giải quyết tranh chấp</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-caret-right"></i>Qui định đăng tin</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid_3 grid_3_1">
+                        <h1>SẢN PHẨM / DỊCH VỤ</h1>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Đăng tin miễn phí</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Bán nhà</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Căn hộ bán</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Đất nền bán</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Cho thuê nhà đất</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Định giá nhà đất</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Ký gởi nhà đất</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Vay Thế Chấp</a></li>
+                        </ul>
+                    </div>
+                    <div class="grid_3 grid_3_1 omega">
+                        <h1>LIÊN HỆ QUẢNG CÁO</h1>
+                        <ul>
+                            <li><a href="tel:0901338589"><i class="fa fa-phone"></i>(0901)-338-589 Mr.Chỉnh</a></li>
+                            <li><a href="mailto:admin@nhaban.net.vn"><i class="fa fa-envelope"></i>admin@nhaban.net.vn</a></li>
+                            <li><a href="#"><i class="fa fa-table"></i>Bảng giá banner Quảng Cáo</a></li>
+                            <li><a href="#"><i class="fa fa-table"></i>Bảng giá tin đăng</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Căn Hộ Vincity</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i>Saigon Peninsula</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sub_footer">
+                    <i>
+                        <b>
+                            <div class="note">
+                                <a href="#" target="_blank">
+                                    <img src="~/Template/images/dangkybo.png" alt="#" border="0"></a>
+                            </div>
+                            Website được sở hữu và quản lý bởi:
+                        </b>
+                    </i>
+                    <br>
+                    <b>CÔNG TY CỔ PHẦN ĐẦU TƯ KINH DOANH DỊCH VỤ 589</b><br>
+                    <b>Địa chỉ:</b> Số 50 Đường số 1, Khu dân cư 6B Intresco, ấp 5, Xã Bình Hưng, huyện Bình Chánh; TP.Hồ Chí Minh<br>
+                    <b>Giấy phép đăng ký kinh doanh số: </b>0313023573 do Sở Kế Hoạch &amp; Đầu Tư TP Hồ Chí Minh cấp ngày 22/11/2014<br>
+                    <b>Điện thoại:</b> 0901338589 - Mr.Chỉnh &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>Email:</b> admin@nhaban.net.vn</td>
+                </div>
+                <div class="footer_bottom">
+                    <div>
+                        <a href="#">Email: admin@nhaban.net.vn</a>
+                        | <a href="#">Skype: cskh.nhaban</a>
+                        | <a href="tel:0901338589">Admin Web: 0901-338-589</a>
+                    </div>
+                    <div>Địa chỉ VPĐD: Số 13A - Hồ Hảo Hớn - P.Cô Giang - Quận 1.</div>
+                </div>
+            </div>
+        </div>*@
     <div id="footer">
         <div class="container clearfix">
             <div class="top_footer">
@@ -287,15 +319,15 @@
                         <li><a href="@item.Url">@item.Name</a></li>
                     }
                     @*<li><a href="#">Tìm việc làm</a></li>
-                    <li><a href="#">Top nhà tuyển dụng</a></li>
-                    <li><a href="#">Người tìm việc</a></li>
-                    <li><a href="#">Việc làm 24h</a></li>
-                    <li><a href="#">Biểu mẫu</a></li>
-                    <li><a href="#">Tin tức</a></li>
-                    <li><a href="#">Nghệ thuật quản lý</a></li>
-                    <li><a href="#">Kỹ năng phỏng vấn</a></li>
-                    <li><a href="#">Định hướng nghề nghiệp</a></li>
-                    <li><a href="#">Liên hệ</a></li>*@
+                        <li><a href="#">Top nhà tuyển dụng</a></li>
+                        <li><a href="#">Người tìm việc</a></li>
+                        <li><a href="#">Việc làm 24h</a></li>
+                        <li><a href="#">Biểu mẫu</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                        <li><a href="#">Nghệ thuật quản lý</a></li>
+                        <li><a href="#">Kỹ năng phỏng vấn</a></li>
+                        <li><a href="#">Định hướng nghề nghiệp</a></li>
+                        <li><a href="#">Liên hệ</a></li>*@
                 </ul>
             </div>
             <div class="main_footer">
@@ -339,7 +371,7 @@
                         <li><a href="#"><i class="fa fa-table"></i>Bảng giá tin đăng</a></li>
                         <li class="ads"><a href="#"><i class="fa fa-table"></i>Khuyến mãi <img src="~/Template/images/new.gif" alt="img"></a></li>
                     </ul>
-                   
+
                 </div>
             </div>
             <div class="sub_footer">
@@ -379,83 +411,134 @@
     <div class="soc_icons mg20 fixed">
         <div class="container clearfix">
             <div class="register_footer">
-                <a href="@Url.Action("AdvertCompany","Adverts")" ><i class="fa fa-pencil-square-o"></i>
-                    Đăng tuyển dụng</a>
+                <a href="javascript:void(0)" class="btnEmCreateFindJob">
+                    <i class="fa fa-pencil-square-o"></i>
+                    Đăng tuyển dụng
+                </a>
 
-                <a href="@Url.Action("CreateAdvertCompany", "AdvertCompany")"><i class="fa fa-pencil-square-o"></i>
-                    Đăng tìm việc</a>
+                @*@Url.Action("CreateAdvertCompany", "AdvertCompany")*@
+                <a href="javascript:void(0)" class="btnCreateFindJob">
+                    <i class="fa fa-pencil-square-o"></i>
+                    Đăng tìm việc
+                </a>
             </div>
         </div>
     </div>
     <script src="~/Template/js/pushy.js"></script>
     <script src="~/Template/js/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript">
+        $('.btnCreateFindJob').click(function() {
+            var obj = {};
+
+            obj.id = '@(Session["IdUser"])';
+
+
+            $.ajax
+            ({
+                type: "POST",
+                url: '@Url.Action("Checkuser", "Login")',
+                data: JSON.stringify(obj),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data.result === 0) {
+                        toastr.error("Tài khoản người tìm việc mới có thể đăng tin tìm việc");
+                    }
+                    if (data.result === 1) {
+                        window.location.href = "@Url.Action("CreateAdvertCompany","AdvertCompany")";
+                    }
+
+                }
+            });
+        });
+        $('.btnEmCreateFindJob').click(function() {
+            var obj = {};
+            obj.id = '@(Session["IdUser"])';
+
+
+            $.ajax
+            ({
+                type: "POST",
+                url: '@Url.Action("CheckuserEm", "Login")',
+                data: JSON.stringify(obj),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data.result === 0) {
+                        toastr.error("Tài khoản của qúy khách không phải là tài khoản nhà tuyển dụng. Vui lòng đăng nhập hoặc đăng kí tài khoản nhà tuyển dụng.");
+                    }
+                    if (data.result === 1) {
+                        window.location.href = "@Url.Action("AdvertCompany","Adverts")";
+                    }
+
+                }
+            });
+        });
         $(document).ready(function() {
             $('.select2').select2();
         });
         $('.btnSave').each(function() {
             $(this).click(function() {
                 var UserId = @(Session["IdUser"] ?? 0);
-        
-            CheckSave($(this).attr('rel'), UserId);
-        });
-    });
-    function SaveNew(idNew,idAccount) {
-        
-    }
-    function CheckSave(idNew, idAccount) {
 
-        var obj = {};
-        obj.idNew = idNew;
-        obj.idAccount = idAccount;
-
-        $.ajax
-       ({
-           type: "POST",
-           url: '@Url.Action("CheckAccountSaveNews", "AdvertCompany")',
-           data: JSON.stringify(obj),
-           dataType: "json",
-           contentType: "application/json;charset=utf-8",
-           success: function (data) {
-               if (data.result === 0) {
-                   toastr.error("Việc làm đã được lưu trước đây");
-               }
-               if (data.result === 1) {
-                   toastr.success("bạn đã lưu thành công");
-               }
-               if (data.result === 2) {
-               
-                   toastr.error("Tài khoản người tìm việc mới có thể lưu");
-               }
-           }
-       });
-    }
-    var optionSideRight = {
-        button: "side-right-pushy-button",
-        container: "container",
-        containerPush: false,
-        menuPosition: "right",
-        menuOpen: false,
-        overlayShow: true
-    };
-
-    $("#sideRightPushy").Pushy(optionSideRight);
-    $(function () {
-        $('.popup-modal').magnificPopup({
-            type: 'inline',
-            preloader: false,
-            focus: '#username',
-            modal: true
+                CheckSave($(this).attr('rel'), UserId);
+            });
         });
-        $(document).on('click', '.popup-modal-dismiss', function (e) {
-            e.preventDefault();
-            $.magnificPopup.close();
+        function SaveNew(idNew,idAccount) {
+
+        }
+        function CheckSave(idNew, idAccount) {
+
+            var obj = {};
+            obj.idNew = idNew;
+            obj.idAccount = idAccount;
+
+            $.ajax
+            ({
+                type: "POST",
+                url: '@Url.Action("CheckAccountSaveNews", "AdvertCompany")',
+                data: JSON.stringify(obj),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data.result === 0) {
+                        toastr.error("Việc làm đã được lưu trước đây");
+                    }
+                    if (data.result === 1) {
+                        toastr.success("bạn đã lưu thành công");
+                    }
+                    if (data.result === 2) {
+
+                        toastr.error("Tài khoản người tìm việc mới có thể lưu");
+                    }
+                }
+            });
+        }
+        var optionSideRight = {
+            button: "side-right-pushy-button",
+            container: "container",
+            containerPush: false,
+            menuPosition: "right",
+            menuOpen: false,
+            overlayShow: true
+        };
+
+        $("#sideRightPushy").Pushy(optionSideRight);
+        $(function () {
+            $('.popup-modal').magnificPopup({
+                type: 'inline',
+                preloader: false,
+                focus: '#username',
+                modal: true
+            });
+            $(document).on('click', '.popup-modal-dismiss', function (e) {
+                e.preventDefault();
+                $.magnificPopup.close();
+            });
         });
-    });
-    $(document).ready(function () {
-        $('.dataTable').DataTable();
-    });
+        $(document).ready(function () {
+            $('.dataTable').DataTable();
+        });
     </script>
 </body>
 </html>
-

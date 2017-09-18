@@ -23,9 +23,9 @@
 }
 <ul class="list_work_2">
     @{
-       /* var query = from a in db.BDSNews join b in db.BDSEmployerInformations on a.IdAcount equals b.IdAccount where a.Active == 1 && b.Active == 1 && a.Status == 1 && b.Featured == 1 && (tt == 0 || a.AddressWork == tt) select a;*/
+        /* var query = from a in db.BDSNews join b in db.BDSEmployerInformations on a.IdAcount equals b.IdAccount where a.Active == 1 && b.Active == 1 && a.Status == 1 && b.Featured == 1 && (tt == 0 || a.AddressWork == tt) select a;*/
         var query = db.BDSNews.Where(A => A.Active == 1 && A.Status == 1 && A.IdTypeNewsCuurent == typeVip.ID && (tt == 0 || A.AddressWork == tt) && A.IdAcount == IdAccount);
-     
+
         var ListNews = query.OrderByDescending(T => T.FromCreateNews).Skip(from).Take(view).ToList();
         count = query.Count();
         foreach (var news in ListNews)
@@ -36,20 +36,36 @@
                 db.Entry(news).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
             }
-                var account = db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
+            var account = db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault();
             if (account != null)
             {
-                 <li>
-                <div class="grid_9">
-                    <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})" class="image_2">
-                        <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] +  (account.UrlImage!=null?( account.UrlImage.Split('_')[0] +"/"+ account.UrlImage):"img.png"))" alt="2">
-                        <p class="vip">
-                            <i class="fa fa-star"></i>
-                            <span></span>
-                        </p>
-                    </a>
-                    <div class="name">
-                        <h2><a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title)  <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                <li>
+                    <div class="grid_9">
+                        <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})" class="image_2">
+                            @if (db.BDSPictures.Any(x => x.advert_id == news.ID))
+                            {
+                                <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
+
+                            }
+                            else
+                            {
+                                <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+
+                            }
+                            <p class="vip">
+                                <i class="fa fa-star"></i>
+                                <span></span>
+                            </p>
+                        </a>
+                        <div class="name">
+                            <h2>
+                                <a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">
+                                    @( news.Title) <span>
+                                    @*@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)*@
+                                    @news.NameCompany
+                                </span>
+                            </a>
+                        </h2>
                         <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
                         <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
                     </div>
@@ -57,45 +73,46 @@
                 <div class="grid_3 omega">
                     <p><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
                 </div>
-                     <div>
-                         <p class="grid_11 omega size-text-15">
-                         <a class="btn btnManage" href="@Url.Action("EditNews","Adverts",new { id=news.ID})"><b class="fa fa-edit" aria-hidden="true"></b>Sửa</a>   
-                             @if (news.MaxReup - news.CountReup > 0 && news.ToCreateNews >= DateTime.Now)
-{
-    <a class="btn btnManage" href="#reup" onclick="reupNB(this,@news.ID)"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin (@(news.MaxReup - news.CountReup)) </a>
-}
-                         <button type="button" class="btn btnManage" data-toggle="modal" data-target="#myModal_@news.ID"><b class="fa fa-remove" aria-hidden="true"></b>Xóa tin</button></p>
+                <div>
+                    <p class="grid_11 omega size-text-15">
+                        <a class="btn btnManage" href="@Url.Action("EditNews","Adverts",new { id=news.ID})"><b class="fa fa-edit" aria-hidden="true"></b>Sửa</a>
+                        @if (news.MaxReup - news.CountReup > 0 && news.ToCreateNews >= DateTime.Now)
+                        {
+                            <a class="btn btnManage" href="#reup" onclick="reupNB(this,@news.ID)"> <b class="fa fa-refresh" aria-hidden="true"></b>Làm mới tin (@(news.MaxReup - news.CountReup)) </a>
+                        }
+                        <button type="button" class="btn btnManage" data-toggle="modal" data-target="#myModal_@news.ID"><b class="fa fa-remove" aria-hidden="true"></b>Xóa tin</button>
+                    </p>
 
-                     </div>
-                     <!-- Modal -->
-                     <div id="myModal_@news.ID" class="modal fade" role="dialog">
-                         <div class="modal-dialog">
+                </div>
+                <!-- Modal -->
+                <div id="myModal_@news.ID" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
 
-                             <!-- Modal content-->
-                             <div class="modal-content">
-                                 <div class="modal-header">
-                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                     <h4 class="modal-title">Xóa bỏ</h4>
-                                 </div>
-                                 <div class="modal-body">
-                                     <p>Bạn có chắc chắn muốn xóa tin đăng này? Lưu ý tất cả dữ liệu của bạn sẽ bị mất! Vì vậy bạn có thể chuyển sang chế độ ngưng đăng tin này để lưu dữ liệu. Vui lòng xác nhận việc xóa tin đăng<b> @news.Title</b> </p>
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Xóa bỏ</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bạn có chắc chắn muốn xóa tin đăng này? Lưu ý tất cả dữ liệu của bạn sẽ bị mất! Vì vậy bạn có thể chuyển sang chế độ ngưng đăng tin này để lưu dữ liệu. Vui lòng xác nhận việc xóa tin đăng<b> @news.Title</b> </p>
 
-                                 </div>
-                                 <div class="modal-footer">
+                            </div>
+                            <div class="modal-footer">
 
-                                     <a class="btn btn-default" href="@Url.Action("DeleteAdvert","Adverts",new { idAdvert = news.ID})">Xóa </a>
-                                     <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-                                 </div>
-                             </div>
+                                <a class="btn btn-default" href="@Url.Action("DeleteAdvert","Adverts",new { idAdvert = news.ID})">Xóa </a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                            </div>
+                        </div>
 
-                         </div>
-                     </div>
+                    </div>
+                </div>
             </li>
             }
-           
+
         }
     }
-    
+
     <li class="page">
         <div class="page_links">
             <span>Trang</span>
@@ -122,14 +139,14 @@
 <script>
 
     function reupNB(el, id) {
-         
+
         var url = '@Url.Action("PManaTinNoiBat", "Management", new { from = from, page = page, view = view, tt = tt })';
         if (url != "") {
             $(el).parents('.group_work').find('.loading').show();
             $(el).parents('.group_work').find('.loading_icon').show();
             var urlPost = '@Url.Action("Reup", "Adverts")';
             $.post(urlPost, { id: id }).done(function (dataPost) {
-             
+
                 $.get(url, function (data) {
                     var elP = $(el).parents('.group_work').eq(0).find('ul.list_work_2').eq(0);
                     elP.html($(data).html());
@@ -155,7 +172,7 @@
                 elP.parents('.group_work').find('.loading_icon').eq(0).hide();
 
 
-               // $(el).parents('.group_work').eq(0).find('ul.list_work_2').eq(0).html($(data).html());
+                // $(el).parents('.group_work').eq(0).find('ul.list_work_2').eq(0).html($(data).html());
 
             });
         }
@@ -167,7 +184,7 @@
             $(el).parents('.group_work').find('.loading').show();
             $(el).parents('.group_work').find('.loading_icon').show();
             $.get(url, function (data) {
-               // $(el).parents('ul.list_work_2').eq(0).html($(data).html());
+                // $(el).parents('ul.list_work_2').eq(0).html($(data).html());
                 var elP = $(el).parents('ul.list_work_2').eq(0);
                 elP.html($(data).html());
 

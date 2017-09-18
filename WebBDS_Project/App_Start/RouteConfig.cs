@@ -122,13 +122,19 @@ url: "dang-ky/dang-ky-nguoi-tim-viec",
 defaults: new { controller = "Register", action = "RegisterPersonal" }
 );
             routes.MapRoute(
-name: "dang-tin-thanh",
-url: "dang-ky/dang-tin-thanh",
+name: "dang-tin-thanh-cong",
+url: "dang-ky/dang-tin-thanh-cong",
 defaults: new { controller = "Register", action = "Thanks" }
+);
+     routes.MapRoute(
+name: "dang-tin-tim-viec",
+url: "dang-tin/dang-tin-tim-viec",
+defaults: new { controller = "AdvertCompany", action = "CreateAdvertCompany" }
 );
 
 
-            
+
+
             routes.MapRoute(
                name: "sua-tin-dang",
                url: "ti-tuc-tuyen-dung/sua-tin-dang",

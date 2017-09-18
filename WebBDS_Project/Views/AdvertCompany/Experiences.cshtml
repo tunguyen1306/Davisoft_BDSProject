@@ -36,7 +36,7 @@
 
                     }
 
-                    , new { @class = "dropdown validate" })
+                    , new { @class = "select2 validate" })
                 <script>
                     document.getElementById('ListPerNewExperiences_@(i)__Level').value = '@Model.ListPerNewExperiences[i].Level';
                 </script>
@@ -58,7 +58,7 @@
                 <div class="pncon">
                     <b>Từ</b>
 
-                    <select class="dropdown" id="FromDate_@(i)_Month">
+                    <select class="select2" id="FromDate_@(i)_Month">
                         <option selected="selected" value="">Chọn</option>
                         @for (int j = 1; j < 13; j++)
                         {
@@ -87,7 +87,7 @@
                 <div class="pncon">
                     <b>Đến</b>
 
-                    <select class="dropdown" id="ToDate_@(i)_Month">
+                    <select class="select2" id="ToDate_@(i)_Month">
                         <option selected="selected" value="">Chọn</option>
                         @for (int j = 1; j < 13; j++)
                         {
@@ -124,8 +124,6 @@
                 <a href="javascript:void(0)" class="btn btnUpload btnXoa" onclick="xoa('Experience_@(i)_')">
                     Xóa
                 </a>
-
-
 
             </div>
         </div>

@@ -34,10 +34,10 @@
                 <h2>@Model.tblBDSPersonalInformation.Name</h2>
 
               
-                    <p><i class="fa fa-map-marker"></i>Địa chỉ: @Model.tblBDSPersonalInformation.Address ,@Model.ListDisText.FirstOrDefault(x=>x.Id==Model.tblBDSPersonalInformation.District).Name,@Model.ListCityText.FirstOrDefault(x=>x.Id==Model.tblBDSPersonalInformation.City).Name </p>
+                    <p><i class="fa fa-map-marker"></i>Địa chỉ: @Model.tblBDSPersonalInformation.TemporaryAddress ,@Model.ListDisText.FirstOrDefault(x=>x.Id==Model.tblBDSPersonalInformation.District).Name,@Model.ListCityText.FirstOrDefault(x=>x.Id==Model.tblBDSPersonalInformation.City).Name </p>
                
 
-                <p><i class="fa fa-user"></i>Công việc mong muốn: @Model.ListBDSCareer.FirstOrDefault(x=>x.ID== Model.tblBDSPersonalInformation.IdLoaiNghe).Name   </p>
+                <p><i class="fa fa-user"></i>Công việc mong muốn: @Model.ListBDSCareer.FirstOrDefault(x=>x.ID== Model.tblBDSPersonalInformation.).Name   </p>
                 <p><i class="fa fa-usd"></i>Mức lương mong muốn: @Model.ListBDSSalary.FirstOrDefault(x => x.ID == Model.tblBDSPersonalInformation.Salary).Name   </p>
 
 

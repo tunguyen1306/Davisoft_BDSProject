@@ -13,7 +13,7 @@
             <label>Ngoại ngữ:<span class="required">*</span></label>
             <div class="row-right">
 
-                @Html.DropDownListFor(m => m.ListPerNewLangDegrees[i].Language, new SelectList(Model.ListBDSLanguage.Where(T => T.Name != "Tiếng Việt"), "Id", "Name"), new { @class = "dropdown validate" })
+                @Html.DropDownListFor(m => m.ListPerNewLangDegrees[i].Language, new SelectList(Model.ListBDSLanguage.Where(T => T.Name != "Tiếng Việt"), "Id", "Name"), new { @class = "select2 validate" })
 
 
             </div>

@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
+    var idAccount =int.Parse(Session["IdUser"].ToString()) ;
+}
+@using WebBDS_Project.Models
+
+
+<div class="container">
+    <div class="grid_9 main_left">
+        <div class="group_work">
+            <div class="header_text">
+                <h3><span><i class="fa fa-list-ul"></i>Lịch sử giao dịch</span></h3>
+            </div>
+            <div class="grid_12">
+                @if (Session["IdUser"] != null)
+                {
+                    if (db.BDSTransactionHistories.Any(x => x.Active==1 && x.IdAccount== idAccount))
+                    {
+                        <table class="table table-bordered table-striped grid-table" style="margin-top: 10px;">
+                            <thead>
+                                <tr>
+                                    <th data-field="id">Ngày</th>
+                                    <th data-field="name">Giao dịch</th>
+                                    <th data-field="name">Số điểm</th>
+                                    <th data-field="name">Số điểm còn lại</th>
+                                    <th data-field="name">Số tiền</th>
+                                    <th data-field="name">Số tiền còn lại</th>
+                                  
+                                 
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in db.BDSTransactionHistories.Where(x => x.Active == 1 && x.IdAccount == idAccount).ToList())
+                                {
+                                    <tr>
+                                        <td>@item.CreateDate</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.PointTran</td>
+                                       
+                                        <td>@item.CreateDate</td>
+                                        <td>@item.MoneyTran</td>
+                                        <td>@item.CreateDate</td>
+
+                               </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div>Chưa có giao dịch nào</div>
+                    }
+
+                }
+
+           
+            </div>
+
+        </div>
+    </div>
+    <div class="grid_3 omega main_right" id="sideRightPushy">
+
+        @Html.Partial("_partialManagerCenter")
+
+    </div>
+</div>
