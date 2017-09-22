@@ -88,7 +88,7 @@
                 var p = Math.Ceiling((double)count / view);
                 for (int i = 1; i <= (int)p; i++)
                 {
-                    <a data-ref='@(page != i ? "" + Url.Action("PManaTinNhaTuyenDung", "Management", new { tt = tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadNBPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
+                    <a data-ref='@(page != i ? "" + Url.Action("PManaTinNhaTuyenDung", "Management", new { tt = tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick="loadNTDPageFrom(this);" @(page == i ? " class=active" : "")>@i</a>
                 }
             }
             <a class="nextPage" onclick="loadNBPageFromNext(this);">Tiếp</a>

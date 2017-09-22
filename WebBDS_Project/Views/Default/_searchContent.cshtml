@@ -22,42 +22,167 @@
         var type = db.BDSNewsTypes.Where(T => T.ID == news.IdTypeNewsCuurent).FirstOrDefault();
         if (account != null)
         {
-            <li>
+            if (type.CodeNewsType=="TDB")
+            {
+              <li>
+      <div class="grid_12 omega title-mobile">
+          <h2 style="position: relative"><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41) +"......" : news.Title ) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 41)+"..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name  )</span></a><a class="btnSave cssbtnSave" href="javascript:void(0)" rel="@news.ID"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</a></h2>
+      </div>
+
                 <div class="grid_3">
                     <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})">
+                       
+                       @if (db.BDSPictures.Any(x => x.advert_id == news.ID))
+                        {
+                        <img class="climg-vip" width="100" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
+
+                       }
+                       else
+                       {
+                        <img class="climg-vip" width="100" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+
+                       }
+                        
+                        <p class="vip">
+                            <i class="fa fa-star"></i>
+                            <span>VIP</span>
+                        </p>
+                    </a> 
+                </div>
+      <div class="grid_9 omega">
+          <h2 class="h2-tilte-mobile" style="position: relative;"><a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41) +"......" : news.Title ) <span>
+
+                                                                                                                                                                                                                                                   
+@(news.NameCompany.Length > 41 ? news.NameCompany.Substring(0, 41) + "..." : news.NameCompany  )
+</span><a class="btnSave cssbtnSave" href="javascript:void(0)" rel="@news.ID"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</a></a>
+          </h2>
+          <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)
+          </p>
+          <div>
+              <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu
+              </p>
+              <p class="grid_6 omega time">Mã tin: <span class="color2">P@(news.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i> @(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))
+              </p>
+          </div>
+         
+      </div>
+      
+            </li>
+            }
+            if (type.CodeNewsType == "TVP")
+            {
+
+
+
+                <li class="list_work_2" style=" margin-bottom: 2px;">
+                    <div class="grid_12 title-mobile">
+
+                        <div class="name" style="width: 100%">
+                            <h2>
+                                <a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">
+                                    @( news.Title.Length > 41 ? news.Title.Substring(0, 41) + "......" : news.Title)
+                                <span>
+                                    @(news.NameCompany.Length > 41 ? news.NameCompany.Substring(0, 41) + "..." : news.NameCompany)
+                                </span>
+                            </a>
+                        </h2>
+
+                    </div>
+                </div>
+                <div class="grid_9">
+                    <a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})" class="image_2">
                         @if (db.BDSPictures.Any(x => x.advert_id == news.ID))
                         {
-                            <img width="100" height="100" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
+                            <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
 
                         }
                         else
                         {
-                            <img width="100" height="100" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+                            <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
 
                         }
-                        
-                        <p class="vip @(type.CodeNewsType)">
+
+
+                        <p class="vip">
                             <i class="fa fa-star"></i>
-                            <span>Vip</span>
+                            <span></span>
                         </p>
                     </a>
+                    <div class="name">
+                        <h2 class="h2-tilte-mobile"><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41) + "......" + "..." : news.Title) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 41) + "..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+                        <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
+                        <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
+                    </div>
                 </div>
-                <div class="grid_9 omega">
-                    <h2>
-                        <a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">
-                            @( news.Title) <span>
-                            @*@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)*@
-                            @news.NameCompany
-                        </span>
-                    </a>
-                </h2>
-                <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
-                <div>
-                    <p class="grid_6"><i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu </p>
-                    <p class="grid_6 omega time">Mã tin: <span class="color2">P@(news.ID.ToString("000000"))</span> <i class="fa fa-clock-o"></i> @(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
+                <div class="grid_3 omega">
+                    <p>
+                        <i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu
+                    </p>
                 </div>
-            </div>
-        </li>
+                <div><a class="btnSave" href="javascript:void(0)" rel="@news.ID"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</a></div>
+            </li>
+
+
+            }
+
+            if (type.CodeNewsType == "TBT")
+            {
+
+                <li class="list_work_2 green" style="margin-bottom: 2px;">
+                    <div class="grid_12 title-mobile">
+
+                        <div class="name">
+                            <h2><a href="@Url.Action("Detail","Default",new {id=news.Title.UrlFrendly()+"-"+news.ID})">@( news.Title.Length > 41 ? news.Title.Substring(0, 41) + "......" : news.Title) <span>@(db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Length > 41 ? db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name.Substring(0, 41) + "..." : db.BDSEmployerInformations.Where(T => T.IdAccount == news.IdAcount).FirstOrDefault().Name)</span></a></h2>
+
+                        </div>
+                    </div>
+                    <div class="grid_9">
+                        <a href="@Url.Action("Detail","Default",new { id=news.Title.UrlFrendly()+"-"+news.ID})" class="image_2">
+                            @if (db.BDSPictures.Any(x => x.advert_id == news.ID))
+                            {
+                                <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID) != null ? (db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath.Split('_')[0] + "/" + db.BDSPictures.FirstOrDefault(x => x.advert_id == news.ID).originalFilepath) : "img.png"))" alt="2">
+
+                            }
+                            else
+                            {
+                                <img width="50" src="@(ConfigurationManager.AppSettings["UrlImage"] + (account.UrlImage != null ? (account.UrlImage.Split('_')[0] + "/" + account.UrlImage) : "img.png"))" alt="2">
+
+                            }
+
+                            <p class="vip">
+                                <i class="fa fa-star"></i>
+                                <span></span>
+                            </p>
+                        </a>
+                        <div class="name">
+                            <h2 class="h2-tilte-mobile">
+                                <a href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">
+                                    @( news.Title.Length > 41 ? news.Title.Substring(0, 41) + "......" : news.Title) <span>
+                                        @(news.NameCompany.Length > 41 ? news.NameCompany.Substring(0, 41) + "..." : news.NameCompany)
+                                    </span>
+                                </a>
+                            </h2>
+                            <p><i class="fa fa-map-marker"></i>@(States.Where(T => T.Id == news.AddressWork).FirstOrDefault().Name)</p>
+                            <p><i class="fa fa-clock-o"></i>@(news.FromCreateNews.Value.ToString("dd/MM/yyyy"))</p>
+                        </div>
+                    </div>
+                    <div class="grid_3 omega">
+                        <p>
+                            <i class="fa fa-usd"></i>Lương: Từ <span>@(news.FromSalary) - @(news.ToSalary)</span> triệu
+                        </p>
+                    </div>
+                    <div><a class="btnSave" href="javascript:void(0)" rel="@news.ID"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</a></div>
+                </li>
+            }
+            if (type.CodeNewsType == "TFE")
+            {
+
+                <li class="last_list">
+                    <a style="position: relative;" href="@Url.Action("Detail", "Default", new {id = news.Title.UrlFrendly() + "-" + news.ID})">@(news.Title.Length > 80 ? news.Title.Substring(0, 80) + "......" : news.Title)</a>
+                    <a class="btnSave" style="position: absolute;right: 10px" href="javascript:void(0)" rel="@news.ID"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</a>
+                </li>
+            }
+
         }
 
     }
@@ -81,7 +206,7 @@
                 }
                 for (int i = currentPage - 3 > 2 ? currentPage - 3 : 1; i <= ((int)p - currentPage > 3 ? currentPage + 3 : (int)p); i++)
                 {
-                    <a data-ref='' style="cursor: pointer" onclick="goPage(@p)" @(currentPage == i ? " class=active" : "")>@i</a>
+                    <a data-ref='' style="cursor: pointer" onclick="goPage(@i)" @(currentPage == i ? " class=active" : "")>@i</a>
                 }
                 if ((int)p - currentPage > 3)
                 {
@@ -101,6 +226,25 @@
 <style>
     a.active {
         cursor: auto;
+    }
+    li.list_work_2 {
+        display: inline-block;
+        width: 100%;
+        padding: 13px 13px 0;
+        box-sizing: border-box;
+        position: relative;
+    }
+    li.last_list {
+        padding-bottom: 10px;
+       
+    }
+    li.list_work_2 .grid_9 a {
+        float: left;
+        margin-right: 20px;
+        position: relative;
+    }
+    .last_list .btnSave {
+        right: 32px !important;
     }
 </style>
 <script>

@@ -100,7 +100,7 @@
                 <h3><span><i class="fa fa-list-ul"></i>Nhà tuyển dụng tiêu biểu</span></h3>
                 <div class="search_location">
                     Tìm theo khu vực
-                    <select class="select2" onchange=" loadFilterPageFrom(this) " tabindex="7">
+                    <select class="select2" onchange=" loadNBFilterPageFrom(this) " tabindex="7">
                         <option value="">Toàn Quốc</option>
                         @{
                             foreach (var item in States)
@@ -148,7 +148,7 @@
                             }
                         }
                     </select>*@
-                    <select class="select2" onchange=" loadFilterPageFrom(this) " tabindex="7">
+                    <select class="select2" onchange=" loadMNFilterPageFrom(this) " tabindex="7">
                         <option value="">Toàn Quốc</option>
                         @{
                             foreach (var item in States)
@@ -177,7 +177,7 @@
                 <div class="search_location">
                     Tìm theo khu vực
 
-                    <select class="select2" onchange="loadFilterPageFrom(this) " tabindex="7">
+                    <select class="select2" onchange="loadNTDFilterPageFrom(this) " tabindex="7">
                         <option value="">Toàn Quốc</option>
                         @{
                             foreach (var item in States)

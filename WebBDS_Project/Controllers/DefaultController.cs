@@ -154,7 +154,7 @@ namespace WebBDS_Project.Controllers
             var q = (from a in db.BDSNews
                      join b in db.BDSNewsTypes on a.IdTypeNewsCuurent equals b.ID
                      where a.Active == 1 && a.Status == 1 && ((a.FromSalary >= fromS && a.ToSalary <= toS) || (a.FromSalary <= fromS && fromS <= a.ToSalary)||(a.FromSalary <= toS && toS <= a.ToSalary))
-                     orderby b.Order ascending, a.FromCreateNews descending
+                     orderby a.FromCreateNews descending
                      select a);
             if (filterWorkingPlace != null && filterWorkingPlace.Length>0)
             {
