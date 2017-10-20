@@ -106,7 +106,7 @@ namespace WebBDS_Project.Controllers
             public int ID_News { get; set; }
             public string GString { get; set; }
         }
-        public ActionResult Search(int?[] filterWorkingPlace, int[] filterCareer, int? filterSalary, int? filterTimeWorking, int page = 1, int view = 25)
+        public ActionResult Search(int?[] filterWorkingPlace, int[] filterCareer, int? filterSalary, int? filterTimeWorking,int? typenews, int page = 1, int view = 25)
         {
             int[] arrayIDNEWS=new int[]{};
             if (filterCareer != null && filterCareer.Length>0)
@@ -153,7 +153,7 @@ namespace WebBDS_Project.Controllers
 
             var q = (from a in db.BDSNews
                      join b in db.BDSNewsTypes on a.IdTypeNewsCuurent equals b.ID
-                     where a.Active == 1 && a.Status == 1 && ((a.FromSalary >= fromS && a.ToSalary <= toS) || (a.FromSalary <= fromS && fromS <= a.ToSalary)||(a.FromSalary <= toS && toS <= a.ToSalary))
+                     where a.Active == 1 &&(typenews==null|| typenews==b.ID) && a.Status == 1 && ((a.FromSalary >= fromS && a.ToSalary <= toS) || (a.FromSalary <= fromS && fromS <= a.ToSalary)||(a.FromSalary <= toS && toS <= a.ToSalary))
                      orderby a.FromCreateNews descending
                      select a);
             if (filterWorkingPlace != null && filterWorkingPlace.Length>0)

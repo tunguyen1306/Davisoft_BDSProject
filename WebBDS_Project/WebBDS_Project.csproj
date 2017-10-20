@@ -532,6 +532,7 @@
     <Content Include="Template\js\UploadImg\cropperVG.js" />
     <Content Include="Template\js\UploadImg\cusjsVG.js" />
     <Content Include="Template\js\UploadImg\dropzoneVG.js" />
+    <Content Include="Template\js\zendvn_setting_banner.js" />
     <Content Include="Template\naptien.htm" />
     <Content Include="Template\QuanLyNhaTuyenDung.htm" />
     <Content Include="Template\QuanLyTaiKhoanNhaTuyenDung.htm" />
