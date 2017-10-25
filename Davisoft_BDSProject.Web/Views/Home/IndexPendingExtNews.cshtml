@@ -20,7 +20,7 @@
         {
             <tr>
                 <td>@item.Name</td>
-                <td>@(item.CatExtNews==1?"Tin bất đông sản":"Chia sẽ kinh nghiệm")</td>
+                <td>@(item.CatExtNews==1?"Tin bất đông sản": item.CatExtNews == 2 ? "Chia sẽ kinh nghiệm" :"Nội dung Web" )</td>
                 <td>@Html.Raw(item.ShortDescription)</td>
                 <td>@item.DateCreate.ToString(MvcApplication.DateTimeFormat.ShortDatePattern)</td>
                 <td><a class="btn btn-primary-me " href="/BDSExtNews/Review/@(item.ID)">Review</a></td>

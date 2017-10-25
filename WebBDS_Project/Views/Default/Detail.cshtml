@@ -33,7 +33,7 @@
     <div class="grid_9 main_left">
         @Html.Partial("_searchPannel")
 
-       
+
         <div class="grid_12 title_detail">
             <div class="logo_detail">
                 <img height="100%" alt="@Model.tblBDSEmployerInformation.Name" src="@ConfigurationManager.AppSettings["UrlImage"]@Model.tblBDSEmployerInformation.UrlImage.ToString().Split('_')[0]/@Model.tblBDSEmployerInformation.UrlImage" />
@@ -44,7 +44,7 @@
                 <p><strong>@Model.tblBDSNew.NameCompany</strong></p>
                 @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblBDSNew.AddressWork))
                 {
-                <p><i class="fa fa-map-marker"></i>Nơi làm việc: @itemCity.Name</p>
+                    <p><i class="fa fa-map-marker"></i>Nơi làm việc: @itemCity.Name</p>
                 }
                 @{
                     var IdCarre = Model.tblBDSNew.Career.Split(',').ToList();
@@ -54,13 +54,13 @@
                     <i class="fa fa-user"></i>
                     @foreach (var itemCarre in Model.ListBDSCareer.Where(x => IdCarre.Contains(x.ID.ToString())))
                     {
-                        @("Công việc:"+itemCarre.Name +", ")
+                        @("Công việc:" + itemCarre.Name + ", ")
 
                     }
-                   
+
 
                 </p>
-               
+
                 <p><i class="fa fa-usd"></i>Mức lương: @(Model.tblBDSNew.FromSalary) @("-") @Model.tblBDSNew.ToSalary @("triệu")  </p>
 
 
@@ -68,30 +68,30 @@
             <div class="grid_12 btn_hoso">
                 @if (Session["IdUser"] != null)
                 {
-                var idAcount = int.Parse(Session["IdUser"].ToString());
-                if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
-                {
+                    var idAcount = int.Parse(Session["IdUser"].ToString());
+                    if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
+                    {
 
-                var check = db.BDSApplies.Where(x => x.IdNews== Model.tblBDSNew.ID && x.IdAccountPer == idAcount).ToList();
-                if (check.Count>0)
-                {
-                <a style="cursor: pointer" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>ĐÃ NỘP HỒ SƠ</a>
+                        var check = db.BDSApplies.Where(x => x.IdNews == Model.tblBDSNew.ID && x.IdAccountPer == idAcount).ToList();
+                        if (check.Count > 0)
+                        {
+                            <a style="cursor: pointer" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>ĐÃ NỘP HỒ SƠ</a>
+                        }
+                        else
+                        {
+                            <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=Model.tblBDSNew.ID})" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
+                        }
+
+                    }
+                    else
+                    {
+                        <a style="cursor: pointer" class="btn_search btnApply1"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
+                    }
+
                 }
                 else
                 {
-                <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=Model.tblBDSNew.ID})" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
-                }
-
-                }
-                else
-                {
-                <a style="cursor: pointer" class="btn_search btnApply1"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
-                }
-
-                }
-                else
-                {
-                <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=0})" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
+                    <a style="cursor: pointer" href="@Url.Action("Apply","Management",new{id=0})" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>NỘP HỒ SƠ</a>
                 }
 
             </div>
@@ -109,7 +109,7 @@
                                 <label>Nơi làm việc: </label>
                                 @foreach (var itemCity in Model.ListCityText.Where(x => x.Id == Model.tblBDSNew.AddressWork))
                                 {
-                                @itemCity.Name
+                                    @itemCity.Name
                                 }
 
 
@@ -122,7 +122,8 @@
 
                         </tr>
                         <tr>
-                            <td><label>Công viêc: </label>
+                            <td>
+                                <label>Công viêc: </label>
                                 @foreach (var itemCarre in Model.ListBDSCareer.Where(x => IdCarre.Contains(x.ID.ToString())))
                                 {
                                     @( itemCarre.Name + ", ")
@@ -138,7 +139,7 @@
                                 <label>Trình độ: </label>
                                 @foreach (var itemEducation in Model.ListDucation.Where(x => x.ID == Model.tblBDSNew.IdEducation))
                                 {
-                                @itemEducation.Name
+                                    @itemEducation.Name
                                 }
 
                             </td>
@@ -149,22 +150,22 @@
                                 <label>Giới tính: </label>
                                 @if (Model.tblBDSNew.Sex == 0)
                                 {
-                                @("Không yêu cầu")
+                                    @("Không yêu cầu")
                                 }
                                 @if (Model.tblBDSNew.Sex == 1)
                                 {
-                                @("Nam")
+                                    @("Nam")
                                 }
                                 @if (Model.tblBDSNew.Sex == 2)
                                 {
-                                @("Nữ")
+                                    @("Nữ")
                                 }
                             </td>
                             <td>
                                 <label>Kinh nghiệm: </label>
                                 @foreach (var itemExpirence in Model.ListTimework.Where(x => x.ID == Model.tblBDSNew.IdTimeWork))
                                 {
-                                @itemExpirence.Name
+                                    @itemExpirence.Name
                                 }
                             </td>
 
@@ -177,169 +178,169 @@
                 <p>@Model.tblBDSNew.DesCompany</p>
                 @if (Model.ListPicture.Count > 0)
                 {
-                <div id="jssor_3" style="position: relative; margin: 10px auto; border: 1px solid #fefefe; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+                    <div id="jssor_3" style="position: relative; margin: 10px auto; border: 1px solid #fefefe; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
 
-                    <div data-u="loading" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0, 0, 0, 0.7);">
-                        <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                        <div style="position: absolute; display: block; background: url('/Template/img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                    </div>
-                    <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
-
-                        @foreach (var itemPicture in Model.ListPicture)
-                        {
-                        <div>
-                            <img data-u="image" src="@ConfigurationManager.AppSettings["UrlImage"]@itemPicture.originalFilepath.ToString().Split('_')[0]/@itemPicture.originalFilepath"/>
-
+                        <div data-u="loading" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0, 0, 0, 0.7);">
+                            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                            <div style="position: absolute; display: block; background: url('/Template/img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
                         </div>
-                        }
+                        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
 
+                            @foreach (var itemPicture in Model.ListPicture)
+                            {
+                                <div>
+                                    <img data-u="image" src="@ConfigurationManager.AppSettings["UrlImage"]@itemPicture.originalFilepath.ToString().Split('_')[0]/@itemPicture.originalFilepath" />
 
-
-
-
-                    </div>
-                    <!-- Bullet Navigator -->
-                    @*<div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
-                        <div data-u="prototype" style="width: 12px; height: 12px;"></div>
-                    </div>*@
-                    <!-- Arrow Navigator -->
-                    <span data-u="arrowleft" class="jssora02l" style="top: 0px; left: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
-                    <span data-u="arrowright" class="jssora02r" style="top: 0px; right: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
-                </div>
-                <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-
-        var jssor_3_SlideoTransitions = [
-            [{ b: 0, d: 600, y: -290, e: { y: 27 } }],
-            [{ b: 0, d: 1000, y: 185 }, { b: 1000, d: 500, o: -1 }, { b: 1500, d: 500, o: 1 }, { b: 2000, d: 1500, r: 360 }, { b: 3500, d: 1000, rX: 30 }, { b: 4500, d: 500, rX: -30 }, { b: 5000, d: 1000, rY: 30 }, { b: 6000, d: 500, rY: -30 }, { b: 6500, d: 500, sX: 1 }, { b: 7000, d: 500, sX: -1 }, { b: 7500, d: 500, sY: 1 }, { b: 8000, d: 500, sY: -1 }, { b: 8500, d: 500, kX: 30 }, { b: 9000, d: 500, kX: -30 }, { b: 9500, d: 500, kY: 30 }, { b: 10000, d: 500, kY: -30 }, { b: 10500, d: 500, c: { x: 87.50, t: -87.50 } }, { b: 11000, d: 500, c: { x: -87.50, t: 87.50 } }],
-            [{ b: 0, d: 600, x: 410, e: { x: 27 } }],
-            [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, o: 1, e: { o: 5 } }],
-            [{ b: -1, d: 1, c: { x: 175.0, t: -175.0 } }, { b: 0, d: 800, c: { x: -175.0, t: 175.0 }, e: { c: { x: 7, t: 7 } } }],
-            [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, x: -570, o: 1, e: { x: 6 } }],
-            [{ b: -1, d: 1, o: -1, r: -180 }, { b: 0, d: 800, o: 1, r: 180, e: { r: 7 } }],
-            [{ b: 0, d: 1000, y: 80, e: { y: 24 } }, { b: 1000, d: 1100, x: 570, y: 170, o: -1, r: 30, sX: 9, sY: 9, e: { x: 2, y: 6, r: 1, sX: 5, sY: 5 } }],
-            [{ b: 2000, d: 600, rY: 30 }],
-            [{ b: 0, d: 500, x: -105 }, { b: 500, d: 500, x: 230 }, { b: 1000, d: 500, y: -120 }, { b: 1500, d: 500, x: -70, y: 120 }, { b: 2600, d: 500, y: -80 }, { b: 3100, d: 900, y: 160, e: { y: 24 } }],
-            [{ b: 0, d: 1000, o: -0.4, rX: 2, rY: 1 }, { b: 1000, d: 1000, rY: 1 }, { b: 2000, d: 1000, rX: -1 }, { b: 3000, d: 1000, rY: -1 }, { b: 4000, d: 1000, o: 0.4, rX: -1, rY: -1 }]
-        ];
-
-        var jssor_3_options = {
-            $AutoPlay: true,
-            $Idle: 2000,
-            $CaptionSliderOptions: {
-                $Class: $JssorCaptionSlideo$,
-                $Transitions: jssor_3_SlideoTransitions,
-                $Breaks: [
-                    [{ d: 2000, b: 1000 }]
-                ]
-            },
-            $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$
-            },
-            $BulletNavigatorOptions: {
-                $Class: $JssorBulletNavigator$
-            }
-        };
-
-        var jssor_3_slider = new $JssorSlider$("jssor_3", jssor_3_options);
-
-
-        function ScaleSlider() {
-            var refSize = jssor_3_slider.$Elmt.parentNode.clientWidth;
-            if (refSize) {
-                refSize = Math.min(refSize, 600);
-                jssor_3_slider.$ScaleWidth(refSize);
-            }
-            else {
-                window.setTimeout(ScaleSlider, 30);
-            }
-        }
-        ScaleSlider();
-        $(window).bind("load", ScaleSlider);
-        $(window).bind("resize", ScaleSlider);
-        $(window).bind("orientationchange", ScaleSlider);
-
-    });
-                </script>
-                <style>
-                    .jssorb01 {
-                        position: absolute;
-                    }
-
-                        .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
-                            position: absolute;
-                            width: 12px;
-                            height: 12px;
-                            filter: alpha(opacity=70);
-                            opacity: .7;
-                            overflow: hidden;
-                            cursor: pointer;
-                            border: #000 1px solid;
-                        }
-
-                        .jssorb01 div {
-                            background-color: gray;
-                        }
-
-                            .jssorb01 div:hover, .jssorb01 .av:hover {
-                                background-color: #d3d3d3;
+                                </div>
                             }
 
-                        .jssorb01 .av {
-                            background-color: #fff;
+
+
+
+
+                        </div>
+                        <!-- Bullet Navigator -->
+                        @*<div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
+                                <div data-u="prototype" style="width: 12px; height: 12px;"></div>
+                            </div>*@
+                        <!-- Arrow Navigator -->
+                        <span data-u="arrowleft" class="jssora02l" style="top: 0px; left: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
+                        <span data-u="arrowright" class="jssora02r" style="top: 0px; right: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
+                    </div>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function ($) {
+
+                            var jssor_3_SlideoTransitions = [
+                                [{ b: 0, d: 600, y: -290, e: { y: 27 } }],
+                                [{ b: 0, d: 1000, y: 185 }, { b: 1000, d: 500, o: -1 }, { b: 1500, d: 500, o: 1 }, { b: 2000, d: 1500, r: 360 }, { b: 3500, d: 1000, rX: 30 }, { b: 4500, d: 500, rX: -30 }, { b: 5000, d: 1000, rY: 30 }, { b: 6000, d: 500, rY: -30 }, { b: 6500, d: 500, sX: 1 }, { b: 7000, d: 500, sX: -1 }, { b: 7500, d: 500, sY: 1 }, { b: 8000, d: 500, sY: -1 }, { b: 8500, d: 500, kX: 30 }, { b: 9000, d: 500, kX: -30 }, { b: 9500, d: 500, kY: 30 }, { b: 10000, d: 500, kY: -30 }, { b: 10500, d: 500, c: { x: 87.50, t: -87.50 } }, { b: 11000, d: 500, c: { x: -87.50, t: 87.50 } }],
+                                [{ b: 0, d: 600, x: 410, e: { x: 27 } }],
+                                [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, o: 1, e: { o: 5 } }],
+                                [{ b: -1, d: 1, c: { x: 175.0, t: -175.0 } }, { b: 0, d: 800, c: { x: -175.0, t: 175.0 }, e: { c: { x: 7, t: 7 } } }],
+                                [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, x: -570, o: 1, e: { x: 6 } }],
+                                [{ b: -1, d: 1, o: -1, r: -180 }, { b: 0, d: 800, o: 1, r: 180, e: { r: 7 } }],
+                                [{ b: 0, d: 1000, y: 80, e: { y: 24 } }, { b: 1000, d: 1100, x: 570, y: 170, o: -1, r: 30, sX: 9, sY: 9, e: { x: 2, y: 6, r: 1, sX: 5, sY: 5 } }],
+                                [{ b: 2000, d: 600, rY: 30 }],
+                                [{ b: 0, d: 500, x: -105 }, { b: 500, d: 500, x: 230 }, { b: 1000, d: 500, y: -120 }, { b: 1500, d: 500, x: -70, y: 120 }, { b: 2600, d: 500, y: -80 }, { b: 3100, d: 900, y: 160, e: { y: 24 } }],
+                                [{ b: 0, d: 1000, o: -0.4, rX: 2, rY: 1 }, { b: 1000, d: 1000, rY: 1 }, { b: 2000, d: 1000, rX: -1 }, { b: 3000, d: 1000, rY: -1 }, { b: 4000, d: 1000, o: 0.4, rX: -1, rY: -1 }]
+                            ];
+
+                            var jssor_3_options = {
+                                $AutoPlay: true,
+                                $Idle: 2000,
+                                $CaptionSliderOptions: {
+                                    $Class: $JssorCaptionSlideo$,
+                                    $Transitions: jssor_3_SlideoTransitions,
+                                    $Breaks: [
+                                        [{ d: 2000, b: 1000 }]
+                                    ]
+                                },
+                                $ArrowNavigatorOptions: {
+                                    $Class: $JssorArrowNavigator$
+                                },
+                                $BulletNavigatorOptions: {
+                                    $Class: $JssorBulletNavigator$
+                                }
+                            };
+
+                            var jssor_3_slider = new $JssorSlider$("jssor_3", jssor_3_options);
+
+
+                            function ScaleSlider() {
+                                var refSize = jssor_3_slider.$Elmt.parentNode.clientWidth;
+                                if (refSize) {
+                                    refSize = Math.min(refSize, 600);
+                                    jssor_3_slider.$ScaleWidth(refSize);
+                                }
+                                else {
+                                    window.setTimeout(ScaleSlider, 30);
+                                }
+                            }
+                            ScaleSlider();
+                            $(window).bind("load", ScaleSlider);
+                            $(window).bind("resize", ScaleSlider);
+                            $(window).bind("orientationchange", ScaleSlider);
+
+                        });
+                    </script>
+                    <style>
+                        .jssorb01 {
+                            position: absolute;
                         }
 
-                        .jssorb01 .dn, .jssorb01 .dn:hover {
-                            background-color: #555555;
+                            .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
+                                position: absolute;
+                                width: 12px;
+                                height: 12px;
+                                filter: alpha(opacity=70);
+                                opacity: .7;
+                                overflow: hidden;
+                                cursor: pointer;
+                                border: #000 1px solid;
+                            }
+
+                            .jssorb01 div {
+                                background-color: gray;
+                            }
+
+                                .jssorb01 div:hover, .jssorb01 .av:hover {
+                                    background-color: #d3d3d3;
+                                }
+
+                            .jssorb01 .av {
+                                background-color: #fff;
+                            }
+
+                            .jssorb01 .dn, .jssorb01 .dn:hover {
+                                background-color: #555555;
+                            }
+
+
+                        .jssora02l, .jssora02r {
+                            display: block;
+                            position: absolute;
+                            width: 55px;
+                            height: 55px;
+                            cursor: pointer;
+                            background: url('/Template/img/a02.png') no-repeat;
+                            overflow: hidden;
                         }
 
+                        .jssora02l {
+                            background-position: -3px -33px;
+                        }
 
-                    .jssora02l, .jssora02r {
-                        display: block;
-                        position: absolute;
-                        width: 55px;
-                        height: 55px;
-                        cursor: pointer;
-                        background: url('/Template/img/a02.png') no-repeat;
-                        overflow: hidden;
-                    }
+                        .jssora02r {
+                            background-position: -63px -33px;
+                        }
 
-                    .jssora02l {
-                        background-position: -3px -33px;
-                    }
+                        .jssora02l:hover {
+                            background-position: -123px -33px;
+                        }
 
-                    .jssora02r {
-                        background-position: -63px -33px;
-                    }
+                        .jssora02r:hover {
+                            background-position: -183px -33px;
+                        }
 
-                    .jssora02l:hover {
-                        background-position: -123px -33px;
-                    }
+                        .jssora02l.jssora02ldn {
+                            background-position: -3px -33px;
+                        }
 
-                    .jssora02r:hover {
-                        background-position: -183px -33px;
-                    }
+                        .jssora02r.jssora02rdn {
+                            background-position: -63px -33px;
+                        }
 
-                    .jssora02l.jssora02ldn {
-                        background-position: -3px -33px;
-                    }
+                        .jssora02l.jssora02lds {
+                            background-position: -3px -33px;
+                            opacity: .3;
+                            pointer-events: none;
+                        }
 
-                    .jssora02r.jssora02rdn {
-                        background-position: -63px -33px;
-                    }
-
-                    .jssora02l.jssora02lds {
-                        background-position: -3px -33px;
-                        opacity: .3;
-                        pointer-events: none;
-                    }
-
-                    .jssora02r.jssora02rds {
-                        background-position: -63px -33px;
-                        opacity: .3;
-                        pointer-events: none;
-                    }
-                </style>
+                        .jssora02r.jssora02rds {
+                            background-position: -63px -33px;
+                            opacity: .3;
+                            pointer-events: none;
+                        }
+                    </style>
                 }
                 <h3>Mô tả công việc: </h3>
                 <ul class="info">
@@ -373,13 +374,13 @@
                             </td>
 
                         </tr>
-                    <tr>
-                        <td>
-                            <label>Người liên hệ: </label>@Model.tblBDSNew.NamesContact<i class="fa fa-check"></i>
-                        </td>
+                        <tr>
+                            <td>
+                                <label>Người liên hệ: </label>@Model.tblBDSNew.NamesContact<i class="fa fa-check"></i>
+                            </td>
 
-                    </tr>
-                        @if (Model.tblBDSNew.ShowEmail==1)
+                        </tr>
+                        @if (Model.tblBDSNew.ShowEmail == 1)
                         {
                             <tr>
                                 <td>
@@ -394,7 +395,7 @@
 
                             </tr>
                         }
-                        
+
                         <tr>
                             <td>
                                 <label>Hạn nộp: </label>@Model.tblBDSNew.ToDeadline<i class="fa fa-check"></i>
@@ -407,7 +408,7 @@
 
                                 @foreach (var itemLanguage in Model.ListBDSLanguage.Where(x => x.ID == Model.tblBDSNew.IdLanguage))
                                 {
-                                @itemLanguage.Name<i class="fa fa-check"></i>
+                                    @itemLanguage.Name<i class="fa fa-check"></i>
                                 }
                             </td>
 
@@ -445,7 +446,7 @@
 
                 </div>
                 <a href="" class="grid_12 more_plus">+ Xem thêm việc làm của công ty này</a>
-                <div class="group_work" >
+                <div class="group_work">
 
                     <div class="loading_icon" style="position: absolute; z-index: 11;left: 50%;top: 50%;display: none">
                         <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-reload"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="rotate(11.9999 50 50)"><path d="M50 15A35 35 0 1 0 74.787 25.213" fill="none" stroke="#de3039" stroke-width="12px"></path><path d="M50 0L50 30L66 15L50 0" fill="#de3039"></path><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"></animateTransform></g></svg>
@@ -459,10 +460,10 @@
                             <select class="dropdown" tabindex="7" onchange="loadFilterPageFrom(this)">
                                 <option value="">Toàn quốc</option>
                                 @{
-                                foreach (var itemCity in States)
-                                {
-                                <option value="@itemCity.Id">@itemCity.Name</option>
-                                }
+                                    foreach (var itemCity in States)
+                                    {
+                                        <option value="@itemCity.Id">@itemCity.Name</option>
+                                    }
                                 }
                             </select>
                         </div>
@@ -481,27 +482,35 @@
 
             @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight1"))
             {
-            if (item.Type == 1)
-            {
-            <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
-            }
-            else
-            {
-            <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
-            }
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else if (item.Type == 3)
+                {
+                    @Html.Raw(item.Banner)
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
 
 
             }
             @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentTopRight2"))
             {
-            if (item.Type == 1)
-            {
-            <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" style="margin: 0" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
-            }
-            else
-            {
-            <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
-            }
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" style="margin: 0" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else if (item.Type == 3)
+                {
+                    @Html.Raw(item.Banner)
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
 
 
             }
@@ -514,27 +523,35 @@
         <div class="banner_right">
             @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight1"))
             {
-            if (item.Type == 1)
-            {
-            <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
-            }
-            else
-            {
-            <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
-            }
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else if (item.Type == 3)
+                {
+                    @Html.Raw(item.Banner)
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
 
 
             }
             @foreach (var item in db.BDSBanners.Where(x => x.Position == "ContentBottomRight2"))
             {
-            if (item.Type == 1)
-            {
-            <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
-            }
-            else
-            {
-            <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
-            }
+                if (item.Type == 1)
+                {
+                    <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else if (item.Type == 3)
+                {
+                    @Html.Raw(item.Banner)
+                }
+                else
+                {
+                    <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
+                }
 
 
             }

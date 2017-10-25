@@ -34,6 +34,8 @@
                                                            new SelectListItem{Text="ContentBottomRight2",Value="ContentBottomRight2"},
                                                                  new SelectListItem{Text="ContentLeftTop",Value="ContentLeftTop"},
                                                                   new SelectListItem{Text="ContentCenter",Value="ContentCenter"},
+                                                                  new SelectListItem{Text="ContentBannerLeft",Value="ContentBannerLeft"},
+                                                                  new SelectListItem{Text="ContentBannerRight",Value="ContentBannerRight"},
 
                                     }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
     </div>
@@ -47,7 +49,8 @@
         @Html.Bootstrap().DropDownListFor(m => m.Type, new List<SelectListItem>
                                     {
                                         new SelectListItem{Text="Image",Value="1"},
-                                        new SelectListItem{Text="Iframe",Value="2"}
+                                        new SelectListItem{Text="Iframe",Value="2"},
+                                        new SelectListItem{Text="Html",Value="3"},
 
                                     }).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
     </div>
@@ -88,7 +91,23 @@
         </div>
     </div>
 </div>
+<div class="form-group grouphtml">
+    <label class="col-md-3 control-label"></label>
+    <div class="col-md-8" style="position: relative;">
+        <div id="grouphtml">
+            @if (Model.Banner != null)
+            {
+               
+                <textarea class="materialize-textarea"></textarea>
+            }
+            else
+            {
+                <textarea class="materialize-textarea"></textarea>
+            }
 
+        </div>
+    </div>
+</div>
 
 <div class="form-group">
     <label class="control-label col-md-3">@Utilities.Resource("BDSBanner_Width", "Width") <span class="required">*</span></label>
@@ -154,20 +173,36 @@
                 if ($('#Type').val() == 2) {
                     $('.iframe').show();
                     $('.picture,.upload').hide();
+                    $('.grouphtml').hide();
 
-                } else {
+                }
+                else if ($('#Type').val() == 1) {
                     $('.iframe').hide();
+                    $('.grouphtml').hide();
                     $('.picture,.upload').show();
+                }
+                else {
+                    $('.iframe').hide();
+                    $('.picture,.upload').hide();
+                    $('.grouphtml').show();
                 }
             });
             $(document).on('change', '#Type', function () {
-                if ($(this).val() == 2) {
+                if ($('#Type').val() == 2) {
                     $('.iframe').show();
                     $('.picture,.upload').hide();
+                    $('.grouphtml').hide();
 
-                } else {
+                }
+                else if ($('#Type').val() == 1) {
                     $('.iframe').hide();
+                    $('.grouphtml').hide();
                     $('.picture,.upload').show();
+                }
+                else {
+                    $('.iframe').hide();
+                    $('.picture,.upload').hide();
+                    $('.grouphtml').show();
                 }
             });
             $(document).on('change', '#Banner', function () {

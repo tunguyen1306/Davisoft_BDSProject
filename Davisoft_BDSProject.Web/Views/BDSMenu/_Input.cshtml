@@ -2,6 +2,8 @@
 @using Davisoft_BDSProject.Web.Models
 @using Resources
 @model Davisoft_BDSProject.Domain.Entities.BDSMenu
+
+
 <div class="form-group">
     <label class="control-label col-md-3">@Utilities.Resource("BDSMenu_Type", "Type") <span class="required">*</span></label>
     <div class="col-md-8">
@@ -9,6 +11,9 @@
                                     {
                                         new SelectListItem{Text="Top",Value="1"},
                                         new SelectListItem{Text="Bottom",Value="2"},
+                                        new SelectListItem{Text="QUY ĐỊNH/ĐĂNG TIN",Value="3"},
+                                        new SelectListItem{Text="SẢN PHẨM / DỊCH VỤ",Value="4"},
+                                        new SelectListItem{Text="LIÊN HỆ QUẢNG CÁO",Value="5"},
 
                                     }).Readonly(true).OptionLabel("Please select option").Class("form-control").ShowValidationMessage(true)
     </div>

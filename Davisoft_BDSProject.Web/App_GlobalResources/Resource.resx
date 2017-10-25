@@ -6934,4 +6934,89 @@
     <comment>
     </comment>
   </data>
+  <data name="BDSPersonalInformation_TemporaryAddress" xml:space="preserve">
+    <value>Temporary Address</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_Images" xml:space="preserve">
+    <value>Images</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSNew_PostDate" xml:space="preserve">
+    <value>Post date</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_Province" xml:space="preserve">
+    <value>Province</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSPersonalInformation_PermanentAddress" xml:space="preserve">
+    <value>Permanent Address</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMenuFooter" xml:space="preserve">
+    <value>List Menu Footer</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMenuFooterSanPhamDichVu" xml:space="preserve">
+    <value>Sản Phẩm Dịch Vụ</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMenuFooterLienHeQuangCao" xml:space="preserve">
+    <value>Liên Hệ Quảng Cáo</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMenu_Edit" xml:space="preserve">
+    <value>Edit Menu</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSExtNews_Key" xml:space="preserve">
+    <value>Key</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSMenuFooterQuyDinh" xml:space="preserve">
+    <value>Quy Định Tin Đăng/Dịch Vụ</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSComment" xml:space="preserve">
+    <value>List Bank Comment</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSComment_NameComment" xml:space="preserve">
+    <value>Name</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSComment_CompanyComment" xml:space="preserve">
+    <value>Company</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSComment_DateComment" xml:space="preserve">
+    <value>Date</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSComment_TextComment" xml:space="preserve">
+    <value>Comment</value>
+    <comment>
+    </comment>
+  </data>
+  <data name="BDSComment_Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>
+    </comment>
+  </data>
 </root>

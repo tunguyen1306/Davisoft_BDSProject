@@ -37,12 +37,12 @@
                 <em>Mã Khách Hàng</em>: <span class="color3"><strong>KH@(tblEmployee.ID.ToString("000000"))</strong></span>
                 <br>
                 - Số tiền TK: <span class="color4">
-@(String.Format("{0:N}", (tblAccount != null ? tblAccount.Money : 0)))
+@(String.Format("{0:N}", (tblAccount != null ? String.Format("{0:0,0}", tblAccount.Money)  : "0")))
                 
 </span> VNĐ
                 <br>
                 - Điểm tích luỹ: <span class="color4">
-                                     @(String.Format("{0:N}",( tblAccount != null ? tblAccount.Point : 0)))
+                                     @(String.Format("{0:N}",( tblAccount != null ? String.Format("{0:0,0}", tblAccount.Point) : "0")))
 
                 </span> Điểm
                 <br>

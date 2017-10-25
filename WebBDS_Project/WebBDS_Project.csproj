@@ -639,7 +639,6 @@
     <Content Include="Views\Shared\_partialShareExpirence.cshtml" />
     <Content Include="Views\Default\Search.cshtml" />
     <Content Include="Views\Shared\_searchPannel.cshtml" />
-    <Content Include="Views\Management\DetailPer.cshtml" />
     <Content Include="Views\Management\ThanksApply.cshtml" />
     <Content Include="Views\Default\DetailNews.cshtml" />
     <Content Include="Views\Default\SearchForEmployee.cshtml" />
@@ -680,6 +679,7 @@
     <Content Include="Views\Register\_ResetPass.cshtml" />
     <Content Include="Views\Management\History.cshtml" />
     <Content Include="Views\Register\History.cshtml" />
+    <Content Include="Views\Default\DetailCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

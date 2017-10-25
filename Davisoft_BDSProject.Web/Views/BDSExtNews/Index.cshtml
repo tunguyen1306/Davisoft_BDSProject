@@ -21,10 +21,12 @@
                 <thead>
                     <tr>
                         <th>@Utilities.Resource("BDSExtNews_Name", "Name")</th>
+                        <th>@Utilities.Resource("BDSExtNews_Key", "KeyUrl")</th>
                         <th>@Utilities.Resource("BDSExtNews_Cate", "Category")</th>
                         <th>@Utilities.Resource("BDSExtNews_Description", "Description")</th>
                         <th style="width: 100px">@Utilities.Resource("BDSExtNews_DateCreate", "DateCreate")</th>
                         <th style="width: 70px">@Utilities.Resource("BDSExtNews_Status", "Status")</th>
+                       
                         <th></th>
                         <th></th>
                     </tr>
@@ -66,13 +68,20 @@
                 type: "GET"
             },
             "columnDefs": [
-        
+         {
+             "render": function (data, type, row) {
+
+                 return "/tin-tuc/chi-tiet-tin-tuc?id=" + row.KeyUrl + "-" + row.ID;
+             },
+             "targets": 1,
+
+         },
            {
                "render": function (data, type, row) {
 
-                   return row.CatExtNews == 1 ? "Tin bất đông sản" : "Chia sẽ kinh nghiệm";
+                   return row.CatExtNews == 1 ? "Tin bất đông sản" : row.CatExtNews == 2 ? "Chia sẽ kinh nghiệm" : "Nội dung Menu" ;
                },
-               "targets": 1,
+               "targets": 2,
              
            },
            {
@@ -80,7 +89,7 @@
 
                      return moment(new Date(parseInt(row.DateCreate.replace('/Date(', '').replace(')/', '')))).format('DD/MM/YYYY');
                },
-               "targets": 3,
+               "targets": 4,
 
            },
              {
@@ -88,14 +97,14 @@
 
                      return row.ApproveStatus == 1 ? "Approve" : row.ApproveStatus == -1 ? "Reject" : "Pending";;
                  },
-                 "targets":4,
+                 "targets":5,
 
              }, {
                "render": function (data, type, row) {
 
                    return '<a href="/BDSExtNews/Edit/' + row.ID + '"><i class="fa fa-pencil-square-o text-violet"></i></a>';
                },
-               "targets": 5,
+               "targets": 6,
                'className': 'text-center'
            },
           {
@@ -105,12 +114,13 @@
 
 
               },
-              "targets":6,
+              "targets":7,
               'className':'text-center'
           }
             ],
             columns: [
                 { "data": "Name", "orderable": true },
+                 { "data": "KeyUrl", "orderable": true },
                  { "data": "CatExtNews", "orderable": true },
                 { "data": "ShortDescription", "orderable": true },
                       { "data": "DateCreate", "orderable": true },

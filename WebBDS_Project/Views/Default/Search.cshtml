@@ -148,6 +148,10 @@
                     {
                         <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
                     }
+                    else if (item.Type == 3)
+                    {
+                        @Html.Raw(item.Banner)
+                    }
                     else
                     {
                         <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
@@ -161,6 +165,10 @@
                     {
                         <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
                     }
+                    else if (item.Type == 3)
+                    {
+                        @Html.Raw(item.Banner)
+                    }
                     else
                     {
                         <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
@@ -173,6 +181,20 @@
     </div>
 @Html.Hidden("page", Request["page"] == null ? "1" : Request["page"].ToString())
 @Html.Hidden("view", Request["view"] == null ? "25" : Request["view"].ToString())
+}
+@section share_fb{
+
+
+
+    <meta name="keywords" content="tuyennhanvienbatdongsan" />
+    <meta name="title" content="TUYỂN NHÂN VIÊN MÔI GIỚI KINH DOANH BẤT ĐỘNG SẢN" />
+    <meta itemprop="name" content="TUYỂN NHÂN VIÊN MÔI GIỚI KINH DOANH BẤT ĐỘNG SẢN" />
+    <meta property="og:title" content="TUYỂN NHÂN VIÊN MÔI GIỚI KINH DOANH BẤT ĐỘNG SẢN" />
+    <meta name="description" content="Tuyển nhân viên kinh doanh môi giới Bất Động Sản tại Tp.HCM, sale hỗ trợ tư vấn khách hàng Nhà Bán, Căn Hộ, Nhân Viên Kinh Doanh BĐS thu nhập cao." />
+    <meta itemprop="description" content="Tuyển nhân viên kinh doanh môi giới Bất Động Sản tại Tp.HCM, sale hỗ trợ tư vấn khách hàng Nhà Bán, Căn Hộ, Nhân Viên Kinh Doanh BĐS thu nhập cao." />
+    <meta id="meta-tag-description" property="og:description" content="Tuyển nhân viên kinh doanh môi giới Bất Động Sản tại Tp.HCM, sale hỗ trợ tư vấn khách hàng Nhà Bán, Căn Hộ, Nhân Viên Kinh Doanh BĐS thu nhập cao." />
+
+
 }
 <script>
     $(document).on('change', 'input[type="radio"],input[type="checkbox"]', function () {

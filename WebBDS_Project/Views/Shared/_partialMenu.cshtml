@@ -7,13 +7,13 @@
                             <nav class="nav">
                                 <ul class="nav-list grid_12">
                                     <li>
-                                        <a href="@Url.Action("Index","Default")" class="active">Trang chủ</a>
+                                        <a rel="0" class="menuactive menu_0 active" href="@Url.Action("Index","Default")"  >Trang chủ</a>
                                     </li>
 
                                     @foreach (var item in Model)
                                     {
                                         <li>
-                                            <a href="@Url.Action("Search", "Default", new { filterCareer = item.ID })">@item.Name</a>
+                                            <a rel="@item.ID" class="menuactive menu_@item.ID" href="@Url.Action("Search", "Default", new { filterCareer = item.ID })">@item.Name</a>
                                         </li>
                                     }
                                     <li class="spec" style="float: right">

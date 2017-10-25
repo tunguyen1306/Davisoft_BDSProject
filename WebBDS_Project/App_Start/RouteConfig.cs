@@ -131,6 +131,11 @@ name: "dang-tin-tim-viec",
 url: "dang-tin/dang-tin-tim-viec",
 defaults: new { controller = "AdvertCompany", action = "CreateAdvertCompany" }
 );
+routes.MapRoute(
+name: "thong-tin-cong-ty",
+url: "cong-ty-tuyen-dung/tuyen-dung",
+defaults: new { controller = "Default", action = "DetailCompany" }
+);
 
 
 

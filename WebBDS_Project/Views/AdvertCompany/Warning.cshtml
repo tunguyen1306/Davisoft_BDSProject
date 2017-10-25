@@ -30,6 +30,10 @@
                 {
                     <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
                 }
+                else if (item.Type == 3)
+                {
+                    @Html.Raw(item.Banner)
+                }
                 else
                 {
                     <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
@@ -42,6 +46,10 @@
                 if (item.Type == 1)
                 {
                     <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" style="margin: 0" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else if (item.Type == 3)
+                {
+                    @Html.Raw(item.Banner)
                 }
                 else
                 {
@@ -63,6 +71,10 @@
                 {
                     <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
                 }
+                else if (item.Type == 3)
+                {
+                    @Html.Raw(item.Banner)
+                }
                 else
                 {
                     <iframe style="border:0!important;" src="@item.Banner" width="100%" height="@item.BHeight" scrolling="no"></iframe>
@@ -75,6 +87,10 @@
                 if (item.Type == 1)
                 {
                     <img src="@ConfigurationManager.AppSettings["UrlImage"]@item.Banner.ToString().Split('_')[0]/@item.Banner" width="@item.BWidth" height="@item.BHeight" alt="@item.Name">
+                }
+                else if (item.Type == 3)
+                {
+                    @Html.Raw(item.Banner)
                 }
                 else
                 {

@@ -83,6 +83,42 @@ namespace Davisoft_BDSProject.Web.Controllers
                             (String.IsNullOrEmpty(model.ShortDescription)
                                 ? ""
                                 : model.ShortDescription.NormalizeD());
+            var file = System.Web.HttpContext.Current.Request.Files["UrlImageFile"];
+            var path = string.Empty;
+            var path1 = string.Empty;
+            var NewPath = string.Empty;
+            var fortmatName = string.Empty;
+            var fileNameFull = model.UrlImage;
+
+
+            if (file != null && file.ContentLength > 0)
+            {
+
+                var fileName = Path.GetFileName(file.FileName);
+                string newFileNmae = Path.GetFileNameWithoutExtension(fileName);
+                fortmatName = Path.GetExtension(fileName);
+
+                NewPath = newFileNmae.Replace(newFileNmae, (DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString()).ToString());
+                fileNameFull = DateTime.Now.Day + "" + DateTime.Now.Month + "_" + NewPath + fortmatName;
+
+                if (Server.MapPath("~/UploadImg/").Contains(ConfigurationManager.AppSettings["HostAdmin"]))
+                {
+                    path = Server.MapPath("~/UploadImg/").Replace(ConfigurationManager.AppSettings["HostAdmin"], ConfigurationManager.AppSettings["HostWeb"]) + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+                else
+                {
+                    path = Server.MapPath("~/UploadImg/").Replace("Davisoft_BDSProject.Web", "WebBDS_Project") + DateTime.Now.Day + DateTime.Now.Month + "/";
+                }
+
+
+
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path1 = Path.Combine(path, fileNameFull);
+                file.SaveAs(path1);
+            }
+            model.UrlImage = fileNameFull;
             _service.CreateItem(model);
             return RedirectToAction("Index");
         }

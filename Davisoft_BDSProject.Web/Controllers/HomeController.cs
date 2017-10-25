@@ -119,7 +119,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         public PartialViewResult IndexPendingExtNews()
         {
 
-            return PartialView(_serviceExt.GetIQueryableItems().Where(T => T.Active == 1 && T.ApproveStatus == 0).OrderBy(T => T.DateCreate).ToList());
+            return PartialView(_serviceExt.GetIQueryableItems().Where(T => T.Active == 1 && T.ApproveStatus == 0 && T.CatExtNews !=3).OrderBy(T => T.DateCreate).ToList());
         }
         public PartialViewResult IndexPendingByType()
         {

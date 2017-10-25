@@ -10,6 +10,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string KeySearch { get; set; }
+        public string KeyUrl { get; set; }
         public int FromSalary { get; set; }
         public int ToSalary { get; set; }
         public int Type { get; set; }

@@ -6,6 +6,20 @@
 @model WebBDS_Project.Models.RegisterInformationModel
 
     @Html.HiddenFor(x => x.TblBdsAdcount.ID)
+@section share_fb{
+
+
+
+    <meta name="keywords" content="tuyennhanvienbatdongsan" />
+    <meta name="title" content="TUYỂN NHÂN VIÊN MÔI GIỚI KINH DOANH BẤT ĐỘNG SẢN" />
+    <meta itemprop="name" content="TUYỂN NHÂN VIÊN MÔI GIỚI KINH DOANH BẤT ĐỘNG SẢN" />
+    <meta property="og:title" content="TUYỂN NHÂN VIÊN MÔI GIỚI KINH DOANH BẤT ĐỘNG SẢN" />
+    <meta name="description" content="Tuyển nhân viên kinh doanh môi giới Bất Động Sản tại Tp.HCM, sale hỗ trợ tư vấn khách hàng Nhà Bán, Căn Hộ, Nhân Viên Kinh Doanh BĐS thu nhập cao." />
+    <meta itemprop="description" content="Tuyển nhân viên kinh doanh môi giới Bất Động Sản tại Tp.HCM, sale hỗ trợ tư vấn khách hàng Nhà Bán, Căn Hộ, Nhân Viên Kinh Doanh BĐS thu nhập cao." />
+    <meta id="meta-tag-description" property="og:description" content="Tuyển nhân viên kinh doanh môi giới Bất Động Sản tại Tp.HCM, sale hỗ trợ tư vấn khách hàng Nhà Bán, Căn Hộ, Nhân Viên Kinh Doanh BĐS thu nhập cao." />
+
+
+}
     <div class="container">
         <div class="grid_9 main_left">
 
@@ -22,7 +36,7 @@
                         <div class="row">
                             <div class="border-manager-recruitment">
                                 tài khoản của bạn đang có <b class="TextColorRed">
-                                                              @(String.Format("{0:N}", (Model.TblBdsAdcount.Money)))
+                                                              @(String.Format("{0:N}", String.Format("{0:0,0}", Model.TblBdsAdcount.Money)))
                                     
                                 </b>VNĐ số điểm tích lũy của bạn hiện tại là <b class="TextColorRed">@Model.TblBdsAdcount.Point</b> điểm
                                 <div class="box-note">

@@ -13,7 +13,7 @@ jQuery(document).ready(function($){
 		var left 		= (parseInt(bodyWidth) - parseInt(width))/2 - parseInt(leftWidth) - 18;
 		
 		var padTop = $(".container").css('padding-top');
-		default_top		= parseInt(pos.top) - parseInt(padTop) + 4;
+		default_top		= parseInt(pos.top) - parseInt(padTop) + 165;
 		
 		leftElement.css({
 	        disable: "block",

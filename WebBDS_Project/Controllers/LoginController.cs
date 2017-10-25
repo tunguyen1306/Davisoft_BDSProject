@@ -98,7 +98,7 @@ namespace WebBDS_Project.Controllers
 
             return Json(new { result = result });
         }
-[HttpPost]
+        [HttpPost]
         public ActionResult CheckuserEm(int id)
         {
             var result = 0;
@@ -106,7 +106,6 @@ namespace WebBDS_Project.Controllers
             {
                 result = 1;
             }
-
             return Json(new { result = result });
         }
     }

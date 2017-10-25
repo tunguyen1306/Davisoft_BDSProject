@@ -36,12 +36,21 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">@Utilities.Resource("BDSAccount_Money", "Money")</label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.BDSAccount.Money).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().TextBoxFor(m => m.BDSAccount.Money).HtmlAttributes(new {@class = "form-control"}).ShowValidationMessage(true)
                     </div>
                     <label class="control-label col-md-1">@Utilities.Resource("BDSAccount_Point", "Point") <span class="required">*</span></label>
                     <div class="col-md-4">
-                        @Html.Bootstrap().TextBoxFor(m => m.BDSAccount.Point).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().TextBoxFor(m => m.BDSAccount.Point).HtmlAttributes(new {@class = "form-control"}).ShowValidationMessage(true)
                     </div>
+                </div>
+                <div class="form-group">
+
+                    <label class="control-label col-md-3">Công ty nổi bậc </label>
+                    <div class="col-md-4">
+                        @Html.Bootstrap().DropDownListFor(m => m.Featured, new List<SelectListItem> { new SelectListItem { Text = "Yes", Value = "1", Selected = true }, new SelectListItem { Text = "No", Value = "0" } }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(false)
+
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -193,8 +202,8 @@
                 </div>
                 <div class="form-group">
 
-                    <label class="control-label col-md-2">Active <span class="required">*</span></label>
-                    <div class="col-md-3">
+                    <label class="control-label col-md-3">Active <span class="required">*</span></label>
+                    <div class="col-md-4">
                         @Html.Bootstrap().DropDownListFor(m => m.BDSAccount.MailActive, new List<SelectListItem> { new SelectListItem { Text = "Active", Value = "1", Selected = true }, new SelectListItem { Text = "NoActive", Value = "0" } }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
 
                     </div>

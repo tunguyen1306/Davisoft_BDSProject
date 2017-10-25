@@ -3,6 +3,13 @@
 
     davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
 
+    //var IdAcount = db.BDSEmployerInformations.ToList();
+    //foreach (var id in IdAcount)
+    //{
+    //    var queryDataNews = db.BDSNews.Count(x => x.IdAcount==id.IdAccount);
+    //}
+
+
 }
 @using System.Configuration
 <div class="right_col">
@@ -10,22 +17,12 @@
     <ul class="list_news">
 
 
+
         @foreach (var item in db.BDSEmployerInformations.Where(T => T.Active == 1 && T.Featured == 1).ToList())
         {
             <li>
-               @* <a href="@Url.Action("DetailEmployee", "Default", new { id = item.Name.UrlFrendly() + "-" + item.ID })">
-                    @if (item.UrlImage != null)
-                    {
-                        <img width="40" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
-                    }
-                    else
-                    {
-                        <img width="40" src="~/Template/images/avatar-default.png" />
-                    }
-
-                </a>
-                        <figcaption><a href="@Url.Action("DetailEmployee", "Default", new { id = item.Name.UrlFrendly() + "-" + item.ID })">@item.Name</a></figcaption>*@
-                <a href="@(item.WebSite!=null ?item.WebSite: Url.Action("Index","Default") )" target="_blank">
+              
+                <a href="@(item.WebSite ?? Url.Action("DetailCompany","Default",new {id=item.Name.UrlFrendly()+ "-"+ item.ID }))" target="_blank">
                     @if (item.UrlImage != null)
                     {
                         <img width="40" height="30" src="@ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage">
@@ -36,7 +33,7 @@
                     }
 
                 </a>
-                <figcaption><a target="_blank" href="@(item.WebSite!=null ?item.WebSite: Url.Action("Index","Default") )">@item.Name</a></figcaption>
+                <figcaption><a target="_blank" href="@(item.WebSite ?? Url.Action("DetailCompany","Default",new {id=item.Name.UrlFrendly()+ "-"+ item.ID }))">@item.Name</a></figcaption>
             </li>
 
         }

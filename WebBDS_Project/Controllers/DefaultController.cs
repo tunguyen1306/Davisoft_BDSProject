@@ -18,7 +18,7 @@ namespace WebBDS_Project.Controllers
         davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
         public ActionResult Index()
         {
-         
+            Session["IdMenu"] = 0;
             return View();
           
         }
@@ -108,6 +108,16 @@ namespace WebBDS_Project.Controllers
         }
         public ActionResult Search(int?[] filterWorkingPlace, int[] filterCareer, int? filterSalary, int? filterTimeWorking,int? typenews, int page = 1, int view = 25)
         {
+            var t = 0;
+            if (filterCareer!=null)
+            {
+                Session["IdMenu"] = filterCareer[0];
+            }
+            else
+            {
+                Session["IdMenu"] = 0;
+            }
+           
             int[] arrayIDNEWS=new int[]{};
             if (filterCareer != null && filterCareer.Length>0)
             {
@@ -211,7 +221,7 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailNews(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
-            var data = db.BDSExtNews.FirstOrDefault(x => x.Active == 1 && x.ApproveStatus == 1 && x.ID==id_);
+            var data = db.BDSExtNews.FirstOrDefault(x => x.Active == 1  && x.ID==id_);
             return View(data);
         }
         public ActionResult DetailEmployee(string id)
@@ -221,5 +231,34 @@ namespace WebBDS_Project.Controllers
 
             return View(data);
         }
+
+        public ActionResult DetailCompany(string id)
+        {
+            var id_ = int.Parse(id.Split('-').Last());
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new ListCityNew { Id = data.state_id, Name = datatext.text }).ToList();
+
+            dataCity.Insert(0, new ListCityNew { Id = 0, Name = "Chọn thành/phố" });
+            dataCity.Insert(0, new ListCityNew { Id = 59, Name = "TP.Hồ Chí Minh" });
+            dataCity.Insert(1, new ListCityNew { Id = 28, Name = "TP.Hà Nội" });
+           
+            var Model = new NewsModel
+            {
+               
+                tblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.ID == id_),
+                ListBDSAccount = db.BDSAccounts.ToList(),
+                ListCityText = dataCity.ToList(),
+                ListDucation = db.BDSEducations.ToList(),
+                ListTimework = db.BDSTimeWorks.ToList(),
+                ListBDSLanguage = db.BDSLanguages.ToList(),
+                ListBDSCareer = db.BDSCareers.ToList()
+
+            };
+
+            return View(Model);
+        }
+
     }
 }
