@@ -5,17 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="22ae950e0f2343f1a76ccb58dc080219" Name="Diagram1">
-        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSApply" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSApply" Width="1.5" PointX="11.25" PointY="4.125" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSEmper" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.Country" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.CountryText" Width="1.5" PointX="6.75" PointY="5.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.District" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.DistrictText" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.DistrictText" Width="1.5" PointX="7.5" PointY="4.375" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.Location" Width="1.5" PointX="6.75" PointY="8.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.LocationText" Width="1.5" PointX="8.75" PointY="7.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.State" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.StateText" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSNews_Career" Width="1.5" PointX="3.375" PointY="5.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSEmployerInformationEn" Width="2.5" PointX="14.25" PointY="3.375" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSPersonalInformationEn" Width="2" PointX="17.125" PointY="4.25" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSNewEn" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="davisoft_bdsprojectEntities.BDSPerNewEn" Width="1.5" PointX="9.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

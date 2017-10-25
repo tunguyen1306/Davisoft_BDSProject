@@ -445,7 +445,19 @@
     <Compile Include="Models\BDSEmper.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BDSEmployerInformationEn.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSNewEn.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BDSNews_Career.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSPerNewEn.cs">
+      <DependentUpon>EFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDSPersonalInformationEn.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CityModel.cs" />
@@ -3138,6 +3150,7 @@
     <Content Include="Views\BDSMenu\Edit.cshtml" />
     <Content Include="Views\BDSMenu\Index.cshtml" />
     <Content Include="Views\BDSMenu\_Input.cshtml" />
+    <Content Include="Views\BDSPersonalInformation\ViewApply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

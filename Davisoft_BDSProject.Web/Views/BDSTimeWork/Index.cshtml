@@ -22,6 +22,7 @@
                     <tr>
                         <th>@Utilities.Resource("BDSTimeWork_Name", "Name")</th>
                         <th>@Utilities.Resource("BDSTimeWork_Description", "Description")</th>
+                        <th>@Utilities.Resource("BDSTimeWork_Order", "Order")</th>
                         <th style="width: 100px"></th>
                         <th style="width: 100px"></th>
                     </tr>
@@ -71,7 +72,7 @@
 
                   return '<a href="/BDSTimeWork/Edit/'+row.ID+'"><i class="fa fa-pencil-square-o text-violet"></i></a>';
               },
-              "targets": 2,
+              "targets": 3,
               'className': 'text-center'
           },
           {
@@ -81,13 +82,14 @@
 
 
               },
-              "targets": 3,
+              "targets": 4,
               'className':'text-center'
           }
             ],
             columns: [
                 { "data": "Name", "orderable": true },
                 { "data": "Description", "orderable": true },
+                { "data": "Index", "orderable": true },
                 { "data": "ID", "orderable": false },
                 { "data": "ID", "orderable": false }
 

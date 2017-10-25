@@ -29,5 +29,6 @@ namespace Davisoft_BDSProject.Web.Models
         public string KeySearch { get; set; }
         public Nullable<int> RefTranHis { get; set; }
         public Nullable<int> TypeProfile { get; set; }
+        public Nullable<int> IdPerNew { get; set; }
     }
 }

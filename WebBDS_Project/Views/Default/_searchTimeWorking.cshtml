@@ -10,11 +10,11 @@
 
 
         @{
-            var checklist = Request["filterTimeWorking"] != null ? Request["filterTimeWorking"].ToString().Split(',').Select(T => int.Parse(T)) : new int[0];
-            foreach (var item in db.BDSTimeWorks.Where(T=>T.Active==1).ToList())
+            var checklist = Request["filterTimeWorking"] != null ? Request["filterTimeWorking"].ToString().Split(',').Select(T => T) : new String[0];
+            foreach (var item in db.BDSTimeWorks.OrderBy(T=>T.Index).Where(T=>T.Active==1).ToList())
             {
                 <li>
-                    <a><input @(checklist.Contains(item.ID) ? "checked='checked'" : "") class="check_filter" type="radio" name="filterTimeWorking" value="@item.ID" /> <label>@item.Name</label></a>
+                    <a><input @(checklist.Contains(item.KeyUrl) ? "checked='checked'" : "") class="check_filter" type="radio" name="filterTimeWorking" value="@item.KeyUrl" /> <label>@item.Name</label></a>
                 </li>
             }
         }

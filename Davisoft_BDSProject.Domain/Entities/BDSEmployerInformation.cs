@@ -13,7 +13,7 @@ namespace Davisoft_BDSProject.Domain.Entities
         public int Scope { get; set; }
         public string Description { get; set; }
         public string UrlImage { get; set; }
-        public int Featured { get; set; }
+        public int? Featured { get; set; }
         [NotMapped]
         public string UrlImageFile { get; set; }
         public string Address { get; set; }

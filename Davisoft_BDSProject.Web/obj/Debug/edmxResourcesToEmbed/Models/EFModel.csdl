@@ -11,6 +11,11 @@
     <EntitySet Name="LocationTexts" EntityType="davisoft_bdsprojectEntities.LocationText" />
     <EntitySet Name="States" EntityType="davisoft_bdsprojectEntities.State" />
     <EntitySet Name="StateTexts" EntityType="davisoft_bdsprojectEntities.StateText" />
+    <EntitySet Name="BDSNews_Career" EntityType="davisoft_bdsprojectEntities.BDSNews_Career" />
+    <EntitySet Name="BDSEmployerInformationEns" EntityType="davisoft_bdsprojectEntities.BDSEmployerInformationEn" />
+    <EntitySet Name="BDSPersonalInformationEns" EntityType="davisoft_bdsprojectEntities.BDSPersonalInformationEn" />
+    <EntitySet Name="BDSNewEns" EntityType="davisoft_bdsprojectEntities.BDSNewEn" />
+    <EntitySet Name="BDSPerNewEns" EntityType="davisoft_bdsprojectEntities.BDSPerNewEn" />
   </EntityContainer>
   <EntityType Name="BDSApply">
     <Key>
@@ -30,6 +35,8 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="RefTranHis" Type="Int32" />
+    <Property Name="TypeProfile" Type="Int32" />
+    <Property Name="IdPerNew" Type="Int32" />
   </EntityType>
   <EntityType Name="BDSEmper">
     <Key>
@@ -141,5 +148,157 @@
     <Property Name="language_id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
     <Property Name="text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="rowguid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BDSNews_Career">
+    <Key>
+      <PropertyRef Name="ID_News" />
+      <PropertyRef Name="ID_Career" />
+    </Key>
+    <Property Name="ID_News" Type="Int32" Nullable="false" />
+    <Property Name="ID_Career" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BDSEmployerInformationEn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAccount" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Scope" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrlImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FullAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WebSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="District" Type="Int32" />
+    <Property Name="Fax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NameContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmailContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AddressContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CityContact" Type="Int32" />
+    <Property Name="DistrictContact" Type="Int32" />
+    <Property Name="TypeContact" Type="Int32" Nullable="false" />
+    <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedUser" Type="Int32" />
+    <Property Name="Featured" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BDSPersonalInformationEn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAccount" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sex" Type="Int32" Nullable="false" />
+    <Property Name="MaritalStatus" Type="Int32" Nullable="false" />
+    <Property Name="Province" Type="Int32" />
+    <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrlImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrlImageCheck" Type="Int32" />
+    <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedUser" Type="Int32" />
+    <Property Name="DateReup" Type="DateTime" Precision="3" />
+    <Property Name="CountReup" Type="Int32" />
+    <Property Name="MaxReup" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BDSNewEn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AddressWork" Type="Int32" />
+    <Property Name="FromSalary" Type="Int32" />
+    <Property Name="ToSalary" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Bonus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Int32" />
+    <Property Name="IdTimeWork" Type="Int32" />
+    <Property Name="IdEducation" Type="Int32" />
+    <Property Name="Career" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DesCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DesWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Benefit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FromAge" Type="Int32" />
+    <Property Name="ToAge" Type="Int32" />
+    <Property Name="TimeProbationary" Type="Int32" />
+    <Property Name="NameCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AddressApply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NamesContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FromDeadline" Type="DateTime" Precision="3" />
+    <Property Name="ToDeadline" Type="DateTime" Precision="3" />
+    <Property Name="IdLanguage" Type="Int32" />
+    <Property Name="WebSiteCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdTypeNews" Type="Int32" />
+    <Property Name="FromCreateNews" Type="DateTime" Precision="3" />
+    <Property Name="ToCreateNews" Type="DateTime" Precision="3" />
+    <Property Name="IdAcount" Type="Int32" />
+    <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MoneyInDay" Type="Double" />
+    <Property Name="TotalMoney" Type="Double" />
+    <Property Name="UrlImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdTypeNewsCuurent" Type="Int32" />
+    <Property Name="DateReup" Type="DateTime" Precision="3" />
+    <Property Name="CountReup" Type="Int32" />
+    <Property Name="MaxReup" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="RefTranHis" Type="Int32" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedUser" Type="Int32" />
+    <Property Name="IdNewsDates" Type="Int32" />
+    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShowEmail" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BDSPerNewEn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TitleProfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CareerProfile" Type="Int32" />
+    <Property Name="ProvinceProfile" Type="Int32" />
+    <Property Name="SalaryProfile" Type="Int32" />
+    <Property Name="EducationProfile" Type="Int32" />
+    <Property Name="ExperienceProfile" Type="Int32" />
+    <Property Name="LanguageProfile" Type="Int32" />
+    <Property Name="LevelProfile" Type="Int32" />
+    <Property Name="CareerGoalProfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MSWordOffice" Type="Int32" />
+    <Property Name="MSExcelOffice" Type="Int32" />
+    <Property Name="MSPowerPointOffice" Type="Int32" />
+    <Property Name="OutlookOffice" Type="Int32" />
+    <Property Name="OrderOffice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hobby" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SearchCheck" Type="Int32" />
+    <Property Name="KeySearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateUser" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedUser" Type="Int32" />
+    <Property Name="PerId" Type="Int32" />
+    <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" />
   </EntityType>
 </Schema>

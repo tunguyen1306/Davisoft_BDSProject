@@ -54,7 +54,7 @@ namespace Davisoft_BDSProject.Web.Controllers
         [AjaxOnly]
         public JsonResult IndexAjax(DataTableJS data)
         {
-            var itmes = _service.GetIQueryableItems().ToList();
+         
             String search = null;
             if (data.search != null && data.search["value"] != null)
             {
@@ -85,8 +85,37 @@ namespace Davisoft_BDSProject.Web.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
+        [AjaxOnly]
+        public JsonResult ApplyAjax(DataTableJS data,int? id)
+        {
+            if (id.HasValue && id>0)
+            {
+                var q = (from a in db.BDSApplies
+                         join b in db.BDSEmployerInformationEns on a.IdAccountEm equals b.IdAccount
+                         join c in db.BDSPersonalInformationEns on a.IdAccountPer equals c.IdAccount
+                         join d in db.BDSNewEns on a.IdNews equals d.ID
+                         where a.TypeProfile == 1 && c.ID == id orderby a.CreateDate
+                         select new { Date = a.CreateDate, IdNew = a.IdNews, IdCompany = b.ID, IdAccount = b.IdAccount, TitleNew = d.Title, FromDateNew = d.FromCreateNews, ToDateNew = d.ToCreateNews, NameCompany = b.Name ,Carrers=d.Career});
+                var dataCarrer = _serviceCareer.GetIQueryableItems().ToList().Select(T=>new {ID=T.ID.ToString(),Name=T.Name}).ToList();
+                data.recordsTotal = q.Count();
+                data.recordsFiltered = q.Count();
+                var dataEx = q.Skip(data.start)
+                    .Take(data.length == -1 ? data.recordsTotal : data.length)
+                    .ToList().Select(T => new { Carrers = String.Join(",", dataCarrer.Where(X => T.Carrers.Split(',').Contains(X.ID)).Select(X => X.Name).ToArray()), Date = T.Date, IdNew = T.IdNew, IdCompany = T.IdCompany, IdAccount = T.IdAccount, TitleNew = T.TitleNew, FromDateNew = T.FromDateNew, ToDateNew = T.ToDateNew, NameCompany = T.NameCompany });
+                data.data = dataEx;
+            }
+            
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+        public PartialViewResult ViewApply(int? id)
+        {
+            
+            return PartialView();
+        }
         public ActionResult Create()
         {
+
           
             var Cities = (from a in db.States
                 join b in db.StateTexts on a.name_id equals b.id

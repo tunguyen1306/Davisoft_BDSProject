@@ -4,6 +4,8 @@
     <EntitySetMapping Name="BDSApplies">
       <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSApply">
         <MappingFragment StoreEntitySet="BDSApply">
+          <ScalarProperty Name="IdPerNew" ColumnName="IdPerNew" />
+          <ScalarProperty Name="TypeProfile" ColumnName="TypeProfile" />
           <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
           <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -134,6 +136,162 @@
           <ScalarProperty Name="text" ColumnName="text" />
           <ScalarProperty Name="language_id" ColumnName="language_id" />
           <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSNews_Career">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSNews_Career">
+        <MappingFragment StoreEntitySet="BDSNews_Career">
+          <ScalarProperty Name="ID_Career" ColumnName="ID_Career" />
+          <ScalarProperty Name="ID_News" ColumnName="ID_News" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSEmployerInformationEns">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSEmployerInformationEn">
+        <MappingFragment StoreEntitySet="BDSEmployerInformations">
+          <ScalarProperty Name="Featured" ColumnName="Featured" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="TypeContact" ColumnName="TypeContact" />
+          <ScalarProperty Name="DistrictContact" ColumnName="DistrictContact" />
+          <ScalarProperty Name="CityContact" ColumnName="CityContact" />
+          <ScalarProperty Name="AddressContact" ColumnName="AddressContact" />
+          <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
+          <ScalarProperty Name="EmailContact" ColumnName="EmailContact" />
+          <ScalarProperty Name="NameContact" ColumnName="NameContact" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+          <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Scope" ColumnName="Scope" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSPersonalInformationEns">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSPersonalInformationEn">
+        <MappingFragment StoreEntitySet="BDSPersonalInformations">
+          <ScalarProperty Name="MaxReup" ColumnName="MaxReup" />
+          <ScalarProperty Name="CountReup" ColumnName="CountReup" />
+          <ScalarProperty Name="DateReup" ColumnName="DateReup" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="UrlImageCheck" ColumnName="UrlImageCheck" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+          <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSNewEns">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSNewEn">
+        <MappingFragment StoreEntitySet="BDSNews">
+          <ScalarProperty Name="ShowEmail" ColumnName="ShowEmail" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="IdNewsDates" ColumnName="IdNewsDates" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RefTranHis" ColumnName="RefTranHis" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="MaxReup" ColumnName="MaxReup" />
+          <ScalarProperty Name="CountReup" ColumnName="CountReup" />
+          <ScalarProperty Name="DateReup" ColumnName="DateReup" />
+          <ScalarProperty Name="IdTypeNewsCuurent" ColumnName="IdTypeNewsCuurent" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+          <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+          <ScalarProperty Name="MoneyInDay" ColumnName="MoneyInDay" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="IdAcount" ColumnName="IdAcount" />
+          <ScalarProperty Name="ToCreateNews" ColumnName="ToCreateNews" />
+          <ScalarProperty Name="FromCreateNews" ColumnName="FromCreateNews" />
+          <ScalarProperty Name="IdTypeNews" ColumnName="IdTypeNews" />
+          <ScalarProperty Name="WebSiteCompany" ColumnName="WebSiteCompany" />
+          <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+          <ScalarProperty Name="ToDeadline" ColumnName="ToDeadline" />
+          <ScalarProperty Name="FromDeadline" ColumnName="FromDeadline" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneContact" ColumnName="PhoneContact" />
+          <ScalarProperty Name="NamesContact" ColumnName="NamesContact" />
+          <ScalarProperty Name="AddressApply" ColumnName="AddressApply" />
+          <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
+          <ScalarProperty Name="TimeProbationary" ColumnName="TimeProbationary" />
+          <ScalarProperty Name="ToAge" ColumnName="ToAge" />
+          <ScalarProperty Name="FromAge" ColumnName="FromAge" />
+          <ScalarProperty Name="Benefit" ColumnName="Benefit" />
+          <ScalarProperty Name="DesWork" ColumnName="DesWork" />
+          <ScalarProperty Name="DesCompany" ColumnName="DesCompany" />
+          <ScalarProperty Name="Career" ColumnName="Career" />
+          <ScalarProperty Name="IdEducation" ColumnName="IdEducation" />
+          <ScalarProperty Name="IdTimeWork" ColumnName="IdTimeWork" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ToSalary" ColumnName="ToSalary" />
+          <ScalarProperty Name="FromSalary" ColumnName="FromSalary" />
+          <ScalarProperty Name="AddressWork" ColumnName="AddressWork" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDSPerNewEns">
+      <EntityTypeMapping TypeName="davisoft_bdsprojectEntities.BDSPerNewEn">
+        <MappingFragment StoreEntitySet="BDSPerNews">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+          <ScalarProperty Name="PerId" ColumnName="PerId" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="KeySearch" ColumnName="KeySearch" />
+          <ScalarProperty Name="SearchCheck" ColumnName="SearchCheck" />
+          <ScalarProperty Name="Hobby" ColumnName="Hobby" />
+          <ScalarProperty Name="Skills" ColumnName="Skills" />
+          <ScalarProperty Name="OrderOffice" ColumnName="OrderOffice" />
+          <ScalarProperty Name="OutlookOffice" ColumnName="OutlookOffice" />
+          <ScalarProperty Name="MSPowerPointOffice" ColumnName="MSPowerPointOffice" />
+          <ScalarProperty Name="MSExcelOffice" ColumnName="MSExcelOffice" />
+          <ScalarProperty Name="MSWordOffice" ColumnName="MSWordOffice" />
+          <ScalarProperty Name="CareerGoalProfile" ColumnName="CareerGoalProfile" />
+          <ScalarProperty Name="LevelProfile" ColumnName="LevelProfile" />
+          <ScalarProperty Name="LanguageProfile" ColumnName="LanguageProfile" />
+          <ScalarProperty Name="ExperienceProfile" ColumnName="ExperienceProfile" />
+          <ScalarProperty Name="EducationProfile" ColumnName="EducationProfile" />
+          <ScalarProperty Name="SalaryProfile" ColumnName="SalaryProfile" />
+          <ScalarProperty Name="ProvinceProfile" ColumnName="ProvinceProfile" />
+          <ScalarProperty Name="CareerProfile" ColumnName="CareerProfile" />
+          <ScalarProperty Name="TitleProfile" ColumnName="TitleProfile" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

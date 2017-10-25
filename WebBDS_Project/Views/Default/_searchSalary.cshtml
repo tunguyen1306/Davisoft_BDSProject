@@ -10,11 +10,11 @@
 
 
         @{
-            var checklist = Request["filterSalary"] != null ? Request["filterSalary"].ToString().Split(',').Select(T => int.Parse(T)) : new int[0];
+            var checklist = Request["filterSalary"] != null ? Request["filterSalary"].ToString().Split(',').Select(T => T) : new String[0];
             foreach (var item in db.BDSSalaries.Where(T=>T.Active==1).ToList())
             {
                 <li>
-                    <a><input class="check_filter" @(checklist.Contains(item.ID) ? "checked='checked'" : "") type="radio" name="filterSalary" value="@item.ID" /> <label>@item.Name</label></a>
+                    <a><input class="check_filter" @(checklist.Contains(item.KeyUrl) ? "checked='checked'" : "") type="radio" name="filterSalary" value="@item.KeyUrl" /> <label>@item.Name</label></a>
                 </li>
             }
         }

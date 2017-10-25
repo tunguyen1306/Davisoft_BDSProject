@@ -64,12 +64,16 @@ namespace Davisoft_BDSProject.Web.Controllers
         }
         public ActionResult Create()
         {
-            return View(new BDSTimeWork { Name = "1 năm", CreateDate = DateTime.Now, CreateUser = 1, ID = 0, Perfix = 1, Type = 1 });
+            return View(new BDSTimeWork { Name = "1 Năm", CreateDate = DateTime.Now, CreateUser = 1, ID = 0, Perfix = 1,FromTime = 1, Type = 3 });
         }
 
         [HttpPost]
         public ActionResult Create(BDSTimeWork model)
         {
+            if (!model.Perfix.HasValue)
+            {
+                model.Perfix = 1;
+            }
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -78,6 +82,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                             (String.IsNullOrEmpty(model.Description)
                                 ? ""
                                 : model.Description.NormalizeD());
+            model.KeyUrl = model.Name.UrlFrendly();
             _service.CreateItem(model);
             return RedirectToAction("Index");
         }
@@ -102,6 +107,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                               (String.IsNullOrEmpty(model.Description)
                                   ? ""
                                   : model.Description.NormalizeD());
+            model.KeyUrl = model.Name.UrlFrendly();
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

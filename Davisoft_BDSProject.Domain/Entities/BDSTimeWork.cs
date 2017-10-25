@@ -14,7 +14,8 @@ namespace Davisoft_BDSProject.Domain.Entities
         public int FromTime { get; set; }
         public int ToTime { get; set; }
         public int Type { get; set; }
-        public int Perfix { get; set; }
-        public int Default { get; set; }
+        public int? Perfix { get; set; }
+        public int? Default { get; set; }
+        public int? Index { get; set; }
     }
 }

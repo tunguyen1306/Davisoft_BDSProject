@@ -11,7 +11,7 @@
     States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
     States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
     var currentPage = (Request["page"] == null ? 1 : int.Parse(Request["page"].ToString()));
-    var p = Math.Ceiling((double)ViewBag.Total / (Request["view"] == null ? 1 : int.Parse(Request["view"].ToString())));
+    var p = Math.Ceiling((double)ViewBag.Total / (Request["view"] == null ? 25 : int.Parse(Request["view"].ToString())));
     BDSEmployerInformation em = null;
     if (Session["IdUser"] != null)
     {
@@ -84,24 +84,24 @@
             <span>Trang</span>
             @if ((int)ViewBag.Total > 0)
             {
-                 if (currentPage != 1)
+                if (currentPage != 1)
                 {
                     <a class="nextPage" onclick="prevPage()">Trước</a>
                 }
 
-                 if (currentPage - 3 > 2)
-                 {
-                    <a data-ref='' onclick="goPage(1);" style="cursor: pointer">1</a>
-                   <a data-ref='' style="cursor: pointer">....</a>
-                 }
-                 for (int i = currentPage - 3 > 2 ? currentPage - 3 : 1; i <= ((int)p - currentPage > 3 ? currentPage + 3 : (int)p); i++)
-                 {
-                    <a data-ref='' style="cursor: pointer" onclick="goPage(@p)" @(currentPage == i ? " class=active" : "")>@i</a>
-                 }
-                 if ((int)p - currentPage > 3)
-                 {
+                if (currentPage - 3 > 2)
+                {
+                <a data-ref='' onclick="goPage(1);" style="cursor: pointer">1</a>
+                <a data-ref='' style="cursor: pointer">....</a>
+                }
+                for (int i = currentPage - 3 > 2 ? currentPage - 3 : 1; i <= ((int)p - currentPage > 3 ? currentPage + 3 : (int)p); i++)
+                {
+                <a data-ref='' style="cursor: pointer" onclick="goPage(@p)" @(currentPage == i ? " class=active" : "")>@i</a>
+                }
+                if ((int)p - currentPage > 3)
+                {
                     <a data-ref='' style="cursor: pointer">....</a>
-    <a data-ref='' onclick="goPage(@p)" style="cursor: pointer">@p</a>
+                    <a data-ref='' onclick="goPage(@p)" style="cursor: pointer">@p</a>
                 }
             }
             @if (currentPage != (int) p)

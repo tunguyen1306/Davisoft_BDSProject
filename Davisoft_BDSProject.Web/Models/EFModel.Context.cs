@@ -36,5 +36,9 @@ namespace Davisoft_BDSProject.Web.Models
         public DbSet<State> States { get; set; }
         public DbSet<StateText> StateTexts { get; set; }
         public DbSet<BDSNews_Career> BDSNews_Career { get; set; }
+        public DbSet<BDSEmployerInformationEn> BDSEmployerInformationEns { get; set; }
+        public DbSet<BDSPersonalInformationEn> BDSPersonalInformationEns { get; set; }
+        public DbSet<BDSNewEn> BDSNewEns { get; set; }
+        public DbSet<BDSPerNewEn> BDSPerNewEns { get; set; }
     }
 }

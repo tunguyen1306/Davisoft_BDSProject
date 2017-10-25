@@ -18,6 +18,8 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="KeySearch" Type="nvarchar(max)" />
     <Property Name="RefTranHis" Type="int" />
+    <Property Name="TypeProfile" Type="int" />
+    <Property Name="IdPerNew" Type="int" />
   </EntityType>
   <EntityType Name="BDSEmpers">
     <Key>
@@ -36,6 +38,158 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="KeySearch" Type="nvarchar(max)" />
     <Property Name="RefTranHis" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSEmployerInformations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAccount" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Scope" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="UrlImage" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="FullAddress" Type="nvarchar(max)" />
+    <Property Name="WebSite" Type="nvarchar(max)" />
+    <Property Name="City" Type="int" />
+    <Property Name="District" Type="int" />
+    <Property Name="Fax" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="NameContact" Type="nvarchar(max)" />
+    <Property Name="EmailContact" Type="nvarchar(max)" />
+    <Property Name="PhoneContact" Type="nvarchar(max)" />
+    <Property Name="AddressContact" Type="nvarchar(max)" />
+    <Property Name="CityContact" Type="int" />
+    <Property Name="DistrictContact" Type="int" />
+    <Property Name="TypeContact" Type="int" Nullable="false" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="Featured" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSNews">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="AddressWork" Type="int" />
+    <Property Name="FromSalary" Type="int" />
+    <Property Name="ToSalary" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Bonus" Type="nvarchar(max)" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="IdTimeWork" Type="int" />
+    <Property Name="IdEducation" Type="int" />
+    <Property Name="Career" Type="nvarchar(max)" />
+    <Property Name="DesCompany" Type="nvarchar(max)" />
+    <Property Name="DesWork" Type="nvarchar(max)" />
+    <Property Name="Benefit" Type="nvarchar(max)" />
+    <Property Name="FromAge" Type="int" />
+    <Property Name="ToAge" Type="int" />
+    <Property Name="TimeProbationary" Type="int" />
+    <Property Name="NameCompany" Type="nvarchar(max)" />
+    <Property Name="AddressApply" Type="nvarchar(max)" />
+    <Property Name="NamesContact" Type="nvarchar(max)" />
+    <Property Name="PhoneContact" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="FromDeadline" Type="datetime" />
+    <Property Name="ToDeadline" Type="datetime" />
+    <Property Name="IdLanguage" Type="int" />
+    <Property Name="WebSiteCompany" Type="nvarchar(max)" />
+    <Property Name="IdTypeNews" Type="int" />
+    <Property Name="FromCreateNews" Type="datetime" />
+    <Property Name="ToCreateNews" Type="datetime" />
+    <Property Name="IdAcount" Type="int" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="MoneyInDay" Type="float" />
+    <Property Name="TotalMoney" Type="float" />
+    <Property Name="UrlImage" Type="nvarchar(max)" />
+    <Property Name="IdTypeNewsCuurent" Type="int" />
+    <Property Name="DateReup" Type="datetime" />
+    <Property Name="CountReup" Type="int" />
+    <Property Name="MaxReup" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="RefTranHis" Type="int" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="IdNewsDates" Type="int" />
+    <Property Name="Reason" Type="nvarchar(max)" />
+    <Property Name="ShowEmail" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSNews_Career">
+    <Key>
+      <PropertyRef Name="ID_News" />
+      <PropertyRef Name="ID_Career" />
+    </Key>
+    <Property Name="ID_News" Type="int" Nullable="false" />
+    <Property Name="ID_Career" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BDSPerNews">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TitleProfile" Type="nvarchar(max)" />
+    <Property Name="CareerProfile" Type="int" />
+    <Property Name="ProvinceProfile" Type="int" />
+    <Property Name="SalaryProfile" Type="int" />
+    <Property Name="EducationProfile" Type="int" />
+    <Property Name="ExperienceProfile" Type="int" />
+    <Property Name="LanguageProfile" Type="int" />
+    <Property Name="LevelProfile" Type="int" />
+    <Property Name="CareerGoalProfile" Type="nvarchar(max)" />
+    <Property Name="MSWordOffice" Type="int" />
+    <Property Name="MSExcelOffice" Type="int" />
+    <Property Name="MSPowerPointOffice" Type="int" />
+    <Property Name="OutlookOffice" Type="int" />
+    <Property Name="OrderOffice" Type="nvarchar(max)" />
+    <Property Name="Skills" Type="nvarchar(max)" />
+    <Property Name="Hobby" Type="nvarchar(max)" />
+    <Property Name="SearchCheck" Type="int" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="PerId" Type="int" />
+    <Property Name="FileUrl" Type="text" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="BDSPersonalInformations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAccount" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="Sex" Type="int" Nullable="false" />
+    <Property Name="MaritalStatus" Type="int" Nullable="false" />
+    <Property Name="Province" Type="int" />
+    <Property Name="PermanentAddress" Type="nvarchar(max)" />
+    <Property Name="TemporaryAddress" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="UrlImage" Type="nvarchar(max)" />
+    <Property Name="UrlImageCheck" Type="int" />
+    <Property Name="KeySearch" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedUser" Type="int" />
+    <Property Name="DateReup" Type="datetime" />
+    <Property Name="CountReup" Type="int" />
+    <Property Name="MaxReup" Type="int" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -133,6 +287,11 @@
   <EntityContainer Name="davisoft_bdsprojectEntitiesStoreContainer">
     <EntitySet Name="BDSApply" EntityType="Self.BDSApply" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BDSEmpers" EntityType="Self.BDSEmpers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSEmployerInformations" EntityType="Self.BDSEmployerInformations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSNews" EntityType="Self.BDSNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSNews_Career" EntityType="Self.BDSNews_Career" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSPerNews" EntityType="Self.BDSPerNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDSPersonalInformations" EntityType="Self.BDSPersonalInformations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CountryText" EntityType="Self.CountryText" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />

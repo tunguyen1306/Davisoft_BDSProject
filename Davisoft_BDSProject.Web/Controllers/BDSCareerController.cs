@@ -78,6 +78,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                         (String.IsNullOrEmpty(model.Description)
                             ? ""
                             : model.Description.NormalizeD());
+            model.KeyUrl = model.Name.UrlFrendly();
             _service.CreateItem(model);
             return RedirectToAction("Index");
         }
@@ -102,6 +103,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                        (String.IsNullOrEmpty(model.Description)
                            ? ""
                            : model.Description.NormalizeD());
+            model.KeyUrl = model.Name.UrlFrendly();
             _service.UpdateItem(model);
             ViewBag.Success = true;
             ViewBag.Message = Resource.SaveSuccessful;

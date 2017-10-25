@@ -106,7 +106,7 @@ namespace WebBDS_Project.Controllers
             public int ID_News { get; set; }
             public string GString { get; set; }
         }
-        public ActionResult Search(int?[] filterWorkingPlace, int[] filterCareer, int? filterSalary, int? filterTimeWorking,int? typenews, int page = 1, int view = 25)
+        public ActionResult Search(int?[] filterWorkingPlace, String[] filterCareer, String filterSalary, String filterTimeWorking, int? typenews, int page = 1, int view = 25)
         {
             var t = 0;
             if (filterCareer!=null)
@@ -121,17 +121,18 @@ namespace WebBDS_Project.Controllers
             int[] arrayIDNEWS=new int[]{};
             if (filterCareer != null && filterCareer.Length>0)
             {
-                var str = String.Join(",", filterCareer.OrderBy(T=>T));
+                int[] filterCareerID=  db.BDSCareers.Where(T => filterCareer.Contains(T.KeyUrl)).Select(T => T.ID).ToArray();
+                var str = String.Join(",", filterCareerID.OrderBy(T => T));
                 String qStr = @"select 
 	                        [ID_News],
                                    (select originalFilepath = STUFF((
                                   SELECT ',' + CAST( [dbo].[BDSNews_Career].[ID_Career] AS VARCHAR(10))
                                   FROM  [dbo].[BDSNews_Career]
-                                  WHERE [dbo].[BDSNews_Career].[ID_News]=t1.ID_News    and ID_Career in (" + String.Join(",", filterCareer) + @")              
+                                  WHERE [dbo].[BDSNews_Career].[ID_News]=t1.ID_News    and ID_Career in (" + String.Join(",", filterCareerID) + @")              
                                   FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, '')
                                   ) AS GString
                          from
-                        [dbo].[BDSNews_Career] t1 where ID_Career in (" + String.Join(",", filterCareer) + @")
+                        [dbo].[BDSNews_Career] t1 where ID_Career in (" + String.Join(",", filterCareerID) + @")
                         group by [ID_News]";
                 var qCareer = db.Database.SqlQuery<CareerSearch>( qStr);
                arrayIDNEWS= qCareer.Where(T => T.GString.StartsWith(str)).Select(T => T.ID_News).ToArray();
@@ -143,7 +144,7 @@ namespace WebBDS_Project.Controllers
          
             int fromS = 0;
             int toS = int.MaxValue;
-            var salary = db.BDSSalaries.FirstOrDefault(T => T.ID == filterSalary);
+            var salary = db.BDSSalaries.FirstOrDefault(T => T.KeyUrl == filterSalary);
             if (salary != null)
             {
                 switch (salary.Type)
@@ -171,9 +172,14 @@ namespace WebBDS_Project.Controllers
                
                q= q.Where(T => filterWorkingPlace.Contains(T.AddressWork));
             }
-            if (filterTimeWorking.HasValue)
+            if (!String.IsNullOrWhiteSpace(filterTimeWorking))
             {
-                q = q.Where(a => a.IdTimeWork == filterTimeWorking);
+                var dbsTimeWork= db.BDSTimeWorks.Where(T => T.KeyUrl == filterTimeWorking).FirstOrDefault();
+                if (dbsTimeWork!=null)
+                {
+                    q = q.Where(a => a.IdTimeWork == dbsTimeWork.ID);
+                }
+               
             }
             if (arrayIDNEWS.Length > 0)
             {
@@ -188,14 +194,16 @@ namespace WebBDS_Project.Controllers
         }
 
 
-        public ActionResult SearchForEmployee(int[] filterWorkingPlace, int[] filterCareer, int? filterSalary, int? filterTimeWorking, int page = 1, int view = 25)
+        public ActionResult SearchForEmployee(int[] filterWorkingPlace, String[] filterCareer, String filterSalary, String filterTimeWorking, int page = 1, int view = 25)
         {
 
+         
+           
            
 
             var q = (from a in db.BDSPersonalInformations join b in db.BDSPerNews on a.ID equals b.PerId
                      join c in db.BDSEducations on b.EducationProfile equals c.ID
-                     where  a.Active==1 && b.Status==1 && b.SearchCheck==1
+                     where a.Active == 1 && b.Status == 1 && b.SearchCheck == 1
                      orderby a.DateReup ascending 
                      select b);
             if (filterWorkingPlace != null && filterWorkingPlace.Length > 0)
@@ -203,14 +211,29 @@ namespace WebBDS_Project.Controllers
 
                 q = q.Where(T => filterWorkingPlace.Contains(T.ProvinceProfile.Value));
             }
-            if (filterTimeWorking.HasValue)
+            if (!String.IsNullOrWhiteSpace(filterSalary))
             {
-                q = q.Where(a => a.ExperienceProfile == filterTimeWorking);
+                var salary = db.BDSSalaries.FirstOrDefault(T => T.KeyUrl == filterSalary);
+                if (salary != null)
+                {
+                    q = q.Where(a => a.SalaryProfile == salary.ID);
+                }
+            }
+            if (!String.IsNullOrWhiteSpace(filterTimeWorking))
+            {
+                var dbsTimeWork = db.BDSTimeWorks.Where(T => T.KeyUrl == filterTimeWorking).FirstOrDefault();
+                if (dbsTimeWork != null)
+                {
+                    q = q.Where(a => a.ExperienceProfile == dbsTimeWork.ID);
+                }
+               
             }
             if (filterCareer!=null && filterCareer.Length > 0)
             {
+                int[] filterCareerID = db.BDSCareers.Where(T => filterCareer.Contains(T.KeyUrl)).Select(T => T.ID).ToArray();
+               
 
-                q = q.Where(a => filterCareer.Contains(a.CareerProfile.Value));
+                q = q.Where(a => filterCareerID.Contains(a.CareerProfile.Value));
             }
             var total = q.Count();
             var data = q.Skip(page * view - view).Take(view).ToList();
@@ -224,14 +247,7 @@ namespace WebBDS_Project.Controllers
             var data = db.BDSExtNews.FirstOrDefault(x => x.Active == 1  && x.ID==id_);
             return View(data);
         }
-        public ActionResult DetailEmployee(string id)
-        {
-            var id_ = int.Parse(id.Split('-').Last());
-            var data = db.BDSEmployerInformations.FirstOrDefault(x => x.ID== id_);
-
-            return View(data);
-        }
-
+       
         public ActionResult DetailCompany(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());

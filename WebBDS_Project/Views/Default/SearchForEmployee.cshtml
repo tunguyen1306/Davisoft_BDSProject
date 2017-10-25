@@ -23,20 +23,20 @@
     foreach (var item in array)
     {
         var p = item.Split('=');
-        int id = int.Parse(p[1]);
+        String id = p[1];
         switch (p[0])
         {
             case "filterWorkingPlace":
-                listStr.AddRange(States.Where(T => T.Id == id).ToList().Select(T => T.Name + ";" + T.Id + ";WK").ToList());
+                listStr.AddRange(States.Where(T => T.Id == int.Parse(id)).ToList().Select(T => T.Name + ";" + T.Id + ";WK").ToList());
                 break;
             case "filterCareer":
-                listStr.AddRange(db.BDSCareers.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";CR").ToList());
+                listStr.AddRange(db.BDSCareers.Where(T => T.KeyUrl == id).ToList().Select(T => T.Name + ";" + T.KeyUrl + ";CR").ToList());
                 break;
             case "filterSalary":
-                listStr.AddRange(db.BDSSalaries.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";SR").ToList());
+                listStr.AddRange(db.BDSSalaries.Where(T => T.KeyUrl == id).ToList().Select(T => T.Name + ";" + T.KeyUrl + ";SR").ToList());
                 break;
             case "filterTimeWorking":
-                listStr.AddRange(db.BDSTimeWorks.Where(T => T.ID == id).ToList().Select(T => T.Name + ";" + T.ID + ";TW").ToList());
+                listStr.AddRange(db.BDSTimeWorks.Where(T => T.KeyUrl == id).ToList().Select(T => T.Name + ";" + T.KeyUrl + ";TW").ToList());
                 break;
         }
     }
@@ -74,19 +74,19 @@
 
 
 
-                        if (listStr.Count > 0)
-                        {
-                            foreach (var selectListItem in listStr)
-                            {
-                                <a style="cursor: pointer" data-ref="@(selectListItem.Split(';')[1])" onclick="removeFilter(this, @(selectListItem.Split(';')[1]), '@(selectListItem.Split(';')[2])') " class="filter">@(selectListItem.Split(';')[0])<span class="badge-filter"><img class="margin-bot-3" style="padding-left: 5px; padding-right: 5px;" src="~/Template/images/x.png" alt=""></span></a>
-                            }
-                        }
-                        else
-                        {
+    if (listStr.Count > 0)
+    {
+        foreach (var selectListItem in listStr)
+        {
+            <a style="cursor: pointer" data-ref="@(selectListItem.Split(';')[1])" onclick="removeFilter(this, '@(selectListItem.Split(';')[1])', '@(selectListItem.Split(';')[2])') " class="filter">@(selectListItem.Split(';')[0])<span class="badge-filter"><img class="margin-bot-3" style="padding-left: 5px; padding-right: 5px;" src="~/Template/images/x.png" alt=""></span></a>
+        }
+    }
+    else
+    {
 
-                        }
+    }
 
-                    }
+}
                 </div>
             </div>
             <script>
