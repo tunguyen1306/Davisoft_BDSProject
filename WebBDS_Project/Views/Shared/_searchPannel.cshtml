@@ -142,17 +142,31 @@
 </div>
 <script>
     function searchPer() {
-        var url = '@Url.Action("SearchForEmployee","Default")';
+        var url = '@Url.Action("SearchForEmployeeFilter", "Default")';
+        var params = '';
 
-        var params = '?page=1';
-        $($('#searchPer').serializeArray()).each(function (i, item) {
-            if (item.value!="") {
-                params += "&" + item.name + "=" + item.value;
-            }
+        if ($('#searchPer').find('[name="filterWorkingPlace"]').val()!="") {
+            var vl = $('#searchPer').find('[name="filterWorkingPlace"]').val();
+            params += vl+"/";
+        } else {
+            params += "tinh-thanh/";
+        }
+        if ($('#searchPer').find('[name="filterCareer"]').val() != "") {
+            var vl = $('#searchPer').find('[name="filterCareer"]').val();
+            params += vl + "/";
+        } else {
+            params += "nganh-nghe/";
+        }
+        if ($('#searchPer').find('[name="filterSalary"]').val() != "") {
+            var vl = $('#searchPer').find('[name="filterSalary"]').val();
+            params += vl + "/";
+        } else {
+            params += "muc-luong/";
+        }
 
-
-        });
-        url += params;
+        params +="kinh-nghiem/1";
+        url += "/" + params;
+        debugger;
         location.href = url;
     }
 </script>

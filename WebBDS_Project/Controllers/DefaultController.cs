@@ -194,13 +194,28 @@ namespace WebBDS_Project.Controllers
         }
 
 
-        public ActionResult SearchForEmployee(int[] filterWorkingPlace, String[] filterCareer, String filterSalary, String filterTimeWorking, int page = 1, int view = 25)
+        public ActionResult SearchForEmployee(String filterWorkingPlaces, String filterCareers, String filterSalary, String filterTimeWorking, int page = 1, int view = 25)
         {
 
-         
-           
-           
 
+            int[] filterWorkingPlace = null;
+            String[] filterCareer = null;
+            if (filterCareers!="nganh-nghe")
+            {
+                filterCareer = filterCareers.Split(',');
+            }
+            if (filterWorkingPlaces!="tinh-thanh")
+            {
+                filterWorkingPlace = filterWorkingPlaces.Split(',').Select(T=>int.Parse(T)).ToArray();
+            }
+            if (filterSalary=="muc-luong")
+            {
+                filterSalary = null;
+            }
+            if (filterTimeWorking != "kinh-nghiem")
+            {
+                filterTimeWorking = null;
+            }
             var q = (from a in db.BDSPersonalInformations join b in db.BDSPerNews on a.ID equals b.PerId
                      join c in db.BDSEducations on b.EducationProfile equals c.ID
                      where a.Active == 1 && b.Status == 1 && b.SearchCheck == 1
@@ -241,6 +256,7 @@ namespace WebBDS_Project.Controllers
             ViewBag.From = page * view - view;
             return View(data);
         }
+      
         public ActionResult DetailNews(string id)
         {
             var id_ = int.Parse(id.Split('-').Last());
