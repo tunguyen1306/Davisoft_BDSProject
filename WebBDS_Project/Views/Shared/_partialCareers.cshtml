@@ -13,7 +13,7 @@
                                     foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
                                     {
                                            <li>
-                                        <a href="@Url.Action("Search", "Default", new { filterCareer = item.ID })">@item.Name</a>
+                                        <a href="@Url.Action("Search", "Default", new { filterCareer = item.KeyUrl })">@item.Name</a>
                                         </li>
                                     }
                                 }
