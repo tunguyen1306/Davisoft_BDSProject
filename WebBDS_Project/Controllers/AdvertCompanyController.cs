@@ -497,7 +497,7 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailAdvertCompany(string idNew)
         {
             var id_ = int.Parse(idNew.Split('-').Last());
-            var cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.PerId== id_ && T.Active == 1);
+            var cuurentINews = db.BDSPerNews.FirstOrDefault(T => T.ID== id_ && T.Active == 1);
             var IdPersonalByIdNewPer = cuurentINews.PerId;
             List<BDSPerNews_Degrees> ListPerNewDegrees = new List<BDSPerNews_Degrees>();
             List<BDSPerNews_Experiences> ListPerNewExperiences = new List<BDSPerNews_Experiences>();

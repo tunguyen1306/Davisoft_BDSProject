@@ -16,18 +16,18 @@ namespace WebBDS_Project
 
             routes.MapRoute(
            name: "tim-kiem",
-           url: "tim-kiem",
+           url: "tim-kiem/{filterCareer}",
            defaults: new { controller = "Default", action = "Search" }
        );
 
             routes.MapRoute(
            name: "tim-kiem-ung-vien",
-           url: "tim-kiem-ung-vien",
+           url: "tim-kiem-ung-vien/{filterCareer}",
            defaults: new { controller = "Default", action = "SearchForEmployee" }
        );
   routes.MapRoute(
            name: "chi-tiet-ho-so",
-           url: "chi-tiet-ho-so",
+           url: "chi-tiet-ho-so/{idNew}",
            defaults: new { controller = "AdvertCompany", action = "DetailAdvertCompany" }
        );
 
@@ -96,7 +96,7 @@ namespace WebBDS_Project
 );
             routes.MapRoute(
    name: "chi-tiet-tin",
-   url: "tin-tuc/chi-tiet-tin",
+   url: "tin-tuc/chi-tiet-tin/{id}",
    defaults: new { controller = "Default", action = "Detail" }
 );
             routes.MapRoute(
@@ -133,7 +133,7 @@ defaults: new { controller = "AdvertCompany", action = "CreateAdvertCompany" }
 );
 routes.MapRoute(
 name: "thong-tin-cong-ty",
-url: "cong-ty-tuyen-dung/tuyen-dung",
+url: "cong-ty-tuyen-dung/tuyen-dung/{id}",
 defaults: new { controller = "Default", action = "DetailCompany" }
 );
 
