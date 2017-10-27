@@ -72,7 +72,7 @@
                     if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
                     {
 
-                        var check = db.BDSApplies.Where(x => x.IdNews == Model.tblBDSNew.ID && x.IdAccountPer == idAcount).ToList();
+                        var check = db.BDSApplies.Where(x => x.IdNews == Model.tblBDSNew.ID && x.IdAccountPer == idAcount && x.TypeProfile==1).ToList();
                         if (check.Count > 0)
                         {
                             <a style="cursor: pointer" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>ĐÃ NỘP HỒ SƠ</a>
@@ -422,7 +422,7 @@
                         if (db.BDSPersonalInformations.Select(x => x.IdAccount).ToList().Contains(idAcount))
                         {
 
-                            var check = db.BDSApplies.Where(x => x.IdNews == Model.tblBDSNew.ID && x.IdAccountPer == idAcount).ToList();
+                            var check = db.BDSApplies.Where(x => x.IdNews == Model.tblBDSNew.ID && x.IdAccountPer == idAcount && x.TypeProfile == 1).ToList();
                             if (check.Count > 0)
                             {
                                 <a style="cursor: pointer" class="btn_search btnApply"><i class="fa fa-paper-plane-o"></i>ĐÃ NỘP HỒ SƠ</a>

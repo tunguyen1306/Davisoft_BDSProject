@@ -16,7 +16,8 @@
         @Html.Bootstrap().DropDownListFor(m => m.CatExtNews,new List<SelectListItem>{
        new SelectListItem{ Text = "Tin bất đông sản",Value = "1",Selected = true},
        new SelectListItem{Selected = false,Text = "Chia sẽ kinh nghiệm",Value = "2"},
-       new SelectListItem{Selected = false,Text = "Nội dung Menu",Value = "3"}
+       new SelectListItem{Selected = false,Text = "Nội dung Menu",Value = "3"},
+       new SelectListItem{Selected = false,Text = "Bảng giá",Value = "4"},
    }).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
     </div>
 </div>

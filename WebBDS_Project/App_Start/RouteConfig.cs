@@ -25,11 +25,11 @@ namespace WebBDS_Project
            url: "tim-kiem-ung-vien/{filter}",
            defaults: new { controller = "Default", action = "SearchForEmployee", filter = UrlParameter.Optional }
        );
-  routes.MapRoute(
-           name: "chi-tiet-ho-so",
-           url: "chi-tiet-ho-so",
-           defaults: new { controller = "AdvertCompany", action = "DetailAdvertCompany" }
-       );
+            routes.MapRoute(
+                     name: "chi-tiet-ho-so",
+                     url: "chi-tiet-ho-so",
+                     defaults: new { controller = "AdvertCompany", action = "DetailAdvertCompany" }
+                 );
 
             //Management
             routes.MapRoute(
@@ -37,7 +37,7 @@ namespace WebBDS_Project
              url: "tai-khoan/quan-ly-tin-dang",
              defaults: new { controller = "Management", action = "ListNewOfUser" }
          );
-            
+
             routes.MapRoute(
              name: "quan-ly-tai-khoan-nha-tuyen-dung",
              url: "tai-khoan/quan-ly-tai-khoan-nha-tuyen-dung",
@@ -91,12 +91,12 @@ namespace WebBDS_Project
   );
             routes.MapRoute(
     name: "chi-tiet-tin-tuc",
-    url: "tin-tuc/chi-tiet-tin-tuc",
-    defaults: new { controller = "Default", action = "DetailNews"}
+    url: "tin-tuc/chi-tiet-tin-tuc/{id}",
+    defaults: new { controller = "Default", action = "DetailNews" }
 );
             routes.MapRoute(
    name: "chi-tiet-tin",
-   url: "tin-tuc/chi-tiet-tin",
+   url: "tin-tuc/chi-tiet-tin/{id}",
    defaults: new { controller = "Default", action = "Detail" }
 );
             routes.MapRoute(
@@ -126,33 +126,49 @@ name: "dang-tin-thanh-cong",
 url: "dang-ky/dang-tin-thanh-cong",
 defaults: new { controller = "Register", action = "Thanks" }
 );
-     routes.MapRoute(
-name: "dang-tin-tim-viec",
-url: "dang-tin/dang-tin-tim-viec",
-defaults: new { controller = "AdvertCompany", action = "CreateAdvertCompany" }
-);
-routes.MapRoute(
-name: "thong-tin-cong-ty",
-url: "cong-ty-tuyen-dung/tuyen-dung",
-defaults: new { controller = "Default", action = "DetailCompany" }
-);
+            routes.MapRoute(
+       name: "dang-tin-tim-viec",
+       url: "dang-tin/dang-tin-tim-viec",
+       defaults: new { controller = "AdvertCompany", action = "CreateAdvertCompany" }
+       );
+            routes.MapRoute(
+            name: "thong-tin-cong-ty",
+            url: "cong-ty-tuyen-dung/tuyen-dung/{id}",
+            defaults: new { controller = "Default", action = "DetailCompany" }
+            );
+ routes.MapRoute(
+            name: "danh-sach-viec-lam-da-nop",
+            url: "cong-ty-tuyen-dung/danh-sach-viec-lam-da-nop",
+            defaults: new { controller = "AdvertCompany", action = "JobApply" }
+            );
 
-
-
+            routes.MapRoute(
+                name: "danh-sach-viec-lam-da-luu",
+                url: "cong-ty-tuyen-dung/danh-sach-viec-lam-da-luu",
+                defaults: new { controller = "AdvertCompany", action = "SaveJob" }
+                );
 
             routes.MapRoute(
                name: "sua-tin-dang",
                url: "ti-tuc-tuyen-dung/sua-tin-dang",
                defaults: new { controller = "Adverts", action = "EditNews" }
            );
+  routes.MapRoute(
+               name: "quan-ly-ung-vien",
+               url: "cong-ty-tuyen-dung/quan-ly-ung-vien",
+               defaults: new { controller = "AdvertCompany", action = "ManagerAcountPer" }
+           );
+
+
+
             routes.MapRoute(
 
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Default", action = "Index", id = UrlParameter.Optional }
             );
-        
-          
+
+
 
         }
     }
