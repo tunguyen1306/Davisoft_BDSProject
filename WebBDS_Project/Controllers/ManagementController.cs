@@ -160,9 +160,10 @@ namespace WebBDS_Project.Controllers
             }
             var idAcount = int.Parse(Session["IdUser"].ToString());
             var IdAccByNewId = db.BDSNews.Find(id).IdAcount;
-            var IdPerNew = db.BDSPerNews.Count(x => x.PerId == idAcount);
+            var PerNew = (from a in db.BDSPerNews join b in db.BDSPersonalInformations on a.PerId equals  b.ID where  b.IdAccount==idAcount select  a).FirstOrDefault();
             if (IdAccByNewId != null)
             {
+                
                 var tblApply = new BDSApply
                 {
                     IdAccountEm = (int) IdAccByNewId,
@@ -174,6 +175,8 @@ namespace WebBDS_Project.Controllers
                     ModifiedUser = 1,
                     IdNews = id,
                     TypeProfile=1,
+                    IdPerNew = PerNew != null ? PerNew.ID : (int?) null
+                    
                 };
                 db.BDSApplies.Add(tblApply);
                 db.SaveChanges();
@@ -467,7 +470,14 @@ namespace WebBDS_Project.Controllers
             }
 
 
+            var stMoneyToPoint =  db.Settings.Where(T => T.Name == "MoneyToPoint").FirstOrDefault();
+            int p = 3;
+            if (stMoneyToPoint!=null)
+            {
+           
+                    int.TryParse( stMoneyToPoint.Value,out p);
 
+            }
             BDSEmper em = new BDSEmper();
             em.Active = 1;
             em.CreateDate = DateTime.Now;
@@ -478,7 +488,7 @@ namespace WebBDS_Project.Controllers
             em.Description = em.Name;
           
             em.KeySearch = "";
-            em.Point = 3;
+            em.Point = p;
             var account = db.BDSAccounts.FirstOrDefault(T => T.ID == idAcount);
             if (account.Point < em.Point)
             {
@@ -499,8 +509,8 @@ namespace WebBDS_Project.Controllers
                 PointTran = em.Point.Value,
                 MoneyTran =0,
                 DateTran = DateTime.Now,
-                Status = 0,
-                 IdAccount = int.Parse(Session["IdUser"].ToString())
+                Status = 1,
+                IdAccount = int.Parse(Session["IdUser"].ToString())
 
             };
             db.Entry(tranhist).State = EntityState.Added;
@@ -510,7 +520,6 @@ namespace WebBDS_Project.Controllers
             em.RefTranHis = tranhist.ID;
 
             db.BDSEmpers.Add(em);
-
            
             account.Point = account.Point - em.Point;
             db.Entry(account).State = EntityState.Modified;

@@ -531,6 +531,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                 if (difMoney!=0)
                 {
                     tran.MoneyTran += difMoney;
+                    tran.Active = 1;
                     _serviceTransactionHistory.UpdateItem(tran);
                     model.BDSAccount.Money += difMoney;
                     _serviceAccount.UpdateItem(model.BDSAccount);

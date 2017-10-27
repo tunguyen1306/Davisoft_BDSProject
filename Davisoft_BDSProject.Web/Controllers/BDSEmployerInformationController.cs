@@ -86,7 +86,7 @@ namespace Davisoft_BDSProject.Web.Controllers
                          from p1 in ps1.DefaultIfEmpty()
                          join e in db.BDSNewEns on a.IdNews equals e.ID into ps
                          from p in ps.DefaultIfEmpty()
-                         where a.TypeProfile == 2 && b.ID == id
+                         where a.TypeProfile == 1 && b.ID == id
                          orderby a.CreateDate
                          select new { Date = a.CreateDate, NamePer = c.Name, IdPer = c.ID, TitleNew = p == null ? "" : p.Title, Carrers =p1 == null ?0 : p1.CareerProfile });
                 var dataCarrer = _serviceCareer.GetIQueryableItems().ToList().Select(T => new { ID = T.ID, Name = T.Name }).ToList();

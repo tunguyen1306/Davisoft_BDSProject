@@ -17,7 +17,7 @@
                                     @foreach (var item in Model)
                                     {
                                         <li>
-                                            <a rel="@item.ID" class="menuactive menu_@item.ID" href="@Url.Action("Search", "Default", new { filterCareer = item.KeyUrl })">@item.Name</a>
+                                            <a rel="@item.ID" class="menuactive menu_@item.ID" href="@Url.Action("Search", "Default", new { filter = "nn-"+item.KeyUrl })">@item.Name</a>
                                         </li>
                                     }
                                     <li class="spec" style="float: right">
