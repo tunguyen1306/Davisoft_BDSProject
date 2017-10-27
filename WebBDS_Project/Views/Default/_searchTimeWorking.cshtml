@@ -10,7 +10,7 @@
 
 
         @{
-            var checklist = Request["filterTimeWorking"] != null ? Request["filterTimeWorking"].ToString().Split(',').Select(T => T) : new String[0];
+            var checklist = ViewData["filterTimeWorking"] != null ? ViewData["filterTimeWorking"].ToString().Split(',').Select(T => T) : new String[0];
             foreach (var item in db.BDSTimeWorks.OrderBy(T=>T.Index).Where(T=>T.Active==1).ToList())
             {
                 <li>

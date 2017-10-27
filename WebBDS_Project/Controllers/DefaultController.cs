@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,6 +19,8 @@ namespace WebBDS_Project.Controllers
         davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
         public ActionResult Index()
         {
+
+          
             Session["IdMenu"] = 0;
             return View();
           
@@ -106,9 +109,9 @@ namespace WebBDS_Project.Controllers
             public int ID_News { get; set; }
             public string GString { get; set; }
         }
-        public ActionResult Search(int?[] filterWorkingPlace, String[] filterCareer, String filterSalary, String filterTimeWorking, int? typenews, int page = 1, int view = 25)
+        public ActionResult Search(String filter, int? typenews, int page = 1, int view = 25)
         {
-            var t = 0;
+          /*  var t = 0;
             if (filterCareer!=null)
             {
                 Session["IdMenu"] = filterCareer[0];
@@ -116,12 +119,60 @@ namespace WebBDS_Project.Controllers
             else
             {
                 Session["IdMenu"] = 0;
-            }
-           
-            int[] arrayIDNEWS=new int[]{};
-            if (filterCareer != null && filterCareer.Length>0)
+            }*/
+
+            List<String> filterWorkingPlaces = new List<string>();
+            List<String> filterCareers = new List<string>();
+            String filterSalary = "";
+            String filterWorkTime = "";
+            filterWorkingPlaces = extractParams(filter, "tt").Split(',').ToList().Where(T => T.Trim().Length > 0).ToList(); ;
+            filterCareers = extractParams(filter, "nn").Split(',').ToList().Where(T => T.Trim().Length > 0).ToList(); ;
+            filterSalary = extractParams(filter, "ml");
+            filterWorkTime = extractParams(filter, "kn");
+            String bQuery = "";
+            if (filterWorkingPlaces.Count > 0)
             {
-                int[] filterCareerID=  db.BDSCareers.Where(T => filterCareer.Contains(T.KeyUrl)).Select(T => T.ID).ToArray();
+                foreach (var item in filterWorkingPlaces)
+                {
+
+                    bQuery += "filterWorkingPlace=" + item + "&";
+
+                }
+                ViewData["filterWorkingPlace"] = String.Join(",", filterWorkingPlaces);
+            }
+            if (filterCareers.Count > 0)
+            {
+                foreach (var item in filterCareers)
+                {
+
+                    bQuery += "filterCareer=" + item + "&";
+
+                }
+                ViewData["filterCareer"] = String.Join(",", filterCareers);
+            }
+            if (!String.IsNullOrWhiteSpace(filterSalary))
+            {
+                bQuery += "filterSalary=" + filterSalary + "&";
+                ViewData["filterSalary"] = filterSalary;
+            }
+
+            if (!String.IsNullOrWhiteSpace(filterWorkTime))
+            {
+                bQuery += "filterTimeWorking=" + filterWorkTime + "&";
+                ViewData["filterTimeWorking"] = filterWorkTime;
+            }
+            if (bQuery.Length > 0)
+            {
+                bQuery = bQuery.Substring(0, bQuery.Length - 1);
+
+            }
+            ViewBag.Query = bQuery;
+
+
+            int[] arrayIDNEWS=new int[]{};
+            if (filterCareers != null && filterCareers.Count > 0)
+            {
+                int[] filterCareerID = db.BDSCareers.Where(T => filterCareers.Contains(T.KeyUrl)).Select(T => T.ID).ToArray();
                 var str = String.Join(",", filterCareerID.OrderBy(T => T));
                 String qStr = @"select 
 	                        [ID_News],
@@ -167,14 +218,19 @@ namespace WebBDS_Project.Controllers
                      where a.Active == 1 &&(typenews==null|| typenews==b.ID) && a.Status == 1 && ((a.FromSalary >= fromS && a.ToSalary <= toS) || (a.FromSalary <= fromS && fromS <= a.ToSalary)||(a.FromSalary <= toS && toS <= a.ToSalary))
                      orderby a.FromCreateNews descending
                      select a);
-            if (filterWorkingPlace != null && filterWorkingPlace.Length>0)
+            if (filterWorkingPlaces != null && filterWorkingPlaces.Count > 0)
             {
+            
+                    int[] listP =db.StateTexts.Where(T => filterWorkingPlaces.Contains(T.keyurl) && T.language_id == "vi")
+                        .Select(T => T.id)
+                        .ToArray();
+                    q = q.Where(T => listP.Contains(T.AddressWork.Value));
                
-               q= q.Where(T => filterWorkingPlace.Contains(T.AddressWork));
+               
             }
-            if (!String.IsNullOrWhiteSpace(filterTimeWorking))
+            if (!String.IsNullOrWhiteSpace(filterWorkTime))
             {
-                var dbsTimeWork= db.BDSTimeWorks.Where(T => T.KeyUrl == filterTimeWorking).FirstOrDefault();
+                var dbsTimeWork = db.BDSTimeWorks.Where(T => T.KeyUrl == filterWorkTime).FirstOrDefault();
                 if (dbsTimeWork!=null)
                 {
                     q = q.Where(a => a.IdTimeWork == dbsTimeWork.ID);
@@ -193,63 +249,170 @@ namespace WebBDS_Project.Controllers
             return View(data);
         }
 
+        String extractParams(String filter, String key)
+        {
+            String result = "";
+            if (!String.IsNullOrWhiteSpace(filter))
+            {
+                if (filter.Substring(0, 1) == "-")
+                {
+                    filter = filter.Substring(1);
+                }
+                if (filter.Split('-').Where(T => T == key).Count() > 0)
+                {
+                    string bString = "";
+                    for (int i = 0; i < filter.Split('-').Length; i++)
+                    {
+                        bString += filter.Split('-')[i] + "-";
+                        if (filter.Split('-')[i] == key)
+                        {
+                            break;
+                        }
+                    }
+                    if (bString.Length > 0)
+                    {
+                        String rString = "";
+                        String newFilter = filter.Substring(bString.Length);
+                        for (int i = 0; i < newFilter.Split('-').Length; i++)
+                        {
+                            if (newFilter.Split('-')[i] == "tt")
+                            {
+                                break; ;
+                            }
+                            if (newFilter.Split('-')[i] == "nn")
+                            {
+                                break; ;
+                            }
+                            if (newFilter.Split('-')[i] == "ml")
+                            {
+                                break; ;
+                            }
+                            if (newFilter.Split('-')[i] == "kn")
+                            {
+                                break; ;
+                            }
+                            rString += newFilter.Split('-')[i] + "-";
 
-        public ActionResult SearchForEmployee(String filterWorkingPlaces, String filterCareers, String filterSalary, String filterTimeWorking, int page = 1, int view = 25)
+                        }
+                        if (rString.Length > 0)
+                        {
+                            rString = rString.Substring(0, rString.Length - 1);
+                            result += "," + rString;
+                            newFilter = newFilter.Substring(rString.Length);
+                            String rs = extractParams(newFilter, key);
+                            if (rs.Length>0)
+                            {
+                                result += "," + extractParams(newFilter, key);
+                            }
+                           
+                        }
+
+                    }
+                }
+
+            }
+            return result.IndexOf(",")==0?result.Substring(1):"";
+        }
+        public ActionResult SearchForEmployee(String filter,int page = 1, int view = 25)
         {
 
+            List<String>  filterWorkingPlaces=new List<string>();
+            List<String> filterCareers = new List<string>();
+            String filterSalary = "";
+            String filterWorkTime = "";
+            filterWorkingPlaces = extractParams(filter, "tt").Split(',').ToList().Where(T=>T.Trim().Length>0).ToList();
+            filterCareers = extractParams(filter, "nn").Split(',').ToList().Where(T => T.Trim().Length > 0).ToList();
+            filterSalary=extractParams(filter, "ml");
+            filterWorkTime=extractParams(filter, "kn");
+            String bQuery = "";
+            if (filterWorkingPlaces.Count > 0)
+            {
+                foreach (var item in filterWorkingPlaces)
+                {
 
-            int[] filterWorkingPlace = null;
-            String[] filterCareer = null;
-            if (filterCareers!="nganh-nghe")
-            {
-                filterCareer = filterCareers.Split(',');
+                    bQuery += "filterWorkingPlace=" + item + "&";
+
+                }
+                ViewData["filterWorkingPlace"] = String.Join(",", filterWorkingPlaces);
             }
-            if (filterWorkingPlaces!="tinh-thanh")
+            if (filterCareers.Count > 0)
             {
-                filterWorkingPlace = filterWorkingPlaces.Split(',').Select(T=>int.Parse(T)).ToArray();
+                foreach (var item in filterCareers)
+                {
+
+                    bQuery += "filterCareer=" + item + "&";
+
+                }
+                ViewData["filterCareer"] = String.Join(",", filterCareers);
             }
-            if (filterSalary=="muc-luong")
+            if (!String.IsNullOrWhiteSpace(filterSalary))
             {
-                filterSalary = null;
+                bQuery += "filterSalary=" + filterSalary + "&";
+                ViewData["filterSalary"] = filterSalary;
             }
-            if (filterTimeWorking != "kinh-nghiem")
+            
+            if (!String.IsNullOrWhiteSpace(filterWorkTime))
             {
-                filterTimeWorking = null;
+                bQuery += "filterTimeWorking=" + filterWorkTime + "&";
+                ViewData["filterTimeWorking"] = filterWorkTime;
             }
+            if (bQuery.Length>0)
+            {
+                bQuery = bQuery.Substring(0, bQuery.Length - 1);
+              
+            }
+            ViewBag.Query = bQuery;
+
             var q = (from a in db.BDSPersonalInformations join b in db.BDSPerNews on a.ID equals b.PerId
                      join c in db.BDSEducations on b.EducationProfile equals c.ID
                      where a.Active == 1 && b.Status == 1 && b.SearchCheck == 1
                      orderby a.DateReup ascending 
                      select b);
-            if (filterWorkingPlace != null && filterWorkingPlace.Length > 0)
+            if (filterWorkingPlaces.Count > 0)
             {
-
-                q = q.Where(T => filterWorkingPlace.Contains(T.ProvinceProfile.Value));
+                try
+                {
+                    int[] listP = db.StateTexts.Where(T => filterWorkingPlaces.Contains(T.keyurl) && T.language_id == "vi")
+                         .Select(T => T.id)
+                         .ToArray();
+                    q = q.Where(T => listP.Contains(T.ProvinceProfile.Value));
+                }
+                catch (Exception)
+                {
+                    
+                   
+                }
+              
+            }
+            if (filterCareers.Count > 0)
+            {
+                int[] filterCareerID = db.BDSCareers.Where(T => filterCareers.Contains(T.KeyUrl)).Select(T => T.ID).ToArray();
+                if (filterCareerID.Length>0)
+                {
+                    q = q.Where(a => filterCareerID.Contains(a.CareerProfile.Value));
+                }
+              
             }
             if (!String.IsNullOrWhiteSpace(filterSalary))
             {
-                var salary = db.BDSSalaries.FirstOrDefault(T => T.KeyUrl == filterSalary);
+
+                var salary = db.BDSSalaries.FirstOrDefault(T => filterSalary.Contains(T.KeyUrl));
                 if (salary != null)
                 {
                     q = q.Where(a => a.SalaryProfile == salary.ID);
                 }
             }
-            if (!String.IsNullOrWhiteSpace(filterTimeWorking))
+            if (!String.IsNullOrWhiteSpace(filterWorkTime))
             {
-                var dbsTimeWork = db.BDSTimeWorks.Where(T => T.KeyUrl == filterTimeWorking).FirstOrDefault();
+
+                var dbsTimeWork = db.BDSTimeWorks.Where(T => filterWorkTime.Contains(T.KeyUrl)).FirstOrDefault();
                 if (dbsTimeWork != null)
                 {
                     q = q.Where(a => a.ExperienceProfile == dbsTimeWork.ID);
                 }
                
             }
-            if (filterCareer!=null && filterCareer.Length > 0)
-            {
-                int[] filterCareerID = db.BDSCareers.Where(T => filterCareer.Contains(T.KeyUrl)).Select(T => T.ID).ToArray();
-               
-
-                q = q.Where(a => filterCareerID.Contains(a.CareerProfile.Value));
-            }
+           
             var total = q.Count();
             var data = q.Skip(page * view - view).Take(view).ToList();
             ViewBag.Total = total;

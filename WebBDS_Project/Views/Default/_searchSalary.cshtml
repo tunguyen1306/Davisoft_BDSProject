@@ -10,7 +10,7 @@
 
 
         @{
-            var checklist = Request["filterSalary"] != null ? Request["filterSalary"].ToString().Split(',').Select(T => T) : new String[0];
+            var checklist = ViewData["filterSalary"] != null ? ViewData["filterSalary"].ToString().Split(',').Select(T => T) : new String[0];
             foreach (var item in db.BDSSalaries.Where(T=>T.Active==1).ToList())
             {
                 <li>

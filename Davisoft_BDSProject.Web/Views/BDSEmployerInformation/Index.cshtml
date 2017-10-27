@@ -19,20 +19,54 @@
         <div class="table-responsive">
             <table class="table" id="table_data">
                 <thead>
-                    <tr>
-                        <th>@Utilities.Resource("BDSAccount_Email", "Email")</th>
-                        <th>@Utilities.Resource("BDSEmployerInformation_Name", "Name")</th>
-                        <th>@Utilities.Resource("BDSEmployerInformation_Address", "Address")</th>
-                        <th>@Utilities.Resource("BDSAccount_Monney", "Monney")</th>
-                        <th>@Utilities.Resource("BDSAccount_Point", "Point")</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+                <tr>
+                    <th>@Utilities.Resource("BDSAccount_Email", "Email")</th>
+                    <th>@Utilities.Resource("BDSEmployerInformation_Name", "Name")</th>
+                    <th>@Utilities.Resource("BDSEmployerInformation_Address", "Address")</th>
+                    <th>@Utilities.Resource("BDSAccount_Monney", "Monney")</th>
+                    <th>@Utilities.Resource("BDSAccount_Point", "Point")</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
                 </thead>
                 <tbody>
-                 
+
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-info btn-lg hidden" data-toggle="modal" id="myModalBtn" data-modal-width="800" data-target="#myModal">Open Modal</button>
+    <input hidden="0" id="acc" />
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="width: 700px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">@Utilities.Resource("BDSEmployerInformation_ListSave", "List Save")</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" id="table_data_apply">
+                        <thead>
+                            <tr>
+                                <th>@Utilities.Resource("BDSEmployerInformation_DateSave", "Date Save")</th>
+                                <th>@Utilities.Resource("BDSEmployerInformation_NewsSave", "News Save")</th>
+                                <th>@Utilities.Resource("BDSEmployerInformation_PersonalSave", "Personal Save")</th>
+                                <th>@Utilities.Resource("BDSEmployerInformation_CareerSave", "Career Save")</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -84,6 +118,16 @@
               },
               "targets": 6,
               'className':'text-center'
+          },
+          {
+              "render": function (data, type, row) {
+
+                  return '<a href="#" data-action="apply" data-id="' + row.ID + '"><i class="fa fa-flag-checkered text-danger"></i></a>';
+
+
+              },
+              "targets": 7,
+              'className': 'text-center'
           }
             ],
             columns: [
@@ -93,12 +137,66 @@
                 { "data": "BDSAccount.Money", "orderable": true },
                 { "data": "BDSAccount.Point", "orderable": true },
                 { "data": "ID", "orderable": false },
+                { "data": "ID", "orderable": false },   
                 { "data": "ID", "orderable": false }
 
             ],
             order: [[0, "asc"]]
         });
+        var $modelTable1 = $('#table_data_apply').dataTable({
+            fixedHeader: true,
+            processing: false,
+            serverSide: true,
+            searching: false,
+            ordering: false,
+            info: false,
+            stateSave: false,
+            lengthMenu: [[25, 50, -1], [25, 50, "All"]],
+            drawCallback: function (settings) {
+                $('.mt-action-dot').popover({ trigger: "hover" });
+            },
+            initComplete: function () {
 
+            },
+            ajax: {
+                url: "/BDSEmployerInformation/ApplyAjax?idAccount=0",
+                type: "GET"
+            },
+            "columnDefs": [
+             {
+                 "render": function (data, type, row) {
+
+                     return moment(new Date(parseInt(row.Date.replace('/Date(', '').replace(')/', '')))).format('DD/MM/YYYY');
+                 },
+                 "targets": 0,
+
+             },
+              {
+                  "render": function (data, type, row) {
+
+                      return '<a href="@Url.Action("Edit", "BDSNew")/' + row.IdNew + '" target="_blank">' + row.TitleNew + '</a>';
+                  },
+                  "targets": 1,
+
+              },
+               {
+                   "render": function (data, type, row) {
+
+                       return '<a href="@Url.Action("Edit", "BDSPersonalInformation")/' + row.IdPer + '" target="_blank">' + row.NamePer + '</a>';
+                   },
+                   "targets": 2,
+
+               },
+
+            ],
+            columns: [
+                { "data": "Date", "orderable": false },
+                { "data": "TitleNew", "orderable": false },
+                { "data": "NamePer", "orderable": false },
+                { "data": "Carrers", "orderable": false }
+            ]
+
+        });
         $(document).on('click', '[data-action="delete"]', function (e) {
             e.preventDefault();
             var $self = $(this);
@@ -112,7 +210,16 @@
             });
 
         });
+        $(document).on('click', '[data-action="apply"]', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            var id = $self.attr('data-id');
+            $modelTable1.fnSettings().ajax.url = "/BDSEmployerInformation/ApplyAjax?id=" + id;
+            $modelTable1._fnAjaxUpdate();
+            $('#myModalBtn').click();
 
+
+        });
 
     </script>
                                                                      )

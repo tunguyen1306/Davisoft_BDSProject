@@ -4,10 +4,10 @@
 
     var States = (from a in db.States join b in db.StateTexts on a.state_id equals b.id
                   where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
-                  select new { Id = a.state_id, Name = b.text }).ToList();
-  
-    States.Insert(0, new  { Id = 59, Name = "TP.Hồ Chí Minh" });
-    States.Insert(1, new  { Id = 28, Name = "TP.Hà Nội" });
+                  select new { Id = b.keyurl, Name = b.text }).ToList();
+
+    States.Insert(0, new { Id = "tp-ho-chi-minh", Name = "TP.Hồ Chí Minh" });
+    States.Insert(1, new { Id = "ha-noi", Name = "TP.Hà Nội" });
 
 }
 
@@ -33,14 +33,27 @@
     function searchEmp() {
         var url = '@Url.Action("Search","Default")';
 
-        var params = '?page=1';
-        $($('#searchEmp').serializeArray()).each(function (i, item) {
-            if (item.value!="") {
-                params += "&" + item.name + "=" + item.value;
-            }
-          
+        var params = '';
 
-        });
+
+        if ($('#searchEmp').find('[name="filterWorkingPlace"]').val() != "") {
+            var vl = $('#searchEmp').find('[name="filterWorkingPlace"]').val();
+            params += 'tt-' + vl + "-";
+        }
+        if ($('#searchEmp').find('[name="filterCareer"]').val() != "") {
+            var vl = $('#searchEmp').find('[name="filterCareer"]').val();
+            params += 'nn-' + vl + "-";
+        }
+        if ($('#searchEmp').find('[name="filterSalary"]').val() != "") {
+            var vl = $('#searchEmp').find('[name="filterSalary"]').val();
+            params += "ml-" + vl + "-";
+        }
+        if (params.length > 0) {
+            params = params.substring(0, params.length - 1);
+            params = "/" + params + "?page=1";
+        } else {
+            params = "?page=1";
+        }
         url += params;
         location.href = url;
     }
@@ -100,7 +113,7 @@
             <div class="box_select">
                 <fieldset>
                     <div class="grid_3">
-                        <select class="dropdown" name="filterWorkingPlace" tabindex="7">
+                        <select class="select2" style="width: 100%;height: 100%" name="filterWorkingPlace" tabindex="7">
                             <option value="">Chọn tỉnh thành</option>
                             @{
                                 foreach (var item in States)
@@ -142,31 +155,29 @@
 </div>
 <script>
     function searchPer() {
-        var url = '@Url.Action("SearchForEmployeeFilter", "Default")';
+        var url = '@Url.Action("SearchForEmployee", "Default")';
         var params = '';
 
         if ($('#searchPer').find('[name="filterWorkingPlace"]').val()!="") {
             var vl = $('#searchPer').find('[name="filterWorkingPlace"]').val();
-            params += vl+"/";
-        } else {
-            params += "tinh-thanh/";
-        }
+            params += 'tt-'+vl+"-";
+        } 
         if ($('#searchPer').find('[name="filterCareer"]').val() != "") {
             var vl = $('#searchPer').find('[name="filterCareer"]').val();
-            params += vl + "/";
-        } else {
-            params += "nganh-nghe/";
-        }
+            params += 'nn-'+vl + "-";
+        } 
         if ($('#searchPer').find('[name="filterSalary"]').val() != "") {
             var vl = $('#searchPer').find('[name="filterSalary"]').val();
-            params += vl + "/";
+            params += "ml-"+ vl + "-";
+        } 
+        if (params.length > 0) {
+            params = params.substring(0, params.length - 1);
+            params = "/" + params + "?page=1";
         } else {
-            params += "muc-luong/";
+            params ="?page=1";
         }
-
-        params +="kinh-nghiem/1";
-        url += "/" + params;
-        debugger;
+        url += params;
+      
         location.href = url;
     }
 </script>

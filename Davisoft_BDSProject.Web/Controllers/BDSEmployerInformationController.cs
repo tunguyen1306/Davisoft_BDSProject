@@ -25,12 +25,14 @@ namespace Davisoft_BDSProject.Web.Controllers
         private readonly IBDSAccountService _serviceAccount;
         private readonly IBDSTypeContactService _serviceTypeContact;
         private readonly IBDSScopeService _serviceScope;
-        public BDSEmployerInformationController(IBDSEmployerInformationService service, IBDSTypeContactService serviceTypeContact, IBDSScopeService serviceScope, IBDSAccountService serviceAccount)
+        private readonly IBDSCareerService _serviceCareer;
+        public BDSEmployerInformationController(IBDSCareerService serviceCareer, IBDSEmployerInformationService service, IBDSTypeContactService serviceTypeContact, IBDSScopeService serviceScope, IBDSAccountService serviceAccount)
         {
             _service = service;
             _serviceAccount = serviceAccount;
             _serviceTypeContact = serviceTypeContact;
             _serviceScope = serviceScope;
+            _serviceCareer = serviceCareer;
         }
         [DisplayName(@"BDS Account Em management")]
         public ActionResult Index()
@@ -72,7 +74,33 @@ namespace Davisoft_BDSProject.Web.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
+        [AjaxOnly]
+        public JsonResult ApplyAjax(DataTableJS data, int? id)
+        {
+            if (id.HasValue && id > 0)
+            {
+                var q = (from a in db.BDSApplies
+                         join b in db.BDSEmployerInformationEns on a.IdAccountEm equals b.IdAccount
+                         join c in db.BDSPersonalInformationEns on a.IdAccountPer equals c.IdAccount
+                         join d in db.BDSPerNewEns on a.IdPerNew equals d.ID into ps1
+                         from p1 in ps1.DefaultIfEmpty()
+                         join e in db.BDSNewEns on a.IdNews equals e.ID into ps
+                         from p in ps.DefaultIfEmpty()
+                         where a.TypeProfile == 2 && b.ID == id
+                         orderby a.CreateDate
+                         select new { Date = a.CreateDate, NamePer = c.Name, IdPer = c.ID, TitleNew = p == null ? "" : p.Title, Carrers =p1 == null ?0 : p1.CareerProfile });
+                var dataCarrer = _serviceCareer.GetIQueryableItems().ToList().Select(T => new { ID = T.ID, Name = T.Name }).ToList();
+                data.recordsTotal = q.Count();
+                data.recordsFiltered = q.Count();
+                var dataEx = q.Skip(data.start)
+                    .Take(data.length == -1 ? data.recordsTotal : data.length)
+                    .ToList().Select(T => new { Date = T.Date, NamePer = T.NamePer,TitleNew= T.TitleNew, IdPer = T.IdPer, Carrers = String.Join(",", dataCarrer.Where(X => T.Carrers == X.ID).Select(X => X.Name).ToArray()) });
+                data.data = dataEx;
+            }
 
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
         public ActionResult Create()
         {
           

@@ -12,13 +12,13 @@
     var States = (from a in db.States
                   join b in db.StateTexts on a.state_id equals b.id
                   where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
-                  select new { Id = a.state_id, Name = b.text }).ToList();
+                  select new { Id = b.keyurl, Name = b.text }).ToList();
 
-    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
-    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+    States.Insert(0, new { Id = "tp-ho-chi-minh", Name = "TP.Hồ Chí Minh" });
+    States.Insert(1, new { Id = "ha-noi", Name = "TP.Hà Nội" });
 
 
-    String[] array = Request.Url.Query.Length > 0 ? Request.Url.Query.Substring(1).Split('&') : new string[] { };
+    String[] array = ViewBag.Query.ToString().Length > 0 ? ViewBag.Query.ToString().Split('&') : new string[] { };
     List<String> listStr = new List<string>();
     foreach (var item in array)
     {
@@ -27,7 +27,7 @@
         switch (p[0])
         {
             case "filterWorkingPlace":
-                listStr.AddRange(States.Where(T => T.Id == int.Parse(id)).ToList().Select(T => T.Name + ";" + T.Id + ";WK").ToList());
+                listStr.AddRange(States.Where(T => T.Id == id).ToList().Select(T => T.Name + ";" + T.Id + ";WK").ToList());
                 break;
             case "filterCareer":
                 listStr.AddRange(db.BDSCareers.Where(T => T.KeyUrl == id).ToList().Select(T => T.Name + ";" + T.KeyUrl + ";CR").ToList());
@@ -106,10 +106,7 @@
                         $('input[name="filterTimeWorking"][value="' + id + '"]')[0].checked = false;
                         break;
                     }
-                    var url = '@Url.Action("SearchForEmployee")';
-                    console.log(url + "?" + $(document.forms[1]).serialize());
-                    url = url + "?" + $(document.forms[1]).serialize();
-                    location.href = url;
+                     reloadPage();
                 }
             </script>
             <div class="group_work" style="position: relative">
@@ -191,11 +188,40 @@
     $(document).on('change', 'input[type="radio"],input[type="checkbox"]', function () {
         $('#page').val(1);
         reloadPage();
-    })
+    });
+  
     function reloadPage() {
-        var url= '@Url.Action("SearchForEmployee")';
-        console.log(url + "?" + $(document.forms[1]).serialize());
-        url = url + "?" + $(document.forms[1]).serialize();
+        var url = '/tim-kiem-ung-vien';
+        var params = '';
+        var page = '1';
+        var view = '25';
+        $($(document.forms[1]).serializeArray()).each(function (i, item) {
+            if (item.name == 'filterWorkingPlace') {
+                params += 'tt-' + item.value + "-";
+            }
+            if (item.name == 'filterCareer') {
+                params += 'nn-' + item.value + "-";
+            }
+            if (item.name == 'filterSalary') {
+                params += 'ml-' + item.value + "-";
+            }
+            if (item.name == 'filterTimeWorking') {
+                params += 'kn-' + item.value + "-";
+            }
+            if (item.name == 'page') {
+                page = item.value;
+            }
+            if (item.name == 'view') {
+                view = item.value;
+            }
+        });
+        if (params.length > 0) {
+            params = params.substring(0, params.length - 1);
+            params = "/" + params + "?page=" + page + "&view=" + view;
+        } else {
+            params = "?page=" + page + "&view=" + view;
+        }
+        url += params;
         location.href = url;
     }
 </script>

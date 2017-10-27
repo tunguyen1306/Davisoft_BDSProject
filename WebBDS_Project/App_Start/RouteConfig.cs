@@ -16,14 +16,14 @@ namespace WebBDS_Project
 
             routes.MapRoute(
            name: "tim-kiem",
-           url: "tim-kiem",
-           defaults: new { controller = "Default", action = "Search" }
+           url: "tim-kiem/{filter}",
+           defaults: new { controller = "Default", action = "Search", filter = UrlParameter.Optional }
        );
 
             routes.MapRoute(
            name: "tim-kiem-ung-vien",
-           url: "tim-kiem-ung-vien/{filterWorkingPlaces}/{filterCareers}/{filterSalary}/{filterTimeWorking}/{page}",
-           defaults: new { controller = "Default", action = "SearchForEmployee", filterWorkingPlaces = "", filterCareers = "", filterSalary = "", filterTimeWorking = "", page =1}
+           url: "tim-kiem-ung-vien/{filter}",
+           defaults: new { controller = "Default", action = "SearchForEmployee", filter = UrlParameter.Optional }
        );
   routes.MapRoute(
            name: "chi-tiet-ho-so",

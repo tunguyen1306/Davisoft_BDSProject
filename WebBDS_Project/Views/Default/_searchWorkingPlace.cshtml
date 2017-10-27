@@ -6,10 +6,10 @@
     var States = (from a in db.States
                   join b in db.StateTexts on a.state_id equals b.id
                   where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
-                  select new { Id = a.state_id, Name = b.text }).ToList();
+                  select new { Id = b.keyurl, Name = b.text }).ToList();
 
-    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
-    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+    States.Insert(0, new { Id = "tp-ho-chi-minh", Name = "TP.Hồ Chí Minh" });
+    States.Insert(1, new { Id = "ha-noi", Name = "TP.Hà Nội" });
 
 }
 <div class="right_col">
@@ -19,7 +19,7 @@
 
         @{
 
-            var checklist = Request["filterWorkingPlace"] != null ? Request["filterWorkingPlace"].ToString().Split(',').Select(T=>int.Parse(T)) : new int[0];
+            var checklist = ViewData["filterWorkingPlace"] != null ? ViewData["filterWorkingPlace"].ToString().Split(',') : new String[0];
             foreach (var item in States)
             {
                 <li>

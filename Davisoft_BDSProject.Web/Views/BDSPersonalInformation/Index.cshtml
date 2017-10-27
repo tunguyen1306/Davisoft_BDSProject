@@ -176,6 +176,14 @@
                  "targets": 0,
 
              },
+              {
+                  "render": function (data, type, row) {
+
+                      return '<a href="@Url.Action("Edit", "BDSNew")/' + row.IdNew + '" target="_blank">' + row.TitleNew + '</a>';
+                  },
+                  "targets": 1,
+
+              },
          
             ],
             columns: [
