@@ -2,52 +2,77 @@
     davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
 }
 @using WebBDS_Project.Models
-@model IEnumerable< WebBDS_Project.Models.BDSCareer>
+@model IEnumerable<WebBDS_Project.Models.BDSCareer>
 
-              <div class="nav_section">
-                    <div class="container clearfix">
-                        <!-- Nav -->
-                        <div class="grid_12 mg0">
-                            <nav class="nav">
-                                <ul class="nav-list grid_12">
-                                    <li>
-                                        <a rel="0" class="menuactive menu_0 active" href="@Url.Action("Index","Default")"  >Trang chủ</a>
-                                    </li>
+<div class="nav_section">
+    <div class="container clearfix">
+        <!-- Nav -->
+        <div class="grid_12 mg0">
+            <nav class="nav">
+                <ul class="nav-list grid_12">
+                    <li>
+                        <a rel="0" class="menuactive menu_0 active" href="@Url.Action("Index","Default")">Trang chủ</a>
+                    </li>
 
-                                    @foreach (var item in Model)
-                                    {
-                                        <li>
-                                            <a rel="@item.ID" class="menuactive menu_@item.ID" href="@Url.Action("Search", "Default", new { filter = "nn-"+item.KeyUrl })">@item.Name</a>
-                                        </li>
-                                    }
-                                    <li class="spec" style="float: right">
-                                        @foreach (var itemNew in db.BDSExtNews.Where(x => x.CatExtNews == 4).Take(1))
-                                        {
-                                            <a href="@("/tin-tuc/chi-tiet-tin-tuc?id="+itemNew.KeyUrl+"-"+itemNew.ID)"><i class="fa fa-file-text-o"></i>Bảng giá</a>
-                                        }
-                                      
-                                    </li>
-                                    <li class="spec">
-                                        <a href="" class="dropdown1" style="color: #de3039;"><i class="fa fa-pencil" aria-hidden="true"></i>Đăng tin</a>
-                                        <div id="dropdown1" class="dropdown-menu">
-                                     
-                                            <a href="javascript:void(0)" class="btnEmCreateFindJob">
-                                               
-                                                Đăng tuyển dụng
-                                            </a>
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <a rel="@item.ID" class="menuactive menu_@item.ID" href="@Url.Action("Search", "Default", new { filter = "nn-"+item.KeyUrl })">@item.Name</a>
+                        </li>
+                    }
+                    <li class="spec" style="float: right">
+                        @foreach (var itemNew in db.BDSExtNews.Where(x => x.CatExtNews == 4).Take(1))
+                        {
+                            <a href="@("/tin-tuc/chi-tiet-tin-tuc/"+itemNew.KeyUrl+"-"+itemNew.ID)"><i class="fa fa-file-text-o"></i>Bảng giá</a>
+                        }
 
-                                           
-                                            <a href="javascript:void(0)" class="btnCreateFindJob omega">
-                                              
-                                                Đăng tìm việc
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                                  <div class="side-right-pushy-button menu-btn"><i class="fa fa-filter" aria-hidden="true"></i> Filter</div>
-                               
-</nav>
-                            <!-- /Nav -->
+                    </li>
+                    <li class="spec">
+                        <a href="" class="dropdown1" style="color: #de3039;"><i class="fa fa-pencil" aria-hidden="true"></i>Đăng tin</a>
+                        <div id="dropdown1" class="dropdown-menu">
+
+                            <a href="javascript:void(0)" class="btnEmCreateFindJob">
+
+                                Đăng tuyển dụng
+                            </a>
+
+
+                            <a href="javascript:void(0)" class="btnCreateFindJob omega">
+
+                                Đăng tìm việc
+                            </a>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
+                <div class="side-right-pushy-button menu-btn"><i class="fa fa-filter" aria-hidden="true"></i> Filter</div>
+
+            </nav>
+            <!-- /Nav -->
+        </div>
+    </div>
+</div>
+<script>
+   
+    $(document).ready(function () {
+        var idmenu = localStorage['IdMenu'];
+        $('.menuactive').removeClass('active');
+        $('.menu_' + idmenu).addClass('active');
+
+
+    });
+    setTimeout(function() {
+        var idmenu = localStorage['IdMenu'];
+        $('.menuactive').removeClass('active');
+        $('.menu_' + idmenu).addClass('active');
+    },200);
+    $('.menuactive').each(function () {
+        $(this).click(function () {
+            var id = $(this).attr('rel');
+            $('.menuactive').removeClass('active');
+            localStorage['IdMenu'] = id;
+
+
+        });
+    });
+
+</script>

@@ -63,7 +63,7 @@
     {
         foreach (var selectListItem in listStr)
         {
-            <a style="cursor: pointer" data-ref="@(selectListItem.Split(';')[1])" onclick="removeFilter(this,'@(selectListItem.Split(';')[1])','@(selectListItem.Split(';')[2])')" class="filter">@(selectListItem.Split(';')[0])<span class="badge-filter"><img class="margin-bot-3" style=" padding-left: 5px; padding-right: 5px;" src="~/Template/images/x.png" alt=""></span></a>
+            <a  style="cursor: pointer" data-ref="@(selectListItem.Split(';')[1])" onclick="removeFilter(this,'@(selectListItem.Split(';')[1])','@(selectListItem.Split(';')[2])')" class="filter clgetft">@(selectListItem.Split(';')[0])<span class="badge-filter"><img class="margin-bot-3" style=" padding-left: 5px; padding-right: 5px;" src="~/Template/images/x.png" alt=""></span></a>
         }
     }
     else

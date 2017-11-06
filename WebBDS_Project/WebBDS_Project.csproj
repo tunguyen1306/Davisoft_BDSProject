@@ -177,6 +177,9 @@
     <Compile Include="Models\BDSComment.cs">
       <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BDSContentMenuFooter.cs">
+      <DependentUpon>WebBds.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BDSEducation.cs">
       <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
@@ -344,6 +347,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WebBds.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xsp_geo_district_Result.cs">
+      <DependentUpon>WebBds.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\xsp_geo_ward_Result.cs">
+      <DependentUpon>WebBds.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -470,7 +470,7 @@ namespace WebBDS_Project.Controllers
             }
 
 
-            var stMoneyToPoint =  db.Settings.Where(T => T.Name == "MoneyToPoint").FirstOrDefault();
+            var stMoneyToPoint =  db.Settings.Where(T => T.Name == "PointViewPer").FirstOrDefault();
             int p = 3;
             if (stMoneyToPoint!=null)
             {

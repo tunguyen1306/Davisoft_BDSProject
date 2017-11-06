@@ -111,15 +111,7 @@ namespace WebBDS_Project.Controllers
         }
         public ActionResult Search(String filter, int? typenews, int page = 1, int view = 25)
         {
-          /*  var t = 0;
-            if (filterCareer!=null)
-            {
-                Session["IdMenu"] = filterCareer[0];
-            }
-            else
-            {
-                Session["IdMenu"] = 0;
-            }*/
+           
 
             List<String> filterWorkingPlaces = new List<string>();
             List<String> filterCareers = new List<string>();
