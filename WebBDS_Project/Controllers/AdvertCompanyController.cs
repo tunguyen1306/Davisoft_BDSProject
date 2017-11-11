@@ -504,40 +504,13 @@ namespace WebBDS_Project.Controllers
             List<BDSPerNews_LangDegrees> ListPerNewLangDegrees = new List<BDSPerNews_LangDegrees>();
             List<BDSPerNews_References> ListPerNewReferences = new List<BDSPerNews_References>();
             List<BDSSalary> ListSalary = new List<BDSSalary>();
-            if (cuurentINews == null)
-            {
-                cuurentINews = new BDSPerNew { Active = 1, CreateDate = DateTime.Now, CreateUser = 1, PerId = IdPersonalByIdNewPer };
-                db.Entry(cuurentINews).State = EntityState.Added;
-                db.SaveChanges();
-                ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID });
-                ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID });
-              
-            }
-            else
             {
                 ListPerNewDegrees = db.BDSPerNews_Degrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active==1).ToList();
                 ListPerNewExperiences =db.BDSPerNews_Experiences.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
                 ListPerNewLangDegrees =db.BDSPerNews_LangDegrees.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
                 ListPerNewReferences = db.BDSPerNews_References.Where(T => T.ID_BDSPerNews == cuurentINews.ID && T.Active == 1).ToList();
                 ListSalary = db.BDSSalaries.Where(T => T.Active == 1).ToList();
-                //if (ListPerNewDegrees.Count == 0)
-                //{
-                //    ListPerNewDegrees.Add(new BDSPerNews_Degrees { ID_BDSPerNews = cuurentINews.ID,Active = 1});
-                //}
-                //if (ListPerNewExperiences.Count == 0)
-                //{
-                //    ListPerNewExperiences.Add(new BDSPerNews_Experiences { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
-                //}
-                //if (ListPerNewLangDegrees.Count == 0)
-                //{
-                //    ListPerNewLangDegrees.Add(new BDSPerNews_LangDegrees { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
-                //}
-                //if (ListPerNewReferences.Count == 0)
-                //{
-                //    ListPerNewReferences.Add(new BDSPerNews_References { ID_BDSPerNews = cuurentINews.ID, Active = 1 });
-                //}
+               
             }
             var dataCity = (from data in db.States
                             join datatext in db.StateTexts on data.name_id equals datatext.id

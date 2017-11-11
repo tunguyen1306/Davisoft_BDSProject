@@ -1,0 +1,145 @@
+﻿@using System.Configuration
+@using System.Web.UI.WebControls
+@using WebBDS_Project.Models
+@{
+
+    davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
+    int from = ViewBag.from;
+    int page = ViewBag.page;
+    int view = ViewBag.view;
+    int tt = ViewBag.tt == "" ? 0: int.Parse(ViewBag.tt);
+    int nn = ViewBag.nn == "" ? 0 : int.Parse(ViewBag.nn);
+    int ml = ViewBag.ml == "" ? 0 : int.Parse(ViewBag.ml);
+    int count = 0;
+    var States = (from a in db.States
+                  join b in db.StateTexts on a.state_id equals b.id
+                  where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
+                  select new { Id = a.state_id, Name = b.text }).ToList();
+
+    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
+    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+    var IdAccount = 0;
+    IdAccount = Session["IdUser"] != null ? int.Parse(Session["IdUser"].ToString()) : 0;
+  //  var IdYourSave = db.BDSEmpers.Where(x => x.IdAccountEm == IdAccount).Select(x => x.IdAccountPer).ToList();
+    count = db.BDSPersonalInformations.Where(x => x.Active == 1).OrderBy(T => T.Name).Count();
+    var listSearch = (from a in db.BDSPersonalInformations join b in db.BDSPerNews on a.ID equals  b.PerId
+                      where a.Active == 1 && b.Active == 1 && (tt == 0 || b.ProvinceProfile == tt) && (nn == 0 || b.CareerProfile == nn) && (ml == 0 || b.SalaryProfile == ml)
+                      orderby a.Name
+                      select a).Skip(from).Take(view).ToList();
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th data-field="id">NGÀY TÌM VIỆC</th>
+            <th data-field="name">HÌNH ẢNH</th>
+            <th data-field="name">HỌ VÀ TÊN</th>
+            <th data-field="name">GIỚI TÍNH</th>
+            <th data-field="name">NĂM SINH</th>
+            <th data-field="name">TỈNH / THÀNH PHỐ</th>
+            <th data-field="name">CHI TIẾT</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    @foreach (var item in listSearch)
+    {
+        var perNew = db.BDSPerNews.Where(T => T.PerId == item.ID).FirstOrDefault();
+        var carrer = db.BDSCareers.FirstOrDefault(T => T.ID == perNew.CareerProfile);
+        <tr>
+            <td>@item.CreateDate</td>
+            <td>
+                @if (item.UrlImage != null)
+                {
+                    <img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage"/>
+
+
+                }
+                else
+                {
+                    <img width="50" src="~/Template/images/avatar-default.png"/>
+                }
+            </td>
+
+            <td>@item.Name</td>
+            <td>@(item.Sex == 1 ? "Nam" : "Nữ")</td>
+            <td>@item.Birthday</td>
+
+            <td>@(db.StateTexts.FirstOrDefault(t => t.id == item.Province && t.language_id == "vi").text)</td>
+          
+
+            <td><a style="cursor: pointer" class="btnReadMore" data-id="@item.ID" >Xem</a></td>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="10">
+            <div class="page_links">
+                <span>Trang</span>
+                @if (count > 0)
+                {
+                    var p = Math.Ceiling((double)count / view);
+                    for (int i = 1; i <= (int)p; i++)
+                    {
+                        <a data-ref='@(page != i ? "" + Url.Action("PManagementCompany", "Management", new { nn = nn, ml = ml, tt = tt, from = (i - 1) * view, page = i, view = view }) + "" : "")' style="cursor: pointer" onclick=" loadPageFrom(this); " @(page == i ? " class=active" : "")>@i</a>
+                    }
+                }
+                <a class="nextPage" onclick=" loadPageFromNext(this); ">Tiếp</a>
+            </div>
+
+        </td>
+    </tr>
+    
+    </tfoot>
+</table>
+
+
+
+<style>
+    a.active {
+        cursor: auto;
+    }
+</style>
+<script>
+    
+    function loadFilterPageFrom(el) {
+        var url = '@Url.Action("PManagementCompany", "Management", new { from = 0, page = 0, view = view })' + "&tt=" + $('[name="filterWorkingPlace"]').val() + "&nn=" + $('[name="filterCareer"]').val() + "&ml=" + $('[name="filterSalary"]').val();
+        if (url != "") {
+            $('#listData').find('.loading').show();
+            $('#listData').find('.loading_icon').show();
+            $.get(url, function (data) {
+                var elP = $('#listData').find('div.table-responsive').eq(0);
+                elP.html($(data).html());
+                $('#listData').find('.loading').eq(0).hide();
+                $('#listData').find('.loading_icon').eq(0).hide();
+
+            });
+        }
+
+    }
+    function loadPageFrom(el) {
+        var url = $(el).attr('data-ref');
+        if (url != "") {
+            $(el).parents('#listData').find('.loading').show();
+            $(el).parents('#listData').find('.loading_icon').show();
+            $.get(url, function (data) {
+                var elP = $(el).parents('div.table-responsive').eq(0);
+                elP.html($(data).html());
+                elP.parents('#listData').find('.loading').eq(0).hide();
+                elP.parents('#listData').find('.loading_icon').eq(0).hide();
+            });
+        }
+        
+    }
+    function loadPageFromNext(el) {
+     
+        var elNext = $(el).parents('.page_links').eq(0).find('a.active').next();
+        if (!$(elNext).hasClass('nextPage')) {
+            $(elNext).click();
+        }
+
+    }
+
+
+</script>

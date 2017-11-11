@@ -16,7 +16,7 @@ namespace WebBDS_Project.Controllers
         // GET: /Management/
         davisoft_bdsprojectEntities1 db = new davisoft_bdsprojectEntities1();
         RegisterController registerController=new RegisterController();
-         [ActionName("ManagementCompany")]
+        [ActionName("ManagementCompany")]
         public ActionResult ManagementCompany()
         {
             if (Session["IdUser"] == null && Session["EmailUser"] == null)
@@ -36,25 +36,64 @@ namespace WebBDS_Project.Controllers
                             join datatext in db.DistrictTexts on data.name_id equals datatext.id
                             where datatext.language_id == "vi"
                             select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
-            var IdYourSave = db.BDSEmpers.Where(x => x.IdAccountEm == idAcount).Select(x=>x.IdAccountPer).ToList();
+            
              var register = new RegisterInformationModel
             {
-                ListBDSScopes = db.BDSScopes.ToList(),
-                ListMarriea = db.BDSMarriages.ToList(),
-                ListSalary = db.BDSSalaries.ToList(),
-                ListDucation = db.BDSEducations.ToList(),
-                ListBDSCareer = db.BDSCareers.ToList(),
-                ListTimework = db.BDSTimeWorks.ToList(),
-                ListBDSLanguage = db.BDSLanguages.ToList(),
-                ListBDSNewsType = db.BDSNewsTypes.OrderBy(x => x.Order).ToList(),
+      
                 ListGeoModel = dataCity.ToList(),
                  ListGeoDisModel = dataDist.ToList(),
                 TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),//!IdYourSave.Contains(x.ID)
-                ListBDSPersonalInformation = db.BDSPersonalInformations.Where(x => x.Active == 1 && !IdYourSave.Contains(x.ID)).ToList(),
+            
                 TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
                 ListBDSEmper = db.BDSEmpers.ToList()
             };
             return View(register);
+        }
+        [ActionName("SearchPersonal")]
+        public ActionResult SearchPersonal()
+        {
+            if (Session["IdUser"] == null && Session["EmailUser"] == null)
+            {
+                return RedirectToAction("LoginForm", "Login");
+            }
+            var idAcount = int.Parse(Session["IdUser"].ToString());
+            var dataCity = (from data in db.States
+                            join datatext in db.StateTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
+                            select new GeoModel { CityId = data.state_id, CityName = datatext.text }).ToList();
+
+            dataCity.Insert(0, new GeoModel { CityId = 0, CityName = "Chọn thành/phố" });
+            dataCity.Insert(1, new GeoModel { CityId = 59, CityName = "TP.Hồ Chí Minh" });
+            dataCity.Insert(2, new GeoModel { CityId = 28, CityName = "TP.Hà Nội" });
+            var dataDist = (from data in db.Districts
+                            join datatext in db.DistrictTexts on data.name_id equals datatext.id
+                            where datatext.language_id == "vi"
+                            select new GeoModel { DistId = data.district_id, DistName = datatext.text }).ToList();
+
+            var register = new RegisterInformationModel
+            {
+
+                ListGeoModel = dataCity.ToList(),
+                ListGeoDisModel = dataDist.ToList(),
+                TblBDSEmployerInformation = db.BDSEmployerInformations.FirstOrDefault(x => x.IdAccount == idAcount),//!IdYourSave.Contains(x.ID)
+
+                TblBdsAdcount = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount),
+                ListBDSEmper = db.BDSEmpers.ToList()
+            };
+            return View(register);
+        }
+        public PartialViewResult PManagementCompany(string tt = "", string nn = "", string ml = "", int from = 0, int view = 12, int page = 1)
+        {
+          
+         
+            ViewBag.from = from;
+            ViewBag.view = view;
+            ViewBag.page = page;
+            ViewBag.tt = tt;
+            ViewBag.nn = nn;
+            ViewBag.ml = ml;
+
+            return PartialView();
         }
          public PartialViewResult PListNewsOfUser(string tt, int from = 0, int view = 6, int page = 1)
          {
@@ -387,7 +426,7 @@ namespace WebBDS_Project.Controllers
             return null;
         }
 
-  [HttpPost,ActionName("ManagementAcountPersonal")]
+    [HttpPost,ActionName("ManagementAcountPersonal")]
         public ActionResult ManagementAcountPersonal(RegisterInformationModel register)
         {
           
@@ -486,7 +525,7 @@ namespace WebBDS_Project.Controllers
             em.IdAccountEm = emp.ID;
             em.IdAccountPer = id.Value;
             em.Description = em.Name;
-          
+            
             em.KeySearch = "";
             em.Point = p;
             var account = db.BDSAccounts.FirstOrDefault(T => T.ID == idAcount);
@@ -650,7 +689,7 @@ namespace WebBDS_Project.Controllers
                     Active = 1,
                     CreateUser = 1,
                     CreateDate = DateTime.Now,
-                    TypeTran = 3,
+                    TypeTran = 2,
                     PointTran = (int)P,
                     MoneyTran = sotien,
                     DateTran = DateTime.Now,
@@ -696,11 +735,24 @@ namespace WebBDS_Project.Controllers
         public ActionResult DetailPersonal(int id)
         {
             var idAcount = int.Parse(Session["IdUser"].ToString());
+            var namePeson = db.BDSPersonalInformations.Find(id);
             var point = db.BDSAccounts.FirstOrDefault(x => x.ID == idAcount).Point;
-            if (point>3)
+            var stMoneyToPoint = db.Settings.Where(T => T.Name == "PointViewPer").FirstOrDefault();
+            int p = 3;
+            if (stMoneyToPoint != null)
+            {
+
+                int.TryParse(stMoneyToPoint.Value, out p);
+
+            }
+            if (db.BDSEmpers.Where(T => T.IdAccountPer == id && T.IdAccountEm == idAcount).Count()>0)
+            {
+                return Json(new { result = 1, name = namePeson.Name.UrlFrendly() + "-" + id });
+            }
+            if (point>p)
             {
                 var tblBDSAccounts = db.BDSAccounts.Find(idAcount);
-                point = point - 3;
+                point = point - p;
                 tblBDSAccounts.Point = point;
                 db.Entry(tblBDSAccounts).State = EntityState.Modified;
                 db.SaveChanges();
@@ -713,9 +765,34 @@ namespace WebBDS_Project.Controllers
                 tblBDSEmpers.ModifiedDate = DateTime.Now;
                 tblBDSEmpers.CreateUser = 1;
                 tblBDSEmpers.ModifiedUser = 1;
-                db.BDSEmpers.Add(tblBDSEmpers);
+                db.Entry(tblBDSEmpers).State = EntityState.Added;
                 db.SaveChanges();
-                var namePeson = db.BDSPersonalInformations.Find(id);
+
+             
+                String Fname = "Xem tin tìm việc {A}  tốn {B} điểm";
+                string name = Fname.Replace("{A}", namePeson.Name.UrlFrendly() + "-" + id).Replace("{B}", "3");
+                BDSTransactionHistory tran = new BDSTransactionHistory()
+                {
+                    Name = name,
+                    Description = name,
+                    KeySearch = name.NormalizeD(),
+                    Active = 1,
+                    CreateUser = 1,
+                    CreateDate = DateTime.Now,
+                    TypeTran = 2,
+                    PointTran = p,
+                    MoneyTran = 0,
+                    DateTran = DateTime.Now,
+                    Status = 1,
+                    IdAccount = int.Parse(Session["IdUser"].ToString())
+
+                };
+                db.Entry(tran).State = EntityState.Added;
+                db.SaveChanges();
+                tblBDSEmpers.RefTranHis = tran.ID;
+                db.Entry(tblBDSEmpers).State = EntityState.Modified;
+                db.SaveChanges();
+              
                 return Json(new { result = 1, name = namePeson.Name.UrlFrendly()+"-"+id });
                
             }
@@ -725,40 +802,7 @@ namespace WebBDS_Project.Controllers
             }
            
         }
-        public ActionResult DetailPer(string id)
-        {
-            var id_ = int.Parse(id.Split('-').Last());
-            var dataCity = (from data in db.States
-                            join datatext in db.StateTexts on data.name_id equals datatext.id
-                            where datatext.language_id == "vi" && data.state_id != 59 && data.state_id != 28
-                            select new ListCityNew { Id = data.state_id, Name = datatext.text }).ToList();
-
-            dataCity.Insert(0, new ListCityNew { Id = 0, Name = "Chọn thành/phố" });
-            dataCity.Insert(0, new ListCityNew { Id = 59, Name = "TP.Hồ Chí Minh" });
-            dataCity.Insert(1, new ListCityNew { Id = 28, Name = "TP.Hà Nội" });
-
-            var dataDist = (from data in db.Districts
-                            join datatext in db.DistrictTexts on data.name_id equals datatext.id
-                            where datatext.language_id == "vi"
-                            select new ListCityNew { Id = data.district_id, Name = datatext.text }).ToList();
-
-            var Model = new NewsModel
-            {
-                tblBDSPersonalInformation = db.BDSPersonalInformations.FirstOrDefault(x => x.ID == id_),
-                ListBDSAccount = db.BDSAccounts.ToList(),
-                ListCityText = dataCity.ToList(),
-                ListDisText = dataDist.ToList(),
-                ListDucation = db.BDSEducations.ToList(),
-                ListTimework = db.BDSTimeWorks.ToList(),
-                ListBDSLanguage = db.BDSLanguages.ToList(),
-                ListBDSCareer=db.BDSCareers.ToList(),
-                ListBDSSalary = db.BDSSalaries.ToList()
-
-
-            };
-           
-            return View(Model);
-        }
+       
         public ActionResult ListNewOfUser()
         {
             

@@ -22,6 +22,15 @@
 
 
 }
+@{
+    var States = (from a in db.States
+                  join b in db.StateTexts on a.state_id equals b.id
+                  where b.language_id == "vi" && a.Status == 1 && a.state_id != 59 && a.state_id != 28
+                  select new { Id = a.state_id, Name = b.text }).ToList();
+
+    States.Insert(0, new { Id = 59, Name = "TP.Hồ Chí Minh" });
+    States.Insert(1, new { Id = 28, Name = "TP.Hà Nội" });
+}
 <div class="container">
     <div class="grid_9 main_left">
         <div class="group_work">
@@ -108,34 +117,40 @@
                     <div class="box_select">
                         <fieldset>
                             <div class="grid_3">
-                                <select class="dropdown" tabindex="7">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
+                                <select class="select2" style="width: 100%;height: 100%" name="filterWorkingPlace" tabindex="7">
+                                    <option value="">Chọn tỉnh thành</option>
+                                    @{
+                                        foreach (var item in States)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                             <div class="grid_3">
-                                <select class="dropdown" tabindex="7">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
+                                <select class="dropdown" name="filterCareer" tabindex="7">
+                                    <option value="">Chọn ngành nghề</option>
+                                    @{
+                                        foreach (var item in db.BDSCareers.Where(T => T.Active == 1).ToList())
+                                        {
+                                            <option value="@item.ID">@item.Name</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                             <div class="grid_3">
-                                <select class="dropdown" tabindex="7">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
+                                <select class="dropdown" name="filterSalary" tabindex="7">
+                                    <option value="">Chọn mức lương</option>
+                                    @{
+                                        foreach (var item in db.BDSSalaries.Where(T => T.Active == 1).ToList())
+                                        {
+                                            <option value="@item.ID">@item.Name</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                             <div class="grid_3 omega">
-                                <button class="btn_search" type="button"><i class="fa fa-search"></i>TÌM KIẾM</button>
+                                <button class="btn_search" type="button" onclick="loadFilterPageFrom(this); return false;"><i class="fa fa-search"></i>TÌM KIẾM</button>
                             </div>
                         </fieldset>
                     </div>
@@ -154,102 +169,67 @@
 
 </div>
 <div class="container">
-    <div class="grid_12">
+    <div class="grid_9 main_left">
         <b>Ghi chú bên dưới đây là danh sách các ứng viên tìm việc Bất động sản mỗi lượt xem bạn bị <b class="TextColorRed">trừ 3 điểm</b> vào tài khoản nhà tuyển dụng</b>
     </div>
-    <div class="grid_12">
-        <table class="table-responsive">
-            <thead>
-                <tr>
-                    <th data-field="id">NGÀY TÌM VIỆC</th>
-                    <th data-field="name">HÌNH ẢNH</th>
-                    <th data-field="name">HỌ VÀ TÊN</th>
-                    <th data-field="name">GIỚI TÍNH</th>
-                    <th data-field="name">NĂM SINH</th>
-                    <th data-field="name">TỈNH / THÀNH PHỐ</th>
-                    <th data-field="name">CHI TIẾT</th>
-                </tr>
-            </thead>
+    <div class="grid_9 main_left" id="listData" style="position: relative">
+        <div class="loading_icon" style="position: absolute; z-index: 11; left: 50%; top: 50%; display: none">
+            <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-reload"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="rotate(11.9999 50 50)"><path d="M50 15A35 35 0 1 0 74.787 25.213" fill="none" stroke="#de3039" stroke-width="12px"></path><path d="M50 0L50 30L66 15L50 0" fill="#de3039"></path><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"></animateTransform></g></svg>
+        </div>
+        <div class="loading" style="left: 0px; top: 0px; right: 0px; bottom: 0px; position: absolute; background-color: gray; opacity: 0.5; z-index: 10; display: none"></div>
 
-            <tbody>
+        <div class="table-responsive">
+            @Html.Action("PManagementCompany", new {tt = "", from = 0, view = 10, page = 1})
+        </div>
 
-                @foreach (var item in Model.ListBDSPersonalInformation)
-                {
-
-                    <tr>
-                        <td>@item.CreateDate</td>
-                        <td>
-                            @if (item.UrlImage != null)
-                            {
-                                <img width="50" src="@System.Configuration.ConfigurationManager.AppSettings["UrlImage"]@item.UrlImage.ToString().Split('_')[0]/@item.UrlImage" />
-
-
-                            }
-                            else
-                            {
-                                <img width="50" src="~/Template/images/avatar-default.png" />
-                            }
-                        </td>
-
-                        <td>@item.Name</td>
-                        <td>@(item.Sex==1? "Nam":"Nữ")</td>
-                        <td>@item.Birthday</td>
-                      
-                        <td>@(db.StateTexts.FirstOrDefault(t=>t.id== item.Province && t.language_id=="vi").text )</td>
-                      
-                       
-                        <td><a style="cursor: pointer" class="btnReadMore" rel="@item.ID">xem</a></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
 
 
 </div>
 <script>
-    $('.btnReadMore').click(function () {
-        var id = $(this).attr('rel');
-        var data = {};
-        data.id = id;
+    $(document).on('click', '.btnReadMore', function() {
+
+        var id = $(this).attr('data-id');
+        var dataPost = {};
+        dataPost.id = id;
         $.ajax
-  ({
-      type: "POST",
-      url: '@Url.Action("DetailPersonal", "Management")',
-      data: JSON.stringify(data),
-      dataType: "json",
-      contentType: "application/json;charset=utf-8",
-      success: function (data) {
-          if (data.result==0) {
-              toastr.error('Quý khách không đủ điểm.Vui lòng nạp thêm!');
-          }
-          if (data.result == 1) {
-              var t = data.name;
+        ({
+            type: "POST",
+            url: '@Url.Action("DetailPersonal", "Management")',
+            data: JSON.stringify(dataPost),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data.result == 0) {
+                    toastr.error('Quý khách không đủ điểm.Vui lòng nạp thêm!');
+                }
+                if (data.result == 1) {
+                    var tKey = data.name;
+                    var urlDetail = '/chi-tiet-ho-so?idNew=' + tKey;
+                    window.location.href = urlDetail;
+                }
 
-              var urlDetail = '/chi-tiet-ho-so?idNew='+_TagId ;
+            }
+        });
 
-              window.location.href = urlDetail;
-          }
-
-      }
-  });
     });
+    
 </script>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
 
         var jssor_3_SlideoTransitions = [
-          [{ b: 0, d: 600, y: -290, e: { y: 27 } }],
-          [{ b: 0, d: 1000, y: 185 }, { b: 1000, d: 500, o: -1 }, { b: 1500, d: 500, o: 1 }, { b: 2000, d: 1500, r: 360 }, { b: 3500, d: 1000, rX: 30 }, { b: 4500, d: 500, rX: -30 }, { b: 5000, d: 1000, rY: 30 }, { b: 6000, d: 500, rY: -30 }, { b: 6500, d: 500, sX: 1 }, { b: 7000, d: 500, sX: -1 }, { b: 7500, d: 500, sY: 1 }, { b: 8000, d: 500, sY: -1 }, { b: 8500, d: 500, kX: 30 }, { b: 9000, d: 500, kX: -30 }, { b: 9500, d: 500, kY: 30 }, { b: 10000, d: 500, kY: -30 }, { b: 10500, d: 500, c: { x: 87.50, t: -87.50 } }, { b: 11000, d: 500, c: { x: -87.50, t: 87.50 } }],
-          [{ b: 0, d: 600, x: 410, e: { x: 27 } }],
-          [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, o: 1, e: { o: 5 } }],
-          [{ b: -1, d: 1, c: { x: 175.0, t: -175.0 } }, { b: 0, d: 800, c: { x: -175.0, t: 175.0 }, e: { c: { x: 7, t: 7 } } }],
-          [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, x: -570, o: 1, e: { x: 6 } }],
-          [{ b: -1, d: 1, o: -1, r: -180 }, { b: 0, d: 800, o: 1, r: 180, e: { r: 7 } }],
-          [{ b: 0, d: 1000, y: 80, e: { y: 24 } }, { b: 1000, d: 1100, x: 570, y: 170, o: -1, r: 30, sX: 9, sY: 9, e: { x: 2, y: 6, r: 1, sX: 5, sY: 5 } }],
-          [{ b: 2000, d: 600, rY: 30 }],
-          [{ b: 0, d: 500, x: -105 }, { b: 500, d: 500, x: 230 }, { b: 1000, d: 500, y: -120 }, { b: 1500, d: 500, x: -70, y: 120 }, { b: 2600, d: 500, y: -80 }, { b: 3100, d: 900, y: 160, e: { y: 24 } }],
-          [{ b: 0, d: 1000, o: -0.4, rX: 2, rY: 1 }, { b: 1000, d: 1000, rY: 1 }, { b: 2000, d: 1000, rX: -1 }, { b: 3000, d: 1000, rY: -1 }, { b: 4000, d: 1000, o: 0.4, rX: -1, rY: -1 }]
+            [{ b: 0, d: 600, y: -290, e: { y: 27 } }],
+            [{ b: 0, d: 1000, y: 185 }, { b: 1000, d: 500, o: -1 }, { b: 1500, d: 500, o: 1 }, { b: 2000, d: 1500, r: 360 }, { b: 3500, d: 1000, rX: 30 }, { b: 4500, d: 500, rX: -30 }, { b: 5000, d: 1000, rY: 30 }, { b: 6000, d: 500, rY: -30 }, { b: 6500, d: 500, sX: 1 }, { b: 7000, d: 500, sX: -1 }, { b: 7500, d: 500, sY: 1 }, { b: 8000, d: 500, sY: -1 }, { b: 8500, d: 500, kX: 30 }, { b: 9000, d: 500, kX: -30 }, { b: 9500, d: 500, kY: 30 }, { b: 10000, d: 500, kY: -30 }, { b: 10500, d: 500, c: { x: 87.50, t: -87.50 } }, { b: 11000, d: 500, c: { x: -87.50, t: 87.50 } }],
+            [{ b: 0, d: 600, x: 410, e: { x: 27 } }],
+            [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, o: 1, e: { o: 5 } }],
+            [{ b: -1, d: 1, c: { x: 175.0, t: -175.0 } }, { b: 0, d: 800, c: { x: -175.0, t: 175.0 }, e: { c: { x: 7, t: 7 } } }],
+            [{ b: -1, d: 1, o: -1 }, { b: 0, d: 600, x: -570, o: 1, e: { x: 6 } }],
+            [{ b: -1, d: 1, o: -1, r: -180 }, { b: 0, d: 800, o: 1, r: 180, e: { r: 7 } }],
+            [{ b: 0, d: 1000, y: 80, e: { y: 24 } }, { b: 1000, d: 1100, x: 570, y: 170, o: -1, r: 30, sX: 9, sY: 9, e: { x: 2, y: 6, r: 1, sX: 5, sY: 5 } }],
+            [{ b: 2000, d: 600, rY: 30 }],
+            [{ b: 0, d: 500, x: -105 }, { b: 500, d: 500, x: 230 }, { b: 1000, d: 500, y: -120 }, { b: 1500, d: 500, x: -70, y: 120 }, { b: 2600, d: 500, y: -80 }, { b: 3100, d: 900, y: 160, e: { y: 24 } }],
+            [{ b: 0, d: 1000, o: -0.4, rX: 2, rY: 1 }, { b: 1000, d: 1000, rY: 1 }, { b: 2000, d: 1000, rX: -1 }, { b: 3000, d: 1000, rY: -1 }, { b: 4000, d: 1000, o: 0.4, rX: -1, rY: -1 }]
         ];
 
         var jssor_3_options = {
@@ -259,7 +239,7 @@
                 $Class: $JssorCaptionSlideo$,
                 $Transitions: jssor_3_SlideoTransitions,
                 $Breaks: [
-                  [{ d: 2000, b: 1000 }]
+                    [{ d: 2000, b: 1000 }]
                 ]
             },
             $ArrowNavigatorOptions: {
