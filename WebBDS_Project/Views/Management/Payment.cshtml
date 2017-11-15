@@ -114,11 +114,22 @@
                             </div>
                             <div class="row">
                                 <div class="header-promotion">
-                                    <h4>Kiểm tra khuyến mãi</h4>
-                                    <div class="border-promotion">
-                                        Kể từ ngày 01/01/2017 tuyennhanvienbds.com áp dụng chương trình khuyến mãi tặng <b class="TextColorRed">20%</b>  giá trị nạp tiền vào tài khoản cho nhà tuyển dụng.
-                                    </div>
-                                    <div class="row">
+                                  
+                                        @{
+                                            var eventPayment = db.BDSEvents.Where(T => T.Active == 1 && T.FromDate <= DateTime.Now && T.ToDate >= DateTime.Now).OrderByDescending(T => T.FromDate).FirstOrDefault();
+                                            if (eventPayment != null)
+                                            {
+                                                <h4>Kiểm tra khuyến mãi</h4>
+                                                <div class="border-promotion">
+                                                    @Html.Raw("Kể từ ngày " + eventPayment.FromDate.Value.ToString("dd/MM/yyyy") + " - " + eventPayment.ToDate.Value.ToString("dd/MM/yyyy") + " tuyennhanvienbds.com áp dụng chương trình khuyến mãi tặng <b class='TextColorRed'>" + eventPayment.DisPercent + "%</b> giá trị nạp tiền vào tài khoản cho nhà tuyển dụng.")
+
+
+                                                </div>
+                                            }
+                                        }
+
+
+                                            <div class="row">
                                         <label class="grid_2">Số tiền nạp</label>
                                         <div class="row-right grid_9">
                                             <input placeholder="Nhập số tiền" class="money" name="soTien" type="text">

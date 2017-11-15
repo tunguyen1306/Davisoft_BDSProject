@@ -184,8 +184,8 @@
                 {
 
 
-                  
-                        @*<div id="jssor_3" style="position: relative; margin: 10px auto; border: 1px solid #fefefe; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+
+                        <div id="jssor_3" style="position: relative; margin: 10px auto; border: 1px solid #fefefe; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
 
                                 <div data-u="loading" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0, 0, 0, 0.7);">
                                     <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
@@ -196,7 +196,7 @@
                                     @foreach (var itemPicture in Model.ListPicture)
                                     {
                                         <div>
-                                            <img data-u="image"  src="@ConfigurationManager.AppSettings["UrlImage"]@itemPicture.originalFilepath.ToString().Split('_')[0]/@itemPicture.originalFilepath" />
+                                            <img data-u="image" class="imgSlider"  src="@ConfigurationManager.AppSettings["UrlImage"]@itemPicture.originalFilepath.ToString().Split('_')[0]/@itemPicture.originalFilepath" />
 
                                         </div>
                                     }
@@ -343,8 +343,10 @@
                                     opacity: .3;
                                     pointer-events: none;
                                 }
-                            </style>*@
-                        }
+                            </style>
+                  
+
+                }
                         <h3>Mô tả công việc: </h3>
                         <ul class="info">
                             <li>

@@ -37,7 +37,7 @@
 
                         <div class="row-right note2" style="line-height:16px;">
 
-                            <i class="fa fa-caret-right"></i>Cũng là tên đăng nhập chính của quý công ty trên Tuyennhanvienbds.com
+                            <i class="fa fa-caret-right"></i>Cũng là tên đăng nhập chính của bạn trên Tuyennhanvienbds.com
                             <br />
                             <a class="lblcheckEmail" href="javascript:void(0)">Kiểm tra sự tồn tại của email</a>
                         </div>
@@ -376,12 +376,22 @@
             $('#hdValuesDate').val(datet);
         });
         $("#day").change(function () {
-
+        
+            if ($("#day").val() != "" &&( $("#day").val() > 31 || $("#day").val() <= 0)) {
+               
+                $("#day").val("");
+                toastr.error('Vui lòng nhập ngày <= 31 ! ');
+                return ;
+            }
             var datet = $('#day').val() + "/" + $('#month').val() + "/" + $('#year').val();
             $('#hdValuesDate').val(datet);
         });
         $("#month").change(function () {
-
+            if ($("#month").val() != "" && ($("#month").val() > 12 || $("#month").val() <= 0)) {
+                $("#month").val("");
+                toastr.error('Vui lòng nhập tháng <= 12  ! ');
+                return;
+            }
             var datet = $('#day').val() + "/" + $('#month').val() + "/" + $('#year').val();
             $('#hdValuesDate').val(datet);
         });
